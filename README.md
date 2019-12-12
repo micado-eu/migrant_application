@@ -19,6 +19,11 @@ npm install
 ```bash
 docker-compose up
 ```
+The application can be accessed both the followin addresses
+```bash
+http://migrants.micado.csi.it   [using the balancer in front of the web server as in production environment]
+http://localhost:8080     [with hot reloading]
+```
 
 
 ### Build the app for production

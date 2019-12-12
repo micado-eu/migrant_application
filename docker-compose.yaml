@@ -16,7 +16,8 @@ services:
         target: /code
     ports:
      - "8000:8000"
-    command: quasar dev
+     - "8080:8080"
+    command: /bin/sh -c "npm install && quasar dev"
     networks:
       - micado_net
     
@@ -24,7 +25,7 @@ services:
     image: traefik:v2.1
     ports:
       - "80:80"
-      - "8080:8080"
+      - "8081:8080"
       - "443:443" # The HTTPS port
     volumes:
       - ./traefik/traefik.toml:/etc/traefik/traefik.toml
