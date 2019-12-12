@@ -1,0 +1,50 @@
+[
+  {
+    "id":1,
+    "title":"PA's flows",
+    "text":"Administratives flows.  Here you find the list of all the flows supportted by MICADO pilot city",
+    "button":"consult flows",
+    "link": "#/flows",
+    "icon":"house"
+  },
+  {
+    "id":2,
+    "title":"Housing service1",
+    "text":"This could be a link to an existing eternal application",
+    "button":"Go to app",
+    "link": "#",
+    "icon":"house"
+  },
+  {
+    "id":3,
+    "title":"Health service1",
+    "text":"This could be another link to external application",
+    "button":"go somewhere",
+    "link": "#",
+    "icon":"health"
+  },
+  {
+    "id":4,
+    "title":"Language courses",
+    "text":"This is the link to a service offered by NGO1 providing language courses",
+    "button":"Go to site",
+    "link": "#/eduflow",
+    "icon":"edu"
+  },
+  {
+    "id":5,
+    "title":"Job4skills",
+    "text":"Look for jobs that matches your skills, this could be a feature of MICADO or en example of external service",
+    "button":"go somewhere",
+    "link": "#",
+    "icon":"work"
+  },
+  {
+    "id":6,
+    "title":"Your badges",
+    "text":"Check your badges this could be a MICADO service, we decided to move it on a second release and it could be a TAB and not a card in the services",
+    "button":"go for it2",
+    "link": "#",
+    "icon":"edu"
+  }
+]
