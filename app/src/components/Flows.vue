@@ -19,18 +19,9 @@
           <q-card :class="nodePanelVisible" header="Details of the step">
           Location: {{longitude}}
             <q-list >
-              <q-item-label header>Documents required</q-item-label>
-              <q-item v-for="doc in documents" :key="doc.id">
-                <q-item-section avatar>
-                  <q-avatar rounded>
-                  <img :src="doc.image">
-                  </q-avatar>
-                </q-item-section>
-                <q-item-section>
-                <q-item-label>{{doc.type}}</q-item-label>
-                <q-item-label caption >Emitted by:{{doc.emitter}}</q-item-label>
-                </q-item-section>
-                </q-item>
+              <q-item-label header>Required documents</q-item-label>
+              <DocumentItem v-for="doc in documents" :theDoc="doc" title="Documents required">
+              </DocumentItem>
             </q-list>
           </q-card>
 
@@ -43,8 +34,9 @@
             :definition="def"
             v-on:mousedown="deleteNode($event, def)"
           />
-          -->
+          
         </cytoscape>
+        -->
         <vue-mermaid
           :nodes="mermaid"
           type="graph LR"
@@ -61,6 +53,7 @@ import { Core, EventObject } from 'cytoscape'
 //import CyElement from '@/components/CyElement'
 import configcy from './cytoscapeConfig'
 //import configcy from "./config-cy";
+import DocumentItem from 'components/DocumentItem'
 
 
 console.log(configcy);
@@ -68,6 +61,9 @@ export default {
   name: 'Flows',
   props: {
     msg: String
+  },
+  components: {
+    DocumentItem
   },
   data () {
     return {
