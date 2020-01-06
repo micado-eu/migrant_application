@@ -1,8 +1,8 @@
 <template>
-  <div class="documents">
+  <q-page class="flows container-fluid">
     <q-list >
       <q-item-label header>Owned documents</q-item-label>
-      <DocumentItem v-for="doc in documents" :theDoc="doc" >
+      <DocumentItem v-for="doc in documents" :theDoc="doc" :key="doc.id" >
       </DocumentItem>
     </q-list>
     Upload new documents
@@ -13,7 +13,7 @@
     </div>
     <div id="DashboardContainer" v-else></div>
     </div>
-  </div>
+  </q-page>
 </template>
 
 <script>

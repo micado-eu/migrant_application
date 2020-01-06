@@ -12,7 +12,7 @@ const routes = [
 //    meta: { auth: true },
     component: () => import('layouts/MyLayout.vue'),
     children: [
-      { path: '', component: () => import('components/Documents.vue') }
+      { path: '', component: () => import('pages/Documents.vue') }
     ]
   },
   {
@@ -20,7 +20,7 @@ const routes = [
 //    meta: { auth: true },
     component: () => import('layouts/MyLayout.vue'),
     children: [
-      { path: '', component: () => import('components/Services.vue') }
+      { path: '', component: () => import('pages/Services.vue') }
     ]
   },
   {
@@ -28,7 +28,7 @@ const routes = [
 //    meta: { auth: true },
     component: () => import('layouts/MyLayout.vue'),
     children: [
-      { path: '', component: () => import('components/Flows.vue') }
+      { path: '', component: () => import('pages/Flows.vue') }
     ]
   },
   {

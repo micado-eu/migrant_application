@@ -1,5 +1,6 @@
 <template>
-  <div class="flows container-fluid">
+  <q-page class="flows container-fluid">
+  <!-- <div class="flows container-fluid"> -->
     <div class="row">
       <div class="col">
         <span v-if="loading">Loading…</span>
@@ -20,7 +21,7 @@
           Location: {{longitude}}
             <q-list >
               <q-item-label header>Required documents</q-item-label>
-              <DocumentItem v-for="doc in documents" :theDoc="doc" title="Documents required">
+              <DocumentItem v-for="doc in documents" :theDoc="doc" :key="doc.id">
               </DocumentItem>
             </q-list>
           </q-card>
@@ -34,7 +35,7 @@
             :definition="def"
             v-on:mousedown="deleteNode($event, def)"
           />
-          
+
         </cytoscape>
         -->
         <vue-mermaid
@@ -44,14 +45,14 @@
           v-on:nodeClick="editNodeMer"></vue-mermaid>
       </div>
     </div>
-  </div>
+  </q-page>
 </template>
 
 <script>
 import { Core, EventObject } from 'cytoscape'
 //import Cytoscape from '@/components/Cytoscape'
 //import CyElement from '@/components/CyElement'
-import configcy from './cytoscapeConfig'
+import configcy from '../configs/cytoscapeConfig'
 //import configcy from "./config-cy";
 import DocumentItem from 'components/DocumentItem'
 
