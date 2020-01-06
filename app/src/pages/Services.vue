@@ -3,13 +3,8 @@
     <span v-if="loading">Loading…</span>
     <div v-else class="container">
       <div class="row" >
-        <div v-for="service in services" :key="service.id" class="card" :class="service.icon">
-          <div class="card-body">
-            <h5 class="card-title">{{ service.title }}</h5>
-            <p class="card-text">{{ service.text }}</p>
-            <a :href="service.link" class="btn btn-primary">{{ service.button }}</a>
-          </div>
-        </div>
+        <ServiceItem v-for="service in services" :key="service.id" :theService="service">
+        </ServiceItem>
       </div>
       <div class="row" v-if="($mq === 'mobile')">
           <b-list-group>
@@ -48,6 +43,8 @@
 </template>
 
 <script>
+import ServiceItem from 'components/ServiceItem'
+
 export default {
   name: 'Services',
   props: {
@@ -57,6 +54,9 @@ export default {
     return {
       loading: false
     }
+  },
+  components: {
+    ServiceItem
   },
 
   computed: {

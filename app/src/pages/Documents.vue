@@ -1,17 +1,9 @@
 <template>
-  <div class="documents">
+  <q-page class="flows container-fluid">
     <q-list >
-      <q-item v-for="doc in documents" :key="doc.id">
-      <q-item-section avatar>
-          <q-avatar rounded>
-          <img :src="doc.image">
-          </q-avatar>
-        </q-item-section>
-        <q-item-section>
-        <q-item-label>{{doc.title}}</q-item-label>
-        <q-item-label caption >Emitted by:{{doc.emitter}} - lasting up to: {{doc.expire_date}}</q-item-label>
-        </q-item-section>
-        </q-item>
+      <q-item-label header>Owned documents</q-item-label>
+      <DocumentItem v-for="doc in documents" :theDoc="doc" :key="doc.id" >
+      </DocumentItem>
     </q-list>
     Upload new documents
 
@@ -21,7 +13,7 @@
     </div>
     <div id="DashboardContainer" v-else></div>
     </div>
-  </div>
+  </q-page>
 </template>
 
 <script>
@@ -29,6 +21,7 @@ import Uppy from '@uppy/core'
 import Dashboard from '@uppy/dashboard'
 import XHRUpload from '@uppy/xhr-upload'
 import Tus from '@uppy/tus'
+import DocumentItem from 'components/DocumentItem'
 
 //const Uppy = require('@uppy/core');
 //const Dashboard = require('@uppy/dashboard');
@@ -46,6 +39,9 @@ export default {
       mainProps: { width: 50, height: 50, class: 'm1' }
       }
     },
+  components: {
+    DocumentItem
+  },
   computed: {
   uppyId() {
     return `${this.modelId}-${this.collection}`;

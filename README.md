@@ -19,10 +19,16 @@ npm install
 ```bash
 docker-compose up
 ```
-The application can be accessed both the followin addresses
+The application can be accessed both the following addresses
 ```bash
-http://migrants.micado.csi.it   [using the balancer in front of the web server as in production environment]
+http://migrants.micado.csi.it   [using the balancer in front of the web server as in production environment; the FQDN must be set in hosts file]
 http://localhost:8080     [with hot reloading]
+```
+
+### To test the application during Development
+```bash
+docker exec -it migrant_application_migrants_app_dev_1 /bin/bash
+QENV=test;NODE_ENV=test;quasar test --unit jest
 ```
 
 

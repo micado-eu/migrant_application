@@ -1,5 +1,6 @@
 <template>
-  <div class="flows container-fluid">
+  <q-page class="flows container-fluid">
+  <!-- <div class="flows container-fluid"> -->
     <div class="row">
       <div class="col">
         <span v-if="loading">Loading…</span>
@@ -19,18 +20,9 @@
           <q-card :class="nodePanelVisible" header="Details of the step">
           Location: {{longitude}}
             <q-list >
-              <q-item-label header>Documents required</q-item-label>
-              <q-item v-for="doc in documents" :key="doc.id">
-                <q-item-section avatar>
-                  <q-avatar rounded>
-                  <img :src="doc.image">
-                  </q-avatar>
-                </q-item-section>
-                <q-item-section>
-                <q-item-label>{{doc.type}}</q-item-label>
-                <q-item-label caption >Emitted by:{{doc.emitter}}</q-item-label>
-                </q-item-section>
-                </q-item>
+              <q-item-label header>Required documents</q-item-label>
+              <DocumentItem v-for="doc in documents" :theDoc="doc" :key="doc.id">
+              </DocumentItem>
             </q-list>
           </q-card>
 
@@ -43,8 +35,9 @@
             :definition="def"
             v-on:mousedown="deleteNode($event, def)"
           />
-          -->
+
         </cytoscape>
+        -->
         <vue-mermaid
           :nodes="mermaid"
           type="graph LR"
@@ -52,15 +45,16 @@
           v-on:nodeClick="editNodeMer"></vue-mermaid>
       </div>
     </div>
-  </div>
+  </q-page>
 </template>
 
 <script>
 import { Core, EventObject } from 'cytoscape'
 //import Cytoscape from '@/components/Cytoscape'
 //import CyElement from '@/components/CyElement'
-import configcy from './cytoscapeConfig'
+import configcy from '../configs/cytoscapeConfig'
 //import configcy from "./config-cy";
+import DocumentItem from 'components/DocumentItem'
 
 
 console.log(configcy);
@@ -68,6 +62,9 @@ export default {
   name: 'Flows',
   props: {
     msg: String
+  },
+  components: {
+    DocumentItem
   },
   data () {
     return {
