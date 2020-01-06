@@ -1,0 +1,275 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"url",
+				"urlHeatMap"
+			],
+			[
+				"lo",
+				"log"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 92.0,
+		"last_filter": "javasc",
+		"selected_items":
+		[
+			[
+				"javasc",
+				"Javascript Beautify"
+			],
+			[
+				"jso",
+				"Pretty JSON: Format (Pretty Print) JSON"
+			],
+			[
+				"pa",
+				"Package Control: Install Package"
+			],
+			[
+				"be",
+				"Javascript Beautify"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"j",
+				"Pretty JSON: Format (Pretty Print) JSON"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"xpath",
+				"XPath: Query document"
+			],
+			[
+				"Package Control: insta",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 467.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"XPath:/*/*",
+			"/*",
+			"import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/gioppo/Development/OperaEU/tosca/TOSCA-Metadata/TOSCA.meta",
+		"/home/gioppo/Development/OperaEU/tosca/Definitions/tosca_single_instance_owncloud.yaml",
+		"/home/gioppo/Development/OperaEU/hot_template.yml",
+		"/home/gioppo/Development/OperaEU/heat-translator/translator/tests/data/test_tosca_custom_type.yaml",
+		"/home/gioppo/Development/OperaEU/toscaExamples/tosca_owncloud.yaml",
+		"/home/gioppo/Development/OperaEU/toscaExamples/heat_owncloud.yaml",
+		"/home/gioppo/Development/OperaEU/heat-translator/translator/tests/data/test_tosca_flavor_and_image.yaml",
+		"/home/gioppo/Development/OperaEU/heat-translator/translator/tests/data/storage/tosca_blockstorage_with_attachment.yaml",
+		"/home/gioppo/Downloads/bicincittà_vc_con_codicismartobject-xjava.csv",
+		"/home/gioppo/Development/OperaEU/heat-translator/translator/tests/data/tosca_single_server_with_defaults.yaml",
+		"/home/gioppo/Development/OperaEU/heat-translator/translator/tests/data/network/tosca_one_server_one_network.yaml",
+		"/home/gioppo/Development/OperaEU/heat-translator/translator/tests/data/tosca_single_server.yaml",
+		"/home/gioppo/Development/OperaEU/heat-translator/translator/hot/tosca_translator.py",
+		"/home/gioppo/Development/OperaEU/toscaExamples/tosca_web_application.yaml",
+		"/home/gioppo/Development/OperaEU/toscaExamples/heat_container_docker_mysql.yaml",
+		"/home/gioppo/Development/OperaEU/heat-translator/translator/__init__.py",
+		"/home/gioppo/Development/OperaEU/toscaExamples/tosca_opencloud.yaml",
+		"/home/gioppo/Development/OperaEU/tosca-parser-0.9.0/doc/source/installation.rst",
+		"/home/gioppo/Development/OperaEU/tosca-parser-0.9.0/doc/source/usage.rst",
+		"/home/gioppo/Development/OperaEU/toscaExamples/test_container_docker_mysql.yaml",
+		"/home/gioppo/Development/OperaEU/tosca/Definitions/tosca_single_instance_wordpress.yaml",
+		"/home/gioppo/Downloads/sandbox-Sensors_1674-all(1).csv",
+		"/home/gioppo/Downloads/bigiot_BIELLA_centraline_aria_20170721.csv",
+		"/home/gioppo/Development/JHipsterApps/piePark/bower.json",
+		"/home/gioppo/Development/JHipsterApps/piePark/src/main/webapp/manifest.webapp",
+		"/home/gioppo/Development/JHipsterApps/piePark/node_modules/generator-jhipster/generators/client/files-angular.js",
+		"/home/gioppo/Development/JHipsterApps/piePark/node_modules/generator-jhipster/generators/client/files-angularjs.js",
+		"/home/gioppo/Development/JHipsterApps/piePark/node_modules/generator-jhipster/generators/client/templates/angular/src/main/webapp/app/home/_home.css",
+		"/home/gioppo/Development/JHipsterApps/piePark/node_modules/generator-jhipster/generators/client/templates/angular/src/main/webapp/app/home/_home.scss",
+		"/home/gioppo/Development/JHipsterApps/piePark/node_modules/generator-jhipster/generators/client/templates/angularjs/src/main/webapp/content/css/_main.css",
+		"/home/gioppo/Development/JHipsterApps/piePark/node_modules/generator-jhipster/generators/client/templates/angularjs/src/main/webapp/scss/_main.scss",
+		"/home/gioppo/Development/JHipsterApps/piePark/src/main/webapp/content/css/main.css",
+		"/home/gioppo/Development/JHipsterApps/piePark/src/main/webapp/scss/main.scss",
+		"/home/gioppo/Development/JHipsterApps/piePark/node_modules/generator-jhipster/generators/client/templates/angularjs/src/main/webapp/app/layouts/navbar/_navbar.html",
+		"/home/gioppo/Development/JHipsterApps/piePark/node_modules/generator-jhipster/generators/client/templates/angularjs/src/main/webapp/_manifest.webapp",
+		"/home/gioppo/Development/JHipsterApps/piePark/node_modules/generator-jhipster/generators/client/templates/angular/webpack/_webpack.dev.js",
+		"/home/gioppo/Development/JHipsterApps/piePark/node_modules/generator-jhipster/generators/client/templates/angular/src/main/webapp/_manifest.webapp",
+		"/home/gioppo/Development/JHipsterApps/piePark/node_modules/generator-jhipster/generators/client/templates/angular/src/main/webapp/app/layouts/navbar/_navbar.scss",
+		"/home/gioppo/Development/JHipsterApps/piePark/node_modules/generator-jhipster/generators/client/templates/angular/src/main/webapp/app/layouts/navbar/_navbar.css",
+		"/home/gioppo/.config/sublime-text-3/Packages/User/Pretty JSON.sublime-settings",
+		"/home/gioppo/.config/sublime-text-3/Packages/Pretty JSON/Pretty JSON.sublime-settings",
+		"/home/gioppo/.config/sublime-text-3/Packages/User/JSON.sublime-settings",
+		"/home/gioppo/.config/sublime-text-3/Packages/Package Control/Package Control.sublime-settings"
+	],
+	"find":
+	{
+		"height": 22.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"\"",
+			"\\n",
+			",",
+			"\\n",
+			"\\\\n",
+			"/n",
+			","
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"\\\\\"",
+			"\\\"",
+			",",
+			"':'",
+			",",
+			"','"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 22.0
+	},
+	"input":
+	{
+		"height": 35.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.stino_build_panel":
+	{
+		"height": 0.0
+	},
+	"output.stino_panel":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "Micado migrant app.sublime-project",
+	"replace":
+	{
+		"height": 40.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 422.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
