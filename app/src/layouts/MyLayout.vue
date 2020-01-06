@@ -27,7 +27,7 @@
     >
       <auth-menu />
       <q-list>
-        <q-item-label header>My services</q-item-label>
+        <q-item-label header>My tools</q-item-label>
         <q-item clickable tag="a" to="/services">
           <q-item-section avatar>
             <q-icon name="school" />
