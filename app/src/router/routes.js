@@ -9,6 +9,8 @@ const routes = [
        { path: '/services', component: () => import('pages/Services.vue') },
        { path: '/flows', component: () => import('pages/Flows.vue') },
        { path: '/notifications', component: () => import('components/Notifications.vue') },
+       { path: '/speech', component: () => import('pages/Speech.vue') },
+       { path: '/chatbot', component: () => import('pages/Chatbot.vue') },
        { path: '/map', component: () => import('components/Map.vue') }
      ]
    }/*,

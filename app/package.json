@@ -26,6 +26,7 @@
     "@uppy/core": "^1.6.0",
     "@uppy/dashboard": "^1.5.0",
     "@uppy/tus": "^1.5.0",
+    "annyang": "^2.6.1",
     "axios": "^0.18.0",
     "axios-jsonp": "^1.0.4",
     "jsonapi-vuex": "^3.1.1",
@@ -44,6 +45,7 @@
     "@quasar/quasar-app-extension-testing": "^1.0.0",
     "@quasar/quasar-app-extension-testing-e2e-cypress": "^1.0.0-beta.10",
     "@quasar/quasar-app-extension-testing-unit-jest": "^1.0.0",
+    "exports-loader": "^0.7.0",
     "majestic": "^1.2.24",
     "quasar-app-extension-auth-token-based": "^0.3.1",
     "wallaby-vue-compiler": "^1.0.3"

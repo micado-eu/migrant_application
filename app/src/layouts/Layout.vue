@@ -34,7 +34,7 @@
     >
       <auth-menu />
       <q-list>
-        <q-item-label header>My services</q-item-label>
+        <q-item-label header>My tools</q-item-label>
           <q-item clickable exact v-for="(nav, index) in navs" :to="nav.to" :key="nav.label">
             <q-item-section avatar>
               <q-icon :name="nav.icon" />
@@ -57,7 +57,7 @@
 import AuthMenu from './auth/AuthMenu'
 
 export default {
-  name: 'MyLayout',
+  name: 'Layout',
 
   components: {
     AuthMenu
@@ -73,7 +73,7 @@ export default {
         {label:'Administrative processes', icon: 'record_voice_over', to: '/flows', description: 'flow description of processes'},
         {label:'Notifications', icon: 'record_voice_over', to: '/notifications', description: 'messages from PA'},
         {label:'Search', icon: 'record_voice_over', to: '/map', description: "PA's services around you"},
-
+        {label:'Speech', icon: 'record_voice_over', to: '/speech', description: "I'll listen to you"}
       ]
     }
   }
