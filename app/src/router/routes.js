@@ -2,16 +2,16 @@
 const routes = [
   {
     path: '/',
-    component: () => import('layouts/Layout.vue'),
-    children: [
-      { path: '', component: () => import('pages/Index.vue') },
-      { path: '/documents', component: () => import('components/Documents.vue') },
-      { path: '/services', component: () => import('components/Services.vue') },
-      { path: '/flows', component: () => import('components/Flows.vue') },
-      { path: '/notifications', component: () => import('components/Notifications.vue') },
-      { path: '/map', component: () => import('components/Map.vue') }
-    ]
-  }/*,
+     component: () => import('layouts/Layout.vue'),
+     children: [
+       { path: '', component: () => import('pages/Index.vue') },
+       { path: '/documents', component: () => import('pages/Documents.vue') },
+       { path: '/services', component: () => import('pages/Services.vue') },
+       { path: '/flows', component: () => import('pages/Flows.vue') },
+       { path: '/notifications', component: () => import('components/Notifications.vue') },
+       { path: '/map', component: () => import('components/Map.vue') }
+     ]
+   }/*,
   {
     path: '/documents',
 //    meta: { auth: true },
@@ -59,8 +59,7 @@ const routes = [
     children: [
       { path: '', component: () => import('components/Chatbot.vue') }
     ]
-  }
-  */
+  }*/
 ]
 
 // Always leave this as last one
