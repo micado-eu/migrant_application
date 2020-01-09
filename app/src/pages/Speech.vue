@@ -3,11 +3,13 @@
     <!-- content -->
     <p>Hallo world</p>
     <SpeechComp />
+    <SpeechSynt text="prova di dialogo" lang="it-IT" />
   </q-page>
 </template>
 
 <script>
 import SpeechComp from 'components/SpeechComp.vue'
+import SpeechSynt from 'components/SpeechSynt'
 
 export default {
   name: 'Speech',
@@ -20,7 +22,7 @@ export default {
     }
   },
   components: {
-    SpeechComp
+    SpeechComp,  SpeechSynt
   },
 
   computed: {

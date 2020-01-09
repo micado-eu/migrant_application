@@ -30,17 +30,18 @@
       show-if-above
       :breackpoint="767"
       bordered
-      content-class="bg-grey-2"
+      content-class="bg-green-4"
+
     >
       <auth-menu />
       <q-list>
-        <q-item-label header>My tools</q-item-label>
+        <q-item-label header>{{ $t('menu.title') }}</q-item-label>
           <q-item clickable exact v-for="(nav, index) in navs" :to="nav.to" :key="nav.label">
             <q-item-section avatar>
               <q-icon :name="nav.icon" />
             </q-item-section>
             <q-item-section>
-              <q-item-label>{{ nav.label }}</q-item-label>
+              <q-item-label>{{ $t( nav.label) }}</q-item-label>
               <q-item-label caption>{{ nav.description }}</q-item-label>
             </q-item-section>
           </q-item>
@@ -67,13 +68,14 @@ export default {
     return {
       leftDrawerOpen: false,
       navs: [
-        {label:'Available services', icon: 'school', to: '/services', description: 'services from PA and ONGs'},
-        {label:'My Documents', icon: 'description', to: '/documents', description: 'documents saved in my wallet'},
-        {label:'My Assistant', icon: 'question_answer', to: '/chatbot', description: 'Micado Assistant'},
-        {label:'Administrative processes', icon: 'record_voice_over', to: '/flows', description: 'flow description of processes'},
-        {label:'Notifications', icon: 'record_voice_over', to: '/notifications', description: 'messages from PA'},
-        {label:'Search', icon: 'record_voice_over', to: '/map', description: "PA's services around you"},
-        {label:'Speech', icon: 'record_voice_over', to: '/speech', description: "I'll listen to you"}
+        {label:'menu.services', icon: 'school', to: '/services', description: 'services from PA and ONGs'},
+        {label:'menu.documents', icon: 'description', to: '/documents', description: 'documents saved in my wallet'},
+        {label:'menu.assistant', icon: 'question_answer', to: '/chatbot', description: 'Micado Assistant'},
+        {label:'menu.processes', icon: 'record_voice_over', to: '/flows', description: 'flow description of processes'},
+        {label:'menu.notifications', icon: 'record_voice_over', to: '/notifications', description: 'messages from PA'},
+        {label:'menu.search', icon: 'record_voice_over', to: '/map', description: "PA's services around you"},
+        {label:'menu.speech', icon: 'record_voice_over', to: '/speech', description: "I'll listen to you"},
+        {label:'menu.settings', icon: 'record_voice_over', to: '/settings', description: "configure the application"}
       ]
     }
   }

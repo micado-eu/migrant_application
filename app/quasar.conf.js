@@ -44,11 +44,24 @@ module.exports = function (ctx) {
       // * true   - Import everything from Quasar
       //            (not treeshaking Quasar; biggest bundle size; convenient)
       all: 'auto',
-
+      lang: 'en-us',
       components: [
         'QChatMessage'],
       directives: [],
+      config: {
+        brand: {
+          primary: '#9C27B0',
+          secondary: '#26A69A',
+          accent: '#9C27B0',
 
+          dark: '#1d1d1d',
+
+          positive: '#21BA45',
+          negative: '#C10015',
+          info: '#31CCEC',
+          warning: '#F2C037'
+        }
+      },
       // Quasar plugins
       plugins: ['Cookies']
     },
@@ -59,6 +72,7 @@ module.exports = function (ctx) {
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
     build: {
       scopeHoisting: true,
+      rtl: true,
       // vueRouterMode: 'history',
       // showProgress: false,
       // gzip: true,
@@ -103,8 +117,8 @@ module.exports = function (ctx) {
         // description: 'Migrant application',
         display: 'standalone',
         orientation: 'portrait',
-        background_color: '#ffffff',
-        theme_color: '#027be3',
+        background_color: '#00a69',
+        theme_color: '#00a69',//c027be3
         icons: [
           {
             'src': 'statics/icons/icon-128x128.png',
