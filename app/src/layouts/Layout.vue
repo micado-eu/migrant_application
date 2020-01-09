@@ -71,11 +71,11 @@ export default {
         {label:'menu.services', icon: 'school', to: '/services', description: 'services from PA and ONGs'},
         {label:'menu.documents', icon: 'description', to: '/documents', description: 'documents saved in my wallet'},
         {label:'menu.assistant', icon: 'question_answer', to: '/chatbot', description: 'Micado Assistant'},
-        {label:'menu.processes', icon: 'record_voice_over', to: '/flows', description: 'flow description of processes'},
-        {label:'menu.notifications', icon: 'record_voice_over', to: '/notifications', description: 'messages from PA'},
-        {label:'menu.search', icon: 'record_voice_over', to: '/map', description: "PA's services around you"},
+        {label:'menu.processes', icon: 'timeline', to: '/flows', description: 'flow description of processes'},
+        {label:'menu.notifications', icon: 'mail_outline', to: '/notifications', description: 'messages from PA'},
+        {label:'menu.search', icon: 'search', to: '/map', description: "PA's services around you"},
         {label:'menu.speech', icon: 'record_voice_over', to: '/speech', description: "I'll listen to you"},
-        {label:'menu.settings', icon: 'record_voice_over', to: '/settings', description: "configure the application"}
+        {label:'menu.settings', icon: 'settings_applications', to: '/settings', description: "configure the application"}
       ]
     }
   }
