@@ -1,0 +1,6 @@
+FROM alpine
+COPY framework /opt/framework
+VOLUME /opt/framework
+COPY busyscript.sh /usr/local/bin/busyscript
+RUN chmod +x /usr/local/bin/busyscript
+CMD ["busyscript"]

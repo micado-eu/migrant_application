@@ -1,0 +1,37 @@
+version: '3.4'
+
+services: 
+  nginx:
+    image: nginx
+    ports:
+      - 8082:80
+    volumes:
+      - type: volume
+        source: data2
+        target: /usr/share/nginx/html
+        read_only: true
+        volume:
+          nocopy: true    
+
+    networks:
+      vtest:
+        aliases:
+          - ng
+  d:
+    command: "sh -c 'rm -rf /var/www/html2/* &&  cp -ra /var/www/html/* /var/www/html2/ && trap : TERM INT; (while true; do sleep 1000; done) & wait'"
+    #TODO more elegant copy like copy with mv
+    image: <SOME DATA IMAGE>:TAG1 # change tag and redeploy stack
+
+    volumes:
+      - data2:/var/www/html2
+
+    networks:
+      - vtest
+
+volumes:
+  data2:
+    driver: local
+
+networks:
+  vtest:
+    driver: overlay
