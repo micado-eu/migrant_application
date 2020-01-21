@@ -3,7 +3,7 @@ FROM micadoproject/quasar:1.0.3 as build-stage
 COPY --chown=node:node ./app /code
 RUN ls -lat /code
 
-#RUN npm install
+RUN npm install
 RUN quasar build
 
 # production stage
