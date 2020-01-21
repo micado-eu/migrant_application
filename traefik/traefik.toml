@@ -8,6 +8,11 @@
 [api]
   insecure = true
 
-[providers.docker]
-  endpoint = "unix:///var/run/docker.sock"
-  exposedByDefault = false
+[providers]
+  [providers.docker]
+    endpoint = "unix:///var/run/docker.sock"
+    exposedByDefault = false
+
+  [providers.file]
+    filename = "/etc/traefik/dynamic.toml"
+    watch = true

@@ -16,7 +16,10 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.nginx.rule=Host(`${MIGRANTS_HOSTNAME}`)"
       - "traefik.http.routers.nginx.entrypoints=web"
+      - "traefik.http.routers.nginx2.rule=Host(`${MIGRANTS_HOSTNAME}`)"
+      - "traefik.http.routers.nginx2.entrypoints=web-secure"
       - "traefik.http.services.nginx.loadbalancer.server.port=80"
+      - "traefik.http.routers.nginx2.tls=true"
     networks:
       micado_net:
 #        aliases:
@@ -24,7 +27,7 @@ services:
   d:
     command: "sh -c 'rm -rf /var/www/html/* && ls -lat /var/www/html/ && cp -ra /var/www/html2/* /var/www/html/ && ls -lat /var/www/html/ && trap : TERM INT; (while true; do sleep 1000; done) & wait'"
     #TODO more elegant copy like copy with mv
-    image: micado/migrant_app_site # change tag and redeploy stack
+    image: micadoproject/migrant_app_site # change tag and redeploy stack
 
     volumes:
       - data2:/var/www/html
@@ -64,7 +67,9 @@ services:
       - "443:443" # The HTTPS port
     volumes:
       - ./traefik/traefik.toml:/etc/traefik/traefik.toml
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"    
+      - ./traefik/dynamic.toml:/etc/traefik/dynamic.toml
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"   
+      - ./traefik/certs:/etc/certs # SSL Development certificates
     networks:
       - micado_net
 
