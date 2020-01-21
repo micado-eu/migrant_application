@@ -3,6 +3,16 @@
   <!-- <div class="flows container-fluid"> -->
     <div class="row">
       <div class="col">
+      <vue-mermaid
+        :nodes="mermaid"
+        type="graph LR"
+        :config="merconf"
+        v-on:nodeClick="editNodeMer"></vue-mermaid>
+      </div>
+    </div>
+    <div class="row">
+
+      <div class="col">
         <span v-if="loading">Loading…</span>
 
         <q-list bordered v-else  >
@@ -17,14 +27,7 @@
           </q-card>
           </q-expansion-item>
         </q-list>
-          <q-card :class="nodePanelVisible" header="Details of the step">
-          Location: {{longitude}}
-            <q-list >
-              <q-item-label header>Required documents</q-item-label>
-              <DocumentItem v-for="doc in documents" :theDoc="doc" :key="doc.id">
-              </DocumentItem>
-            </q-list>
-          </q-card>
+
 
       </div>
       <div class="col">
@@ -38,11 +41,29 @@
 
         </cytoscape>
         -->
-        <vue-mermaid
-          :nodes="mermaid"
-          type="graph LR"
-          :config="merconf"
-          v-on:nodeClick="editNodeMer"></vue-mermaid>
+        <q-card :class="nodePanelVisible" header="Details of the step">
+          <q-field color="purple-12" label="Location" stack-label>
+            <template v-slot:prepend>
+              <q-icon name="place" />
+            </template>
+            <template v-slot:control>
+              <div class="self-center full-width no-outline" tabindex="0">{{flowData.location}}</div>
+            </template>
+          </q-field>
+          <q-field color="purple-12" label="Cost for the step" stack-label>
+            <template v-slot:prepend>
+              <q-icon name="euro_symbol" />
+            </template>
+            <template v-slot:control>
+              <div class="self-center full-width no-outline" tabindex="0">{{flowData.stepCost}}</div>
+            </template>
+          </q-field>
+          <q-list >
+            <q-item-label header>Required documents</q-item-label>
+            <DocumentItem v-for="doc in documents" :theDoc="doc" :key="doc.id">
+            </DocumentItem>
+          </q-list>
+        </q-card>
       </div>
     </div>
   </q-page>
@@ -125,6 +146,9 @@ export default {
     longitude(){
       return this.$store.state.flows.longitude
     },
+    longitude(){
+      return this.$store.state.flows.longitude
+    },
     nodePanelVisible(){
       return this.$store.state.flows.nodePanelVisible
     },
@@ -155,6 +179,7 @@ export default {
       console.log(arr1[0].data);
       this.$store.commit("flows/setNodePanelVisible", "");
       this.$store.commit("flows/setDocuments", arr1[0].data.documents);
+      this.$store.commit("flows/setFlowData", arr1[0].data);
     },
     addNode(event) {
       console.log(event.target);

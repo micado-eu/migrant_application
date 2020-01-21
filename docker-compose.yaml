@@ -1,15 +1,50 @@
 version: '3.7'
 
 services:
+  nginx:
+    image: nginx
+#    ports:
+#      - 8080:80
+    volumes:
+      - type: volume
+        source: data2
+        target: /usr/share/nginx/html
+        read_only: true
+        volume:
+          nocopy: true    
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.nginx.rule=Host(`${MIGRANTS_HOSTNAME}`)"
+      - "traefik.http.routers.nginx.entrypoints=web"
+      - "traefik.http.services.nginx.loadbalancer.server.port=80"
+    networks:
+      micado_net:
+#        aliases:
+#          - ng
+  d:
+    command: "sh -c 'rm -rf /var/www/html/* && ls -lat /var/www/html/ && cp -ra /var/www/html2/* /var/www/html/ && ls -lat /var/www/html/ && trap : TERM INT; (while true; do sleep 1000; done) & wait'"
+    #TODO more elegant copy like copy with mv
+    image: micado/migrant_app_site # change tag and redeploy stack
+
+    volumes:
+      - data2:/var/www/html
+
+    networks:
+      - micado_net
+
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+#      - /root/.docker/config.json:/config.json
+    command: --interval 30 --no-pull
+    networks:
+      - micado_net
+
   migrants_app_dev:
     image: micadoproject/quasar:1.0.3
     stdin_open: true
     tty: true
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.migrants_app_dev.rule=Host(`${MIGRANTS_HOSTNAME}`)"
-      - "traefik.http.routers.migrants_app_dev.entrypoints=web"
-      - "traefik.http.services.migrants_app_dev.loadbalancer.server.port=8080"
     volumes:
       - type: volume
         source: migrants_app
@@ -42,7 +77,9 @@ volumes:
       # device is the path in the host that has to be absolute
       device: $PWD/app
       o: bind
-
+  data2:
+    driver: local
+    
 networks:
   micado_net:
     driver: bridge

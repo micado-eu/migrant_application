@@ -1,7 +1,7 @@
 <template>
   <q-page class="flex flex-center">
     <img alt="Micado logo" src="~assets/micado-logo.png">
-    Migrant Application
+    Migrant Application - by CSI
   </q-page>
 </template>
 

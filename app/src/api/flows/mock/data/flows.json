@@ -1,8 +1,8 @@
 [
   {
     "id":1,
-    "title":"How to get driver licence recognized",
-    "text":"Administratives flows",
+    "title":"Residence permit - study (lasting more than 90 days)",
+    "text":"This permit can be required by people that want to study in Italy .....",
     "button":"consult flows",
     "link": "#/flows",
     "graph":[{"data":{"id":"a","data":{"id":"n", "data": {"longitude":41, "latitude": 7, "documents":[{"id":1,"type":"adoc"}]} } }},
@@ -12,19 +12,25 @@
     "mermaid":[
       {
         "id": "a1",
-        "text": "A",
+        "text": "get a Postal Kit",
         "link": "---",
         "next": ["a2"],
         "editable": true,
+
         "style": "fill:#f9f,stroke:#333,stroke-width:4px",
-        "data": {"longitude":41, "latitude": 7, "documents":[{"id":1,"type":"University's registration certificate", "emitter": "Municipality of Bologna","image":"https://image.slidesharecdn.com/moduloammissmaster2011-111005124802-phpapp02/95/domanda-di-ammissione-master-in-comunicazione-dimpresa-universit-di-siena-aa-20122013-5-728.jpg?cb=1348224944"
-}]}
+        "data": {"longitude":41, "latitude": 7, "location": "Postal Office", "stepCost": "0 €", "documents":[{"id":1,"type":"Postal kit","title":"Postal kit", "emitter": "Poste italiane", "price": "0 €", "image":"http://www.studiotummarello.it/uploads/2/5/5/3/25531243/8702995_orig.jpg"}]}
       },
-      { "id": "a2", "text": "B", "edgeType": "circle", "editable": true, "next": ["a3"] },
-      { "id": "a3", "text": "C", "next": ["a4", "a6"] },
-      { "id": "a4", "text": "D", "link": "-- This is the text ---", "next": ["a5"] },
-      { "id": "a5", "text": "E" },
-      { "id": "a6", "text": "F" }
+      { "id": "a2", "text": "Send the kit", "edgeType": "circle", "editable": true,
+"next": ["a3"],
+"data": {"longitude":41, "latitude": 7, "location": "Postal Office", "stepCost": "30 €", "documents":[{"id":1,"type":"Signed stamp", "title":"Signed stamp", "emitter": "Poste italiane", "price": "16 €", "image":"https://www.informazionefiscale.it/IMG/arton119.jpg"},
+  {"id":1,"type":"Postal payment","title":"Postal payment", "emitter": "Poste italiane", "price": "40 €", "image":"https://www2.immigrazione.regione.toscana.it/sites/default/files/bollettino_postale_pds.jpg"}]}
+},
+      { "id": "a3", "text": "Go to Questura for fingerprints - blue office", "next": ["a4"], "editable": true, "link": "-- check website within 1 month ---",
+        "data": {"longitude":41, "latitude": 7, "location": "Questura", "stepCost": "0 €", "documents":[]}
+ },
+      { "id": "a4", "text": "Get permit", "editable": true,
+        "data": {"longitude":41, "latitude": 7, "location": "Questura", "stepCost": "0 €", "documents":[]}
+       }
     ],
     "icon":"house"
   },
