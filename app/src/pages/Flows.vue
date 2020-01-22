@@ -3,11 +3,17 @@
   <!-- <div class="flows container-fluid"> -->
     <div class="row">
       <div class="col">
-      <vue-mermaid
-        :nodes="mermaid"
-        type="graph LR"
-        :config="merconf"
-        v-on:nodeClick="editNodeMer"></vue-mermaid>
+        <q-scroll-area
+          horizontal
+          style="height: 210px;"
+          class="bg-grey-1"
+        >
+          <vue-mermaid
+            :nodes="mermaid"
+            type="graph LR"
+            :config="merconf"
+            v-on:nodeClick="editNodeMer"></vue-mermaid>
+        </q-scroll-area>
       </div>
     </div>
     <div class="row">
@@ -109,7 +115,7 @@ export default {
         { id: "a6", text: "F" }
         */
       ],
-      merconf: { theme: "default", startOnLoad: false, securityLevel: 'loose' },
+      merconf: { theme: "default", startOnLoad: false, securityLevel: 'loose', useMaxWidth: false, fontSize:9 },
       workingcy: null,
   //    configcyt,
   configcy,

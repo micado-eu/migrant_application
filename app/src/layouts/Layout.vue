@@ -21,7 +21,7 @@
 
     <q-footer >
       <q-tabs>
-        <q-route-tab  v-for="(nav, index) in navs" :to="nav.to" :key="nav.label" :label="nav.label" :icon="nav.icon"  />
+        <q-route-tab  v-for="(nav, index) in navs" :to="nav.to" :key="nav.label" :label="$t( nav.label )" :icon="nav.icon"  />
       </q-tabs>
     </q-footer>
 
