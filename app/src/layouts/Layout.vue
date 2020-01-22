@@ -15,6 +15,15 @@
           Micado App
         </q-toolbar-title>
 
+        <q-btn
+          @click="toggleAssistant()"
+          round
+        >
+          <q-avatar size="42px">
+            <img src="~assets/bb-micado.png">
+          </q-avatar>
+        </q-btn>
+
         <div>Micado v0.1</div>
       </q-toolbar>
     </q-header>
@@ -64,9 +73,20 @@ export default {
     AuthMenu
   },
 
+  methods: {
+    toggleAssistant(){
+      isAssistantActive = !isAssistantActive
+      if(isAssistantActive){
+        console.log(this)
+      }else{
+        console.log(this)
+      }
+    }
+  },
   data () {
     return {
       leftDrawerOpen: false,
+      isAssistantActive: false,
       navs: [
         {label:'menu.services', icon: 'school', to: '/services', description: 'services from PA and ONGs'},
         {label:'menu.documents', icon: 'description', to: '/documents', description: 'documents saved in my wallet'},
