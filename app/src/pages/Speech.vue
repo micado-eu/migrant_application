@@ -2,13 +2,12 @@
   <q-page  class="flows container-fluid">
     <!-- content -->
     <p>Hallo world</p>
-    <SpeechComp />
     <SpeechSynt text="prova di dialogo" lang="it-IT" />
   </q-page>
 </template>
 
 <script>
-import SpeechComp from 'components/SpeechComp.vue'
+//import SpeechComp from 'components/SpeechComp.vue'
 import SpeechSynt from 'components/SpeechSynt'
 
 export default {
@@ -22,7 +21,7 @@ export default {
     }
   },
   components: {
-    SpeechComp,  SpeechSynt
+      SpeechSynt
   },
 
   computed: {

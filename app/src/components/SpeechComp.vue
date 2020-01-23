@@ -85,8 +85,7 @@ this.annyang.addCallback('result', function(phrases) {
       this.annyang.addCallback('error', function (e) {
         console.error(e) // sample output: 'hello'
       })
-      this.annyang.setLanguage("it-IT")
-this.annyang.start({ autoRestart: true, continuous: true });
+      this.start()
       this.annyang.debug(this.debug)
     }
   },
@@ -94,6 +93,16 @@ this.annyang.start({ autoRestart: true, continuous: true });
     showRandomCommand: function () {
       var rand = this.registeredCommands[Math.floor(Math.random() * this.registeredCommands.length)]
       window.SpeechKITT.setSampleCommands([rand])
+    },
+    start: function(){
+      this.annyang.setLanguage("it-IT")
+      this.annyang.start({ autoRestart: true, continuous: true, paused: true });
+    },
+    pause: function(){
+      this.annyang.pause()
+    },
+    resume: function(){
+      this.annyang.resume()
     }
   },
   events: {
