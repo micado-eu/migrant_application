@@ -73,6 +73,18 @@ services:
     networks:
       - micado_net
 
+  jsreport:
+    image: jsreport/jsreport:2.6.1-full
+    volumes:
+      - ./jsreport-home:/jsreport
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.jsreport.rule=Host(`${MIGRANTS_HOSTNAME}`)"
+      - "traefik.http.routers.jsreport.entrypoints=web"
+      - "traefik.http.services.jsreport.loadbalancer.server.port=80"
+    ports:
+      - "5488:5488"
+    
 
 volumes:
   migrants_app:
