@@ -35,6 +35,7 @@
     "uppy": "^1.6.0",
     "validator": "^11.1.0",
     "vue-cytoscape": "^1.0.7",
+    "vue-formio": "^4.0.0",
     "vue-i18n": "^7.3.3",
     "vue-mermaid": "0.0.10",
     "vue2-leaflet": "^2.2.1",

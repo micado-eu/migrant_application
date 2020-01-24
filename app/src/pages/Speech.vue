@@ -7,12 +7,14 @@
       @click="getfile()"
       round
     />
+    <FormManager />
   </q-page>
 </template>
 
 <script>
 //import SpeechComp from 'components/SpeechComp.vue'
 import SpeechSynt from 'components/SpeechSynt'
+import FormManager from 'components/FormManager'
 
 export default {
   name: 'Speech',
@@ -25,12 +27,12 @@ export default {
     }
   },
   components: {
-      SpeechSynt
+      SpeechSynt, FormManager
   },
   methods: {
       getfile() {
         console.log("before getting")
-        this.$axios.post("http://jsreport:5488/api/report",
+        this.$axios.post("http://localhost:5488/api/report",
         {
 "template": { "name": "/micado/test" },
 "data": {
@@ -56,7 +58,7 @@ export default {
   }]
 }
 } ,{
-  url: 'http://jsreport:5488/api/report',
+  url: 'http://localhost:5488/api/report',
   method: 'POST',
   headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, OPTIONS', "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"},
   responseType: 'blob', // important

@@ -9,10 +9,10 @@
   },
   {
     "id":2,
-    "title":"Housing service1",
-    "text":"This could be a link to an existing eternal application",
-    "button":"Go to app",
-    "link": "#",
+    "title":"Immigration portal",
+    "text":"The portal where to check status of residence permit request",
+    "button":"Go to portal",
+    "link": "http://www.portaleimmigrazione.it/",
     "icon":"house"
   },
   {
