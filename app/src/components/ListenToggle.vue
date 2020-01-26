@@ -10,10 +10,13 @@
           transition-show="flip-right"
           transition-hide="flip-left"
         >
-          <SpeechComp ref="spc"/>
+
         </q-tooltip>
     </q-avatar>
+    <SpeechComp ref="spc"/>
+
   </q-btn>
+
 </template>
 
 <script>
@@ -35,10 +38,12 @@ export default {
     toggleAssistant(){
       this.isAssistantActive = !this.isAssistantActive
       if(this.isAssistantActive){
+        console.log("speechcomp is active")
         console.log(this)
         this.color = "red"
         this.$refs.spc.resume()
       }else{
+        console.log("speechcomp is paused")
         console.log(this)
         this.color = "primary"
         this.$refs.spc.pause()

@@ -1,6 +1,6 @@
 <template>
   <div class="speech">
-   <span>You said: {{ userSaid }}</span> 
+   <span>You said: {{ userSaid }}</span>
   </div>
 </template>
 
@@ -21,6 +21,7 @@ export default {
       userSaid: '',
       annyang,
       speechCommands: {
+        'documenti': this.jumpto,
         '*allSpeech': function (allSpeech) {
           console.debug('catchall', allSpeech)
         }
@@ -36,7 +37,7 @@ export default {
       // Add our commands to annyang
       this.annyang.addCommands(this.speechCommands)
       for (var command in this.speechCommands) {
-        console.debug('registered', command)
+        console.log('registered', command)
         self.registeredCommands.push(command)
       }
 
@@ -61,6 +62,11 @@ this.annyang.addCallback('result', function(phrases) {
   self.userSaid = phrases[0];
 })
 /*
+
+navigate() {
+                router.push({ name: "Page1" });
+            }
+
       this.annyang.addCallback('resultMatch', function (userSaid, commandText, phrases) {
         setTimeout(function () { self.userSaid = '' }, 4 * 1000)
         // console.log(userSaid) // sample output: 'hello'
@@ -93,6 +99,16 @@ this.annyang.addCallback('result', function(phrases) {
     showRandomCommand: function () {
       var rand = this.registeredCommands[Math.floor(Math.random() * this.registeredCommands.length)]
       window.SpeechKITT.setSampleCommands([rand])
+    },
+    jumpto: function(allSpeech) {
+     console.log("in jump to")
+     console.log(this)
+     console.debug('documenti', allSpeech)
+     console.log("gioppo")
+     console.log(allSpeech)
+
+     console.log(this)
+     this.$router.push({ path: "/documents" });
     },
     start: function(){
       this.annyang.setLanguage("it-IT")
