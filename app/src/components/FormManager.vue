@@ -68,12 +68,12 @@ export default {
       console.log(filename)
 
       console.log("before getting")
-      this.$axios.post("http://localhost:5488/api/report",
+      this.$axios.post("http://report.micado.csi.it:5488/api/report",
         {
           "template": { "name": report },
           "data": data
         } ,{
-          url: 'http://localhost:5488/api/report',
+          url: 'http://report.micado.csi.it:5488/api/report',
           method: 'POST',
           headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, OPTIONS', "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"},
           responseType: 'blob', // important

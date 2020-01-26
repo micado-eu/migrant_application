@@ -31,7 +31,8 @@ export default {
   data () {
       return {
           word: 'test',
-          wordData: ''
+          wordData: '',
+          n_messages: 2
       }
   },
   created () {
@@ -50,12 +51,19 @@ export default {
   methods: {
       async getWord () {
         console.log("before calling")
-        this.$store.commit('chatbot/addMessage',{"id":3, "user":"Luca", "text":this.word, "timestamp":"13:55", "sent":true, "color": "#cccccc"})
+        this.n_messages++
+        this.$store.commit('chatbot/addMessage',{"id":this.n_messages, "user":"Luca", "text":this.word, "timestamp":"13:55", "sent":true, "color": "#cccccc"})
         const response = await ChatService.getWord({ word: this.word })
-        let responses = response
+        let responses = response.data
         console.log("after calling")
         console.log(response)
+        console.log(responses)
         this.wordData = responses[0]
+        let today = new Date();
+        let time = today.getHours() + ":" + today.getMinutes()
+        this.n_messages++
+
+        this.$store.commit('chatbot/addMessage',{"id":this.n_messages, "user":"Micado", "text":responses[0].text, "timestamp":time, "sent":false, "color": "#cccccc"})
       }
   }
 }

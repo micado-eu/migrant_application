@@ -1,0 +1,34 @@
+version: '3.7'
+
+services: 
+  chatbot:
+    image: rasa/rasa:latest-full
+    ports:
+      - 5005:5005
+    command:
+      - run
+      - --enable_api
+      - --cors
+      - "*"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.jsreport.rule=Host(`${CHATBOT_HOSTNAME}`)"
+      - "traefik.http.routers.jsreport.entrypoints=web"
+      - "traefik.http.services.jsreport.loadbalancer.server.port=80"
+      - "com.centurylinklabs.watchtower.enable=false"
+    volumes:
+      - type: volume
+        source: chatbot_data
+        # target is the path in the container
+        target: /app
+    networks:
+      - micado_net
+
+volumes:
+  chatbot_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: $PWD/rasa
+      o: bind
+

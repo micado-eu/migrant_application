@@ -1,6 +1,6 @@
 <template>
   <div class="speech">
-    <span>You said: {{ userSaid }}</span>
+  <!--  <span>You said: {{ userSaid }}</span> -->
   </div>
 </template>
 

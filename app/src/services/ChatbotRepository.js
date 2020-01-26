@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export default() => {
     return axios.create({
-        baseURL: `http://rasa.micado.it:5005`,
+        baseURL: `http://chatbot.micado.csi.it:5005`,
         withCredentials: false,
         headers: {
             'Accept': 'application/json',

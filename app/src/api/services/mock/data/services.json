@@ -41,10 +41,10 @@
   },
   {
     "id":6,
-    "title":"Your badges",
-    "text":"Check your badges this could be a MICADO service, we decided to move it on a second release and it could be a TAB and not a card in the services",
-    "button":"go for it2",
-    "link": "#",
+    "title":"Generate document",
+    "text":"Generate a document online",
+    "button":"generate",
+    "link": "#/certificates",
     "icon":"edu"
   }
 ]

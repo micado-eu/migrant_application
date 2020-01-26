@@ -79,7 +79,7 @@ services:
       - ./jsreport-home:/jsreport
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.jsreport.rule=Host(`${MIGRANTS_HOSTNAME}`)"
+      - "traefik.http.routers.jsreport.rule=Host(`${REPORT_HOSTNAME}`)"
       - "traefik.http.routers.jsreport.entrypoints=web"
       - "traefik.http.services.jsreport.loadbalancer.server.port=80"
     ports:
