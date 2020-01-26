@@ -17,7 +17,14 @@ npm install
 
 ### Start the app in development mode (hot-code reloading, error reporting, etc.)
 ```bash
+docker network create micado_net
 docker-compose up
+```
+
+If you need to test the chatbot components you need to run also the chatbot compose file as below
+
+```bash
+docker-compose  -f docker-compose.yaml -f docker-compose.chatbot.yaml up
 ```
 The application can be accessed both the following addresses
 ```bash
@@ -39,6 +46,7 @@ docker build -t micadoproject/migrant_app:0.0.1 .
 ```
 
 For release the GIT repository is linked to Dockerhub so at each push a new image build will be triggered.
+
 
 
 ### Customize the configuration

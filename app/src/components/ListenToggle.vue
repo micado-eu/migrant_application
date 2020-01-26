@@ -6,8 +6,13 @@
   >
     <q-avatar size="42px">
       <img src="~assets/bb-micado.png">
+      <q-tooltip
+          transition-show="flip-right"
+          transition-hide="flip-left"
+        >
+          <SpeechComp ref="spc"/>
+        </q-tooltip>
     </q-avatar>
-    <SpeechComp ref="spc"/>
   </q-btn>
 </template>
 

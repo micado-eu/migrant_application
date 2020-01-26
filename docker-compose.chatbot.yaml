@@ -7,7 +7,6 @@ services:
       - 5005:5005
     command:
       - run
-      - --enable_api
       - --cors
       - "*"
     labels:
@@ -31,4 +30,6 @@ volumes:
       type: none
       device: $PWD/rasa
       o: bind
-
+networks:
+  micado_net:
+    external: true

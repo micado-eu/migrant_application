@@ -99,4 +99,5 @@ volumes:
     
 networks:
   micado_net:
-    driver: bridge
+#    driver: bridge
+    external: true
