@@ -48,7 +48,7 @@
         </cytoscape>
         -->
         <q-card :class="nodePanelVisible" header="Details of the step">
-          <q-field color="purple-12" label="Location" stack-label>
+<!--          <q-field color="purple-12" label="Location" stack-label>
             <template v-slot:prepend>
               <q-icon name="place" />
             </template>
@@ -56,6 +56,8 @@
               <div class="self-center full-width no-outline" tabindex="0">{{flowData.location}}</div>
             </template>
           </q-field>
+          -->
+          <LabelMap :label="flowData.location" />
           <q-field color="purple-12" label="Cost for the step" stack-label>
             <template v-slot:prepend>
               <q-icon name="euro_symbol" />
@@ -82,7 +84,7 @@ import { Core, EventObject } from 'cytoscape'
 import configcy from '../configs/cytoscapeConfig'
 //import configcy from "./config-cy";
 import DocumentItem from 'components/DocumentItem'
-
+import LabelMap from 'components/LabelMap'
 
 console.log(configcy);
 export default {
@@ -91,7 +93,7 @@ export default {
     msg: String
   },
   components: {
-    DocumentItem
+    DocumentItem, LabelMap
   },
   data () {
     return {

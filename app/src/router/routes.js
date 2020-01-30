@@ -12,7 +12,7 @@ const routes = [
        { path: '/speech', component: () => import('pages/Speech.vue') },
        { path: '/chatbot', component: () => import('pages/Chatbot.vue') },
        { path: '/settings', component: () => import('pages/Settings.vue') },
-       { path: '/certificates', component: () => import('pages/Certificates.vue') },
+       { path: '/certificates', component: () => import('pages/Certificates.vue'), props: true, name: 'certificates' },
        { path: '/map', component: () => import('components/Map.vue') }
      ]
    }/*,

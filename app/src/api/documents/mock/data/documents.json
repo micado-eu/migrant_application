@@ -5,7 +5,10 @@
     "type":"Identity document",
     "image":"http://3.citynews-arezzonotizie.stgy.ovh/~media/original-hi/908048402755/numero-carta-identita-elettronica-2.jpg",
     "expire_date": "31/12/2020",
-    "emitter": "Municipality of Bologna"
+    "emitter": "Municipality of Bologna",
+    "generable": false,
+    "generationTemplate": "",
+    "generationForm": ""
   },
   {
     "id":2,
@@ -13,7 +16,10 @@
     "type":"Residency permit",
     "image":"http://www.anvu.it/wp-content/uploads/2019/06/TESSERA-SX.jpg",
     "expire_date": "31/12/2020",
-    "emitter": "Municipality of Bologna"
+    "emitter": "Municipality of Bologna",
+    "generable": true,
+    "generationTemplate": "/micado/test",
+    "generationForm": ""
   },
   {
     "id":3,
@@ -23,7 +29,11 @@
     "link": "#",
     "expire_date": "31/12/2020",
     "emitter": "Municipality of Bologna",
-    "icon":"health"
+    "icon":"health",
+    "generable": false,
+    "generationTemplate": "",
+    "generationForm": ""
+
   },
   {
     "id":4,
@@ -33,17 +43,25 @@
     "link": "#/eduflow",
     "expire_date": "31/12/2020",
     "emitter": "Municipality of Bologna",
-    "icon":"edu"
+    "icon":"edu",
+    "generable": false,
+    "generationTemplate": "",
+    "generationForm": ""
+
   },
   {
     "id":5,
-    "title":"User's famili status certificate",
+    "title":"User's family status certificate",
     "type":"Family status certificate",
     "image":"https://www.evisura.it/assets/certificato-stato-di-famiglia.png",
     "link": "#",
     "expire_date": "31/12/2020",
     "emitter": "Municipality of Bologna",
-    "icon":"work"
+    "icon":"work",
+    "generable": true,
+    "generationTemplate": "/micado/test",
+    "generationForm": ""
+
   },
   {
     "id":6,
@@ -53,6 +71,10 @@
     "link": "#",
     "expire_date": "31/12/2020",
     "emitter": "Municipality of Bologna",
-    "icon":"edu"
+    "icon":"edu",
+    "generable": false,
+    "generationTemplate": "",
+    "generationForm": ""
+
   }
 ]

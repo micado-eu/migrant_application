@@ -5,6 +5,11 @@
           <div class="text-h6">Online documents generator</div>
         </q-card-section>
         <q-list dense bordered padding class="rounded-borders">
+          <q-item clickable v-ripple @click="selected()" v-for="doc in generableDocuments" :key="doc.id" >
+            <q-item-section>
+              {{doc.title}}
+            </q-item-section>
+          </q-item>
           <q-item clickable v-ripple @click="selected()">
             <q-item-section>
               Curriculum Vitae
@@ -31,6 +36,12 @@ import FormManager from 'components/FormManager'
 
 export default {
   // name: 'PageName',
+  props: {
+    certificateId: {
+      type: String,
+      default: 'Vue!'
+    }
+  },
   components: {
       FormManager
   },
@@ -85,6 +96,20 @@ console.log("get answer")
   link.click();
 })
       }
+  },
+  created () {
+    console.log(this)
+    console.log(this.certificateId)
+    this.$store.dispatch('documents/fetchDocuments')
+      .then(documents => {
+        this.loading = false
+      })
+  },
+  computed: {
+    generableDocuments() {
+      return this.$store.getters['documents/generableDocs']
+    }
+
   }
 }
 </script>
