@@ -2,7 +2,7 @@
   <q-page class="flows container-fluid">
   <div class="row" >
   <div class="col" >
-
+Your integration progress: 
     <q-circular-progress
         show-value
         class="text-light-blue q-ma-md"
