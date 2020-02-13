@@ -6,6 +6,7 @@ import chatbot from './chatbot'
 import documents from './documents'
 import flows from './flows'
 import services from './services'
+import tasks from './tasks'
 
 Vue.use(Vuex)
 
@@ -21,6 +22,7 @@ export default function (/* { ssrContext } */) {
       chatbot,
       flows,
       services,
+      tasks,
       documents
     },
 

@@ -78,6 +78,7 @@ export default {
         {label:'menu.processes', icon: 'timeline', to: '/flows', description: 'flow description of processes'},
         {label:'menu.notifications', icon: 'mail_outline', to: '/notifications', description: 'messages from PA'},
         {label:'menu.search', icon: 'search', to: '/map', description: "PA's services around you"},
+        {label:'menu.tasks', icon: 'assignment', to: '/tasks', description: "Tasks for your integration"},
         {label:'menu.speech', icon: 'record_voice_over', to: '/speech', description: "I'll listen to you"},
         {label:'menu.settings', icon: 'settings_applications', to: '/settings', description: "configure the application"}
       ]

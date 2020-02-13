@@ -73,7 +73,7 @@ module.exports = function (ctx) {
     build: {
       scopeHoisting: true,
       rtl: true,
-      // vueRouterMode: 'history',
+      vueRouterMode: 'history',
       // showProgress: false,
       // gzip: true,
       // analyze: true,
@@ -87,6 +87,7 @@ module.exports = function (ctx) {
         chain.resolve.alias.set('api-chatbot-client', 'src/api/chatbot/mock' );
         chain.resolve.alias.set('api-documents-client', 'src/api/documents/mock' );
         chain.resolve.alias.set('api-flows-client', 'src/api/flows/mock' );
+        chain.resolve.alias.set('api-tasks-client', 'src/api/tasks/mock' );
         chain.resolve.alias.set('api-services-client', 'src/api/services/mock' );
       }
     },

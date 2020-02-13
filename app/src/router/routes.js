@@ -12,6 +12,8 @@ const routes = [
        { path: '/speech', component: () => import('pages/Speech.vue') },
        { path: '/chatbot', component: () => import('pages/Chatbot.vue') },
        { path: '/settings', component: () => import('pages/Settings.vue') },
+       { path: '/gioppo', component: () => import('pages/Gioppo.vue') },
+       { path: '/tasks', component: () => import('pages/Tasks.vue') },
        { path: '/certificates', component: () => import('pages/Certificates.vue'), props: true, name: 'certificates' },
        { path: '/map', component: () => import('components/Map.vue') }
      ]
