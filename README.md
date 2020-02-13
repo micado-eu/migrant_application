@@ -1,6 +1,6 @@
 # Micado app (micado)
 
-Migrant application
+Migrant application ![](https://img.shields.io/docker/pulls/micadoproject/migrant_app_site)
 
 ## Development instructions
 To develop this application you need to execute the following command to get a proper shell in the development environment, this will mount the source folder and allow editing the code with you preferred editor while getting the benefit of having autorefresh etc.
