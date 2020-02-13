@@ -1,5 +1,21 @@
 <template>
-  <q-page class="flex flex-center">
+  <q-page class="flows container-fluid">
+  <div class="row" >
+  <div class="col" >
+
+    <q-circular-progress
+        show-value
+        class="text-light-blue q-ma-md"
+        :value="progress"
+        size="50px"
+        track-color="grey-3"
+        color="light-blue"
+      />
+      </div>
+      </div>
+      <div class="row" >
+      <div class="col" >
+
     <q-stepper
       v-model="step"
       vertical
@@ -20,7 +36,8 @@
       </q-step>
 
     </q-stepper>
-
+    </div>
+    </div>
   </q-page>
 </template>
 
@@ -36,6 +53,9 @@ export default {
   computed: {
     tasks() {
       return this.$store.state.tasks.tasks
+    },
+    progress(){
+      return Math.floor((this.tasks.filter(function(task) { return task.done }).length / this.tasks.length) * 100)
     }
   },
   created () {
