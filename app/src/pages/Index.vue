@@ -1,6 +1,6 @@
 <template>
   <q-page class="flex flex-center">
-    <img alt="Micado logo" src="~assets/micado-logo.png">
+    <img alt="Micado logo" src="~assets/asp_logo.jpg">
     Migrant Application - powered by MICADO
   </q-page>
 </template>
