@@ -30,7 +30,7 @@
     <q-drawer
       v-model="leftDrawerOpen"
       show-if-above
-      :breackpoint="767"
+      :breakpoint="767"
       bordered
       content-class="bg-green-4"
 
@@ -79,7 +79,8 @@ export default {
         {label:'menu.notifications', icon: 'mail_outline', to: '/notifications', description: 'messages from PA'},
         {label:'menu.search', icon: 'search', to: '/map', description: "PA's services around you"},
         {label:'menu.speech', icon: 'record_voice_over', to: '/speech', description: "I'll listen to you"},
-        {label:'menu.settings', icon: 'settings_applications', to: '/settings', description: "configure the application"}
+        {label:'menu.settings', icon: 'settings_applications', to: '/settings', description: "configure the application"}, 
+        {label:'menu.glossary', icon: 'book', to: '/glossary', description: "glossary"}
       ]
     }
   }

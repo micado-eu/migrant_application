@@ -8,6 +8,7 @@ export default {
     notifications: 'My Messages',
     search: 'Search',
     speech: 'Speaking',
-    settings: 'Settings'
+    settings: 'Settings',
+    glossary: 'Glossary'
   }
 }

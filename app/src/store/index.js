@@ -6,6 +6,7 @@ import chatbot from './chatbot'
 import documents from './documents'
 import flows from './flows'
 import services from './services'
+import glossary from './glossary'
 
 Vue.use(Vuex)
 
@@ -21,7 +22,8 @@ export default function (/* { ssrContext } */) {
       chatbot,
       flows,
       services,
-      documents
+      documents,
+      glossary
     },
 
     // enable strict mode (adds overhead!)

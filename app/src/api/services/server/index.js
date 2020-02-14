@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export default {
-  fetchServices () {
+  fetchGlossary() {
     return axios
       .get('https://jsonplaceholder.typicode.com/posts')
       .then(response => response.data)
