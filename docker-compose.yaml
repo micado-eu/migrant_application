@@ -21,7 +21,7 @@ services:
       - "traefik.http.services.nginx.loadbalancer.server.port=80"
       - "traefik.http.routers.nginx2.tls=true"
     networks:
-      micado_net:
+      - micado_net
 #        aliases:
 #          - ng
   d:
@@ -84,6 +84,8 @@ services:
       - "traefik.http.services.jsreport.loadbalancer.server.port=80"
     ports:
       - "5488:5488"
+    networks:
+      - micado_net
     
 
 volumes:

@@ -1,0 +1,39 @@
+version: '3.7'
+
+services: 
+  micado_db:
+    image: mdillon/postgis:11-alpine
+    environment:
+      POSTGRES_PASSWORD: micado
+      POSTGRES_USER: micado
+      POSTGRES_DB: micado
+    volumes:
+      - type: volume
+        source: postgres_data
+        target: /var/lib/postgresql/data
+      - type: volume
+        source: postgres_init
+        target: /docker-entrypoint-initdb.d
+    labels:
+      - "com.centurylinklabs.watchtower.enable=false"
+    networks:
+      - micado_net
+
+volumes:
+  postgres_data:
+    driver: local
+    driver_opts:
+      type: none
+      # device is the path in the host that has to be absolute
+      device: $PWD/db_data
+      o: bind
+  postgres_init:
+    driver: local
+    driver_opts:
+      type: none
+      # device is the path in the host that has to be absolute
+      device: $PWD/db_init
+      o: bind
+networks:
+  micado_net:
+    external: true

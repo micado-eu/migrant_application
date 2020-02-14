@@ -7,6 +7,7 @@ export default {
     processes: 'Administrative processes',
     notifications: 'My Messages',
     search: 'Search',
+    tasks: 'Tasks',
     speech: 'Speaking',
     settings: 'Settings',
     glossary: 'Glossary'

@@ -1,6 +1,6 @@
 # Micado app (micado)
 
-Migrant application
+Migrant application ![](https://img.shields.io/docker/pulls/micadoproject/migrant_app_site)
 
 ## Development instructions
 To develop this application you need to execute the following command to get a proper shell in the development environment, this will mount the source folder and allow editing the code with you preferred editor while getting the benefit of having autorefresh etc.
@@ -51,3 +51,8 @@ For release the GIT repository is linked to Dockerhub so at each push a new imag
 
 ### Customize the configuration
 See [Configuring quasar.conf.js](https://quasar.dev/quasar-cli/quasar-conf-js).
+
+
+### Funded by
+
+![EU Logo](https://github.com/micado-eu/MICADO/blob/master/img/Flag_of_Europe.svg_.png)This project has received funding from the European Union’s H2020 Innovation Action under Grant Agreement No 822717.

@@ -4,7 +4,7 @@
     "title":"PA's flows",
     "text":"Administratives flows.  Here you find the list of all the flows supportted by MICADO pilot city",
     "button":"consult flows",
-    "link": "#/flows",
+    "link": "/flows",
     "icon":"house"
   },
   {
@@ -28,7 +28,7 @@
     "title":"Language courses",
     "text":"This is the link to a service offered by NGO1 providing language courses",
     "button":"Go to site",
-    "link": "#/eduflow",
+    "link": "#",
     "icon":"edu"
   },
   {
@@ -44,7 +44,7 @@
     "title":"Generate document",
     "text":"Generate a document online",
     "button":"generate",
-    "link": "#/certificates",
+    "link": "/certificates",
     "icon":"edu"
   }
 ]
