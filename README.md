@@ -1,6 +1,8 @@
 # Micado app (micado)
 
-Migrant application ![](https://img.shields.io/docker/pulls/micadoproject/migrant_app_site)
+Migrant application 
+
+![](https://img.shields.io/docker/pulls/micadoproject/migrant_app_site) ![](https://david-dm.org/micado-eu/migrant_application/status.svg?path=app)
 
 ## Demo website
 [Official demo site for the migrant application](http://migrants.micadoproject.eu/)
