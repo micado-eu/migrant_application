@@ -16,3 +16,26 @@ Icon.Default.mergeOptions({
   iconUrl: require('leaflet/dist/images/marker-icon.png'),
   shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 });
+
+//import * as FeatureFlipping from "vue-feature-flipping"
+
+
+
+//Vue.use(FeatureFlipping)
+
+//console.log(Vue)
+
+//import { FeatureFlipping } from 'vue-feature-flipping'
+//const FeatureFlipping = require('vue-feature-flipping');
+//const api = new featureToggleApi();
+//console.log(FeatureFlipping)
+//import { setEnabledFeatures } from 'vue-feature-flipping'
+//Vue.use(FeatureFlipping)
+//console.log(Vue)
+/*
+Vue.use(VueFeatureFlipping, {
+      init: (consumer) => consumer(['FF1', 'FF2', 'FF3'])
+ })
+*/
+//setEnabledFeatures(['FF1', 'FF2', 'FF3'])
+//setEnabledFeatures(await getFeaturesFromBackend('http://localhost:8081')),
