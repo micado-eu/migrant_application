@@ -17,7 +17,7 @@ Icon.Default.mergeOptions({
   shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 });
 
-//import * as FeatureFlipping from "vue-feature-flipping"
+//import FeatureFlipping from "vue-feature-flipping"
 
 
 

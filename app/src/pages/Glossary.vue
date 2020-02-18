@@ -2,8 +2,8 @@
   <div class="glossary">
     <span v-if="loading">Loading…</span>
     <div v-else class="container">
-      <div v-feature-flipping="'FF1'">
-        <GlossaryItem v-for="glossary in glossary" :key="glossary.id" :theGlossary="glossary">
+      <div >
+        <GlossaryItem v-for="a_glossary in glossary" :key="a_glossary.id" :theGlossary="a_glossary" v-feature-flipping="a_glossary.feature">
         </GlossaryItem>
       </div>
 

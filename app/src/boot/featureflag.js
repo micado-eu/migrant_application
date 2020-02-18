@@ -7,6 +7,7 @@ import {featureFlippingDirective, featureFlippingGuard, isEnabled, setEnabledFea
 // https://vuejs.org/v2/guide/custom-directive.html
 // 'my-directive' will be used as 'v-my-directive'
 setEnabledFeatures(['FF1', 'FF2', 'FF3'])
+//setEnabledFeatures(await getFeaturesFromBackend('http://localhost:8081'))
 //console.log(isEnabled('FF1'))
 //Vue.directive('feature-flag', featureFlippingDirective)
 
