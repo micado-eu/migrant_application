@@ -38,7 +38,7 @@
       <auth-menu />
       <q-list>
         <q-item-label header>{{ $t('menu.title') }}</q-item-label>
-          <q-item clickable exact v-for="(nav, index) in navs" :to="nav.to" :key="nav.label">
+          <q-item clickable exact v-for="(nav, index) in navs" :to="nav.to" :key="nav.label" >
             <q-item-section avatar>
               <q-icon :name="nav.icon" />
             </q-item-section>
@@ -80,7 +80,7 @@ export default {
         {label:'menu.search', icon: 'search', to: '/map', description: "PA's services around you"},
         {label:'menu.tasks', icon: 'assignment', to: '/tasks', description: "Tasks for your integration"},
         {label:'menu.speech', icon: 'record_voice_over', to: '/speech', description: "I'll listen to you"},
-        {label:'menu.settings', icon: 'settings_applications', to: '/settings', description: "configure the application"}, 
+        {label:'menu.settings', icon: 'settings_applications', to: '/settings', description: "configure the application"},
         {label:'menu.glossary', icon: 'book', to: '/glossary', description: "glossary"}
       ]
     }

@@ -10,6 +10,7 @@ module.exports = function (ctx) {
       'i18n',
       'auth',
       'mermaid',
+      'featureflag',
       'axios'
     ],
 
