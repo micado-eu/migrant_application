@@ -27,6 +27,11 @@ Vue.use(VueCountly, Countly, {
 
 console.log(Vue.Countly === Countly);
 
+Vue.Countly.q.push(['track_sessions']);
+
+    // Track web page views automatically (recommended)
+    Vue.Countly.q.push(['track_pageview']);
+
 //import FeatureFlipping from "vue-feature-flipping"
 
 
