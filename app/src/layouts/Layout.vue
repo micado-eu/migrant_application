@@ -47,6 +47,10 @@
               <q-item-label caption>{{ nav.description }}</q-item-label>
             </q-item-section>
           </q-item>
+          <div class="row justify-center full-height full-width text-center">
+            <img  alt="Powered by Micado" src="~assets/powered_Micado.png">
+          </div>
+           
       </q-list>
     </q-drawer>
 
