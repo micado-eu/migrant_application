@@ -6,7 +6,13 @@ import {featureFlippingDirective, featureFlippingGuard, isEnabled, setEnabledFea
 // but that should not be part of your directive name
 // https://vuejs.org/v2/guide/custom-directive.html
 // 'my-directive' will be used as 'v-my-directive'
-setEnabledFeatures(['FF1', 'FF2', 'FF3'])
+
+import client from 'api-feature-client'
+client
+  .fetchFeatures()
+  .then(features => setEnabledFeatures(features))
+
+//setEnabledFeatures(['FF1', 'FF2', 'FF3'])
 //setEnabledFeatures(await getFeaturesFromBackend('http://localhost:8081'))
 //console.log(isEnabled('FF1'))
 //Vue.directive('feature-flag', featureFlippingDirective)
