@@ -1,4 +1,4 @@
-import Vue from 'vue'
+//import Vue from 'vue'
 import {featureFlippingDirective, featureFlippingGuard, isEnabled, setEnabledFeatures} from '../directive/FeatureFlip'
 
 // We globally register our directive with Vue;
@@ -7,18 +7,31 @@ import {featureFlippingDirective, featureFlippingGuard, isEnabled, setEnabledFea
 // https://vuejs.org/v2/guide/custom-directive.html
 // 'my-directive' will be used as 'v-my-directive'
 
-import client from 'api-feature-client'
-client
-  .fetchFeatures()
-  .then(features => setEnabledFeatures(features))
-
-//setEnabledFeatures(['FF1', 'FF2', 'FF3'])
-//setEnabledFeatures(await getFeaturesFromBackend('http://localhost:8081'))
-//console.log(isEnabled('FF1'))
-//Vue.directive('feature-flag', featureFlippingDirective)
-
-Vue.directive('feature-flipping', featureFlippingDirective)
-Vue.mixin({beforeRouteEnter: featureFlippingGuard})
+import client from 'api-features-client'
 
 
-console.log(Vue)
+export default async ({ app, router, store, Vue }) => {
+
+
+
+  //setEnabledFeatures(['FF1', 'FF2', 'FF3'])
+  //setEnabledFeatures(await getFeaturesFromBackend('http://localhost:8081'))
+  //console.log(isEnabled('FF1'))
+  //Vue.directive('feature-flag', featureFlippingDirective)
+
+  Vue.directive('feature-flipping', featureFlippingDirective)
+  Vue.mixin({beforeRouteEnter: featureFlippingGuard})
+
+console.log("siamo in feature flag boot")
+  console.log(Vue)
+
+
+  // something to do
+  await client
+    .fetchFeatures()
+    .then(features => {
+      console.log("siamo in set features")
+      console.log(features)
+      setEnabledFeatures(features.data)
+    })
+}
