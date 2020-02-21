@@ -6,6 +6,7 @@ import chatbot from './chatbot'
 import documents from './documents'
 import flows from './flows'
 import services from './services'
+import features from './features'
 import glossary from './glossary'
 import tasks from './tasks'
 
@@ -23,6 +24,7 @@ export default function (/* { ssrContext } */) {
       chatbot,
       flows,
       services,
+      features,
       glossary,
       tasks,
       documents
