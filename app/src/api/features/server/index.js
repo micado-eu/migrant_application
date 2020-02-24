@@ -11,6 +11,7 @@ export default {
 
         // Run into big problems when I get an error
         console.log("Got an error calling API manager: ", err);
+        response => []
       })
 
   }

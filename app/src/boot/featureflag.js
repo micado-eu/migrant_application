@@ -32,6 +32,8 @@ console.log("siamo in feature flag boot")
     .then(features => {
       console.log("siamo in set features")
       console.log(features)
-      setEnabledFeatures(features.data)
+      if(features){
+        setEnabledFeatures(features.data)
+      }
     })
 }
