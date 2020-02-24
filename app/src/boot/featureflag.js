@@ -22,18 +22,11 @@ export default async ({ app, router, store, Vue }) => {
   Vue.directive('feature-flipping', featureFlippingDirective)
   Vue.mixin({beforeRouteEnter: featureFlippingGuard})
 
-console.log("siamo in feature flag boot")
+  console.log("siamo in feature flag boot")
   console.log(Vue)
 
+  await  store.dispatch('features/fetchFeatures')
+      .then()
 
-  // something to do
-  await client
-    .fetchFeatures()
-    .then(features => {
-      console.log("siamo in set features")
-      console.log(features)
-      if(features){
-        setEnabledFeatures(features.data)
-      }
-    })
+  setEnabledFeatures(store.state.features.features.data)
 }
