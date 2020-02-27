@@ -27,6 +27,6 @@ export default async ({ app, router, store, Vue }) => {
 
   await  store.dispatch('features/fetchFeatures')
       .then()
-
-  setEnabledFeatures(store.state.features.features.data)
+console.log("before enabledfeatures")
+  setEnabledFeatures(store.state.features.features)
 }
