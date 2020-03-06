@@ -90,8 +90,9 @@ module.exports = function (ctx) {
         chain.resolve.alias.set('api-flows-client', 'src/api/flows/mock');
         chain.resolve.alias.set('api-glossary-client', 'src/api/glossary/mock');
         chain.resolve.alias.set('api-features-client', 'src/api/features/server');
-        chain.resolve.alias.set('api-tasks-client', 'src/api/tasks/mock' );
-        chain.resolve.alias.set('api-services-client', 'src/api/services/mock' );
+        chain.resolve.alias.set('api-tasks-client', 'src/api/tasks/mock');
+        chain.resolve.alias.set('api-services-client', 'src/api/services/mock');
+        chain.resolve.alias.set('api-decisions-client', 'src/api/decisions/mock');
       }
     },
 

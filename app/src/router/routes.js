@@ -16,7 +16,8 @@ const routes = [
       { path: '/settings', component: () => import('pages/Settings.vue') },
       { path: '/certificates', component: () => import('pages/Certificates.vue'), props: true, name: 'certificates' },
       { path: '/map', component: () => import('components/Map.vue') },
-      { path: '/glossary', component: () => import('pages/Glossary.vue') }
+      { path: '/glossary', component: () => import('pages/Glossary.vue') },
+      { path: '/decision', component: () => import('pages/DecisionTreePage.vue') },
     ]
   }/*,
   {

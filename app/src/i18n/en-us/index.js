@@ -10,6 +10,7 @@ export default {
     tasks: 'Tasks',
     speech: 'Speaking',
     settings: 'Settings',
+    decision: 'Decision',
     glossary: 'Glossary'
   }
 }

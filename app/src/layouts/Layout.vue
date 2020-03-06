@@ -85,7 +85,8 @@ export default {
         {label:'menu.tasks', icon: 'assignment', to: '/tasks', description: "Tasks for your integration", feature: 'FEAT_TASKS'},
         {label:'menu.speech', icon: 'record_voice_over', to: '/speech', description: "I'll listen to you", feature: 'FEAT_DEFAULT'},
         {label:'menu.settings', icon: 'settings_applications', to: '/settings', description: "configure the application", feature: 'FEAT_DEFAULT'},
-        {label:'menu.glossary', icon: 'book', to: '/glossary', description: "glossary", feature: 'FEAT_GLOSSARY'}
+        {label:'menu.glossary', icon: 'book', to: '/glossary', description: "glossary", feature: 'FEAT_GLOSSARY'},
+        {label:'menu.decision', icon: 'settings_applications', to: '/decision', description: "decision tree implementation", feature: 'FEAT_DECISION'}
       ]
     }
   }
