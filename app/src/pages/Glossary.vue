@@ -3,7 +3,7 @@
     <span v-if="loading">Loading…</span>
     <div v-else class="container">
       <div>
-        <GlossaryItem v-for="a_glossary in glossary" :key="a_glossary.id" :theGlossary="a_glossary" v-feature-flipping="a_glossary.feature">
+        <GlossaryItem v-for="a_glossary in glossary" :key="a_glossary.id" :theGlossary="a_glossary" >
         </GlossaryItem>
       </div>
     </div>
@@ -32,7 +32,7 @@ export default {
       return this.$store.state.glossary.glossary
     }
   },
-
+  
   created () {
     this.loading = true
     this.$store.dispatch('glossary/fetchGlossary')

@@ -10,7 +10,7 @@
       <q-item-label caption >Emitted by:{{this.theDoc.emitter}} - lasting up to: {{this.theDoc.expire_date}}</q-item-label>
       <q-item-label caption >cost: {{this.theDoc.price}}</q-item-label>
 
-<q-btn round @click="generateForm">    <q-icon left size="1em" name="hearing" />
+<!-- <q-btn round @click="generateForm">    <q-icon left size="1em" name="hearing" /> -->
 </q-btn>
 
     </q-item-section>
