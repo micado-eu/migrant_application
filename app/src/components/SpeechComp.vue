@@ -31,7 +31,7 @@ export default {
   },
   created () {
     var self = this
-
+    
     if (this.annyang) {
 //      var annyang = window.annyang
       // Add our commands to annyang
@@ -91,7 +91,7 @@ navigate() {
       this.annyang.addCallback('error', function (e) {
         console.error(e) // sample output: 'hello'
       })
-      this.start()
+      //this.start()
       this.annyang.debug(this.debug)
     }
   },
@@ -106,16 +106,16 @@ navigate() {
      console.debug('documenti', allSpeech)
      console.log("gioppo")
      console.log(allSpeech)
-
+      
      console.log(this)
      this.$router.push({ path: "/documents" });
     },
     start: function(){
       this.annyang.setLanguage("it-IT")
-      this.annyang.start({ autoRestart: true, continuous: true, paused: true });
+      this.annyang.start({ autoRestart: true, continuous: true, paused: false });
     },
     pause: function(){
-      this.annyang.pause()
+      this.annyang.abort()
     },
     resume: function(){
       this.annyang.resume()
