@@ -41,7 +41,7 @@ export default {
         console.log("speechcomp is active")
         console.log(this)
         this.color = "red"
-        this.$refs.spc.start()
+        this.$refs.spc.resume()
       }else{
         console.log("speechcomp is paused")
         console.log(this)

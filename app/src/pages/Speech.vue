@@ -3,20 +3,17 @@
     <!-- content -->
     <p>Hallo world</p>
     <SpeechSynt text="prova di dialogo" lang="it-IT" />
-    <SpeechSyntRV text="prova di dialogo responsive" lang="Italian Male" />
     <q-btn
       @click="getfile()"
       round
     />
-    <SpeechComp></SpeechComp>
     <FormManager />
   </q-page>
 </template>
 
 <script>
-import SpeechComp from 'components/SpeechComp'
+//import SpeechComp from 'components/SpeechComp.vue'
 import SpeechSynt from 'components/SpeechSynt'
-import SpeechSyntRV from 'components/SpeechSyntRV'
 import FormManager from 'components/FormManager'
 
 export default {
@@ -26,13 +23,11 @@ export default {
   },
   data () {
     return {
-      loading: false,
-      userMediaInputStream: {}
-      
+      loading: false
     }
   },
   components: {
-      SpeechSynt, FormManager, SpeechComp, SpeechSyntRV
+      SpeechSynt, FormManager
   },
   methods: {
       getfile() {
@@ -78,7 +73,6 @@ console.log("get answer")
 })
       }
   },
-
   computed: {
     services () {
 //      return this.$store.state.services.services

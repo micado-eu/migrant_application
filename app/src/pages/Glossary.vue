@@ -32,7 +32,7 @@ export default {
       return this.$store.state.glossary.glossary
     }
   },
-
+  
   created () {
     this.loading = true
     this.$store.dispatch('glossary/fetchGlossary')

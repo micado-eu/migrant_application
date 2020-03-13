@@ -1,1 +1,0 @@
-{"httpPort":5488,"allowLocalFilesAccess":true,"store":{"provider":"fs"},"blobStorage":{"provider":"fs"},"templatingEngines":{"timeout":10000},"chrome":{"timeout":30000},"extensions":{"scripts":{"timeout":30000}}}

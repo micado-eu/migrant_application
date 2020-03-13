@@ -46,7 +46,6 @@ export default {
         this.initial = ["integration", "health"]
         this.parentId = " "
         this.parentName = "What do you need?"
-        //this.$root.$emit('option', this.parentName )
         this.$emit('option', this.parentName )
         console.log(this.parentName )
         //console.log(this.parentId)
@@ -58,7 +57,6 @@ export default {
         for(let i = 0; i< this.decisions.length; i++){
           if(this.decisions[i].children.includes(this.parentId)){
             this.parentName = this.decisions[i].name
-            //this.$root.$emit('option', this.parentName )
             this.$emit('option', this.parentName )
             console.log(this.parentName )
             this.initial = this.decisions[i].children
@@ -80,8 +78,7 @@ export default {
              }
             else{
              this.parentName = this.filteredDecisions[i].name
-             //this.$root.$emit('option', this.filteredDecisions[i].name)
-              this.$emit('option', this.filteredDecisions[i].name)
+             this.$emit('option', this.filteredDecisions[i].name)
              console.log(this.filteredDecisions[i].name)
              this.initial = this.filteredDecisions[i].children
              //console.log(this.initial)
