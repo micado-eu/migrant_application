@@ -1,7 +1,13 @@
 <template>
-  <q-page class="flex flex-center">
-    <img alt="Micado logo" src="~assets/micado-logo.png">
-    Migrant Application - powered by MICADO
+<q-page class="flex flex-center column">
+    <div class="row justify-center full-height full-width text-center">
+      <img alt="Micado logo" src="~assets/asp_logo.jpg">
+    </div>
+    <div class="row justify-center full-height full-width text-center">
+      <img alt="Powered by Micado" src="~assets/powered_Micado.png">
+      <div text-caption >This project has received funding from the European Union’s H2020 Innovation Action under Grant Agreement No 822717.</div>
+      <img alt="Funded by EU" src="~assets/Flag_of_Europe.png">
+    </div>
   </q-page>
 </template>
 

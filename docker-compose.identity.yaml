@@ -1,0 +1,36 @@
+version: '3.7'
+
+services: 
+  identity_server:
+    image: wso2/wso2is-km:5.9.0
+    hostname: identity.micado.csi.it
+    ports:
+      - "9763:9763"
+      - "9443:9443"
+    healthcheck:
+      test: ["CMD", "curl", "-k", "-f", "https://localhost:9443/carbon/admin/login.jsp"]
+      interval: 5s
+      timeout: 120s
+      start_period: 100s
+    labels:
+      - "com.centurylinklabs.watchtower.enable=false"
+      - "traefik.enable=true"
+
+      - "traefik.tcp.routers.identity_server.rule=HostSNI(`${IDENTITY_HOSTNAME}`)"
+      - "traefik.tcp.routers.identity_server.tls.passthrough=true"
+      - "traefik.tcp.routers.identity_server.service=identity_server_service"
+      - "traefik.tcp.services.identity_server_service.loadbalancer.server.port=9443"
+      - "traefik.tcp.routers.identity_server.entrypoints=web-secure"
+
+    volumes:
+      - ./identity-server:/home/wso2carbon/wso2-config-volume
+      - ./pg_lib/postgresql-42.2.9.jar:/home/wso2carbon/wso2is-5.9.0/repository/components/lib/postgresql-42.2.9.jar
+#    depends_on:
+#      - micado_db
+    networks:
+      - micado_net
+
+
+networks:
+  micado_net:
+    external: true

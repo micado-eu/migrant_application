@@ -1,0 +1,103 @@
+[
+
+        
+
+  {"id": "integration",
+     "name": "Integration",
+     "children": ["permit", "house", "job"]
+ },
+
+  {"id":"health",
+   "name": "Healthcare",
+   "children": ["doctor", "emergency", "pharmacy"]
+ },
+
+ 
+
+ {"id":"permit",
+   "name": "Types of Permits",
+   "children": ["temporary", "study", "asylum", "long-term"]
+ },
+  {"id":"house",
+   "name": "Housing info",
+   "children": ["housing-contract", "rules", "offers"]
+ },
+  {"id":"job",
+   "name": "Job info",
+   "children": ["worker-rights", "job-contract"]
+ },
+
+ 
+
+ {"id": "doctor",
+   "name": "Doctors info",
+   "children": ["doctor-list", "doctor-service"]
+ },
+  {"id":"emergency",
+   "name": "Emergency",
+   "children": ["emergency-room", "emergency-todo"]
+ },
+  {"id":"pharmacy",
+   "name": "Pharmacy list",
+   "children": ["prescription-meds", "no-prescription-meds"]
+ },
+
+ 
+
+  {"id":"temporary",
+   "name": "How to get temporary permit"
+ },
+  {"id":"study",
+   "name": "How to get study permit"
+ },
+  {"id":"asylum",
+   "name": "How to get asylum permit"
+ },
+ {"id":"long-term",
+   "name": "How to get long-term permit"
+ },
+
+ 
+
+  {"id":"housing-contract",
+   "name": "Housing contract example"
+ },
+  {"id":"rules",
+   "name": "Housing rules"
+ },
+  {"id":"offers",
+   "name": "Housing offers"
+ },
+
+ 
+  {"id":"worker-rights",
+   "name": "Worker rights"
+ },
+  {"id":"job-contract",
+   "name": "Job contract example"
+ },
+
+ 
+ {"id":"doctor-list",
+   "name": "Doctor List"
+ },
+  {"id":"doctor-service",
+   "name": "Doctor Services"
+ },
+
+ 
+  {"id":"emergency-room",
+   "name": "Emergency room "
+ },
+  {"id":"emergency-todo",
+   "name": "What to do in case of emergency"
+ },
+
+ 
+  {"id":"prescription-meds",
+   "name": "List of meds that need prescription"
+ },
+ {"id":"no-prescription-meds",
+   "name": "List of meds that don't need prescription"
+ }
+]

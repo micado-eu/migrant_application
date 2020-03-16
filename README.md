@@ -1,6 +1,13 @@
 # Micado app (micado)
 
-Migrant application
+Migrant application 
+
+![](https://img.shields.io/docker/pulls/micadoproject/migrant_app_site) ![](https://david-dm.org/micado-eu/migrant_application/status.svg?path=app) [![Build Status](https://travis-ci.org/micado-eu/migrant_application.svg?branch=master)](https://travis-ci.org/micado-eu/migrant_application)
+
+## Demo website
+[Official demo site for the migrant application](http://migrants.micadoproject.eu/)
+
+For complete feature experience on the speak aspects navigate using chrome browser
 
 ## Development instructions
 To develop this application you need to execute the following command to get a proper shell in the development environment, this will mount the source folder and allow editing the code with you preferred editor while getting the benefit of having autorefresh etc.

@@ -21,25 +21,21 @@ export default {
       userSaid: '',
       annyang,
       speechCommands: {
-        'documenti': this.jumpto,
-        '*allSpeech': function (allSpeech) {
-          console.debug('catchall', allSpeech)
-        }
+        //'documenti': this.jumpto,
+        //'*allSpeech': function (allSpeech) {
+        //  console.debug('catchall', allSpeech)
+        //}
       },
       registeredCommands: []
     }
   },
   created () {
     var self = this
-
+    
     if (this.annyang) {
 //      var annyang = window.annyang
-      // Add our commands to annyang
-      this.annyang.addCommands(this.speechCommands)
-      for (var command in this.speechCommands) {
-        console.log('registered', command)
-        self.registeredCommands.push(command)
-      }
+      
+     
 
       // Tell KITT to use annyang
 //      SpeechKITT.annyang()
@@ -91,7 +87,7 @@ navigate() {
       this.annyang.addCallback('error', function (e) {
         console.error(e) // sample output: 'hello'
       })
-      this.start()
+      //this.start()
       this.annyang.debug(this.debug)
     }
   },
@@ -106,16 +102,36 @@ navigate() {
      console.debug('documenti', allSpeech)
      console.log("gioppo")
      console.log(allSpeech)
-
+      
      console.log(this)
      this.$router.push({ path: "/documents" });
     },
     start: function(){
-      this.annyang.setLanguage("it-IT")
-      this.annyang.start({ autoRestart: true, continuous: true, paused: true });
+      //Filling the speech command list
+      this.speechCommands[this.$t('menu.documents')] = this.jumpto
+      console.log(this.speechCommands)
+
+      // Add our commands to annyang
+      this.annyang.addCommands(this.speechCommands)
+    
+      //for (var command in this.speechCommands) {
+      //  console.log('registered', command)
+      //  self.registeredCommands.push(command)
+      //  console.log(self.registeredCommands)
+      //}
+      //Setting annyang language based on the language settings controlled through i18n
+      this.annyang.setLanguage(this.$t('menu.language'))
+      console.log("language set to " + this.$t('menu.language'))
+      //starts annyang and opens the mic
+      this.annyang.start({ autoRestart: true, continuous: true, paused: false });
     },
     pause: function(){
-      this.annyang.pause()
+      //Remove the commands when annyang is stopped
+      this.annyang.removeCommands()
+      //Clean the speech commands so that if the user changes language the command in the other language won't be added again to the list
+      this.speechCommands = {}
+      //stops annyang and closes the mic
+      this.annyang.abort()  
     },
     resume: function(){
       this.annyang.resume()

@@ -1,0 +1,26 @@
+[
+  {
+    "id":1,
+    "title":"Frequent language course",
+    "text":"Need to reach level B1 in country language. Courses can be consulted in the services tab",
+    "done":false,
+    "link": "#/flows",
+    "icon":"school"
+  },
+  {
+    "id":2,
+    "title":"Finda a job",
+    "text":"To get a job you need to enlist to the proper office",
+    "done":false,
+    "link": "http://www.portaleimmigrazione.it/",
+    "icon":"work"
+  },
+  {
+    "id":3,
+    "title":"Find an apartment",
+    "text":"Housing can be either rent or acquired",
+    "done":true,
+    "link": "#",
+    "icon":"house"
+  }
+]

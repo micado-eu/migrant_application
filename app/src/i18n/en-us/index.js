@@ -1,13 +1,17 @@
 export default {
   menu: {
     title: 'My Tools',
-    services: 'Available services',
-    documents: 'My Documents',
+    services: 'Info portal',
+    documents: 'Document wallet',
     assistant: 'The Assistant',
-    processes: 'Administrative processes',
+    processes: 'Guided processes',
     notifications: 'My Messages',
     search: 'Search',
+    tasks: 'Tasks',
     speech: 'Speaking',
-    settings: 'Settings'
+    settings: 'Settings',
+    decision: 'Decision',
+    glossary: 'Glossary',
+    language:'en-US'
   }
 }

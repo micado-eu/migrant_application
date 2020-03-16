@@ -2,20 +2,24 @@
 const routes = [
   {
     path: '/',
-     component: () => import('layouts/Layout.vue'),
-     children: [
-       { path: '', component: () => import('pages/Index.vue') },
-       { path: '/documents', component: () => import('pages/Documents.vue') },
-       { path: '/services', component: () => import('pages/Services.vue') },
-       { path: '/flows', component: () => import('pages/Flows.vue') },
-       { path: '/notifications', component: () => import('components/Notifications.vue') },
-       { path: '/speech', component: () => import('pages/Speech.vue') },
-       { path: '/chatbot', component: () => import('pages/Chatbot.vue') },
-       { path: '/settings', component: () => import('pages/Settings.vue') },
-       { path: '/certificates', component: () => import('pages/Certificates.vue'), props: true, name: 'certificates' },
-       { path: '/map', component: () => import('components/Map.vue') }
-     ]
-   }/*,
+    component: () => import('layouts/Layout.vue'),
+    children: [
+      { path: '', component: () => import('pages/Index.vue') },
+      { path: '/documents', component: () => import('pages/Documents.vue') },
+      { path: '/services', component: () => import('pages/Services.vue') },
+      { path: '/flows', component: () => import('pages/Flows.vue') },
+      { path: '/notifications', component: () => import('components/Notifications.vue') },
+      { path: '/speech', component: () => import('pages/Speech.vue') },
+      { path: '/gioppo', component: () => import('pages/Gioppo.vue') },
+      { path: '/tasks', component: () => import('pages/Tasks.vue') },
+      { path: '/chatbot', component: () => import('pages/Chatbot.vue') },
+      { path: '/settings', component: () => import('pages/Settings.vue') },
+      { path: '/certificates', component: () => import('pages/Certificates.vue'), props: true, name: 'certificates' },
+      { path: '/map', component: () => import('components/Map.vue') },
+      { path: '/glossary', component: () => import('pages/Glossary.vue') },
+      { path: '/decision', component: () => import('pages/DecisionTreePage.vue') },
+    ]
+  }/*,
   {
     path: '/documents',
 //    meta: { auth: true },
