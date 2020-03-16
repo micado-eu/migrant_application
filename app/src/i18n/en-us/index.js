@@ -11,6 +11,7 @@ export default {
     speech: 'Speaking',
     settings: 'Settings',
     decision: 'Decision',
-    glossary: 'Glossary'
+    glossary: 'Glossary',
+    language:'en-US'
   }
 }

@@ -8,6 +8,7 @@ export default {
     notifications: 'Massaggi',
     search: 'Ricerca',
     speech: 'Parlare',
-    settings: 'Impostazioni'
+    settings: 'Impostazioni',
+    language:"it-IT"
   }
 }

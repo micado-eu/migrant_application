@@ -8,6 +8,7 @@ export default {
     notifications: 'meine Nachrichten',
     search: 'Suche',
     speech: 'Sprechen',
-    settings: 'Einstellungen'
+    settings: 'Einstellungen',
+    language:'de-DE'
   }
 }
