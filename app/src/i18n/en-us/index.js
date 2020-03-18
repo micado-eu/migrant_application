@@ -1,16 +1,14 @@
 export default {
   menu: {
     title: 'My Tools',
-    services: 'Info portal',
-    documents: 'Document wallet',
-    assistant: 'The Assistant',
+    home: 'Home',
     processes: 'Guided processes',
-    notifications: 'My Messages',
-    search: 'Search',
-    tasks: 'Tasks',
-    speech: 'Speaking',
+    info: 'General Info',
+    chatbot: 'MICADO bot',
+    tasks: 'Task Monitor',
+    documents: 'Document wallet',
+    messenger: 'My Messages',
     settings: 'Settings',
-    decision: 'Decision',
-    glossary: 'Glossary'
+    language: 'en-US'
   }
 }

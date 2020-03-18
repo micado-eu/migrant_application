@@ -8,6 +8,7 @@ export default {
     notifications: 'رسائلي',
     search: 'بحث',
     speech: 'تكلم',
-    settings: 'الإعدادات'
+    settings: 'الإعدادات',
+    language:'ar-EG'
   }
 }

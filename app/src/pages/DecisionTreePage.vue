@@ -3,6 +3,7 @@
         <span v-if="loading">Loading…</span>
             <div v-else class="container">
               <h3 style="text-align : center">{{this.title}}</h3>
+              <ReadComponent></ReadComponent>
                 <div>
                     <DecisionTree @option="updateTitle"></DecisionTree>
                 </div>
@@ -12,6 +13,7 @@
 
 <script>
 import DecisionTree from 'components/DecisionTree'
+import ReadComponent from 'components/ReadComponent'
 
 export default {
 
@@ -28,7 +30,7 @@ export default {
   },
 
   components: {
-    DecisionTree
+    DecisionTree, ReadComponent
   },
 
   created () {
@@ -37,11 +39,12 @@ export default {
       .then(decisions => {
         this.loading = false
       })
-    }, 
+    },
 
   methods: {
     updateTitle(value) {
       this.title = value
+      this.$root.$emit('option', value)
     }
   }
 }
