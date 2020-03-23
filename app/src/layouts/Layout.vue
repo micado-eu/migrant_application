@@ -12,7 +12,7 @@
         />
 
         <q-toolbar-title>Micado App</q-toolbar-title>
-
+        <LanguageSelector></LanguageSelector>
         <ListenToggle />
 
         <div>Micado v0.1</div>
@@ -73,13 +73,15 @@
 <script>
 import AuthMenu from "./auth/AuthMenu";
 import ListenToggle from "components/ListenToggle";
+import LanguageSelector from "components/LanguageSelector";
 
 export default {
   name: "Layout",
 
   components: {
     AuthMenu,
-    ListenToggle
+    ListenToggle, 
+    LanguageSelector
   },
 
   data() {
@@ -152,6 +154,9 @@ export default {
 @media screen and (min-width: 768px) {
   .q-footer {
     display: none;
+  }
+  body {
+    font-family: 'Nunito', sans-serif;
   }
 }
 </style>
