@@ -1,3 +1,4 @@
 #local docker-compose file
 docker-compose.local.yaml
 docker-compose.chatbot.local.yaml
+note.txt
