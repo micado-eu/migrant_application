@@ -1,6 +1,6 @@
 <template>
   <div class="speech">
-   <span>You said: {{ userSaid }}</span>
+   <span >You said: {{ userSaid }}</span>
   </div>
 </template>
 
@@ -154,5 +154,7 @@ navigate() {
 </script>
 
 <style >
-
+.speech {
+  color:#4D4D4D
+}
 </style>

@@ -1,13 +1,13 @@
 <template>
-  <div class="q-pa-md q-gutter-sm">
-    <q-btn label="Language" :color="color" @click="layout = true" />
+  <div class="q-pa-sm q-gutter-sm">
+    <q-btn icon="img:statics/icons/Set Language (600x600).png" color="white" size="15px" @click="layout = true" />
 
     <q-dialog v-model="layout">
       <q-layout view="Lhh lpR fff" container class="bg-white">
-        <q-header class="bg-primary">
-          <q-toolbar>
-            <q-toolbar-title>Language</q-toolbar-title>
-            <q-btn flat v-close-popup round dense icon="close" />
+        <q-header >
+          <q-toolbar class="bg-white">
+            <q-space />
+            <q-btn color="primary" flat v-close-popup round dense icon="close" />
           </q-toolbar>
         </q-header>
 
