@@ -22,7 +22,7 @@
         <span v-if="loading">Loading…</span>
 
         <q-list bordered v-else  >
-          <q-expansion-item v-for="flow in flows" group="somegroup" :label="flow.title" header-class="text-primary" :key="flow.id" @show="showFlow(flow.id)">
+          <q-expansion-item v-for="flow in flows" group="somegroup" :label="flow.title" header-class="text-accent" :key="flow.id" @show="showFlow(flow.id)">
             <q-card>
 
               <q-card-section>

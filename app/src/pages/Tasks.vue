@@ -30,6 +30,7 @@ Your integration progress:
         :icon="task.icon"
         :done="task.done"
         :key="task.id"
+        color="accent"
       >
         {{task.text}}
 
