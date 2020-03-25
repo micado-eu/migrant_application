@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-sm q-gutter-sm">
-    <q-btn icon="img:statics/icons/Set Language (600x600).png" color="white" size="15px" @click="layout = true" />
+    <q-btn round icon="img:statics/icons/Set Language (600x600).png" color="white" size="15px" @click="layout = true" />
 
     <q-dialog v-model="layout">
       <q-layout view="Lhh lpR fff" container class="bg-white">

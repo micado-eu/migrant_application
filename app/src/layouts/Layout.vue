@@ -13,9 +13,8 @@
 
         <q-toolbar-title>Micado App</q-toolbar-title>
         <LanguageSelector></LanguageSelector>
-        <ListenToggle />
+        <!-- <ListenToggle /> -->
 
-        <div>Micado v0.1</div>
       </q-toolbar>
     </q-header>
 
@@ -72,7 +71,7 @@
 
 <script>
 import AuthMenu from "./auth/AuthMenu";
-import ListenToggle from "components/ListenToggle";
+//import ListenToggle from "components/ListenToggle";
 import LanguageSelector from "components/LanguageSelector";
 
 export default {
@@ -80,7 +79,7 @@ export default {
 
   components: {
     AuthMenu,
-    ListenToggle, 
+    //ListenToggle, 
     LanguageSelector
   },
 
