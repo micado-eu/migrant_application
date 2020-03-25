@@ -153,7 +153,7 @@ navigate() {
 }
 </script>
 
-<style >
+<style scoped>
 .speech {
   color:#4D4D4D
 }

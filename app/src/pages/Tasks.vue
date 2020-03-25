@@ -19,7 +19,7 @@ Your integration progress:
     <q-stepper
       v-model="step"
       vertical
-      color="primary"
+      color="accent"
       header-nav
       animated
     >
