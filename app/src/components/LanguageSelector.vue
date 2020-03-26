@@ -16,16 +16,24 @@
             <div class="q-gutter-lg row"  v-for="i in Math.ceil(langOptions.length / 4)">
               <div class="q-gutter-xs col" v-for="language in langOptions.slice((i - 1) * 4, i * 4)" style="text-align:center" :id="language.value" @click="getValue($event)" >
               <q-btn v-close-popup>
-                <q-avatar size="42px">
-                  <img src="~assets/micado-logo.png" />
+                <q-avatar square>
+                  <img :src="language.src" />
                 </q-avatar>
               </q-btn>
-                <p>
-                {{language.label}}
-                </p>
               </div>
             </div>
-            <p> Please, select a language </p>
+            <h6> Please, choose a language </h6>
+            
+            <hr/>
+            <h6> Please, choose a language</h6>
+              <div class="q-pa-md" style="max-width: 350px">
+                <q-list bordered separator class="rounded-borders">
+                  <q-item clickable v-close-popup v-ripple @click="getValue($event)" v-for="language in langOptions" :key="language.label" 
+                    :id="language.value">
+                    {{language.label}} 
+                  </q-item>
+                </q-list>
+              </div>
           </q-page>
         </q-page-container>
       </q-layout>
@@ -40,14 +48,10 @@ export default {
       layout: false,
       lang: this.$i18n.locale, 
       langOptions: [
-        { value: 'en-us', label: 'English'},
-        { value: 'de', label: 'German'},
-        { value: 'ar', label: 'Arabic'},
-        { value: 'it', label: 'Italian'},
-        { value: 'en-us', label: 'English'},
-        { value: 'de', label: 'German' },
-        { value: 'ar', label: 'Arabic' },
-        { value: 'it', label: 'Italian'}
+        { value: 'en-us', label: 'English',src: 'statics/icons/English.png'},
+        { value: 'de', label: 'Deutsch', src: 'statics/icons/Deutsch.png'},
+        { value: 'ar', label: 'عربي', src: 'statics/icons/arab.png'},
+        { value: 'it', label:'Italiano', src: 'statics/icons/Italiano.png'}
       ],
       color: "primary"
     }
