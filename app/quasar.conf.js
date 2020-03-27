@@ -51,15 +51,15 @@ module.exports = function (ctx) {
       directives: [],
       config: {
         brand: {
-          primary: '#9d9d9d',
-          secondary: 'e0e0e0',
-          accent: '#4d4d4d',
+          primary: '#efefef',
+          secondary: '#0b91ce',
+          accent: '#0f3a5d',
 
-          dark: '#ededed',
+          dark: '#0d0d0d',
 
-          positive: '#f6f6f6',
+          positive: '#21BA45',
           negative: '#C10015',
-          info: '#31CCEC',
+          info: '#ff7c44',
           warning: '#F2C037'
         }
       },

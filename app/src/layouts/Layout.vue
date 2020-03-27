@@ -48,6 +48,8 @@
           :to="nav.to"
           :key="nav.label"
           v-feature-flipping="nav.feature"
+          active
+          active-class="my-menu-link"
         >
           <q-item-section avatar>
             <q-icon :name="nav.icon" style="font-size:45px"/>
@@ -156,6 +158,10 @@ export default {
   }
   body {
     font-family: 'Nunito', sans-serif;
+  }
+  .my-menu-link{
+    color: white;
+    background: #0b91ce;
   }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-<q-page class="flex flex-center column bg-dark">
+<q-page class="flex flex-center column">
     <div class="row justify-center full-height full-width text-center">
       <img alt="Micado logo" src="~assets/asp_logo.jpg">
     </div>
