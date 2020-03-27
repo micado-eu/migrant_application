@@ -1,13 +1,13 @@
   <template>
   <div>
   <div class="q-gutter-md  row justify-center items-center" >
-   <q-input items-center rounded filled v-model="search" label="Search by Tags" />
+   <q-input items-center filled v-model="search" label="Search by Tags" />
   </div>
    <div class="q-pa-md" style="max-width: 100%">
   <h4> Guided Processes </h4>
   </div>
     <div class="container">
-      <div>
+    <q-list  >
         <ListItem v-for="process in processes"
          :key="process.id"
          :Title="process.title"
@@ -17,7 +17,7 @@
          :Tag_2="process.user_tags"
          :Link="process.link">
         </ListItem>
-      </div>
+    </q-list>
     </div>
   </div>
 </template>
@@ -226,4 +226,6 @@ canvas {
     margin-left: -300px;
     background-color: blue;
 }
+
+
 </style>

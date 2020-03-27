@@ -1,13 +1,12 @@
 <template>
-  <div class="q-pa-md" style="max-width: 100%">
-    <q-list bordered style=" border-width:3px; border-color:#0f3a5d" class="rounded-borders">
       <q-expansion-item
         :label="this.Title"
         header-class="bg-white text-accent"
         expand-icon-class="text-white"
+        style=" border-width:3px; border-color:#0f3a5d; border-radius: 1.95rem;border-style: solid; margin-bottom: 1px"
       >
         <q-separator />
-        <q-item>
+        <q-item style="border-radius: 2.00rem;">
           <q-item-section  class="col-10" style="max-width:100%">
           {{ this.Text }}
           </q-item-section>
@@ -43,8 +42,6 @@
               <q-btn color="info" label="Go to process" to="/placeholder" />
             </div>
         </q-expansion-item>
-    </q-list>
-  </div>
 </template>
 
 <script>
@@ -56,3 +53,14 @@ export default {
   }
 }
 </script>
+<style scoped>
+
+div >>> .q-item {
+  border-radius: 2.00rem;
+  
+  &:hover {
+    color: blue;
+  }
+}
+
+</style>
