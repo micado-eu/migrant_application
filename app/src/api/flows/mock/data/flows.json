@@ -5,6 +5,8 @@
     "text":"This permit can be required by people that want to study in Italy .....",
     "button":"consult flows",
     "link": "#/flows",
+    "topic_tags":["tag1", "tag2", "tag3"], 
+    "user_tags":[],
     "graph":[{"data":{"id":"a","data":{"id":"n", "data": {"longitude":41, "latitude": 7, "documents":[{"id":1,"type":"adoc"}]} } }},
              {"data":{"id": "b","data":{"id":"n", "data": {"longitude":41, "latitude": 7, "documents":[{"id":1,"type":"adoc"}]} } }},
              {"data": { "id": "ab", "source": "a", "target": "b" }}
@@ -40,6 +42,8 @@
     "text":"This could be a link to an existing eternal application",
     "button":"Go to app",
     "link": "#",
+    "topic_tags":["tag1", "tag2", "tag3"], 
+    "user_tags":["tag3", "tag4", "tag5"],
     "graph":[{"data":{"id":"a" }},
              {"data":{"id": "b" }},
              {"data": { "id": "ab", "source": "a", "target": "b" }}
@@ -76,6 +80,8 @@
     "text":"This could be another link to external application",
     "button":"go somewhere",
     "link": "#",
+    "topic_tags":[], 
+    "user_tags":[],
     "graph":[{"data":{"id":"a", "data": {"longitude":41, "latitude": 7}, "data": {"longitude":41, "latitude": 7} }},
              {"data":{"id": "b", "data": {"longitude":41, "latitude": 7} }},
              {"data": { "id": "ab", "source": "a", "target": "b", "data": {"longitude":41, "latitude": 7}}}
@@ -88,6 +94,8 @@
     "text":"This could be an explanation of the workflow to enroll the child done by us using some flow diagram description, generic for many processes and pilots",
     "button":"Go to flow",
     "link": "#/eduflow",
+    "topic_tags":["tag2", "tag3"], 
+    "user_tags":[],
     "graph":[{"data":{"id":"d" }},
              {"data":{"id": "c" }},
              {"data": { "id": "dc", "source": "d", "target": "c" }}
@@ -100,6 +108,8 @@
     "text":"You are studying in the city and need to renew your residence permit",
     "button":"go somewhere",
     "link": "#",
+    "topic_tags":["tag1", "tag2"], 
+    "user_tags":[],
     "graph":[{"data":{"id":"a" }},
              {"data":{"id": "b" }},
              {"data": { "id": "ab", "source": "a", "target": "b" }}
@@ -112,6 +122,8 @@
     "text":"You found a job and need to renew your residence permit",
     "button":"go for it2",
     "link": "#",
+    "topic_tags":["tag1", "tag2", "tag3"], 
+    "user_tags":["tag4"],
     "graph":[{"data":{"id":"a" }},
              {"data":{"id": "b" }},
              {"data": { "id": "ab", "source": "a", "target": "b" }}

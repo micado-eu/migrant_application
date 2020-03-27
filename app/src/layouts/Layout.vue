@@ -60,7 +60,7 @@
           </q-item-section>
         </q-item>
         <div class="row justify-center full-height full-width text-center">
-          <img alt="Powered by Micado" src="~assets/powered_Micado.png" />
+          <img alt="Powered by Micado" src="~assets/powered_Micado_white.png" />
         </div>
       </q-list>
     </q-drawer>
