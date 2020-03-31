@@ -19,7 +19,7 @@ Your integration progress:
     <q-stepper
       v-model="step"
       vertical
-      color="primary"
+      color="accent"
       header-nav
       animated
     >
@@ -30,6 +30,7 @@ Your integration progress:
         :icon="task.icon"
         :done="task.done"
         :key="task.id"
+        color="accent"
       >
         {{task.text}}
 

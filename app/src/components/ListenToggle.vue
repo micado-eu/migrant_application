@@ -1,10 +1,11 @@
 <template>
+<div  class="q-pa-sm q-gutter-sm">
   <q-btn
     @click="toggleAssistant()"
     :color="color"
-    round
+    size="15px"
   >
-    <q-avatar size="42px">
+    <q-avatar size="30px" style="color:#4D4D4D">
       <img src="~assets/bb-micado.png">
       <q-tooltip
           transition-show="flip-right"
@@ -16,7 +17,7 @@
     <SpeechComp ref="spc"/>
 
   </q-btn>
-
+</div>
 </template>
 
 <script>
@@ -28,7 +29,7 @@ export default {
   data () {
     return {
       isAssistantActive: false,
-      color: "primary"
+      color: "white"
     }
   },
   components: {
@@ -45,7 +46,7 @@ export default {
       }else{
         console.log("speechcomp is paused")
         console.log(this)
-        this.color = "primary"
+        this.color = "white"
         this.$refs.spc.pause()
 
       }

@@ -12,6 +12,7 @@ import Certificates from 'pages/Certificates.vue'
 import MapView from 'components/Map.vue'
 import Glossary from 'pages/Glossary.vue'
 import DecisionTreePage from 'pages/DecisionTreePage.vue'
+import Processes from 'pages/Processes.vue'
 
 const routes = [
   {
@@ -22,6 +23,7 @@ const routes = [
       { path: '/documents', component: Documents },
       { path: '/services', component: Services },
       { path: '/flows', component: Flows },
+      { path: '/processes', component: Processes },
       { path: '/notifications', component: Notifications },
       { path: '/speech', component: Speech },
       { path: '/gioppo', component: Gioppo },

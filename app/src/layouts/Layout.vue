@@ -1,7 +1,7 @@
 <template>
   <q-layout view="hHh lpR fFf">
-    <q-header elevated>
-      <q-toolbar>
+    <q-header elevated class="bg-accent">
+      <q-toolbar >
         <q-btn
           flat
           dense
@@ -13,9 +13,8 @@
 
         <q-toolbar-title>Micado App</q-toolbar-title>
         <LanguageSelector></LanguageSelector>
-        <ListenToggle />
+        <!-- <ListenToggle /> -->
 
-        <div>Micado v0.1</div>
       </q-toolbar>
     </q-header>
 
@@ -37,21 +36,23 @@
       show-if-above
       :breakpoint="767"
       bordered
-      content-class="bg-green-4"
-    >
+      content-class="bg-accent text-white" >
       <auth-menu />
-      <q-list>
+      <q-list dark>
         <q-item-label header>{{ $t('menu.title') }}</q-item-label>
         <q-item
           clickable
           exact
+          dark
           v-for="(nav) in navs"
           :to="nav.to"
           :key="nav.label"
           v-feature-flipping="nav.feature"
+          active
+          active-class="my-menu-link"
         >
           <q-item-section avatar>
-            <q-icon :name="nav.icon" />
+            <q-icon :name="nav.icon" style="font-size:45px"/>
           </q-item-section>
           <q-item-section>
             <q-item-label>{{ $t( nav.label) }}</q-item-label>
@@ -59,7 +60,7 @@
           </q-item-section>
         </q-item>
         <div class="row justify-center full-height full-width text-center">
-          <img alt="Powered by Micado" src="~assets/powered_Micado.png" />
+          <img alt="Powered by Micado" src="~assets/powered_Micado_white.png" />
         </div>
       </q-list>
     </q-drawer>
@@ -72,7 +73,7 @@
 
 <script>
 import AuthMenu from "./auth/AuthMenu";
-import ListenToggle from "components/ListenToggle";
+//import ListenToggle from "components/ListenToggle";
 import LanguageSelector from "components/LanguageSelector";
 
 export default {
@@ -80,7 +81,7 @@ export default {
 
   components: {
     AuthMenu,
-    ListenToggle, 
+    //ListenToggle, 
     LanguageSelector
   },
 
@@ -90,56 +91,56 @@ export default {
       navs: [
         {
           label: "menu.home",
-          icon: "home",
+          icon: "img:statics/icons/Home (600x600) white.png",
           to: "/",
           description: "MICADO home page",
           feature: "FEAT_DEFAULT"
         },
         {
           label: "menu.processes",
-          icon: "timeline",
+          icon: "img:statics/icons/Guided Processes (600x600) white.png",
           to: "/flows",
           description: "guided integration processes",
           feature: "FEAT_PROCESSES"
         },
         {
           label: "menu.info",
-          icon: "search",
+          icon: "img:statics/icons/Genreal Information (600x600) white.png",
           to: "/info",
           description: "integration informaton explained",
           feature: "FEAT_INFO"
         },
         {
           label: "menu.chatbot",
-          icon: "question_answer",
+          icon: "img:statics/icons/Chatbot (600x600) white.png",
           to: "/chatbot",
           description: "Micado Assistant",
           feature: "FEAT_CHATBOT"
         },
         {
           label: "menu.documents",
-          icon: "description",
+          icon: "img:statics/icons/Document Wallet (600x600) white.png",
           to: "/documents",
           description: "documents saved in my wallet",
           feature: "FEAT_DOCUMENTS"
         },
         {
           label: "menu.tasks",
-          icon: "assignment",
+          icon: "img:statics/icons/Task Monitor (600x600) white.png",
           to: "/tasks",
           description: "Tasks for your integration",
           feature: "FEAT_TASKS"
         },
         {
           label: "menu.messenger",
-          icon: "mail_outline",
+          icon: "img:statics/icons/Messenger (600x600) white.png",
           to: "/notifications",
           description: "messages from PA",
           feature: "FEAT_MESSENGER"
         },
         {
           label: "menu.settings",
-          icon: "settings_applications",
+          icon: "img:statics/icons/Settings (600x600) white.png",
           to: "/settings",
           description: "configure the application",
           feature: "FEAT_SETTINGS"
@@ -157,6 +158,10 @@ export default {
   }
   body {
     font-family: 'Nunito', sans-serif;
+  }
+  .my-menu-link{
+    color: white;
+    background: #0b91ce;
   }
 }
 </style>

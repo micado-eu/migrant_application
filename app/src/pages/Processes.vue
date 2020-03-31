@@ -1,83 +1,61 @@
-<template>
-  <q-page class="flows container-fluid">
-  <!-- <div class="flows container-fluid"> -->
-    <div class="row">
-      <div class="col">
-        <q-scroll-area
-          horizontal
-          style="height: 210px;"
-          class="bg-grey-1"
-        >
-          <vue-mermaid
-            :nodes="mermaid"
-            type="graph LR"
-            :config="merconf"
-            v-on:nodeClick="editNodeMer"></vue-mermaid>
-        </q-scroll-area>
+  <template>
+  <div>
+   <div class="q-pa-md">
+    <div class="q-gutter-md row items-start">
+    <div class="q-gutter-md  col justify-center items-center" >
+   <q-input items-center filled v-model="search" label="Search" />
+  </div>
+    <div class="q-gutter-md  col justify-center items-center">
+     <q-select
+        filled
+        clearable
+        @clear="clearUser"
+        v-model="user"
+        multiple
+        :options="u_tags"
+        @input="setUserTag"
+        label="User Tags"
+        style="width: 250px"
+      />
+      </div>
+      <div class="q-gutter-md  col justify-center items-center">
+     <q-select
+        filled
+        clearable
+        @clear="clearTopic"
+        v-model="topic"
+        multiple
+        :options="t_tags"
+        @input="setTopicTag"
+        label="Topic Tags"
+        style="width: 250px"
+      />
       </div>
     </div>
-    <div class="row">
-
-      <div class="col">
-        <span v-if="loading">Loading…</span>
-
-        <q-list bordered v-else  >
-          <q-expansion-item v-for="flow in flows" group="somegroup" :label="flow.title" header-class="text-accent" :key="flow.id" @show="showFlow(flow.id)">
-            <q-card>
-
-              <q-card-section>
-                {{ flow.text }}
-
-
-              </q-card-section>
-          </q-card>
-          </q-expansion-item>
-        </q-list>
-
-
-      </div>
-      <div class="col">
-  <!--      <cytoscape ref="flow_cyt" :config="configcy" v-on:mousedown="addNode" v-on:cxttapstart="updateNode" :preConfig="preConfig" :afterCreated="afterCreated">
-          <cy-element
-            v-for="def in flowData"
-            :key="`${def.data.id}`"
-            :definition="def"
-            v-on:mousedown="deleteNode($event, def)"
-          />
-
-        </cytoscape>
-        -->
-        <q-card :class="nodePanelVisible" header="Details of the step">
-<!--          <q-field color="purple-12" label="Location" stack-label>
-            <template v-slot:prepend>
-              <q-icon name="place" />
-            </template>
-            <template v-slot:control>
-              <div class="self-center full-width no-outline" tabindex="0">{{flowData.location}}</div>
-            </template>
-          </q-field>
-          -->
-          <LabelMap :label="flowData.location" />
-          <q-field color="purple-12" label="Cost for the step" stack-label>
-            <template v-slot:prepend>
-              <q-icon name="euro_symbol" />
-            </template>
-            <template v-slot:control>
-              <div class="self-center full-width no-outline" tabindex="0">{{flowData.stepCost}}</div>
-            </template>
-          </q-field>
-          <q-list >
-            <q-item-label header>Required documents</q-item-label>
-            <DocumentItem v-for="doc in documents" :theDoc="doc" :key="doc.id">
-            </DocumentItem>
-          </q-list>
-        </q-card>
-      </div>
+  </div>
+  
+   <div class="q-pa-md" style="max-width: 100%">
+  <h4> Guided Processes </h4>
+  </div>
+    <div class="container">
+    <q-list  >
+        <ListItem v-for="process in filteredProcesses"
+         :key="process.id"
+         :Title="process.title"
+         :Text="process.text"
+          Image="statics/placeholder.jpg"
+         :Tag_1="process.topic_tags"
+         :Tag_2="process.user_tags"
+         :Link="process.link">
+        </ListItem>
+    </q-list>
     </div>
-  </q-page>
+  </div>
 </template>
 
+
 <script>
+import ListItem from 'components/ListItem'
 import { Core, EventObject } from 'cytoscape'
 //import Cytoscape from '@/components/Cytoscape'
 //import CyElement from '@/components/CyElement'
@@ -88,16 +66,30 @@ import LabelMap from 'components/LabelMap'
 
 console.log(configcy);
 export default {
-  name: 'Flows',
+  name: 'Processes',
   props: {
     msg: String
   },
   components: {
-    DocumentItem, LabelMap
+    DocumentItem, LabelMap, ListItem
   },
   data () {
     return {
-      loading: false,
+      user: null,
+      topic: null,
+      u_tags: [
+        { label: 'tag4', value: 'tag4'},
+        { label: 'tag5', value: 'tag5'},
+        { label: 'tag6', value: 'tag6'},
+      ],
+      t_tags: [
+        { label: 'tag1', value: 'tag1'},
+        { label: 'tag2', value: 'tag2'},
+        { label: 'tag3', value: 'tag3'},
+      ],
+      selected_u_tags:[],
+      selected_t_tags:[],
+      search: ' ',
       elementFlow: {},
       documentsFlow: {},
       mermaid: [
@@ -145,9 +137,28 @@ export default {
     }
   },
   computed: {
-    flows () {
+    processes () {
       return this.$store.state.flows.flows
     },
+      filteredProcesses () {
+        //if none of the fields is filled in it will give the full list of processes
+        if( this.search == "" && this.selected_u_tags.length == 0 && this.selected_t_tags.length == 0) {
+          return this.processes
+        }
+        else if(this.selected_u_tags.lenght != 0 || this.search != "" || this.selected_t_tags.lenght != 0) {
+          return this.processes.filter((filt) =>{
+          //Splits the search field and puts the words in an array
+          var searchArray = this.search.split(" ")
+          //console.log(" tag_u boolean " + this.selected_u_tags.every( string => filt.user_tags.includes(string)))
+          //console.log(" tag_t boolean " + this.selected_u_tags.every( string => filt.user_tags.includes(string)))
+          //console.log("text boolean " + searchArray.every(string => filt.title.toLowerCase().includes(string)))
+          if( searchArray.every(string => filt.title.toLowerCase().includes(string)) &&
+            this.selected_u_tags.every( string => filt.user_tags.includes(string)) &&
+            this.selected_t_tags.every( string => filt.topic_tags.includes(string))){
+              return true;
+            }})
+        } 
+      },
     flowData(){
       return this.$store.state.flows.flowdata
     },
@@ -165,6 +176,44 @@ export default {
     }
   },
   methods: {
+    setUserTag(value) {
+      //the Q-select passe an array of objects, so this takes the value property of the objects and puts them into an array
+      if ( value != null){
+        this.selected_u_tags = []
+        console.log(value)
+        for( var i = 0; i < value.length; i++){
+          this.selected_u_tags.push(value[i].value)
+        }
+        console.log("queste sono le u-tags " + this.selected_u_tags)
+        return this.selected_u_tags
+      }
+    },
+    clearUser() {
+      //clears the array and makes possible the refresh of the filter
+      this.selected_u_tags = []
+      console.log("cleared t-tags")
+      console.log(this.selected_u_tags)
+      return this.selected_u_tags
+    },
+
+    setTopicTag(value) {
+      if (value != null){
+        this.selected_t_tags = []
+        console.log(value)
+        for( var i = 0; i < value.length; i++){
+          this.selected_t_tags.push(value[i].value)
+        }
+        console.log("queste sono le t-tags " + this.selected_t_tags)
+        return this.selected_t_tags
+      }
+    },
+    clearTopic() {
+      this.selected_t_tags = []
+      console.log("cleared t-tags")
+      console.log(this.selected_t_tags)
+      return this.selected_t_tags
+    },
+   
     showFlow(id){
       console.log("opened accordion")
       console.log(id)
@@ -265,9 +314,9 @@ cytElement.instance.elements().remove();
     this.loading = true
     console.log(this.$store);
     this.$store.dispatch('flows/fetchFlows')
-      .then(flows => {
+      .then(processes => {
         this.loading = false
-      })
+      })  
   }
 }
 </script>
@@ -278,4 +327,6 @@ canvas {
     margin-left: -300px;
     background-color: blue;
 }
+
+
 </style>

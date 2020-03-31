@@ -2,7 +2,7 @@
   <div>
     <div class="column flex-center">
       <q-icon
-        name="person"
+        name="img:statics/icons/Profile Avatar (600x600) white.png"
         size="3rem"
         class="q-mt-lg"
       />
