@@ -16,7 +16,7 @@ export function login (state, data) {
   console.log("before login")
   console.log(data)
   const p = new Promise(function (resolve, reject) {
-    return axiosInstance
+    axiosInstance
       .post("https://localhost:9443/api/identity/auth/v1.1/authenticate", data.body, {
         headers: {
             'Content-Type': 'application/json',
@@ -33,10 +33,10 @@ export function login (state, data) {
           token: token,
           rememberMe: data.rememberMe
         })
-        resolve()
+        return resolve()
       })
       .catch(error => {
-        reject(error)
+        return reject(error)
       })
   })
   return p
