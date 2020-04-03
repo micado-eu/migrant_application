@@ -15,7 +15,7 @@ export function register (state, data) {
 export function login (state, data) {
   console.log("before login")
   console.log(data)
-  const p = new Promise(function (resolve, reject) {
+  return new Promise(function (resolve, reject) {
     axiosInstance
       .post("https://localhost:9443/api/identity/auth/v1.1/authenticate", data.body, {
         headers: {
@@ -25,7 +25,7 @@ export function login (state, data) {
       .then(response => {
         console.log("received responsa from ID")
         console.log(response)
-        state.commit('setUser', response.data.user.data)
+        // state.commit('setUser', response.data.user.data)
         const token = response.data.token
         axiosInstance.defaults.headers.common['Authorization'] =
           'Bearer ' + token
@@ -39,7 +39,7 @@ export function login (state, data) {
         return reject(error)
       })
   })
-  return p
+
 }
 
 export function setToken (state, data) {

@@ -9,7 +9,7 @@
           {{ $t('auth.login.login') }}
         </div>
       </q-card-section>
-
+  
       <q-form
         class="q-gutter-md"
         @submit="onSubmit"
@@ -80,10 +80,9 @@ export default {
   methods: {
     onSubmit () {
       this.loading = true
-      this.$auth
-        .login(this.data)
+      this.$store.dispatch('auth/login', this.data)
         .then(response => {
-          this.$router.push('/account')
+          this.$router.push('/')
         })
         .catch(error => {
           if (error.response) {
