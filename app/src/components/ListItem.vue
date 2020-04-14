@@ -28,7 +28,7 @@
       <br>
     </q-item>
     <div class="q-pa-md">
-      <q-btn color="info" label="Go to process" to="/placeholder"/>
+      <q-btn color="accent" label="Go to process" to="/placeholder"/>
     </div>
   </q-expansion-item>
 </template>

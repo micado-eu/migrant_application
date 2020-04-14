@@ -99,7 +99,7 @@ export default {
         {
           label: "menu.processes",
           icon: "img:statics/icons/Guided Processes (600x600) white.png",
-          to: "/flows",
+          to: "/processes",
           description: "guided integration processes",
           feature: "FEAT_PROCESSES"
         },
