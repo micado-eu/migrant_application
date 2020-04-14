@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@braintree/sanitize-url": "^4.0.0",
-    "@quasar/extras": "^1.0.0",
+    "@quasar/extras": "^1.6.4",
     "@uppy/core": "^1.6.0",
     "@uppy/dashboard": "^1.5.0",
     "@uppy/tus": "^1.5.0",
@@ -31,7 +31,7 @@
     "axios-jsonp": "^1.0.4",
     "jsonapi-vuex": "^3.1.1",
     "leaflet": "^1.6.0",
-    "quasar": "^1.0.0",
+    "quasar": "^1.9.14",
     "uppy": "^1.6.0",
     "validator": "^11.1.0",
     "vue-cytoscape": "^1.0.7",
@@ -42,7 +42,7 @@
     "vuelidate": "^0.7.4"
   },
   "devDependencies": {
-    "@quasar/app": "^1.5.8",
+    "@quasar/app": "^1.6.2",
     "@quasar/quasar-app-extension-testing": "^1.0.0",
     "@quasar/quasar-app-extension-testing-e2e-cypress": "^1.0.0-beta.10",
     "@quasar/quasar-app-extension-testing-unit-jest": "^1.0.0",
