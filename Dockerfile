@@ -4,7 +4,7 @@ COPY --chown=node:node ./app /code
 RUN ls -lat /code
 
 RUN npm install
-RUN quasar build
+RUN quasar build -m pwa
 
 # production stage
 #FROM nginx:1.17.5-alpine as production-stage
@@ -13,7 +13,7 @@ RUN quasar build
 #CMD ["nginx", "-g", "daemon off;"]
 
 FROM alpine
-COPY --from=build-stage /code/dist/spa /var/www/html2
+COPY --from=build-stage /code/dist/pwa /var/www/html2
 #COPY site/index.html /var/www/html2/index.html
 VOLUME /var/www/html2/
 COPY busyscript.sh /usr/local/bin/busyscript
