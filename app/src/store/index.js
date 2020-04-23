@@ -10,6 +10,7 @@ import features from './features'
 import glossary from './glossary'
 import tasks from './tasks'
 import decisions from './decisions'
+import language from './language'
 
 Vue.use(Vuex)
 
@@ -29,7 +30,8 @@ export default function (/* { ssrContext } */) {
       glossary,
       tasks,
       documents,
-      decisions
+      decisions,
+      language
     },
 
     // enable strict mode (adds overhead!)
