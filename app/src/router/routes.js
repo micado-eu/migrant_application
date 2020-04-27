@@ -13,6 +13,9 @@ import MapView from 'components/Map.vue'
 import Glossary from 'pages/Glossary.vue'
 import DecisionTreePage from 'pages/DecisionTreePage.vue'
 import Processes from 'pages/Processes.vue'
+import DocumentWallet from 'pages/DocumentWallet'
+import DocumentViewerComponent from 'components/DocumentViewerComponent'
+import AddDocument from 'components/AddDocument'
 
 const routes = [
   {
@@ -20,7 +23,9 @@ const routes = [
     component: () => import('layouts/Layout.vue'),
     children: [
       { path: '', component: Index },
-      { path: '/documents', component: Documents },
+      { path: '/documents', component: DocumentWallet },
+      { path: '/documents/add', component: AddDocument },
+      { path: '/documents/edit/:id', component: AddDocument,  props:true, name: document },
       { path: '/services', component: Services },
       { path: '/flows', component: Flows },
       { path: '/processes', component: Processes },
@@ -33,6 +38,7 @@ const routes = [
       { path: '/certificates', component: Certificates, props: true, name: 'certificates' },
       { path: '/map', component: MapView },
       { path: '/glossary', component: Glossary },
+      { path: '/documents/:id',  component: DocumentViewerComponent, props:true, name: document},
       { path: '/decision', component: DecisionTreePage },
     ]
   }
