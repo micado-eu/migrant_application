@@ -14,7 +14,8 @@
      v-for="document in documents.slice((i - 1) * 3, i * 3)"
      :Title="document.title"
      :Image="document.image"
-     :Link="document.id">
+     :Link="document.id"
+     :key="document.id">
      </DocumentWalletItem>
      </div>
      </q-list>
