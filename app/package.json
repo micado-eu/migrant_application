@@ -32,6 +32,8 @@
     "jsonapi-vuex": "^3.1.1",
     "leaflet": "^1.6.0",
     "quasar": "^1.9.14",
+    "tiptap": "^1.27.1",
+    "tiptap-extensions": "^1.29.1",
     "uppy": "^1.6.0",
     "validator": "^11.1.0",
     "vue-cytoscape": "^1.0.7",
