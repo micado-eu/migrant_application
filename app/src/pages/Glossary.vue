@@ -1,41 +1,49 @@
 <template>
-  <div class="glossary">
-    <span v-if="loading">Loading…</span>
-    <div v-else class="container">
-      <div>
-        <GlossaryItem v-for="a_glossary in glossary" :key="a_glossary.id" :theGlossary="a_glossary" >
-        </GlossaryItem>
+  <div class="q-pa-md">
+    <span v-if="loading">Loading...</span>
+    <q-list bordered v-if="!loading">
+      <div v-for="glossaryItem of glossary" v-bind:key="glossaryItem.id">
+        <q-expansion-item
+          group="glossary"
+          :label="glossaryItem.title"
+          header-class="bg-accent text-white"
+          expand-icon-class="text-white"
+        >
+          <q-card>
+            <q-card-section>
+              <glossary-editor-viewer :content="glossaryItem.description"/>
+            </q-card-section>
+          </q-card>
+        </q-expansion-item>
+        <q-separator />
       </div>
-    </div>
+    </q-list>
   </div>
 </template>
 
 <script>
-import GlossaryItem from 'components/GlossaryItem'
+import GlossaryEditorViewer from "../components/GlossaryEditorViewer"
+import { mapGetters, mapActions } from "vuex"
 
 export default {
   name: 'glossary',
-  props: {
-    msg: String
+  components: {
+    "glossary-editor-viewer": GlossaryEditorViewer
   },
   data () {
     return {
       loading: false
     }
   },
-  components: {
-    GlossaryItem
-  },
-
   computed: {
-    glossary () {
-      return this.$store.state.glossary.glossary
-    }
+    ...mapGetters('glossary', ['glossary'])
   },
-
+  methods: {
+    ...mapActions("glossary", ["fetchGlossary"]),
+  },
   created () {
     this.loading = true
-    this.$store.dispatch('glossary/fetchGlossary')
+    this.fetchGlossary()
       .then(glossary => {
         this.loading = false
       })
@@ -43,9 +51,3 @@ export default {
 }
 
 </script>
-
-<style scoped>
-.container {
-  padding-left: 10px;
-}
-</style>
