@@ -43,8 +43,7 @@
                 @click="getValue($event)"
                 v-bind:key="language.iso_code"
               >
-              <!-- TODO: Change color to primary when styles are correctly set -->
-                <q-btn outline rounded style="color: #0F3A5D;" v-bind:label="language.name" no-caps v-close-popup />
+                <q-btn unelevated rounded color="accent" v-bind:label="language.name" no-caps v-close-popup />
               </div>
             </div>
           </q-page>
