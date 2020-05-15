@@ -134,8 +134,9 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
   .mention {
-    border: 1px solid blue;
+    // a
+    border: 1px solid $primary;
   }
 </style>
