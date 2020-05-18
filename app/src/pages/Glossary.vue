@@ -12,8 +12,9 @@
         <q-expansion-item
           group="glossary"
           :label="glossaryItem.title"
-          header-class="bg-accent text-white"
-          expand-icon-class="text-white"
+          class="glossary-expansion-item"
+          header-class="text-accent"
+          expand-icon-class="text-accent"
           :ref="glossaryItem.id"
           @show="changeQuery(glossaryItem.id)"
         >
@@ -56,7 +57,7 @@ export default {
     },
     changeQuery(id) {
       if (this.$route.query.id !== id.toString()) {
-        this.$router.push({ path: '/glossary', query: { id: id } })
+        this.$router.replace({ path: '/glossary', query: { id: id } })
       }
     }
   },
@@ -82,3 +83,9 @@ export default {
 }
 
 </script>
+<style lang="scss" scoped>
+  .glossary-expansion-item {
+    border: 2px solid $primary;
+    border-radius: 10px;
+  }
+</style>>
