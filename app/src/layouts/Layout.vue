@@ -139,6 +139,13 @@ export default {
           feature: "FEAT_MESSENGER"
         },
         {
+          label: "menu.glossary",
+          icon: "sort_by_alpha",
+          to: "/glossary",
+          description: "glossary for terminology",
+          feature: "FEAT_GLOSSARY"
+        },
+        {
           label: "menu.settings",
           icon: "img:statics/icons/Settings (600x600) white.png",
           to: "/settings",

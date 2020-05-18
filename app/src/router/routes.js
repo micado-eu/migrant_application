@@ -16,7 +16,6 @@ import Processes from 'pages/Processes.vue'
 import DocumentWallet from 'pages/DocumentWallet'
 import DocumentViewerComponent from 'components/DocumentViewerComponent'
 import AddDocument from 'components/AddDocument'
-import EditorTestPage from 'pages/EditorTestPage'
 
 const routes = [
   {
@@ -38,10 +37,9 @@ const routes = [
       { path: '/settings', component: Settings },
       { path: '/certificates', component: Certificates, props: true, name: 'certificates' },
       { path: '/map', component: MapView },
-      { path: '/glossary', component: Glossary },
+      { path: '/glossary/:id?', component: Glossary },
       { path: '/documents/:id',  component: DocumentViewerComponent, props:true, name: document},
       { path: '/decision', component: DecisionTreePage },
-      { path: '/editortest', component: EditorTestPage}
     ]
   }
   /*,
