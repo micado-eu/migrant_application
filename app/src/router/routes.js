@@ -5,6 +5,7 @@ import Flows from 'pages/Flows.vue'
 import Notifications from 'components/Notifications.vue'
 import Speech from 'pages/Speech.vue'
 import Gioppo from 'pages/Gioppo.vue'
+import Home from 'pages/Home.vue'
 import Tasks from 'pages/Tasks.vue'
 import Chatbot from 'pages/Chatbot.vue'
 import Settings from 'pages/Settings.vue'
@@ -25,13 +26,14 @@ const routes = [
       { path: '', component: Index },
       { path: '/documents', component: DocumentWallet },
       { path: '/documents/add', component: AddDocument },
-      { path: '/documents/edit/:id', component: AddDocument,  props:true, name: document },
+      { path: '/documents/edit/:id', component: AddDocument, props: true, name: document },
       { path: '/services', component: Services },
       { path: '/flows', component: Flows },
       { path: '/processes', component: Processes },
       { path: '/notifications', component: Notifications },
       { path: '/speech', component: Speech },
-      { path: '/gioppo', component: Gioppo },
+      { path: '/gioppo', component: Home },
+      { path: '/login', component: Gioppo },
       { path: '/tasks', component: Tasks },
       { path: '/chatbot', component: Chatbot },
       { path: '/settings', component: Settings },
@@ -40,6 +42,7 @@ const routes = [
       { path: '/glossary/:id?', component: Glossary },
       { path: '/documents/:id',  component: DocumentViewerComponent, props:true, name: document},
       { path: '/decision', component: DecisionTreePage },
+
     ]
   }
   /*,

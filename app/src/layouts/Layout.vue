@@ -1,7 +1,10 @@
 <template>
   <q-layout view="hHh lpR fFf">
-    <q-header elevated class="bg-accent">
-      <q-toolbar >
+    <q-header
+      elevated
+      class="bg-accent"
+    >
+      <q-toolbar>
         <q-btn
           flat
           dense
@@ -13,6 +16,7 @@
 
         <q-toolbar-title>Micado App</q-toolbar-title>
         <LanguageSelector></LanguageSelector>
+        <UserButton />
         <!-- <ListenToggle /> -->
 
       </q-toolbar>
@@ -36,10 +40,15 @@
       show-if-above
       :breakpoint="767"
       bordered
-      content-class="bg-accent text-white" >
+      content-class="bg-accent text-white"
+    >
+      <!-- 
       <auth-menu />
+      -->
       <q-list dark>
+        <!--
         <q-item-label header>{{ $t('menu.title') }}</q-item-label>
+        -->
         <q-item
           clickable
           exact
@@ -52,7 +61,10 @@
           active-class="my-menu-link"
         >
           <q-item-section avatar>
-            <q-icon :name="nav.icon" style="font-size:45px"/>
+            <q-icon
+              :name="nav.icon"
+              style="font-size:45px"
+            />
           </q-item-section>
           <q-item-section>
             <q-item-label>{{ $t( nav.label) }}</q-item-label>
@@ -60,7 +72,10 @@
           </q-item-section>
         </q-item>
         <div class="row justify-center full-height full-width text-center">
-          <img alt="Powered by Micado" src="~assets/powered_Micado_white.png" />
+          <img
+            alt="Powered by Micado"
+            src="~assets/powered_Micado_white.png"
+          />
         </div>
       </q-list>
     </q-drawer>
@@ -75,17 +90,19 @@
 import AuthMenu from "./auth/AuthMenu";
 //import ListenToggle from "components/ListenToggle";
 import LanguageSelector from "components/LanguageSelector";
+import UserButton from "components/UserButton"
 
 export default {
   name: "Layout",
 
   components: {
     AuthMenu,
+    UserButton,
     //ListenToggle, 
     LanguageSelector
   },
 
-  data() {
+  data () {
     return {
       leftDrawerOpen: false,
       navs: [
@@ -164,9 +181,9 @@ export default {
     display: none;
   }
   body {
-    font-family: 'Nunito', sans-serif;
+    font-family: "Nunito", sans-serif;
   }
-  .my-menu-link{
+  .my-menu-link {
     color: white;
     background: #0b91ce;
   }
