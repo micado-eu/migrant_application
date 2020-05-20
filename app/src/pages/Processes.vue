@@ -42,11 +42,9 @@
         <ListItem v-for="process in filteredProcesses"
          :key="process.id"
          :Title="process.title"
-         :Text="process.text"
-          Image="statics/placeholder.jpg"
          :Tag_1="process.topic_tags"
          :Tag_2="process.user_tags"
-         :Link="process.link">
+         :Link="process.id">
         </ListItem>
     </q-list>
     </div>

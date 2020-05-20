@@ -4,7 +4,7 @@
       "selector": "node",
       "style": {
         "background-color": "#666",
-        "label": "data(id)"
+        "label": "data(title)"
       }
     }, {
       "selector": "edge",
@@ -19,5 +19,7 @@
   "layout": {
     "name": "grid",
     "rows": 1
-  }
+  },
+  "autolock": true,
+  "panningEnabled": false
 }

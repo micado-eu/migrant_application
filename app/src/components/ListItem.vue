@@ -1,53 +1,51 @@
 <template>
-  <q-expansion-item
-    :label="this.Title"
-    header-class="bg-white text-accent"
-    expand-icon-class="text-white"
-    style=" border-width:3px; border-color:#0f3a5d; border-radius: 1.95rem;border-style: solid; margin-bottom: 1px"
+
+  <q-item
+  style="padding-top:0px; padding-bottom:0px"
   >
-    <q-separator/>
-    <q-item style="border-radius: 2.00rem;">
-      <q-item-section class="col-10" style="max-width:100%">{{ this.Text }}</q-item-section>
-      <q-item-section class="col-2" style="max-width:30%">
-        <img style="max-width:150px" :src="this.Image">
-      </q-item-section>
-    </q-item>
-    <q-item>
-      <div class="row" style="width:100%">
-        <div class="col-0.5" style="padding:6px">Topics:</div>
-        <div class="col">
-          <q-chip v-for="tag in Tag_1" :label="tag" :key="tag"></q-chip>
+    <div>
+      <div >
+        <div class=" q-pa-md col" style="width:750px; padding-bottom:0px; padding-left:0px">
+          <div style="font-size:20px; text-align:left; font-size:18px">{{ this.Title }}</div>
         </div>
-      </div>
-      <div class="row" style="width:100%">
-        <div class="col-0.5" style="padding:6px">Users:</div>
-        <div class="col">
-          <q-chip v-for="tag in Tag_2" :label="tag" :key="tag"></q-chip>
-        </div>
-      </div>
-      <br>
-    </q-item>
-    <div class="q-pa-md">
-      <q-btn color="accent" label="Go to process" to="/placeholder"/>
+     
     </div>
-  </q-expansion-item>
+    <div class=" row" style="">
+        <q-chip v-for="tag in Tag_1" :label="tag.label" :key="tag.value"></q-chip>
+        <q-chip v-for="tag in Tag_2" :label="tag.label" :key="tag.value"></q-chip>
+      <div class="q-pa-md q-gutter-sm  col" style="padding-top:0px; padding-bottom:0px; text-align:right">
+      <q-btn size="11px" no-caps style="width:130px;" rounded color="accent" label="Go to process" :to="'processes/' + this.Link"  />
+      </div>
+    </div>
+    <hr style="margin:0px">
+    </div>
+  </q-item>
 </template>
 
 <script>
 export default {
-  // name: 'ComponentName',
-  props: ["Title", "Text", "Image", "Tag_1", "Tag_2", "Bool", "Link"],
+  name: 'Process',
+  props: ["Title",  "Tag_1", "Tag_2", "Link", "Path"], 
   data() {
     return {};
+  },
+
+  methods: {
+  remove_process(event){
+      let target = event.currentTarget.id
+      console.log(this.Link)
+      this.$emit('remove', this.Link)
+
+    }
   }
-};
+}
 </script>
 <style scoped>
-div >>> .q-item {
+/*div >>> .q-item {
   border-radius: 2rem;
 
   &:hover {
     color: blue;
   }
-}
+}*/
 </style>

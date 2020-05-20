@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueMermaid from "vue-mermaid"
-
-//Vue.use(VueCytoscape)
+import VueCytoscape from 'vue-cytoscape'
+Vue.use(VueCytoscape)
 Vue.use(VueMermaid);
 
 

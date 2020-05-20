@@ -17,6 +17,7 @@ import Processes from 'pages/Processes.vue'
 import DocumentWallet from 'pages/DocumentWallet'
 import DocumentViewerComponent from 'components/DocumentViewerComponent'
 import AddDocument from 'components/AddDocument'
+import ProcessViewer from 'pages/ProcessViewer'
 
 const routes = [
   {
@@ -30,6 +31,7 @@ const routes = [
       { path: '/services', component: Services },
       { path: '/flows', component: Flows },
       { path: '/processes', component: Processes },
+      { path: '/processes/:id', component: ProcessViewer, props: true, name: document},
       { path: '/notifications', component: Notifications },
       { path: '/speech', component: Speech },
       { path: '/gioppo', component: Home },
