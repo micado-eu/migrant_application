@@ -2,12 +2,12 @@
   <div class="container" >
    <div >
    <div class="col" style="display:inline-block;text-align:left;width:600px">
-   <h5> {{this.the_process}} </h5>
+   <h5> Process Details </h5>
   </div>
   
   </div>
     <div >
-    <q-card style=" height:300px" class="my-card">
+    <q-card style="" class="my-card">
       <q-card-section>
 <cytoscape ref="cyRef" :config="configcy" :preConfig="preConfig" :afterCreated="afterCreated">
           <cy-element
@@ -53,7 +53,7 @@
       <div class=" q-pa-xsm col-4">
         <h5 style="text-align:left"> Required documents </h5>
       </div>
-      <div class=" q-pa-md col-8">
+      <div class=" q-pa-md col-8" style="margin: auto;display: block;">
      {{this.step.data.required_documents}}
       </div>
       </div>
@@ -62,7 +62,7 @@
       <div class=" q-pa-xsm col-4">
         <h5 style="text-align:left"> Linked processes </h5>
       </div>
-      <div class=" q-pa-md col-8">
+      <div class=" q-pa-md col-8" style="margin: auto;display: block;">
      {{this.step.data.linked_processes}}
       </div>
       </div>
@@ -96,7 +96,7 @@ import configcy from '../configs/cytoscapeConfig'
 
 console.log(configcy);
 export default {
-  name: 'Processes',
+  name: 'ProcessViewer',
   props: {
     msg: String
   },
@@ -122,7 +122,7 @@ export default {
         group:"", 
         position:{}
       }, 
-      the_process:""
+      the_process:this.$route.params.title
    
     }
   },

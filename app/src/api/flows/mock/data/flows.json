@@ -10,7 +10,8 @@
       {"label":"Health", "value":2}
     ],  
     "user_tags":[
-      {"label":"Asylu Seeker", "value":2}
+      {"label":"Migrant", "value":1},
+      {"label":"Asylum Seeker", "value":2}
     ], 
     "graph":[{"data":{"id":"a","data":{"id":"n", "data": {"longitude":41, "latitude": 7, "documents":[{"id":1,"type":"adoc"}]} } }},
              {"data":{"id": "b","data":{"id":"n", "data": {"longitude":41, "latitude": 7, "documents":[{"id":1,"type":"adoc"}]} } }},
@@ -90,7 +91,8 @@
     "link": "#",
     "topic_tags":[], 
     "user_tags":[
-      {"label":"Migrant", "value":1}
+      {"label":"Migrant", "value":1},
+      {"label":"Refugee", "value":3}
     ], 
     "graph":[{"data":{"id":"a", "data": {"longitude":41, "latitude": 7}, "data": {"longitude":41, "latitude": 7} }},
              {"data":{"id": "b", "data": {"longitude":41, "latitude": 7} }},
@@ -109,7 +111,8 @@
       {"label":"Health", "value":2}
     ], 
     "user_tags":[
-      {"label":"Asylum Seeker", "value":2}
+      {"label":"Asylum Seeker", "value":2},
+      {"label":"Refugee", "value":3}
     ], 
     "graph":[{"data":{"id":"d" }},
              {"data":{"id": "c" }},
@@ -128,7 +131,7 @@
       {"label":"Health", "value":2}
     ],  
     "user_tags":[
-      {"label":"Asylu Seeker", "value":2}
+      {"label":"Asylum Seeker", "value":2}
     ], 
     "graph":[{"data":{"id":"a" }},
              {"data":{"id": "b" }},
@@ -147,7 +150,7 @@
       {"label":"Health", "value":2}
     ], 
     "user_tags":[
-      {"label":"Asylum Seeker", "value":2}
+      {"label":"Refugee", "value":3}
     ], 
     "graph":[{"data":{"id":"a" }},
              {"data":{"id": "b" }},

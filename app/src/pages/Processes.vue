@@ -76,14 +76,10 @@ export default {
       user: null,
       topic: null,
       u_tags: [
-        { label: 'tag4', value: 'tag4'},
-        { label: 'tag5', value: 'tag5'},
-        { label: 'tag6', value: 'tag6'},
+        
       ],
       t_tags: [
-        { label: 'tag1', value: 'tag1'},
-        { label: 'tag2', value: 'tag2'},
-        { label: 'tag3', value: 'tag3'},
+        
       ],
       selected_u_tags:[],
       selected_t_tags:[],
@@ -148,11 +144,24 @@ export default {
           //Splits the search field and puts the words in an array
           var searchArray = this.search.split(" ")
           //console.log(" tag_u boolean " + this.selected_u_tags.every( string => filt.user_tags.includes(string)))
-          //console.log(" tag_t boolean " + this.selected_u_tags.every( string => filt.user_tags.includes(string)))
           //console.log("text boolean " + searchArray.every(string => filt.title.toLowerCase().includes(string)))
           if( searchArray.every(string => filt.title.toLowerCase().includes(string)) &&
-            this.selected_u_tags.every( string => filt.user_tags.includes(string)) &&
-            this.selected_t_tags.every( string => filt.topic_tags.includes(string))){
+            this.selected_u_tags.every( item => {
+              for(let i = 0; i< filt.user_tags.length; i++){
+               if(item.value == filt.user_tags[i].value){
+                return item.value == filt.user_tags[i].value
+                break;
+              }
+              }
+            } ) &&
+            this.selected_t_tags.every( item => {
+              for(let i = 0; i< filt.topic_tags.length; i++){
+               if(item.value == filt.topic_tags[i].value){
+                return item.value == filt.topic_tags[i].value
+                break;
+              }
+              }
+            })){
               return true;
             }})
         } 
@@ -171,7 +180,13 @@ export default {
     },
     documents() {
       return this.$store.state.flows.documents
-    }
+    },
+    topics() {
+      return this.$store.state.topic.topic
+    }, 
+    users() {
+      return this.$store.state.user_type.user_type
+    }, 
   },
   methods: {
     setUserTag(value) {
@@ -180,9 +195,9 @@ export default {
         this.selected_u_tags = []
         console.log(value)
         for( var i = 0; i < value.length; i++){
-          this.selected_u_tags.push(value[i].value)
+          this.selected_u_tags.push(value[i])
         }
-        console.log("queste sono le u-tags " + this.selected_u_tags)
+        console.log( this.selected_u_tags)
         return this.selected_u_tags
       }
     },
@@ -199,7 +214,7 @@ export default {
         this.selected_t_tags = []
         console.log(value)
         for( var i = 0; i < value.length; i++){
-          this.selected_t_tags.push(value[i].value)
+          this.selected_t_tags.push(value[i])
         }
         console.log("queste sono le t-tags " + this.selected_t_tags)
         return this.selected_t_tags
@@ -314,7 +329,27 @@ cytElement.instance.elements().remove();
     this.$store.dispatch('flows/fetchFlows')
       .then(processes => {
         this.loading = false
-      })  
+      })
+      this.$store.dispatch('topic/fetchTopic')
+      .then(topic => {
+        console.log(topic)
+         for ( var i = 0; i<this.topics.length; i++){
+        var the_topic = {label: this.topics[i].topic, value:this.topics[i].id}
+        this.t_tags.push(the_topic)
+      }
+        this.loading = false
+      })
+      this.$store.dispatch('user_type/fetchUserType')
+      .then(user_type => {
+        console.log(user_type)
+        for ( var j = 0; j<this.users.length; j++){
+        var the_user = {label: this.users[j].user_type, value:this.users[j].id}
+        this.u_tags.push(the_user)
+      }  
+        this.loading = false
+      })
+     
+       
   }
 }
 </script>

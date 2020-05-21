@@ -12,6 +12,8 @@ import tasks from './tasks'
 import decisions from './decisions'
 import language from './language'
 import graphs from './graphs'
+import topic from './topic'
+import user_type from './user_type'
 
 Vue.use(Vuex)
 
@@ -33,7 +35,9 @@ export default function (/* { ssrContext } */) {
       documents,
       decisions,
       language,
-       graphs
+      graphs,
+      topic,
+      user_type
     },
 
     // enable strict mode (adds overhead!)
