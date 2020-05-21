@@ -37,6 +37,46 @@
    <div class="q-pa-md" style="max-width: 100%">
   <h4> Guided Processes </h4>
   </div>
+  <div class="row">
+      <div class="col">
+        <q-scroll-area
+          horizontal
+          style="height: 210px;"
+          class="bg-grey-1"
+        >
+          <vue-mermaid
+            :nodes="mermaid"
+            type="graph LR"
+            :config="merconf"
+            v-on:nodeClick="editNodeMer"></vue-mermaid>
+        </q-scroll-area>
+      </div>
+    </div>
+     <q-card :class="nodePanelVisible" header="Details of the step">
+<!--          <q-field color="purple-12" label="Location" stack-label>
+            <template v-slot:prepend>
+              <q-icon name="place" />
+            </template>
+            <template v-slot:control>
+              <div class="self-center full-width no-outline" tabindex="0">{{flowData.location}}</div>
+            </template>
+          </q-field>
+          -->
+          <LabelMap :label="flowData.location" />
+          <q-field color="purple-12" label="Cost for the step" stack-label>
+            <template v-slot:prepend>
+              <q-icon name="euro_symbol" />
+            </template>
+            <template v-slot:control>
+              <div class="self-center full-width no-outline" tabindex="0">{{flowData.stepCost}}</div>
+            </template>
+          </q-field>
+          <q-list >
+            <q-item-label header>Required documents</q-item-label>
+            <DocumentItem v-for="doc in documents" :theDoc="doc" :key="doc.id">
+            </DocumentItem>
+          </q-list>
+        </q-card>
     <div class="container">
     <q-list  >
         <ListItem v-for="process in filteredProcesses"
@@ -44,7 +84,8 @@
          :Title="process.title"
          :Tag_1="process.topic_tags"
          :Tag_2="process.user_tags"
-         :Link="process.id">
+         :Link="process.id"
+         @showing="showFlow">
         </ListItem>
     </q-list>
     </div>
@@ -230,7 +271,7 @@ export default {
     showFlow(id){
       console.log("opened accordion")
       console.log(id)
-      const element = this.flows.filter(f => f.id == id);
+      const element = this.processes.filter(f => f.id == id);
       console.log(element)
       const elementFlow = element[0].mermaid
       console.log(elementFlow)

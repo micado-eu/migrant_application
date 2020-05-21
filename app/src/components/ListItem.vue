@@ -14,7 +14,7 @@
         <q-chip v-for="tag in Tag_1" :label="tag.label" :key="tag.value"></q-chip>
         <q-chip v-for="tag in Tag_2" :label="tag.label" :key="tag.value"></q-chip>
       <div class="q-pa-md q-gutter-sm  col" style="padding-top:0px; padding-bottom:0px; text-align:right">
-      <q-btn size="11px" no-caps style="width:130px;" rounded color="accent" label="Go to process" :to="'processes/' + this.Link"  />
+      <q-btn size="11px" no-caps style="width:130px;" rounded color="accent" :id="this.Link" label="Show process" @click="showProcess($event)"   />
       </div>
     </div>
     <hr style="margin:0px">
@@ -31,10 +31,10 @@ export default {
   },
 
   methods: {
-  remove_process(event){
+  showProcess(event){
       let target = event.currentTarget.id
       console.log(this.Link)
-      this.$emit('remove', this.Link)
+      this.$emit('showing', this.Link)
 
     }
   }
