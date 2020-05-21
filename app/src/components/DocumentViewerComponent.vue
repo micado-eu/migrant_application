@@ -1,9 +1,19 @@
 <template>
-  <div class="q-pa-md">
-    <div style="text-align:center">
-      <img alt="Powered by Micado" :src="the_document.image" />
+
+  <div>
+    <p style="width:320px; margin: 0 auto;padding-top:25px; font-size:18px;font-weight:bold;padding-left:10px">{{the_document.title}}</p>
+  <div class="q-pa-md" style="padding-top:5px; padding-left:0px; padding-right:0px">
+    <div style="width:320px;margin:0 auto">
+     
+      <img style="width:320px" alt="Powered by Micado" :src="the_document.image" />
+     <div class="q-pa-lg" style="width:320px; margin: 0 auto;padding-left:10px; padding-top:0px">
+  <q-btn  color="accent" rounded icon-right="send" />
+  <q-btn  color="info" rounded icon-right="edit" :to="'documents/edit/' + this.Link" />
+   </div>
     </div>
-    <div class="q-pa-lg">
+  </div>
+    <div class="q-pa-lg" style="width:320px; margin: 0 auto;padding-left:10px">
+      
     <p style="font-size:24px; font-weight:bold">Document type:</p>
     <p>{{the_document.type}}</p>
     <p style="font-size:24px; font-weight:bold">Document issuer:</p>
@@ -12,16 +22,16 @@
     <p>{{the_document.emitter}}</p>
     <p style="font-size:24px; font-weight:bold">Review date:</p>
     <p>{{the_document.expire_date}}</p>
-    </div>
-    <div class="row q-pa-md">
-    <div class="col-2" >
-    <q-btn  rounded style="width:100px; height:40px" filled color="accent" to="/documents" label="Back" />
-    </div>
-    <div class="col-2" >
-    <q-btn  rounded color="accent" style="width:100px; height:40px" label="Download" />
-    </div>
+  
+    
+    <q-btn  rounded no-caps color="accent" style="width:100px;margin-right:15px" label="Download" />
+    <q-btn  rounded no-caps style="width:100px;margin-right:15px" filled color="info" to="/documents" label="Back" />
+    
+   
+    
   </div>
   </div>
+  
 </template>
 
 <script>

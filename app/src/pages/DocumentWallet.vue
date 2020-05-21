@@ -1,17 +1,14 @@
 <template>
   <q-page class="flows container-fluid">
   <div class="q-pa-md" style="text-align:center">
-  <q-btn unelevated rounded color="accent" to="/documents/add" label="Add document" />
+  <q-btn unelevated rounded color="info" no-caps style="width:320px" to="/documents/add" label="Add document" />
   </div>
     <q-list >
     <div
-              class="q-gutter-lg row"
-              style="text-align:center"
-              v-for="i in Math.ceil(documents.length / 3)"
-              v-bind:key="i"
+             
             >
      <DocumentWalletItem 
-     v-for="document in documents.slice((i - 1) * 3, i * 3)"
+     v-for="document in documents"
      :Title="document.title"
      :Image="document.image"
      :Link="document.id"

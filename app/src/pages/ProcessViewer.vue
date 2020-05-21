@@ -170,7 +170,7 @@ export default {
       this.cy = cy;
       console.log(this.testdata)
        //this.cy.edgehandles();
-       //cy.layout({ name: 'cose' }).run();
+       cy.layout({ name: 'grid' }).run();
        
       cy.resize();
       //cy.center()
