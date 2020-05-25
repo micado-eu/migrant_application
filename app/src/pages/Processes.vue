@@ -1,12 +1,13 @@
   <template>
   <div>
    <div class="q-pa-md">
-    <div class="q-gutter-md row items-start">
+    <div class="q-gutter-md row items-start" style="width:800px; margin:0 auto" >
     <div class="q-gutter-md  col justify-center items-center" >
-   <q-input items-center filled v-model="search" label="Search" />
+   <q-input   items-center filled v-model="search" label="Search" />
   </div>
-    <div class="q-gutter-md  col justify-center items-center">
+    <div class="q-gutter-md  col justify-center items-center" >
      <q-select
+        
         filled
         clearable
         @clear="clearUser"
@@ -15,11 +16,13 @@
         :options="u_tags"
         @input="setUserTag"
         label="User Tags"
-        style="width: 250px"
+        style="width: 200px"
       />
       </div>
       <div class="q-gutter-md  col justify-center items-center">
      <q-select
+     
+        
         filled
         clearable
         @clear="clearTopic"
@@ -28,7 +31,7 @@
         :options="t_tags"
         @input="setTopicTag"
         label="Topic Tags"
-        style="width: 250px"
+        style="width: 200px"
       />
       </div>
     </div>
@@ -78,8 +81,9 @@
           </q-list>
         </q-card>
     <div class="container">
-    <q-list  >
+    <q-list  style="text-align:center">
         <ListItem v-for="process in filteredProcesses"
+         style="display:inline-block"
          :key="process.id"
          :Title="process.title"
          :Tag_1="process.topic_tags"

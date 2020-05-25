@@ -1,7 +1,7 @@
 <template>
 
   <q-item
-  style="padding-top:0px; padding-bottom:0px"
+  style="padding-top:0px; padding-bottom:0px;"
   >
     <div>
       <div >

@@ -14,6 +14,7 @@ import language from './language'
 import graphs from './graphs'
 import topic from './topic'
 import user_type from './user_type'
+import intervention_plan from './intervention_plan'
 
 Vue.use(Vuex)
 
@@ -37,7 +38,8 @@ export default function (/* { ssrContext } */) {
       language,
       graphs,
       topic,
-      user_type
+      user_type, 
+      intervention_plan
     },
 
     // enable strict mode (adds overhead!)

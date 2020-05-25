@@ -8,7 +8,7 @@
       <img style="width:320px" alt="Powered by Micado" :src="the_document.image" />
      <div class="q-pa-lg" style="width:320px; margin: 0 auto;padding-left:10px; padding-top:0px; padding-bottom:0px">
   <q-btn  color="accent" rounded icon-right="send" />
-  <q-btn  color="info" rounded icon-right="edit" :to="'documents/edit/' + this.Link" />
+  <q-btn  color="info" rounded icon-right="edit" :to="'edit/' + this.id" />
    </div>
     </div>
   </div>

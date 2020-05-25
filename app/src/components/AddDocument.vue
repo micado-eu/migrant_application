@@ -1,19 +1,19 @@
 <template>
-<div class=" q-pa-lg" style=" border-width:3px; border-color:#0f3a5d; border-radius: 1.95rem;border-style: solid; margin-bottom: 1px">
-    <div class=" q-pa-xsm row" style="text-align:center">
-      <div class=" q-pa-xsm col-4">
+<div class="" style=" border-width:3px; border-color:#0f3a5d; border-radius: 1.95rem;border-style: solid; margin: 0 auto; width:750px; padding-left:20px; padding-right:20px; margin-top:25px; padding-bottom:10px">
+    <div class="  row" style="text-align:center">
+      <div class="col-4">
         <h5 style="text-align:left"> Document type </h5>
       </div>
       <div class="col-8" style="margin: auto;display: block;">
-        <q-input rounded standout outlined :value="the_document.type"  />
+        <q-input dense rounded standout outlined :value="the_document.type"  />
       </div>
     </div>
-    <div class=" q-pa-xsm row" style="text-align:center">
-      <div class=" q-pa-xsm col-4">
+    <div class="row" style="text-align:center">
+      <div class=" col-4">
         <h5 style="text-align:left"> Document issuer </h5>
       </div>
       <div class="col-8" style="margin: auto;display: block;">
-        <q-input rounded standout outlined :value="the_document.emitter"  />
+        <q-input dense rounded standout outlined :value="the_document.emitter"  />
       </div>
     </div>
     <div class=" q-pa-xsm row" style="text-align:center">
@@ -31,13 +31,13 @@
       />
   </div>
   </div>
-  <div class="row q-pa-md">
-    <div class="col-2" >
-    <q-btn  rounded style="width:100px; height:40px" filled color="accent"  label="Save" />
-    </div>
-    <div class="col-2" >
-    <q-btn  rounded color="accent" style="width:100px; height:40px"to="/documents" label="Back" />
-    </div>
+  <div class="" style="text-align:center; padding-top:20px">
+    
+    <q-btn  no-caps rounded style="width:100px;margin-right:20px" filled color="accent"  label="Save" />
+
+
+    <q-btn  no-caps rounded color="info" style="width:100px;" to="/documents" label="Back" />
+
   </div>
   </div>
 </template>

@@ -1,39 +1,48 @@
 <template>
   <q-page class="flows container-fluid">
-  <div class="row" >
-  <div class="col" >
-Your integration progress: 
-    <q-circular-progress
-        show-value
-        class="text-light-blue q-ma-md"
-        :value="progress"
-        size="50px"
-        track-color="grey-3"
-        color="light-blue"
-      />
-      </div>
-      </div>
+ 
       <div class="row" >
       <div class="col" >
 
     <q-stepper
+    v-for="intervention_plan in intervention_plans"
+    :key="intervention_plan.id"
       v-model="step"
       vertical
       color="accent"
       header-nav
       animated
     >
+    <h5 style="padding-left:25px; margin-top:5px">{{intervention_plan.title}}</h5>
+     <div class="row" >
+      <div class="col" style="padding-left:25px">
+        Plan progress: 
+    <q-circular-progress
+        show-value
+        class="text-light-blue q-ma-md"
+        :value="progress(intervention_plan)"
+        size="50px"
+        track-color="grey-3"
+        color="light-blue"
+      />
+      </div>
+      </div>
       <q-step
-        v-for="task in tasks"
-        :name="task.id"
-        :title="task.title"
-        :icon="task.icon"
-        :done="task.done"
-        :key="task.id"
+        v-for="intervention in intervention_plan.actions"
+        :name="intervention.id"
+        :title="intervention.intervention_title"
+        icon="work"
+        :done="intervention.validated"
+        :key="intervention.id"
         color="accent"
       >
-        {{task.text}}
-
+        {{intervention.description}}
+        <div v-if="intervention.validated">
+         <q-btn size="11px" unelevated rounded color="accent" style="margin-top:10px; margin-left:0px" no-caps disable label="Ask for validation" />
+        </div>
+        <div v-else>
+         <q-btn size="11px" unelevated rounded color="accent" style="margin-top:10px; margin-left:0px" :id="intervention.id" no-caps :disable="asked.indexOf(intervention.id) !== -1" @click="askValidation(intervention.id)" label="Ask for validation" />
+        </div>
       </q-step>
 
     </q-stepper>
@@ -48,22 +57,44 @@ export default {
   data () {
     return {
       logged: false,
-      step: 1
+      step: 1, 
+      asked:[]
     }
   },
   computed: {
-    tasks() {
-      return this.$store.state.tasks.tasks
+    intervention_plans () {
+      return this.$store.state.intervention_plan.intervention_plan
     },
-    progress(){
-      return Math.floor((this.tasks.filter(function(task) { return task.done }).length / this.tasks.length) * 100)
+    filteredPlans() {
+      //this computed property will filter the plans by id. It will substitute intervention_plans in the html
+    }
+    
+  },
+  methods:{
+        progress(intervention_plan){
+          return Math.floor((intervention_plan.actions.filter(function(intervention) { return intervention.validated }).length / intervention_plan.actions.length) * 100)
+    },
+    askValidation(intervention){
+      var to_validate = intervention
+       this.$q.notify({
+        message: 'Do you want to request validation for this intervention? ',
+        color: 'info',
+        actions: [
+          { label: 'Yes', color: 'primary', handler: () => { 
+            console.log(to_validate)
+            this.asked.push(to_validate) } },
+          { label: 'No', color: 'primary', handler: () => { console.log("rejected") } }
+        ]
+      })
+      //this.asked.push(intervention)
     }
   },
   created () {
-    this.$store.dispatch('tasks/fetchTasks')
-      .then(tasks => {
-//        this.loading = false
-      })
+     console.log(this.$store);
+    this.$store.dispatch('intervention_plan/fetchInterventionPlan')
+       .then(intervention_plans => {
+        this.loading = false
+      })  
   }
 }
 </script>
