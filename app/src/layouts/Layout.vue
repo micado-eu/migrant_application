@@ -180,12 +180,13 @@ export default {
   .q-footer {
     display: none;
   }
-  body {
-    font-family: "Nunito", sans-serif;
-  }
+  
   .my-menu-link {
     color: white;
     background: #0b91ce;
   }
 }
+body {
+    font-family: "Nunito", sans-serif;
+  }
 </style>

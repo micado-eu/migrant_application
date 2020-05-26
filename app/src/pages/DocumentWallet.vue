@@ -1,12 +1,11 @@
 <template>
-  <q-page class="flows container-fluid">
-  <div class="q-pa-md" style="text-align:center">
-  <q-btn unelevated rounded color="info" no-caps style="width:320px" to="/documents/add" label="Add document" />
-  </div>
+  <q-page class="flows container-fluid"  style="">
+    <div style="background-color:#efefef">
+  <div class="q-pa-md" style="text-align:center; padding-top:30px; padding-bottom:0px">
+  <q-btn id="button" unelevated rounded color="info" no-caps style="width:320px" to="/documents/add" label="Add document" />
+  </div >
     <q-list >
-    <div
-             
-            >
+    <div style="padding-top:0px">
      <DocumentWalletItem 
      v-for="document in documents"
      :Title="document.title"
@@ -16,7 +15,7 @@
      </DocumentWalletItem>
      </div>
      </q-list>
-
+</div>
   </q-page>
 </template>
 
@@ -56,4 +55,5 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style src="uppy/dist/uppy.css"></style>
+<style scoped src="uppy/dist/uppy.css">
+</style>

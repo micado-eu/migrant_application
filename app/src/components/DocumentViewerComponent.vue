@@ -1,31 +1,40 @@
 <template>
 
-  <div>
-    <p style="width:320px; margin: 0 auto;padding-top:25px; font-size:18px;font-weight:bold;padding-left:10px">{{the_document.title}}</p>
-  <div class="q-pa-md" style="padding-top:5px; padding-left:0px; padding-right:0px">
-    <div style="width:320px;margin:0 auto">
+  <div style="background-color:#efefef"> 
+    <p id="filename" style="width:320px; margin: 0 auto;padding-top:30px;padding-left:10px;padding-bottom:10px">{{the_document.title}}</p>
+  <div class="q-pa-md" style="padding-top:0px; padding-left:0px; padding-right:0px">
+    <div style="width:320px;margin:0 auto;border-radius: 10px; background-color:white; text-align:center;">
      
-      <img style="width:320px" alt="Powered by Micado" :src="the_document.image" />
-     <div class="q-pa-lg" style="width:320px; margin: 0 auto;padding-left:10px; padding-top:0px; padding-bottom:0px">
-  <q-btn  color="accent" rounded icon-right="send" />
-  <q-btn  color="info" rounded icon-right="edit" :to="'edit/' + this.id" />
-   </div>
+      <img width="320px" style="margin: 0 auto; margin-top:10px"  alt="Powered by Micado" :src="the_document.image" />
+     
     </div>
+    <div class="" style="width:320px; margin: 0 auto;padding-left:10px; padding-top:10px; padding-bottom:20px">
+  <q-icon style="margin-right:10px; margin-left:5px" name="img:statics/icons/Edit.png" size="md" @click="editing" />
+    <q-icon  name="img:statics/icons/Send.png" size="md" />
+   </div>
   </div>
-    <div class="q-pa-lg" style="width:320px; margin: 0 auto;padding-left:10px">
-      
-    <p style="font-size:24px; font-weight:bold">Document type:</p>
-    <p>{{the_document.type}}</p>
-    <p style="font-size:24px; font-weight:bold">Document issuer:</p>
-    <p>{{the_document.emitter}}</p>
-    <p style="font-size:24px; font-weight:bold">Reviewed by:</p>
-    <p>{{the_document.emitter}}</p>
-    <p style="font-size:24px; font-weight:bold">Review date:</p>
-    <p>{{the_document.expire_date}}</p>
+
+    <div class="" style="width:320px; margin: 0 auto;padding-left:10px">
+     <div style="padding-bottom:30px"> 
+    <p id="textup" style="margin-bottom:2px">Document type:</p>
+    <p id="textdown">{{the_document.type}}</p>
+    </div>
+    <div  style="padding-bottom:30px"> 
+    <p id="textup" style="margin-bottom:2px">Document issuer:</p>
+    <p id="textdown">{{the_document.emitter}}</p>
+    </div>
+    <div  style="padding-bottom:30px"> 
+    <p id="textup" style="margin-bottom:2px">Reviewed by:</p>
+    <p id="textdown">{{the_document.emitter}}</p>
+    </div>
+    <div  style="padding-bottom:40px"> 
+    <p id="textup" style="margin-bottom:2px">Review date:</p>
+    <p id="textdown">{{the_document.expire_date}}</p>
+    </div>
   
     
-    <q-btn  rounded no-caps color="accent" style="width:100px;margin-right:15px" label="Download" />
-    <q-btn  rounded no-caps style="width:100px;margin-right:15px" filled color="info" to="/documents" label="Back" />
+    <q-btn id="button" size="12px" rounded no-caps color="accent" style="width:100px;margin-right:10px" label="Download" />
+    <q-btn id="button" size="12px" rounded no-caps style="width:100px;margin-right:15px" filled color="info" to="/documents" label="Back" />
     
    
     
@@ -42,6 +51,11 @@ export default {
     return {
       id:this.$route.params.id,
 
+    }
+  },
+  methods:{
+    editing(){
+      this.$router.push('edit/' + this.id)
     }
   },
    computed:{
@@ -71,3 +85,20 @@ export default {
   },
 }
 </script>
+<style scoped>
+#textup {
+   
+   font-size: 16pt;
+   font-weight: bold;
+}
+#filename {
+   
+   font-size: 18pt;
+   font-weight: bold;
+}
+#textdown {
+ 
+   font-size: 14pt;
+}
+
+</style>
