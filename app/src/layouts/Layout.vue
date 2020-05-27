@@ -102,7 +102,7 @@ export default {
     LanguageSelector
   },
 
-  data () {
+  data() {
     return {
       leftDrawerOpen: false,
       navs: [
@@ -161,6 +161,13 @@ export default {
           to: "/glossary",
           description: "glossary for terminology",
           feature: "FEAT_GLOSSARY"
+        },
+        {
+          label: "menu.news",
+          icon: "menu_book",
+          to: "/news",
+          description: "current news",
+          feature: "FEAT_NEWS"
         },
         {
           label: "menu.settings",

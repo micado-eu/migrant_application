@@ -18,6 +18,8 @@ import DocumentWallet from 'pages/DocumentWallet'
 import DocumentViewerComponent from 'components/DocumentViewerComponent'
 import AddDocument from 'components/AddDocument'
 import ProcessViewer from 'pages/ProcessViewer'
+import News from 'pages/News'
+import NewsItem from 'pages/NewsItem'
 
 const routes = [
   {
@@ -31,7 +33,7 @@ const routes = [
       { path: '/services', component: Services },
       { path: '/flows', component: Flows },
       { path: '/processes', component: Processes },
-      { path: '/processes/:id', component: ProcessViewer, props: true, name: document},
+      { path: '/processes/:id', component: ProcessViewer, props: true, name: document },
       { path: '/notifications', component: Notifications },
       { path: '/speech', component: Speech },
       { path: '/gioppo', component: Home },
@@ -42,9 +44,10 @@ const routes = [
       { path: '/certificates', component: Certificates, props: true, name: 'certificates' },
       { path: '/map', component: MapView },
       { path: '/glossary/:id?', component: Glossary },
-      { path: '/documents/:id',  component: DocumentViewerComponent, props:true, name: document},
+      { path: '/documents/:id', component: DocumentViewerComponent, props: true, name: document },
       { path: '/decision', component: DecisionTreePage },
-
+      { path: '/news', component: News },
+      { path: '/news/:id', component: NewsItem },
     ]
   }
   /*,

@@ -29,6 +29,7 @@
     "annyang": "^2.6.1",
     "axios": "^0.18.0",
     "axios-jsonp": "^1.0.4",
+    "fuse.js": "^6.0.0",
     "jsonapi-vuex": "^3.1.1",
     "leaflet": "^1.6.0",
     "quasar": "^1.9.14",
