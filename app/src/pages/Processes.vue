@@ -1,13 +1,13 @@
   <template>
   <div>
    <div class="q-pa-md">
-    <div class="q-gutter-md row items-start" style="width:800px; margin:0 auto" >
+    <div class="q-gutter-md row items-start" style="max-width:800px; margin:0 auto" >
     <div class="q-gutter-md  col justify-center items-center" >
-   <q-input   items-center filled v-model="search" label="Search" />
+   <q-input dense  items-center filled v-model="search" label="Search" />
   </div>
     <div class="q-gutter-md  col justify-center items-center" >
      <q-select
-        
+        dense
         filled
         clearable
         @clear="clearUser"
@@ -22,7 +22,7 @@
       <div class="q-gutter-md  col justify-center items-center">
      <q-select
      
-        
+        dense
         filled
         clearable
         @clear="clearTopic"
@@ -37,51 +37,12 @@
     </div>
   </div>
   
-   <div class="q-pa-md" style="max-width: 100%">
-  <h4> Guided Processes </h4>
+   <div class="q-pa-md" style="text-align:center">
+  <h4 style=""> Guided Processes </h4>
   </div>
-  <div class="row">
-      <div class="col">
-        <q-scroll-area
-          horizontal
-          style="height: 210px;"
-          class="bg-grey-1"
-        >
-          <vue-mermaid
-            :nodes="mermaid"
-            type="graph LR"
-            :config="merconf"
-            v-on:nodeClick="editNodeMer"></vue-mermaid>
-        </q-scroll-area>
-      </div>
-    </div>
-     <q-card :class="nodePanelVisible" header="Details of the step">
-<!--          <q-field color="purple-12" label="Location" stack-label>
-            <template v-slot:prepend>
-              <q-icon name="place" />
-            </template>
-            <template v-slot:control>
-              <div class="self-center full-width no-outline" tabindex="0">{{flowData.location}}</div>
-            </template>
-          </q-field>
-          -->
-          <LabelMap :label="flowData.location" />
-          <q-field color="purple-12" label="Cost for the step" stack-label>
-            <template v-slot:prepend>
-              <q-icon name="euro_symbol" />
-            </template>
-            <template v-slot:control>
-              <div class="self-center full-width no-outline" tabindex="0">{{flowData.stepCost}}</div>
-            </template>
-          </q-field>
-          <q-list >
-            <q-item-label header>Required documents</q-item-label>
-            <DocumentItem v-for="doc in documents" :theDoc="doc" :key="doc.id">
-            </DocumentItem>
-          </q-list>
-        </q-card>
-    <div class="container">
-    <q-list  style="text-align:center">
+  
+    <div class="container" style="text-align:center;">
+    <q-list  style="display:inline-block;width:750px">
         <ListItem v-for="process in filteredProcesses"
          style="display:inline-block"
          :key="process.id"
