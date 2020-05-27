@@ -14,7 +14,7 @@
       {"label":"Asylum Seeker", "value":2}
     ], 
     "graph":[{"data":{"id":"a","data":{"id":"n", "data": {"longitude":41, "latitude": 7, "documents":[{"id":1,"type":"adoc"}]} } }},
-             {"data":{"id": "b","data":{"id":"n", "data": {"longitude":41, "latitude": 7, "documents":[{"id":1,"type":"adoc"}]} } }},
+             {"data":{"id": "b","data":{"id":"n", "data": {"longitude":41, "latitude": 7, "documents":[{"id":2,"type":"adoc"}]} } }},
              {"data": { "id": "ab", "source": "a", "target": "b" }}
            ],
     "mermaid":[
@@ -30,7 +30,7 @@
       },
       { "id": "a2", "text": "Send the kit", "edgeType": "circle", "editable": true,
 "next": ["a3"],
-"data": {"longitude":41, "latitude": 7, "location": "Postal Office", "stepCost": "30 €", "documents":[{"id":1,"type":"Signed stamp", "title":"Signed stamp", "emitter": "Poste italiane", "price": "16 €", "image":"https://www.informazionefiscale.it/IMG/arton119.jpg"},
+"data": {"longitude":41, "latitude": 7, "location": "Postal Office", "stepCost": "30 €", "documents":[{"id":2,"type":"Signed stamp", "title":"Signed stamp", "emitter": "Poste italiane", "price": "16 €", "image":"https://www.informazionefiscale.it/IMG/arton119.jpg"},
   {"id":1,"type":"Postal payment","title":"Postal payment", "emitter": "Poste italiane", "price": "40 €", "image":"https://www2.immigrazione.regione.toscana.it/sites/default/files/bollettino_postale_pds.jpg"}]}
 },
       { "id": "a3", "text": "Go to Questura for fingerprints - blue office", "next": ["a4"], "editable": true, "link": "-- check website within 1 month ---",

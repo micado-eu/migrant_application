@@ -3,9 +3,9 @@
   
   <div id="title" class="row" style="width:320px;padding-bottom: 10px;margin: 0 auto;padding-left:10px;padding-top:30px"> {{this.Title}}
      </div>
-  <div class="" style="margin: 0 auto;width:320px;border-radius: 10px; background-color:white; text-align:center; height:120px">
+  <div class="" style="margin: 0 auto;width:320px;border-radius: 10px; background-color:white; text-align:center; height:120px;overflow:hidden;">
   <router-link :to="'documents/' + this.Link">
-  <img alt="Powered by Micado"  style="margin: 0 auto; margin-top:10px" :src="this.Image" width="320px" height="100px"/>
+  <img alt="Powered by Micado"  style="margin: 0 auto; margin-top:2px" :src="this.Image" width="320px" />
   </router-link>
   </div>
 
@@ -34,7 +34,7 @@ export default {
 <style scoped>
 #title {
    
-   font-size: 18pt;
+   font-size: 16pt;
    font-weight: bold;
 }
 

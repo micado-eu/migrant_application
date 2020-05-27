@@ -93,7 +93,7 @@ export default {
 }
 #filename {
    
-   font-size: 18pt;
+   font-size: 16pt;
    font-weight: bold;
 }
 #textdown {
