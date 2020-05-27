@@ -121,11 +121,11 @@ export default {
           feature: "FEAT_PROCESSES"
         },
         {
-          label: "menu.info",
+          label: "menu.news",
           icon: "img:statics/icons/Genreal Information (600x600) white.png",
-          to: "/info",
-          description: "integration informaton explained",
-          feature: "FEAT_INFO"
+          to: "/news",
+          description: "integration news",
+          feature: "FEAT_NEWS"
         },
         {
           label: "menu.chatbot",
@@ -163,13 +163,6 @@ export default {
           feature: "FEAT_GLOSSARY"
         },
         {
-          label: "menu.news",
-          icon: "menu_book",
-          to: "/news",
-          description: "current news",
-          feature: "FEAT_NEWS"
-        },
-        {
           label: "menu.settings",
           icon: "img:statics/icons/Settings (600x600) white.png",
           to: "/settings",
@@ -187,13 +180,13 @@ export default {
   .q-footer {
     display: none;
   }
-  
+
   .my-menu-link {
     color: white;
     background: #0b91ce;
   }
 }
 body {
-    font-family: "Nunito", sans-serif;
-  }
+  font-family: "Nunito", sans-serif;
+}
 </style>
