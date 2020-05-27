@@ -18,8 +18,8 @@ import DocumentWallet from 'pages/DocumentWallet'
 import DocumentViewerComponent from 'components/DocumentViewerComponent'
 import AddDocument from 'components/AddDocument'
 import ProcessViewer from 'pages/ProcessViewer'
-import News from 'pages/News'
-import NewsItem from 'pages/NewsItem'
+import InformationCentre from 'pages/InformationCentre'
+import InformationItem from 'pages/InformationItem'
 
 const routes = [
   {
@@ -46,8 +46,8 @@ const routes = [
       { path: '/glossary/:id?', component: Glossary },
       { path: '/documents/:id', component: DocumentViewerComponent, props: true, name: document },
       { path: '/decision', component: DecisionTreePage },
-      { path: '/news', component: News },
-      { path: '/news/:id', component: NewsItem },
+      { path: '/information', component: InformationCentre },
+      { path: '/information/:id', component: InformationItem },
     ]
   }
   /*,

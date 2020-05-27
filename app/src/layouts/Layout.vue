@@ -121,11 +121,11 @@ export default {
           feature: "FEAT_PROCESSES"
         },
         {
-          label: "menu.news",
+          label: "menu.information",
           icon: "img:statics/icons/Genreal Information (600x600) white.png",
-          to: "/news",
-          description: "integration news",
-          feature: "FEAT_NEWS"
+          to: "/information",
+          description: "integration information",
+          feature: "FEAT_INFO"
         },
         {
           label: "menu.chatbot",

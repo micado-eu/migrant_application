@@ -33,7 +33,7 @@
         <q-avatar>
           <q-icon name="sort_by_alpha" />
         </q-avatar>
-        <q-toolbar-title>News</q-toolbar-title>
+        <q-toolbar-title>Information</q-toolbar-title>
       </q-toolbar>
       <q-list bordered>
         <q-item
@@ -82,7 +82,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions("news", ["fetchNews"]),
+    ...mapActions("information", ["fetchInformation"]),
     addOrRemoveSelectedTag(tag) {
       var index = this.selectedTags.indexOf(tag)
       if (index !== -1) {
@@ -109,11 +109,11 @@ export default {
 
     },
     goToNewItem(id) {
-      return "/news/" + id
+      return "/information/" + id
     }
   },
   computed: {
-    ...mapGetters("news", ["news"]),
+    ...mapGetters("information", ["information"]),
     search: {
       get() {
         return this.searchText
@@ -140,10 +140,10 @@ export default {
   },
   created() {
     this.loading = true
-    this.fetchNews().then(() => {
-      this.elements = this.news
-      this.filteredElementsByTags = this.news
-      this.filteredElementsBySearch = this.news
+    this.fetchInformation().then(() => {
+      this.elements = this.information
+      this.filteredElementsByTags = this.information
+      this.filteredElementsBySearch = this.information
       for (let elem of this.elements) {
         if (elem.tags) {
           for (let tag of elem.tags) {

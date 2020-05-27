@@ -3,13 +3,13 @@
     <span v-if="loading">Loading...</span>
     <div v-if="!loading">
       <q-btn
-        to="/news"
+        to="/information"
         no-caps
         color="accent"
       >
         Go back
       </q-btn>
-      <h2 class="news-title">{{item.title}}</h2>
+      <h2 class="information-title">{{item.title}}</h2>
       <span>Tags:</span>
       <q-btn
         v-for="tag in item.tags"
@@ -41,18 +41,18 @@ export default {
     }
   },
   methods: {
-    ...mapActions("news", ["fetchNews"]),
+    ...mapActions("information", ["fetchInformation"]),
   },
   computed: {
-    ...mapGetters("news", ["newsElemById"]),
+    ...mapGetters("information", ["informationElemById"]),
     item() {
-      return this.newsElemById(this.id)
+      return this.informationElemById(this.id)
     }
   },
   created() {
     this.loading = true
     this.id = this.$route.params.id
-    this.fetchNews().then(() => {
+    this.fetchInformation().then(() => {
       this.loading = false
     })
   }
@@ -60,7 +60,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.news-title {
+.information-title {
   color: $primary;
 }
 .description {

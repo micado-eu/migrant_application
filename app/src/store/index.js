@@ -15,7 +15,7 @@ import graphs from './graphs'
 import topic from './topic'
 import user_type from './user_type'
 import intervention_plan from './intervention_plan'
-import news from './news'
+import information from './information'
 
 Vue.use(Vuex)
 
@@ -41,7 +41,7 @@ export default function (/* { ssrContext } */) {
       topic,
       user_type,
       intervention_plan,
-      news
+      information
     },
 
     // enable strict mode (adds overhead!)
