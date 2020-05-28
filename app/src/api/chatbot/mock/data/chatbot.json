@@ -1,18 +1,22 @@
 [
   {
-    "id":1,
-    "user":"Luca",
-    "text":"Can you help me",
-    "timestamp":"13:55",
-    "sent":true,
-    "color": "#cccccc"
+    "id": 1,
+    "user": "Luca",
+    "text": "Can you help me",
+    "timestamp": "13:55",
+    "sent": true,
+    "color": "#cccccc",
+    "btn": false
   },
   {
-    "id":2,
-    "user":"Micado",
-    "text":"Sure!",
-    "timestamp":"13:56",
-    "sent":false,
-    "color": "#cccccc"
+    "id": 2,
+    "user": "Micado",
+    "text": "Sure!",
+    "timestamp": "13:56",
+    "sent": false,
+    "color": "#cccccc",
+    "btn": true,
+    "btn_label": "test",
+    "btn_link": "/processes"
   }
 ]
