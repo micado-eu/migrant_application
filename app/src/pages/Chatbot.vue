@@ -18,7 +18,7 @@
         />
       </q-chat-message>
     </div>
-    <form>
+<!--    <form> -->
       <div class="form-group">
         <label for="exampleInputEmail1">Hi I'm your helping chatbot ... ask me something</label>
         <input
@@ -34,11 +34,10 @@
         >I'll try to answer to my best knowledge</small>
       </div>
       <button
-        type="submit"
         @click="getWord"
         class="btn btn-primary"
-      >Submit</button>
-    </form>
+      >Submit1</button>
+<!--    </form> -->
   </div>
 </template>
 
@@ -76,6 +75,7 @@ export default {
   methods: {
     async getWord () {
       console.log("before calling")
+      
       this.n_messages++
       this.$store.commit('chatbot/addMessage', { "id": this.n_messages, "user": "Luca", "text": this.word, "timestamp": "13:55", "sent": true, "color": "#cccccc", btn: false })
       const response = await ChatService.getWord({ word: this.word })
@@ -87,8 +87,24 @@ export default {
       let today = new Date();
       let time = today.getHours() + ":" + today.getMinutes()
       this.n_messages++
+      let answer = {}
+      if (responses[0].custom != null){
+        answer.id = this.n_messages
+       answer.user = "Micado"
+       answer.text = responses[0].custom.data.text
+       answer.timestamp = time
+       answer.sent = false
+       answer.btn = responses[0].custom.data.btn
+       if(answer.btn){
+         answer.btn_label = responses[0].custom.data.btn_label
+         answer.btn_link = responses[0].custom.data.btn_link
+       }
+      }else{
 
-      this.$store.commit('chatbot/addMessage', { "id": this.n_messages, "user": "Micado", "text": responses[0].text, "timestamp": time, "sent": false, "color": "#cccccc", btn: true, btn_label: "test", btn_link: "/processes" })
+      }
+      console.log(answer)
+      this.$store.commit('chatbot/addMessage', answer)
+ //     this.$store.commit('chatbot/addMessage', { "id": this.n_messages, "user": "Micado", "text": responses[0].text, "timestamp": time, "sent": false, "color": "#cccccc", btn: true, btn_label: "test", btn_link: "/processes" })
     }
   }
 }
