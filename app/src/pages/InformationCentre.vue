@@ -30,10 +30,7 @@
         @click="addOrRemoveSelectedTag(tag)"
       />
       <q-toolbar class="bg-accent text-white shadow-2 q-mt-md">
-        <q-avatar>
-          <q-icon name="sort_by_alpha" />
-        </q-avatar>
-        <q-toolbar-title>Information</q-toolbar-title>
+        <q-toolbar-title>Information Centre</q-toolbar-title>
       </q-toolbar>
       <q-list bordered>
         <q-item
