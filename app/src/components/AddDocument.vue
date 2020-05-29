@@ -2,9 +2,9 @@
 <div class="" style=" border-width:3px; border-color:#0f3a5d; border-radius: 1.95rem;border-style: solid; margin: 0 auto; width:750px; padding-left:20px; padding-right:20px; margin-top:25px; padding-bottom:10px">
     <div class="  row" style="text-align:center">
       <div class="col-4">
-        <h5 style="text-align:left"> Document type </h5>
+        <h5 style="text-align:left;margin-bottom:0px"> Document type </h5>
       </div>
-      <div class="col-8" style="margin: auto;display: block;">
+      <div class="col-8" style="margin: auto;display: block;margin-bottom:0px">
         <q-input dense rounded standout outlined :value="the_document.type"  />
       </div>
     </div>

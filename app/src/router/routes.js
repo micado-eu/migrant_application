@@ -8,7 +8,7 @@ import Gioppo from 'pages/Gioppo.vue'
 import Home from 'pages/Home.vue'
 import Tasks from 'pages/Tasks.vue'
 import Chatbot from 'pages/Chatbot.vue'
-import Settings from 'pages/Settings.vue'
+import ProfileSettings from 'pages/ProfileSettings.vue'
 import Certificates from 'pages/Certificates.vue'
 import MapView from 'components/Map.vue'
 import Glossary from 'pages/Glossary.vue'
@@ -40,7 +40,7 @@ const routes = [
       { path: '/login', component: Gioppo },
       { path: '/tasks', component: Tasks },
       { path: '/chatbot', component: Chatbot },
-      { path: '/settings', component: Settings },
+      { path: '/settings', component: ProfileSettings },
       { path: '/certificates', component: Certificates, props: true, name: 'certificates' },
       { path: '/map', component: MapView },
       { path: '/glossary/:id?', component: Glossary },

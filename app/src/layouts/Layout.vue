@@ -166,7 +166,7 @@ export default {
           label: "menu.settings",
           icon: "img:statics/icons/Settings (600x600) white.png",
           to: "/settings",
-          description: "configure the application",
+          description: "manage your profile",
           feature: "FEAT_SETTINGS"
         }
       ]
