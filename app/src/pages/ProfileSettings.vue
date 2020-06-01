@@ -3,8 +3,32 @@
     <h5 class="q-pa-md" style="margin:0 auto; width:750px">Profile</h5>
     <div style="text-align:center">
   <div class=" q-pa-lg" style="display:inline-block; width:750px;border-width:2px; border-color:#0f3a5d; border-radius: 1.95rem;border-style: solid; margin-bottom: 1px">
+     <div style="margin:0 auto" >
+        <img alt="User Profile"
+            src="~assets/UserProfile.png" 
+            style="width:300px; height:300px"
+            @click="picture_select = !picture_select"
+            />
+      </div>
+      <div v-if="picture_select" class=" q-pa-xsm row" style="text-align:center">
+     <div class=" q-pa-xsm col-4">
+        <h5 style="text-align:left;margin-bottom:0px; margin-top:0px"> Profile picture </h5>
+      </div>
+      <div class="col-8" style="margin-bottom:10px" >
+        <q-uploader
+        
+        url="http://localhost:8080/upload"
+        label="Upload picture"
+        color="accent"
+        square
+        flat
+        bordered
+        style="max-width: 300px;display:inline-block"
+      />
+      </div>
+    </div>
     <div class=" q-pa-xsm row" style="text-align:center">
-      <div class=" q-pa-xsm col-4">
+     <div class=" q-pa-xsm col-4">
         <h5 style="text-align:left;margin-bottom:0px; margin-top:0px"> First name </h5>
       </div>
       <div class="col-8" style="margin: auto;display: block;margin-bottom:0px;margin-top:0px">
@@ -66,6 +90,7 @@ export default {
   // name: 'PageName',
   data () {
     return {
+      picture_select:false, 
       locale: this.$q.lang.isoName, 
       group:["consent"],
        options: [
@@ -87,6 +112,7 @@ export default {
         },
       ], 
       user:{
+        picture:"", 
         firstname:"Mariam",
         lastname:"Hassan",
         age:25,
