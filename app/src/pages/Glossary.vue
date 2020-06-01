@@ -1,5 +1,12 @@
 <template>
   <div class="q-pa-md">
+    <q-toolbar class="toolbar-list q-mb-md">
+      <q-icon
+        name="img:statics/icons/MICADO PA APP Icon - Glossary Page (white).png"
+        size="xl"
+        class="q-mx-auto"
+      />
+    </q-toolbar>
     <span v-if="loading">Loading...</span>
     <q-list
       bordered
@@ -12,17 +19,13 @@
         <q-expansion-item
           group="glossary"
           :label="glossaryItem.title"
-          class="glossary-expansion-item"
-          header-class="text-accent"
-          expand-icon-class="text-accent"
+          hader-class="glossary-item-header"
           :ref="glossaryItem.id"
           @show="changeQuery(glossaryItem.id)"
         >
           <q-card>
             <q-card-section>
-              <glossary-editor-viewer
-                :content="glossaryItem.description"
-              />
+              <glossary-editor-viewer :content="glossaryItem.description" />
             </q-card-section>
           </q-card>
         </q-expansion-item>
@@ -41,7 +44,7 @@ export default {
   components: {
     "glossary-editor-viewer": GlossaryEditorViewer
   },
-  data () {
+  data() {
     return {
       loading: false
     }
@@ -51,7 +54,7 @@ export default {
   },
   methods: {
     ...mapActions("glossary", ["fetchGlossary"]),
-    showGlossaryTerm (id) {
+    showGlossaryTerm(id) {
       let glossaryExpansionItem = this.$refs[id.toString()][0]
       glossaryExpansionItem.show()
     },
@@ -62,13 +65,13 @@ export default {
     }
   },
   watch: {
-    $route (to, from) {
+    $route(to, from) {
       if (to.query.id !== undefined) {
         this.showGlossaryTerm(to.query.id)
       }
     }
   },
-  mounted () {
+  mounted() {
     this.loading = true
     let query = this.$route.query
     let showGlossaryTerm = this.showGlossaryTerm
@@ -84,8 +87,13 @@ export default {
 
 </script>
 <style lang="scss" scoped>
-  .glossary-expansion-item {
-    border: 2px solid $primary;
-    border-radius: 10px;
-  }
+$accent_list: #ff7c44;
+.glossary-item-header {
+  font-family: Nunito;
+  font-weight: bold;
+}
+.toolbar-list {
+  background-color: $accent_list;
+  border-radius: 10px;
+}
 </style>>
