@@ -148,13 +148,13 @@ export default {
           description: "Tasks for your integration",
           feature: "FEAT_TASKS"
         },
-        {
-          label: "menu.messenger",
-          icon: "img:statics/icons/Messenger (600x600) white.png",
-          to: "/notifications",
-          description: "messages from PA",
-          feature: "FEAT_MESSENGER"
-        },
+        // {
+        //   label: "menu.messenger",
+        //   icon: "img:statics/icons/Messenger (600x600) white.png",
+        //   to: "/notifications",
+        //   description: "messages from PA",
+        //   feature: "FEAT_MESSENGER"
+        // },
         {
           label: "menu.glossary",
           icon: "sort_by_alpha",
