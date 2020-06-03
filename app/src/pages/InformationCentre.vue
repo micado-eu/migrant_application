@@ -5,6 +5,9 @@
       v-if="!loading"
       class="q-pa-md"
     >
+      <q-toolbar class="text-white toolbar-list q-mb-md">
+        <q-toolbar-title>Information Centre</q-toolbar-title>
+      </q-toolbar>
       <q-input
         color="accent"
         v-model="search"
@@ -21,17 +24,15 @@
       </q-input>
       <q-btn
         unelevated
+        rounded
         no-caps
         :color="selectedTags.indexOf(tag) == -1 ? 'accent' : 'primary'"
         v-for="tag in tags"
         :key="tag"
         :label="tag"
-        class="q-mr-sm"
+        class="q-mr-sm q-mb-md"
         @click="addOrRemoveSelectedTag(tag)"
       />
-      <q-toolbar class="bg-accent text-white shadow-2 q-mt-md">
-        <q-toolbar-title>Information Centre</q-toolbar-title>
-      </q-toolbar>
       <q-list bordered>
         <q-item
           v-for="item in filteredElements"
@@ -51,6 +52,7 @@
           >
             <q-btn
               unelevated
+              rounded
               color="accent"
               no-caps
               :key="tag"
@@ -155,3 +157,11 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+$accent_list: #ff7c44;
+.toolbar-list {
+  background-color: $accent_list;
+  border-radius: 10px;
+}
+</style>

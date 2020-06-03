@@ -1,21 +1,18 @@
 <template>
   <div class="q-pa-md">
     <span v-if="loading">Loading...</span>
-    <div v-if="!loading">
-      <q-btn
-        to="/information"
-        no-caps
-        color="accent"
-      >
-        Go back
-      </q-btn>
-      <h2 class="information-title">{{item.title}}</h2>
+    <div
+      class="item"
+      v-if="!loading"
+    >
+      <h3 class="information-title">{{item.title}}</h3>
       <span>Tags:</span>
       <q-btn
         v-for="tag in item.tags"
         :key=tag
         :label=tag
         no-caps
+        rounded
         color="accent"
         class="q-ma-sm"
       />
@@ -24,6 +21,16 @@
         class="q-mt-md description"
       />
     </div>
+    <q-btn
+      @click="goBack()"
+      v-if="!loading"
+      no-caps
+      rounded
+      color="accent"
+      class="q-mt-md"
+    >
+      Go back
+    </q-btn>
   </div>
 </template>
 
@@ -42,6 +49,9 @@ export default {
   },
   methods: {
     ...mapActions("information", ["fetchInformation"]),
+    goBack() {
+      this.$router.go(-1)
+    }
   },
   computed: {
     ...mapGetters("information", ["informationElemById"]),
@@ -63,7 +73,8 @@ export default {
 .information-title {
   color: $primary;
 }
-.description {
+.item {
   border: 1px solid $primary;
+  border-radius: 10px;
 }
 </style>
