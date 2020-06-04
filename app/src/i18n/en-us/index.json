@@ -2,15 +2,15 @@
   "menu": {
     "title": "My Tools",
     "home": "Home",
-    "processes": "Guided processes",
-    "info": "General Info",
-    "chatbot": "MICADO bot",
-    "tasks": "Task Monitor",
-    "documents": "Document wallet",
+    "processes": "Integration step-by-step",
+    "info": "Information centre",
+    "chatbot": "MICADO Bot",
+    "tasks": "My integration plan",
+    "documents": "My documents",
     "messenger": "My Messages",
-    "settings": "Profile Settings",
+    "settings": "Settings",
     "language": "en-US",
-    "glossary": "Glossary",
+    "glossary": "Common words",
     "information": "Information centre"
   }
 }
