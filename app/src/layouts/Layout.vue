@@ -157,7 +157,7 @@ export default {
         // },
         {
           label: "menu.glossary",
-          icon: "sort_by_alpha",
+          icon: "img:statics/icons/MICADO PA APP Icon - Glossary Page (white).png",
           to: "/glossary",
           description: "glossary for terminology",
           feature: "FEAT_GLOSSARY"
