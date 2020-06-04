@@ -29,23 +29,23 @@
         </q-header>
 
         <q-page-container>
-          <q-page padding>
-            <div
-              class="q-gutter-lg row"
-              v-for="i in Math.ceil(activeLanguages.length / 4)"
-              v-bind:key="i"
-            >
-              <div
-                class="q-gutter-xs col"
-                v-for="language in activeLanguages.slice((i - 1) * 4, i * 4)"
-                style="text-align:center"
-                :id="language.iso_code"
-                @click="getValue($event)"
-                v-bind:key="language.iso_code"
-              >
-                <q-btn unelevated rounded color="accent" v-bind:label="language.name" no-caps v-close-popup />
-              </div>
-            </div>
+          <q-page
+            padding
+            class="language_modal"
+          >
+            <q-btn
+              class="q-mr-sm q-my-sm language_btn"
+              unelevated
+              rounded
+              color="accent"
+              v-for="language in activeLanguages"
+              :key="language.iso_code"
+              :label="language.name"
+              @click="getValue($event)"
+              :id="language.iso_code"
+              no-caps
+              v-close-popup
+            />
           </q-page>
         </q-page-container>
       </q-layout>
@@ -56,7 +56,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex"
 export default {
-  data () {
+  data() {
     return {
       layout: false,
     }
@@ -65,7 +65,7 @@ export default {
     ...mapGetters('language', ['activeLanguages'])
   },
   methods: {
-    getValue (event) {
+    getValue(event) {
       let targetId = event.currentTarget.id
       // Internationalization of quasar components
       import(`quasar/lang/${targetId}`).then(({ default: messages }) => {
@@ -79,7 +79,7 @@ export default {
     },
     ...mapActions("language", ["fetchActiveLanguages"])
   },
-  created () {
+  created() {
     this.fetchActiveLanguages()
   }
 }
