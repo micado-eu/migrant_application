@@ -23,14 +23,14 @@
         </template>
       </q-input>
       <q-btn
-        unelevated
+        :unelevated="selectedTags.indexOf(tag) == -1"
+        :outline="selectedTags.indexOf(tag) !== -1"
         rounded
         no-caps
-        :color="selectedTags.indexOf(tag) == -1 ? 'accent' : 'primary'"
         v-for="tag in tags"
         :key="tag"
         :label="tag"
-        class="q-mr-sm q-mb-md"
+        class="q-mr-sm q-mb-md tag_btn"
         @click="addOrRemoveSelectedTag(tag)"
       />
       <q-list bordered>
@@ -53,8 +53,8 @@
             <q-btn
               unelevated
               rounded
-              color="accent"
               no-caps
+              class="tag_btn"
               :key="tag"
               :label="tag"
             />
@@ -160,8 +160,13 @@ export default {
 
 <style lang="scss" scoped>
 $accent_list: #ff7c44;
+$btn_secondary: #cdd0d2;
 .toolbar-list {
   background-color: $accent_list;
   border-radius: 10px;
+}
+.tag_btn {
+  background-color: $btn_secondary;
+  color: black;
 }
 </style>

@@ -2,7 +2,7 @@
   <div class="q-pa-md">
     <span v-if="loading">Loading...</span>
     <div
-      class="item"
+      class="item q-px-md"
       v-if="!loading"
     >
       <h3 class="information-title">{{item.title}}</h3>
@@ -13,8 +13,7 @@
         :label=tag
         no-caps
         rounded
-        color="accent"
-        class="q-ma-sm"
+        class="q-ma-sm tag_btn"
       />
       <glossary-editor-viewer
         :content="item.description"
@@ -70,11 +69,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$btn_secondary: #cdd0d2;
 .information-title {
-  color: $primary;
+  color: #0f3a5d;
 }
 .item {
   border: 1px solid $primary;
   border-radius: 10px;
+}
+.tag_btn {
+  background-color: $btn_secondary;
+  color: black;
 }
 </style>
