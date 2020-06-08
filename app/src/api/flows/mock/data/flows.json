@@ -157,5 +157,164 @@
              {"data": { "id": "ab", "source": "a", "target": "b" }}
            ],
     "icon":"edu"
+  },
+  {
+    "id":7,
+    "title":"Driving licence renewal",
+    "text":"This permit can be required by people that want to study in Italy .....",
+    "button":"consult flows",
+    "link": "#/flows",
+    "topic_tags":[
+      {"label":"Housing", "value":1},
+      {"label":"Health", "value":2}
+    ],  
+    "user_tags":[
+      {"label":"Migrant", "value":1},
+      {"label":"Asylum Seeker", "value":2}
+    ], 
+    "graph":[{"data":{"id":"a","data":{"id":"n", "data": {"longitude":41, "latitude": 7, "documents":[{"id":1,"type":"adoc"}]} } }},
+             {"data":{"id": "b","data":{"id":"n", "data": {"longitude":41, "latitude": 7, "documents":[{"id":2,"type":"adoc"}]} } }},
+             {"data": { "id": "ab", "source": "a", "target": "b" }}
+           ],
+    "mermaid":[
+      {
+        "id": "a1",
+        "text": "get a Postal Kit",
+        "link": "---",
+        "next": ["a2"],
+        "editable": true,
+
+        "style": "fill:#f9f,stroke:#333,stroke-width:4px",
+        "data": {"longitude":41, "latitude": 7, "location": "Postal Office", "stepCost": "0 €", "documents":[{"id":1,"type":"Postal kit","title":"Postal kit", "emitter": "Poste italiane", "price": "0 €", "image":"http://www.studiotummarello.it/uploads/2/5/5/3/25531243/8702995_orig.jpg"}]}
+      },
+      { "id": "a2", "text": "Send the kit", "edgeType": "circle", "editable": true,
+"next": ["a3"],
+"data": {"longitude":41, "latitude": 7, "location": "Postal Office", "stepCost": "30 €", "documents":[{"id":2,"type":"Signed stamp", "title":"Signed stamp", "emitter": "Poste italiane", "price": "16 €", "image":"https://www.informazionefiscale.it/IMG/arton119.jpg"},
+  {"id":1,"type":"Postal payment","title":"Postal payment", "emitter": "Poste italiane", "price": "40 €", "image":"https://www2.immigrazione.regione.toscana.it/sites/default/files/bollettino_postale_pds.jpg"}]}
+},
+      { "id": "a3", "text": "Go to Questura for fingerprints - blue office", "next": ["a4"], "editable": true, "link": "-- check website within 1 month ---",
+        "data": {"longitude":41, "latitude": 7, "location": "Questura", "stepCost": "0 €", "documents":[]}
+ },
+      { "id": "a4", "text": "Get permit", "editable": true,
+        "data": {"longitude":41, "latitude": 7, "location": "Questura", "stepCost": "0 €", "documents":[]}
+       }
+    ],
+    "icon":"house"
+  },
+  {
+    "id":8,
+    "title":"Signing in to Social Security List",
+    "text":"This could be a link to an existing eternal application",
+    "button":"Go to app",
+    "link": "#",
+    "topic_tags":[
+      {"label":"Health", "value":2},
+      {"label":"Education", "value":3}
+    ], 
+    "user_tags":[],
+    "graph":[{"data":{"id":"a" }},
+             {"data":{"id": "b" }},
+             {"data": { "id": "ab", "source": "a", "target": "b" }}
+           ],
+           "mermaid":[
+             {
+               "id": "a1",
+               "text": "Municipality",
+               "link": "---",
+               "next": ["a2"],
+               "editable": true,
+               "style": "fill:#f9f,stroke:#333,stroke-width:4px",
+               "data": {"longitude":41, "latitude": 7,
+                 "documents":[
+                   {"id":1,"type":"Work contract","emitter": "Municipality of Bologna",
+                     "image":"https://image.slidesharecdn.com/moduloammissmaster2011-111005124802-phpapp02/95/domanda-di-ammissione-master-in-comunicazione-dimpresa-universit-di-siena-aa-20122013-5-728.jpg?cb=1348224944"}
+                  ]
+               }
+             },
+             { "id": "a2", "text": "Housing department", "edgeType": "circle", "editable": true,
+               "data": {"longitude":41, "latitude": 7,
+                 "documents":[
+                   {"id":1,"type":"Fiscal document","emitter": "Municipality of Bologna",
+                     "image":"https://image.slidesharecdn.com/moduloammissmaster2011-111005124802-phpapp02/95/domanda-di-ammissione-master-in-comunicazione-dimpresa-universit-di-siena-aa-20122013-5-728.jpg?cb=1348224944"}
+                  ]
+                }
+              }
+           ],
+    "icon":"house"
+  },
+  {
+    "id":9,
+    "title":"Get citizenship",
+    "text":"This could be another link to external application",
+    "button":"go somewhere",
+    "link": "#",
+    "topic_tags":[], 
+    "user_tags":[
+      {"label":"Migrant", "value":1},
+      {"label":"Refugee", "value":3}
+    ], 
+    "graph":[{"data":{"id":"a", "data": {"longitude":41, "latitude": 7}, "data": {"longitude":41, "latitude": 7} }},
+             {"data":{"id": "b", "data": {"longitude":41, "latitude": 7} }},
+             {"data": { "id": "ab", "source": "a", "target": "b", "data": {"longitude":41, "latitude": 7}}}
+           ],
+    "icon":"health"
+  },
+  {
+    "id":10,
+    "title":"How to register at the immigration office",
+    "text":"This could be an explanation of the workflow to enroll the child done by us using some flow diagram description, generic for many processes and pilots",
+    "button":"Go to flow",
+    "link": "#/eduflow",
+    "topic_tags":[
+      {"label":"Housing", "value":1},
+      {"label":"Health", "value":2}
+    ], 
+    "user_tags":[
+      {"label":"Asylum Seeker", "value":2},
+      {"label":"Refugee", "value":3}
+    ], 
+    "graph":[{"data":{"id":"d" }},
+             {"data":{"id": "c" }},
+             {"data": { "id": "dc", "source": "d", "target": "c" }}
+           ],
+    "icon":"edu"
+  },
+  {
+    "id":11,
+    "title":"Getting access to special needs funds",
+    "text":"You are studying in the city and need to renew your residence permit",
+    "button":"go somewhere",
+    "link": "#",
+    "topic_tags":[
+      {"label":"Housing", "value":1},
+      {"label":"Health", "value":2}
+    ],  
+    "user_tags":[
+      {"label":"Asylum Seeker", "value":2}
+    ], 
+    "graph":[{"data":{"id":"a" }},
+             {"data":{"id": "b" }},
+             {"data": { "id": "ab", "source": "a", "target": "b" }}
+           ],
+    "icon":"work"
+  },
+  {
+    "id":12,
+    "title":"Employment exchange registration",
+    "text":"You found a job and need to renew your residence permit",
+    "button":"go for it2",
+    "link": "#",
+    "topic_tags":[
+      {"label":"Housing", "value":1},
+      {"label":"Health", "value":2}
+    ], 
+    "user_tags":[
+      {"label":"Refugee", "value":3}
+    ], 
+    "graph":[{"data":{"id":"a" }},
+             {"data":{"id": "b" }},
+             {"data": { "id": "ab", "source": "a", "target": "b" }}
+           ],
+    "icon":"edu"
   }
 ]

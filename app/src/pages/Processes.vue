@@ -41,8 +41,10 @@
   <h4 style=""> Guided Processes </h4>
   </div>
   
-    <div class="container" style="text-align:center;">
+    <div class="row" style="text-align:center;margin:0 auto; width:800px">
+       <div class="col" style="width:750px">
     <q-list  style="display:inline-block;width:750px">
+      <q-scroll-area  id="scroll" ref="scrollArea" style="height: 525px; max-width: 750px;">
         <ListItem v-for="process in filteredProcesses"
          style="display:inline-block"
          :key="process.id"
@@ -50,9 +52,21 @@
          :Tag_1="process.topic_tags"
          :Tag_2="process.user_tags"
          :Link="process.id"
+         :id="process.id"
          @showing="showFlow">
         </ListItem>
+        </q-scroll-area>
     </q-list>
+       </div>
+       <div class="col-1" style="width:50px">
+    <q-list style="">
+      <a clickable style=" font-size:14px" v-for="letter in letters" :id="letter" :key="letter" @click="searchByLetter($event)" href="javascript:void(0)">
+        <q-item-section style="">
+          {{letter}}
+        </q-item-section>
+      </a>
+    </q-list>
+       </div>
     </div>
   </div>
 </template>
@@ -79,6 +93,8 @@ export default {
   },
   data () {
     return {
+      letters:["A", "B", "C", "D", "E","F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z"],
+      selected_letter:"",
       user: null,
       topic: null,
       u_tags: [
@@ -89,7 +105,7 @@ export default {
       ],
       selected_u_tags:[],
       selected_t_tags:[],
-      search: ' ',
+      search: '',
       elementFlow: {},
       documentsFlow: {},
       mermaid: [
@@ -167,7 +183,9 @@ export default {
                 break;
               }
               }
-            })){
+            })
+            
+            ){
               return true;
             }})
         } 
@@ -195,6 +213,20 @@ export default {
     }, 
   },
   methods: {
+    searchByLetter(event){
+      this.selected_letter = event.currentTarget.id
+      for(var i = 0; i < this.filteredProcesses.length; i++){
+        console.log(this.filteredProcesses)
+        if(this.filteredProcesses[i].title[0] == this.selected_letter){
+          console.log(this.filteredProcesses[i].id)
+            var element = document.getElementById(this.filteredProcesses[i].id)
+            var element_scroll = document.getElementById('scroll')
+            var offset = element.offsetTop
+            this.$refs.scrollArea.setScrollPosition(offset, 300)
+            break;
+        }
+      }
+    },
     setUserTag(value) {
       //the Q-select passe an array of objects, so this takes the value property of the objects and puts them into an array
       if ( value != null){

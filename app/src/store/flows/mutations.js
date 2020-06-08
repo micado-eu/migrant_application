@@ -3,7 +3,8 @@ export function someMutation (state) {
 }
 */
 export function setFlows (state, flows) {
-  state.flows = flows
+  state.flows = flows.sort(function(a,b) {return (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0);} );
+  
 }
 
 export function setNodePanelVisible (state, visible) {

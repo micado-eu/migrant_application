@@ -14,10 +14,10 @@
         <q-chip dense size="12px" v-for="tag in Tag_1" :label="tag.label" :key="tag.value"></q-chip>
         <q-chip dense size="12px" v-for="tag in Tag_2" :label="tag.label" :key="tag.value"></q-chip>
       <div class="q-pa-md q-gutter-sm  col" style="padding-top:0px; padding-bottom:0px; text-align:right">
-      <q-btn size="12px" unelevated no-caps style="width:130px;margin-bottom:2px" rounded color="accent" :id="this.Link" label="Show process" :to="'processes/' + this.Link"  />
+      <q-btn size="12px" unelevated no-caps style="width:130px;margin-bottom:2px; margin-right:10px" rounded color="accent" :id="this.Link" label="Show process" :to="'processes/' + this.Link"  />
       </div>
     </div>
-    <hr style="margin:0px">
+    <hr style="margin:0px; width:720px">
     </div>
   </q-item>
 </template>
