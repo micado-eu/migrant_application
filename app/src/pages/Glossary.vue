@@ -89,7 +89,7 @@ export default {
 <style lang="scss" scoped>
 $accent_list: #ff7c44;
 .glossary-item-header {
-  font-family: Nunito;
+  font-family: "Nunito";
   font-weight: bold;
 }
 .toolbar-list {
