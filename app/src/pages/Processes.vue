@@ -1,11 +1,18 @@
   <template>
   <div>
-   <div class="q-pa-md">
-    <div class="q-gutter-md row items-start" style="max-width:800px; margin:0 auto" >
-    <div class="q-gutter-md  col justify-center items-center" >
-   <q-input dense  items-center filled v-model="search" label="Search" />
-  </div>
-    <div class="q-gutter-md  col justify-center items-center" >
+   <div class="">
+      <q-toolbar class="toolbar-list q-mb-md">
+      <q-icon
+        name="img:statics/icons/Guided Processes (600x600) white.png"
+        size="xl"
+        class="q-mx-auto"
+      />
+    </q-toolbar>
+    <div class="" style="max-width:280px; margin:0 auto; padding-top:38px; padding-bottom:37px" >
+  
+   <q-input dense  rounded outlined bg-color="grey-3"   v-model="search" label="Search" />
+  
+  <!--  <div class="q-gutter-md  col justify-center items-center" >
      <q-select
         dense
         filled
@@ -33,18 +40,14 @@
         label="Topic Tags"
         style="width: 200px"
       />
-      </div>
+      </div>-->
     </div>
   </div>
   
-   <div class="q-pa-md" style="text-align:center">
-  <h4 style=""> Guided Processes </h4>
-  </div>
-  
-    <div class="row" style="text-align:center;margin:0 auto; width:800px">
-       <div class="col" style="width:750px">
-    <q-list  style="display:inline-block;width:750px">
-      <q-scroll-area  id="scroll" ref="scrollArea" style="height: 525px; max-width: 750px;">
+    <div class="row" style="text-align:center;margin:0 auto; max-width:750px">
+       <div class="col">
+    <q-list>
+      <q-scroll-area  id="scroll" ref="scrollArea" style="height: 525px; max-width: 100%;">
         <ListItem v-for="process in filteredProcesses"
          style="display:inline-block"
          :key="process.id"
@@ -58,9 +61,9 @@
         </q-scroll-area>
     </q-list>
        </div>
-       <div class="col-1" style="width:50px">
-    <q-list style="">
-      <a clickable style=" font-size:14px" v-for="letter in letters" :id="letter" :key="letter" @click="searchByLetter($event)" href="javascript:void(0)">
+       <div class="col-1" style="width:5%">
+    <q-list >
+      <a clickable style=" font-size:11px" v-for="letter in letters" :id="letter" :key="letter" @click="searchByLetter($event)" href="javascript:void(0)">
         <q-item-section style="">
           {{letter}}
         </q-item-section>
@@ -216,11 +219,10 @@ export default {
     searchByLetter(event){
       this.selected_letter = event.currentTarget.id
       for(var i = 0; i < this.filteredProcesses.length; i++){
-        console.log(this.filteredProcesses)
+        //console.log(this.filteredProcesses)
         if(this.filteredProcesses[i].title[0] == this.selected_letter){
-          console.log(this.filteredProcesses[i].id)
+          //console.log(this.filteredProcesses[i].id)
             var element = document.getElementById(this.filteredProcesses[i].id)
-            var element_scroll = document.getElementById('scroll')
             var offset = element.offsetTop
             this.$refs.scrollArea.setScrollPosition(offset, 300)
             break;
@@ -393,10 +395,11 @@ cytElement.instance.elements().remove();
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-canvas {
-    margin-left: -300px;
-    background-color: blue;
+<style lang="scss" scoped>
+$accent_list: #ff7c44;
+.toolbar-list {
+  background-color: $accent_list;
+  
 }
 
 
