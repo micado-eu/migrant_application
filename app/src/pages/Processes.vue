@@ -8,44 +8,47 @@
         class="q-mx-auto"
       />
     </q-toolbar>
-    <div class="" style="max-width:280px; margin:0 auto; padding-top:38px; padding-bottom:37px" >
+    <div class="" style="max-width:280px; margin:0 auto; padding-top:38px; padding-bottom:10px" >
   
    <q-input dense label-color="grey-8"  rounded outlined bg-color="grey-2"  v-model="search" label="Search" >
      <template v-slot:append>
           <q-icon name="search" />
         </template>
    </q-input>
-  
-  <!--  <div class="q-gutter-md  col justify-center items-center" >
-     <q-select
+  </div>
+   <div class="q-gutter-md  row justify-center items-center" style="padding-bottom:27px" >
+     <q-btn
+        size="10px"
+        :class="{active: selected_u_tags.indexOf(tag) != -1}"
+        v-for="tag in u_tags"
         dense
-        filled
-        clearable
-        @clear="clearUser"
-        v-model="user"
-        multiple
-        :options="u_tags"
-        @input="setUserTag"
-        label="User Tags"
-        style="width: 200px"
-      />
+        @click="setUserTag($event)"
+        :icon="tag.icon"
+        :key="tag.id"
+        :id="tag.user_type"
+      >
+      <q-tooltip>
+        {{tag.user_type}}
+        </q-tooltip> 
+     </q-btn>
+      <q-separator vertical />
+        <q-btn
+        size="10px"
+        
+        v-for="tag in t_tags"
+        dense
+        rounded
+        @click="setTopicTag($event)"
+        :icon="tag.icon"
+        :key="tag.id"
+        :id="tag.topic"
+      >
+       <q-tooltip>
+        {{tag.topic}}
+        </q-tooltip> 
+     </q-btn> 
       </div>
-      <div class="q-gutter-md  col justify-center items-center">
-     <q-select
      
-        dense
-        filled
-        clearable
-        @clear="clearTopic"
-        v-model="topic"
-        multiple
-        :options="t_tags"
-        @input="setTopicTag"
-        label="Topic Tags"
-        style="width: 200px"
-      />
-      </div>-->
-    </div>
   </div>
   <PhonebookList
   :filteredItems="filteredProcesses">
@@ -168,16 +171,16 @@ var orderedProcesses = groupItems(this.processes)
           if( searchArray.every(string => filt.title.toLowerCase().includes(string)) &&
             this.selected_u_tags.every( item => {
               for(let i = 0; i< filt.user_tags.length; i++){
-               if(item.value == filt.user_tags[i].value){
-                return item.value == filt.user_tags[i].value
+               if(item == filt.user_tags[i].user_type){
+                return item == filt.user_tags[i].user_type
                 break;
               }
               }
             } ) &&
             this.selected_t_tags.every( item => {
               for(let i = 0; i< filt.topic_tags.length; i++){
-               if(item.value == filt.topic_tags[i].value){
-                return item.value == filt.topic_tags[i].value
+               if(item == filt.topic_tags[i].topic){
+                return item == filt.topic_tags[i].topic
                 break;
               }
               }
@@ -224,17 +227,26 @@ var orderedProcesses = groupItems(this.processes)
         }
       }
     },*/
-    setUserTag(value) {
+    setUserTag(event) {
       //the Q-select passe an array of objects, so this takes the value property of the objects and puts them into an array
-      if ( value != null){
-        this.selected_u_tags = []
-        console.log(value)
-        for( var i = 0; i < value.length; i++){
-          this.selected_u_tags.push(value[i])
-        }
-        console.log( this.selected_u_tags)
-        return this.selected_u_tags
+     var tag = event.currentTarget.id
+     var button = document.getElementById(tag)
+     console.log(button.style.backgroundColor)
+     if(button.style.backgroundColor == ""){
+       console.log("colore")
+       button.style.backgroundColor = "#D3D3D3"
+       console.log(button.style.backgroundColor)
+     }
+     else{
+       button.style.backgroundColor = ""
+     }
+     var index = this.selected_u_tags.indexOf(tag)
+      if (index !== -1) {
+        this.selected_u_tags.splice(index, 1);
+      } else {
+        this.selected_u_tags.push(tag)
       }
+      console.log(this.selected_u_tags)
     },
     clearUser() {
       //clears the array and makes possible the refresh of the filter
@@ -245,15 +257,24 @@ var orderedProcesses = groupItems(this.processes)
     },
 
     setTopicTag(value) {
-      if (value != null){
-        this.selected_t_tags = []
-        console.log(value)
-        for( var i = 0; i < value.length; i++){
-          this.selected_t_tags.push(value[i])
-        }
-        console.log("queste sono le t-tags " + this.selected_t_tags)
-        return this.selected_t_tags
+       var tag = event.currentTarget.id
+       var button = document.getElementById(tag)
+     console.log(button.style.backgroundColor)
+     if(button.style.backgroundColor == ""){
+       console.log("colore")
+       button.style.backgroundColor = "#D3D3D3"
+       console.log(button.style.backgroundColor)
+     }
+     else{
+       button.style.backgroundColor = ""
+     }
+     var index = this.selected_t_tags.indexOf(tag)
+      if (index !== -1) {
+        this.selected_t_tags.splice(index, 1);
+      } else {
+        this.selected_t_tags.push(tag)
       }
+      console.log(this.selected_t_tags)
     },
     clearTopic() {
       this.selected_t_tags = []
@@ -369,7 +390,7 @@ cytElement.instance.elements().remove();
       .then(topic => {
         console.log(topic)
          for ( var i = 0; i<this.topics.length; i++){
-        var the_topic = {label: this.topics[i].topic, value:this.topics[i].id}
+        var the_topic = this.topics[i]
         this.t_tags.push(the_topic)
       }
         this.loading = false
@@ -378,7 +399,7 @@ cytElement.instance.elements().remove();
       .then(user_type => {
         console.log(user_type)
         for ( var j = 0; j<this.users.length; j++){
-        var the_user = {label: this.users[j].user_type, value:this.users[j].id}
+        var the_user = this.users[j]
         this.u_tags.push(the_user)
       }  
         this.loading = false
@@ -392,9 +413,13 @@ cytElement.instance.elements().remove();
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 $accent_list: #ff7c44;
+$secondary_list: #0f3a5d;
 .toolbar-list {
   background-color: $accent_list;
   
+}
+.active {
+  color: blue;
 }
 
 

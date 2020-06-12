@@ -19,16 +19,16 @@
           <div style="font-family: 'Nunito Sans', sans-serif; text-align:left; font-size:13px; font-weight:700;width:135%">{{ this.Title }}</div>
         </div>
    
-    <div class=" row" style="">
-        <q-chip dense size="12px" v-for="tag in Tag_1" :label="tag.label" :key="tag.value"></q-chip>
-        <q-chip dense size="12px" v-for="tag in Tag_2" :label="tag.label" :key="tag.value"></q-chip>
+    <div class=" row" style="padding-bottom:5px">
+        <q-icon style="margin-right:5px" v-for="tag in Tag_1" :name="tag.icon" :key="tag.id"/>
+        <q-icon style="margin-right:5px" v-for="tag in Tag_2" :name="tag.icon" :key="tag.id" />
     </div>
-    <hr style="margin:0px;width:110%">
+    <hr style="margin:0px;width:105%">
     </div>
   </q-item>
    
   </div>
-  <div class="col-1" style="padding-left:0px;margin-top:32px; padding-right:10px;">
+  <div class="col-1" style="padding-left:0px;margin-top:27px; padding-right:10px;">
     
           <TalkingLabel ref="read" @click.native="readAlong($event)"></TalkingLabel>
   

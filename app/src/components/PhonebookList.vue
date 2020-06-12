@@ -2,7 +2,7 @@
    <div class="row" style="text-align:center;margin:0 auto; max-width:750px">
        <div class="col">
     <q-list>
-      <q-scroll-area  id="scroll" ref="scrollArea" style="height: 540px; max-width: 100%;">
+      <q-scroll-area  id="scroll" ref="scrollArea" style="height: 555px; max-width: 100%;">
         <ListItem v-for="process in filteredItems"
          style="display:inline-block"
          :key="process.id"
