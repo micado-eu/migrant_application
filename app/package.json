@@ -32,6 +32,7 @@
     "fuse.js": "^6.0.0",
     "jsonapi-vuex": "^3.1.1",
     "leaflet": "^1.6.0",
+    "lodash": "^4.17.15",
     "quasar": "^1.9.14",
     "tiptap": "^1.27.1",
     "tiptap-extensions": "^1.29.1",

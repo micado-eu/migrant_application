@@ -10,7 +10,11 @@
     </q-toolbar>
     <div class="" style="max-width:280px; margin:0 auto; padding-top:38px; padding-bottom:37px" >
   
-   <q-input dense  rounded outlined bg-color="grey-3"   v-model="search" label="Search" />
+   <q-input dense label-color="grey-8"  rounded outlined bg-color="grey-2"  v-model="search" label="Search" >
+     <template v-slot:append>
+          <q-icon name="search" />
+        </template>
+   </q-input>
   
   <!--  <div class="q-gutter-md  col justify-center items-center" >
      <q-select
@@ -43,40 +47,17 @@
       </div>-->
     </div>
   </div>
-  
-    <div class="row" style="text-align:center;margin:0 auto; max-width:750px">
-       <div class="col">
-    <q-list>
-      <q-scroll-area  id="scroll" ref="scrollArea" style="height: 525px; max-width: 100%;">
-        <ListItem v-for="process in filteredProcesses"
-         style="display:inline-block"
-         :key="process.id"
-         :Title="process.title"
-         :Tag_1="process.topic_tags"
-         :Tag_2="process.user_tags"
-         :Link="process.id"
-         :id="process.id"
-         @showing="showFlow">
-        </ListItem>
-        </q-scroll-area>
-    </q-list>
-       </div>
-       <div class="col-1" style="width:5%">
-    <q-list >
-      <a clickable style=" font-size:11px" v-for="letter in letters" :id="letter" :key="letter" @click="searchByLetter($event)" href="javascript:void(0)">
-        <q-item-section style="">
-          {{letter}}
-        </q-item-section>
-      </a>
-    </q-list>
-       </div>
-    </div>
+  <PhonebookList
+  :filteredItems="filteredProcesses">
+  </PhonebookList>
+   
   </div>
 </template>
 
 
 <script>
 import ListItem from 'components/ListItem'
+import _ from 'lodash'
 import { Core, EventObject } from 'cytoscape'
 //import Cytoscape from '@/components/Cytoscape'
 //import CyElement from '@/components/CyElement'
@@ -84,6 +65,7 @@ import configcy from '../configs/cytoscapeConfig'
 //import configcy from "./config-cy";
 import DocumentItem from 'components/DocumentItem'
 import LabelMap from 'components/LabelMap'
+import PhonebookList from 'components/PhonebookList'
 
 console.log(configcy);
 export default {
@@ -92,7 +74,7 @@ export default {
     msg: String
   },
   components: {
-    DocumentItem, LabelMap, ListItem
+    DocumentItem, LabelMap, ListItem, PhonebookList
   },
   data () {
     return {
@@ -160,14 +142,27 @@ export default {
       return this.$store.state.flows.flows
     },
       filteredProcesses () {
+        const { flow, orderBy, groupBy, flatMap, get } = _
+       const groupItems = flow([
+  arr => orderBy(arr, 'title'),
+  arr => groupBy(arr, o => get(o, 'title[0]', '').toUpperCase()),
+  groups => flatMap(groups, (v, k) => [
+    k,
+    ...v
+  ])
+])
+var orderedProcesses = groupItems(this.processes)
+
+
         //if none of the fields is filled in it will give the full list of processes
         if( this.search == "" && this.selected_u_tags.length == 0 && this.selected_t_tags.length == 0) {
-          return this.processes
+          return orderedProcesses
         }
         else if(this.selected_u_tags.lenght != 0 || this.search != "" || this.selected_t_tags.lenght != 0) {
-          return this.processes.filter((filt) =>{
+          return groupItems(this.processes.filter((filt) =>{
           //Splits the search field and puts the words in an array
-          var searchArray = this.search.split(" ")
+          var lowerCase = this.search.toLowerCase()
+          var searchArray = lowerCase.split(" ")
           //console.log(" tag_u boolean " + this.selected_u_tags.every( string => filt.user_tags.includes(string)))
           //console.log("text boolean " + searchArray.every(string => filt.title.toLowerCase().includes(string)))
           if( searchArray.every(string => filt.title.toLowerCase().includes(string)) &&
@@ -190,7 +185,7 @@ export default {
             
             ){
               return true;
-            }})
+            }}))
         } 
       },
     flowData(){
@@ -216,8 +211,8 @@ export default {
     }, 
   },
   methods: {
-    searchByLetter(event){
-      this.selected_letter = event.currentTarget.id
+   /* searchByLetter(value){
+      this.selected_letter = value
       for(var i = 0; i < this.filteredProcesses.length; i++){
         //console.log(this.filteredProcesses)
         if(this.filteredProcesses[i].title[0] == this.selected_letter){
@@ -228,7 +223,7 @@ export default {
             break;
         }
       }
-    },
+    },*/
     setUserTag(value) {
       //the Q-select passe an array of objects, so this takes the value property of the objects and puts them into an array
       if ( value != null){
