@@ -44,6 +44,7 @@
           <q-tooltip>
             {{tag.user_type}}
           </q-tooltip>
+
         </q-btn>
         <q-separator vertical />
         <q-btn
@@ -52,13 +53,13 @@
           dense
           rounded
           @click="setTopicTag($event)"
-          :icon="tag.icon"
           :key="tag.id"
           :id="tag.topic"
         >
           <q-tooltip>
             {{tag.topic}}
           </q-tooltip>
+          <img :src="tag.icon">
         </q-btn>
       </div>
 
