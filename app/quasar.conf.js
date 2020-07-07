@@ -11,7 +11,8 @@ module.exports = function (ctx) {
       'auth',
       'mermaid',
       'featureflag',
-      'axios'
+      'axios',
+      'loadData'
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
@@ -92,6 +93,7 @@ module.exports = function (ctx) {
         chain.resolve.alias.set('api-features-client', 'src/api/features/mock');
         chain.resolve.alias.set('api-tasks-client', 'src/api/tasks/mock');
         chain.resolve.alias.set('api-services-client', 'src/api/services/mock');
+        chain.resolve.alias.set('api-settings-client', 'src/api/settings/server');
         chain.resolve.alias.set('api-decisions-client', 'src/api/decisions/mock');
         chain.resolve.alias.set('api-graphs-client', 'src/api/graphs/mock');
         chain.resolve.alias.set('api-language-client', 'src/api/language/mock');

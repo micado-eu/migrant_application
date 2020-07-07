@@ -16,6 +16,7 @@ import topic from './topic'
 import user_type from './user_type'
 import intervention_plan from './intervention_plan'
 import information from './information'
+import settings from './settings'
 
 Vue.use(Vuex)
 
@@ -32,8 +33,8 @@ export default function (/* { ssrContext } */) {
       flows,
       services,
       features,
-      glossary,
       tasks,
+      glossary,
       documents,
       decisions,
       language,
@@ -41,6 +42,7 @@ export default function (/* { ssrContext } */) {
       topic,
       user_type,
       intervention_plan,
+      settings,
       information
     },
 
