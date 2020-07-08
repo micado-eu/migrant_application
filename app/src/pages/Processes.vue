@@ -34,17 +34,16 @@
         <q-btn
           size="10px"
           :class="{active: selected_u_tags.indexOf(tag) != -1}"
-          v-for="tag in u_tags"
+          v-for="tag in users"
           dense
           @click="setUserTag($event)"
-          :icon="tag.icon"
           :key="tag.id"
           :id="tag.user_type"
         >
           <q-tooltip>
             {{tag.user_type}}
           </q-tooltip>
-
+          <img :src="tag.icon">
         </q-btn>
         <q-separator vertical />
         <q-btn
@@ -397,29 +396,32 @@ export default {
       .then(processes => {
         this.loading = false
       })
-    this.$store.dispatch('topic/fetchTopic')
-      .then(topic => {
-        console.log("got topics")
-        console.log(topic)
-        /*
-        for (var i = 0; i < this.topics.length; i++) {
-          var the_topic = this.topics[i]
-          this.t_tags.push(the_topic)
-        }
+    /*
+  this.$store.dispatch('topic/fetchTopic')
+    .then(topic => {
+      console.log("got topics")
+      console.log(topic)
+      /*
+      for (var i = 0; i < this.topics.length; i++) {
+        var the_topic = this.topics[i]
+        this.t_tags.push(the_topic)
+      }
 
-        this.loading = false
-        */
-      })
-    this.$store.dispatch('user_type/fetchUserType')
-      .then(user_type => {
-        console.log(user_type)
-        for (var j = 0; j < this.users.length; j++) {
-          var the_user = this.users[j]
-          this.u_tags.push(the_user)
-        }
-        this.loading = false
-      })
-
+      this.loading = false
+      
+    })
+    */
+    /*
+   this.$store.dispatch('user_type/fetchUserType')
+     .then(user_type => {
+       console.log(user_type)
+       for (var j = 0; j < this.users.length; j++) {
+         var the_user = this.users[j]
+         this.u_tags.push(the_user)
+       }
+       this.loading = false
+     })
+*/
 
   }
 }

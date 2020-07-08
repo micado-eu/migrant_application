@@ -4,13 +4,13 @@ import client from 'api-topic-client'
 export function someAction (context) {
 }
 */
-export function fetchTopic(state, data) {
+export function fetchTopic (state, payload) {
   return client
-    .fetchTopic()
+    .fetchTopic(payload.defaultLang, payload.userLang)
     .then(topic => state.commit('setTopic', topic))
 }
 
-export function editTopic(state, topic_element) {
+export function editTopic (state, topic_element) {
   // we need BEFORE to call the API to do the update and if ok we update wuex state
   console.log(topic_element)
   return client
@@ -18,7 +18,7 @@ export function editTopic(state, topic_element) {
     .then(topic_return => state.commit('editTopic', topic_return))
 }
 
-export function saveTopic(state, topic_element) {
+export function saveTopic (state, topic_element) {
   // we need BEFORE to call the API to do the save and if ok we update wuex state
   console.log(topic_element)
   return client
@@ -26,7 +26,7 @@ export function saveTopic(state, topic_element) {
     .then(topic_return => state.commit('saveTopic', topic_return))
 }
 
-export function deleteTopic(state, topic_element) {
+export function deleteTopic (state, topic_element) {
   // we need BEFORE to call the API to do the save and if ok we update wuex state
   console.log(topic_element)
   return client
