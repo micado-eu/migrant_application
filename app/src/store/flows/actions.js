@@ -17,3 +17,13 @@ export function fetchDocuments (state, payload) {
     .fetchDocuments(payload.defaultLang, payload.userLang)
     .then(flows => state.commit('setDocuments', flows))
 }
+
+
+export function fetchGraph (state, payload) {
+  return client
+    .fetchGraph(payload.id, payload.userLang)
+    .then(graph => {
+      state.commit('setGraph', graph)
+      return graph
+    })
+}
