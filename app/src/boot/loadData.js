@@ -1,9 +1,9 @@
 import { setLocale } from './i18n'
 
 export default async ({ store, Vue }) => {
-    await store.dispatch('statistics/fetchStatistics');
+    //    await store.dispatch('statistics/fetchStatistics');
     await store.dispatch('features/fetchFeatures');
-    await store.dispatch("language/fetchLanguages")
+    await store.dispatch("language/fetchActiveLanguages")
     await store.dispatch('settings/fetchSettings')
         .then(settings => {
             console.log("#####################################")
