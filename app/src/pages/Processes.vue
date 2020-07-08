@@ -157,8 +157,8 @@ export default {
     filteredProcesses () {
       const { flow, orderBy, groupBy, flatMap, get } = _
       const groupItems = flow([
-        arr => orderBy(arr, 'title'),
-        arr => groupBy(arr, o => get(o, 'title[0]', '').toUpperCase()),
+        arr => orderBy(arr, 'process'),
+        arr => groupBy(arr, o => get(o, 'process[0]', '').toUpperCase()),
         groups => flatMap(groups, (v, k) => [
           k,
           ...v
@@ -392,8 +392,9 @@ export default {
   created () {
     this.loading = true
     console.log(this.$store);
-    this.$store.dispatch('flows/fetchFlows')
+    this.$store.dispatch('flows/fetchFlows', { defaultLang: this.$defaultLang, userLang: this.$userLang })
       .then(processes => {
+        console.log(processes)
         this.loading = false
       })
     /*

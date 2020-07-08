@@ -3,14 +3,17 @@ import client from 'api-flows-client'
 export function someAction (context) {
 }
 */
-export function fetchFlows (state, data) {
+export function fetchFlows (state, payload) {
   return client
-    .fetchFlows()
-    .then(flows => state.commit('setFlows', flows))
+    .fetchFlows(payload.defaultLang, payload.userLang)
+    .then(flows => {
+      state.commit('setFlows', flows)
+      return flows
+    })
 }
 
-export function fetchDocuments (state, data) {
+export function fetchDocuments (state, payload) {
   return client
-    .fetchDocuments()
+    .fetchDocuments(payload.defaultLang, payload.userLang)
     .then(flows => state.commit('setDocuments', flows))
 }

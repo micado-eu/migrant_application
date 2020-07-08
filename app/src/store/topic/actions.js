@@ -7,7 +7,10 @@ export function someAction (context) {
 export function fetchTopic (state, payload) {
   return client
     .fetchTopic(payload.defaultLang, payload.userLang)
-    .then(topic => state.commit('setTopic', topic))
+    .then(topic => {
+      state.commit('setTopic', topic)
+      return topic
+    })
 }
 
 export function editTopic (state, topic_element) {

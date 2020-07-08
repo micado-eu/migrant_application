@@ -1,9 +1,21 @@
-import axios from 'axios'
+import { axiosInstance } from 'boot/axios'
+import { error_handler } from '../../../helper/utility'
 
 export default {
-  fetchServices () {
-    return axios
-      .get('https://jsonplaceholder.typicode.com/posts')
-      .then(response => response.data)
+  fetchFlows (defaultLang, userLang) {
+    return axiosInstance
+      .get('backend/1.0.0/processes-migrant?defaultlang=' + defaultLang + '&currentlang=' + userLang)
+      .then((response) => {
+        return response.data
+      })
+      .catch(error_handler);
+  },
+  fetchDocuments (defaultLang, userLang) {
+    return axiosInstance
+      .get('backend/1.0.0/processes-migrant?defaultlang=' + defaultLang + '&currentlang=' + userLang)
+      .then((response) => {
+        return response.data
+      })
+      .catch(error_handler);
   }
 }
