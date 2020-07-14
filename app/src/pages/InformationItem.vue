@@ -6,7 +6,7 @@
       v-if="!loading"
     >
       <h3 class="information-title">{{item.title}}</h3>
-      <span>Tags:</span>
+      <span v-if="item.tags">Tags:</span>
       <q-btn
         v-for="tag in item.tags"
         :key=tag
@@ -44,6 +44,7 @@ export default {
     return {
       loading: true,
       id: -1,
+      item: {}
     }
   },
   methods: {
@@ -54,14 +55,17 @@ export default {
   },
   computed: {
     ...mapGetters("information", ["informationElemById"]),
-    item() {
-      return this.informationElemById(this.id)
-    }
   },
   created() {
     this.loading = true
     this.id = this.$route.params.id
     this.fetchInformation().then(() => {
+      let itemById = this.informationElemById(this.id)
+      let al = this.$i18n.locale;
+      let idx = itemById.translations.findIndex(t => t.lang === al)
+      let translated = Object.assign({}, itemById.translations[idx])
+      translated.description = JSON.parse(translated.description)
+      this.item = translated
       this.loading = false
     })
   }

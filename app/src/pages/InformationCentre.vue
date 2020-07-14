@@ -140,9 +140,13 @@ export default {
   created() {
     this.loading = true
     this.fetchInformation().then(() => {
-      this.elements = this.information
-      this.filteredElementsByTags = this.information
-      this.filteredElementsBySearch = this.information
+      this.elements = this.information.map(e => {
+        let al = this.$i18n.locale;
+        let idx = e.translations.findIndex(t => t.lang === al);
+        return e.translations[idx];
+      });
+      this.filteredElementsByTags = this.elements
+      this.filteredElementsBySearch = this.elements
       for (let elem of this.elements) {
         if (elem.tags) {
           for (let tag of elem.tags) {
