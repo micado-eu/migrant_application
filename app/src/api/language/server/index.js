@@ -3,23 +3,11 @@ import { error_handler } from '../../../helper/utility'
 
 
 export default {
-    fetchLanguages () {
-        console.log("sono il client di languages")
+    fetchActiveLanguages() {
         return axiosInstance
-            .get('/backend/1.0.0/languages', {
+            .get('/backend/1.0.0/languages/active', {
             })
             .then((response) => {
-                return response.data
-            })
-            .catch(error_handler);
-    },
-    fetchActiveLanguages () {
-        console.log("sono il client di languages")
-        return axiosInstance
-            .get('/backend/1.0.0/languages', {
-            })
-            .then((response) => {
-                console.log(response)
                 return response.data
             })
             .catch(error_handler);
