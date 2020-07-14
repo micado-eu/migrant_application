@@ -64,7 +64,6 @@ export default {
       let al = this.$i18n.locale;
       let idx = itemById.translations.findIndex(t => t.lang === al)
       let translated = Object.assign({}, itemById.translations[idx])
-      translated.description = JSON.parse(translated.description)
       this.item = translated
       this.loading = false
     })

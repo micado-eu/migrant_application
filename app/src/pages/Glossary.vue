@@ -13,7 +13,7 @@
       v-show="!loading"
     >
       <div
-        v-for="glossaryItem of glossary"
+        v-for="glossaryItem of translatedGlossary"
         v-bind:key="glossaryItem.id"
       >
         <q-expansion-item
@@ -25,7 +25,10 @@
         >
           <q-card>
             <q-card-section>
-              <glossary-editor-viewer :content="glossaryItem.description" />
+              <glossary-editor-viewer
+                :content="glossaryItem.description"
+                glossary_fetched
+              />
             </q-card-section>
           </q-card>
         </q-expansion-item>
@@ -46,7 +49,8 @@ export default {
   },
   data() {
     return {
-      loading: false
+      loading: false,
+      translatedGlossary: []
     }
   },
   computed: {
@@ -55,8 +59,11 @@ export default {
   methods: {
     ...mapActions("glossary", ["fetchGlossary"]),
     showGlossaryTerm(id) {
-      let glossaryExpansionItem = this.$refs[id.toString()][0]
-      glossaryExpansionItem.show()
+      let ref = this.$refs[id.toString()]
+      if (ref) {
+        let glossaryExpansionItem = ref[0]
+        glossaryExpansionItem.show()
+      }
     },
     changeQuery(id) {
       if (this.$route.query.id !== id.toString()) {
@@ -71,12 +78,17 @@ export default {
       }
     }
   },
-  mounted() {
+  created() {
     this.loading = true
     let query = this.$route.query
     let showGlossaryTerm = this.showGlossaryTerm
     this.fetchGlossary()
-      .then(glossary => {
+      .then(() => {
+        this.translatedGlossary = this.glossary.map(e => {
+          let al = this.$i18n.locale;
+          let idx = e.translations.findIndex(t => t.lang === al);
+          return e.translations[idx];
+        });
         if (query.id !== undefined) {
           showGlossaryTerm(query.id)
         }
