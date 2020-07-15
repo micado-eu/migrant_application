@@ -28,6 +28,7 @@
               <glossary-editor-viewer
                 :content="glossaryItem.description"
                 glossary_fetched
+                :lang="lang"
               />
             </q-card-section>
           </q-card>
@@ -50,6 +51,7 @@ export default {
   data() {
     return {
       loading: false,
+      lang: "",
       translatedGlossary: []
     }
   },
@@ -82,6 +84,7 @@ export default {
     this.loading = true
     let query = this.$route.query
     let showGlossaryTerm = this.showGlossaryTerm
+    this.lang = this.$i18n.locale
     this.fetchGlossary()
       .then(() => {
         this.translatedGlossary = this.glossary.map(e => {

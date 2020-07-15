@@ -18,6 +18,7 @@
       <glossary-editor-viewer
         :content="item.description"
         class="q-mt-md description"
+        :lang="lang"
       />
     </div>
     <q-btn
@@ -44,7 +45,8 @@ export default {
     return {
       loading: true,
       id: -1,
-      item: {}
+      item: {},
+      lang: "",
     }
   },
   methods: {
@@ -58,6 +60,7 @@ export default {
   },
   created() {
     this.loading = true
+    this.lang = this.$i18n.locale
     this.id = this.$route.params.id
     this.fetchInformation().then(() => {
       let itemById = this.informationElemById(this.id)
