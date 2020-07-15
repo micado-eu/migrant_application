@@ -11,8 +11,9 @@
               style="padding-top:0px">
      <DocumentWalletItem 
      v-for="document in documents.slice((i - 1) * 3, i * 3)"
-     :Title="document.title"
-     :Image="document.image"
+     :Title="setTitle(document)"
+     :Image="document.pictures[0].picture"
+     :theDocument="document"
      :Link="document.id"
      :key="document.id">
      </DocumentWalletItem>
@@ -25,11 +26,13 @@
 <script>
 
 import DocumentWalletItem from 'components/DocumentWalletItem'
+import editEntityMixin from '../mixin/editEntityMixin'
 
 
 
 export default {
   name: 'Documents',
+    mixins: [editEntityMixin],
   props: {
     msg: String
   },
@@ -47,10 +50,29 @@ export default {
       .then(documents => {
         this.loading = false
       })
+      this.$store.dispatch('document_type/fetchDocumentType')
   },
+   methods:{
+     setTitle(document){
+      var the_doc_type =  this.document_types.filter((a_doc_type) => {
+        return a_doc_type.id == document.documentTypeId
+      })[0]
+      console.log(the_doc_type)
+      var the_transl =  the_doc_type.translations.filter((transl) => {
+         return transl.lang == this.activeLanguage
+
+      })[0]
+      console.log(the_transl)
+      return the_transl.document
+     }
+   },
   computed:{
    documents() {
       return this.$store.state.documents.documents
+    },
+    document_types(){
+      return this.$store.state.document_type.document_type
+
     }
   },
   

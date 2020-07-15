@@ -17,6 +17,7 @@ import user_type from './user_type'
 import intervention_plan from './intervention_plan'
 import information from './information'
 import settings from './settings'
+import document_type from './document_type'
 
 Vue.use(Vuex)
 
@@ -43,7 +44,8 @@ export default function (/* { ssrContext } */) {
       user_type,
       intervention_plan,
       settings,
-      information
+      information,
+      document_type
     },
 
     // enable strict mode (adds overhead!)

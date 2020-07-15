@@ -87,7 +87,7 @@ module.exports = function (ctx) {
       },
       chainWebpack(chain, { isServer, isClient }) {
         chain.resolve.alias.set('api-chatbot-client', 'src/api/chatbot/mock');
-        chain.resolve.alias.set('api-documents-client', 'src/api/documents/mock');
+        chain.resolve.alias.set('api-documents-client', 'src/api/documents/server');
         chain.resolve.alias.set('api-flows-client', 'src/api/flows/server');
         chain.resolve.alias.set('api-glossary-client', 'src/api/glossary/server');
         chain.resolve.alias.set('api-features-client', 'src/api/features/mock');
@@ -100,7 +100,8 @@ module.exports = function (ctx) {
         chain.resolve.alias.set('api-topic-client', 'src/api/topic/server');
         chain.resolve.alias.set('api-intervention_plan-client', 'src/api/intervention_plan/mock');
         chain.resolve.alias.set('api-user_type-client', 'src/api/user_type/server');
-        chain.resolve.alias.set('api-information-client', 'src/api/information/server')
+        chain.resolve.alias.set('api-information-client', 'src/api/information/server');
+        chain.resolve.alias.set('api-document_type-client', 'src/api/document_type/server')
       }
     },
 

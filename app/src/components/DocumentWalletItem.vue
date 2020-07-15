@@ -20,13 +20,15 @@
 <script>
 export default {
   // name: 'ComponentName',
-  props: ["Title", "Image", "Link"],
+  props: ["Title", "Image", "Link", "theDocument"],
   data () {
     return {}
   },
   methods:{
     editing(){
-      this.$router.push('documents/edit/' + this.Link)
+      console.log("prima di mandare i process")
+      console.log(this.theDocument)
+      this.$router.push({ name: 'editdocument', params: { thedoc: this.theDocument } })
     }
   }
 }
