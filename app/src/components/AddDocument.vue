@@ -51,7 +51,7 @@
               spinner-color="white"
               style="max-height: 100px; max-width: 150px"
             />
-            <q-btn  no-caps rounded style="width:100px;margin-right:20px" filled color="accent"   label="Remove" />
+            <q-btn  no-caps rounded style="width:100px;margin-right:20px" filled color="accent" @click="removePicture(image)"  label="Remove" />
           </div>
           </div>
   <div class="" style="text-align:center; padding-top:20px">
@@ -172,6 +172,15 @@ export default {
     }, 
     back(){
       this.$router.push('/documents')
+    }, 
+    removePicture(image){
+     var idx =  this.uploaded_images.findIndex(an_image => an_image === image)
+     this.uploaded_images.splice(idx, 1)
+     console.log(this.uploaded_images)
+     var doc_idx = this.doc_shell.pictures.findIndex(an_image => an_image.picture === image)
+     this.doc_shell.pictures.splice(doc_idx, 1)
+     console.log(this.doc_shell.pictures)
+
     }
   },
    computed:{

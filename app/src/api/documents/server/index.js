@@ -23,7 +23,7 @@ export default {
 
   deleteDocument (doc_id) {
     return axiosInstance
-      .delete('/backend/1.0.0/processes/' + doc_id)
+      .delete('/backend/1.0.0/documents/' + doc_id)
       .then(response => response.data)
       .catch(error_handler);
   },

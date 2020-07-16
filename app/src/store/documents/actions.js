@@ -25,6 +25,11 @@ export function saveDocument (state, document) {
       console.log("returned from saving topic")
       console.log(doc_return)
       var doc_return_id = doc_return.id
+      console.log("looking at the returned id")
+      console.log(doc_return_id)
+      document.id = doc_return_id
+      console.log("assigned id to document")
+      console.log(document.id)
       // in topic_return we have the ID that we need in the following cycle
       for(var i = 0; i < document.pictures.length; i++){
         document.pictures[i].order = i
@@ -47,8 +52,16 @@ export function editDocument (state, document) {
   // we need BEFORE to call the API to do the update and if ok we update wuex state
   console.log(document)
   // update translations
-  return client
-    .updateDocument(document).then(function (update_return) {
+ return client.deleteDocumentPictures(document.id).then( function (picture_return){
+console.log("deleted pictures")
+   client.updateDocument(document).then(function (update_return) {
+    for(var i = 0; i < document.pictures.length; i++){
+      document.pictures[i].order = i
+      document.pictures[i].docId = document.id
+      console.log("this is the picture i am saving")
+      console.log(document.pictures[i])
+      client.saveDocumentPictures(document.pictures[i], document.id)
+    }
       // cycle in the translations and update each
       console.log(update_return)
       /*topic_element.translations.forEach(function (aTranslation) {
@@ -56,12 +69,27 @@ export function editDocument (state, document) {
           console.log(update_translation_return)
         })
       })*/
-      state.commit('editTopic', document)
+      state.commit('editDocument', document)
     })
-  // update topic
-  /*
-  return client
-    .updateTopic(topic_element)
-    .then(topic_return => state.commit('editTopic', topic_return))
-    */
+ })
+}
+
+export function deleteDocument (state, id) {
+  // we need BEFORE to call the API to do the update and if ok we update wuex state
+  console.log(document)
+  // update translations
+ return client.deleteDocumentPictures(id).then( function (picture_return){
+console.log("deleted pictures")
+   client.deleteDocument(id).then(function (update_return) {
+    
+      // cycle in the translations and update each
+      console.log(update_return)
+      /*topic_element.translations.forEach(function (aTranslation) {
+        client.updateTopicTranslation(aTranslation).then(function (update_translation_return) {
+          console.log(update_translation_return)
+        })
+      })*/
+      state.commit('deleteDocument', id)
+    })
+ })
 }

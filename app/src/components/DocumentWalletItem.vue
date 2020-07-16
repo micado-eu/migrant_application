@@ -11,7 +11,8 @@
 
    <div class="q-pa-lg" style="width:320px; margin: 0 auto;padding-left:10px; padding-top:10px;padding-bottom:0px">
     <q-icon style="margin-right:10px;" name="img:statics/icons/Edit.png" size="md" @click="editing" />
-    <q-icon  name="img:statics/icons/Send.png" size="md" />
+    <q-icon style="margin-right:10px;" name="img:statics/icons/Send.png" size="md" />
+    <q-icon :id="this.Link" name="img:statics/icons/Send.png" @click="deleteDocument($event)" size="md" />
   
    </div>
 </div>
@@ -29,6 +30,10 @@ export default {
       console.log("prima di mandare i process")
       console.log(this.theDocument)
       this.$router.push({ name: 'editdocument', params: { thedoc: this.theDocument } })
+    },
+    deleteDocument(){
+      console.log("in delete document event")
+      this.$emit('delete', event.currentTarget.id)
     }
   }
 }

@@ -45,7 +45,7 @@ const routes = [
       { path: '/certificates', component: Certificates, props: true, name: 'certificates' },
       { path: '/map', component: MapView },
       { path: '/glossary/:id?', component: Glossary },
-      { path: '/documents/:thedoc', component: () => import('components/AddDocument.vue') ,props: (route) => ({ ...route.params }), name: 'editdocument' },
+      { path: '/documents/:thedoc.id', component: () => import('components/AddDocument.vue') ,props: (route) => ({ ...route.params }), name: 'editdocument' },
       { path: '/decision', component: DecisionTreePage },
       { path: '/information', component: InformationCentre },
       { path: '/information/:id', component: InformationItem },
