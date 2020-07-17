@@ -7,7 +7,10 @@ export function someAction (context) {
 export function fetchUserType (state, payload) {
   return client
     .fetchUserType(payload.defaultLang, payload.userLang)
-    .then(user_type => state.commit('setUserType', user_type))
+    .then(user_type => {
+      state.commit('setUserType', user_type)
+      return user_type
+  })
 }
 
 export function editUserTypeElement (state, user_type_element) {

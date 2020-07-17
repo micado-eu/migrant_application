@@ -37,7 +37,7 @@
           v-for="tag in users"
           dense
           @click="setUserTag($event)"
-          :key="tag.id"
+          :key="tag.user_type"
           :id="tag.user_type"
         >
           <q-tooltip>
@@ -52,7 +52,7 @@
           dense
           rounded
           @click="setTopicTag($event)"
-          :key="tag.id"
+          :key="tag.topic"
           :id="tag.topic"
         >
           <q-tooltip>
@@ -81,6 +81,8 @@ import configcy from '../configs/cytoscapeConfig'
 import DocumentItem from 'components/DocumentItem'
 import LabelMap from 'components/LabelMap'
 import PhonebookList from 'components/PhonebookList'
+import editEntityMixin from '../mixin/editEntityMixin'
+
 
 console.log(configcy);
 export default {
@@ -88,6 +90,7 @@ export default {
   props: {
     msg: String
   },
+  mixins: [editEntityMixin],
   components: {
     DocumentItem, LabelMap, ListItem, PhonebookList
   },
@@ -100,7 +103,7 @@ export default {
       u_tags: [
 
       ],
-      //      t_tags: [      ],
+            t_tags: [      ],
       selected_u_tags: [],
       selected_t_tags: [],
       search: '',
@@ -174,23 +177,26 @@ export default {
       else if (this.selected_u_tags.lenght != 0 || this.search != "" || this.selected_t_tags.lenght != 0) {
         return groupItems(this.processes.filter((filt) => {
           //Splits the search field and puts the words in an array
+          console.log("i am filt")
+          console.log(filt)
           var lowerCase = this.search.toLowerCase()
           var searchArray = lowerCase.split(" ")
+          
           //console.log(" tag_u boolean " + this.selected_u_tags.every( string => filt.user_tags.includes(string)))
           //console.log("text boolean " + searchArray.every(string => filt.title.toLowerCase().includes(string)))
-          if (searchArray.every(string => filt.title.toLowerCase().includes(string)) &&
+          if (searchArray.every(string => filt.process.toLowerCase().includes(string)) &&
             this.selected_u_tags.every(item => {
-              for (let i = 0; i < filt.user_tags.length; i++) {
-                if (item == filt.user_tags[i].user_type) {
-                  return item == filt.user_tags[i].user_type
+              for (let i = 0; i < filt.users.length; i++) {
+                if (item == filt.users[i]) {
+                  return item == filt.users[i]
                   break;
                 }
               }
             }) &&
             this.selected_t_tags.every(item => {
-              for (let i = 0; i < filt.topic_tags.length; i++) {
-                if (item == filt.topic_tags[i].topic) {
-                  return item == filt.topic_tags[i].topic
+              for (let i = 0; i < filt.topics.length; i++) {
+                if (item == filt.topics[i]) {
+                  return item == filt.topics[i]
                   break;
                 }
               }
@@ -240,6 +246,10 @@ export default {
     setUserTag (event) {
       //the Q-select passe an array of objects, so this takes the value property of the objects and puts them into an array
       var tag = event.currentTarget.id
+      console.log("i am the tag")
+      console.log(tag)
+      var tag_id = this.users.filter((a_user) => {return a_user.user_type ==tag})[0].id
+      console.log(tag_id)
       var button = document.getElementById(tag)
       console.log(button.style.backgroundColor)
       if (button.style.backgroundColor == "") {
@@ -250,11 +260,11 @@ export default {
       else {
         button.style.backgroundColor = ""
       }
-      var index = this.selected_u_tags.indexOf(tag)
+      var index = this.selected_u_tags.indexOf(String(tag_id))
       if (index !== -1) {
         this.selected_u_tags.splice(index, 1);
       } else {
-        this.selected_u_tags.push(tag)
+        this.selected_u_tags.push(String(tag_id))
       }
       console.log(this.selected_u_tags)
     },
@@ -269,6 +279,9 @@ export default {
     setTopicTag (value) {
       var tag = event.currentTarget.id
       var button = document.getElementById(tag)
+      console.log("i am the tag")
+      console.log(tag)
+      var tag_id = this.topics.filter((a_topic) => {return a_topic.topic ==tag})[0].id
       console.log(button.style.backgroundColor)
       if (button.style.backgroundColor == "") {
         console.log("colore")
@@ -278,11 +291,11 @@ export default {
       else {
         button.style.backgroundColor = ""
       }
-      var index = this.selected_t_tags.indexOf(tag)
+      var index = this.selected_t_tags.indexOf(String(tag_id))
       if (index !== -1) {
         this.selected_t_tags.splice(index, 1);
       } else {
-        this.selected_t_tags.push(tag)
+        this.selected_t_tags.push(String(tag_id))
       }
       console.log(this.selected_t_tags)
     },
@@ -397,32 +410,17 @@ export default {
         console.log(processes)
         this.loading = false
       })
-    /*
-  this.$store.dispatch('topic/fetchTopic')
-    .then(topic => {
-      console.log("got topics")
-      console.log(topic)
-      /*
-      for (var i = 0; i < this.topics.length; i++) {
-        var the_topic = this.topics[i]
-        this.t_tags.push(the_topic)
-      }
-
-      this.loading = false
-      
+    
+  this.$store.dispatch('topic/fetchTopic', { defaultLang: this.$defaultLang, userLang: this.$userLang })
+  
+    
+    
+   this.$store.dispatch('user_type/fetchUserType', { defaultLang: this.$defaultLang, userLang: this.$userLang })
+    .then(user_types =>{
+      console.log("in user type")
+      console.log(user_types)
     })
-    */
-    /*
-   this.$store.dispatch('user_type/fetchUserType')
-     .then(user_type => {
-       console.log(user_type)
-       for (var j = 0; j < this.users.length; j++) {
-         var the_user = this.users[j]
-         this.u_tags.push(the_user)
-       }
-       this.loading = false
-     })
-*/
+
 
   }
 }

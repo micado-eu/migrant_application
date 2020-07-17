@@ -41,12 +41,22 @@
                   {{topics.filter(topic => topic.id == tag)[0].topic}}
                 </q-tooltip>
               </q-img>
-              <q-icon
+               <q-img
+                style="height: 15px; max-width: 15px;margin-right:5px"
+                v-for="tag in Users"
+                :src="users.filter(user => user.id == tag)[0].icon"
+                :key="tag"
+              >
+                <q-tooltip>
+                  {{users.filter(user => user.id == tag)[0].user_type}}
+                </q-tooltip>
+              </q-img>
+            <!--  <q-icon
                 style="margin-right:5px"
                 v-for="tag in Users"
                 :name="tag.icon"
                 :key="tag.id"
-              />
+              />-->
             </div>
             <hr style="margin:0px;width:105%">
           </div>

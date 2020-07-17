@@ -16,7 +16,7 @@
             :key="process.id"
             :Title="process.process"
             :Topics="process.topics"
-            :Users="process.user_tags"
+            :Users="process.users"
             :Link="process.id"
             :id="process.id"
             :item="process"
