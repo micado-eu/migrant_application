@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md">
+  <div class="q-pa-md row">
     <q-toolbar class="toolbar-list q-mb-md">
       <q-icon
         name="img:statics/icons/MICADO PA APP Icon - Glossary Page (white).png"
@@ -11,10 +11,12 @@
     <q-list
       bordered
       v-show="!loading"
+      class="col-11"
     >
       <div
         v-for="glossaryItem of translatedGlossary"
         v-bind:key="glossaryItem.id"
+        :id="glossaryItem.id"
       >
         <q-expansion-item
           group="glossary"
@@ -36,6 +38,16 @@
         <q-separator />
       </div>
     </q-list>
+    <div class="q-ml-sm col">
+      <span
+        v-for="(letter, index) in alphabet"
+        :key="letter"
+        class="row alphabet"
+        @click="scrollIntoGlossary(index)"
+      >
+        {{letter}}
+      </span>
+    </div>
   </div>
 </template>
 
@@ -52,7 +64,9 @@ export default {
     return {
       loading: false,
       lang: "",
-      translatedGlossary: []
+      translatedGlossary: [],
+      alphabet: [],
+      alphabetIds: [],
     }
   },
   computed: {
@@ -71,6 +85,16 @@ export default {
       if (this.$route.query.id !== id.toString()) {
         this.$router.replace({ path: '/glossary', query: { id: id } })
       }
+    },
+    compare(a, b) {
+      if (a.title < b.title)
+        return -1;
+      if (a.title > b.title)
+        return 1;
+      return 0;
+    },
+    scrollIntoGlossary(index) {
+      document.getElementById(this.alphabetIds[index]).scrollIntoView()
     }
   },
   watch: {
@@ -92,6 +116,14 @@ export default {
           let idx = e.translations.findIndex(t => t.lang === al);
           return e.translations[idx];
         });
+        this.translatedGlossary.sort(this.compare)
+        for (let elem of this.translatedGlossary) {
+          let firstChar = elem.title.charAt(0).toUpperCase()
+          if (!this.alphabet.includes(firstChar)) {
+            this.alphabet.push(firstChar)
+            this.alphabetIds.push(elem.id)
+          }
+        }
         if (query.id !== undefined) {
           showGlossaryTerm(query.id)
         }
@@ -110,5 +142,10 @@ $accent_list: #ff7c44;
 .toolbar-list {
   background-color: $accent_list;
   border-radius: 10px;
+}
+.alphabet {
+  color: $primary;
+  font-family: "Nunito";
+  font-weight: bold;
 }
 </style>>
