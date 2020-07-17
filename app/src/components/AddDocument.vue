@@ -132,6 +132,7 @@ export default {
       }
       else{
         this.$store.dispatch('documents/editDocument', document)
+        this.$router.push('/documents')
       }
     },
    
