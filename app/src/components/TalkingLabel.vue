@@ -1,6 +1,7 @@
 <template>
   <div class="" style="">
-    <q-icon  name="img:statics/icons/placeholder_icon.png" size="xsm"  />
+       {{ this.Title }} 
+    <q-icon @click.stop="readClick(text)" :id="this.text" name="img:statics/icons/placeholder_icon.png" size="xsm"  />
   </div>
 </template>
 
@@ -11,6 +12,7 @@ export default {
     return {
     }
   },
+  props: ["Title", "text"],
 
 
 
@@ -20,6 +22,7 @@ export default {
       console.log("speaking")
         responsiveVoice.speak(value)
   },
+ 
   
    }
 }

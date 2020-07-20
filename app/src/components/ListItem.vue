@@ -2,7 +2,7 @@
   <div style="width:100%">
     <div
       :id="item"
-      style="text-align:left; margin-right:0px; width:94%; background-color:#EDEDED; margin-top:0px; margin-bottom:0px; font-size:13px; font-weight:700; margin-left:16px; margin-right:25px"
+      style="text-align:left; margin-right:0px; width:100%; background-color:#EDEDED; margin-top:0px; margin-bottom:0px; font-size:13px; font-weight:700; margin-left:16px; margin-right:25px"
       v-if="typeof item === 'string'"
     >
       {{ item }}
@@ -11,7 +11,7 @@
       class="row"
       v-else
     >
-      <div class="col-11">
+      <div class="col-12">
 
         <q-item
           style="padding-top:0px; padding-bottom:0px;padding-right:0px; padding-left:0px; margin-left:16px"
@@ -24,7 +24,13 @@
               class=" q-pa-md"
               style="; padding-bottom:0px; padding-left:0px; padding-top:10px"
             >
-              <div style="font-family: 'Nunito Sans', sans-serif; text-align:left; font-size:13px; font-weight:700;width:135%">{{ this.Title }}</div>
+             <div style="font-family: 'Nunito Sans', sans-serif; text-align:left; font-size:13px; font-weight:700;width:135%">
+             <TalkingLabel
+             :Title="this.Title"
+             :text="this.Title"
+         
+        ></TalkingLabel>
+             </div>
             </div>
 
             <div
@@ -63,17 +69,7 @@
         </q-item>
 
       </div>
-      <div
-        class="col-1"
-        style="padding-left:0px;margin-top:27px; padding-right:10px;"
-      >
-
-        <TalkingLabel
-          ref="read"
-          @click.native="readAlong($event)"
-        ></TalkingLabel>
-
-      </div>
+     
 
     </div>
   </div>
@@ -103,11 +99,6 @@ export default {
       let target = event.currentTarget.id
       console.log(this.Link)
       this.$emit('showing', this.Link)
-
-    },
-    readAlong (event) {
-      console.log(this.$refs.read)
-      this.$refs.read.readClick(this.Title)
 
     },
     processDetails () {
