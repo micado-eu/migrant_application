@@ -1,7 +1,7 @@
 <template>
   <div class="" style="">
        {{ this.Title }} 
-    <q-icon @click.stop="readClick(text)" :id="this.text" name="img:statics/icons/placeholder_icon.png" size="xsm"  />
+    <q-icon @click.stop="readClick(text)" :id="this.text" name="img:statics/icons/Icon-Auto_Read_(selected).svg" size="xsm"  />
   </div>
 </template>
 
