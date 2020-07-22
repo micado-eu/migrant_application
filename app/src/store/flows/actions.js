@@ -23,7 +23,7 @@ export function fetchGraph (state, payload) {
   return client
     .fetchGraph(payload.id, payload.userLang)
     .then(graph => {
-      state.commit('setGraph', graph)
+      state.commit('graphs/setGraphs', graph, { root: true })
       return graph
     })
 }

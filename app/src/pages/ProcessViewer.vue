@@ -43,7 +43,7 @@
           <div
             class="self-center full-width no-outline"
             tabindex="0"
-          >{{flowData.stepCost}}</div>
+          >{{flowData.cost}}</div>
         </template>
       </q-field>
       <q-list>
@@ -188,6 +188,7 @@ export default {
       */
         console.log(graph)
         const elementFlow = graph
+        console.log("i am element flow")
         console.log(elementFlow)
         this.mermaid = elementFlow
         this.$store.commit("flows/setNodePanelVisible", "hidden");
