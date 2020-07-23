@@ -170,7 +170,17 @@ export default {
 
   created () {
     this.loading = true
-    console.log(this.$store);
+    console.log(this);
+    console.log(this.$Countly);
+    this.$Countly.q.push(['add_event', {
+      "key": "process",
+      "count": 1,
+      "sum": 1,
+      "dur": 1,
+      "segmentation": {
+        "idprocess": this.id
+      }
+    }]);
 
     // TODO
     this.$store.dispatch('flows/fetchGraph', { id: this.id, userLang: this.$userLang })
@@ -192,6 +202,7 @@ export default {
         console.log(elementFlow)
         this.mermaid = elementFlow
         this.$store.commit("flows/setNodePanelVisible", "hidden");
+
 
         return this.the_process
         //       this.loading = false

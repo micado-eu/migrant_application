@@ -25,12 +25,14 @@ Vue.use(VueCountly, Countly, {
   url: 'https://monitoring.micadoproject.eu',
 });
 
+console.log("Countly init")
 console.log(Vue.Countly === Countly);
+console.log(Vue.Countly)
 
 Vue.Countly.q.push(['track_sessions']);
 
-    // Track web page views automatically (recommended)
-    Vue.Countly.q.push(['track_pageview']);
+// Track web page views automatically (recommended)
+Vue.Countly.q.push(['track_pageview']);
 
 //import FeatureFlipping from "vue-feature-flipping"
 
