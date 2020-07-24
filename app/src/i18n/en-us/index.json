@@ -1,7 +1,9 @@
 {
+  "application_title": "MICADO app",
   "menu": {
     "title": "My Tools",
     "home": "Home",
+    "home_desc": "MICADO home page",
     "processes": "Integration step-by-step",
     "info": "Information centre",
     "chatbot": "MICADO Bot",

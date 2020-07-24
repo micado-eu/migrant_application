@@ -14,7 +14,7 @@
           aria-label="Menu"
         />
 
-        <q-toolbar-title>Micado App</q-toolbar-title>
+        <q-toolbar-title>{{ $t( "application_title") }}</q-toolbar-title>
         <LanguageSelector></LanguageSelector>
         <UserButton />
         <!-- <ListenToggle /> -->
@@ -68,7 +68,7 @@
           </q-item-section>
           <q-item-section>
             <q-item-label>{{ $t( nav.label) }}</q-item-label>
-            <q-item-label caption>{{ nav.description }}</q-item-label>
+            <q-item-label caption>{{ $t(nav.description) }}</q-item-label>
           </q-item-section>
         </q-item>
         <div class="row justify-center full-height full-width text-center">
@@ -102,7 +102,7 @@ export default {
     LanguageSelector
   },
 
-  data() {
+  data () {
     return {
       leftDrawerOpen: false,
       navs: [
@@ -110,7 +110,7 @@ export default {
           label: "menu.home",
           icon: "img:statics/icons/Home (600x600) white.png",
           to: "/",
-          description: "MICADO home page",
+          description: "menu.home_desc",
           feature: "FEAT_DEFAULT"
         },
         {
