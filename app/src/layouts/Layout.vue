@@ -131,21 +131,21 @@ export default {
           label: "menu.chatbot",
           icon: "img:statics/icons/Chatbot (600x600) white.png",
           to: "/chatbot",
-          description: "Micado smart assistant",
+          description: "menu.chatbot_desc",
           feature: "FEAT_CHATBOT"
         },
         {
           label: "menu.documents",
           icon: "img:statics/icons/Document Wallet (600x600) white.png",
           to: "/documents",
-          description: "my integration document collection",
+          description: "menu.documents_desc",
           feature: "FEAT_DOCUMENTS"
         },
         {
           label: "menu.tasks",
           icon: "img:statics/icons/Task Monitor (600x600) white.png",
           to: "/tasks",
-          description: "your personal integration plan",
+          description: "menu.tasks_desc",
           feature: "FEAT_TASKS"
         },
         // {
@@ -159,14 +159,14 @@ export default {
           label: "menu.glossary",
           icon: "img:statics/icons/MICADO PA APP Icon - Glossary Page (white).png",
           to: "/glossary",
-          description: "commonly used words",
+          description: "menu.glossary_desc",
           feature: "FEAT_GLOSSARY"
         },
         {
           label: "menu.settings",
           icon: "img:statics/icons/Settings (600x600) white.png",
           to: "/settings",
-          description: "manage your account",
+          description: "menu.settings_desc",
           feature: "FEAT_SETTINGS"
         }
       ]

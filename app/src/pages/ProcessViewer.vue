@@ -66,7 +66,7 @@
         style="width:130px;"
         rounded
         color="info"
-        label="Back"
+        :label="$t('button.back')"
         to="/processes"
       />
     </div>

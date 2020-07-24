@@ -51,15 +51,15 @@
               spinner-color="white"
               style="max-height: 100px; max-width: 150px"
             />
-            <q-btn  no-caps rounded style="width:100px;margin-right:20px" filled color="accent" @click="removePicture(image)"  label="Remove" />
+            <q-btn  no-caps rounded style="width:100px;margin-right:20px" filled color="accent" @click="removePicture(image)"  :label="$t('button.remove')" />
           </div>
           </div>
   <div class="" style="text-align:center; padding-top:20px">
     
-    <q-btn  no-caps rounded style="width:100px;margin-right:20px" filled color="accent" @click="saveDocument(doc_shell)"  label="Save" />
+    <q-btn  no-caps rounded style="width:100px;margin-right:20px" filled color="accent" @click="saveDocument(doc_shell)"  :label="$t('button.save')" />
 
 
-    <q-btn  no-caps rounded color="info" style="width:100px;" to="/documents" @click="back()" label="Back" />
+    <q-btn  no-caps rounded color="info" style="width:100px;" to="/documents" @click="back()" :label="$t('button.back')" />
 
   </div>
   </div>

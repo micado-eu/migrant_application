@@ -2,7 +2,7 @@
   <q-page class="flows container-fluid"  style="background-color:#efefef">
     <div >
   <div class="q-pa-md" style="text-align:center; padding-top:30px; padding-bottom:0px; ">
-  <q-btn id="button" unelevated rounded color="info" no-caps style="width:320px;margin-right:25px" to="/documents/add" label="Add document" />
+  <q-btn id="button" unelevated rounded color="info" no-caps style="width:320px;margin-right:25px" to="/documents/add" :label="$t('button.add_document')" />
   </div >
     <q-list >
     <div  class="q-gutter-xsm  row"

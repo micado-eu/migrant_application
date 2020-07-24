@@ -5,7 +5,7 @@
   <div class="q-pa-md" style="padding-top:0px; padding-left:0px; padding-right:0px">
     <div style="width:320px;margin:0 auto;border-radius: 10px; background-color:white; text-align:center;">
      
-      <img width="320px" style="margin: 0 auto; margin-top:10px"  alt="Powered by Micado" :src="the_document.image" />
+      <img width="320px" style="margin: 0 auto; margin-top:10px"  alt="Powered by Micado" :src="the_document.pictures[0].picture" />
      
     </div>
     <div class="" style="width:320px; margin: 0 auto;padding-left:10px; padding-top:10px; padding-bottom:20px">
@@ -33,8 +33,8 @@
     </div>
   
     
-    <q-btn id="button" size="12px" rounded no-caps color="accent" style="width:100px;margin-right:10px" label="Download" />
-    <q-btn id="button" size="12px" rounded no-caps style="width:100px;margin-right:15px" filled color="info" to="/documents" label="Back" />
+    <q-btn id="button" size="12px" rounded no-caps color="accent" style="width:100px;margin-right:10px" :label="$t('button.download')" />
+    <q-btn id="button" size="12px" rounded no-caps style="width:100px;margin-right:15px" filled color="info" to="/documents" :label="$t('button.back')" />
     
    
     

@@ -5,16 +5,29 @@
     "home": "Home",
     "home_desc": "MICADO home page",
     "processes": "Integration step-by-step",
-    "processes_desc": "guided integration processes",
+    "processes_desc": "Guided integration processes",
     "info": "Information centre",
     "chatbot": "MICADO Bot",
+    "chatbot_desc":"Micado smart assistant",
     "tasks": "My integration plan",
+    "tasks_desc":"Your personal integration plan",
     "documents": "My documents",
+    "documents_desc":"My integration document collection",
     "messenger": "My Messages",
     "settings": "Settings",
+    "settings_desc":"Manage your account",
     "language": "en-US",
     "glossary": "Common words",
+    "glossary_desc":"Commonly used words",
     "information": "Information centre",
-    "information_desc": "integration information, events and services"
+    "information_desc": "Integration information, events and services"
+  }, 
+  "button":{
+    "add_document":"Add Document",
+    "save":"Save",
+    "remove":"Remove",
+    "back":"Back",
+    "ask_validation":"Ask for validation",
+    "download":"Download"
   }
 }
