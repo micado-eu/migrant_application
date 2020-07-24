@@ -178,7 +178,9 @@ export default {
       "sum": 1,
       "dur": 1,
       "segmentation": {
-        "idprocess": this.id
+        "idprocess": this.id,
+        "nationality": "italian",
+        "language": this.$userLang
       }
     }]);
 
