@@ -124,7 +124,7 @@ export default {
           label: "menu.information",
           icon: "img:statics/icons/Genreal Information (600x600) white.png",
           to: "/information",
-          description: "integration information, events and services",
+          description: "menu.information_desc",
           feature: "FEAT_INFO"
         },
         {
