@@ -1,16 +1,15 @@
 <template>
   <q-page class="flows container-fluid"  style="background-color:#efefef">
-    <div >
-  <div class="q-pa-md" style="text-align:center; padding-top:30px; padding-bottom:0px; ">
+    
+  <div class="q-pa-md" style="text-align:center; padding-top:30px; padding-bottom:20px; ">
   <q-btn id="button" unelevated rounded color="info" no-caps style="width:320px;margin-right:25px" to="/documents/add" :label="$t('button.add_document')" />
   </div >
-    <q-list >
-    <div  class="q-gutter-xsm  row"
-              v-for="i in Math.ceil(this.documents.length / 3)"
-              v-bind:key="i" 
-              style="padding-top:0px">
+  <hr style="border: 1px solid #FF7C44;">
+  
+    <q-list style="width:100%; margin:0 auto" >
+    
      <DocumentWalletItem 
-     v-for="document in documents.slice((i - 1) * 3, i * 3)"
+     v-for="document in documents"
      :Title="setTitle(document)"
      :Image="document.pictures[0].picture"
      :theDocument="document"
@@ -18,9 +17,10 @@
      :key="document.id"
      @delete="deleteDocument">
      </DocumentWalletItem>
-     </div>
+     
      </q-list>
-</div>
+     
+
   </q-page>
 </template>
 

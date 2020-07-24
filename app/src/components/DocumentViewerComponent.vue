@@ -46,10 +46,10 @@
 <script>
 export default {
   // name: 'ComponentName',
-  props: ["Image",],
+  props: ["Image","thedocid"],
   data () {
     return {
-      id:this.$route.params.id,
+      id:this.thedocid,
 
     }
   },

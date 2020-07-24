@@ -29,7 +29,7 @@ const routes = [
       { path: '', component: Index },
       { path: '/documents', component: DocumentWallet },
       { path: '/documents/add', component: AddDocument },
-      { path: '/documents/:id', component: DocumentViewerComponent, props: true, name: document },
+      { path: '/documents/:thedocid', name: 'viewdocument',component: () => import('components/DocumentViewerComponent.vue'), props: (route) => ({ ...route.params })},
       { path: '/documents/edit/:id', component: AddDocument, props: true, name: document },
       { path: '/services', component: Services },
       { path: '/flows', component: Flows },
