@@ -17,7 +17,7 @@
     <div class="" style="width:320px; margin: 0 auto;padding-left:10px">
      <div style="padding-bottom:30px"> 
     <p id="textup" style="margin-bottom:2px">Document type:</p>
-    <p id="textdown">{{the_document.type}}</p>
+    <p id="textdown">{{findType()}}</p>
     </div>
     <div  style="padding-bottom:30px"> 
     <p id="textup" style="margin-bottom:2px">Document issuer:</p>
@@ -29,7 +29,7 @@
     </div>
     <div  style="padding-bottom:40px"> 
     <p id="textup" style="margin-bottom:2px">Review date:</p>
-    <p id="textdown">{{the_document.expire_date}}</p>
+    <p id="textdown">{{the_document.expirationDate}}</p>
     </div>
   
     
@@ -44,9 +44,12 @@
 </template>
 
 <script>
+import editEntityMixin from '../mixin/editEntityMixin'
+
 export default {
   // name: 'ComponentName',
   props: ["Image","thedocid"],
+  mixins: [editEntityMixin],
   data () {
     return {
       id:this.thedocid,
@@ -56,9 +59,16 @@ export default {
   methods:{
     editing(){
       this.$router.push('edit/' + this.id)
+    }, 
+    findType(){
+     var doc_type = this.document_types.filter((type)=>{return type.id == this.the_document.documentTypeId})[0]
+      return doc_type.translations.filter(this.filterTranslationModel(this.activeLanguage))[0].document
     }
   },
    computed:{
+    document_types(){
+      return this.$store.state.document_type.document_type
+    },
      documents() {
       return this.$store.state.documents.documents
     }, 
@@ -78,6 +88,11 @@ export default {
     this.loading = true
     console.log(this.$store);
     this.$store.dispatch('documents/fetchDocuments')
+      .then(documents => {
+        console.log(documents)
+        this.loading = false
+      })
+      this.$store.dispatch('document_type/fetchDocumentType')
       .then(documents => {
         console.log(documents)
         this.loading = false

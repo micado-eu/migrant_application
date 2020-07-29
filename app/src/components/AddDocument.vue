@@ -1,10 +1,8 @@
 <template>
-<div class="" style=" border-width:3px; border-color:#0f3a5d; border-radius: 1.95rem;border-style: solid; margin: 0 auto; width:750px; padding-left:20px; padding-right:20px; margin-top:25px; padding-bottom:10px">
-    <div class="  row" style="text-align:center">
-      <div class="col-4">
-        <h5 style="text-align:left;margin-bottom:0px"> Document type </h5>
-      </div>
-      <div class="col-8" style="margin: auto;display: block;margin-bottom:0px">
+<div class="" style="  margin: 0 auto;  margin-top:25px; padding-bottom:10px; width:300px">
+    
+      
+      <div class="" style="margin: auto;display: block;margin-bottom:0px; padding-top:10px; padding-bottom:10px">
         <q-select
             filled
             dense
@@ -14,28 +12,25 @@
             v-model="doc_shell.documentTypeId"
             :options="this.t_docs"
             label="Document Type"
-            style="width: 200px"
+            
           />
       </div>
-    </div>
-    <div class="row" style="text-align:center">
-      <div class=" col-4">
-        <h5 style="text-align:left"> Expiration date </h5>
+    
+    
+      
+      <div class="" style="margin: auto;display: block;padding-bottom:10px">
+        <q-input dense  standout outlined label="Expiration date" :value="doc_shell.userId"  />
       </div>
-      <div class="col-8" style="margin: auto;display: block;">
-        <q-input dense rounded standout outlined :value="doc_shell.userId"  />
-      </div>
-    </div>
-    <div class=" q-pa-xsm row" style="text-align:center">
-      <div class=" q-pa-xsm col-4">
-        <h5 style="text-align:left"> Document pictures </h5>
-      </div>
-      <div class="col-8" style="margin: auto;display: block;">
+ 
+   
+      
+      <div class="col-8" style="margin: auto;display: block;padding-bottom:10px">
         <q-file
+        label="Upload document"
               @input="getFiles($event)"
               bg-color="grey-3"
               dense
-              rounded
+              
               multiple
               standout
               outlined
@@ -43,17 +38,19 @@
         </q-file>
        
   </div>
-  </div>
-   <div class="row">
-                <div class="col" v-for="image in uploaded_images" :key="image">
+ 
+   
+                <div class="" v-for="image in uploaded_images" :key="image">
         <q-img 
               :src="image"
               spinner-color="white"
               style="max-height: 100px; max-width: 150px"
             />
-            <q-btn  no-caps rounded style="width:100px;margin-right:20px" filled color="accent" @click="removePicture(image)"  :label="$t('button.remove')" />
+            <span style="text-align:right; padding-left:20px">
+            <q-btn  no-caps rounded style="width:100px;" filled color="accent" @click="removePicture(image)"  :label="$t('button.remove')" />
+            </span>        
           </div>
-          </div>
+          
   <div class="" style="text-align:center; padding-top:20px">
     
     <q-btn  no-caps rounded style="width:100px;margin-right:20px" filled color="accent" @click="saveDocument(doc_shell)"  :label="$t('button.save')" />
