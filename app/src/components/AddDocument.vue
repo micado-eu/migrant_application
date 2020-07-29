@@ -189,21 +189,6 @@ export default {
       return this.$store.state.document_type.document_type
 
     }
-    /*the_document(){
-      if(this.id != null){
-        for(var i = 0; i< this.documents.length; i++){
-          if(this.documents[i].id == this.id){
-            console.log("id documento" + this.documents[i].id)
-            console.log(this.documents[i])
-            console.log("id route" + this.id)
-            return this.documents[i]
-          }
-        }
-      }
-      else{
-        return this.doc_shell
-      }
-    }*/
     
    },
   created () {
