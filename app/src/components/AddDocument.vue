@@ -19,7 +19,7 @@
     
       
       <div class="" style="margin: auto;display: block;padding-bottom:10px">
-        <q-input dense  standout outlined label="Expiration date" :value="doc_shell.userId"  />
+        <q-input dense  standout outlined label="Expiration date" v-model="doc_shell.expirationDate"  />
       </div>
  
    
