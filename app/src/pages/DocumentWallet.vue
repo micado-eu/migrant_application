@@ -70,7 +70,7 @@ export default {
       });
       if (the_doc_type.length == 1) {
         var the_transl = the_doc_type[0].translations.filter(transl => {
-          return transl.lang == this.activeLanguage;
+          return transl.lang == this.activeLanguage || transl.lang === "en";
         });
         if (the_transl.length > 0) {
           return the_transl[0].document;
