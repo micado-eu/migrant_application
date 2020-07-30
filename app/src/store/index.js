@@ -16,6 +16,8 @@ import topic from './topic'
 import user_type from './user_type'
 import intervention_plan from './intervention_plan'
 import information from './information'
+import information_category from './information_category'
+import information_tags from './information_tags'
 import settings from './settings'
 import document_type from './document_type'
 
@@ -45,6 +47,8 @@ export default function (/* { ssrContext } */) {
       intervention_plan,
       settings,
       information,
+      information_category,
+      information_tags,
       document_type
     },
 
