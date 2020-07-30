@@ -4,6 +4,8 @@ export default async ({ store, Vue }) => {
     //    await store.dispatch('statistics/fetchStatistics');
     var curlang = ''
     var defaultLangString = ''
+    var defaultLang = {}
+    var userLang = {}
 
     await store.dispatch('features/fetchFeatures');
     await store.dispatch("language/fetchActiveLanguages")
@@ -13,14 +15,18 @@ export default async ({ store, Vue }) => {
             console.log("#####################################")
             console.log(settings)
             curlang = settings.filter((setting) => { return setting.key == 'default_language' })[0]
-            setLocale(curlang.value)
-            defaultLangString = store.state.language.languages.filter(function (l) { return l.lang == curlang.value })[0].name
+            defaultLang = store.state.language.languages.filter(function (l) { return l.lang == curlang.value })[0]
+            defaultLangString = defaultLang.name
             Vue.prototype.$defaultLangString = defaultLangString
-            Vue.prototype.$defaultLang = curlang.value
+            Vue.prototype.$defaultLang = defaultLang.lang
             // somewhere we need to set the userLang reading it dfrom the user preferences and we will override this value
-
-            Vue.prototype.$userLang = curlang.value
-
+            // TODO: Save this setting in db instead of local storage
+            if (!localStorage.lang) {
+                localStorage.lang = defaultLang.lang
+            }
+            Vue.prototype.$userLang = localStorage.lang
+            userLang = store.state.language.languages.filter(function (l) { return l.lang == localStorage.lang })[0]
+            setLocale(userLang)
 
         })
     console.log("READ LANGUAGES SO CAN SET PROPERLY STUFF")

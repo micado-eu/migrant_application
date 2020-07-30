@@ -35,14 +35,15 @@
           >
             <q-btn
               class="q-mr-sm q-my-sm language_btn"
-              unelevated
               rounded
               color="accent"
               v-for="language in activeLanguages"
-              :key="language.iso_code"
+              :key="language.isoCode"
               :label="language.name"
-              @click="getValue($event)"
-              :id="language.iso_code"
+              @click="getValue(language)"
+              :id="language.isoCode"
+              :unelevated="language.lang !== selectedLanguage"
+              :outline="language.lang === selectedLanguage"
               no-caps
               v-close-popup
             />
@@ -55,32 +56,32 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex"
+import { setLocale } from 'boot/i18n'
 export default {
   data() {
     return {
       layout: false,
+      _selectedLanguage: ""
     }
   },
   computed: {
-    ...mapGetters('language', ['activeLanguages'])
+    ...mapGetters('language', ['activeLanguages']),
+    selectedLanguage() {
+      return this._selectedLanguage
+    }
   },
   methods: {
-    getValue(event) {
-      let targetId = event.currentTarget.id
-      // Internationalization of quasar components
-      import(`quasar/lang/${targetId}`).then(({ default: messages }) => {
-        this.$q.lang.set(messages)
-      }).catch(error => {
-        // Language doesn't exist in quasar languages
-        console.error(error);
-      })
-      // Internationalization of our own labels
-      this.$i18n.locale = targetId
+    getValue(language) {
+      this._selectedLanguage = language.lang
+      setLocale(language)
+      this.$router.go()
     },
     ...mapActions("language", ["fetchActiveLanguages"])
   },
   created() {
-    this.fetchActiveLanguages()
+    this.fetchActiveLanguages().then(() => {
+      this._selectedLanguage = this.$userLang
+    })
   }
 }
 </script>

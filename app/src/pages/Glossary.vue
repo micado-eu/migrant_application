@@ -10,7 +10,7 @@
     <span v-if="loading">Loading...</span>
     <q-list
       bordered
-      v-show="!loading"
+      v-show="!loading && translatedGlossary"
       class="col-11"
     >
       <div
@@ -38,6 +38,9 @@
         <q-separator />
       </div>
     </q-list>
+    <div v-show="!loading && !translatedGlossary">
+      <span>No elements</span>
+    </div>
     <div class="q-ml-sm col">
       <span
         v-for="(letter, index) in alphabet"
@@ -106,16 +109,19 @@ export default {
   },
   created() {
     this.loading = true
+    console.log("test")
     let query = this.$route.query
     let showGlossaryTerm = this.showGlossaryTerm
-    this.lang = this.$i18n.locale
+    this.lang = this.$userLang
     this.fetchGlossary()
       .then(() => {
-        this.translatedGlossary = this.glossary.map(e => {
-          let al = this.$i18n.locale;
+        for (let e of this.glossary) {
+          let al = this.$userLang;
           let idx = e.translations.findIndex(t => t.lang === al);
-          return e.translations[idx];
-        });
+          if (idx !== -1) {
+            this.translatedGlossary.push(e.translations[idx])
+          }
+        }
         this.translatedGlossary.sort(this.compare)
         for (let elem of this.translatedGlossary) {
           let firstChar = elem.title.charAt(0).toUpperCase()

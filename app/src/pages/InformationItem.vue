@@ -60,11 +60,11 @@ export default {
   },
   created() {
     this.loading = true
-    this.lang = this.$i18n.locale
+    this.lang = this.$userLang
     this.id = this.$route.params.id
     this.fetchInformation().then(() => {
       let itemById = this.informationElemById(this.id)
-      let al = this.$i18n.locale;
+      let al = this.$userLang
       let idx = itemById.translations.findIndex(t => t.lang === al)
       let translated = Object.assign({}, itemById.translations[idx])
       this.item = translated

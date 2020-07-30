@@ -1,5 +1,5 @@
 import enUS from './en-us'
-import it from './it-it'
+import it from './it'
 import ar from './ar'
 import de from './de'
 
