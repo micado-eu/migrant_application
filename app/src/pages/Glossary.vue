@@ -90,14 +90,10 @@ export default {
       }
     },
     compare(a, b) {
-      if (a.title < b.title)
-        return -1;
-      if (a.title > b.title)
-        return 1;
-      return 0;
+      return a.title.localeCompare(b.title, this.$userLang, { sensitivity: "base" })
     },
     scrollIntoGlossary(index) {
-      document.getElementById(this.alphabetIds[index]).scrollIntoView()
+      document.getElementById(this.alphabetIds[index]).scrollIntoView({ block: "center", inline: "nearest" })
     }
   },
   watch: {
@@ -109,7 +105,6 @@ export default {
   },
   created() {
     this.loading = true
-    console.log("test")
     let query = this.$route.query
     let showGlossaryTerm = this.showGlossaryTerm
     this.lang = this.$userLang
