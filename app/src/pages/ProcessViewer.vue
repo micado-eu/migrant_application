@@ -33,7 +33,7 @@
           -->
        <q-field
         color="purple-12"
-        label="Description"
+        :label="$t('desc_labels.description')"
         stack-label
       >
         <template v-slot:prepend>
@@ -49,7 +49,7 @@
       <LabelMap :label="flowData.location" />
       <q-field
         color="purple-12"
-        label="Cost for the step"
+        :label="$t('desc_labels.cost')"
         stack-label
       >
         <template v-slot:prepend>

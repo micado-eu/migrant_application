@@ -1,5 +1,5 @@
 <template>
-<q-field color="purple-12" label="Location" clickable stack-label >
+<q-field color="purple-12" :label="$t('desc_labels.location')"  clickable stack-label >
   <template v-slot:prepend>
     <q-icon name="place" />
   </template>

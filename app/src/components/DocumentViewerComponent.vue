@@ -1,8 +1,8 @@
 <template>
 
-  <div style="background-color:#efefef"> 
-    <p id="filename" style="width:320px; margin: 0 auto;padding-top:30px;padding-left:10px;padding-bottom:10px">{{the_document.title}}</p>
-  <div class="q-pa-md" style="padding-top:0px; padding-left:0px; padding-right:0px">
+  <div style=""> 
+   <!-- <p id="filename" style="width:320px; margin: 0 auto;padding-top:30px;padding-left:10px;padding-bottom:10px">{{the_document.title}}</p>-->
+  <div class="" style="">
     <div style="width:320px;margin:0 auto;border-radius: 10px; background-color:white; text-align:center;">
      
       <img width="320px" style="margin: 0 auto; margin-top:10px"  alt="Powered by Micado" :src="the_document.pictures[0].picture" />
@@ -15,15 +15,15 @@
   </div>
 
     <div class="" style="width:320px; margin: 0 auto;padding-left:10px">
-     <div style="padding-bottom:30px"> 
-    <p id="textup" style="margin-bottom:2px">Document type:</p>
+     <div style="padding-bottom:20px"> 
+    <p id="textup" style="margin-bottom:2px;">Document type:</p>
     <p id="textdown">{{findType()}}</p>
     </div>
-    <div  style="padding-bottom:30px"> 
+    <div  style="padding-bottom:20px"> 
     <p id="textup" style="margin-bottom:2px">Document issuer:</p>
     <p id="textdown">{{the_document.emitter}}</p>
     </div>
-    <div  style="padding-bottom:30px"> 
+    <div  style="padding-bottom:20px"> 
     <p id="textup" style="margin-bottom:2px">Reviewed by:</p>
     <p id="textdown">{{the_document.emitter}}</p>
     </div>
@@ -32,9 +32,8 @@
     <p id="textdown">{{the_document.expirationDate}}</p>
     </div>
   
-    
-    <q-btn id="button" size="12px" rounded no-caps color="accent" style="width:100px;margin-right:10px" :label="$t('button.download')" />
-    <q-btn id="button" size="12px" rounded no-caps style="width:100px;margin-right:15px" filled color="info" to="/documents" :label="$t('button.back')" />
+    <q-btn id="button" size="12px" rounded no-caps style="width:100px;margin-right:15px;margin-top:20px" filled color="info" to="/documents" :label="$t('button.back')" />
+    <q-btn id="button" size="12px" rounded no-caps color="accent" style="width:100px;margin-right:10px;margin-top:20px" :label="$t('button.download')" />
     
    
     
@@ -58,7 +57,7 @@ export default {
   },
   methods:{
     editing(){
-      this.$router.push('edit/' + this.id)
+     this.$router.push({ name: 'editdocument', params: { thedoc: this.the_document } })
     }, 
     findType(){
      var doc_type = this.document_types.filter((type)=>{return type.id == this.the_document.documentTypeId})[0]
@@ -102,9 +101,11 @@ export default {
 </script>
 <style scoped>
 #textup {
-   
-   font-size: 16pt;
-   font-weight: bold;
+  font-family: "Nunito", sans-serif;
+font-style: normal;
+font-weight: bold;
+font-size: 16px;
+line-height: 22px;
 }
 #filename {
    
@@ -112,8 +113,12 @@ export default {
    font-weight: bold;
 }
 #textdown {
- 
-   font-size: 14pt;
+font-family: "Nunito Sans", sans-serif;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 19px;
+margin-bottom: 0px;
 }
 
 </style>

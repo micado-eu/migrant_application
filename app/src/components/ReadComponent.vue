@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-md q-gutter-sm">
-    <q-btn :color="color" text-color="white" label="Read Along" @click="toggleRead()" />
+    <q-btn :color="color" text-color="white" :label="$t('input_labels.read')" @click="toggleRead()" />
   </div>
 </template>
 

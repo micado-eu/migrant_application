@@ -11,7 +11,7 @@
         debounce="500"
         filled
         outlined
-        label="Search"
+        :label="$t('desc_labels.search')"
         label-color="accent"
         class="q-mb-md"
       >

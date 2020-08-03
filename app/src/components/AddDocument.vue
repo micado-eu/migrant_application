@@ -11,7 +11,7 @@
             map-options
             v-model="doc_shell.documentTypeId"
             :options="this.t_docs"
-            label="Document Type"
+            :label="$t('input_labels.doc_type')"
             
           />
       </div>
@@ -19,14 +19,14 @@
     
       
       <div class="" style="margin: auto;display: block;padding-bottom:10px">
-        <q-input dense  standout outlined label="Expiration date" v-model="doc_shell.expirationDate"  />
+        <q-input dense  standout outlined :label="$t('input_labels.exp_date')" v-model="doc_shell.expirationDate"  />
       </div>
  
    
       
       <div class="col-8" style="margin: auto;display: block;padding-bottom:10px">
         <q-file
-        label="Upload document"
+        :label="$t('input_labels.upload_doc')"
               @input="getFiles($event)"
               bg-color="grey-3"
               dense

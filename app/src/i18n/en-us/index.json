@@ -29,5 +29,26 @@
     "back":"Back",
     "ask_validation":"Ask for validation",
     "download":"Download"
+  },
+  "input_labels":{
+    "doc_type":"Document Type",
+    "exp_date":"Expiration Date",
+    "upload_doc":"Upload Document",
+    "read":"Read Along"
+  },
+  "desc_labels":{
+    "cost":"Cost for the step",
+    "location":"Location",
+    "description":"Description",
+    "search":"Search"
+  },
+  "profile":{
+    "change_pic":"Change picture",
+    "username":"Username",
+    "password":"Password",
+    "legal_name":"Legal Name",
+    "nationality":"Nationality",
+    "age":"Age",
+    "gender":"Gender"
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <q-page class="flows container-fluid" style="background-color:#efefef">
+  <q-page class="flows container-fluid" style="">
     <div
       class="q-pa-md"
       style="text-align:center; padding-top:30px; padding-bottom:20px; "
