@@ -10,7 +10,7 @@
             
             />
       </div>
-      <q-btn color="info" unelevated style="width:150px" no-caps rounded text-color="white" :label="$t('desc_labels.change_pic')" @click="picture_select = !picture_select" />
+      <q-btn color="info" unelevated style="width:150px" no-caps rounded text-color="white" :label="$t('profile.change_pic')" @click="picture_select = !picture_select" />
       <div v-if="picture_select" class=" q-pa-xsm " style="text-align:center">
      
       <div class="col-8" style="margin-bottom:10px; padding-top:10px" >
@@ -27,10 +27,10 @@
       </div>
     </div>
     <div class=" q-pa-xsm " style="text-align:center">
-      <h5 class="q-pa-md" style="margin:0 auto; text-align:left; padding-left:0px;font-size:18px;font-weight:600">Personal Profile</h5>
+      <h5 class="q-pa-md" style="margin:0 auto; text-align:left; padding-left:0px;font-size:18px;font-weight:600">{{$t('profile.personal_profile')}}</h5>
      
       <div class="" style="margin: auto;display: block;margin-bottom:0px;margin-top:0px; padding-bottom:10px">
-        <q-input  dense :label="$t('desc_labels.username')"  bg-color="grey-1"   standout outlined v-model="user.username" >
+        <q-input  dense :label="$t('profile.username')"  bg-color="grey-1"   standout outlined v-model="user.username" >
         <q-icon style="padding-top:5px; padding-left:5px" name="img:statics/icons/Edit.png" size="md"  />
         </q-input>
       </div>
@@ -41,7 +41,7 @@
     <div class=" q-pa-xsm " >
      
       <div class="col-8" style="margin: auto;display: block;margin-bottom:0px; padding-bottom:10px">
-        <q-input  dense  :type="isPwd ? 'password' : 'text'"  bg-color="grey-1" standout outlined :label="$t('desc_labels.password')" v-model="user.password"  >
+        <q-input  dense  :type="isPwd ? 'password' : 'text'"  bg-color="grey-1" standout outlined :label="$t('profile.password')" v-model="user.password"  >
           <template v-slot:append>
           <q-icon
             :name="isPwd ? 'visibility_off' : 'visibility'"
@@ -56,7 +56,7 @@
     <div class=" q-pa-xsm " >
       
       <div class="col-8" style="margin: auto;display: block;margin-bottom:0px; padding-bottom:10px">
-        <q-input  dense   style="" :label="$t('desc_labels.legal_name')"  bg-color="grey-1" standout outlined v-model="user.legalname"  >
+        <q-input  dense   style="" :label="$t('profile.legal_name')"  bg-color="grey-1" standout outlined v-model="user.legalname"  >
          <q-icon style="padding-top:5px; padding-left:5px" name="img:statics/icons/Edit.png" size="md"  />
         </q-input>
       </div>
@@ -65,7 +65,7 @@
 <div class=" q-pa-xsm " >
       
       <div class="col-8" style="margin: auto;display: block;margin-bottom:0px;padding-bottom:10px">
-        <q-input  dense  bg-color="grey-1" :label="$t('desc_labels.nationality')" standout outlined v-model="user.nationality"  >
+        <q-input  dense  bg-color="grey-1" :label="$t('profile.nationality')" standout outlined v-model="user.nationality"  >
          <q-icon style="padding-top:5px; padding-left:5px" name="img:statics/icons/Edit.png" size="md"  />
         </q-input>
       </div>
@@ -74,7 +74,7 @@
     <div class=" q-pa-xsm " >
       
       <div class="col-8" style="margin: auto;display: block;margin-bottom:0px;padding-bottom:10px">
-        <q-input  dense  bg-color="grey-1" :label="$t('desc_labels.age')" standout outlined v-model="user.age"  >
+        <q-input  dense  bg-color="grey-1" :label="$t('profile.age')" standout outlined v-model="user.age"  >
          <q-icon style="padding-top:5px; padding-left:5px" name="img:statics/icons/Edit.png" size="md"  />
         </q-input>
       </div>
@@ -83,7 +83,7 @@
     <div class=" q-pa-xsm " >
       
       <div class="col-8" style="margin: auto;display: block;margin-bottom:0px;padding-bottom:10px">
-        <q-input  dense  bg-color="grey-1" :label="$t('desc_labels.gender')" standout outlined v-model="user.gender"  >
+        <q-input  dense  bg-color="grey-1" :label="$t('profile.gender')" standout outlined v-model="user.gender"  >
          <q-icon style="padding-top:5px; padding-left:5px" name="img:statics/icons/Edit.png" size="md"  />
         </q-input>
       </div>
