@@ -16,19 +16,19 @@
 
     <div class="" style="width:320px; margin: 0 auto;padding-left:10px">
      <div style="padding-bottom:20px"> 
-    <p id="textup" style="margin-bottom:2px;">Document type:</p>
+    <p id="textup" style="margin-bottom:2px;">{{$t('desc_labels.document_type')}}:</p>
     <p id="textdown">{{findType()}}</p>
     </div>
     <div  style="padding-bottom:20px"> 
-    <p id="textup" style="margin-bottom:2px">Document issuer:</p>
+    <p id="textup" style="margin-bottom:2px">{{$t('desc_labels.document_issuer')}}:</p>
     <p id="textdown">{{the_document.emitter}}</p>
     </div>
     <div  style="padding-bottom:20px"> 
-    <p id="textup" style="margin-bottom:2px">Reviewed by:</p>
+    <p id="textup" style="margin-bottom:2px">{{$t('desc_labels.reviewed_by')}} by:</p>
     <p id="textdown">{{the_document.emitter}}</p>
     </div>
     <div  style="padding-bottom:40px"> 
-    <p id="textup" style="margin-bottom:2px">Review date:</p>
+    <p id="textup" style="margin-bottom:2px">{{$t('desc_labels.review_date')}}:</p>
     <p id="textdown">{{the_document.expirationDate}}</p>
     </div>
   

@@ -96,7 +96,7 @@
   </div>
     <div class="" >
      <div class=" " style="margin:0 auto;width:300px ">
-    <h5>Privacy Settings</h5>
+    <h5>{{$t('desc_labels.privacy_settings')}}</h5>
     <q-card class="my-card" style="width:300px; display:inline-block">
       <q-card-section >
         <q-item v-for="option in options" :key="option.value">

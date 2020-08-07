@@ -3,7 +3,7 @@
     <span v-if="loading">Loading...</span>
     <div v-if="!loading" class="q-pa-md">
       <q-toolbar class="text-white toolbar-list q-mb-md">
-        <q-toolbar-title>Information Centre</q-toolbar-title>
+        <q-toolbar-title>{{$t('desc_labels.information_centre')}}</q-toolbar-title>
       </q-toolbar>
       <q-input
         color="accent"

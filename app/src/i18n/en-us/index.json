@@ -40,7 +40,18 @@
     "cost":"Cost for the step",
     "location":"Location",
     "description":"Description",
-    "search":"Search"
+    "search":"Search",
+    "document_type":"Document type",
+    "document_issuer": "Document issuer",
+    "reviewed_by":"Reviewed by",
+    "expiration_date":"Expiration date",
+    "review_date":"Review date",
+    "login_register":"Login/Register",
+    "settings":"Settings",
+    "logout":"Logout",
+    "information_centre":"Information Centre",
+    "required_documents":"Required documents",
+    "privacy_settings":"Privacy Settings"
   },
   "profile":{
     "change_pic":"Change picture",

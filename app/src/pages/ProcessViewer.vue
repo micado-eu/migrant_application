@@ -63,7 +63,7 @@
         </template>
       </q-field>
       <q-list>
-        <q-item-label header>Required documents</q-item-label>
+        <q-item-label header>{{$t('desc_labels.required_documents')}}</q-item-label>
         <DocumentItem
           v-for="doc in documents"
           :theDoc="doc"
