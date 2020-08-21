@@ -95,18 +95,23 @@ export default {
       this.n_messages++
       let answer = {}
       if (responses[0].custom != null) {
+        let result = JSON.parse(responses[0].custom)
+        console.log(result)
         answer.id = this.n_messages
         answer.user = "Micado"
-        answer.text = responses[0].custom.data.text
+        answer.text = "press the button to go to the proper process"
         answer.timestamp = time
         answer.sent = false
-        answer.btn = responses[0].custom.data.btn
+        answer.btn = true
         if (answer.btn) {
-          answer.btn_label = responses[0].custom.data.btn_label
-          answer.btn_link = responses[0].custom.data.btn_link
+          answer.btn_label = result[0].process
+          answer.btn_link = "/processes/" + result[0].id
         }
       } else {
-
+        answer.id = this.n_messages
+        answer.user = "Micado"
+        answer.text = responses[0].text
+        answer.btn = false
       }
       console.log(answer)
       this.$store.commit('chatbot/addMessage', answer)
