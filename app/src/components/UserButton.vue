@@ -63,6 +63,9 @@ export default {
   },
   methods: {
     toLogin () {
+      this.$auth.login()
+
+      /*
       let d = new Date()
       let t = d.getTime()
 
@@ -77,7 +80,7 @@ export default {
 
       console.log(aut_url)
       window.location = aut_url
-
+*/
     }
   }
 }
