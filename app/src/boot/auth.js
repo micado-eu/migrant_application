@@ -33,7 +33,7 @@ export default ({ app, router, store, Vue }) => {
   /**
    * Register auth store
    */
-  store.registerModule('auth', auth)
+  //store.registerModule('auth', auth)
 
   /**
    * Set route guard
@@ -41,14 +41,35 @@ export default ({ app, router, store, Vue }) => {
   router.beforeEach((to, from, next) => {
     const record = to.matched.find(record => record.meta.auth)
     if (record) {
-      store.dispatch('auth/fetch').then(() => {
+      console.log("nel routerguard")
+      console.log(record)
+      console.log(store)
+      store.dispatch('auth/fetch')
+      if (!store.getters['auth/loggedIn']) {
+        console.log("not logget in")
+        router.push('/reserved')
+      } else if (
+        isArrayOrString(record.meta.auth) &&
+        !store.getters['auth/check'](record.meta.auth)
+      ) {
+        console.log("nel elseif")
+        router.push('/account')
+      } else {
+        next()
+      }
+      /*
+      .then(() => {
         console.log("called fetch")
+        console.log(store)
+
         if (!store.getters['auth/loggedIn']) {
+          console.log("not logget in")
           router.push('/')
         } else if (
           isArrayOrString(record.meta.auth) &&
           !store.getters['auth/check'](record.meta.auth)
         ) {
+          console.log("nel elseif")
           router.push('/account')
         }
       }).catch(err => {
@@ -58,6 +79,7 @@ export default ({ app, router, store, Vue }) => {
       }).finally(() => {
         next()
       })
+      */
     } else {
       next()
     }

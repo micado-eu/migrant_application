@@ -45,10 +45,10 @@ export default {
       console.log('pagina di validate')
       console.log(this.$route)
       console.log(id_token)
-      console.log(this.access_token)
-      this.$store.commit('setUser', id_token)
-      this.$store.dispatch('setToken', {
-        token: id_token,
+      console.log(access_token)
+      this.$store.commit('auth/setUser', id_token)
+      this.$store.dispatch('auth/setToken', {
+        token: access_token,
         rememberMe: false
       })
 

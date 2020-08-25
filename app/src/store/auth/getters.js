@@ -8,6 +8,8 @@ export function loggedIn (state) {
 
 export const check = state => roles => {
   const user = state.user
+  console.log("getter check")
+  console.log(roles)
   if (user) {
     if (Array.isArray(roles) && roles.length) {
       for (let role of roles) {

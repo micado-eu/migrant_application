@@ -8,17 +8,17 @@
       self="top right"
     >
       <q-item
-        v-if="!this.$auth.check()"
+        v-if="!this.$auth.loggedIn()"
         @click="toLogin()"
         clickable
         v-close-popup
       >
         <q-item-section>{{$t('desc_labels.login_register')}}</q-item-section>
       </q-item>
-      <q-item v-if="this.$auth.check()">
+      <q-item v-if="this.$auth.loggedIn()">
         <q-item-section>{{$t('desc_labels.logout')}}</q-item-section>
       </q-item>
-      <q-item v-if="this.$auth.check()">
+      <q-item v-if="this.$auth.loggedIn()">
         <q-item-section>{{$t('desc_labels.settings')}}</q-item-section>
       </q-item>
     </q-menu>

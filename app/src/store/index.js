@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 // import example from './module-example'
 import chatbot from './chatbot'
+import auth from './auth'
 import documents from './documents'
 import flows from './flows'
 import services from './services'
@@ -32,6 +33,7 @@ export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
       // example
+      auth,
       chatbot,
       flows,
       services,

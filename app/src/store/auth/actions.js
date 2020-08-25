@@ -64,21 +64,25 @@ export function setToken (state, data) {
   }
 }
 
-export async function fetch (state) {
+export function fetch (store) {
   console.log("in fetch")
-  if (state.user) {
+  console.log(store)
+  console.log(store.state.user)
+  if (store.state.user) {
     console.log("found user")
-    console.log(state.user)
+    console.log(store.state.user)
     return true
   }
   var token = Cookies.get('authorization_token')
   console.log(token)
   if (token) {
     console.log("found token in cookies and fetching user")
+    /*
     axiosInstance.defaults.headers.common['Authorization'] = 'Bearer ' + token
     return axiosInstance.get(FETCH_USER_ROUTE).then(response => {
       state.commit('setUser', response.data.data)
     })
+    */
   }
 }
 

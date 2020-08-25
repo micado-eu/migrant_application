@@ -56,6 +56,7 @@
           v-for="(nav) in navs"
           :to="nav.to"
           :key="nav.label"
+          :hidden="nav.visible"
           v-feature-flipping="nav.feature"
           active
           active-class="my-menu-link"
@@ -87,7 +88,7 @@
 </template>
 
 <script>
-import AuthMenu from "./auth/AuthMenu";
+//import AuthMenu from "./auth/AuthMenu";
 //import ListenToggle from "components/ListenToggle";
 import LanguageSelector from "components/LanguageSelector";
 import UserButton from "components/UserButton"
@@ -96,7 +97,6 @@ export default {
   name: "Layout",
 
   components: {
-    AuthMenu,
     UserButton,
     //ListenToggle, 
     LanguageSelector
@@ -111,42 +111,48 @@ export default {
           icon: "img:statics/icons/Home (600x600) white.png",
           to: "/",
           description: "menu.home_desc",
-          feature: "FEAT_DEFAULT"
+          feature: "FEAT_DEFAULT",
+          visible: false
         },
         {
           label: "menu.processes",
           icon: "img:statics/icons/Guided Processes (600x600) white.png",
           to: "/processes",
           description: "menu.processes_desc",
-          feature: "FEAT_PROCESSES"
+          feature: "FEAT_PROCESSES",
+          visible: true
         },
         {
           label: "menu.information",
           icon: "img:statics/icons/Genreal Information (600x600) white.png",
           to: "/information",
           description: "menu.information_desc",
-          feature: "FEAT_INFO"
+          feature: "FEAT_INFO",
+          visible: true
         },
         {
           label: "menu.chatbot",
           icon: "img:statics/icons/Chatbot (600x600) white.png",
           to: "/chatbot",
           description: "menu.chatbot_desc",
-          feature: "FEAT_CHATBOT"
+          feature: "FEAT_CHATBOT",
+          visible: true
         },
         {
           label: "menu.documents",
           icon: "img:statics/icons/Document Wallet (600x600) white.png",
           to: "/documents",
           description: "menu.documents_desc",
-          feature: "FEAT_DOCUMENTS"
+          feature: "FEAT_DOCUMENTS",
+          visible: true
         },
         {
           label: "menu.tasks",
           icon: "img:statics/icons/Task Monitor (600x600) white.png",
           to: "/tasks",
           description: "menu.tasks_desc",
-          feature: "FEAT_TASKS"
+          feature: "FEAT_TASKS",
+          visible: true
         },
         // {
         //   label: "menu.messenger",
@@ -160,14 +166,16 @@ export default {
           icon: "img:statics/icons/MICADO PA APP Icon - Glossary Page (white).png",
           to: "/glossary",
           description: "menu.glossary_desc",
-          feature: "FEAT_GLOSSARY"
+          feature: "FEAT_GLOSSARY",
+          visible: true
         },
         {
           label: "menu.settings",
           icon: "img:statics/icons/Settings (600x600) white.png",
           to: "/settings",
           description: "menu.settings_desc",
-          feature: "FEAT_SETTINGS"
+          feature: "FEAT_SETTINGS",
+          visible: true
         }
       ]
     };

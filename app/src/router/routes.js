@@ -20,6 +20,7 @@ import AddDocument from 'components/AddDocument'
 import ProcessViewer from 'pages/ProcessViewer'
 import InformationCentre from 'pages/InformationCentre'
 import InformationItem from 'pages/InformationItem'
+import Reserved from 'pages/Reserved'
 
 const routes = [
   {
@@ -27,7 +28,7 @@ const routes = [
     component: () => import('layouts/Layout.vue'),
     children: [
       { path: '', component: Index },
-      { path: '/documents', component: DocumentWallet },
+      { path: '/documents', component: DocumentWallet, meta: { auth: true } },
       { path: '/documents/add', component: AddDocument },
       { path: '/documents/:thedocid', name: 'viewdocument', component: () => import('components/DocumentViewerComponent.vue'), props: (route) => ({ ...route.params }) },
       { path: '/documents/edit/:id', component: AddDocument, props: true, name: document },
@@ -37,7 +38,7 @@ const routes = [
       { path: '/processes/:id', component: ProcessViewer, props: true, name: document },
       { path: '/notifications', component: Notifications },
       { path: '/speech', component: Speech },
-      //      { path: '/gioppo', component: Home },
+      { path: '/reserved', component: Reserved },
       { path: '/login', component: Gioppo },
       { path: '/tasks', component: Tasks },
       { path: '/chatbot', component: Chatbot },

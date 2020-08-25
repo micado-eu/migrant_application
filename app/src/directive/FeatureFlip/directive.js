@@ -22,7 +22,7 @@ export async function featureFlippingDirective (el, binding, vnode) {
  */
 async function renderDOM (el, binding, vnode) {
   let key = binding.value
-  let {default: defaut, not = false} = binding.modifiers
+  let { default: defaut, not = false } = binding.modifiers
 
   if (not ^ !isEnabled(key, defaut)) {
     await vnode.context.$nextTick()
@@ -41,8 +41,8 @@ async function renderDOM (el, binding, vnode) {
  * <div v-feature-flipping:class.default="{ key: 'XXXXX', value: 'class1' }">...</div>
  */
 async function renderClasses (el, binding) {
-  let {key, value} = binding.value
-  let {default: defaut, not = false} = binding.modifiers
+  let { key, value } = binding.value
+  let { default: defaut, not = false } = binding.modifiers
 
   if (not ^ isEnabled(key, defaut)) {
     el.className += ' ' + parseClasses(value).join(' ')
@@ -77,8 +77,8 @@ function parseClasses (value) {
  * <div v-feature-flipping:style.default="{ key: 'XXXXX', value: { style1: 'value1', style2: 'value2' } }">...</div>
  */
 async function renderStyles (el, binding) {
-  let {key, value} = binding.value
-  let {default: defaut, not = false} = binding.modifiers
+  let { key, value } = binding.value
+  let { default: defaut, not = false } = binding.modifiers
 
   if (not ^ isEnabled(key, defaut)) {
     for (let [styleName, styleValue] of Object.entries(parseStyles(value))) {
