@@ -4,23 +4,26 @@
     <div class="row">
       <div class="col">
         <q-scroll-area
-          horizontal
+          vertical
           style="height: 210px;"
           class="bg-grey-1"
         >
           <vue-mermaid
             :nodes="mermaid"
-            type="graph LR"
             :config="merconf"
+            type="graph TD"
             v-on:nodeClick="editNodeMer"
           ></vue-mermaid>
         </q-scroll-area>
       </div>
     </div>
-     <h5 :class="nodePanelVisible" style="font-weight: 600;font-size: 16px; padding-left:30px">{{this.shell_data.text}}</h5>
+    <h5
+      :class="nodePanelVisible"
+      style="font-weight: 600;font-size: 16px; padding-left:30px"
+    >{{this.shell_data.text}}</h5>
     <q-card
       :class="nodePanelVisible"
-      header="Details of the step"
+      header="Details of the step1"
     >
       <!--          <q-field color="purple-12" label="Location" stack-label>
             <template v-slot:prepend>
@@ -31,7 +34,7 @@
             </template>
           </q-field>
           -->
-       <q-field
+      <q-field
         color="purple-12"
         :label="$t('desc_labels.description')"
         stack-label
@@ -45,7 +48,7 @@
             tabindex="0"
           >{{shell_data.description}}</div>
         </template>
-      </q-field>   
+      </q-field>
       <LabelMap :label="flowData.location" />
       <q-field
         color="purple-12"
@@ -108,7 +111,7 @@ export default {
     return {
       details: false,
       id: this.$route.params.id,
-      merconf: { theme: "default", startOnLoad: false, securityLevel: 'loose', useMaxWidth: false, fontSize: 9 },
+      merconf: { theme: "default", startOnLoad: false, securityLevel: 'loose', useMaxWidth: false, flowchart: { padding: 5 } },
       mermaid: [],
       the_process: this.$route.params.title
 
@@ -236,9 +239,12 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style >
 canvas {
   margin-left: -300px;
   background-color: blue;
+}
+g.label {
+  font-size: 10px;
 }
 </style>
