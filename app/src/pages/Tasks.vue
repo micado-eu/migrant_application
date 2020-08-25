@@ -38,10 +38,10 @@
       >
         {{intervention.description}}
         <div v-if="intervention.validated">
-         <q-btn size="11px" unelevated rounded color="accent" style="margin-top:10px; margin-left:0px" no-caps disable label="Ask for validation" />
+         <q-btn size="11px" unelevated rounded color="accent" style="margin-top:10px; margin-left:0px" no-caps disable :label="$t('button.ask_validation')" />
         </div>
         <div v-else>
-         <q-btn size="11px" unelevated rounded color="accent" style="margin-top:10px; margin-left:0px" :id="intervention.id" no-caps :disable="asked.indexOf(intervention.id) !== -1" @click="askValidation(intervention.id)" label="Ask for validation" />
+         <q-btn size="11px" unelevated rounded color="accent" style="margin-top:10px; margin-left:0px" :id="intervention.id" no-caps :disable="asked.indexOf(intervention.id) !== -1" @click="askValidation(intervention.id)" :label="$t('button.ask_validation')" />
         </div>
       </q-step>
 

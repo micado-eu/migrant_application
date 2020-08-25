@@ -1,10 +1,8 @@
 <template>
-<div class="" style=" border-width:3px; border-color:#0f3a5d; border-radius: 1.95rem;border-style: solid; margin: 0 auto; width:750px; padding-left:20px; padding-right:20px; margin-top:25px; padding-bottom:10px">
-    <div class="  row" style="text-align:center">
-      <div class="col-4">
-        <h5 style="text-align:left;margin-bottom:0px"> Document type </h5>
-      </div>
-      <div class="col-8" style="margin: auto;display: block;margin-bottom:0px">
+<div class="" style="  margin: 0 auto;  margin-top:25px; padding-bottom:10px; width:300px">
+    
+      
+      <div class="" style="margin: auto;display: block;margin-bottom:0px; padding-top:10px; padding-bottom:10px">
         <q-select
             filled
             dense
@@ -13,29 +11,26 @@
             map-options
             v-model="doc_shell.documentTypeId"
             :options="this.t_docs"
-            label="Document Type"
-            style="width: 200px"
+            :label="$t('input_labels.doc_type')"
+            
           />
       </div>
-    </div>
-    <div class="row" style="text-align:center">
-      <div class=" col-4">
-        <h5 style="text-align:left"> Expiration date </h5>
+    
+    
+      
+      <div class="" style="margin: auto;display: block;padding-bottom:10px">
+        <q-input dense  standout outlined :label="$t('input_labels.exp_date')" v-model="doc_shell.expirationDate"  />
       </div>
-      <div class="col-8" style="margin: auto;display: block;">
-        <q-input dense rounded standout outlined :value="doc_shell.userId"  />
-      </div>
-    </div>
-    <div class=" q-pa-xsm row" style="text-align:center">
-      <div class=" q-pa-xsm col-4">
-        <h5 style="text-align:left"> Document pictures </h5>
-      </div>
-      <div class="col-8" style="margin: auto;display: block;">
+ 
+   
+      
+      <div class="col-8" style="margin: auto;display: block;padding-bottom:10px">
         <q-file
+        :label="$t('input_labels.upload_doc')"
               @input="getFiles($event)"
               bg-color="grey-3"
               dense
-              rounded
+              
               multiple
               standout
               outlined
@@ -43,23 +38,25 @@
         </q-file>
        
   </div>
-  </div>
-   <div class="row">
-                <div class="col" v-for="image in uploaded_images" :key="image">
+ 
+   
+                <div class="" v-for="image in uploaded_images" :key="image">
         <q-img 
               :src="image"
               spinner-color="white"
               style="max-height: 100px; max-width: 150px"
             />
-            <q-btn  no-caps rounded style="width:100px;margin-right:20px" filled color="accent" @click="removePicture(image)"  label="Remove" />
+            <span style="text-align:right; padding-left:20px">
+            <q-btn  no-caps rounded style="width:100px;" filled color="accent" @click="removePicture(image)"  :label="$t('button.remove')" />
+            </span>        
           </div>
-          </div>
+          
   <div class="" style="text-align:center; padding-top:20px">
     
-    <q-btn  no-caps rounded style="width:100px;margin-right:20px" filled color="accent" @click="saveDocument(doc_shell)"  label="Save" />
+    <q-btn  no-caps rounded style="width:100px;margin-right:20px" filled color="accent" @click="saveDocument(doc_shell)"  :label="$t('button.save')" />
 
 
-    <q-btn  no-caps rounded color="info" style="width:100px;" to="/documents" @click="back()" label="Back" />
+    <q-btn  no-caps rounded color="info" style="width:100px;" to="/documents" @click="back()" :label="$t('button.back')" />
 
   </div>
   </div>
@@ -192,21 +189,6 @@ export default {
       return this.$store.state.document_type.document_type
 
     }
-    /*the_document(){
-      if(this.id != null){
-        for(var i = 0; i< this.documents.length; i++){
-          if(this.documents[i].id == this.id){
-            console.log("id documento" + this.documents[i].id)
-            console.log(this.documents[i])
-            console.log("id route" + this.id)
-            return this.documents[i]
-          }
-        }
-      }
-      else{
-        return this.doc_shell
-      }
-    }*/
     
    },
   created () {

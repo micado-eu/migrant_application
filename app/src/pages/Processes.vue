@@ -20,7 +20,7 @@
           outlined
           bg-color="grey-2"
           v-model="search"
-          label="Search"
+          :label="$t('desc_labels.search')"
         >
           <template v-slot:append>
             <q-icon name="search" />

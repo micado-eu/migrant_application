@@ -22,3 +22,6 @@ export function setDocuments (state, documents) {
 export function setFlowData(state, data) {
   state.flowdata = data
 }
+export function setShellData(state, data) {
+  state.shell_data = data
+}

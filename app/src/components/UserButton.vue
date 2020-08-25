@@ -13,13 +13,13 @@
         clickable
         v-close-popup
       >
-        <q-item-section>Login/Register</q-item-section>
+        <q-item-section>{{$t('desc_labels.login_register')}}</q-item-section>
       </q-item>
       <q-item v-if="this.$auth.check()">
-        <q-item-section>Logout</q-item-section>
+        <q-item-section>{{$t('desc_labels.logout')}}</q-item-section>
       </q-item>
       <q-item v-if="this.$auth.check()">
-        <q-item-section>Settings</q-item-section>
+        <q-item-section>{{$t('desc_labels.settings')}}</q-item-section>
       </q-item>
     </q-menu>
     <!--
@@ -63,6 +63,9 @@ export default {
   },
   methods: {
     toLogin () {
+      this.$auth.login()
+
+      /*
       let d = new Date()
       let t = d.getTime()
 
@@ -77,7 +80,7 @@ export default {
 
       console.log(aut_url)
       window.location = aut_url
-
+*/
     }
   }
 }

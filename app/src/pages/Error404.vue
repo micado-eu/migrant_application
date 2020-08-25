@@ -11,7 +11,7 @@
       color="accent"
       style="width:200px;"
       to="/"
-      label="Go back"
+      :label="$t('button.back')"
     />
   </div>
 </template>

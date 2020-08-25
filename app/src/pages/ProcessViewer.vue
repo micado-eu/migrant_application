@@ -17,6 +17,7 @@
         </q-scroll-area>
       </div>
     </div>
+     <h5 :class="nodePanelVisible" style="font-weight: 600;font-size: 16px; padding-left:30px">{{this.shell_data.text}}</h5>
     <q-card
       :class="nodePanelVisible"
       header="Details of the step"
@@ -30,10 +31,25 @@
             </template>
           </q-field>
           -->
+       <q-field
+        color="purple-12"
+        :label="$t('desc_labels.description')"
+        stack-label
+      >
+        <template v-slot:prepend>
+          <q-icon name="img:statics/icons/Description.svg" />
+        </template>
+        <template v-slot:control>
+          <div
+            class="self-center full-width no-outline"
+            tabindex="0"
+          >{{shell_data.description}}</div>
+        </template>
+      </q-field>   
       <LabelMap :label="flowData.location" />
       <q-field
         color="purple-12"
-        label="Cost for the step"
+        :label="$t('desc_labels.cost')"
         stack-label
       >
         <template v-slot:prepend>
@@ -47,7 +63,7 @@
         </template>
       </q-field>
       <q-list>
-        <q-item-label header>Required documents</q-item-label>
+        <q-item-label header>{{$t('desc_labels.required_documents')}}</q-item-label>
         <DocumentItem
           v-for="doc in documents"
           :theDoc="doc"
@@ -63,10 +79,10 @@
       <q-btn
         size="12px"
         no-caps
-        style="width:130px;"
+        style="width:130px; margin-top:20px"
         rounded
         color="info"
-        label="Back"
+        :label="$t('button.back')"
         to="/processes"
       />
     </div>
@@ -105,6 +121,9 @@ export default {
     flowData () {
       return this.$store.state.flows.flowdata
     },
+    shell_data () {
+      return this.$store.state.flows.shell_data
+    },
     documents () {
       return this.$store.state.flows.documents
     },
@@ -125,10 +144,12 @@ export default {
     editNodeMer (nodeId) {
       console.log(nodeId);
       const arr1 = this.mermaid.filter(d => d.id == nodeId);
+      console.log("I am flow data")
       console.log(arr1[0].data);
       this.$store.commit("flows/setNodePanelVisible", "");
       this.$store.commit("flows/setDocuments", arr1[0].data.documents);
       this.$store.commit("flows/setFlowData", arr1[0].data);
+      this.$store.commit("flows/setShellData", arr1[0]);
     },
 
     showStep (event, node) {

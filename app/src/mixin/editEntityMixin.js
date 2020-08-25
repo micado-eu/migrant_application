@@ -1,18 +1,18 @@
 export default {
-    data () {
+    data() {
         return {
-            activeLanguage: this.$i18n.locale,
+            activeLanguage: this.$userLang,
             langTab: this.$defaultLangString,
 
         }
     },
     computed: {
-        languages () {
+        languages() {
             return this.$store.state.language.languages;
         },
     },
     methods: {
-        filterTranslationModel (currentLang) {
+        filterTranslationModel(currentLang) {
             return function (element) {
                 return element.lang == currentLang;
             }

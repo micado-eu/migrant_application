@@ -5,16 +5,62 @@
     "home": "Home",
     "home_desc": "MICADO home page",
     "processes": "Integration step-by-step",
-    "processes_desc": "guided integration processes",
+    "processes_desc": "Guided integration processes",
     "info": "Information centre",
     "chatbot": "MICADO Bot",
+    "chatbot_desc":"Micado smart assistant",
     "tasks": "My integration plan",
+    "tasks_desc":"Your personal integration plan",
     "documents": "My documents",
+    "documents_desc":"My integration document collection",
     "messenger": "My Messages",
     "settings": "Settings",
+    "settings_desc":"Manage your account",
     "language": "en-US",
     "glossary": "Common words",
+    "glossary_desc":"Commonly used words",
     "information": "Information centre",
-    "information_desc": "integration information, events and services"
+    "information_desc": "Integration information, events and services"
+  }, 
+  "button":{
+    "add_document":"Add Document",
+    "save":"Save",
+    "remove":"Remove",
+    "back":"Back",
+    "ask_validation":"Ask for validation",
+    "download":"Download"
+  },
+  "input_labels":{
+    "doc_type":"Document Type",
+    "exp_date":"Expiration Date",
+    "upload_doc":"Upload Document",
+    "read":"Read Along"
+  },
+  "desc_labels":{
+    "cost":"Cost for the step",
+    "location":"Location",
+    "description":"Description",
+    "search":"Search",
+    "document_type":"Document type",
+    "document_issuer": "Document issuer",
+    "reviewed_by":"Reviewed by",
+    "expiration_date":"Expiration date",
+    "review_date":"Review date",
+    "login_register":"Login/Register",
+    "settings":"Settings",
+    "logout":"Logout",
+    "information_centre":"Information Centre",
+    "required_documents":"Required documents",
+    "privacy_settings":"Privacy Settings"
+  },
+  "profile":{
+    "change_pic":"Change picture",
+    "username":"Username",
+    "password":"Password",
+    "legal_name":"Legal Name",
+    "nationality":"Nationality",
+    "age":"Age",
+    "gender":"Gender",
+    "personal_profile":"Personal Profile"
   }
 }

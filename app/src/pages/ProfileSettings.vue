@@ -1,24 +1,23 @@
 <template>
   <q-page padding>
-    <h5 class="q-pa-md" style="margin:0 auto; width:750px">Profile</h5>
-    <div style="text-align:center">
-  <div class=" q-pa-lg" style="display:inline-block; width:750px;border-width:2px; border-color:#0f3a5d; border-radius: 1.95rem;border-style: solid; margin-bottom: 1px">
+    
+    <div style="text-align:center; padding-top:14px">
+  <div class=" " style="display:inline-block;margin-bottom: 1px; width:300px">
      <div style="margin:0 auto" >
         <img alt="User Profile"
-            src="~assets/UserProfile.png" 
-            style="width:300px; height:300px"
-            @click="picture_select = !picture_select"
+            src="~assets/user-placeholder.png" 
+            style="width:150px; height:150px"
+            
             />
       </div>
-      <div v-if="picture_select" class=" q-pa-xsm row" style="text-align:center">
-     <div class=" q-pa-xsm col-4">
-        <h5 style="text-align:left;margin-bottom:0px; margin-top:0px"> Profile picture </h5>
-      </div>
-      <div class="col-8" style="margin-bottom:10px" >
+      <q-btn color="info" unelevated style="width:150px" no-caps rounded text-color="white" :label="$t('profile.change_pic')" @click="picture_select = !picture_select" />
+      <div v-if="picture_select" class=" q-pa-xsm " style="text-align:center">
+     
+      <div class="col-8" style="margin-bottom:10px; padding-top:10px" >
         <q-uploader
         
         url="http://localhost:8080/upload"
-        label="Upload picture"
+        :label="$t('desc_labels.change_pic')"
         color="accent"
         square
         flat
@@ -27,41 +26,66 @@
       />
       </div>
     </div>
-    <div class=" q-pa-xsm row" style="text-align:center">
-     <div class=" q-pa-xsm col-4">
-        <h5 style="text-align:left;margin-bottom:0px; margin-top:0px"> First name </h5>
-      </div>
-      <div class="col-8" style="margin: auto;display: block;margin-bottom:0px;margin-top:0px">
-        <q-input rounded dense  bg-color="grey-3" standout outlined v-model="user.firstname" />
+    <div class=" q-pa-xsm " style="text-align:center">
+      <h5 class="q-pa-md" style="margin:0 auto; text-align:left; padding-left:0px;font-size:18px;font-weight:600">{{$t('profile.personal_profile')}}</h5>
+     
+      <div class="" style="margin: auto;display: block;margin-bottom:0px;margin-top:0px; padding-bottom:10px">
+        <q-input  dense :label="$t('profile.username')"  bg-color="grey-1"   standout outlined v-model="user.username" >
+        <q-icon style="padding-top:5px; padding-left:5px" name="img:statics/icons/Edit.png" size="md"  />
+        </q-input>
       </div>
     </div>
     
    
     
-    <div class=" q-pa-xsm row" >
-      <div class=" q-pa-xsm col-4">
-        <h5 style="text-align:left;margin-bottom:0px"> Last name </h5>
-      </div>
-      <div class="col-8" style="margin: auto;display: block;margin-bottom:0px">
-        <q-input rounded dense  bg-color="grey-3" standout outlined v-model="user.lastname"  />
-      </div>
-    </div>
-
-    <div class=" q-pa-xsm row" >
-      <div class=" q-pa-xsm col-4">
-        <h5 style="text-align:left;margin-bottom:0px"> Age </h5>
-      </div>
-      <div class="col-8" style="margin: auto;display: block;margin-bottom:0px">
-        <q-input rounded dense  type="number" style="max-width: 150px"  bg-color="grey-3" standout outlined v-model="user.age"  />
+    <div class=" q-pa-xsm " >
+     
+      <div class="col-8" style="margin: auto;display: block;margin-bottom:0px; padding-bottom:10px">
+        <q-input  dense  :type="isPwd ? 'password' : 'text'"  bg-color="grey-1" standout outlined :label="$t('profile.password')" v-model="user.password"  >
+          <template v-slot:append>
+          <q-icon
+            :name="isPwd ? 'visibility_off' : 'visibility'"
+            class="cursor-pointer"
+            @click="isPwd = !isPwd"
+          />
+        </template>
+        </q-input>
       </div>
     </div>
 
-<div class=" q-pa-xsm row" >
-      <div class=" q-pa-xsm col-4">
-        <h5 style="text-align:left;margin-bottom:0px"> Nationality </h5>
+    <div class=" q-pa-xsm " >
+      
+      <div class="col-8" style="margin: auto;display: block;margin-bottom:0px; padding-bottom:10px">
+        <q-input  dense   style="" :label="$t('profile.legal_name')"  bg-color="grey-1" standout outlined v-model="user.legalname"  >
+         <q-icon style="padding-top:5px; padding-left:5px" name="img:statics/icons/Edit.png" size="md"  />
+        </q-input>
       </div>
-      <div class="col-8" style="margin: auto;display: block;margin-bottom:0px">
-        <q-input rounded dense  bg-color="grey-3" standout outlined v-model="user.nationality"  />
+    </div>
+
+<div class=" q-pa-xsm " >
+      
+      <div class="col-8" style="margin: auto;display: block;margin-bottom:0px;padding-bottom:10px">
+        <q-input  dense  bg-color="grey-1" :label="$t('profile.nationality')" standout outlined v-model="user.nationality"  >
+         <q-icon style="padding-top:5px; padding-left:5px" name="img:statics/icons/Edit.png" size="md"  />
+        </q-input>
+      </div>
+    </div>
+
+    <div class=" q-pa-xsm " >
+      
+      <div class="col-8" style="margin: auto;display: block;margin-bottom:0px;padding-bottom:10px">
+        <q-input  dense  bg-color="grey-1" :label="$t('profile.age')" standout outlined v-model="user.age"  >
+         <q-icon style="padding-top:5px; padding-left:5px" name="img:statics/icons/Edit.png" size="md"  />
+        </q-input>
+      </div>
+    </div>
+
+    <div class=" q-pa-xsm " >
+      
+      <div class="col-8" style="margin: auto;display: block;margin-bottom:0px;padding-bottom:10px">
+        <q-input  dense  bg-color="grey-1" :label="$t('profile.gender')" standout outlined v-model="user.gender"  >
+         <q-icon style="padding-top:5px; padding-left:5px" name="img:statics/icons/Edit.png" size="md"  />
+        </q-input>
       </div>
     </div>
     
@@ -70,13 +94,30 @@
    
   </div>
   </div>
-                 <div class="q-pa-md" style="">
-                   <div class=" q-pa-lg" style="margin:0 auto; width:750px;">
-    <h5>Consent management</h5>
-    <q-card class="my-card">
-      <q-card-section>
-        <q-option-group v-model="group" :options="options" color="yellow" type="toggle" />
-        <q-btn color="accent"  label="Save" />
+    <div class="" >
+     <div class=" " style="margin:0 auto;width:300px ">
+    <h5>{{$t('desc_labels.privacy_settings')}}</h5>
+    <q-card class="my-card" style="width:300px; display:inline-block">
+      <q-card-section >
+        <q-item v-for="option in options" :key="option.value">
+          
+          <div class="col-10" style="padding-top:10px">
+            {{option.label}}
+             
+          </div>
+          <div class="col-2">
+             <q-toggle
+              v-model="option.toggle"
+              color="blue"
+              />
+          </div>
+         
+         
+          
+          
+        </q-item>
+        
+       <!-- <q-btn color="accent"  label="Save" />-->
       </q-card-section>
     </q-card>
   </div>
@@ -90,33 +131,41 @@ export default {
   // name: 'PageName',
   data () {
     return {
+      editing:null,
       picture_select:false, 
+      isPwd:true,
       locale: this.$q.lang.isoName, 
       group:["consent"],
        options: [
         {
           label: "Share personal data",
-          value: 1
+          value: 1,
+          toggle:true
         },
         {
           label: "Share integration plans",
-          value: 2
+          value: 2,
+          toggle:false
         },
         {
           label: "Share legal status",
-          value: 3
+          value: 3,
+          toggle:true
         },
         {
           label: "Share uploaded documents",
-          value: 4
+          value: 4,
+          toggle:false
         },
       ], 
       user:{
         picture:"", 
-        firstname:"Mariam",
-        lastname:"Hassan",
+        username:"MaryHassan",
+        password:"",
+        legalname:"Mariam Hassan",
         age:25,
-        nationality:"Egyptian"
+        nationality:"Egyptian",
+        gender:"Female"
       }
     }
   },
