@@ -2,7 +2,8 @@ export function setUser (state, data) {
   if (data) {
     state.user = {
       id: data.sub,
-      email: data.email_address,
+      umid: data.umid,
+      email: data.email,
       name: data.given_name,
       lastname: data.family_name,
       gender: data.gender,

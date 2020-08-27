@@ -10,6 +10,9 @@
 </template>
 
 <script>
+import client from 'api-user-client'
+
+
 export default {
   name: 'Verification',
   data () {
@@ -46,6 +49,20 @@ export default {
       console.log(this.$route)
       console.log(id_token)
       console.log(access_token)
+      let tenant = this.$migrant_tenant
+      console.log("before fetching the user")
+      client.fetchUser(id_token.sub, tenant)
+        .then(response => {
+          console.log("response from getting internal user id")
+          console.log(response)
+          id_token.umid = response[0].umId
+          this.$store.commit('auth/setUser', id_token)
+          this.$store.dispatch('auth/setToken', {
+            token: access_token,
+            rememberMe: false
+          })
+        })
+
       this.$store.commit('auth/setUser', id_token)
       this.$store.dispatch('auth/setToken', {
         token: access_token,
