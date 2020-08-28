@@ -29,6 +29,7 @@
     "annyang": "^2.6.1",
     "axios": "^0.18.0",
     "axios-jsonp": "^1.0.4",
+    "countly-sdk-web": "^19.8.0",
     "fuse.js": "^6.0.0",
     "jsonapi-vuex": "^3.1.1",
     "leaflet": "^1.6.0",
@@ -38,14 +39,14 @@
     "tiptap-extensions": "^1.29.1",
     "uppy": "^1.6.0",
     "validator": "^11.1.0",
+    "vue-countly": "^1.0.0",
     "vue-cytoscape": "^1.0.7",
     "vue-formio": "^4.0.0",
     "vue-i18n": "^7.3.3",
     "vue-mermaid": "0.0.10",
     "vue2-leaflet": "^2.2.1",
-    "countly-sdk-web": "^19.8.0",
-    "vue-countly": "^1.0.0",
-    "vuelidate": "^0.7.4"
+    "vuelidate": "^0.7.4",
+    "vuex-persistedstate": "^3.1.0"
   },
   "devDependencies": {
     "@quasar/app": "^1.9.6",
