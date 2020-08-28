@@ -14,3 +14,11 @@ export function setUser (state, data) {
     state.user = null
   }
 }
+
+export function setToken (state, data) {
+  if (data) {
+    state.token = data
+  } else {
+    state.token = null
+  }
+}

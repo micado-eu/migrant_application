@@ -176,3 +176,17 @@ export default ({ app, router, store, Vue }) => {
   helper.user = () => { return store.getters['auth/user'] }
   Vue.prototype.$auth = helper
 }
+
+
+/*
+Authorization Endpoint URL: 	https://identity.micadoproject.eu/oauth2/authorize
+Token Endpoint URL: 	https://identity.micadoproject.eu/oauth2/token
+Token Revocation Endpoint URL: 	https://identity.micadoproject.eu/oauth2/revoke
+Token Introspection Endpoint URL: 	https://identity.micadoproject.eu/oauth2/introspect
+User Info Endpoint URL: 	https://identity.micadoproject.eu/oauth2/userinfo
+Session IFrame Endpoint URL: 	https://identity.micadoproject.eu/oidc/checksession
+Logout Endpoint URL: 	https://identity.micadoproject.eu/oidc/logout
+Web finger Endpoint URL: 	https://identity.micadoproject.eu/.well-known/webfinger
+Discovery Endpoint URL: 	https://identity.micadoproject.eu/t/migrants.micado.eu/oauth2/oidcdiscovery
+Dynamic Client Registration Endpoint URL: 	https://identity.micadoproject.eu/t/migrants.micado.eu/api/identity/oauth2/dcr/v1.1/register
+*/

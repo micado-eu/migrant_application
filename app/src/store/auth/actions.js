@@ -53,6 +53,7 @@ export function login (state, data) {
 }
 
 export function setToken (state, data) {
+  /*
   axiosInstance.defaults.headers.common['Authorization'] =
     'Bearer ' + data.token
   if (data.rememberMe) {
@@ -62,6 +63,8 @@ export function setToken (state, data) {
   } else {
     Cookies.set('authorization_token', data.token)
   }
+  */
+  state.commit('setToken', data)
 }
 
 export function fetch (store) {
@@ -87,8 +90,11 @@ export function fetch (store) {
 }
 
 export function logout (state) {
-  Cookies.remove('authorization_token')
   state.commit('setUser', null)
+  let aut_url = 'https://identity.micadoproject.eu/oidc/logout?id_token_hint=' + state.token + '&post_logout_redirect_uri=https://migrants.micadoproject.eu'
+  state.commit('setToken', null)
+  console.log(aut_url)
+  window.location = aut_url
 }
 
 export function verify (state, token) {

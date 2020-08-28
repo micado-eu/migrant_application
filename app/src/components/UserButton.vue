@@ -15,7 +15,11 @@
       >
         <q-item-section>{{$t('desc_labels.login_register')}}</q-item-section>
       </q-item>
-      <q-item v-if="this.$auth.loggedIn()">
+      <q-item
+        v-if="this.$auth.loggedIn()"
+        @click="toLogout()"
+        clickable
+      >
         <q-item-section>{{$t('desc_labels.logout')}}</q-item-section>
       </q-item>
       <q-item v-if="this.$auth.loggedIn()">
@@ -81,6 +85,9 @@ export default {
       console.log(aut_url)
       window.location = aut_url
 */
+    },
+    toLogout () {
+      this.$auth.logout()
     }
   }
 }

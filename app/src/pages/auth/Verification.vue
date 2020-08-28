@@ -65,7 +65,7 @@ export default {
 
       this.$store.commit('auth/setUser', id_token)
       this.$store.dispatch('auth/setToken', {
-        token: access_token,
+        token: identity_response,
         rememberMe: false
       })
 
