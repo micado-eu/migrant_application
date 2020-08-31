@@ -42,7 +42,7 @@ const routes = [
       { path: '/login', component: Gioppo },
       { path: '/tasks', component: Tasks, meta: { auth: true } },
       { path: '/chatbot', component: Chatbot },
-      { path: '/settings', component: ProfileSettings },
+      { path: '/settings', component: ProfileSettings, meta: { auth: true } },
       { path: '/certificates', component: Certificates, props: true, name: 'certificates' },
       { path: '/map', component: MapView },
       { path: '/glossary/:id?', component: Glossary },
