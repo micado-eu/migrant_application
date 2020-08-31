@@ -87,6 +87,7 @@ export default {
 */
     },
     toLogout () {
+      console.log("LOGGING OUT")
       this.$auth.logout()
     }
   }

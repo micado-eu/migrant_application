@@ -76,6 +76,7 @@ export function fetch (store) {
     console.log(store.state.user)
     return true
   }
+  /*
   var token = Cookies.get('authorization_token')
   console.log(token)
   if (token) {
@@ -85,14 +86,21 @@ export function fetch (store) {
     return axiosInstance.get(FETCH_USER_ROUTE).then(response => {
       state.commit('setUser', response.data.data)
     })
-    */
+    
   }
+  */
 }
 
-export function logout (state) {
-  state.commit('setUser', null)
-  let aut_url = 'https://identity.micadoproject.eu/oidc/logout?id_token_hint=' + state.token + '&post_logout_redirect_uri=https://migrants.micadoproject.eu'
-  state.commit('setToken', null)
+export function logout (store) {
+  console.log("LOGOUT ACTION")
+  console.log(store)
+  store.commit('setUser', null)
+  //  let the_token = store.getters['auth/token']
+  let the_token = store.state.token
+  console.log(the_token)
+  console.log("BEFORE COMPOSING URL")
+  let aut_url = 'https://identity.micadoproject.eu/oidc/logout?id_token_hint=' + the_token.token.id_token + '&post_logout_redirect_uri=https://migrants.micadoproject.eu'
+  store.commit('setToken', null)
   console.log(aut_url)
   window.location = aut_url
 }

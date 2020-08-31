@@ -174,6 +174,7 @@ export default ({ app, router, store, Vue }) => {
   helper.passwordReset = (data) => { return store.dispatch('auth/passwordReset', data) }
   helper.fetch = () => { return store.dispatch('auth/fetch') }
   helper.user = () => { return store.getters['auth/user'] }
+  helper.token = () => { return store.getters['auth/token'] }
   Vue.prototype.$auth = helper
 }
 

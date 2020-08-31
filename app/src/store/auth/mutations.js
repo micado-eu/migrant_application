@@ -16,6 +16,8 @@ export function setUser (state, data) {
 }
 
 export function setToken (state, data) {
+  console.log("AUTH TOKEN MUTATION")
+  console.log(data)
   if (data) {
     state.token = data
   } else {

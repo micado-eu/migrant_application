@@ -2,6 +2,12 @@ export function user (state) {
   return state.user
 }
 
+export function token (state) {
+  console.log("TOKEN GETTER")
+  console.log(state)
+  return state.token
+}
+
 export function loggedIn (state) {
   return state.user !== null
 }
