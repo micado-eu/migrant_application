@@ -87,6 +87,25 @@
           </q-layout>
         </q-dialog>
       </div>
+      <div class="row q-my-sm" v-if="selectedCategory || selectedTags.length > 0">
+        <q-btn 
+          class="q-mx-md q-mb-md category_btn" 
+          no-caps 
+          v-if="selectedCategory"
+        >
+          {{selectedCategory.eventCategory}}
+        </q-btn>
+        <q-btn 
+          round
+          no-caps
+          class="q-mr-md q-mb-md tag_btn"
+          v-for="tag in selectedTags"
+          :key="tag"
+        >
+          {{tag}}
+        </q-btn>
+      </div>
+      <q-separator class="list_separator"/>
       <q-list bordered class="q-ma-md">
         <q-item
           v-for="item in filteredElements"
@@ -119,7 +138,7 @@ export default {
       searchText: "",
       tags: [],
       selectedTags: [],
-      selectedCategory: "",
+      selectedCategory: undefined,
       filter_dialog: false
     };
   },
@@ -127,23 +146,6 @@ export default {
     ...mapActions("information", ["fetchInformation"]),
     ...mapActions("information_category", ["fetchInformationCategory"]),
     ...mapActions("information_tags", ["fetchInformationTags"]),
-    addOrRemoveSelectedTag(tag) {
-      var index = this.selectedTags.indexOf(tag);
-      if (index !== -1) {
-        this.selectedTags.splice(index, 1);
-      } else {
-        this.selectedTags.push(tag);
-      }
-      this.filterByTags();
-    },
-    addOrRemoveSelectedCategory(category) {
-      if (this.selectedCategory === category) {
-        this.selectedCategory = undefined;
-      } else {
-        this.selectedCategory = category;
-      }
-      this.filterByCategory();
-    },
     filterByTags() {
       if (this.selectedTags.length > 0) {
         this.filteredElementsByTags = [];
@@ -303,8 +305,10 @@ $btn_secondary: #cdd0d2;
   border-radius: 10px;
 }
 .tag_btn {
-  background-color: $btn_secondary;
-  color: black;
+  background-color: #3994BD;
+  color: white;
+  border-radius: 32px;
+  padding: 3px 12px;
 }
 .cat_btn {
   background-color: $accent_list;
@@ -313,5 +317,12 @@ $btn_secondary: #cdd0d2;
 .filter_title{
   color: black;
   font-weight: bold;
+}
+.list_separator {
+  background-color: $accent_list;
+}
+.category_btn {
+  background-color: #26627E;
+  color: white;
 }
 </style>
