@@ -68,5 +68,9 @@
     "categories": "Categories",
     "tags": "Tags",
     "clear_all": "Clear all"
+  },
+  "information_centre": {
+    "category": "Category",
+    "tags": "Tags"
   }
 }
