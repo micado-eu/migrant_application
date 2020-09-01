@@ -1,15 +1,7 @@
 <template>
   <div class="q-pa-md row">
-    <q-toolbar class="toolbar-list q-mb-md">
-      <q-icon
-        name="img:statics/icons/MICADO PA APP Icon - Glossary Page (white).png"
-        size="xl"
-        class="q-mx-auto"
-      />
-    </q-toolbar>
     <span v-if="loading">Loading...</span>
     <q-list
-      bordered
       v-show="!loading && translatedGlossary"
       class="col-11"
     >
@@ -35,7 +27,7 @@
             </q-card-section>
           </q-card>
         </q-expansion-item>
-        <q-separator />
+        <q-separator class="list_separator"/>
       </div>
     </q-list>
     <div v-show="!loading && !translatedGlossary">
@@ -148,5 +140,8 @@ $accent_list: #ff7c44;
   color: $primary;
   font-family: "Nunito";
   font-weight: bold;
+}
+.list_separator {
+  background-color: $accent_list;
 }
 </style>>
