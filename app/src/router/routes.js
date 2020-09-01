@@ -40,7 +40,7 @@ const routes = [
       { path: '/speech', component: Speech },
       { path: '/reserved', component: Reserved },
       { path: '/login', component: Gioppo },
-      { path: '/tasks', component: Tasks, meta: { auth: true } },
+      { path: '/tasks', component: Tasks, meta: { auth: false } },
       { path: '/chatbot', component: Chatbot },
       { path: '/settings', component: ProfileSettings, meta: { auth: true } },
       { path: '/certificates', component: Certificates, props: true, name: 'certificates' },
