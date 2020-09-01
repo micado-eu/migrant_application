@@ -1,53 +1,74 @@
 <template>
-  <div class="q-pa-md row">
-    <span v-if="loading">Loading...</span>
-    <q-list
-      v-show="!loading && translatedGlossary"
-      class="col-11"
-    >
-      <div
-        v-for="glossaryItem of translatedGlossary"
-        v-bind:key="glossaryItem.id"
-        :id="glossaryItem.id"
-      >
-        <q-expansion-item
-          group="glossary"
-          :label="glossaryItem.title"
-          hader-class="glossary-item-header"
-          :ref="glossaryItem.id"
-          @show="changeQuery(glossaryItem.id)"
-        >
-          <q-card>
-            <q-card-section>
-              <glossary-editor-viewer
-                :content="glossaryItem.description"
-                glossary_fetched
-                :lang="lang"
-              />
-            </q-card-section>
-          </q-card>
-        </q-expansion-item>
-        <q-separator class="list_separator"/>
-      </div>
-    </q-list>
-    <div v-show="!loading && !translatedGlossary">
-      <span>No elements</span>
+  <div>
+    <div style="font-style: normal;height:72px;text-align: center; padding-top:15px;font-weight: bold;font-size: 22px;line-height: 41px;color:white; background-color:#FF7C44">
+      {{$t('menu.glossary')}}
+      <q-icon name="img:statics/icons/MICADO PA APP Icon - Glossary Page (white).png" style="font-size: 30px"></q-icon>
     </div>
-    <div class="q-ml-sm col">
-      <span
-        v-for="(letter, index) in alphabet"
-        :key="letter"
-        class="row alphabet"
-        @click="scrollIntoGlossary(index)"
+    <span v-if="loading">Loading...</span>
+    <div v-if="!loading" class="row q-pa-md">
+      <q-input
+        color="accent"
+        v-model="search"
+        debounce="500"
+        filled
+        outlined
+        :label='$t("desc_labels.search")'
+        class="q-mb-md col-12"
       >
-        {{letter}}
-      </span>
+        <template v-slot:append>
+          <q-icon name="search" />
+        </template>
+      </q-input>
+      <q-separator class="list_separator"/>
+      <q-list
+        v-show="!loading && filteredElements"
+        class="col-11"
+      >
+        <div
+          v-for="glossaryItem of filteredElements"
+          v-bind:key="glossaryItem.id"
+          :id="glossaryItem.id"
+        >
+          <q-expansion-item
+            group="glossary"
+            :label="glossaryItem.title"
+            hader-class="glossary-item-header"
+            :ref="glossaryItem.id"
+            @show="changeQuery(glossaryItem.id)"
+          >
+            <q-card>
+              <q-card-section>
+                <glossary-editor-viewer
+                  :content="glossaryItem.description"
+                  glossary_fetched
+                  :lang="lang"
+                />
+              </q-card-section>
+            </q-card>
+          </q-expansion-item>
+          <q-separator class="list_separator"/>
+        </div>
+      </q-list>
+      <div v-show="!loading && !translatedGlossary">
+        <span>No elements</span>
+      </div>
+      <div class="q-ml-sm col">
+        <span
+          v-for="(letter, index) in alphabet"
+          :key="letter"
+          class="row alphabet"
+          @click="scrollIntoGlossary(index)"
+        >
+          {{letter}}
+        </span>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import GlossaryEditorViewer from "../components/GlossaryEditorViewer"
+import Fuse from "fuse.js";
 import { mapGetters, mapActions } from "vuex"
 
 export default {
@@ -62,10 +83,34 @@ export default {
       translatedGlossary: [],
       alphabet: [],
       alphabetIds: [],
+      filteredElementsBySearch: [],
+      searchText: "",
     }
   },
   computed: {
-    ...mapGetters('glossary', ['glossary'])
+    ...mapGetters('glossary', ['glossary']),
+    search: {
+      get() {
+        return this.searchText;
+      },
+      set(newSearch) {
+        if (newSearch) {
+          const fuse = new Fuse(this.translatedGlossary, {
+            keys: ["title"]
+          });
+          this.filteredElementsBySearch = fuse
+            .search(newSearch)
+            .map(i => i.item);
+          this.searchText = newSearch;
+        } else {
+          this.filteredElementsBySearch = this.translatedGlossary;
+          this.searchText = "";
+        }
+      }
+    },
+    filteredElements() {
+      return this.filteredElementsBySearch
+    },
   },
   methods: {
     ...mapActions("glossary", ["fetchGlossary"]),
@@ -120,6 +165,7 @@ export default {
         if (query.id !== undefined) {
           showGlossaryTerm(query.id)
         }
+        this.filteredElementsBySearch = this.translatedGlossary;
         this.loading = false
       })
   }
