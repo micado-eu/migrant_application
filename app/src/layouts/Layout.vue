@@ -163,7 +163,7 @@ export default {
         // },
         {
           label: "menu.glossary",
-          icon: "img:statics/icons/MICADO PA APP Icon - Glossary Page (white).png",
+          icon: "img:statics/icons/Migrant APP Icon - Glossary (45x45).png",
           to: "/glossary",
           description: "menu.glossary_desc",
           feature: "FEAT_GLOSSARY",

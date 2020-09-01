@@ -62,5 +62,11 @@
     "age":"Age",
     "gender":"Gender",
     "personal_profile":"Personal Profile"
+  },
+  "filters": {
+    "title": "Filter by",
+    "categories": "Categories",
+    "tags": "Tags",
+    "clear_all": "Clear all"
   }
 }
