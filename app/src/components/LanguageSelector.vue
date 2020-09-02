@@ -18,7 +18,7 @@
           <q-toolbar class="bg-white">
             <q-space />
             <q-btn
-              color="primary"
+              color="red"
               flat
               v-close-popup
               round
@@ -28,24 +28,22 @@
           </q-toolbar>
         </q-header>
 
-        <q-page-container>
+        <q-page-container class="q-ma-sm">
+          <span v-if="loading">Loading...</span>
           <q-page
+            v-else
             padding
-            class="language_modal"
+            class="language_modal flex"
           >
-            <q-btn
+            <q-toggle
               class="q-mr-sm q-my-sm language_btn"
-              rounded
               color="accent"
               v-for="language in activeLanguages"
               :key="language.isoCode"
               :label="language.name"
-              @click="getValue(language)"
+              @input="getValue(language)"
               :id="language.isoCode"
-              :unelevated="language.lang !== selectedLanguage"
-              :outline="language.lang === selectedLanguage"
-              no-caps
-              v-close-popup
+              :value="getToggleValue(language)"
             />
           </q-page>
         </q-page-container>
@@ -60,15 +58,13 @@ import { setLocale } from 'boot/i18n'
 export default {
   data() {
     return {
+      loading: true,
       layout: false,
       _selectedLanguage: ""
     }
   },
   computed: {
     ...mapGetters('language', ['activeLanguages']),
-    selectedLanguage() {
-      return this._selectedLanguage
-    }
   },
   methods: {
     getValue(language) {
@@ -76,12 +72,22 @@ export default {
       setLocale(language)
       this.$router.go()
     },
+    getToggleValue(language) {
+      return this._selectedLanguage===language.lang
+    },
     ...mapActions("language", ["fetchActiveLanguages"])
   },
   created() {
     this.fetchActiveLanguages().then(() => {
       this._selectedLanguage = this.$userLang
+      this.loading= false
     })
   }
 }
 </script>
+<style scoped lang="scss">
+  .language_modal {
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+</style>
