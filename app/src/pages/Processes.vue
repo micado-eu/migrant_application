@@ -80,7 +80,6 @@ import storeMappingMixin from '../mixin/storeMappingMixin'
 
 
 
-console.log(configcy);
 export default {
   name: 'Processes',
 
