@@ -5,7 +5,7 @@
       <div class="col">
         <q-scroll-area
           vertical
-          style="height: 210px;"
+          id="scroll"
           class="bg-grey-1"
         >
           <vue-mermaid
@@ -19,21 +19,12 @@
     </div>
     <h5
       :class="nodePanelVisible"
-      style="font-weight: 600;font-size: 16px; padding-left:30px"
+      id="header"
     >{{this.shell_data.text}}</h5>
     <q-card
       :class="nodePanelVisible"
       header="Details of the step1"
     >
-      <!--          <q-field color="purple-12" label="Location" stack-label>
-            <template v-slot:prepend>
-              <q-icon name="place" />
-            </template>
-            <template v-slot:control>
-              <div class="self-center full-width no-outline" tabindex="0">{{flowData.location}}</div>
-            </template>
-          </q-field>
-          -->
       <q-field
         color="purple-12"
         :label="$t('desc_labels.description')"
@@ -75,14 +66,11 @@
         </DocumentItem>
       </q-list>
     </q-card>
-    <div
-      class="q-pa-md q-gutter-sm  col"
-      style="padding-top:0px; padding-bottom:0px;"
-    >
+    <div class="q-pa-md q-gutter-sm  col button-div">
       <q-btn
         size="12px"
         no-caps
-        style="width:130px; margin-top:20px"
+        class="button"
         rounded
         color="info"
         :label="$t('button.back')"
@@ -97,13 +85,11 @@
 import ListItem from 'components/ListItem'
 import DocumentItem from 'components/DocumentItem'
 import LabelMap from 'components/LabelMap'
+import { mapGetters, mapActions } from "vuex";
 
 
 export default {
   name: 'ProcessViewer',
-  props: {
-    msg: String
-  },
   components: {
     DocumentItem, LabelMap
   },
@@ -118,32 +104,18 @@ export default {
     }
   },
   computed: {
-    processes () {
-      return this.$store.state.flows.flows
-    },
-    flowData () {
-      return this.$store.state.flows.flowdata
-    },
-    shell_data () {
-      return this.$store.state.flows.shell_data
-    },
-    documents () {
-      return this.$store.state.flows.documents
-    },
-    nodePanelVisible () {
-      return this.$store.state.flows.nodePanelVisible
-    },
+    ...mapGetters("flows",[
+      "processes",
+      "flowData",
+      "shell_data",
+      "documents",
+      "nodePanelVisible"
+      ])
   },
   methods: {
-    preConfig (cytoscape) {
-      console.log("calling pre-config");
-
-      // register edgehandles extension
-      //if (typeof cytoscape('core', 'edgehandles') !== 'function') {
-      //cytoscape.use(edgeHandles)
-      //}
-    },
-
+    ...mapActions("flows", [
+      "fetchGraph"
+    ]),
     editNodeMer (nodeId) {
       console.log(nodeId);
       const arr1 = this.mermaid.filter(d => d.id == nodeId);
@@ -160,37 +132,13 @@ export default {
       if (node.group == "nodes") {
         console.log("editing")
         this.details = true
-
-
         console.log("I'm old")
-
         this.step = JSON.parse(JSON.stringify(node))
         console.log(this.step)
-
-
-
       }
     },
-
-    afterCreated (cy) {
-      // cy: this is the cytoscape instance
-
-      console.log("after created", cy);
-      this.cy = cy;
-      console.log(this.testdata)
-      //this.cy.edgehandles();
-      cy.layout({ name: 'grid' }).run();
-
-      cy.resize();
-      //cy.center()
-      //console.log("i'm here")
-
-    },
   },
 
-  mounted () {
-
-  },
 
   created () {
     this.loading = true
@@ -209,19 +157,8 @@ export default {
     }]);
 
     // TODO
-    this.$store.dispatch('flows/fetchGraph', { id: this.id, userLang: this.$userLang })
+    this.fetchGraph({ id: this.id, userLang: this.$userLang })
       .then(graph => {
-        /*
-         var my_process = this.processes.filter((filt) => {
-        console.log(filt)
-          return filt.id == this.id
-        })
-        console.log(my_process[0])
-      this.the_process = my_process[0].title
-       console.log("opened accordion")
-      console.log(this.id)
-      const element = this.processes.filter(f => f.id == this.id);
-      */
         console.log(graph)
         const elementFlow = graph
         console.log("i am element flow")
@@ -231,7 +168,6 @@ export default {
 
 
         return this.the_process
-        //       this.loading = false
       })
 
   }
@@ -239,12 +175,28 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style >
+<style scoped >
 canvas {
   margin-left: -300px;
   background-color: blue;
 }
 g.label {
   font-size: 10px;
+}
+#scroll{
+  height: 210px
+}
+#header{
+  font-weight: 600;
+  font-size: 16px; 
+  padding-left:30px
+}
+.button{
+  width:130px; 
+  margin-top:20px
+}
+.button-div{
+  padding-top:0px; 
+  padding-bottom:0px;
 }
 </style>

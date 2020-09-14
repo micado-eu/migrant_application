@@ -159,12 +159,6 @@ export default {
           }        }))
       }
     },
-    flowData () {
-      return this.$store.state.flows.flowdata
-    },
-    documents () {
-      return this.$store.state.flows.documents
-    },
   },
   methods: {
     ...mapActions("flows", ["fetchFlows"]),
