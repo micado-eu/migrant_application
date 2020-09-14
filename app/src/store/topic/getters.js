@@ -1,4 +1,3 @@
-/*
-export function someGetter (state) {
-}
-*/
+export function topics(state) {
+    return state.topic
+  }
