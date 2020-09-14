@@ -72,26 +72,33 @@
 <script>
 import ListItem from 'components/ListItem'
 import _ from 'lodash'
-import { Core, EventObject } from 'cytoscape'
-//import Cytoscape from '@/components/Cytoscape'
-//import CyElement from '@/components/CyElement'
-import configcy from '../configs/cytoscapeConfig'
-//import configcy from "./config-cy";
 import DocumentItem from 'components/DocumentItem'
 import LabelMap from 'components/LabelMap'
 import PhonebookList from 'components/PhonebookList'
 import editEntityMixin from '../mixin/editEntityMixin'
-import { mapGetters, mapActions } from "vuex";
+import storeMappingMixin from '../mixin/storeMappingMixin'
 
 
 
 console.log(configcy);
 export default {
   name: 'Processes',
-  props: {
-    msg: String
-  },
-  mixins: [editEntityMixin],
+
+  mixins: [
+    editEntityMixin,
+    storeMappingMixin({
+    getters: {
+      processes: 'flows/processes',
+      topics: 'topic/topics',
+      users: 'user_type/users'
+    }, actions: {
+      fetchFlows: 'flows/fetchFlows',
+      fetchTopic: 'topic/fetchTopic',
+      fetchUserType: 'user_type/fetchUserType'
+    }
+  })
+  
+  ],
   components: {
     DocumentItem, LabelMap, ListItem, PhonebookList
   },
@@ -112,11 +119,7 @@ export default {
     }
   },
   computed: {
-  ...mapGetters("flows", ["processes"]),
-  ...mapGetters("topic", ["topics"]),
-  ...mapGetters("user_type", ["users"]),
-
-   
+  
     filteredProcesses () {
       const { flow, orderBy, groupBy, flatMap, get } = _
       const groupItems = flow([
@@ -161,9 +164,6 @@ export default {
     },
   },
   methods: {
-    ...mapActions("flows", ["fetchFlows"]),
-    ...mapActions("topic", ["fetchTopic"]),
-    ...mapActions("user_type", ["fetchUserType"]),
     
     setUserTag (event) {
       //the Q-select passe an array of objects, so this takes the value property of the objects and puts them into an array
