@@ -1,4 +1,3 @@
-/*
-export function someGetter (state) {
-}
-*/
+export function users(state) {
+    return state.user_type
+  }
