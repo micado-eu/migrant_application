@@ -16,7 +16,6 @@
       />
     </div>
     <hr style="border: 1px solid #FF7C44;" />
-
     <q-list style="width:100%; margin:0 auto">
       <DocumentWalletItem
         v-for="document in documents"
@@ -35,13 +34,20 @@
 <script>
 import DocumentWalletItem from "components/DocumentWalletItem";
 import editEntityMixin from "../mixin/editEntityMixin";
+import storeMappingMixin from '../mixin/storeMappingMixin'
 
 export default {
   name: "Documents",
-  mixins: [editEntityMixin],
-  props: {
-    msg: String
-  },
+  mixins: [editEntityMixin, 
+  storeMappingMixin({
+    getters: {
+      documents: 'documents/documents',
+      document_types: 'document_type/document_types',
+    }, actions: {
+      fetchDocuments: 'documents/fetchDocuments',
+      fetchDocumentType: 'document_type/fetchDocumentType',
+    }
+  })],
   data() {
     return {};
   },
@@ -51,13 +57,15 @@ export default {
   created() {
     this.loading = true;
     console.log(this.$store);
-    this.$store.dispatch("documents/fetchDocuments").then(documents => {
+    this.fetchDocuments()
+    //this.$store.dispatch("documents/fetchDocuments")
+    .then(documents => {
       this.loading = false;
       console.log("documents in created");
       console.log(documents);
     });
-    this.$store
-      .dispatch("document_type/fetchDocumentType")
+    this.fetchDocumentType()
+    //this.$store.dispatch("document_type/fetchDocumentType")
       .then(document_types => {
         console.log("we are the docs");
         console.log(document_types);
@@ -84,14 +92,6 @@ export default {
       this.$store.dispatch("documents/deleteDocument", value);
     }
   },
-  computed: {
-    documents() {
-      return this.$store.state.documents.documents;
-    },
-    document_types() {
-      return this.$store.state.document_type.document_type;
-    }
-  }
 };
 </script>
 

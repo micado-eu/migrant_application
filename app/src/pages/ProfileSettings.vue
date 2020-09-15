@@ -1,46 +1,37 @@
 <template>
   <q-page padding>
-    
-    <div style="text-align:center; padding-top:14px">
-  <div class=" " style="display:inline-block;margin-bottom: 1px; width:300px">
-     <div style="margin:0 auto" >
+    <div class="div-1">
+  <div class="div-2" >
+     <div class="div-3" >
         <img alt="User Profile"
             src="~assets/user-placeholder.png" 
-            style="width:150px; height:150px"
-            
+            class="image"
             />
       </div>
-      <q-btn color="info" unelevated style="width:150px" no-caps rounded text-color="white" :label="$t('profile.change_pic')" @click="picture_select = !picture_select" />
-      <div v-if="picture_select" class=" q-pa-xsm " style="text-align:center">
-     
-      <div class="col-8" style="margin-bottom:10px; padding-top:10px" >
+      <q-btn class="button" color="info" unelevated no-caps rounded text-color="white" :label="$t('profile.change_pic')" @click="picture_select = !picture_select" />
+      <div v-if="picture_select" class=" q-pa-xsm center">
+     <div class="col-8 pad" >
         <q-uploader
-        
+        class="uploader"
         url="http://localhost:8080/upload"
         :label="$t('desc_labels.change_pic')"
         color="accent"
         square
         flat
         bordered
-        style="max-width: 300px;display:inline-block"
       />
       </div>
     </div>
-    <div class=" q-pa-xsm " style="text-align:center">
-      <h5 class="q-pa-md" style="margin:0 auto; text-align:left; padding-left:0px;font-size:18px;font-weight:600">{{$t('profile.personal_profile')}}</h5>
-     
-      <div class="" style="margin: auto;display: block;margin-bottom:0px;margin-top:0px; padding-bottom:10px">
+    <div class=" q-pa-xsm center" >
+      <h5 class="q-pa-md header">{{$t('profile.personal_profile')}}</h5>
+      <div class="input-top">
         <q-input  dense :label="$t('profile.username')"  bg-color="grey-1"   standout outlined v-model="user.username" >
-        <q-icon style="padding-top:5px; padding-left:5px" name="img:statics/icons/Edit.png" size="md"  />
+        <q-icon class="icon" name="img:statics/icons/Edit.png" size="md"/>
         </q-input>
       </div>
     </div>
-    
-   
-    
     <div class=" q-pa-xsm " >
-     
-      <div class="col-8" style="margin: auto;display: block;margin-bottom:0px; padding-bottom:10px">
+     <div class="col-8 input" >
         <q-input  dense  :type="isPwd ? 'password' : 'text'"  bg-color="grey-1" standout outlined :label="$t('profile.password')" v-model="user.password"  >
           <template v-slot:append>
           <q-icon
@@ -52,72 +43,53 @@
         </q-input>
       </div>
     </div>
-
-    <div class=" q-pa-xsm " >
-      
-      <div class="col-8" style="margin: auto;display: block;margin-bottom:0px; padding-bottom:10px">
-        <q-input  dense   style="" :label="$t('profile.legal_name')"  bg-color="grey-1" standout outlined v-model="user.legalname"  >
-         <q-icon style="padding-top:5px; padding-left:5px" name="img:statics/icons/Edit.png" size="md"  />
-        </q-input>
-      </div>
-    </div>
-
 <div class=" q-pa-xsm " >
-      
-      <div class="col-8" style="margin: auto;display: block;margin-bottom:0px;padding-bottom:10px">
+      <div class="col-8 input" >
+        <q-input  dense :label="$t('profile.legal_name')"  bg-color="grey-1" standout outlined v-model="user.legalname"  >
+         <q-icon name="img:statics/icons/Edit.png" size="md"  />
+        </q-input>
+      </div>
+    </div>
+<div class=" q-pa-xsm " >
+    <div class="col-8 input" >
         <q-input  dense  bg-color="grey-1" :label="$t('profile.nationality')" standout outlined v-model="user.nationality"  >
-         <q-icon style="padding-top:5px; padding-left:5px" name="img:statics/icons/Edit.png" size="md"  />
+         <q-icon name="img:statics/icons/Edit.png" size="md"  />
         </q-input>
       </div>
     </div>
-
     <div class=" q-pa-xsm " >
-      
-      <div class="col-8" style="margin: auto;display: block;margin-bottom:0px;padding-bottom:10px">
+      <div class="col-8 input" >
         <q-input  dense  bg-color="grey-1" :label="$t('profile.age')" standout outlined v-model="user.age"  >
-         <q-icon style="padding-top:5px; padding-left:5px" name="img:statics/icons/Edit.png" size="md"  />
+         <q-icon name="img:statics/icons/Edit.png" size="md"  />
         </q-input>
       </div>
     </div>
-
     <div class=" q-pa-xsm " >
-      
-      <div class="col-8" style="margin: auto;display: block;margin-bottom:0px;padding-bottom:10px">
+      <div class="col-8 input" >
         <q-input  dense  bg-color="grey-1" :label="$t('profile.gender')" standout outlined v-model="user.gender"  >
-         <q-icon style="padding-top:5px; padding-left:5px" name="img:statics/icons/Edit.png" size="md"  />
+         <q-icon name="img:statics/icons/Edit.png" size="md"  />
         </q-input>
       </div>
     </div>
-    
-    
-    
-   
   </div>
   </div>
-    <div class="" >
-     <div class=" " style="margin:0 auto;width:300px ">
+    <div  >
+     <div class="div-4">
     <h5>{{$t('desc_labels.privacy_settings')}}</h5>
-    <q-card class="my-card" style="width:300px; display:inline-block">
+    <q-card class="my-card">
       <q-card-section >
         <q-item v-for="option in options" :key="option.value">
-          
-          <div class="col-10" style="padding-top:10px">
+          <div class="col-10 pad-top">
             {{option.label}}
-             
-          </div>
+             </div>
           <div class="col-2">
              <q-toggle
               v-model="option.toggle"
               color="blue"
               />
           </div>
-         
-         
-          
-          
-        </q-item>
-        
-       <!-- <q-btn color="accent"  label="Save" />-->
+         </q-item>
+         <!-- <q-btn color="accent"  label="Save" />-->
       </q-card-section>
     </q-card>
   </div>
@@ -180,3 +152,70 @@ export default {
   }
 }
 </script>
+<style scoped>
+.center{
+  text-align:center
+}
+.input{
+  margin: auto;
+  display: block;
+  margin-bottom:0px;
+  padding-bottom:10px
+}
+.div-1{
+  text-align:center; 
+  padding-top:14px
+}
+.div-2{
+display:inline-block;
+margin-bottom: 1px; 
+width:300px
+}
+.div-3{
+  margin:0 auto
+}
+.image{
+  width:150px; 
+  height:150px
+}
+.button{
+  width:150px
+}
+.pad{
+  margin-bottom:10px; 
+  padding-top:10px
+}
+.uploader{
+  max-width: 300px;
+  display:inline-block
+}
+.header{
+  margin:0 auto; 
+  text-align:left; 
+  padding-left:0px;
+  font-size:18px;
+  font-weight:600
+}
+.input-top{
+  margin: auto;
+  display: block;
+  margin-bottom:0px;
+  margin-top:0px; 
+  padding-bottom:10px
+}
+.icon{
+  padding-top:5px; 
+  padding-left:5px
+}
+.div-4{
+  margin:0 auto;
+  width:300px 
+}
+.my-card{
+width:300px; 
+display:inline-block
+}
+.pad-top{
+  padding-top:10px
+}
+</style>

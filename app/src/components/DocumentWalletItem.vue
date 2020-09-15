@@ -64,7 +64,7 @@ export default {
     editing(){
       console.log("prima di mandare i process")
       console.log(this.theDocument)
-      this.$router.push({ name: 'editdocument', params: { thedoc: this.theDocument } })
+      this.$router.push({ name: 'editdocument', params: { thedocid: this.Link} })
     },
     deleteDocument(){
       console.log("in delete document event")

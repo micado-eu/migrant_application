@@ -1,39 +1,39 @@
 <template>
 
-  <div style=""> 
+  <div> 
    <!-- <p id="filename" style="width:320px; margin: 0 auto;padding-top:30px;padding-left:10px;padding-bottom:10px">{{the_document.title}}</p>-->
-  <div class="" style="">
-    <div style="width:320px;margin:0 auto;border-radius: 10px; background-color:white; text-align:center;">
+  <div>
+    <div class="container">
      
-      <img width="320px" style="margin: 0 auto; margin-top:10px"  alt="Powered by Micado" :src="the_document.pictures[0].picture" />
+      <img width="320px" class="image"  alt="Powered by Micado" :src="the_document.pictures[0].picture" />
      
     </div>
-    <div class="" style="width:320px; margin: 0 auto;padding-left:10px; padding-top:10px; padding-bottom:20px">
-  <q-icon style="margin-right:10px; margin-left:5px" name="img:statics/icons/Edit.png" size="md" @click="editing" />
+    <div class="icon-container">
+  <q-icon class="icon" name="img:statics/icons/Edit.png" size="md" @click="editing" />
     <q-icon  name="img:statics/icons/Send.png" size="md" />
    </div>
   </div>
 
-    <div class="" style="width:320px; margin: 0 auto;padding-left:10px">
-     <div style="padding-bottom:20px"> 
-    <p id="textup" style="margin-bottom:2px;">{{$t('desc_labels.document_type')}}:</p>
-    <p id="textdown">{{findType()}}</p>
+    <div class="fields-container" >
+     <div class="field"> 
+    <p class="textup">{{$t('desc_labels.document_type')}}:</p>
+    <p class="textdown">{{findType()}}</p>
     </div>
-    <div  style="padding-bottom:20px"> 
-    <p id="textup" style="margin-bottom:2px">{{$t('desc_labels.document_issuer')}}:</p>
-    <p id="textdown">{{the_document.emitter}}</p>
+    <div  class="field"> 
+    <p class="textup" >{{$t('desc_labels.document_issuer')}}:</p>
+    <p class="textdown">{{the_document.emitter}}</p>
     </div>
-    <div  style="padding-bottom:20px"> 
-    <p id="textup" style="margin-bottom:2px">{{$t('desc_labels.reviewed_by')}} by:</p>
-    <p id="textdown">{{the_document.emitter}}</p>
+    <div  class="field" > 
+    <p class="textup" >{{$t('desc_labels.reviewed_by')}} by:</p>
+    <p class="textdown">{{the_document.emitter}}</p>
     </div>
-    <div  style="padding-bottom:40px"> 
-    <p id="textup" style="margin-bottom:2px">{{$t('desc_labels.review_date')}}:</p>
-    <p id="textdown">{{the_document.expirationDate}}</p>
+    <div class="last-field"> 
+    <p class="textup" >{{$t('desc_labels.review_date')}}:</p>
+    <p class="textdown">{{the_document.expirationDate}}</p>
     </div>
   
-    <q-btn id="button" size="12px" rounded no-caps style="width:100px;margin-right:15px;margin-top:20px" filled color="info" to="/documents" :label="$t('button.back')" />
-    <q-btn id="button" size="12px" rounded no-caps color="accent" style="width:100px;margin-right:10px;margin-top:20px" :label="$t('button.download')" />
+    <q-btn class="button-1" size="12px" rounded no-caps filled color="info" to="/documents" :label="$t('button.back')" />
+    <q-btn class="button-2" size="12px" rounded no-caps color="accent" :label="$t('button.download')" />
     
    
     
@@ -44,11 +44,24 @@
 
 <script>
 import editEntityMixin from '../mixin/editEntityMixin'
+import storeMappingMixin from '../mixin/storeMappingMixin'
 
 export default {
   // name: 'ComponentName',
   props: ["Image","thedocid"],
-  mixins: [editEntityMixin],
+  mixins: [editEntityMixin,
+  storeMappingMixin({
+    getters: {
+      documents: 'documents/documents',
+      document_types: 'document_type/document_types'
+    }, actions: {
+      editDocument: 'documents/editDocument',
+      saveDocument: 'documents/saveDocument',
+      fetchDocuments: 'documents/fetchDocuments',
+      fetchDocumentType: 'document_type/fetchDocumentType'
+    }
+  })
+  ],
   data () {
     return {
       id:this.thedocid,
@@ -86,12 +99,14 @@ export default {
   created () {
     this.loading = true
     console.log(this.$store);
-    this.$store.dispatch('documents/fetchDocuments')
+    this.fetchDocuments()
+    //this.$store.dispatch('documents/fetchDocuments')
       .then(documents => {
         console.log(documents)
         this.loading = false
       })
-      this.$store.dispatch('document_type/fetchDocumentType')
+      this.fetchDocumentType()
+      //this.$store.dispatch('document_type/fetchDocumentType')
       .then(documents => {
         console.log(documents)
         this.loading = false
@@ -100,25 +115,67 @@ export default {
 }
 </script>
 <style scoped>
-#textup {
+.textup {
   font-family: "Nunito", sans-serif;
-font-style: normal;
-font-weight: bold;
-font-size: 16px;
-line-height: 22px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 22px;
+  margin-bottom:2px;
 }
 #filename {
-   
    font-size: 16pt;
    font-weight: bold;
 }
-#textdown {
-font-family: "Nunito Sans", sans-serif;
-font-style: normal;
-font-weight: normal;
-font-size: 14px;
-line-height: 19px;
-margin-bottom: 0px;
+.textdown {
+  font-family: "Nunito Sans", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 19px;
+  margin-bottom: 0px;
 }
-
+.container{
+  width:320px;
+  margin:0 auto;
+  border-radius: 10px; 
+  background-color:white; 
+  text-align:center;
+}
+.image{
+  margin: 0 auto; 
+  margin-top:10px
+}
+.icon-container{
+  width:320px; 
+  margin: 0 auto;
+  padding-left:10px; 
+  padding-top:10px; 
+  padding-bottom:20px
+}
+.icon{
+  margin-right:10px; 
+  margin-left:5px
+}
+.fields-container{
+  width:320px; 
+  margin: 0 auto;
+  padding-left:10px
+}
+.field{
+  padding-bottom:20px
+}
+.last-field{
+  padding-bottom:40px
+}
+.button-1{
+  width:100px;
+  margin-right:15px;
+  margin-top:20px
+}
+.button-2{
+  width:100px;
+  margin-right:10px;
+  margin-top:20px
+}
 </style>

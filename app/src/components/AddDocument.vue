@@ -1,8 +1,6 @@
 <template>
-<div class="" style="  margin: 0 auto;  margin-top:25px; padding-bottom:10px; width:300px">
-    
-      
-      <div class="" style="margin: auto;display: block;margin-bottom:0px; padding-top:10px; padding-bottom:10px">
+<div class="container">
+    <div class="select" >
         <q-select
             filled
             dense
@@ -11,20 +9,13 @@
             map-options
             v-model="doc_shell.documentTypeId"
             :options="this.t_docs"
-            :label="$t('input_labels.doc_type')"
-            
+            :label="$t('input_labels.doc_type')" 
           />
-      </div>
-    
-    
-      
-      <div class="" style="margin: auto;display: block;padding-bottom:10px">
+    </div>
+    <div class="input" >
         <q-input dense  standout outlined :label="$t('input_labels.exp_date')" v-model="doc_shell.expirationDate"  />
-      </div>
- 
-   
-      
-      <div class="col-8" style="margin: auto;display: block;padding-bottom:10px">
+    </div>
+    <div class="col-8 input" >
         <q-file
         :label="$t('input_labels.upload_doc')"
               @input="getFiles($event)"
@@ -36,40 +27,44 @@
               outlined
             >
         </q-file>
-       
-  </div>
- 
-   
-                <div class="" v-for="image in uploaded_images" :key="image">
+    </div>
+    <div class="" v-for="image in uploaded_images" :key="image">
         <q-img 
               :src="image"
               spinner-color="white"
-              style="max-height: 100px; max-width: 150px"
+              class="image"
             />
-            <span style="text-align:right; padding-left:20px">
-            <q-btn  no-caps rounded style="width:100px;" filled color="accent" @click="removePicture(image)"  :label="$t('button.remove')" />
+            <span class="span">
+            <q-btn  no-caps rounded class="negative-button" filled color="accent" @click="removePicture(image)"  :label="$t('button.remove')" />
             </span>        
-          </div>
-          
-  <div class="" style="text-align:center; padding-top:20px">
-    
-    <q-btn  no-caps rounded style="width:100px;margin-right:20px" filled color="accent" @click="saveDocument(doc_shell)"  :label="$t('button.save')" />
-
-
-    <q-btn  no-caps rounded color="info" style="width:100px;" to="/documents" @click="back()" :label="$t('button.back')" />
-
+          </div>        
+  <div class="button-container" >
+    <q-btn class="button"  no-caps rounded filled color="accent" @click="savingDocument(doc_shell)"  :label="$t('button.save')" />
+    <q-btn class="negative-button" no-caps rounded color="info" to="/documents" @click="back()" :label="$t('button.back')" />
   </div>
   </div>
 </template>
 
 <script>
 import editEntityMixin from '../mixin/editEntityMixin'
+import storeMappingMixin from '../mixin/storeMappingMixin'
 
 
 export default {
   // name: 'ComponentName',
-  props: ["thedoc"],
-  mixins: [editEntityMixin],
+  props: ["thedocid"],
+  mixins: [editEntityMixin,
+  storeMappingMixin({
+    getters: {
+      documents: 'documents/documents',
+      document_types: 'document_type/document_types'
+    }, actions: {
+      editDocument: 'documents/editDocument',
+      saveDocument: 'documents/saveDocument',
+      fetchDocuments: 'documents/fetchDocuments',
+      fetchDocumentType: 'document_type/fetchDocumentType'
+    }
+  })],
   data () {
     return {
       id: this.$route.params.id,
@@ -115,38 +110,31 @@ export default {
       this.doc_shell.documentTypeId = document.documentTypeId
       this.doc_shell.pictures = document.pictures
 
-
-      //this.edit_process.applicableUsers = process.applicableUsers
-      //    this.edit_process.processTopics = process.processTopics
-      
     },
-    saveDocument(document){
+    savingDocument(document){
       console.log("SAVING")
       console.log(document)
       if(this.is_new){
-      this.$store.dispatch('documents/saveDocument', document)
+      this.saveDocument(document)
+      //this.$store.dispatch('documents/saveDocument', document)
       this.$router.push('/documents')
       }
       else{
-        this.$store.dispatch('documents/editDocument', document)
+        this.editDocument(document)
+        //this.$store.dispatch('documents/editDocument', document)
         this.$router.push('/documents')
       }
     },
    
     getFiles(files) {
-       console.log(files);
+      console.log(files);
       console.log(this)
-
       console.log(self)
-
       let reader = new FileReader()
-
       // Convert the file to base64 text
       reader.readAsDataURL(files[0])
-
       // on reader load somthing...
       reader.onload = () => {
-
         // Make a fileInfo Object
         let fileInfo = {
           name: files[0].name,
@@ -165,7 +153,6 @@ export default {
         console.log(fileInfo)
         console.log("i am the pictures")
         console.log(this.doc_shell.pictures)
-
     }
     }, 
     back(){
@@ -178,30 +165,19 @@ export default {
      var doc_idx = this.doc_shell.pictures.findIndex(an_image => an_image.picture === image)
      this.doc_shell.pictures.splice(doc_idx, 1)
      console.log(this.doc_shell.pictures)
-
     }
   },
-   computed:{
-     documents() {
-      return this.$store.state.documents.documents
-    }, 
-    document_types(){
-      return this.$store.state.document_type.document_type
-
-    }
-    
-   },
   created () {
     this.createShell()
     console.log("SHELL CREATED")
     this.loading = true
     console.log(this.$store);
-    this.$store.dispatch('documents/fetchDocuments')
+    this.fetchDocuments()
       .then(documents => {
         console.log(documents)
         this.loading = false
       })
-    this.$store.dispatch('document_type/fetchDocumentType')
+    this.fetchDocumentType()
     .then(document_types => {
         console.log(document_types)
         document_types.forEach(document_type => {
@@ -212,13 +188,16 @@ export default {
       })
     console.log("i am document types")
     console.log(this.document_types)
-      if (this.thedoc != null) {
+      if (this.thedocid != null) {
       console.log("Editing document")
       this.is_new = false
-      this.mergeProcess(this.thedoc)
+      var selected_doc = this.documents.filter((a_doc) =>{
+        return a_doc.id == this.thedocid
+      })[0]
+      this.mergeProcess(selected_doc)
+      console.log(this.doc_shell.pictures)
       this.doc_shell.pictures.forEach((a_picture) => {
-        this.uploaded_images.push(a_picture.picture)
-        
+        this.uploaded_images.push(a_picture.picture)       
       })
       console.log("the images")
       console.log(this.uploaded_images)
@@ -227,3 +206,42 @@ export default {
   },
 }
 </script>
+<style scoped>
+.negative-button{
+  width:100px;
+}
+.button{
+  width:100px;
+  margin-right:20px
+}
+.container{
+   margin: 0 auto;  
+   margin-top:25px; 
+   padding-bottom:10px; 
+   width:300px
+}
+.select{
+  margin: auto;
+  display: block;
+  margin-bottom:0px; 
+  padding-top:10px; 
+  padding-bottom:10px
+}
+.input{
+  margin: auto;
+  display: block;
+  padding-bottom:10px
+}
+.image{
+  max-height: 100px; 
+  max-width: 150px
+}
+.span{
+  text-align:right; 
+  padding-left:20px
+}
+.button-container{
+  text-align:center; 
+  padding-top:20px
+}
+</style>
