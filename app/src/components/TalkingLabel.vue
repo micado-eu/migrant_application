@@ -1,5 +1,5 @@
 <template>
-  <div class="" style="">
+  <div>
        {{ this.Title }} 
     <q-icon @click.stop="readClick(text)" :id="this.text" name="img:statics/icons/Icon-Auto_Read_(selected).svg" size="xsm"  />
   </div>
@@ -13,17 +13,11 @@ export default {
     }
   },
   props: ["Title", "text"],
-
-
-
-
   methods: {
    readClick(value) {
       console.log("speaking")
         responsiveVoice.speak(value)
   },
- 
-  
-   }
+  }
 }
 </script>

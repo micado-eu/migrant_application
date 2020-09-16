@@ -13,11 +13,10 @@
           header-nav
           animated
         >
-          <h5 style="padding-left:25px; margin-top:5px">{{intervention_plan.title}}</h5>
+          <h5 class="header">{{intervention_plan.title}}</h5>
           <div class="row">
             <div
-              class="col"
-              style="padding-left:25px"
+              class="col pad-left"
             >
               Plan progress:
               <q-circular-progress
@@ -46,7 +45,7 @@
                 unelevated
                 rounded
                 color="accent"
-                style="margin-top:10px; margin-left:0px"
+                class="button"
                 no-caps
                 disable
                 :label="$t('button.ask_validation')"
@@ -56,9 +55,9 @@
               <q-btn
                 size="11px"
                 unelevated
+                class="button"
                 rounded
                 color="accent"
-                style="margin-top:10px; margin-left:0px"
                 :id="intervention.id"
                 no-caps
                 :disable="intervention.validationrequestdate !== null"
@@ -129,3 +128,16 @@ export default {
   }
 }
 </script>
+<style scoped>
+.header{
+  padding-left:25px; 
+  margin-top:5px
+}
+.pad-left{
+  padding-left:25px
+}
+.button{
+  margin-top:10px; 
+  margin-left:0px
+}
+</style>
