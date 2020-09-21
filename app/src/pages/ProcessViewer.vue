@@ -85,11 +85,24 @@
 import ListItem from 'components/ListItem'
 import DocumentItem from 'components/DocumentItem'
 import LabelMap from 'components/LabelMap'
-import { mapGetters, mapActions } from "vuex";
+import storeMappingMixin from '../mixin/storeMappingMixin'
 
 
 export default {
   name: 'ProcessViewer',
+  mixins:[
+    storeMappingMixin({
+    getters: {
+      processes: 'flows/processes',
+      flowData: 'flows/flowData',
+      shell_data: 'flows/shell_data',
+      documents: 'flows/documents',
+      nodePanelVisible: 'flows/nodePanelVisible'
+    }, actions: {
+      fetchGraph: 'flows/fetchGraph',
+    }
+  })
+  ],
   components: {
     DocumentItem, LabelMap
   },
@@ -103,19 +116,7 @@ export default {
 
     }
   },
-  computed: {
-    ...mapGetters("flows",[
-      "processes",
-      "flowData",
-      "shell_data",
-      "documents",
-      "nodePanelVisible"
-      ])
-  },
   methods: {
-    ...mapActions("flows", [
-      "fetchGraph"
-    ]),
     editNodeMer (nodeId) {
       console.log(nodeId);
       const arr1 = this.mermaid.filter(d => d.id == nodeId);
