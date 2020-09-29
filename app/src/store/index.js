@@ -22,6 +22,7 @@ import information_category from './information_category'
 import information_tags from './information_tags'
 import settings from './settings'
 import document_type from './document_type'
+import comments from './comments'
 
 Vue.use(Vuex)
 
@@ -46,6 +47,7 @@ export default function (/* { ssrContext } */) {
       language,
       graphs,
       topic,
+      comments,
       user_type,
       intervention_plan,
       settings,

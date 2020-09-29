@@ -100,6 +100,7 @@ module.exports = function (ctx) {
         chain.resolve.alias.set('api-topic-client', 'src/api/topic/server');
         chain.resolve.alias.set('api-intervention_plan-client', 'src/api/intervention_plan/server');
         chain.resolve.alias.set('api-user_type-client', 'src/api/user_type/server');
+        chain.resolve.alias.set('api-comments-client', 'src/api/comments/server');
         chain.resolve.alias.set('api-information-client', 'src/api/information/server');
         chain.resolve.alias.set('api-user-client', 'src/api/user/server');
         chain.resolve.alias.set('api-information_category-client', 'src/api/information_category/server');

@@ -28,7 +28,8 @@
     "remove":"Remove",
     "back":"Back",
     "ask_validation":"Ask for validation",
-    "download":"Download"
+    "download":"Download",
+    "view_template":"View template"
   },
   "input_labels":{
     "doc_type":"Document Type",
@@ -51,7 +52,8 @@
     "logout":"Logout",
     "information_centre":"Information Centre",
     "required_documents":"Required documents",
-    "privacy_settings":"Privacy Settings"
+    "privacy_settings":"Privacy Settings",
+    "comments": "Comments"
   },
   "profile":{
     "change_pic":"Change picture",

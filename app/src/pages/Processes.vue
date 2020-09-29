@@ -42,7 +42,7 @@
           <q-tooltip>
             {{tag.user_type}}
           </q-tooltip>
-          <img :src="tag.icon">
+          <img class="image" :src="tag.icon">
         </q-btn>
         <q-separator vertical />
         <q-btn
@@ -265,5 +265,9 @@ $secondary_list: #0f3a5d;
 }
 #main-container{
   padding-bottom:27px;
+}
+.image{
+  max-width: 24px;
+  max-height: 24px;
 }
 </style>
