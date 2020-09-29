@@ -64,6 +64,8 @@
           v-for="doc in documents"
           :theDoc="doc"
           :key="doc.id"
+          :pictures="doc.pictures"
+
           >
         </DocumentItem>
       </q-list>
@@ -107,17 +109,19 @@ export default {
       documents: 'flows/documents',
       nodePanelVisible: 'flows/nodePanelVisible',
       process_comments: 'comments/process_comments',
-      comments: 'comments/comments'
+      comments: 'comments/comments',
+      document_types: 'document_type/document_types'
     }, actions: {
       fetchGraph: 'flows/fetchGraph',
       fetchCommentsByProcess: 'comments/fetchCommentsByProcess',
-      fetchComments: 'comments/fetchComments'
+      fetchComments: 'comments/fetchComments',
+      fetchDocumentType: 'document_type/fetchDocumentType'
     }
   })
   ],
   props:['processid'],
   components: {
-    DocumentItem, LabelMap,CommentList
+    DocumentItem, LabelMap, CommentList
   },
   data () {
     return {
@@ -126,19 +130,39 @@ export default {
       merconf: { theme: "default", startOnLoad: false, securityLevel: 'loose', useMaxWidth: false, flowchart: { padding: 5 } },
       mermaid: [],
       the_process: null,
-      selected_process_comments:[]
+      selected_process_comments:[],
+      pictures:[],
     }
   },
   methods: {
+  
     editNodeMer (nodeId) {
       console.log(nodeId);
       const arr1 = this.mermaid.filter(d => d.id == nodeId);
       console.log("I am flow data")
+        arr1[0].data.documents.forEach((doc) =>{
+        for(var i = 0; i< this.document_types.length; i++){
+        if(this.document_types[i].pictures != null){
+         for(var j = 0; j < this.document_types[i].pictures.length; j++){
+           if(doc.id == this.document_types[i].pictures[j].documentTypeId){
+             if(doc.pictures == null){
+               doc.pictures = [this.document_types[i].pictures[j]]
+             }
+             else{
+               doc.pictures.push(this.document_types[i].pictures[j])
+             }
+           }
+         }
+        }
+      }
+      })
       console.log(arr1[0].data);
       this.$store.commit("flows/setNodePanelVisible", "");
       this.$store.commit("flows/setDocuments", arr1[0].data.documents);
       this.$store.commit("flows/setFlowData", arr1[0].data);
       this.$store.commit("flows/setShellData", arr1[0]);
+      console.log("I am the documents")
+      console.log(this.documents)
     },
 
     showStep (event, node) {
@@ -185,6 +209,9 @@ export default {
 
         return this.the_process
       })
+      this.fetchDocumentType()
+      console.log("I AM DOCUMENT TYPES")
+      console.log(this.document_types)
     await this.fetchComments()
     await this.fetchCommentsByProcess(this.processid)
     console.log(this.process_comments)

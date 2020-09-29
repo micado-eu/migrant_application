@@ -20,13 +20,33 @@
         no-caps
         class="button"
         rounded
+        :id="theDoc.id"
         color="info"
         :label="$t('button.view_template')"
-        to="/processes"
+        @click="show = true"
       />
     </q-item-section>
+      <q-dialog v-model="show"
+      @show="showPictures()"
+      @hide="close()">
+      <q-card>
+        <q-card-section class="row items-center q-pb-none">
+          <div class="text-h6">Pictures</div>
+          <q-space />
+          
+          <q-btn icon="close" flat round dense v-close-popup />
+        </q-card-section>
 
+        <q-card-section>
+          <img class="image" v-for="picture in pictures"
+          :key="picture.id"
+          :src="picture.image">
+        </q-card-section>
+      </q-card>
+    </q-dialog>
     </q-item>
+
+    
 </template>
 
 <script>
@@ -35,14 +55,29 @@
 //
 export default {
   // name: 'ComponentName',
-  props: ['theDoc'],
+  props: ['theDoc', 'pictures'],
   data () {
-    return {}
+    return {
+      show:false
+    }
   },
   methods: {
     generateForm() {
       this.$router.push({ name: "certificates" , params: { certificateId: '123' }});
+    },
+    showPictures(){
+      console.log("showing")
+      this.$emit('showpicture')
+    },
+    close(){
+      console.log("hiding the dialog")
     }
   }
 }
 </script>
+<style scoped>
+.image{
+  max-width:80%;
+  max-height: 80%;
+}
+</style>
