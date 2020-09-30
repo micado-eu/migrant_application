@@ -1,6 +1,22 @@
   <template>
   <div class="container">
-    <h5> {{this.the_process}} </h5>
+    <h5 class="title"> {{this.the_process}} </h5>
+    <div class="row pad">
+              <q-img
+                class="image"
+                v-for="tag in full_process.topics"
+                :src="topics.filter(topic => topic.id == tag)[0].icon"
+                :key="tag"
+              >
+              </q-img>
+               <q-img
+                class="image"
+                v-for="tag in full_process.users"
+                :src="users.filter(user => user.id == tag)[0].icon"
+                :key="tag"
+              >
+               </q-img>
+    </div>
     <div class="row">
       <div class="col">
         <q-scroll-area
@@ -110,12 +126,18 @@ export default {
       nodePanelVisible: 'flows/nodePanelVisible',
       process_comments: 'comments/process_comments',
       comments: 'comments/comments',
-      document_types: 'document_type/document_types'
+      document_types: 'document_type/document_types',
+      topics: 'topic/topics',
+      users: 'user_type/users'
     }, actions: {
       fetchGraph: 'flows/fetchGraph',
       fetchCommentsByProcess: 'comments/fetchCommentsByProcess',
       fetchComments: 'comments/fetchComments',
-      fetchDocumentType: 'document_type/fetchDocumentType'
+      fetchDocumentType: 'document_type/fetchDocumentType',
+      fetchTopic: 'topic/fetchTopic',
+      fetchUserType: 'user_type/fetchUserType',
+      fetchFlows: 'flows/fetchFlows',
+
     }
   })
   ],
@@ -132,6 +154,7 @@ export default {
       the_process: null,
       selected_process_comments:[],
       pictures:[],
+      full_process:null
     }
   },
   methods: {
@@ -193,9 +216,12 @@ export default {
         "language": this.$userLang
       }
     }]);
-    this.the_process = this.processes.filter((process) =>{
+    this.full_process = this.processes.filter((process) =>{
       return process.id == this.processid
-    })[0].process
+    })[0]
+    console.log("i am full process")
+    console.log(this.full_process)
+    this.the_process = this.full_process.process
     // TODO
     this.fetchGraph({ id: this.processid, userLang: this.$userLang })
       .then(graph => {
@@ -231,6 +257,12 @@ export default {
     })
     console.log("these are the comments")
     console.log(this.selected_process_comments)
+    await this.fetchTopic({ defaultLang: this.$defaultLang, userLang: this.$userLang })  
+    await this.fetchUserType({ defaultLang: this.$defaultLang, userLang: this.$userLang })
+    .then(user_types =>{
+      console.log("in user type")
+      console.log(user_types)
+    })
   }
 
 }
@@ -260,6 +292,14 @@ g.label {
 .button-div{
   padding-top:0px; 
   padding-bottom:0px;
+}
+.image{
+  max-height: 40px; 
+  max-width: 40px;
+  margin-right:5px
+}
+.title{
+  margin-bottom:5px
 }
 
 
