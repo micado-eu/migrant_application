@@ -81,8 +81,8 @@
           :theDoc="doc"
           :key="doc.id"
           :pictures="doc.pictures"
-
-          >
+          :isInWallet="checkWallet(doc.id)"
+          @showdoc="showDocument(doc.id)"  >
         </DocumentItem>
       </q-list>
     </q-card>
@@ -128,7 +128,8 @@ export default {
       comments: 'comments/comments',
       document_types: 'document_type/document_types',
       topics: 'topic/topics',
-      users: 'user_type/users'
+      users: 'user_type/users',
+      my_documents:'documents/my_documents'
     }, actions: {
       fetchGraph: 'flows/fetchGraph',
       fetchCommentsByProcess: 'comments/fetchCommentsByProcess',
@@ -137,6 +138,7 @@ export default {
       fetchTopic: 'topic/fetchTopic',
       fetchUserType: 'user_type/fetchUserType',
       fetchFlows: 'flows/fetchFlows',
+      fetchDocuments: 'documents/fetchDocuments'
 
     }
   })
@@ -157,7 +159,59 @@ export default {
       full_process:null
     }
   },
+  computed: {
+     
+  },
   methods: {
+    showDocument(docid){
+        console.log("inside show document")
+      var userId= this.$store.state.auth.user.umid
+        var user_docs = this.my_documents.filter((my_doc)=>{
+          return my_doc.userId == userId
+        })
+        console.log("I am user docs in view document")
+        console.log(user_docs)
+        var the_doc = user_docs.filter((doc)=>{
+          return doc.documentTypeId == docid
+        })[0]
+        console.log("i am found doc in view docs")
+        console.log(the_doc.id)
+        this.$router.push({ name: 'viewdocument', params: { thedocid: the_doc.id } })
+        console.log("after doc")
+        //console.log(the_doc.uploadedByMe)
+        //return the_doc.id
+
+    },
+     checkWallet(docid){
+      if(this.$auth.loggedIn()){
+        var userId= this.$store.state.auth.user.umid
+        console.log(userId)
+        console.log(this.my_documents)
+        var user_docs = this.my_documents.filter((my_doc)=>{
+          return my_doc.userId == userId
+        })
+        console.log("I am user docs")
+        console.log(user_docs)
+        var the_doc = user_docs.filter((doc)=>{
+          return doc.documentTypeId == docid
+        })
+        console.log("i am found doc")
+        console.log(the_doc)
+        if(the_doc.length != 0){
+          console.log("inside if true")
+          return true
+        }
+        else{
+          console.log("inside first else")
+          return false
+        }
+
+      }
+      else{
+        console.log("inside second else")
+        return false
+      }
+    },
   
     editNodeMer (nodeId) {
       console.log(nodeId);
@@ -263,6 +317,9 @@ export default {
       console.log("in user type")
       console.log(user_types)
     })
+    this.fetchDocuments()
+    console.log("I AM LOGGED")
+    console.log(this.$auth.loggedIn())
   }
 
 }
