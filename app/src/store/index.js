@@ -58,15 +58,11 @@ export default function (/* { ssrContext } */) {
       information,
       information_category,
       information_tags,
-<<<<<<< Updated upstream
-      event,
-      event_category,
-      event_tags,
-      document_type
-=======
       document_type,
-      picture_hotspots
->>>>>>> Stashed changes
+      picture_hotspots,
+      event_tags,
+      event_category,
+      event
     },
 
     // enable strict mode (adds overhead!)
