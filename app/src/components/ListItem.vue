@@ -82,7 +82,7 @@ export default {
       this.$emit('showing', this.Link)
     },
     processDetails () {
-      this.$router.push('processes/' + this.Link)
+      this.$router.push({ name: 'document', params: { processid: this.Link } })
     }
   }
 }

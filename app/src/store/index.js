@@ -25,6 +25,7 @@ import event_category from './event_category'
 import event_tags from './event_tags'
 import settings from './settings'
 import document_type from './document_type'
+import comments from './comments'
 
 Vue.use(Vuex)
 
@@ -49,6 +50,7 @@ export default function (/* { ssrContext } */) {
       language,
       graphs,
       topic,
+      comments,
       user_type,
       intervention_plan,
       settings,

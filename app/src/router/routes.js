@@ -37,7 +37,7 @@ const routes = [
       { path: '/services', component: Services },
       { path: '/flows', component: Flows },
       { path: '/processes', component: Processes },
-      { path: '/processes/:id', component: ProcessViewer, props: true, name: document },
+      { path: '/processes/:processid', name: 'document', component: ProcessViewer,  props: (route) => ({ ...route.params }),  },
       { path: '/notifications', component: Notifications },
       { path: '/speech', component: Speech },
       { path: '/reserved', component: Reserved },
