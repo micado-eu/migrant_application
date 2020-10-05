@@ -31,27 +31,40 @@
         rounded
         :id="theDoc.id"
         color="info"
-        :label="$t('button.view_template')"
+        :label="$t('button.view_model')"
         @click="show = true"
       />
     </q-item-section>
       <q-dialog v-model="show"
-      @show="showPictures()"
-      @hide="close()">
-      <q-card>
-        <q-card-section class="row items-center q-pb-none">
-          <div class="text-h6">Pictures</div>
-          <q-space />
-          
-          <q-btn icon="close" flat round dense v-close-popup />
-        </q-card-section>
-
+      @hide="clean()"
+      @show="showPictures($event)"
+      >
+   <div>
+    <q-carousel
+      v-model="slide"
+      transition-prev="slide-right"
+      transition-next="slide-left"
+      animated
+      control-color="primary"
+      class="rounded-borders"
+      
+    >
+      <q-carousel-slide  class="column no-wrap flex-center" v-for="picture in pictures" :key="picture.id" :name="picture.id">
         <q-card-section>
-          <img class="image" v-for="picture in pictures"
-          :key="picture.id"
-          :src="picture.image">
+          <DocumentHotspot :picture="picture.image" :data="data" />
         </q-card-section>
-      </q-card>
+        </q-carousel-slide>
+          </q-carousel>      
+    <div class="row justify-center" style="background-color:white">
+      <q-btn-toggle
+        glossy
+        color="accent"
+        v-model="slide"
+        @input="transitioning($event)"
+        :options="options"
+      />
+    </div>
+    </div>
     </q-dialog>
     </q-item>
 
@@ -59,31 +72,42 @@
 </template>
 
 <script>
-
+import DocumentHotspot from './DocumentHotspot'
 
 //
 export default {
   // name: 'ComponentName',
-  props: ['theDoc', 'pictures', 'isInWallet'],
+  props: ['theDoc', 'pictures', 'isInWallet', 'options', "data"],
+  components: {
+    DocumentHotspot
+  },
   data () {
     return {
-      show:false
+      show:false,
+      slide:null
     }
   },
+  computed:{
+  },
   methods: {
+    transitioning(event){
+      console.log(event)
+      this.$emit('transition', {pic_id:event, doc_id:this.theDoc.id})
+    },
     generateForm() {
       this.$router.push({ name: "certificates" , params: { certificateId: '123' }});
     },
-    showPictures(){
+    showPictures(event){
       console.log("showing")
+      this.slide = this.theDoc.pictures[0].id
       this.$emit('showpicture')
-    },
-    close(){
-      console.log("hiding the dialog")
     },
     showDoc(){
       console.log("showing doc")
       this.$emit('showdoc')
+    },
+    clean(){
+      this.$emit('clean')
     }
   }
 }

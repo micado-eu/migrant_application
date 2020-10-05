@@ -80,9 +80,15 @@
           v-for="doc in documents"
           :theDoc="doc"
           :key="doc.id"
+          :slide="slide"
+          :data="hotspot_data"
+          :options="pic_options"
           :pictures="doc.pictures"
           :isInWallet="checkWallet(doc.id)"
-          @showdoc="showDocument(doc.id)"  >
+          @transition="changeHotspot"
+          @clean="clean"
+          @showpicture="showPictures(doc.id)"
+           >
         </DocumentItem>
       </q-list>
     </q-card>
@@ -129,7 +135,8 @@ export default {
       document_types: 'document_type/document_types',
       topics: 'topic/topics',
       users: 'user_type/users',
-      my_documents:'documents/my_documents'
+      my_documents:'documents/my_documents',
+      hotspots: 'picture_hotspots/hotspots'
     }, actions: {
       fetchGraph: 'flows/fetchGraph',
       fetchCommentsByProcess: 'comments/fetchCommentsByProcess',
@@ -138,7 +145,8 @@ export default {
       fetchTopic: 'topic/fetchTopic',
       fetchUserType: 'user_type/fetchUserType',
       fetchFlows: 'flows/fetchFlows',
-      fetchDocuments: 'documents/fetchDocuments'
+      fetchDocuments: 'documents/fetchDocuments',
+      fetchDocumentTypePicturesById: 'picture_hotspots/fetchHotspotsById'
 
     }
   })
@@ -156,59 +164,118 @@ export default {
       the_process: null,
       selected_process_comments:[],
       pictures:[],
-      full_process:null
+      full_process:null,
+      pic_options:[],
+      slide:null,
+      hotspot_data:[]
     }
   },
   computed: {
      
   },
   methods: {
+    clean(){
+      console.log("in clean")
+       this.pic_options =[]
+      this.hotspot_data=[]
+     
+     console.log(this.hotspot_data)
+    },
+    changeHotspot(value){
+      
+      
+         console.log(value)
+      this.hotspot_data=[]
+      console.log("I TRANSITIONED ON HE OTHER PAGE")
+       this.fetchDocumentTypePicturesById(value.pic_id).then(()=>{
+          this.hotspots.forEach((spot)=>{
+        this.hotspot_data.push(
+          {
+            Message: spot.translations.filter(this.filterTranslationModel(this.activeLanguage))[0].message,
+            Title:spot.translations.filter(this.filterTranslationModel(this.activeLanguage))[0].title,
+            x:spot.x,
+            y:spot.y
+
+          }
+        )
+      })
+      console.log("i am hotpots for this pic")
+      console.log(this.hotspot_data)
+      
+    })
+      
+     
+    },
+    showPictures(value){
+     
+          console.log("in show")
+     
+          console.log(this.hotspot_data)
+      var pics = this.document_types.filter((a_pic)=>{
+        console.log(a_pic.id)
+        console.log(value)
+        console.log(a_pic.id == value)
+        return a_pic.id == value
+      })[0]
+      console.log(pics)
+      console.log(pics.pictures[0].id)
+      this.fetchDocumentTypePicturesById(pics.pictures[0].id).then(()=>{
+          this.hotspots.forEach((spot)=>{
+        this.hotspot_data.push(
+          {
+            Message: spot.translations.filter(this.filterTranslationModel(this.activeLanguage))[0].message,
+            Title:spot.translations.filter(this.filterTranslationModel(this.activeLanguage))[0].title,
+            x:spot.x,
+            y:spot.y
+
+          }
+        )
+      })
+      console.log("i am hotpots for this pic")
+      console.log(this.hotspot_data)
+      console.log(pics)
+      for(var i = 0; i< pics.pictures.length; i++){
+        this.pic_options.push({label: i+1, value:pics.pictures[i].id})
+      }
+      })
+      
+      
+    },
     showDocument(docid){
-        console.log("inside show document")
       var userId= this.$store.state.auth.user.umid
         var user_docs = this.my_documents.filter((my_doc)=>{
           return my_doc.userId == userId
         })
-        console.log("I am user docs in view document")
-        console.log(user_docs)
+       
         var the_doc = user_docs.filter((doc)=>{
           return doc.documentTypeId == docid
         })[0]
-        console.log("i am found doc in view docs")
-        console.log(the_doc.id)
+        
         this.$router.push({ name: 'viewdocument', params: { thedocid: the_doc.id } })
-        console.log("after doc")
-        //console.log(the_doc.uploadedByMe)
-        //return the_doc.id
+        
 
     },
      checkWallet(docid){
       if(this.$auth.loggedIn()){
         var userId= this.$store.state.auth.user.umid
-        console.log(userId)
-        console.log(this.my_documents)
+        
         var user_docs = this.my_documents.filter((my_doc)=>{
           return my_doc.userId == userId
         })
-        console.log("I am user docs")
-        console.log(user_docs)
+       
         var the_doc = user_docs.filter((doc)=>{
           return doc.documentTypeId == docid
         })
-        console.log("i am found doc")
-        console.log(the_doc)
+        
         if(the_doc.length != 0){
-          console.log("inside if true")
           return true
         }
         else{
-          console.log("inside first else")
           return false
         }
 
       }
       else{
-        console.log("inside second else")
         return false
       }
     },

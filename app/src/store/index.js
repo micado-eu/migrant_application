@@ -26,6 +26,7 @@ import event_tags from './event_tags'
 import settings from './settings'
 import document_type from './document_type'
 import comments from './comments'
+import picture_hotspots from './picture_hotspots'
 
 Vue.use(Vuex)
 
@@ -57,10 +58,15 @@ export default function (/* { ssrContext } */) {
       information,
       information_category,
       information_tags,
+<<<<<<< Updated upstream
       event,
       event_category,
       event_tags,
       document_type
+=======
+      document_type,
+      picture_hotspots
+>>>>>>> Stashed changes
     },
 
     // enable strict mode (adds overhead!)

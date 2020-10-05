@@ -31,7 +31,7 @@
     "back":"Back",
     "ask_validation":"Ask for validation",
     "download":"Download",
-    "view_template":"View template"
+    "view_model":"View model"
   },
   "input_labels":{
     "doc_type":"Document Type",
