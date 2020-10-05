@@ -1,11 +1,8 @@
 <template>
   <div>
     <span v-if="loading">Loading...</span>
-    <div
-      v-if="!loading"
-      style="font-style: normal;height:72px;text-align: center; padding-top:15px;font-weight: bold;font-size: 22px;line-height: 41px;color:white; background-color:#FF7C44"
-    >
-      {{$t('desc_labels.information_centre')}}
+    <div v-if="!loading" style="font-style: normal;height:72px;text-align: center; padding-top:15px;font-weight: bold;font-size: 22px;line-height: 41px;color:white; background-color:#FF7C44">
+      {{$t('desc_labels.events')}}
       <q-icon name="img:statics/icons/Icon - Information Centre (selected) (30x30).png"></q-icon>
     </div>
     <div
@@ -19,9 +16,13 @@
         :lang="lang"
       />
       <q-separator class="q-my-lg" />
-      <span style="font-weight: bold;">{{$t("information_centre.category")}}: </span><span>{{category.category}}</span>
+      <span style="font-weight: bold;">{{$t("events.start_date")}}: </span><span>{{startDate}}</span>
       <q-separator class="q-my-lg" />
-      <span style="font-weight: bold;">{{$t("information_centre.tags")}}: </span>
+      <span style="font-weight: bold;">{{$t("events.finish_date")}}: </span><span>{{finishDate}}</span>
+      <q-separator class="q-my-lg" />
+      <span style="font-weight: bold;">{{$t("events.category")}}: </span><span>{{category.category}}</span>
+      <q-separator class="q-my-lg" />
+      <span style="font-weight: bold;">{{$t("events.tags")}}: </span>
       <q-btn
         v-for="tag in tags"
         :key="tag"
@@ -60,21 +61,23 @@ export default {
       item: {},
       category: "",
       tags: [],
-      lang: ""
+      lang: "",
+      startDate: "",
+      finishDate: "",
     };
   },
   methods: {
-    ...mapActions("information", ["fetchInformation"]),
-    ...mapActions("information_category", ["fetchInformationCategory"]),
-    ...mapActions("information_tags", ["fetchInformationTags"]),
+    ...mapActions("event", ["fetchEvents"]),
+    ...mapActions("event_category", ["fetchEventCategory"]),
+    ...mapActions("event_tags", ["fetchEventTags"]),
     goBack() {
       this.$router.go(-1);
     }
   },
   computed: {
-    ...mapGetters("information", ["informationElemById"]),
-    ...mapGetters("information_category", ["informationCategories"]),
-    ...mapGetters("information_tags", ["informationTagsByInformation"]),
+    ...mapGetters("event", ["eventElemById"]),
+    ...mapGetters("event_category", ["eventCategories"]),
+    ...mapGetters("event_tags", ["eventTagsByEvent"]),
     ...mapGetters('topic', ['topics']),
     ...mapGetters('user_type', ['users'])
   },
@@ -82,25 +85,29 @@ export default {
     this.loading = true;
     this.lang = this.$userLang;
     this.id = this.$route.params.id;
-    this.fetchInformation().then(() => {
-      let itemById = this.informationElemById(this.id);
+    this.fetchEvents().then(() => {
+      let itemById = this.eventElemById(this.id);
       let al = this.$userLang;
       let idx = itemById.translations.findIndex(t => t.lang === al);
       let translated = Object.assign({}, itemById.translations[idx]);
-      this.fetchInformationCategory().then(() => {
-        let informationCategoryElems = [...this.informationCategories]
+      const startDate = new Date(itemById.startDate)
+      const finishDate = new Date(itemById.endDate)
+      this.startDate = `${startDate.getUTCFullYear()}-${startDate.getUTCMonth() + 1}-${startDate.getUTCDate()} ${startDate.getUTCHours()}:${startDate.getUTCMinutes()}`
+      this.finishDate = `${finishDate.getUTCFullYear()}-${finishDate.getUTCMonth() + 1}-${finishDate.getUTCDate()} ${finishDate.getUTCHours()}:${finishDate.getUTCMinutes()}`
+      this.fetchEventCategory().then(() => {
+        let eventCategoryElems = [...this.eventCategories]
         let idxCat = itemById.category;
-        let idxCategoryObject = informationCategoryElems.findIndex(
+        let idxCategoryObject = eventCategoryElems.findIndex(
           ic => ic.id === idxCat
         );
-        idxCat = informationCategoryElems[
+        idxCat = eventCategoryElems[
           idxCategoryObject
         ].translations.findIndex(t => t.lang === this.$userLang);
         this.category =
-          informationCategoryElems[idxCategoryObject].translations[idxCat];
-        return this.fetchInformationTags()
+          eventCategoryElems[idxCategoryObject].translations[idxCat];
+        return this.fetchEventTags()
       }).then(() => {
-        itemById.tags = this.informationTagsByInformation(itemById.id);
+        itemById.tags = this.eventTagsByEvent(itemById.id);
         for (let tag of itemById.tags) {
           let translations = tag.translations.filter(
             tag => tag.lang === this.$userLang
