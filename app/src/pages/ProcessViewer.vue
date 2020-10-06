@@ -85,6 +85,7 @@
           :options="pic_options"
           :pictures="doc.pictures"
           :isInWallet="checkWallet(doc.id)"
+          @showdoc="showDocument(doc.id)"
           @transition="changeHotspot"
           @clean="clean"
           @showpicture="showPictures(doc.id)"
