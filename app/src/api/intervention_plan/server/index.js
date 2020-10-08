@@ -2,14 +2,28 @@ import { axiosInstance } from 'boot/axios'
 import { error_handler } from '../../../helper/utility'
 
 export default {
-  fetchInterventionPlan () {
-    console.log("CALLING API!!!!")
+  fetchInterventionPlan (id) {
+    console.log(id)
+    console.log("CALLING API!!!!FETCH")
+    
     return axiosInstance
-      .get('/backend/1.0.0/individual-intervention-plans-migrant?lang=en&user_id=1')
+      .get('/backend/1.0.0/individual-intervention-plans?filter[include][0][relation]=interventions&filter[where][userId]=' + id)
       .then(response => response.data)
       .catch(error_handler);
-
-  },
+    },
+    editIntervention (id_plan, intervention) {
+      console.log(id_plan)
+      const whereClause = {
+        id: { eq: intervention.id }
+      },
+      
+       editingIntervention = JSON.parse(JSON.stringify(intervention, [ 'listId','interventionType', 'title', 'description', 'completed', 'validationRequestDate']));
+     
+      return axiosInstance
+        .patch('/backend/1.0.0/individual-intervention-plans/' + id_plan + '/individual-intervention-plan-interventions?where=' + JSON.stringify(whereClause), editingIntervention)
+        .then(response => response.data)
+        .catch(error_handler);
+      },
   updateInterventionPlan (intervention_plan) {
     console.log("call to update DB")
     console.log(intervention_plan)
@@ -17,7 +31,7 @@ export default {
     // have to remap
     let intervention_plan_data = {
       id: intervention_plan.id,
-      listId: intervention_plan.lit_id,
+      listId: intervention_plan.list_id,
       interventionType: intervention_plan.intervention_type,
       validationDate: intervention_plan.validation_date,
       completed: intervention_plan.completed,
