@@ -57,7 +57,7 @@
                 </q-img>
               </div>
               <q-rating
-                v-model="this.Rating"
+                v-model="parsedRating"
                 size="1em"
                 color="orange"
               />
@@ -90,6 +90,11 @@ export default {
   },
   components: {
     TalkingLabel
+  },
+  computed: {
+    parsedRating () {
+      return parseInt(this.Rating)
+    }
   },
   methods: {
     showProcess (event) {
