@@ -25,6 +25,7 @@
         :Link="document.id"
         :key="document.id"
         @delete="deleteDocument"
+        @sendDoc="sendDoc"
       >
       </DocumentWalletItem>
     </q-list>
@@ -72,6 +73,15 @@ export default {
       });
   },
   methods: {
+    sendDoc(value){
+      console.log(value)
+      var sendingDoc = this.documents.filter((doc)=>{
+        return doc.id == value.docid
+      })[0]
+      console.log(sendingDoc)
+      console.log(value.email)
+      console.log("here goes the call to the backend to send the document")
+    },
     setTitle(document) {
       var the_doc_type = this.document_types.filter(a_doc_type => {
         return a_doc_type.id == document.documentTypeId;

@@ -31,13 +31,16 @@
     "back":"Back",
     "ask_validation":"Ask for validation",
     "download":"Download",
-    "view_model":"View model"
+    "view_model":"View model",
+    "send":"Send"
   },
   "input_labels":{
     "doc_type":"Document Type",
     "exp_date":"Expiration Date",
     "upload_doc":"Upload Document",
-    "read":"Read Along"
+    "read":"Read Along",
+    "email":"Email"
+    
   },
   "desc_labels":{
     "cost":"Cost for the step",
@@ -56,7 +59,8 @@
     "events": "Events",
     "required_documents":"Required documents",
     "privacy_settings":"Privacy Settings",
-    "comments": "Comments"
+    "comments": "Comments",
+    "send_doc":"Please choose an email adress"
   },
   "profile":{
     "change_pic":"Change picture",

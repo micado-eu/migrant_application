@@ -419,8 +419,8 @@ g.label {
   padding-bottom:0px;
 }
 .image{
-  max-height: 40px; 
-  max-width: 40px;
+  max-height: 25px; 
+  max-width: 25px;
   margin-right:5px
 }
 .title{
