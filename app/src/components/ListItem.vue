@@ -60,6 +60,10 @@
                 v-model="parsedRating"
                 size="1em"
                 color="orange"
+                icon="star_border"
+                icon-selected="star"
+                icon-half="star_half"
+                readonly
               />
             </div>
             <hr class="hr">
@@ -93,7 +97,7 @@ export default {
   },
   computed: {
     parsedRating () {
-      return parseInt(this.Rating)
+      return parseFloat(this.Rating)
     }
   },
   methods: {
