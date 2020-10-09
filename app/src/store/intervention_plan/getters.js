@@ -1,4 +1,4 @@
-/*
-export function someGetter (state) {
-}
-*/
+export function intervention_plans(state) {
+    return state.intervention_plan
+  }
+

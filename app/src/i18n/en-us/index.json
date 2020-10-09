@@ -20,7 +20,9 @@
     "glossary": "Common words",
     "glossary_desc":"Commonly used words",
     "information": "Information centre",
-    "information_desc": "Integration information, events and services"
+    "information_desc": "Integration information and services",
+    "events": "Events",
+    "events_desc": "Integration events"
   }, 
   "button":{
     "add_document":"Add Document",
@@ -29,13 +31,16 @@
     "back":"Back",
     "ask_validation":"Ask for validation",
     "download":"Download",
-    "view_template":"View template"
+    "view_model":"View model",
+    "send":"Send"
   },
   "input_labels":{
     "doc_type":"Document Type",
     "exp_date":"Expiration Date",
     "upload_doc":"Upload Document",
-    "read":"Read Along"
+    "read":"Read Along",
+    "email":"Email"
+    
   },
   "desc_labels":{
     "cost":"Cost for the step",
@@ -51,9 +56,11 @@
     "settings":"Settings",
     "logout":"Logout",
     "information_centre":"Information Centre",
+    "events": "Events",
     "required_documents":"Required documents",
     "privacy_settings":"Privacy Settings",
-    "comments": "Comments"
+    "comments": "Comments",
+    "send_doc":"Please choose an email adress"
   },
   "profile":{
     "change_pic":"Change picture",
@@ -74,5 +81,11 @@
   "information_centre": {
     "category": "Category",
     "tags": "Tags"
+  },
+  "events": {
+    "category": "Category",
+    "tags": "Tags",
+    "start_date": "Start date",
+    "finish_date": "Finish date"
   }
 }

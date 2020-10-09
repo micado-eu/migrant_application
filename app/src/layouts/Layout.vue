@@ -131,6 +131,14 @@ export default {
           visible: true
         },
         {
+          label: "menu.events",
+          icon: "img:statics/icons/Icon - Events (45x45).png",
+          to: "/events",
+          description: "menu.events_desc",
+          feature: "FEAT_EVENTS",
+          visible: true
+        },
+        {
           label: "menu.chatbot",
           icon: "img:statics/icons/Chatbot (600x600) white.png",
           to: "/chatbot",

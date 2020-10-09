@@ -7,6 +7,9 @@ export function token (state) {
   console.log(state)
   return state.token
 }
+export function userId(state){
+  return state.user.umid
+}
 
 export function loggedIn (state) {
   return state.user !== null

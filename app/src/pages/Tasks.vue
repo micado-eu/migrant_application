@@ -32,26 +32,15 @@
           <q-step
             v-for="intervention in intervention_plan.interventions"
             :name="intervention.id"
-            :title="intervention.intervention_title"
+            :title="intervention.title"
             icon="work"
             :done="intervention.validated"
             :key="intervention.id"
             color="accent"
           >
             {{intervention.description}}
-            <div v-if="intervention.validated">
-              <q-btn
-                size="11px"
-                unelevated
-                rounded
-                color="accent"
-                class="button"
-                no-caps
-                disable
-                :label="$t('button.ask_validation')"
-              />
-            </div>
-            <div v-else>
+           
+            <div>
               <q-btn
                 size="11px"
                 unelevated
@@ -60,7 +49,7 @@
                 color="accent"
                 :id="intervention.id"
                 no-caps
-                :disable="intervention.validationrequestdate !== null"
+                :disable="intervention.validationRequestDate !== null"
                 @click="askValidation(intervention)"
                 :label="$t('button.ask_validation')"
               />
@@ -74,30 +63,46 @@
 </template>
 
 <script>
+
+import editEntityMixin from '../mixin/editEntityMixin'
+import storeMappingMixin from '../mixin/storeMappingMixin'
+
 export default {
   name: 'PageIndex',
   data () {
     return {
       logged: false,
       step: 1,
-      asked: []
+      asked: [],
     }
   },
-  computed: {
-    intervention_plans () {
-      return this.$store.state.intervention_plan.intervention_plan
-    },
-    filteredPlans () {
-      //this computed property will filter the plans by id. It will substitute intervention_plans in the html
-    }
+   mixins: [
+    editEntityMixin,
+    storeMappingMixin({
+    getters: {
+      intervention_plans: 'intervention_plan/intervention_plans',
+    }, actions: {
+      fetchInterventionPlan: 'intervention_plan/fetchInterventionPlan',
 
+    }
+  })
+  
+  ],
+  computed: {
+ 
   },
   methods: {
     progress (intervention_plan) {
-      return Math.floor((intervention_plan.interventions.filter(function (intervention) { return intervention.validated }).length / intervention_plan.interventions.length) * 100)
+      return Math.floor((intervention_plan.interventions.filter(function (intervention) { return intervention.completed }).length / intervention_plan.interventions.length) * 100)
     },
     askValidation (intervention) {
       var to_validate = JSON.parse(JSON.stringify(intervention))
+      var selectedPlan = this.intervention_plans.filter((plan)=>{
+        return plan.id == to_validate.listId
+      })[0]
+      var index = selectedPlan.interventions.findIndex(item => item.id === to_validate.id)
+      if (index !== -1) selectedPlan.interventions.splice(index, 1, to_validate);
+
       this.$q.notify({
         message: 'Do you want to request validation for this intervention? ',
         color: 'info',
@@ -107,9 +112,9 @@ export default {
               console.log("answered yes")
               console.log(to_validate)
               let current_data = new Date().toISOString()
-              to_validate.validationrequestdate = current_data
+              to_validate.validationRequestDate = current_data
 
-              this.$store.dispatch('intervention_plan/editInterventionPlan', to_validate)
+              this.$store.dispatch('intervention_plan/editIntervention', {plan:selectedPlan, intervention:to_validate})
               //              this.asked.push(to_validate)
             }
           },
@@ -120,9 +125,11 @@ export default {
     }
   },
   created () {
-    console.log(this.$store);
-    this.$store.dispatch('intervention_plan/fetchInterventionPlan')
+    var userId = this.$store.state.auth.user.umid 
+    this.fetchInterventionPlan(userId)
       .then(intervention_plans => {
+        console.log("I am intervention plan")
+        console.log(intervention_plans)
         this.loading = false
       })
   }

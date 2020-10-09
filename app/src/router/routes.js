@@ -21,6 +21,8 @@ import ProcessViewer from 'pages/ProcessViewer'
 import InformationCentre from 'pages/InformationCentre'
 import InformationItem from 'pages/InformationItem'
 import Reserved from 'pages/Reserved'
+import Events from 'pages/Events'
+import EventItem from 'pages/EventItem'
 
 const routes = [
   {
@@ -50,6 +52,8 @@ const routes = [
       { path: '/decision', component: DecisionTreePage },
       { path: '/information', component: InformationCentre },
       { path: '/information/:id', component: InformationItem },
+      { path: '/events', component: Events },
+      { path: '/events/:id', component: EventItem },
     ]
   }
   /*,

@@ -65,7 +65,7 @@ module.exports = function (ctx) {
         }
       },
       // Quasar plugins
-      plugins: ['Cookies']
+      plugins: ['Cookies', 'Loading']
     },
 
     // https://quasar.dev/quasar-cli/cli-documentation/supporting-ie
@@ -102,10 +102,15 @@ module.exports = function (ctx) {
         chain.resolve.alias.set('api-user_type-client', 'src/api/user_type/server');
         chain.resolve.alias.set('api-comments-client', 'src/api/comments/server');
         chain.resolve.alias.set('api-information-client', 'src/api/information/server');
+        chain.resolve.alias.set('api-event-client', 'src/api/event/server');
         chain.resolve.alias.set('api-user-client', 'src/api/user/server');
+        chain.resolve.alias.set('api-event_category-client', 'src/api/event_category/server');
+        chain.resolve.alias.set('api-event_tags-client', 'src/api/event_tags/server');
         chain.resolve.alias.set('api-information_category-client', 'src/api/information_category/server');
         chain.resolve.alias.set('api-information_tags-client', 'src/api/information_tags/server');
-        chain.resolve.alias.set('api-document_type-client', 'src/api/document_type/server')
+        chain.resolve.alias.set('api-picture_hotspots-client', 'src/api/picture_hotspots/server');
+        chain.resolve.alias.set('api-document_type-client', 'src/api/document_type/server');
+        chain.resolve.alias.set('api-intervention_plan-client', 'src/api/intervention_plan/server')
       }
     },
 
