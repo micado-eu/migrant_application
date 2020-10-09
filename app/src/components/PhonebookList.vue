@@ -20,6 +20,7 @@
             :Link="process.id"
             :id="process.id"
             :item="process"
+            :Rating="process.rating"
             @showing="showFlow"
           >
           </ListItem>
