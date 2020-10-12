@@ -1,4 +1,4 @@
-export function documents(state) {
+export function my_documents(state) {
   return state.documents
 }
 export function generableDocs (state) {

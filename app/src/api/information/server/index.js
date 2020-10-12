@@ -2,9 +2,9 @@ import { axiosInstance } from 'boot/axios'
 import { error_handler } from '../../../helper/utility'
 
 export default {
-  fetchEvents() {
+  fetchInformation() {
     return axiosInstance
-      .get('/backend/1.0.0/events/published?filter[include][0][relation]=translations', {
+      .get('/backend/1.0.0/information?filter[include][0][relation]=translations', {
       })
       .then((response) => {
         return response.data

@@ -21,6 +21,8 @@ import ProcessViewer from 'pages/ProcessViewer'
 import InformationCentre from 'pages/InformationCentre'
 import InformationItem from 'pages/InformationItem'
 import Reserved from 'pages/Reserved'
+import Events from 'pages/Events'
+import EventItem from 'pages/EventItem'
 
 const routes = [
   {
@@ -35,7 +37,7 @@ const routes = [
       { path: '/services', component: Services },
       { path: '/flows', component: Flows },
       { path: '/processes', component: Processes },
-      { path: '/processes/:id', component: ProcessViewer, props: true, name: document },
+      { path: '/processes/:processid', name: 'document', component: ProcessViewer,  props: (route) => ({ ...route.params }),  },
       { path: '/notifications', component: Notifications },
       { path: '/speech', component: Speech },
       { path: '/reserved', component: Reserved },
@@ -50,6 +52,8 @@ const routes = [
       { path: '/decision', component: DecisionTreePage },
       { path: '/information', component: InformationCentre },
       { path: '/information/:id', component: InformationItem },
+      { path: '/events', component: Events },
+      { path: '/events/:id', component: EventItem },
     ]
   }
   /*,

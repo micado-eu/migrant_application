@@ -20,9 +20,14 @@ import intervention_plan from './intervention_plan'
 import information from './information'
 import information_category from './information_category'
 import information_tags from './information_tags'
+import event from './event'
+import event_category from './event_category'
+import event_tags from './event_tags'
 import settings from './settings'
 import tenant from './tenant'
 import document_type from './document_type'
+import comments from './comments'
+import picture_hotspots from './picture_hotspots'
 
 Vue.use(Vuex)
 
@@ -48,13 +53,18 @@ export default function (/* { ssrContext } */) {
       language,
       graphs,
       topic,
+      comments,
       user_type,
       intervention_plan,
       settings,
       information,
       information_category,
       information_tags,
-      document_type
+      document_type,
+      picture_hotspots,
+      event_tags,
+      event_category,
+      event
     },
 
     // enable strict mode (adds overhead!)

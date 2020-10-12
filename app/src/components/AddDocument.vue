@@ -56,7 +56,7 @@ export default {
   mixins: [editEntityMixin,
   storeMappingMixin({
     getters: {
-      documents: 'documents/documents',
+      documents: 'documents/my_documents',
       document_types: 'document_type/document_types'
     }, actions: {
       editDocument: 'documents/editDocument',

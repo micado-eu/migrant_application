@@ -17,12 +17,30 @@
     </div>
     <div>
     <q-icon class="icon" name="img:statics/icons/Edit.png" size="md" @click.stop="editing" />
-    <q-icon class="icon" name="img:statics/icons/Send.png" size="md" />
+    <q-icon class="icon" name="img:statics/icons/Send.png" size="md" @click.stop="show = true"/>
     <q-icon :id="this.Link" name="img:statics/icons/Icon - Delete.svg" @click.stop="deleteDocument($event)" size="md" />
     </div>
     </div>
+     <q-dialog
+     @hide="clean()"
+     v-model="show">
+       <q-card class="q-pa-md">
+       <h5 class="header">{{$t('desc_labels.send_doc')}} </h5>
+      <q-input dense standout outlined :label="$t('input_labels.email')" v-model="email"/>
+         <q-btn
+        size="12px"
+        no-caps
+        class="button"
+        rounded
+        color="info"
+        :label="$t('button.send')"
+        @click="sendDoc()"
+      />
+       </q-card>
+     </q-dialog>
     </q-item>
     <hr class="hr">
+
     </div>
 </template>
 
@@ -31,7 +49,10 @@ export default {
   // name: 'ComponentName',
   props: ["Title", "Image", "Link", "theDocument"],
   data () {
-    return {}
+    return {
+      show:false,
+      email:""
+    }
   },
   methods:{
     editing(){
@@ -45,7 +66,15 @@ export default {
     },
     viewDoc(){
       this.$router.push({ name: 'viewdocument', params: { thedocid: this.Link } })
+    },
+    clean(){
+      this.email = ""
+    },
+    sendDoc(){
+      this.$emit('sendDoc', {docid:this.Link, email:this.email})
+      this.show=false
     }
+
   }
 }
 </script>
@@ -53,6 +82,10 @@ export default {
 #title {
    font-size: 16pt;
    font-weight: bold;
+}
+.header{
+  margin-top:5px;
+  margin-bottom:20px
 }
 .item{
   padding-top:0px;
@@ -83,5 +116,8 @@ export default {
 }
 .hr{
   border: 1px solid #E8E8E8
+}
+.button{
+  margin-top:10px
 }
 </style>
