@@ -5,25 +5,25 @@ export default {
   fetchInterventionPlan (id) {
     console.log(id)
     console.log("CALLING API!!!!FETCH")
-    
+
     return axiosInstance
       .get('/backend/1.0.0/individual-intervention-plans?filter[include][0][relation]=interventions&filter[where][userId]=' + id)
       .then(response => response.data)
       .catch(error_handler);
+  },
+  editIntervention (id_plan, intervention) {
+    console.log(id_plan)
+    const whereClause = {
+      id: { eq: intervention.id }
     },
-    editIntervention (id_plan, intervention) {
-      console.log(id_plan)
-      const whereClause = {
-        id: { eq: intervention.id }
-      },
-      
-       editingIntervention = JSON.parse(JSON.stringify(intervention, [ 'listId','interventionType', 'title', 'description', 'completed', 'validationRequestDate']));
-     
-      return axiosInstance
-        .patch('/backend/1.0.0/individual-intervention-plans/' + id_plan + '/individual-intervention-plan-interventions?where=' + JSON.stringify(whereClause), editingIntervention)
-        .then(response => response.data)
-        .catch(error_handler);
-      },
+
+      editingIntervention = JSON.parse(JSON.stringify(intervention, ['listId', 'interventionType', 'title', 'description', 'completed', 'validationRequestDate']));
+
+    return axiosInstance
+      .patch('/backend/1.0.0/individual-intervention-plans/' + id_plan + '/individual-intervention-plan-interventions?where=' + JSON.stringify(whereClause), editingIntervention)
+      .then(response => response.data)
+      .catch(error_handler);
+  },
   updateInterventionPlan (intervention_plan) {
     console.log("call to update DB")
     console.log(intervention_plan)
@@ -67,5 +67,23 @@ export default {
         resolve(integration_category)
       }, 0)
     })
+  },
+  fetchValidatorsTenants (interventionTypeId) {
+    return axiosInstance
+      .get('/backend/1.0.0/intervention-types/' + interventionTypeId + '/intervention-type-validators')
+      .then((response) => response.data)
+      .catch(error_handler)
+  },
+  updateIntervention (interventionId, tenantId, requestDate, planId) {
+    console.log("in updateIntervention")
+    let filter = { id: { eq: interventionId } }
+
+    let url = '/backend/1.0.0/individual-intervention-plans/' + planId + '/individual-intervention-plan-interventions?where=' + JSON.stringify(filter)
+    console.log(url)
+    let intervention_data = { validatingUserTenant: tenantId, validationRequestDate: requestDate }
+    return axiosInstance
+      .patch(url, intervention_data)
+      .then((response) => response.data)
+      .catch(error_handler)
   }
 }
