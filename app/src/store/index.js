@@ -21,6 +21,7 @@ import information from './information'
 import information_category from './information_category'
 import information_tags from './information_tags'
 import settings from './settings'
+import tenant from './tenant'
 import document_type from './document_type'
 
 Vue.use(Vuex)
@@ -37,6 +38,7 @@ export default function (/* { ssrContext } */) {
       auth,
       chatbot,
       flows,
+      tenant,
       services,
       features,
       tasks,
