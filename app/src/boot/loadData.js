@@ -27,7 +27,7 @@ export default async ({ store, Vue }) => {
                 localStorage.lang = defaultLang.lang
             }
             Vue.prototype.$userLang = localStorage.lang
-            Vue.prototype.$migrant_tenant = migrant_tenant.value
+            Vue.prototype.$migrant_tenant = parseInt(migrant_tenant.value)
 
             userLang = store.state.language.languages.filter(function (l) { return l.lang == localStorage.lang })[0]
             setLocale(userLang)

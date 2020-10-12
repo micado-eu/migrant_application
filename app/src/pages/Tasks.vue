@@ -63,7 +63,14 @@
     >
       <q-card style="min-width: 350px">
         <q-card-section>
-          <div class="text-h6">{{$t('tasks.dialog_title')}}</div>
+          <div
+            class="text-h6"
+            v-if="need_validators"
+          >{{$t('tasks.dialog_title_org')}}</div>
+          <div
+            class="text-h6"
+            v-if="!need_validators"
+          >{{$t('tasks.dialog_title_self')}}</div>
         </q-card-section>
         <q-card-section v-if="need_validators">
           <div id="div-4"> {{$t('tasks.integration_type_validators')}} </div>
@@ -90,6 +97,7 @@
           <q-btn
             :label="$t('tasks.you_validate')"
             color="accent"
+            @click="saveSelfValidationRequest()"
             v-close-popup
             v-if="!need_validators"
           />
@@ -160,7 +168,7 @@ export default {
           console.log("validators")
           console.log(validators)
           console.log(this.tenants)
-          if (validators) {
+          if (validators.length > 0) {
             this.need_validators = true
             validators.forEach((validator) => {
               this.validatorsOptions.push({ value: validator.tenantId, label: this.tenants.filter((ten) => { return (ten.id == validator.tenantId) })[0].name })
@@ -168,35 +176,6 @@ export default {
           }
         })
 
-
-      /*
-      var to_validate = JSON.parse(JSON.stringify(intervention))
-      var selectedPlan = this.intervention_plans.filter((plan) => {
-        return plan.id == to_validate.listId
-      })[0]
-      var index = selectedPlan.interventions.findIndex(item => item.id === to_validate.id)
-      if (index !== -1) selectedPlan.interventions.splice(index, 1, to_validate);
-
-      this.$q.notify({
-        message: 'Do you want to request validation for this intervention? ',
-        color: 'info',
-        actions: [
-          {
-            label: 'Yes', color: 'primary', handler: () => {
-              console.log("answered yes")
-              console.log(to_validate)
-              let current_data = new Date().toISOString()
-              to_validate.validationRequestDate = current_data
-
-              this.$store.dispatch('intervention_plan/editIntervention', { plan: selectedPlan, intervention: to_validate })
-              //              this.asked.push(to_validate)
-            }
-          },
-          { label: 'No', color: 'primary', handler: () => { console.log("rejected") } }
-        ]
-      })
-      */
-      //this.asked.push(intervention)
     },
     saveValidationRequest () {
       // updating the intervention with the tenantid and the current date
@@ -206,7 +185,25 @@ export default {
         .then((result) => {
           console.log(result)
           var userId = this.$store.state.auth.user.umid
-
+          this.ask_validation = false
+          this.selectedValidator = null
+          this.selectedIntervention = null
+          this.selectedPlanId = null
+          this.fetchInterventionPlan(userId)
+        })
+    },
+    saveSelfValidationRequest () {
+      // updating the intervention with the tenantid and the current date
+      let current_data = new Date().toISOString()
+      console.log("saveValidationRequest")
+      this.updateIntervention({ interventionId: this.selectedIntervention, tenantId: this.$migrant_tenant, requestDate: current_data, planId: this.selectedPlanId })
+        .then((result) => {
+          console.log(result)
+          var userId = this.$store.state.auth.user.umid
+          this.ask_validation = false
+          this.selectedValidator = null
+          this.selectedIntervention = null
+          this.selectedPlanId = null
           this.fetchInterventionPlan(userId)
         })
     }

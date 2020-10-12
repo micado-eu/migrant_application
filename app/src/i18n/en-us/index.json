@@ -85,7 +85,8 @@
   "tasks": {
     "ask_validation": "Ask for validation",
     "you_validate": "Validate task",
-    "dialog_title": "Choose the validator's organization",
+    "dialog_title_org": "Choose the validator's organization",
+    "dialog_title_self": "Validate the task",
     "integration_type_validators": "validator's organization"
   },
   "events": {
