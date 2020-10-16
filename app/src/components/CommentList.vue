@@ -6,7 +6,7 @@
       :key="comment.id"
       >
       {{comment.translations.filter(filterTranslationModel(activeLanguage))[0].comment}}<br>
-      - Template tenant
+      - {{comment.tenant.name}}
       </div>
     </q-card>
 </template>

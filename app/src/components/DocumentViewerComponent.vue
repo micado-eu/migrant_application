@@ -23,10 +23,6 @@
     <p class="textup" >{{$t('desc_labels.document_issuer')}}:</p>
     <p class="textdown">{{the_document.emitter}}</p>
     </div>
-    <div  class="field" > 
-    <p class="textup" >{{$t('desc_labels.reviewed_by')}} by:</p>
-    <p class="textdown">{{the_document.emitter}}</p>
-    </div>
     <div class="last-field"> 
     <p class="textup" >{{$t('desc_labels.review_date')}}:</p>
     <p class="textdown">{{the_document.expirationDate}}</p>

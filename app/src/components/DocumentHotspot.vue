@@ -19,8 +19,8 @@ export default {
         interactivity: 'hover',
         data: this.data,
         hotspotColor: '#85ce61',
-        messageBoxColor: '#409eff',
-        textColor: '#333',
+        messageBoxColor: '#E9E9E9',
+        textColor: '#000000',
         opacity: 0.9
       }
     }
