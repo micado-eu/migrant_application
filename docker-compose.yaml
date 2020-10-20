@@ -1,17 +1,17 @@
-version: '3.7'
+version: "3.7"
 
 services:
   nginx:
     image: nginx
-#    ports:
-#      - 8080:80
+    #    ports:
+    #      - 8080:80
     volumes:
       - type: volume
         source: data2
         target: /usr/share/nginx/html
         read_only: true
         volume:
-          nocopy: true    
+          nocopy: true
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.nginx.rule=Host(`${MIGRANTS_HOSTNAME}`)"
@@ -22,8 +22,8 @@ services:
       - "traefik.http.routers.nginx2.tls=true"
     networks:
       - micado_net
-#        aliases:
-#          - ng
+  #        aliases:
+  #          - ng
   d:
     command: "sh -c 'rm -rf /var/www/html/* && ls -lat /var/www/html/ && cp -ra /var/www/html2/* /var/www/html/ && ls -lat /var/www/html/ && trap : TERM INT; (while true; do sleep 1000; done) & wait'"
     #TODO more elegant copy like copy with mv
@@ -39,13 +39,13 @@ services:
     image: containrrr/watchtower
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-#      - /root/.docker/config.json:/config.json
+    #      - /root/.docker/config.json:/config.json
     command: --interval 30 --no-pull
     networks:
       - micado_net
 
   migrants_app_dev:
-    image: micadoproject/quasar:1.0.3
+    image: micadoproject/quasar:1.1.2
     stdin_open: true
     tty: true
     volumes:
@@ -53,12 +53,12 @@ services:
         source: migrants_app
         target: /code
     ports:
-     - "8000:8000"
-     - "8080:8080"
+      - "8000:8000"
+      - "8080:8080"
     command: /bin/sh -c "npm install && quasar dev -m pwa"
     networks:
       - micado_net
-    
+
   balancer:
     image: traefik:v2.1
     ports:
@@ -68,7 +68,7 @@ services:
     volumes:
       - ./traefik/traefik.toml:/etc/traefik/traefik.toml
       - ./traefik/dynamic.toml:/etc/traefik/dynamic.toml
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"   
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
       - ./traefik/certs:/etc/certs # SSL Development certificates
     networks:
       - micado_net
@@ -86,7 +86,6 @@ services:
       - "5488:5488"
     networks:
       - micado_net
-    
 
 volumes:
   migrants_app:
@@ -98,8 +97,8 @@ volumes:
       o: bind
   data2:
     driver: local
-    
+
 networks:
   micado_net:
-#    driver: bridge
+    #    driver: bridge
     external: true
