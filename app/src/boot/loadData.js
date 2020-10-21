@@ -40,6 +40,7 @@ export default async ({ store, Vue }) => {
     console.log(Vue.prototype.$userLang)
     await store.dispatch('topic/fetchTopic', { defaultLang: Vue.prototype.$defaultLang, userLang: Vue.prototype.$userLang })
     await store.dispatch('user_type/fetchUserType', { defaultLang: Vue.prototype.$defaultLang, userLang: Vue.prototype.$userLang })
+    await store.dispatch('tenant/fetchTenants')
     // somewhere we need to set the userLang reading it dfrom the user preferences
 
 }
