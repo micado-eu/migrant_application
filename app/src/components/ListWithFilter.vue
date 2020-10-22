@@ -2,8 +2,8 @@
   <div>
     <div>
       <div style="font-style: normal;height:72px;text-align: center; padding-top:15px;font-weight: bold;font-size: 22px;line-height: 41px;color:white; background-color:#FF7C44">
-        {{$t('')}}
         <q-icon :name="icon"></q-icon>
+        {{$t(title)}}
       </div>
       <div class="row q-ma-md">
         <q-input
@@ -191,11 +191,9 @@ export default {
       if (this.selectedTags.length > 0) {
         this.filteredElementsByTags = [];
         for (let e of this.translatedElements) {
-          console.log(e)
           let matchedTags = []
           for (let tag of this.selectedTags) {
             if (e.tags) {
-              console.log(e.tags)
               for (let elemTag of e.tags) {
                 if (elemTag.tag === tag) {
                   // This check avoids duplicate matches
@@ -206,7 +204,6 @@ export default {
               }
             }
           }
-          console.log(matchedTags);
           if (matchedTags.length === this.selectedTags.length) {
             this.filteredElementsByTags.push(e)
           }
