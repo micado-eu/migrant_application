@@ -12,9 +12,6 @@
             :label="$t('input_labels.doc_type')" 
           />
     </div>
-    <div class="input" >
-        <q-input dense  standout outlined :label="$t('input_labels.exp_date')" v-model="doc_shell.expirationDate"  />
-    </div>
     <div class="col-8 input" >
         <q-file
         :label="$t('input_labels.upload_doc')"
