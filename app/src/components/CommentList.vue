@@ -6,18 +6,28 @@
       :key="comment.id"
       >
       {{comment.translations.filter(filterTranslationModel(activeLanguage))[0].comment}}<br>
-      - {{comment.tenant.name}}
+      <TalkingLabel
+                  :Title="comment.tenant.name"
+                  :text="comment.translations.filter(filterTranslationModel(activeLanguage))[0].comment"
+                >
+      </TalkingLabel>
+      
       </div>
     </q-card>
 </template>
 
 <script>
 import editEntityMixin from '../mixin/editEntityMixin'
+import TalkingLabel from 'components/TalkingLabel'
+
 
 export default {
   // name: 'ComponentName',
   props: ['selected_process_comments'],
   mixins:[editEntityMixin],
+  components:{
+    TalkingLabel
+  },
   data () {
     return {}
   },
