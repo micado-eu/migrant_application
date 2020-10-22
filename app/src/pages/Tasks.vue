@@ -32,9 +32,9 @@
             :name="intervention.id"
             :title="intervention.title"
             icon="work"
-            :done="intervention.validated"
             :key="intervention.id"
             color="accent"
+            :done="intervention.completed"
           >
             {{intervention.description}}
 

@@ -113,13 +113,30 @@ export default {
   ],
   methods: {
     editing () {
-      console.log("prima di mandare i process")
+      if(this.theDocument.uploadedByMe){
+        console.log("prima di mandare i process")
       console.log(this.theDocument)
       this.$router.push({ name: 'editdocument', params: { thedocid: this.Link } })
+      }
+      else{
+        this.$q.notify({
+        message: 'You can\'t edit documents not uploaded by you',
+        color: 'purple'
+      })
+      }
+      
     },
     deleteDocument () {
+      if(this.theDocument.uploadedByMe){
       console.log("in delete document event")
       this.$emit('delete', event.currentTarget.id)
+      }
+       else{
+        this.$q.notify({
+        message: 'You can\'t delete documents not uploaded by you',
+        color: 'purple'
+      })
+      }
     },
     viewDoc () {
       this.$router.push({ name: 'viewdocument', params: { thedocid: this.Link } })
