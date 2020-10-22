@@ -54,10 +54,9 @@
                 :key="category.id">
                 <q-radio
                   color="accent"
-                  v-model="selectedCategory"
+                  v-model="categoryToSelect"
                   :val="category"
                   :label="category.category"
-                  @input="filterByCategory()"
                   class="filter-text"
                 />
               </div>
@@ -68,25 +67,36 @@
                 :key="tag">
                 <q-checkbox
                   color="accent"
-                  v-model="selectedTags"
+                  v-model="tagsToSelect"
                   :val="tag"
                   :label="tag"
                   class="filter-text"
-                  @input="filterByTags()"
                 />
               </div>
-              <a
-                class="row"
-                href="javascript:void(0)"
-                @click="clearFilters()"
-              >
-                {{$t("filters.clear_all")}}
-              </a>
+              <q-footer>
+                <q-btn
+                  unelevated
+                  color="accent"
+                  class="q-ma-sm"
+                  @click="clearFilters()"
+                >
+                  {{$t("filters.clear_all")}}
+                </q-btn>
+                <q-btn
+                  unelevated
+                  color="accent"
+                  class="q-ma-sm"
+                  @click="applyFilters()"
+                  v-close-popup
+                >
+                  {{$t("filters.apply")}}
+                </q-btn>
+              </q-footer>
             </q-page-container>
           </q-layout>
         </q-dialog>
       </div>
-      <div class="row q-my-sm" v-if="selectedCategory || selectedTags.length > 0">
+      <div class="row q-my-sm q-ml-sm" v-if="selectedCategory || selectedTags.length > 0">
         <q-btn 
           class="q-mx-md q-mb-md category_btn" 
           no-caps 
@@ -163,19 +173,29 @@ export default {
       filteredElementsByTags: [],
       searchText: "",
       tags: [],
+      tagsToSelect: [],
+      categoryToSelect: undefined,
       selectedTags: [],
       selectedCategory: undefined,
       filter_dialog: false
     };
   },
   methods: {
+    applyFilters() {
+      this.selectedCategory = this.categoryToSelect
+      this.selectedTags = [...this.tagsToSelect]
+      this.filterByTags()
+      this.filterByCategory()
+    },
     filterByTags() {
       if (this.selectedTags.length > 0) {
         this.filteredElementsByTags = [];
         for (let e of this.translatedElements) {
+          console.log(e)
           let matchedTags = []
           for (let tag of this.selectedTags) {
             if (e.tags) {
+              console.log(e.tags)
               for (let elemTag of e.tags) {
                 if (elemTag.tag === tag) {
                   // This check avoids duplicate matches
@@ -186,7 +206,8 @@ export default {
               }
             }
           }
-          if (matchedTags.length == this.selectedTags.length) {
+          console.log(matchedTags);
+          if (matchedTags.length === this.selectedTags.length) {
             this.filteredElementsByTags.push(e)
           }
         }
@@ -212,6 +233,8 @@ export default {
     clearFilters() {
       this.selectedTags = [];
       this.selectedCategory = undefined;
+      this.tagsToSelect = [];
+      this.categoryToSelect = undefined;
       this.filteredElementsByTags = this.translatedElements;
       this.filteredElementsByCategory = this.translatedElements;
     }
@@ -251,6 +274,7 @@ export default {
     }
   },
   created() {
+    console.log(this.elements)
     this.translatedElements = this.elements.map(e => {
       let translation = undefined;
       if (e.translations) {
@@ -270,7 +294,7 @@ export default {
           this.translatedCategories.push(translation.category);
         }
         // Set tag-elements relations
-        e.tags = this.elemTags;
+        //e.tags = this.elemTags;
         // Tags
         if (e.tags.length > 0) {
           let tagTranslations = [];
@@ -295,6 +319,7 @@ export default {
     this.filteredElementsByTags = this.translatedElements;
     this.filteredElementsBySearch = this.translatedElements;
     this.filteredElementsByCategory = this.translatedElements;
+    console.log(this.translatedElements)
   }
 };
 </script>

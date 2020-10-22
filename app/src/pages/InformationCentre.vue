@@ -39,7 +39,7 @@ export default {
   computed: {
     ...mapGetters("information", ["information"]),
     ...mapGetters("information_category", ["informationCategories"]),
-    ...mapGetters("information_tags", ["informationTags"]),
+    ...mapGetters("information_tags", ["informationTags", "informationTagsByInformation"]),
   },
   created() {
     this.loading = true;
@@ -48,6 +48,9 @@ export default {
         this.fetchInformationTags().then(() => {
           this.categories = [...this.informationCategories];
           this.elements = JSON.parse(JSON.stringify(this.information));
+          for (const e of this.elements) {
+            e.tags = this.informationTagsByInformation(e.id)
+          }
           this.tags = this.informationTags;
           this.loading = false;
         });

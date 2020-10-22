@@ -76,7 +76,8 @@
     "title": "Filter by",
     "categories": "Categories",
     "tags": "Tags",
-    "clear_all": "Clear all"
+    "clear_all": "Clear all",
+    "apply": "Apply"
   },
   "information_centre": {
     "category": "Category",
