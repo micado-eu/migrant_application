@@ -2,17 +2,12 @@
   "baseUrl": "http://localhost:8080/",
   "fixturesFolder": "test/cypress/fixtures",
   "integrationFolder": "test/cypress/integration",
-  "pluginsFile": "test/cypress/plugins/index.js",
+  "pluginsFile": false,
   "screenshotsFolder": "test/cypress/screenshots",
   "supportFile": "test/cypress/support/index.js",
   "videosFolder": "test/cypress/videos",
-  "video": true,
-  "json.schemas": [
-    {
-      "fileMatch": [
-        "cypress.json"
-      ],
-      "url": "https://on.cypress.io/cypress.schema.json"
-    }
-  ]
+  "videoCompression": 10,
+  "viewportHeight": 768,
+  "viewportWidth": 1024,
+  "video": true
 }
