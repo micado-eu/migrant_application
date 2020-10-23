@@ -53,6 +53,7 @@
           clickable
           exact
           dark
+          :data-cy="nav.label.replace('.', '_')"
           v-for="(nav) in navs"
           :to="nav.to"
           :key="nav.label"

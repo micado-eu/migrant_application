@@ -14,6 +14,14 @@ describe("Landing", () => {
   it(".should() - assert that <title> is correct", () => {
     cy.title().should("include", "Micado app");
   });
+  it(".should() - assert that home is present", () => {
+    cy.dataCy('menu_home')
+      .should('contain', 'Home')
+  });
+
+
+
+
 });
 
 // ** The following code is an example to show you how to write some tests for your home page **
