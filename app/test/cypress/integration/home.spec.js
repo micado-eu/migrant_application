@@ -17,6 +17,22 @@ describe("Landing", () => {
   it(".should() - assert that home is present", () => {
     cy.dataCy('menu_home')
       .should('contain', 'Home')
+    cy.wait(4000)
+    cy.dataCy('menu_processes')
+      .click()
+    cy.wait(4000)
+    cy.dataCy('process92')
+      .should('contain', 'test')
+    cy.wait(2000)
+    cy.dataCy('process92')
+      .click()
+    cy.wait(4000)
+    cy.get('#fd02ce7f-6d27-49d5-b614-450250be241a').click();
+    cy.wait(4000)
+
+
+
+
   });
 
 
