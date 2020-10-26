@@ -29,6 +29,7 @@
     "save": "Save",
     "remove": "Remove",
     "back": "Back",
+    "go_back": "Go Back",
     "ask_validation": "Ask for validation",
     "download": "Download",
     "view_model": "View model",
@@ -76,7 +77,8 @@
     "title": "Filter by",
     "categories": "Categories",
     "tags": "Tags",
-    "clear_all": "Clear all"
+    "clear_all": "Clear all",
+    "apply": "Apply"
   },
   "information_centre": {
     "category": "Category",

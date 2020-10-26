@@ -1,7 +1,19 @@
   <template>
   <div class="container">
-    <h5 class="title"> {{this.the_process}} </h5>
-    <div class="row pad">
+     <q-toolbar class="toolbar-list q-mb-md">
+        <q-icon
+          name="img:statics/icons/Guided Processes (600x600) white.png"
+          size="xl"
+          class="q-mx-auto"
+        />
+      </q-toolbar>
+     <TalkingLabel
+     class="title"
+     :Title="this.the_process"
+     :text="this.the_process"
+      >
+    </TalkingLabel>
+    <div class="row pad" >
               <q-img
                 class="image"
                 v-for="tag in full_process.topics"
@@ -25,6 +37,7 @@
           class="bg-grey-1"
         >
           <vue-mermaid
+            class="center"
             :nodes="mermaid"
             :config="merconf"
             type="graph TD"
@@ -38,18 +51,33 @@
       :class="nodePanelVisible"
       header="Details of the step1"
     >
-    <h5
+   <!-- <h5
       :class="nodePanelVisible"
-      id="header"
+      class="header"
     >{{this.shell_data.text}}</h5>
-    
+    <hr>-->
+    <q-field
+        class="header-title"
+        color="purple-12"
+        
+        stack-label
+      >
+       <template v-slot:control>
+          <div
+            class="self-center full-width no-outline step-title"
+            tabindex="0"
+          >{{shell_data.text}}</div>
+        </template>
+    </q-field>
       <q-field
+      class="header"
         color="purple-12"
         :label="$t('desc_labels.description')"
         stack-label
       >
+      
         <template v-slot:prepend>
-          <q-icon name="img:statics/icons/Description.svg" />
+          <q-icon class="icon" name="img:statics/icons/info.svg" />
         </template>
         <template v-slot:control>
           <div
@@ -60,12 +88,13 @@
       </q-field>
       <LabelMap :label="flowData.location" />
       <q-field
+        class="header"
         color="purple-12"
         :label="$t('desc_labels.cost')"
         stack-label
       >
         <template v-slot:prepend>
-          <q-icon name="euro_symbol" />
+          <q-icon class="icon" name="img:statics/icons/cost.svg" />
         </template>
         <template v-slot:control>
           <div
@@ -74,8 +103,17 @@
           >{{flowData.cost}}</div>
         </template>
       </q-field>
+      <q-field
+        class="header"
+        color="purple-12"
+        :label="$t('desc_labels.required_documents')"
+        stack-label
+      >
+       <template v-slot:prepend>
+          <q-icon class="icon" name="img:statics/icons/docs.svg" />
+        </template>
       <q-list>
-        <q-item-label header>{{$t('desc_labels.required_documents')}}</q-item-label>
+        <!--<q-item-label header>{{$t('desc_labels.required_documents')}}</q-item-label>-->
         <DocumentItem
           v-for="doc in documents"
           :theDoc="doc"
@@ -92,6 +130,7 @@
            >
         </DocumentItem>
       </q-list>
+      </q-field>
     </q-card>
     <CommentList
     :selected_process_comments ="selected_process_comments"
@@ -103,8 +142,8 @@
         no-caps
         class="button"
         rounded
-        color="info"
-        :label="$t('button.back')"
+        color="accent"
+        :label="$t('button.go_back')"
         to="/processes"
       />
     </div>
@@ -119,6 +158,8 @@ import LabelMap from 'components/LabelMap'
 import storeMappingMixin from '../mixin/storeMappingMixin'
 import editEntityMixin from '../mixin/editEntityMixin'
 import CommentList from 'components/CommentList'
+import TalkingLabel from 'components/TalkingLabel'
+
 
 
 export default {
@@ -154,7 +195,7 @@ export default {
   ],
   props:['processid'],
   components: {
-    DocumentItem, LabelMap, CommentList
+    DocumentItem, LabelMap, CommentList,TalkingLabel
   },
   data () {
     return {
@@ -403,12 +444,14 @@ g.label {
   font-size: 10px;
 }
 #scroll{
-  height: 210px
+  height: 250px;
+  margin-top:25px
 }
-#header{
-  font-weight: 600;
-  font-size: 16px; 
-  padding-left:30px
+.header{
+  font-weight: 400;
+  font-size: 12px; 
+  padding-left:30px; 
+  padding-right:30px
 }
 .button{
   width:130px; 
@@ -417,6 +460,7 @@ g.label {
 .button-div{
   padding-top:0px; 
   padding-bottom:0px;
+  text-align: center;
 }
 .image{
   max-height: 25px; 
@@ -424,7 +468,37 @@ g.label {
   margin-right:5px
 }
 .title{
-  margin-bottom:5px
+  margin-bottom:5px;
+  font-weight: 700;
+  font-size: 18px;
+  text-align:center;
+  margin-top:20px
+}
+.toolbar-list {
+  background-color: #ff7c44;
+}
+.pad{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.center{
+  text-align: center;
+}
+.header-title{
+  
+  padding-left:30px; 
+  padding-right:30px
+
+}
+.step-title{
+  font-weight: 700;
+  font-size: 16px; 
+}
+.icon{
+  width:15px;
+  height: 15px;
+  margin-top: -22px;
 }
 
 

@@ -66,7 +66,17 @@ export default {
   },
   methods:{
     editing(){
-     this.$router.push({ name: 'editdocument', params: { thedoc: this.the_document } })
+       if(this.the_document.uploadedByMe){
+        console.log("prima di mandare i process")
+        console.log(this.theDocument)
+        this.$router.push({ name: 'editdocument', params: { thedoc: this.the_document } })
+       }
+       else{
+        this.$q.notify({
+        message: 'You can\'t edit documents not uploaded by you',
+        color: 'purple'
+      })
+       }
     }, 
     findType(){
      var doc_type = this.document_types.filter((type)=>{return type.id == this.the_document.documentTypeId})[0]
