@@ -23,10 +23,10 @@
     <p class="textup" >{{$t('desc_labels.document_issuer')}}:</p>
     <p class="textdown">{{the_document.emitter}}</p>
     </div>
-    <div class="last-field"> 
+    <!--<div class="last-field"> 
     <p class="textup" >{{$t('desc_labels.review_date')}}:</p>
     <p class="textdown">{{the_document.expirationDate}}</p>
-    </div>
+    </div>-->
   
     <q-btn class="button-1" size="12px" rounded no-caps filled color="info" to="/documents" :label="$t('button.back')" />
     <q-btn class="button-2" size="12px" rounded no-caps color="accent" :label="$t('button.download')" />
