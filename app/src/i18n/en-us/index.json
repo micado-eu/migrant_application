@@ -29,6 +29,7 @@
     "save": "Save",
     "remove": "Remove",
     "back": "Back",
+    "go_back": "Go Back",
     "ask_validation": "Ask for validation",
     "download": "Download",
     "view_model": "View model",

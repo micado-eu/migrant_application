@@ -23,7 +23,10 @@
         >
           <div class="container">
             <div class=" q-pa-md div-1">
-              <div class="div-2">
+              <div
+                class="div-2"
+                :data-cy="'process'.concat(Link)"
+              >
                 <TalkingLabel
                   :Title="this.Title"
                   :text="this.Title"

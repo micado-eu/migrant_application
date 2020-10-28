@@ -122,6 +122,9 @@ export default {
 
 </script>
 <style scoped>
+.button{
+  width:125px
+  }
 .image {
   max-width: 80%;
   max-height: 80%;

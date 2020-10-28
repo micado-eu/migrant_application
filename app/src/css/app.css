@@ -1,1 +1,12 @@
 /* app global css */
+.bg-accent {
+    background: #0f3a5d !important;
+}
+
+.q-item.q-router-link--active, .q-item--active {
+    color: #efefef;
+}
+
+body {
+  font-family: "Nunito", sans-serif;
+}
