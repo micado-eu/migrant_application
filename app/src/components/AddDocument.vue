@@ -215,7 +215,7 @@ export default {
    margin: 0 auto;  
    margin-top:25px; 
    padding-bottom:10px; 
-   width:300px
+   width:90%
 }
 .select{
   margin: auto;

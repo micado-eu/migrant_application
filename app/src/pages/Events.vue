@@ -39,7 +39,7 @@ export default {
   computed: {
     ...mapGetters("event", ["events"]),
     ...mapGetters("event_category", ["eventCategories"]),
-    ...mapGetters("event_tags", ["eventTags"]),
+    ...mapGetters("event_tags", ["eventTags", "eventTagsByEvent"]),
   },
   created() {
     this.loading = true;
@@ -48,6 +48,9 @@ export default {
         this.fetchEventTags().then(() => {
           this.categories = [...this.eventCategories];
           this.elements = JSON.parse(JSON.stringify(this.events));
+          for (const e of this.elements) {
+            e.tags = this.eventTagsByEvent(e.id)
+          }
           this.tags = this.eventTags;
           this.loading = false;
         });

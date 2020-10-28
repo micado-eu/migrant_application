@@ -6,7 +6,7 @@
   "screenshotsFolder": "test/cypress/screenshots",
   "supportFile": "test/cypress/support/index.js",
   "videosFolder": "test/cypress/videos",
-  "videoCompression": 32,
+  "videoCompression": 10,
   "pageLoadTimeout": 1500000,
   "defaultCommandTimeout": 100000,
   "viewportHeight": 768,

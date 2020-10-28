@@ -139,14 +139,15 @@ export default {
           feature: "FEAT_EVENTS",
           visible: true
         },
-        {
-          label: "menu.chatbot",
-          icon: "img:statics/icons/Chatbot (600x600) white.png",
-          to: "/chatbot",
-          description: "menu.chatbot_desc",
-          feature: "FEAT_CHATBOT",
-          visible: true
-        },
+        /*        {
+                  label: "menu.chatbot",
+                  icon: "img:statics/icons/Chatbot (600x600) white.png",
+                  to: "/chatbot",
+                  description: "menu.chatbot_desc",
+                  feature: "FEAT_CHATBOT",
+                  visible: true
+                },
+                */
         {
           label: "menu.documents",
           icon: "img:statics/icons/Document Wallet (600x600) white.png",
