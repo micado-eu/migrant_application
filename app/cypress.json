@@ -11,5 +11,17 @@
   "defaultCommandTimeout": 100000,
   "viewportHeight": 768,
   "viewportWidth": 1024,
-  "video": true
+  "video": true,
+  "nodeVersion": "system",
+  "env": {
+    "cypress-movie": {
+      "enabled": true,
+      "cursorTracking": {
+        "enabled": false,
+        "shape": "dot"
+      },
+      "width": 1920,
+      "height": 640
+    }
+  }
 }

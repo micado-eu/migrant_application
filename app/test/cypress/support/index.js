@@ -1,27 +1,22 @@
-// ***********************************************************
-// This example support/index.js is processed and
-// loaded automatically before your test files.
-//
-// This is a great place to put global configuration and
-// behavior that modifies Cypress.
-//
-// You can change the location of this file or turn off
-// automatically serving support files with the
-// 'supportFile' configuration option.
-//
-// You can read more here:
-// https://on.cypress.io/configuration
-// ***********************************************************
+/// <reference types="cypress" />
 
-// Import commands.js using ES2015 syntax:
 import './commands'
+//import 'cypress-movie/commands'
+import './clear-viewport'
 
-const resizeObserverLoopError = 'ResizeObserver loop limit exceeded'
+import { slowDownCommands } from './slow-down'
+import { cursorTrackingCommands } from './cursor-tracking'
 
-Cypress.on('uncaught:exception', (err) => {
-  if (err.message.startsWith(resizeObserverLoopError)) {
-    // returning false here prevents Cypress from
-    // failing the test
-    return false
+// use Cypress._.get to safely get nested property
+const cursorEnabled = Cypress._.get(Cypress.env(), 'cypress-movie.cursorTracking.enabled')
+if (cursorEnabled) {
+  cursorTrackingCommands()
+} else {
+  slowDownCommands()
+}
+
+before(() => {
+  if (Cypress.browser.isHeadless) {
+    cy.clearViewport()
   }
 })
