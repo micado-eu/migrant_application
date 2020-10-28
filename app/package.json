@@ -55,12 +55,13 @@
     "@quasar/quasar-app-extension-testing": "^1.0.0",
     "@quasar/quasar-app-extension-testing-e2e-cypress": "^2.0.1",
     "@quasar/quasar-app-extension-testing-unit-jest": "^1.1.0-beta.7",
+    "eslint-plugin-cypress": "^2.11.1",
     "exports-loader": "^0.7.0",
     "majestic": "^1.2.24",
     "quasar-app-extension-auth-token-based": "^0.3.1",
+    "tiny-toast": "^1.2.0",
     "vue": "^2.6.11",
-    "wallaby-vue-compiler": "^1.0.3",
-    "eslint-plugin-cypress": "^2.11.1"
+    "wallaby-vue-compiler": "^1.0.3"
   },
   "engines": {
     "node": ">= 8.9.0",

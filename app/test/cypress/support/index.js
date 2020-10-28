@@ -3,6 +3,8 @@
 import './commands'
 //import 'cypress-movie/commands'
 import './clear-viewport'
+import './toast'
+import './arrow'
 
 import { slowDownCommands } from './slow-down'
 import { cursorTrackingCommands } from './cursor-tracking'

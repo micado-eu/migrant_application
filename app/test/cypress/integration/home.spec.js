@@ -13,21 +13,38 @@ describe("Landing", () => {
   });
   it(".should() - assert that <title> is correct", () => {
     cy.title().should("include", "Micado app");
-  });
-  it(".should() - assert that home is present", () => {
     cy.dataCy('menu_home')
       .should('contain', 'Home')
-    cy.wait(4000)
+    // We present the feature
+    cy.toast('The user want to consult a process', {
+      duration: 4000,
+      blocking: true,
+    })
+    //    cy.wait(4000)
+
+    cy.dataCy('menu_processes')
+      .arrow({
+        duration: 3000,
+        blocking: true,
+        pointAt: 'bottomRight', // or "bottomRight"
+        offsetX: 0, // move the tip by X pixels
+        offsetY: 0, // move the tip by Y pixels
+        strokeWidth: 5, // SVG line width, pixels
+        color: 'orange', // color name or hex string like "#ff00ff"
+      })
     cy.dataCy('menu_processes')
       .click()
-    cy.wait(4000)
+    cy.toast('Chooses the "test" process', {
+      duration: 4000,
+      blocking: true,
+    })
     cy.dataCy('process92')
       .should('contain', 'test')
     cy.wait(2000)
     cy.dataCy('process92')
       .click()
     cy.wait(4000)
-    cy.get('#fd02ce7f-6d27-49d5-b614-450250be241a').click();
+    cy.get('#79b8a332-0ae3-4295-9589-05680093c0db').click();
     cy.wait(4000)
 
 
