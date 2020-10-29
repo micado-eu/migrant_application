@@ -2,8 +2,8 @@
   <div>
     <div>
       <div style="font-style: normal;height:72px;text-align: center; padding-top:15px;font-weight: bold;font-size: 22px;line-height: 41px;color:white; background-color:#FF7C44">
-        <q-icon :name="icon"></q-icon>
         {{$t(title)}}
+        <q-icon :name="icon"></q-icon>
       </div>
       <div class="row q-ma-md">
         <q-input
@@ -13,7 +13,6 @@
           filled
           outlined
           :label="$t('desc_labels.search')"
-          label-color="accent"
           class="col-9"
         >
           <template v-slot:append>

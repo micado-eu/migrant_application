@@ -3,7 +3,7 @@
     <span v-if="loading">Loading...</span>
     <div v-if="!loading" style="font-style: normal;height:72px;text-align: center; padding-top:15px;font-weight: bold;font-size: 22px;line-height: 41px;color:white; background-color:#FF7C44">
       {{$t('desc_labels.events')}}
-      <q-icon name="img:statics/icons/Icon - Information Centre (selected) (30x30).png"></q-icon>
+      <q-icon name="img:statics/icons/Icon - Events (selected; 30x30).png"></q-icon>
     </div>
     <div
       class="q-ma-md"
