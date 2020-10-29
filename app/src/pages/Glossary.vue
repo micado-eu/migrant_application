@@ -32,15 +32,17 @@
           <q-expansion-item
             group="glossary"
             :label="glossaryItem.title"
-            hader-class="glossary-item-header"
+            :header-style="{fontFamily: 'Nunito', fontWeight: 'bold', fontSize: '13px'}"
             :ref="glossaryItem.id"
             @show="changeQuery(glossaryItem.id)"
+            expand-icon-class="text-orange"
           >
             <q-card>
               <q-card-section>
                 <glossary-editor-viewer
                   :content="glossaryItem.description"
                   glossary_fetched
+                  class="glossary-desc"
                   :lang="lang"
                 />
               </q-card-section>
@@ -174,10 +176,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 $accent_list: #ff7c44;
-.glossary-item-header {
-  font-family: "Nunito";
-  font-weight: bold;
-}
 .toolbar-list {
   background-color: $accent_list;
   border-radius: 10px;
@@ -187,7 +185,7 @@ $accent_list: #ff7c44;
   font-family: "Nunito";
   font-weight: bold;
 }
-.list_separator {
-  background-color: $accent_list;
+.glossary-desc {
+  font-size: 12px;
 }
 </style>>

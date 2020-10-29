@@ -111,7 +111,6 @@ export default {
           new Bold(),
           new Italic(),
           new Link(),
-          new Underline(),
           new Image()
         ],
         content: glossaryElem.description
@@ -128,15 +127,7 @@ export default {
       const { uuid } = this
       const { lang } = this
       document.addEventListener('mouseover', function (e) {
-        const componentDiv = document.getElementById(uuid)
-        var isParentOfDiv
-        if (componentDiv) {
-          isParentOfDiv = componentDiv.contains(e.target)
-        } else {
-          isParentOfDiv = false
-        }
-        var isParentOfDiv = componentDiv !== null ? componentDiv.contains(e.target) : false
-        if (e.target && e.target.classList.contains('mention') && isParentOfDiv) {
+        if (e.target && e.target.classList.contains('mention')) {
           const id = e.srcElement.getAttribute('data-mention-id')
           const glossaryElem = glossaryElemByIdFunc(id)
           const idx = glossaryElem.translations.findIndex((t) => t.lang === lang)
@@ -163,7 +154,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .mention {
   text-decoration: underline;
 }
