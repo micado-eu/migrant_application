@@ -4,6 +4,7 @@
       class="item"
       clickable
       @click="viewDoc"
+      :data-cy="'viewdocument'.concat(Link)"
     >
       <q-item-section class="col-2 section">
         <img
@@ -20,18 +21,21 @@
         <div>
           <q-icon
             class="icon"
+            :data-cy="'editdocument'.concat(Link)"
             name="img:statics/icons/Edit.png"
             size="md"
             @click.stop="editing"
           />
           <q-icon
             class="icon"
+            :data-cy="'senddocument'.concat(Link)"
             name="img:statics/icons/Send.png"
             size="md"
             @click.stop="show = true"
           />
           <q-icon
             :id="this.Link"
+            :data-cy="'deletedocument'.concat(Link)"
             name="img:statics/icons/Icon - Delete.svg"
             @click.stop="deleteDocument($event)"
             size="md"

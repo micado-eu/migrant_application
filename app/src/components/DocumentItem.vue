@@ -28,6 +28,7 @@
         class="button"
         rounded
         :id="theDoc.id"
+        :data-cy="'viewmodel'.concat(theDoc.id)"
         color="info"
         :label="$t('button.view_model')"
         @click="show = true"

@@ -145,6 +145,7 @@
     <div class="q-pa-md q-gutter-sm  col button-div">
       <q-btn
         size="12px"
+        :data-cy="'back_from_processviewer'.concat(processid)"
         no-caps
         class="button"
         rounded

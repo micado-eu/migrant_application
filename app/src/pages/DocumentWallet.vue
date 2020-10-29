@@ -5,6 +5,7 @@
       style="text-align:center; padding-top:30px; padding-bottom:20px; "
     >
       <q-btn
+      :data-cy="'adddocument'"
         id="button"
         unelevated
         rounded

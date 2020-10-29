@@ -29,6 +29,7 @@
           </div>
           <q-step
             v-for="intervention in intervention_plan.interventions"
+            :data-cy="'intervention'.concat(intervention.id)"
             :name="intervention.id"
             :title="intervention.title"
             icon="work"
@@ -45,6 +46,7 @@
                 class="button"
                 rounded
                 color="accent"
+                :data-cy="'validateintervention'.concat(intervention.id)"
                 :id="intervention.id"
                 no-caps
                 :disable="intervention.validationRequestDate !== null"
