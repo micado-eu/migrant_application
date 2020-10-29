@@ -132,6 +132,12 @@
       </q-list>
       </q-field>
     </q-card>
+    <div class="title"> {{$t('desc_labels.description')}} </div>
+   <glossary-editor-viewer
+                  :content="the_process_description"
+                  glossary_fetched
+                  :lang="lang"
+                />
     <CommentList
     :selected_process_comments ="selected_process_comments"
     >
@@ -159,6 +165,8 @@ import storeMappingMixin from '../mixin/storeMappingMixin'
 import editEntityMixin from '../mixin/editEntityMixin'
 import CommentList from 'components/CommentList'
 import TalkingLabel from 'components/TalkingLabel'
+import GlossaryEditorViewer from "../components/GlossaryEditorViewer"
+
 
 
 
@@ -195,7 +203,7 @@ export default {
   ],
   props:['processid'],
   components: {
-    DocumentItem, LabelMap, CommentList,TalkingLabel
+    DocumentItem, LabelMap, CommentList,TalkingLabel,GlossaryEditorViewer
   },
   data () {
     return {
@@ -204,6 +212,7 @@ export default {
       merconf: { theme: "default", startOnLoad: false, securityLevel: 'loose', useMaxWidth: false, flowchart: { padding: 5 } },
       mermaid: [],
       the_process: null,
+      the_process_description:null, 
       selected_process_comments:[],
       pictures:[],
       full_process:null,
@@ -385,6 +394,7 @@ export default {
     console.log("i am full process")
     console.log(this.full_process)
     this.the_process = this.full_process.process
+    this.the_process_description = this.full_process.description
     // TODO
     this.fetchGraph({ id: this.processid, userLang: this.$userLang })
       .then(graph => {
