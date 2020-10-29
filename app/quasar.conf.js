@@ -10,8 +10,8 @@ module.exports = function (ctx) {
       'i18n',
       'auth',
       'mermaid',
-      'featureflag',
       'axios',
+      'featureflag',
       'loadData'
     ],
 
@@ -90,7 +90,7 @@ module.exports = function (ctx) {
         chain.resolve.alias.set('api-documents-client', 'src/api/documents/server');
         chain.resolve.alias.set('api-flows-client', 'src/api/flows/server');
         chain.resolve.alias.set('api-glossary-client', 'src/api/glossary/server');
-        chain.resolve.alias.set('api-features-client', 'src/api/features/mock');
+        chain.resolve.alias.set('api-features-client', 'src/api/features/server');
         chain.resolve.alias.set('api-tasks-client', 'src/api/tasks/mock');
         chain.resolve.alias.set('api-services-client', 'src/api/services/mock');
         chain.resolve.alias.set('api-settings-client', 'src/api/settings/server');

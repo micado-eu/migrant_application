@@ -1,5 +1,5 @@
 //import Vue from 'vue'
-import {featureFlippingDirective, featureFlippingGuard, isEnabled, setEnabledFeatures} from '../directive/FeatureFlip'
+import { featureFlippingDirective, featureFlippingGuard, isEnabled, setEnabledFeatures } from '../directive/FeatureFlip'
 
 // We globally register our directive with Vue;
 // Remember that all directives in Vue will start with 'v-'
@@ -20,13 +20,13 @@ export default async ({ app, router, store, Vue }) => {
   //Vue.directive('feature-flag', featureFlippingDirective)
 
   Vue.directive('feature-flipping', featureFlippingDirective)
-  Vue.mixin({beforeRouteEnter: featureFlippingGuard})
+  Vue.mixin({ beforeRouteEnter: featureFlippingGuard })
 
-  console.log("siamo in feature flag boot")
+  console.log("siamo in FEATURE flag boot")
   console.log(Vue)
 
-  await  store.dispatch('features/fetchFeatures')
-      .then()
-console.log("before enabledfeatures")
+  await store.dispatch('features/fetchFeatures')
+  //   .then()
+  console.log("before enabledfeatures")
   setEnabledFeatures(store.state.features.features)
 }

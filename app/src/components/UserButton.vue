@@ -1,7 +1,17 @@
 <template>
   <q-btn round>
-    <q-avatar size="42px">
-      <img src="https://cdn.quasar.dev/img/avatar2.jpg">
+    <q-avatar
+      size="42px"
+      data-cy="userButton"
+    >
+      <q-icon
+        v-if="!this.$auth.loggedIn()"
+        name="account_circle"
+      />
+      <img
+        v-if="this.$auth.loggedIn()"
+        src="https://cdn.quasar.dev/img/avatar2.jpg"
+      />
     </q-avatar>
     <q-menu
       anchor="bottom left"
@@ -11,6 +21,7 @@
         v-if="!this.$auth.loggedIn()"
         @click="toLogin()"
         clickable
+        data-cy="login"
         v-close-popup
       >
         <q-item-section>{{$t('desc_labels.login_register')}}</q-item-section>
@@ -18,50 +29,24 @@
       <q-item
         v-if="this.$auth.loggedIn()"
         @click="toLogout()"
+        data-cy="logout"
         clickable
       >
         <q-item-section>{{$t('desc_labels.logout')}}</q-item-section>
       </q-item>
-      <q-item v-if="this.$auth.loggedIn()">
+      <q-item
+        v-if="this.$auth.loggedIn()"
+        data-cy="settings"
+      >
         <q-item-section>{{$t('desc_labels.settings')}}</q-item-section>
       </q-item>
     </q-menu>
-    <!--
-    <q-list>
-      <q-item
-        clickable
-        v-close-popup
-      >
-        <q-item-section>
-          <q-item-label>Login/Register</q-item-label>
-        </q-item-section>
-      </q-item>
-
-      <q-item
-        clickable
-        v-close-popup
-      >
-        <q-item-section>
-          <q-item-label>Logout</q-item-label>
-        </q-item-section>
-      </q-item>
-
-      <q-item
-        clickable
-        v-close-popup
-      >
-        <q-item-section>
-          <q-item-label>Settings</q-item-label>
-        </q-item-section>
-      </q-item>
-    </q-list>
-    -->
   </q-btn>
 </template>
 
 <script>
 export default {
-  // name: 'ComponentName',
+  name: 'UserButton',
   data () {
     return {}
   },

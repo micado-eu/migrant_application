@@ -4,7 +4,7 @@ export function someAction (context) {
 }
 */
 export function fetchFeatures (state, data) {
-      return client
-        .fetchFeatures()
-        .then(features => state.commit('setFeatures', features))
-    }
+  return client
+    .fetchFeatures()
+    .then(features => state.commit('setFeatures', features[0].features))
+}
