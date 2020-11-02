@@ -9,13 +9,12 @@
         />
       </q-toolbar>
       <div
-        class="top-banner"
+        class="top-banner row"
       >
-
+      <div class="col-9">
         <q-input
           dense
           label-color="grey-8"
-          rounded
           outlined
           bg-color="grey-2"
           v-model="search"
@@ -26,7 +25,113 @@
           </template>
         </q-input>
       </div>
-      <div
+      <div class="col-3" style="text-align:right">
+        <q-btn
+          class="q-ml-sm col"
+          style="width:95%"
+          icon="img:statics/icons/Icon - Filter (24x24).png"
+          @click="filter_dialog = true"
+        />
+      </div>
+        <q-dialog v-model="filter_dialog">
+          <q-layout
+            view="Lhh lpR fff"
+            container
+            class="bg-white"
+          >
+            <q-header class="bg-white">
+              <q-toolbar>
+                <span class="filter_title">{{$t('filters.title')}}</span>
+                <q-space />
+                <q-btn
+                  color="red"
+                  flat
+                  v-close-popup
+                  round
+                  dense
+                  icon="close"
+                />
+              </q-toolbar>
+              <q-separator class="separator" size="2px" color="grey"/>
+            </q-header>
+            <q-page-container class="q-pa-sm">
+              <span class="filter_title_2 row">{{$t('filters.categories')}}</span>
+              <div 
+                class="row pad" 
+                v-for="topic in topics"
+                :key="topic.id">
+                <q-checkbox
+                  color="accent"
+                  v-model="selected_t_tags"
+                  :val="topic.id"
+                  :label="topic.topic"
+                  class="filter-text"
+                />
+                <q-img
+                  class="image"
+                  :src="topic.icon"
+                  :key="topic.id"
+                />
+              </div>
+              <span class="filter_title_2 row">{{$t('filters.tags')}}</span>
+              <div 
+                class="row pad" 
+                v-for="user in users"
+                :key="user.id">
+                <q-checkbox
+                  color="accent"
+                  v-model="selected_u_tags"
+                  :val="user.id"
+                  :label="user.user_type"
+                  class="filter-text"
+                />
+               <q-img
+                  class="image"
+                  :src="user.icon"
+                  :key="user.id"
+                />
+              </div>
+               <q-separator class="separator" size="2px" color="grey"/>
+                <q-btn
+                  unelevated
+                  style="margin-left:25px"
+                  no-caps
+                  color="accent"
+                  class="q-ma-sm"
+                  @click="clearFilters()"
+                  :label="$t('filters.clear_all')"
+                />
+                  
+               
+            </q-page-container>
+          </q-layout>
+        </q-dialog>
+        
+      </div>
+      <div style="margin:0 auto;max-width: 750px;padding-left:16px; padding-right:16px; padding-bottom:25px ">
+      <q-scroll-area
+      horizontal
+      style="height: 30px; max-width: 750px;"
+      class=" rounded-borders"
+    >
+    <div class="row no-wrap" >
+ <q-chip  v-for="topic in selected_t_tags" square color="teal-6" text-color="white"  :key="topic.id">
+   <q-avatar>
+    <img class="chip_image" :src="topics.filter((top)=>{return top.id == topic})[0].icon">
+   </q-avatar>
+   {{topics.filter((top)=>{return top.id == topic})[0].topic}}
+      </q-chip>
+      <q-chip  v-for="user in selected_u_tags" square color="teal-6" text-color="white"  :key="user.id">
+   <q-avatar>
+    <img class="chip_image" :src="users.filter((top)=>{return top.id == user})[0].icon">
+   </q-avatar>
+   {{users.filter((top)=>{return top.id == user})[0].user_type}}
+      </q-chip>
+    </div>
+        </q-scroll-area>
+      </div>
+      
+     <!-- <div
         class="q-gutter-md  row justify-center items-center"
         id="main-container"
       >
@@ -59,7 +164,7 @@
           </q-tooltip>
           <img :src="tag.icon">
         </q-btn>
-      </div>
+      </div>-->
 
     </div>
     <PhonebookList :filteredItems="filteredProcesses">
@@ -103,6 +208,7 @@ export default {
   },
   data () {
     return {
+      filter_dialog:false,
       letters: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z"],
       selected_letter: "",
       user: null,
@@ -141,19 +247,23 @@ export default {
           var searchArray = lowerCase.split(" ")
           if (searchArray.every(string => filt.process.toLowerCase().includes(string)) &&
             this.selected_u_tags.every(item => {
+              if(filt.users){
               for (let i = 0; i < filt.users.length; i++) {
                 if (item == filt.users[i]) {
                   return item == filt.users[i]
                   break;
                 }
               }
+              }
             }) &&
             this.selected_t_tags.every(item => {
+              if(filt.topics){
               for (let i = 0; i < filt.topics.length; i++) {
                 if (item == filt.topics[i]) {
                   return item == filt.topics[i]
                   break;
                 }
+              }
               }
             })
           ) {
@@ -163,6 +273,12 @@ export default {
     },
   },
   methods: {
+   
+    clearFilters(){
+      this.selected_t_tags=[]
+      this.selected_u_tags = []
+      this.filter_dialog = false
+    },
     
     setUserTag (event) {
       //the Q-select passe an array of objects, so this takes the value property of the objects and puts them into an array
@@ -258,10 +374,12 @@ $secondary_list: #0f3a5d;
   color: blue;
 }
 .top-banner{
-  max-width:280px;
+  max-width:750px;
   margin:0 auto;
   padding-top:38px;
   padding-bottom:10px;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 #main-container{
   padding-bottom:27px;
@@ -269,6 +387,32 @@ $secondary_list: #0f3a5d;
 .image{
   max-width: 24px;
   max-height: 24px;
+  margin-top:7px; 
+  margin-left:10px
 }
-
+.filter_title{
+  font-weight: bold;
+  font-size: 16px;
+  color: black;
+  padding-left:20px
+}
+.separator{
+ 
+  width:90%; 
+  margin:0 auto
+}
+.pad{
+  padding-left:20px
+}
+.filter_title_2{
+  font-weight: bold;
+  font-size: 16px;
+  color: black;
+  padding-left:20px; 
+  padding-top:20px
+}
+.chip_image{
+  max-width: 18px;
+  max-height: 18px;
+}
 </style>
