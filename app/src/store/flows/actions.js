@@ -1,4 +1,5 @@
 import client from 'api-flows-client'
+import flows from '.'
 /*
 export function someAction (context) {
 }
@@ -27,3 +28,4 @@ export function fetchGraph (state, payload) {
       return graph
     })
 }
+

@@ -7,7 +7,12 @@ export function setComments(state, comments) {
   state.comments = comments
 }
 export function setProcessComments(state, process_comments) {
+  console.log(process_comments)
+  console.log("before state.processcomments")
+  console.log(state.process_comments)
   state.process_comments = process_comments
+  console.log("after state.processcomments")
+  console.log(state.process_comments)
 }
 
 export function editComments(state, comments) {

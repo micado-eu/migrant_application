@@ -25,5 +25,6 @@ export default {
         return response.data
       })
       .catch(error_handler);
-  }
+  },
+  
 }

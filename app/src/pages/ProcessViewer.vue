@@ -18,7 +18,7 @@
                 class="image"
                 v-for="tag in full_process.topics"
                 :src="topics.filter(topic => topic.id == tag)[0].icon"
-                :key="tag"
+                :key="'topic'.concat(tag)"
               >
               </q-img>
                <q-img
@@ -139,7 +139,7 @@
    <glossary-editor-viewer
                   :content="the_process_description"
                   glossary_fetched
-                  :lang="lang"
+                  :lang="$userLang"
                 />
     <CommentList
     :selected_process_comments ="selected_process_comments"
@@ -187,6 +187,7 @@ export default {
       process_comments: 'comments/process_comments',
       comments: 'comments/comments',
       document_types: 'document_type/document_types',
+      flows: 'flows/processes',
       topics: 'topic/topics',
       users: 'user_type/users',
       my_documents:'documents/my_documents',
@@ -226,7 +227,13 @@ export default {
     }
   },
   computed: {
-     
+     process_comments_computed(){
+       //console.log(this.$store.state.comments.process_comments)
+       //return this.$store.state.comments.process_comments
+       console.log("inside computed")
+       console.log(this.process_comments)
+       return this.process_comments
+     }
   },
   methods: {
     clean(){
@@ -377,7 +384,102 @@ export default {
   },
 
 
- async created () {
+  created () {
+   var prom1 = []
+   var prom2 =[]
+   var prom3 =[]
+   var prom4=[]
+   var prom5=[]
+   var prom6=[]
+   var prom7 =[]
+   var prom8 = []
+   if(this.flows.length >0){
+     console.log("inside if")
+     this.full_process= this.flows.filter((the_process)=>{
+       return the_process.id == this.processid
+     })[0]
+     console.log("I am full process")
+     console.log(this.full_process)
+     this.the_process = this.full_process.process  
+    this.the_process_description = this.full_process.description
+   }
+   else{
+     console.log("inside else")
+      prom1.push(this.fetchFlows({ defaultLang: this.$defaultLang, userLang: this.$userLang}))
+      Promise.all(prom1).then((process)=>{
+        console.log("I a flows")
+        console.log(this.flows)
+        this.full_process= this.flows.filter((the_process)=>{
+       return the_process.id == this.processid
+     })[0]
+     console.log("I am full process")
+     console.log(this.full_process)
+     this.the_process = this.full_process.process  
+    this.the_process_description = this.full_process.description
+
+   })
+   }
+  
+   
+     console.log("I am return from prom1")
+     
+     prom2.push(this.fetchGraph({ id: this.processid, userLang: this.$userLang }))
+       Promise.all(prom2).then(graph => {
+        console.log(graph)
+        const elementFlow = graph[0]
+        console.log("i am element flow")
+        console.log(elementFlow)
+        this.mermaid = elementFlow
+        this.$store.commit("flows/setNodePanelVisible", "hidden");
+        //return this.the_process
+        prom3.push(this.fetchDocumentType())
+        Promise.all(prom3).then(()=>{
+          prom4.push(this.fetchComments())
+          Promise.all(prom4).then((comment_list)=>{
+            console.log("I am comment list")
+            console.log(comment_list)
+            prom5.push(this.fetchCommentsByProcess(this.processid))
+            Promise.all(prom5).then((the_comments)=>{
+              console.log(this.$store.state.comments.process_comments)
+              console.log("comments associated to the process")
+                  console.log(the_comments)
+                  console.log(this.process_comments)
+                  the_comments[0].forEach((comment) =>{
+                  console.log("INSIDE FOREACH")
+                  console.log(comment)
+                  for(var i = 0; i < this.comments.length; i++){
+                    console.log("INSIDE FOR")
+                    if(comment.idcomment == this.comments[i].id){
+                      console.log("INSIDE IF")
+                      this.selected_process_comments.push(this.comments[i])
+          prom6.push(this.fetchTopic({ defaultLang: this.$defaultLang, userLang: this.$userLang }))
+          Promise.all(prom6).then((the_topics)=>{
+            console.log("i am topics")
+            console.log(this.topics)
+            prom7.push(this.fetchUserType({ defaultLang: this.$defaultLang, userLang: this.$userLang }))
+            Promise.all(prom7).then(()=>{
+              prom8.push(this.fetchDocuments())
+              Promise.all(prom8).then(()=>{
+                //console.log(process[0])
+      //this.full_process = process[0]
+      console.log("i am full process")
+      console.log(this.full_process)
+      console.log(this.process_comments)
+      
+              })
+            })
+          })
+        }
+      }
+      
+    })
+            })
+          })
+
+        })
+      })
+     
+   
     this.loading = true
     console.log(this);
     console.log(this.$Countly);
@@ -392,56 +494,17 @@ export default {
         "language": this.$userLang
       }
     }]);
-    this.full_process = this.processes.filter((process) =>{
+   /* this.full_process = this.processes.filter((process) =>{
       return process.id == this.processid
-    })[0]
-    console.log("i am full process")
-    console.log(this.full_process)
-    this.the_process = this.full_process.process
-    this.the_process_description = this.full_process.description
+    })[0]*/
+    
+    
     // TODO
-    this.fetchGraph({ id: this.processid, userLang: this.$userLang })
-      .then(graph => {
-        console.log(graph)
-        const elementFlow = graph
-        console.log("i am element flow")
-        console.log(elementFlow)
-        this.mermaid = elementFlow
-        this.$store.commit("flows/setNodePanelVisible", "hidden");
-
-
-        return this.the_process
-      })
-      this.fetchDocumentType()
-      console.log("I AM DOCUMENT TYPES")
-      console.log(this.document_types)
-    await this.fetchComments()
-    await this.fetchCommentsByProcess(this.processid)
-    console.log(this.process_comments)
-    console.log(this.comments)
-    console.log("BEFORE FOREACH")
-    this.process_comments.forEach((comment) =>{
-      console.log("INSIDE FOREACH")
-      console.log(comment)
-      for(var i = 0; i < this.comments.length; i++){
-        console.log("INSIDE FOR")
-        if(comment.idcomment == this.comments[i].id){
-          console.log("INSIDE IF")
-          this.selected_process_comments.push(this.comments[i])
-        }
-      }
+    
       
-    })
-    console.log("these are the comments")
-    console.log(this.selected_process_comments)
-    await this.fetchTopic({ defaultLang: this.$defaultLang, userLang: this.$userLang })  
-    await this.fetchUserType({ defaultLang: this.$defaultLang, userLang: this.$userLang })
-    .then(user_types =>{
-      console.log("in user type")
-      console.log(user_types)
-    })
-    this.fetchDocuments()
-    console.log("I AM LOGGED")
+      
+   
+    
     console.log(this.$auth.loggedIn())
   }
 
