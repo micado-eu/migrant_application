@@ -72,6 +72,7 @@
       <q-field
       class="header"
         color="purple-12"
+        label-color="black"
         :label="$t('desc_labels.description')"
         stack-label
       >
@@ -90,6 +91,7 @@
       <q-field
         class="header"
         color="purple-12"
+        label-color="black"
         :label="$t('desc_labels.cost')"
         stack-label
       >
@@ -106,6 +108,7 @@
       <q-field
         class="header"
         color="purple-12"
+        label-color="black"
         :label="$t('desc_labels.required_documents')"
         stack-label
       >
