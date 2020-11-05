@@ -36,6 +36,7 @@
     "leaflet": "^1.6.0",
     "lodash": "^4.17.15",
     "quasar": "^1.14.0",
+    "showdown": "^1.9.1",
     "tiptap": "^1.27.1",
     "tiptap-extensions": "^1.29.1",
     "uppy": "^1.6.0",
