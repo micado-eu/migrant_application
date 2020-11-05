@@ -1,21 +1,21 @@
   <template>
   <div>
     <div>
-      <q-toolbar class="toolbar-list q-mb-md">
+      <div class="banner">
+        {{$t('desc_labels.guided_processes')}}
         <q-icon
-          name="img:statics/icons/Guided Processes (600x600) white.png"
-          size="xl"
-          class="q-mx-auto"
+          name="img:statics/icons/Icon - Guided Processes (selected).png"
+          style="padding-bottom:3px"
         />
-      </q-toolbar>
+      </div>
       <div
         class="top-banner row"
       >
-      <div class="col-9">
         <q-input
-          dense
-          label-color="grey-8"
+          class="col-9"
           outlined
+          filled
+          label-color="grey-8"
           bg-color="grey-2"
           v-model="search"
           :label="$t('desc_labels.search')"
@@ -24,15 +24,14 @@
             <q-icon name="search" />
           </template>
         </q-input>
-      </div>
-      <div class="col-3" style="text-align:right">
+      
         <q-btn
           class="q-ml-sm col"
-          style="width:95%"
+         
           icon="img:statics/icons/Icon - Filter (24x24).png"
           @click="filter_dialog = true"
         />
-      </div>
+      
         <q-dialog v-model="filter_dialog">
           <q-layout
             view="Lhh lpR fff"
@@ -59,7 +58,7 @@
               <div 
                 class="row pad" 
                 v-for="topic in topics"
-                :key="topic.id">
+                :key="'topic'.concat(topic.id)">
                 <q-checkbox
                   color="accent"
                   v-model="selected_t_tags"
@@ -88,7 +87,7 @@
                <q-img
                   class="image"
                   :src="user.icon"
-                  :key="user.id"
+                  :key="'user'.concat(user.id)"
                 />
               </div>
                <q-separator class="separator" size="2px" color="grey"/>
@@ -108,20 +107,20 @@
         </q-dialog>
         
       </div>
-      <div style="margin:0 auto;max-width: 750px;padding-left:16px; padding-right:16px; padding-bottom:25px ">
+      <div style="margin:0 auto;max-width: 750px;padding-left:16px; padding-right:16px; padding-bottom:10px ">
       <q-scroll-area
       horizontal
       style="height: 30px; max-width: 750px;"
       class=" rounded-borders"
     >
     <div class="row no-wrap" >
- <q-chip  v-for="topic in selected_t_tags" square color="teal-6" text-color="white"  :key="topic.id">
+ <q-chip style="border-radius:2px" v-for="topic in selected_t_tags" square color="#ECECEC" text-color="black"  :key="topic.id">
    <q-avatar>
     <img class="chip_image" :src="topics.filter((top)=>{return top.id == topic})[0].icon">
    </q-avatar>
    {{topics.filter((top)=>{return top.id == topic})[0].topic}}
       </q-chip>
-      <q-chip  v-for="user in selected_u_tags" square color="teal-6" text-color="white"  :key="user.id">
+      <q-chip  rounded v-for="user in selected_u_tags"  color="#ECECEC" text-color="black"  :key="user.id">
    <q-avatar>
     <img class="chip_image" :src="users.filter((top)=>{return top.id == user})[0].icon">
    </q-avatar>
@@ -130,7 +129,8 @@
     </div>
         </q-scroll-area>
       </div>
-      
+            <q-separator size="1px" class="list_separator"/>
+
      <!-- <div
         class="q-gutter-md  row justify-center items-center"
         id="main-container"
@@ -367,6 +367,20 @@ export default {
 <style lang="scss" scoped>
 $accent_list: #ff7c44;
 $secondary_list: #0f3a5d;
+.list_separator {
+  background-color: $accent_list;
+}
+.banner{
+  font-style: normal;
+  height:72px;
+  text-align: center; 
+  padding-top:15px;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 41px;
+  color:white; 
+  background-color:#FF7C44
+}
 .toolbar-list {
   background-color: $accent_list;
 }

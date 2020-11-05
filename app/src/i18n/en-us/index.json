@@ -61,7 +61,8 @@
     "required_documents": "Required documents",
     "privacy_settings": "Privacy Settings",
     "comments": "Comments",
-    "send_doc": "Please choose an email adress"
+    "send_doc": "Please choose an email adress",
+    "guided_processes":"Integration step-by-step"
   },
   "profile": {
     "change_pic": "Change picture",
