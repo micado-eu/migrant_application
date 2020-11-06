@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import ListItem from './ListItem'
+const ListItem = () => import('./ListItem')
 export default {
   // name: 'ComponentName',
   data () {

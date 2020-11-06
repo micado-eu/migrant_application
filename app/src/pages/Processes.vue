@@ -175,11 +175,11 @@
 
 
 <script>
-import ListItem from 'components/ListItem'
+const ListItem = () => import('components/ListItem')
 import _ from 'lodash'
-import DocumentItem from 'components/DocumentItem'
-import LabelMap from 'components/LabelMap'
-import PhonebookList from 'components/PhonebookList'
+const DocumentItem = () => import('components/DocumentItem')
+const LabelMap = () => import('components/LabelMap')
+const PhonebookList = () => import('components/PhonebookList')
 import editEntityMixin from '../mixin/editEntityMixin'
 import storeMappingMixin from '../mixin/storeMappingMixin'
 

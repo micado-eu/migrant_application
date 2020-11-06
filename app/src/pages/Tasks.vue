@@ -156,6 +156,7 @@ export default {
   },
   methods: {
     progress (intervention_plan) {
+      console.log(intervention_plan)
       return Math.floor((intervention_plan.interventions.filter(function (intervention) { return intervention.completed }).length / intervention_plan.interventions.length) * 100)
     },
     askValidation (intervention) {

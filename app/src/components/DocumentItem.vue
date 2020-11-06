@@ -81,7 +81,7 @@
 </template>
 
 <script>
-import DocumentHotspot from './DocumentHotspot'
+const DocumentHotspot = () => import('./DocumentHotspot')
 
 //
 export default {

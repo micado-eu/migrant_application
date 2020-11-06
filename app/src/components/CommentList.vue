@@ -18,7 +18,7 @@
 
 <script>
 import editEntityMixin from '../mixin/editEntityMixin'
-import TalkingLabel from 'components/TalkingLabel'
+const TalkingLabel = () => import('components/TalkingLabel')
 
 
 export default {

@@ -162,14 +162,14 @@
 
 
 <script>
-import ListItem from 'components/ListItem'
-import DocumentItem from 'components/DocumentItem'
-import LabelMap from 'components/LabelMap'
+const ListItem = () => import('components/ListItem')
+const DocumentItem = () => import('components/DocumentItem')
+const LabelMap = () => import('components/LabelMap')
 import storeMappingMixin from '../mixin/storeMappingMixin'
 import editEntityMixin from '../mixin/editEntityMixin'
-import CommentList from 'components/CommentList'
-import TalkingLabel from 'components/TalkingLabel'
-import GlossaryEditorViewer from "../components/GlossaryEditorViewer"
+const CommentList = () => import('components/CommentList')
+const TalkingLabel = () => import('components/TalkingLabel')
+const GlossaryEditorViewer = () => import("../components/GlossaryEditorViewer")
 
 
 

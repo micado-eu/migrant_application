@@ -34,8 +34,8 @@
 </template>
 
 <script>
-import DocumentWalletItem from "components/DocumentWalletItem";
-import editEntityMixin from "../mixin/editEntityMixin";
+const DocumentWalletItem = () => import("components/DocumentWalletItem")
+import editEntityMixin from "../mixin/editEntityMixin"
 import storeMappingMixin from '../mixin/storeMappingMixin'
 
 export default {

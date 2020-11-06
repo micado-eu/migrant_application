@@ -78,7 +78,7 @@
 </template>
 
 <script>
-import TalkingLabel from './TalkingLabel'
+const TalkingLabel = () => import('./TalkingLabel')
 import storeMappingMixin from '../mixin/storeMappingMixin'
 
 export default {
