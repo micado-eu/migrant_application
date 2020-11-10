@@ -36,6 +36,7 @@
             :ref="glossaryItem.id"
             @show="changeQuery(glossaryItem.id)"
             expand-icon-class="text-orange"
+            :data-cy="'glossaryItem' + glossaryItem.id"
           >
             <q-card>
               <q-card-section>
@@ -44,6 +45,7 @@
                   glossary_fetched
                   class="glossary-desc"
                   :lang="lang"
+                  :data-cy="'glossaryDesc' + glossaryItem.id"
                 />
               </q-card-section>
             </q-card>
