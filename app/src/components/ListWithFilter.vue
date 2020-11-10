@@ -22,15 +22,16 @@
         <q-btn
           class="q-ml-sm col"
           icon="img:statics/icons/Icon - Filter (24x24).png"
+          data-cy="filter_button"
           @click="filter_dialog = true"
         />
         <q-dialog v-model="filter_dialog">
           <q-layout
-            view="Lhh lpR fff"
+            view="lHr lpR lfr"
             container
             class="bg-white"
           >
-            <q-header class="bg-white">
+            <q-header bordered class="bg-white">
               <q-toolbar>
                 <span class="filter_title">{{$t('filters.title')}}</span>
                 <q-space />
@@ -41,16 +42,17 @@
                   round
                   dense
                   icon="close"
+                  data-cy="close_popup_button"
                 />
               </q-toolbar>
-              <q-separator/>
             </q-header>
-            <q-page-container class="q-pa-sm">
-              <span class="filter_title row">{{$t('filters.categories')}}</span>
-              <div 
-                class="row" 
+            <q-page-container class="filter-container q-pa-sm">
+              <span class="filter_title row q-mt-sm">{{$t('filters.categories')}}</span>
+              <div
+                class="row"
                 v-for="category in translatedCategories"
-                :key="category.id">
+                :key="category.id"
+              >
                 <q-radio
                   color="accent"
                   v-model="categoryToSelect"
@@ -60,10 +62,11 @@
                 />
               </div>
               <span class="filter_title row">{{$t('filters.tags')}}</span>
-              <div 
-                class="row" 
+              <div
+                class="row"
                 v-for="tag in tags"
-                :key="tag">
+                :key="tag"
+              >
                 <q-checkbox
                   color="accent"
                   v-model="tagsToSelect"
@@ -72,38 +75,46 @@
                   class="filter-text"
                 />
               </div>
-              <q-footer>
-                <q-btn
-                  unelevated
-                  color="accent"
-                  class="q-ma-sm"
-                  @click="clearFilters()"
-                >
-                  {{$t("filters.clear_all")}}
-                </q-btn>
-                <q-btn
-                  unelevated
-                  color="accent"
-                  class="q-ma-sm"
-                  @click="applyFilters()"
-                  v-close-popup
-                >
-                  {{$t("filters.apply")}}
-                </q-btn>
-              </q-footer>
             </q-page-container>
+            <q-footer
+              bordered
+              class="bg-white"
+            >
+              <q-btn
+                outline
+                no-caps
+                color="red"
+                class="q-ma-sm clear-btn"
+                @click="clearFilters()"
+              >
+                {{$t("filters.clear_all")}}
+              </q-btn>
+              <q-btn
+                unelevated
+                no-caps
+                color="accent"
+                class="q-ma-sm apply-btn"
+                @click="applyFilters()"
+                v-close-popup
+              >
+                {{$t("filters.apply")}}
+              </q-btn>
+            </q-footer>
           </q-layout>
         </q-dialog>
       </div>
-      <div class="row q-my-sm q-ml-sm" v-if="selectedCategory || selectedTags.length > 0">
-        <q-btn 
-          class="q-mx-md q-mb-md category_btn" 
-          no-caps 
+      <div
+        class="row q-my-sm q-ml-sm"
+        v-if="selectedCategory || selectedTags.length > 0"
+      >
+        <q-btn
+          class="q-mx-md q-mb-md category_btn"
+          no-caps
           v-if="selectedCategory"
         >
           {{selectedCategory.category}}
         </q-btn>
-        <q-btn 
+        <q-btn
           round
           no-caps
           class="q-mr-md q-mb-md tag_btn"
@@ -113,8 +124,11 @@
           {{tag}}
         </q-btn>
       </div>
-      <q-separator class="list_separator"/>
-      <q-list bordered class="q-ma-md">
+      <q-separator class="list_separator" />
+      <q-list
+        bordered
+        class="q-ma-md"
+      >
         <q-item
           v-for="item in filteredElements"
           :key="item.id"
@@ -122,6 +136,7 @@
           @mouseover="hovered = item.id"
           @mouseleave="hovered = -1"
           :to="item_url_fn(item.id)"
+          :data-cy="'item' + item.id"
         >
           <q-item-section>
             <q-item-label>{{ item.title }}</q-item-label>
@@ -214,10 +229,7 @@ export default {
     filterByCategory() {
       if (this.selectedCategory) {
         this.filteredElementsByCategory = this.translatedElements.filter(e => {
-          if (e.category !== this.selectedCategory) {
-            return false;
-          }
-          return true;
+          return e.category === this.selectedCategory;
         });
       } else {
         this.filteredElementsByCategory = this.translatedElements;
@@ -256,11 +268,10 @@ export default {
       }
     },
     filteredElements: {
-      cache: false,
       get() {
         var filteredElementsByTags = this.filteredElementsByTags;
         var filteredElementsByCategory = this.filteredElementsByCategory;
-        return this.filteredElementsBySearch.filter(function(n) {
+        return this.filteredElementsBySearch.filter(function (n) {
           return (
             filteredElementsByTags.indexOf(n) !== -1 &&
             filteredElementsByCategory.indexOf(n) !== -1
@@ -270,7 +281,6 @@ export default {
     }
   },
   created() {
-    console.log(this.elements)
     this.translatedElements = this.elements.map(e => {
       let translation = undefined;
       if (e.translations) {
@@ -315,7 +325,6 @@ export default {
     this.filteredElementsByTags = this.translatedElements;
     this.filteredElementsBySearch = this.translatedElements;
     this.filteredElementsByCategory = this.translatedElements;
-    console.log(this.translatedElements)
   }
 };
 </script>
@@ -328,7 +337,7 @@ $btn_secondary: #cdd0d2;
   border-radius: 10px;
 }
 .tag_btn {
-  background-color: #3994BD;
+  background-color: #3994bd;
   color: white;
   border-radius: 32px;
   padding: 3px 12px;
@@ -337,7 +346,7 @@ $btn_secondary: #cdd0d2;
   background-color: $accent_list;
   color: black;
 }
-.filter_title{
+.filter_title {
   color: black;
   font-weight: bold;
 }
@@ -345,7 +354,13 @@ $btn_secondary: #cdd0d2;
   background-color: $accent_list;
 }
 .category_btn {
-  background-color: #26627E;
+  background-color: #26627e;
   color: white;
+}
+.clear-btn {
+  border-radius: 50px;
+}
+.apply-btn {
+  border-radius: 50px;
 }
 </style>
