@@ -184,7 +184,7 @@ export default {
           icon: "img:statics/icons/Settings (600x600) white.png",
           to: "/settings",
           description: "menu.settings_desc",
-          feature: "FEAT_SETTINGS",
+          feature: "FEAT_DEFAULT",
           visible: true
         }
       ]

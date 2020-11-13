@@ -43,6 +43,7 @@ const routes = [
       { path: '/reserved', component: () => import('pages/Reserved.vue')},
       { path: '/login', component: () => import('pages/Gioppo.vue')},
       { path: '/tasks', component: () => import('pages/Tasks.vue') , meta: { auth: true } },
+      //{ path: '/tasks/:theplanid', component: () => import('pages/SinglePlan.vue'), props: (route) => ({ ...route.params }), name: 'plan', meta: { auth: true } },
       { path: '/chatbot', component: () => import('pages/Chatbot.vue') },
       { path: '/settings', component: () => import('pages/ProfileSettings.vue'), meta: { auth: true } },
       { path: '/certificates', component: () => import('pages/Certificates.vue'), props: true, name: 'certificates' },

@@ -34,7 +34,10 @@
     "download": "Download",
     "view_model": "View model",
     "cancel": "Cancel",
-    "send": "Send"
+    "send": "Send",
+    "validation_pending":"Validation pending",
+    "validated":"Validated"
+
   },
   "input_labels": {
     "doc_type": "Document Type",
@@ -62,7 +65,9 @@
     "privacy_settings": "Privacy Settings",
     "comments": "Comments",
     "send_doc": "Please choose an email adress",
-    "guided_processes":"Integration step-by-step"
+    "guided_processes":"Integration step-by-step",
+    "plan_progress":"Plan Progress",
+    "integration_plan":"My Integration Plan"
   },
   "profile": {
     "change_pic": "Change picture",

@@ -1,0 +1,301 @@
+<template>
+  <q-page class="flows container-fluid">
+    <div class="banner">
+        {{$t('desc_labels.integration_plan')}}
+        <q-icon
+          name="img:statics/icons/Icon - My Integration Plan (selected).svg"
+          style="padding-bottom:2px"
+        />
+      </div>
+    <div class="row">
+      <div class="col">
+
+        <q-stepper
+          v-model="step"
+          vertical
+          color="accent"
+          header-nav
+          animated
+        >
+          <h5 class="header">{{the_plan.title}}</h5>
+          <div class="row">
+            <div class="col pad-left">
+              Plan Progress:
+              <q-circular-progress
+                show-value
+                class="text-black q-ma-md"
+                :value="progress(the_plan)"
+                size="50px"
+                track-color="grey-3"
+                color="orange"
+              />
+            </div>
+             <q-separator style="margin-left:20px; margin-right:20px;" color="grey"/>
+          </div>
+         
+          <q-step
+            v-for="intervention in the_plan.interventions"
+            :data-cy="'intervention'.concat(intervention.id)"
+            :name="intervention.id"
+            :title="intervention.title"
+            icon="panorama_fish_eye"
+            :key="intervention.id"
+            color="accent"
+            :done="intervention.completed"
+          >
+            {{intervention.description}}
+
+            <div>
+              <q-btn
+                v-if="intervention.validationRequestDate == null"
+                size="11px"
+                unelevated
+                class="validate"
+                rounded
+                :data-cy="'validateintervention'.concat(intervention.id)"
+                :id="intervention.id"
+                no-caps
+                :disable="intervention.validationRequestDate !== null"
+                @click="askValidation(intervention)"
+                :label="$t('button.ask_validation')"
+              />
+               <q-btn
+                v-else-if="intervention.validationRequestDate !== null && intervention.completed == false"
+                size="11px"
+                unelevated
+                class="button"
+                rounded
+                color="accent"
+                :data-cy="'validateintervention'.concat(intervention.id)"
+                :id="intervention.id"
+                no-caps
+                :disable="true"
+                :label="$t('button.validation_pending')"
+              />
+              <q-btn
+                v-else-if="intervention.completed == true"
+                size="11px"
+                unelevated
+                class="button"
+                rounded
+                color="accent"
+                :data-cy="'validateintervention'.concat(intervention.id)"
+                :id="intervention.id"
+                no-caps
+                :disable="true"
+                :label="$t('button.validated')"
+              />
+              
+            </div>
+          </q-step>
+
+        </q-stepper>
+      </div>
+    </div>
+    <q-dialog
+      v-model="ask_validation"
+      persistent
+    >
+      <q-card style="min-width: 350px">
+        <q-card-section>
+          <div
+            class="text-h6"
+            v-if="need_validators"
+          >{{$t('tasks.dialog_title_org')}}</div>
+          <div
+            class="text-h6"
+            v-if="!need_validators"
+          >{{$t('tasks.dialog_title_self')}}</div>
+        </q-card-section>
+        <q-card-section v-if="need_validators">
+          <div id="div-4"> {{$t('tasks.integration_type_validators')}} </div>
+          <q-select
+            filled
+            clearable
+            v-model="selectedValidator"
+            emit-value
+            map-options
+            id="select"
+            :options="validatorsOptions"
+            :label="$t('tasks.integration_type_validators')"
+          />
+        </q-card-section>
+        <q-card-actions
+          align="right"
+          class="text-primary"
+        >
+          <q-btn
+            :label="$t('button.cancel')"
+            color="accent"
+            v-close-popup
+          />
+          <q-btn
+            :label="$t('tasks.you_validate')"
+            color="accent"
+            @click="saveSelfValidationRequest()"
+            v-close-popup
+            v-if="!need_validators"
+          />
+          <q-btn
+            :label="$t('tasks.ask_validation')"
+            color="accent"
+            @click="saveValidationRequest()"
+            v-close-popup
+            v-if="need_validators"
+          />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
+  </q-page>
+</template>
+
+<script>
+
+import editEntityMixin from '../mixin/editEntityMixin'
+import storeMappingMixin from '../mixin/storeMappingMixin'
+
+export default {
+  name: 'PageIndex',
+  props:['theplanid'],
+  data () {
+    return {
+      the_plan:null,
+      logged: false,
+      step: 1,
+      asked: [],
+      validatorsOptions: [],
+      selectedValidator: null,
+      selectedIntervention: null,
+      selectedPlanId: null,
+      need_validators: false,
+      ask_validation: false
+    }
+  },
+  mixins: [
+    editEntityMixin,
+    storeMappingMixin({
+      getters: {
+        intervention_plans: 'intervention_plan/intervention_plans',
+        tenants: 'tenant/tenants'
+      }, actions: {
+        fetchInterventionPlan: 'intervention_plan/fetchInterventionPlan',
+        fetchValidatorsTenants: 'intervention_plan/fetchValidatorsTenants',
+        updateIntervention: 'intervention_plan/updateIntervention',
+        fetchTenants: 'tenant/fetchTenants'
+      }
+    })
+
+  ],
+  computed: {
+
+  },
+  methods: {
+    progress (intervention_plan) {
+      console.log(intervention_plan)
+      return Math.floor((intervention_plan.interventions.filter(function (intervention) { return intervention.completed }).length / intervention_plan.interventions.length) * 100)
+    },
+    askValidation (intervention) {
+      console.log("in dialog")
+      console.log(intervention)
+      this.ask_validation = true
+      this.selectedIntervention = intervention.id
+      this.selectedPlanId = intervention.listId
+      // Create the option for the select with the validating tenants of the single intervention
+      this.fetchValidatorsTenants(intervention.interventionType)
+        .then((validators) => {
+          console.log("validators")
+          console.log(validators)
+          console.log(this.tenants)
+          if (validators.length > 0) {
+            this.need_validators = true
+            validators.forEach((validator) => {
+              this.validatorsOptions.push({ value: validator.tenantId, label: this.tenants.filter((ten) => { return (ten.id == validator.tenantId) })[0].name })
+            })
+          }
+        })
+
+    },
+    saveValidationRequest () {
+      // updating the intervention with the tenantid and the current date
+      let current_data = new Date().toISOString()
+      console.log("saveValidationRequest")
+      this.updateIntervention({ interventionId: this.selectedIntervention, tenantId: this.selectedValidator, requestDate: current_data, planId: this.selectedPlanId })
+        .then((result) => {
+          console.log(result)
+          var userId = this.$store.state.auth.user.umid
+          this.ask_validation = false
+          this.selectedValidator = null
+          this.selectedIntervention = null
+          this.selectedPlanId = null
+          this.fetchInterventionPlan(userId)
+        })
+    },
+    saveSelfValidationRequest () {
+      // updating the intervention with the tenantid and the current date
+      let current_data = new Date().toISOString()
+      console.log("saveValidationRequest")
+      this.updateIntervention({ interventionId: this.selectedIntervention, tenantId: this.$migrant_tenant, requestDate: current_data, planId: this.selectedPlanId })
+        .then((result) => {
+          console.log(result)
+          var userId = this.$store.state.auth.user.umid
+          this.ask_validation = false
+          this.selectedValidator = null
+          this.selectedIntervention = null
+          this.selectedPlanId = null
+          this.fetchInterventionPlan(userId)
+        })
+    }
+  },
+  created () {
+    var userId = this.$store.state.auth.user.umid
+    this.fetchInterventionPlan(userId)
+      .then(intervention_plans => {
+        console.log("I am intervention plan")
+        console.log(intervention_plans)
+        this.the_plan = intervention_plans.filter((plan)=>{
+          return plan.id == this.theplanid
+        })[0]
+      })
+    this.fetchTenants()
+      .then((tenants) => {
+
+
+      })
+  }
+}
+</script>
+<style scoped>
+.header {
+  padding-left: 25px;
+  margin-top: 5px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.pad-left {
+  padding-left: 25px;
+}
+.button {
+  margin-top: 10px;
+  margin-left: 0px;
+}
+.banner{
+  font-style: normal;
+  height:72px;
+  text-align: center; 
+  padding-top:15px;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 41px;
+  color:white; 
+  background-color:#FF7C44
+}
+.validate {
+  background-color: white;
+  color: #3994BD;
+  border: 1px solid #3994BD;
+  width: 150px;
+  margin-right: 15px;
+  margin-top: 10px;
+  margin-left: 0px;
+}
+</style>
