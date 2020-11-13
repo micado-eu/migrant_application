@@ -63,9 +63,8 @@
                 v-else-if="intervention.validationRequestDate !== null && intervention.completed == false"
                 size="11px"
                 unelevated
-                class="button"
+                class="button-pending"
                 rounded
-                color="accent"
                 :data-cy="'validateintervention'.concat(intervention.id)"
                 :id="intervention.id"
                 no-caps
@@ -295,6 +294,12 @@ export default {
   border: 1px solid #3994BD;
   width: 150px;
   margin-right: 15px;
+  margin-top: 10px;
+  margin-left: 0px;
+}
+.button-pending{
+  background-color: #3994BD;
+  color:white;
   margin-top: 10px;
   margin-left: 0px;
 }
