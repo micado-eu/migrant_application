@@ -83,7 +83,8 @@
   },
   "information_centre": {
     "category": "Category",
-    "tags": "Tags"
+    "tags": "Tags",
+    "missing_content": "There is no information"
   },
   "tasks": {
     "ask_validation": "Ask for validation",
@@ -96,6 +97,10 @@
     "category": "Category",
     "tags": "Tags",
     "start_date": "Start date",
-    "finish_date": "Finish date"
+    "finish_date": "Finish date",
+    "missing_content": "There are no events"
+  },
+  "glossary": {
+    "missing_content": "There are no common words"
   }
 }

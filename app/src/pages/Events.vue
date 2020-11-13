@@ -1,7 +1,7 @@
 <template>
   <div>
     <span v-if="loading">Loading...</span>
-    <list-with-filter 
+    <list-with-filter
       v-if="!loading"
       title="desc_labels.events"
       icon="img:statics/icons/Icon - Events (selected; 30x30).png"
@@ -9,6 +9,7 @@
       :categories="categories"
       :elemTags="tags"
       :item_url_fn="goToItem"
+      missing_content_label="events.missing_content"
     />
   </div>
 </template>

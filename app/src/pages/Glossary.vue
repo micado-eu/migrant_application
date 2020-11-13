@@ -2,10 +2,16 @@
   <div>
     <div style="font-style: normal;height:72px;text-align: center; padding-top:15px;font-weight: bold;font-size: 22px;line-height: 41px;color:white; background-color:#FF7C44">
       {{$t('menu.glossary')}}
-      <q-icon name="img:statics/icons/MICADO PA APP Icon - Glossary Page (white).png" style="font-size: 30px"></q-icon>
+      <q-icon
+        name="img:statics/icons/MICADO PA APP Icon - Glossary Page (white).png"
+        style="font-size: 30px"
+      ></q-icon>
     </div>
     <span v-if="loading">Loading...</span>
-    <div v-if="!loading" class="row q-pa-md">
+    <div
+      v-if="!loading"
+      class="row q-pa-md"
+    >
       <q-input
         color="accent"
         v-model="search"
@@ -19,7 +25,7 @@
           <q-icon name="search" />
         </template>
       </q-input>
-      <q-separator class="list_separator"/>
+      <q-separator class="list_separator" />
       <q-list
         v-show="!loading && filteredElements"
         class="col-11"
@@ -50,9 +56,13 @@
               </q-card-section>
             </q-card>
           </q-expansion-item>
-          <q-separator class="list_separator"/>
+          <q-separator class="list_separator" />
         </div>
       </q-list>
+      <span
+        class="q-ma-md"
+        v-if="filteredElements.length <= 0"
+      >{{$t("glossary.missing_content")}}</span>
       <div v-show="!loading && !translatedGlossary">
         <span>No elements</span>
       </div>
@@ -155,7 +165,10 @@ export default {
           let al = this.$userLang;
           let idx = e.translations.findIndex(t => t.lang === al);
           if (idx !== -1) {
-            this.translatedGlossary.push(e.translations[idx])
+            let translation = e.translations[idx]
+            if (translation.title) {
+              this.translatedGlossary.push(translation)
+            }
           }
         }
         this.translatedGlossary.sort(this.compare)
