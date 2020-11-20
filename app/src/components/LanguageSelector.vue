@@ -44,6 +44,7 @@
               @input="getValue(language)"
               :id="language.isoCode"
               :value="getToggleValue(language)"
+              :data-cy="'language_button_' + language.isoCode"
             />
           </q-page>
         </q-page-container>
