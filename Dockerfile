@@ -13,6 +13,7 @@ RUN quasar build -m pwa
 #CMD ["nginx", "-g", "daemon off;"]
 
 FROM alpine
+RUN apk add --no-cache gettext
 COPY --from=build-stage /code/dist/pwa /var/www/html2
 #COPY site/index.html /var/www/html2/index.html
 VOLUME /var/www/html2/
