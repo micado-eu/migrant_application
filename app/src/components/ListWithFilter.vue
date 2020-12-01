@@ -31,7 +31,10 @@
             container
             class="bg-white"
           >
-            <q-header bordered class="bg-white">
+            <q-header
+              bordered
+              class="bg-white"
+            >
               <q-toolbar>
                 <span class="filter_title">{{$t('filters.title')}}</span>
                 <q-space />
@@ -128,6 +131,7 @@
       <q-list
         bordered
         class="q-ma-md"
+        v-if="filteredElements.length > 0"
       >
         <q-item
           v-for="item in filteredElements"
@@ -143,6 +147,10 @@
           </q-item-section>
         </q-item>
       </q-list>
+      <span
+        class="q-ma-md"
+        v-else
+      >{{$t(missing_content_label)}}</span>
     </div>
   </div>
 </template>
@@ -176,6 +184,10 @@ export default {
       default: function () {
         return () => "/";
       },
+    },
+    missing_content_label: {
+      type: String,
+      default: ""
     }
   },
   data() {
@@ -320,7 +332,7 @@ export default {
       }
       return translation;
     });
-    this.translatedElements = this.translatedElements.filter(e => e !== undefined)
+    this.translatedElements = this.translatedElements.filter(e => e !== undefined && e.title)
     this.translatedElements.sort(this.compareTranslationDates)
     this.filteredElementsByTags = this.translatedElements;
     this.filteredElementsBySearch = this.translatedElements;

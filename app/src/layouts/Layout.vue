@@ -15,7 +15,7 @@
         />
 
         <q-toolbar-title>{{ $t( "application_title") }}</q-toolbar-title>
-        <LanguageSelector></LanguageSelector>
+        <LanguageSelector data-cy="language_selector_button"></LanguageSelector>
         <UserButton />
         <!-- <ListenToggle /> -->
 

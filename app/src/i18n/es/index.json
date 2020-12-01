@@ -1,0 +1,111 @@
+{
+    "application_title": "MICADO app",
+    "menu": {
+      "title": "Mis herramientas",
+      "home": "Inicio",
+      "home_desc": "Página de inicio de MICADO",
+      "processes": "Integración paso por paso",
+      "processes_desc": "Procesos de integración guiados",
+      "info": "Centro de información",
+      "chatbot": "Bot MICADO",
+      "chatbot_desc": "Asistente inteligente de MICADO",
+      "tasks": "Mi plan de integración",
+      "tasks_desc": "Tu plan de integración personal",
+      "documents": "Mis documentos",
+      "documents_desc": "Mi colección de documentos de integración",
+      "messenger": "Mis Mensajes",
+      "settings": "Configuración",
+      "settings_desc": "Gestiona tu cuenta",
+      "language": "es",
+      "glossary": "Palabras comunes",
+      "glossary_desc": "Palabras de uso común",
+      "information": "Centro de información",
+      "information_desc": "Servicios e información de integración",
+      "events": "Eventos",
+      "events_desc": "Eventos de integración"
+    },
+    "button": {
+      "add_document": "Añadir Documento",
+      "save": "Guardar",
+      "remove": "Eliminar",
+      "back": "Atrás",
+      "go_back": "Ir Atrás",
+      "ask_validation": "Pedir validación",
+      "download": "Descargar",
+      "view_model": "Ver modelo",
+      "cancel": "Cancelar",
+      "send": "Enviar",
+      "validation_pending":"Validación pendiente",
+      "validated":"Validado"
+  
+    },
+    "input_labels": {
+      "doc_type": "Tipo de Documento",
+      "exp_date": "Fecha de Expiración",
+      "upload_doc": "Subir Documento",
+      "read": "Leer",
+      "email": "Email"
+    },
+    "desc_labels": {
+      "cost": "Coste por paso",
+      "location": "Localización",
+      "description": "Descripción",
+      "search": "Buscar",
+      "document_type": "Tipo de documento",
+      "document_issuer": "Emisor de documento",
+      "reviewed_by": "Revisado por",
+      "expiration_date": "Fecha de Expiración",
+      "review_date": "Fecha de revisión",
+      "login_register": "Iniciar sesión/Registrarse",
+      "settings": "Configuración",
+      "logout": "Cerrar sesión",
+      "information_centre": "Centro de Información",
+      "events": "Eventos",
+      "required_documents": "Documentos requeridos",
+      "privacy_settings": "Configuración de Privacidad",
+      "comments": "Comentarios",
+      "send_doc": "Por favor elija una dirección de email",
+      "guided_processes":"Integración paso por paso",
+      "plan_progress":"Progreso del Plan",
+      "integration_plan":"Mi Plan de Integración"
+    },
+    "profile": {
+      "change_pic": "Cambiar foto",
+      "username": "Usuario",
+      "password": "Contraseña",
+      "legal_name": "Nombre Legal",
+      "nationality": "Nacionalidad",
+      "age": "Edad",
+      "gender": "Género",
+      "personal_profile": "Perfil Personal"
+    },
+    "filters": {
+      "title": "Filtrar por",
+      "categories": "Categorias",
+      "tags": "Etiquetas",
+      "clear_all": "Limpiar todo",
+      "apply": "Aplicar"
+    },
+    "information_centre": {
+      "category": "Categoría",
+      "tags": "Etiquetas",
+      "missing_content": "No hay información disponible"
+    },
+    "tasks": {
+      "ask_validation": "Pedir validación",
+      "you_validate": "Validar tarea",
+      "dialog_title_org": "Elija la organización del validador",
+      "dialog_title_self": "Validar tarea",
+      "integration_type_validators": "organización del validador"
+    },
+    "events": {
+      "category": "Categoría",
+      "tags": "Etiquetas",
+      "start_date": "Fecha de inicio",
+      "finish_date": "Fecha de fin",
+      "missing_content": "No hay eventos disponibles"
+    },
+    "glossary": {
+      "missing_content": "No hay palabras comunes disponibles"
+    }
+  }
