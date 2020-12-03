@@ -64,20 +64,6 @@
                   class="filter-text"
                 />
               </div>
-              <span class="filter_title row">{{$t('filters.tags')}}</span>
-              <div
-                class="row"
-                v-for="tag in tags"
-                :key="tag"
-              >
-                <q-checkbox
-                  color="accent"
-                  v-model="tagsToSelect"
-                  :val="tag"
-                  :label="tag"
-                  class="filter-text"
-                />
-              </div>
             </q-page-container>
             <q-footer
               bordered
@@ -108,7 +94,7 @@
       </div>
       <div
         class="row q-my-sm q-ml-sm"
-        v-if="selectedCategory || selectedTags.length > 0"
+        v-if="selectedCategory"
       >
         <q-btn
           class="q-mx-md q-mb-md category_btn"
@@ -116,15 +102,6 @@
           v-if="selectedCategory"
         >
           {{selectedCategory.category}}
-        </q-btn>
-        <q-btn
-          round
-          no-caps
-          class="q-mr-md q-mb-md tag_btn"
-          v-for="tag in selectedTags"
-          :key="tag"
-        >
-          {{tag}}
         </q-btn>
       </div>
       <q-separator class="list_separator" />
@@ -171,12 +148,6 @@ export default {
         return [];
       }
     },
-    elemTags: {
-      type: Array,
-      default: function () {
-        return [];
-      }
-    },
     title: String,
     icon: String,
     item_url_fn: {
@@ -196,12 +167,8 @@ export default {
       translatedElements: [],
       translatedCategories: [],
       filteredElementsBySearch: [],
-      filteredElementsByTags: [],
       searchText: "",
-      tags: [],
-      tagsToSelect: [],
       categoryToSelect: undefined,
-      selectedTags: [],
       selectedCategory: undefined,
       filter_dialog: false
     };
@@ -209,34 +176,7 @@ export default {
   methods: {
     applyFilters() {
       this.selectedCategory = this.categoryToSelect
-      this.selectedTags = [...this.tagsToSelect]
-      this.filterByTags()
       this.filterByCategory()
-    },
-    filterByTags() {
-      if (this.selectedTags.length > 0) {
-        this.filteredElementsByTags = [];
-        for (let e of this.translatedElements) {
-          let matchedTags = []
-          for (let tag of this.selectedTags) {
-            if (e.tags) {
-              for (let elemTag of e.tags) {
-                if (elemTag.tag === tag) {
-                  // This check avoids duplicate matches
-                  if (matchedTags.indexOf(tag) == -1) {
-                    matchedTags.push(tag)
-                  }
-                }
-              }
-            }
-          }
-          if (matchedTags.length === this.selectedTags.length) {
-            this.filteredElementsByTags.push(e)
-          }
-        }
-      } else {
-        this.filteredElementsByTags = this.translatedElements;
-      }
     },
     filterByCategory() {
       if (this.selectedCategory) {
@@ -251,11 +191,8 @@ export default {
       return new Date(b.translationDate) - new Date(a.translationDate)
     },
     clearFilters() {
-      this.selectedTags = [];
       this.selectedCategory = undefined;
-      this.tagsToSelect = [];
       this.categoryToSelect = undefined;
-      this.filteredElementsByTags = this.translatedElements;
       this.filteredElementsByCategory = this.translatedElements;
     }
   },
@@ -281,11 +218,9 @@ export default {
     },
     filteredElements: {
       get() {
-        var filteredElementsByTags = this.filteredElementsByTags;
         var filteredElementsByCategory = this.filteredElementsByCategory;
         return this.filteredElementsBySearch.filter(function (n) {
           return (
-            filteredElementsByTags.indexOf(n) !== -1 &&
             filteredElementsByCategory.indexOf(n) !== -1
           );
         });
@@ -311,30 +246,11 @@ export default {
         if (this.translatedCategories.indexOf(translation.category) == -1) {
           this.translatedCategories.push(translation.category);
         }
-        // Set tag-elements relations
-        //e.tags = this.elemTags;
-        // Tags
-        if (e.tags.length > 0) {
-          let tagTranslations = [];
-          for (let tag of e.tags) {
-            let translations = tag.translations.filter(
-              tag => tag.lang === this.$userLang
-            );
-            if (translations.length > 0) {
-              tagTranslations.push(translations[0]);
-              if (this.tags.indexOf(translations[0].tag) == -1) {
-                this.tags.push(translations[0].tag);
-              }
-            }
-          }
-          translation.tags = tagTranslations;
-        }
       }
       return translation;
     });
     this.translatedElements = this.translatedElements.filter(e => e !== undefined && e.title)
     this.translatedElements.sort(this.compareTranslationDates)
-    this.filteredElementsByTags = this.translatedElements;
     this.filteredElementsBySearch = this.translatedElements;
     this.filteredElementsByCategory = this.translatedElements;
   }

@@ -82,13 +82,11 @@
   "filters": {
     "title": "Filter by",
     "categories": "Categories",
-    "tags": "Tags",
     "clear_all": "Clear all",
     "apply": "Apply"
   },
   "information_centre": {
     "category": "Category",
-    "tags": "Tags",
     "missing_content": "There is no information"
   },
   "tasks": {
@@ -100,7 +98,6 @@
   },
   "events": {
     "category": "Category",
-    "tags": "Tags",
     "start_date": "Start date",
     "finish_date": "Finish date",
     "missing_content": "There are no events"
