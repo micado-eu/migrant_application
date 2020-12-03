@@ -1,14 +1,108 @@
 {
+  "application_title": "MICADO app",
   "menu": {
     "title": "I miei strumenti",
-    "services": "Servizi disponibili",
+    "home": "Homepage",
+    "home_desc": "Homepage di MICADO",
+    "processes": "Integrazione passo passo",
+    "processes_desc": "Processi d'integrazione guidati",
+    "info": "Centro informazioni",
+    "chatbot": "MICADO Bot",
+    "chatbot_desc": "Micado smart assistant",
+    "tasks": "I miei piani d'integrazione",
+    "tasks_desc": "I tuoi piani d'integrazione personali",
     "documents": "I miei documenti",
-    "assistant": "Il mio assistente",
-    "processes": "I processi amministrativi",
-    "notifications": "Massaggi",
-    "search": "Ricerca",
-    "speech": "Parlare",
+    "documents_desc": "Collezione dei miei documenti d'integrazione",
+    "messenger": "My Messages",
+    "settings": "Opzioni",
+    "settings_desc": "Gestisci il tuo account",
+    "language": "it-IT",
+    "glossary": "Parole frequenti",
+    "glossary_desc": "Parole usate frequentemente",
+    "information": "Centro informazioni",
+    "information_desc": "Informazioni e servizi per l'integrazione",
+    "events": "Eventi",
+    "events_desc": "Eventi d'integrazione"
+  },
+  "button": {
+    "add_document": "Aggiungi documento",
+    "save": "Salva",
+    "remove": "Rimuovi",
+    "back": "Indietro",
+    "go_back": "Indietro",
+    "ask_validation": "Richiedi validazione",
+    "download": "Scarica",
+    "view_model": "Mostra modello",
+    "cancel": "Cancella",
+    "send": "Invia",
+    "validation_pending":"Validazione in corso",
+    "validated":"Validato"
+
+  },
+  "input_labels": {
+    "doc_type": "Tipo di documento",
+    "exp_date": "Data di scadenza",
+    "upload_doc": "Carica documento",
+    "read": "Read Along",
+    "email": "Email"
+  },
+  "desc_labels": {
+    "cost": "Costo del passo",
+    "location": "Luogo",
+    "description": "Descrizione",
+    "search": "Cerca",
+    "document_type": "Tipo di documento",
+    "document_issuer": "Emettitore del documento",
+    "reviewed_by": "Reviewed by",
+    "expiration_date": "Data di scadenza",
+    "review_date": "Review date",
+    "login_register": "Login/Registrazione",
     "settings": "Impostazioni",
-    "language":"it-IT"
+    "logout": "Logout",
+    "information_centre": "Centro informazioni",
+    "events": "Eventi",
+    "required_documents": "Documenti richiesti",
+    "privacy_settings": "Impostazioni Privacy",
+    "comments": "Commenti",
+    "send_doc": "Si prega di scegliere un indirizzo email",
+    "guided_processes":"Integrazione passo passo",
+    "plan_progress":"Progresso del piani",
+    "integration_plan":"I miei piani d'integrazione"
+  },
+  "profile": {
+    "change_pic": "Cambia immagine",
+    "username": "Username",
+    "password": "Password",
+    "legal_name": "Nome completo",
+    "nationality": "Nazionalità",
+    "age": "Età",
+    "gender": "Sesso",
+    "personal_profile": "Profilo personale"
+  },
+  "filters": {
+    "title": "Filtra per",
+    "categories": "Categorie",
+    "clear_all": "Pulisci",
+    "apply": "Applica"
+  },
+  "information_centre": {
+    "category": "Categoria",
+    "missing_content": "Non ci sono informazioni"
+  },
+  "tasks": {
+    "ask_validation": "Richiedi validazione",
+    "you_validate": "Valida",
+    "dialog_title_org": "Scegli l'organizzazione del validatore",
+    "dialog_title_self": "Valida",
+    "integration_type_validators": "Organizzazione del validatore"
+  },
+  "events": {
+    "category": "Categoria",
+    "start_date": "Data d'inizio",
+    "finish_date": "Data di gine",
+    "missing_content": "Non ci sono eventi"
+  },
+  "glossary": {
+    "missing_content": "Non ci sono parole frequenti"
   }
 }
