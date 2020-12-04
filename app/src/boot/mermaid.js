@@ -21,8 +21,8 @@ import Countly from 'countly-sdk-web';
 import VueCountly from 'vue-countly';
 
 Vue.use(VueCountly, Countly, {
-  app_key: 'ef7879ac3b3a064c106d5fa27ba2f70603b8c2da',
-  url: 'https://monitoring.micadoproject.eu',
+  app_key: Vue.prototype.$envconfig.countlyApiKey,
+  url: 'https://' + Vue.prototype.$envconfig.monitoringUrl
 });
 
 console.log("Countly init")
