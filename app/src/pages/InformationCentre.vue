@@ -7,7 +7,6 @@
       icon="img:statics/icons/Icon - Information Centre (selected) (30x30).png"
       :elements="elements"
       :categories="categories"
-      :elemTags="tags"
       :item_url_fn="goToItem"
       missing_content_label="information_centre.missing_content"
     />
@@ -25,38 +24,29 @@ export default {
     return {
       loading: true,
       elements: [],
-      categories: [],
-      tags: []
-    };
+      categories: []
+    }
   },
   methods: {
     ...mapActions("information", ["fetchInformation"]),
     ...mapActions("information_category", ["fetchInformationCategory"]),
-    ...mapActions("information_tags", ["fetchInformationTags"]),
     goToItem(id) {
       return "/information/" + id;
     }
   },
   computed: {
     ...mapGetters("information", ["information"]),
-    ...mapGetters("information_category", ["informationCategories"]),
-    ...mapGetters("information_tags", ["informationTags", "informationTagsByInformation"]),
+    ...mapGetters("information_category", ["informationCategories"])
   },
   created() {
     this.loading = true;
     this.fetchInformation().then(() => {
       this.fetchInformationCategory().then(() => {
-        this.fetchInformationTags().then(() => {
-          this.categories = [...this.informationCategories];
-          this.elements = JSON.parse(JSON.stringify(this.information));
-          for (const e of this.elements) {
-            e.tags = this.informationTagsByInformation(e.id)
-          }
-          this.tags = this.informationTags;
-          this.loading = false;
-        });
-      });
-    });
+          this.categories = [...this.informationCategories]
+          this.elements = JSON.parse(JSON.stringify(this.information))
+          this.loading = false
+      })
+    })
   }
-};
+}
 </script>

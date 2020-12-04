@@ -1,12 +1,12 @@
 {
   "application_title": "MICADO app",
   "menu": {
-    "title": "My Tools",
-    "home": "Home",
-    "home_desc": "MICADO home page",
-    "processes": "Integration step-by-step",
-    "processes_desc": "Guided integration processes",
-    "info": "Information centre",
+    "title": "我的工具箱",
+    "home": "主页",
+    "home_desc": "MICADO主页",
+    "processes": "移民融入过程向导",
+    "processes_desc": "指导您完成多项融入任务",
+    "info": "信息中心",
     "chatbot": "MICADO Bot",
     "chatbot_desc": "Micado smart assistant",
     "tasks": "My integration plan",

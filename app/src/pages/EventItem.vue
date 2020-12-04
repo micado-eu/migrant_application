@@ -22,16 +22,6 @@
       <q-separator class="q-my-lg" />
       <span style="font-weight: bold;">{{$t("events.category")}}: </span><span>{{category.category}}</span>
       <q-separator class="q-my-lg" />
-      <span style="font-weight: bold;">{{$t("events.tags")}}: </span>
-      <q-btn
-        v-for="tag in tags"
-        :key="tag"
-        :label="tag"
-        no-caps
-        rounded
-        class="q-mx-sm q-my-sm tag_btn"
-      />
-      <q-separator class="q-my-lg" />
       <div align="center">
         <q-btn
           @click="goBack()"
@@ -60,7 +50,6 @@ export default {
       id: -1,
       item: {},
       category: "",
-      tags: [],
       lang: "",
       startDate: "",
       finishDate: "",
@@ -69,7 +58,6 @@ export default {
   methods: {
     ...mapActions("event", ["fetchEvents"]),
     ...mapActions("event_category", ["fetchEventCategory"]),
-    ...mapActions("event_tags", ["fetchEventTags"]),
     goBack() {
       this.$router.go(-1);
     }
@@ -77,7 +65,6 @@ export default {
   computed: {
     ...mapGetters("event", ["eventElemById"]),
     ...mapGetters("event_category", ["eventCategories"]),
-    ...mapGetters("event_tags", ["eventTagsByEvent"]),
     ...mapGetters('topic', ['topics']),
     ...mapGetters('user_type', ['users'])
   },
@@ -105,19 +92,6 @@ export default {
         ].translations.findIndex(t => t.lang === this.$userLang);
         this.category =
           eventCategoryElems[idxCategoryObject].translations[idxCat];
-        return this.fetchEventTags()
-      }).then(() => {
-        itemById.tags = this.eventTagsByEvent(itemById.id);
-        for (let tag of itemById.tags) {
-          let translations = tag.translations.filter(
-            tag => tag.lang === this.$userLang
-          );
-          if (translations.length > 0) {
-            if (this.tags.indexOf(translations[0].tag) == -1) {
-              this.tags.push(translations[0].tag);
-            }
-          }
-        }
         this.item = translated;
         this.loading = false;
       })

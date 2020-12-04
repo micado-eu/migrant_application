@@ -21,16 +21,6 @@
       <q-separator class="q-my-lg" />
       <span style="font-weight: bold;">{{$t("information_centre.category")}}: </span><span>{{category.category}}</span>
       <q-separator class="q-my-lg" />
-      <span style="font-weight: bold;">{{$t("information_centre.tags")}}: </span>
-      <q-btn
-        v-for="tag in tags"
-        :key="tag"
-        :label="tag"
-        no-caps
-        rounded
-        class="q-mx-sm q-my-sm tag_btn"
-      />
-      <q-separator class="q-my-lg" />
       <div align="center">
         <q-btn
           @click="goBack()"
@@ -59,14 +49,12 @@ export default {
       id: -1,
       item: {},
       category: "",
-      tags: [],
       lang: ""
     };
   },
   methods: {
     ...mapActions("information", ["fetchInformation"]),
     ...mapActions("information_category", ["fetchInformationCategory"]),
-    ...mapActions("information_tags", ["fetchInformationTags"]),
     goBack() {
       this.$router.go(-1);
     }
@@ -74,7 +62,6 @@ export default {
   computed: {
     ...mapGetters("information", ["informationElemById"]),
     ...mapGetters("information_category", ["informationCategories"]),
-    ...mapGetters("information_tags", ["informationTagsByInformation"]),
     ...mapGetters('topic', ['topics']),
     ...mapGetters('user_type', ['users'])
   },
@@ -98,25 +85,12 @@ export default {
         ].translations.findIndex(t => t.lang === this.$userLang);
         this.category =
           informationCategoryElems[idxCategoryObject].translations[idxCat];
-        return this.fetchInformationTags()
-      }).then(() => {
-        itemById.tags = this.informationTagsByInformation(itemById.id);
-        for (let tag of itemById.tags) {
-          let translations = tag.translations.filter(
-            tag => tag.lang === this.$userLang
-          );
-          if (translations.length > 0) {
-            if (this.tags.indexOf(translations[0].tag) == -1) {
-              this.tags.push(translations[0].tag);
-            }
-          }
-        }
         this.item = translated;
         this.loading = false;
       })
     })
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

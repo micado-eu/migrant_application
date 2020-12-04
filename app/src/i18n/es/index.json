@@ -82,13 +82,11 @@
     "filters": {
       "title": "Filtrar por",
       "categories": "Categorias",
-      "tags": "Etiquetas",
       "clear_all": "Limpiar todo",
       "apply": "Aplicar"
     },
     "information_centre": {
       "category": "Categoría",
-      "tags": "Etiquetas",
       "missing_content": "No hay información disponible"
     },
     "tasks": {
@@ -100,7 +98,6 @@
     },
     "events": {
       "category": "Categoría",
-      "tags": "Etiquetas",
       "start_date": "Fecha de inicio",
       "finish_date": "Fecha de fin",
       "missing_content": "No hay eventos disponibles"
