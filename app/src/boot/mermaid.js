@@ -17,6 +17,7 @@ Icon.Default.mergeOptions({
   shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 });
 
+/*
 import Countly from 'countly-sdk-web';
 import VueCountly from 'vue-countly';
 
@@ -33,7 +34,7 @@ Vue.Countly.q.push(['track_sessions']);
 
 // Track web page views automatically (recommended)
 Vue.Countly.q.push(['track_pageview']);
-
+*/
 //import FeatureFlipping from "vue-feature-flipping"
 
 
