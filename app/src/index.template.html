@@ -25,21 +25,6 @@
 <body>
   <!-- DO NOT touch the following DIV -->
   <div id="q-app"></div>
-  <!-- Start of Rocket.Chat Livechat Script -->
-  <script type="text/javascript">
-    (function (w, d, s, u) {
-      w.RocketChat = function (c) { w.RocketChat._.push(c) }; w.RocketChat._ = []; w.RocketChat.url = u;
-      var h = d.getElementsByTagName(s)[0], j = d.createElement(s);
-      j.async = true; j.src = 'https://admin2.micadoproject.eu/livechat/rocketchat-livechat.min.js?_=201903270000';
-      h.parentNode.insertBefore(j, h);
-      w.RocketChat(function () {
-        this.initialize({
-          department: 'micado',
-          agent: 'rasa_bot'
-        })
-      })
-    })(window, document, 'script', 'https://admin2.micadoproject.eu/livechat');
-  </script>
 </body>
 
 </html>
