@@ -6,5 +6,6 @@
     "countlyApiKey": "$COUNTLY_MIGRANTS_API_KEY",
     "countlyAppID": "$COUNTLY_MIGRANTS_APP_ID",
     "identitySPclientId": "$IDENTITY_SP_MIGRANTS_CLIENT_ID",
+    "chatServer": "$ROCKETCHAT_HOSTNAME",
     "migrantsUrl": "$MIGRANTS_HOSTNAME"
 }
