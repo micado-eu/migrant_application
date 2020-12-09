@@ -77,6 +77,9 @@ module.exports = function (ctx) {
       scopeHoisting: true,
       rtl: true,
       vueRouterMode: 'history',
+      env: {
+        APP_BUILD_DATE: Date.now()
+      },
       // showProgress: false,
       // gzip: true,
       // analyze: true,
