@@ -3,7 +3,7 @@
     "apiUrl": "api.micadoproject.eu",
     "monitoringUrl": "monitoring.micadoproject.eu",
     "identityUrl": "identity.micadoproject.eu",
-    "countlyApiKey": "ef7879ac3b3a064c106d5fa27ba2f70603b8c2da",
+    "countlyAppKey": "ef7879ac3b3a064c106d5fa27ba2f70603b8c2da",
     "countlyAppID": "5e4ce9d7bb2bfe00e9cda829",
     "identitySPclientId": "sfxTSKbY0BRjuEC5c5U3WvBYQVAa",
     "chatServer": "admin2.micadoproject.eu",
