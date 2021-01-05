@@ -1,10 +1,18 @@
 <template>
   <div padding>
-    <editor-content
-      class='editor_content'
-      :editor="editor"
-      ref="editor"
-    />
+    <div>
+      <editor-content
+        class='editor_content inline-block'
+        :editor="editor"
+        ref="editor"
+      />
+      <talking-label
+        Title=""
+        :text="textToSpeech"
+        v-if="textToSpeech !== null"
+        class="inline-block q-ml-sm"
+      ></talking-label>
+    </div>
     <div>
       <slot name="append"></slot>
     </div>
@@ -62,11 +70,13 @@ import {
 import Image from 'components/editor_plugins/Image'
 import GlossaryMention from 'components/editor_plugins/GlossaryMention'
 import markdownConverterMixin from '../mixin/markdownConverterMixin'
+import TalkingLabel from 'components/TalkingLabel'
 
 export default {
   name: 'GlossaryEditorViewer',
   components: {
-    EditorContent
+    EditorContent,
+    TalkingLabel
   },
   props: {
     content: {
@@ -105,6 +115,13 @@ export default {
     ...mapGetters('glossary', ['glossary', 'glossaryElemById']),
     currentDescription() {
       return this.currentDescriptionContent
+    },
+    textToSpeech() {
+      if (this.editor) {
+        const doc = new DOMParser().parseFromString(this.editor.getHTML(), 'text/html')
+        return doc.body.textContent || null
+      }
+      return null
     }
   },
   methods: {
