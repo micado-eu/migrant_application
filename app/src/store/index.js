@@ -26,6 +26,7 @@ import tenant from './tenant'
 import document_type from './document_type'
 import comments from './comments'
 import picture_hotspots from './picture_hotspots'
+import user from './user'
 
 Vue.use(Vuex)
 
@@ -60,7 +61,8 @@ export default function (/* { ssrContext } */) {
       document_type,
       picture_hotspots,
       event_category,
-      event
+      event,
+      user
     },
 
     // enable strict mode (adds overhead!)
