@@ -7,5 +7,6 @@
     "countlyAppID": "5e4ce9d7bb2bfe00e9cda829",
     "identitySPclientId": "sfxTSKbY0BRjuEC5c5U3WvBYQVAa",
     "chatServer": "admin2.micadoproject.eu",
+    "appBuildDate": "$APP_BUILD_DATE",
     "migrantsUrl": "migrants.micadoproject.eu"
 }

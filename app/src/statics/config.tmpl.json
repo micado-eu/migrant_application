@@ -7,5 +7,6 @@
     "countlyAppID": "$COUNTLY_MIGRANTS_APP_ID",
     "identitySPclientId": "$IDENTITY_SP_MIGRANTS_CLIENT_ID",
     "chatServer": "$ROCKETCHAT_HOSTNAME",
+    "appBuildDate": "$APP_BUILD_DATE",
     "migrantsUrl": "$MIGRANTS_HOSTNAME"
 }
