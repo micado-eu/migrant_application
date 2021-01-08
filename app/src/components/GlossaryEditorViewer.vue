@@ -2,7 +2,7 @@
   <div padding>
     <div>
       <editor-content
-        class='editor_content inline-block'
+        class='editor_content'
         :editor="editor"
         ref="editor"
       />
@@ -10,7 +10,7 @@
         Title=""
         :text="textToSpeech"
         v-if="textToSpeech !== null"
-        class="inline-block q-ml-sm"
+        class=""
       ></talking-label>
     </div>
     <div>
