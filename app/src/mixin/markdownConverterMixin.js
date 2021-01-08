@@ -32,7 +32,7 @@ export default {
           const prefixTag = `<span data-mention-id="${glossaryTerm.id}" class="mention">`
           const suffixTag = "</span>"
           for (let i = 0; i < splitted.length; i = i + 1) {
-            if (splitted[i].length === glossaryTerm.title.length) {
+            if (!splitted[i].localeCompare(glossaryTerm.title, undefined, { sensitivity: 'accent' })) {
               splitted[i] = prefixTag + splitted[i] + suffixTag
             }
           }
