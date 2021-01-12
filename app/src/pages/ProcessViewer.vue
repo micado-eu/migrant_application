@@ -1,12 +1,12 @@
   <template>
   <div class="container">
-     <q-toolbar class="toolbar-list q-mb-md">
+      <div class="banner">
+        {{$t('desc_labels.guided_processes')}}
         <q-icon
-          name="img:statics/icons/Guided Processes (600x600) white.png"
-          size="xl"
-          class="q-mx-auto"
+          name="img:statics/icons/Icon - Guided Processes (selected).png"
+          style="padding-bottom:3px"
         />
-      </q-toolbar>
+      </div>
      <TalkingLabel
      class="title"
      :Title="this.the_process"
@@ -115,7 +115,7 @@
        <template v-slot:prepend>
           <q-icon class="icon" name="img:statics/icons/docs.svg" />
         </template>
-      <q-list>
+      <q-list style="max-width:320px">
         <!--<q-item-label header>{{$t('desc_labels.required_documents')}}</q-item-label>-->
         <DocumentItem
           v-for="doc in documents"
@@ -513,6 +513,17 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped >
+.banner{
+  font-style: normal;
+  height:72px;
+  text-align: center; 
+  padding-top:15px;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 41px;
+  color:white; 
+  background-color:#FF7C44
+}
 canvas {
   margin-left: -300px;
   background-color: blue;

@@ -1,6 +1,7 @@
 <template>
-  <q-item :key="this.theDoc.id">
-    <q-item-section avatar>
+<div>
+  <q-item style="max-width:320px" :key="this.theDoc.id">
+    <q-item-section class="col-4" style="padding-right:0px" avatar>
       <q-btn
         size="10px"
         dense
@@ -15,16 +16,19 @@
         </q-avatar>
       </q-btn>
     </q-item-section>
-    <q-item-section class="col-3">
+    <q-item-section class="col-8">
       <q-item-label>{{this.theDoc.text}}</q-item-label>
-      <q-item-label caption>Emitted by:{{this.theDoc.emitter}} - lasting up to: {{this.theDoc.expire_date}}</q-item-label>
+      <q-item-label caption>Emitted by:{{this.theDoc.emitter}}</q-item-label>
       <q-item-label caption>cost: {{this.theDoc.price}}</q-item-label>
 
     </q-item-section>
-    <q-item-section class="col-2">
+   
+  </q-item>
+   <div style="text-align:center; padding-bottom:5px">
       <q-btn
         size="12px"
         no-caps
+        dense
         class="button"
         rounded
         :id="theDoc.id"
@@ -33,7 +37,7 @@
         :label="$t('button.view_model')"
         @click="show = true"
       />
-    </q-item-section>
+    </div>
     <q-dialog
       v-model="show"
       @hide="clean()"
@@ -76,7 +80,7 @@
         </div>
       </div>
     </q-dialog>
-  </q-item>
+</div>
 
 </template>
 
