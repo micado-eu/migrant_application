@@ -9,6 +9,7 @@
           id="scroll"
           ref="scrollArea"
           style="height: 555px; max-width: 100%;"
+          v-touch-pan.horizontal.prevent.mouse="handlePan"
         >
           <ListItem
             v-for="process in filteredItems"
@@ -58,6 +59,8 @@ export default {
     return {
       letters: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z"],
       selected_letter: "",
+      info: null,
+      panning: false
     }
   },
   props: ["filteredItems"],
@@ -66,6 +69,19 @@ export default {
   },
 
   methods: {
+    handlePan ({ evt, ...info }) {
+      this.info = info
+
+      // native Javascript event
+      // console.log(evt)
+
+      if (info.isFirst) {
+        this.panning = true
+      }
+      else if (info.isFinal) {
+        this.panning = false
+      }
+    },
     showFlow (id) {
       console.log("opened accordion")
       console.log(id)
