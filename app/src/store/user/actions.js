@@ -72,6 +72,12 @@ export function editUserPic (state, payload) {
     .editUserPicture(payload.picture, payload.id)
     .then((picture_return) => console.log(picture_return))
 }
+export function editUserData (state, user) {
+  // we need BEFORE to call the API to do the update and if ok we update wuex state
+  console.log(user)
+  return client
+    .editUserData(user)
+}
 /* export function deleteDocument({commit}, document_type) {
 
   commit(delete_document_type, document_type.id)

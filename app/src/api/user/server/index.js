@@ -27,6 +27,12 @@ export default {
       .patch('/backend/1.0.0/user-pictures/' + id, {picture:pic})
       .then(response => { return response.data })
       .catch(error_handler);
+  },
+  editUserData(user){
+    return axiosInstance
+      .patch('/backend/1.0.0/updateUser?userid=' + user.userid+ '&username=' +user.username + '&givenName=' + user.givenName + '&familyName=' + user.familyName + '&phoneNumber='+ user.phoneNumber+ '&tenant=carbon.super')
+      .then(response => { return response.data })
+      .catch(error_handler);
   }
 }
 

@@ -36,7 +36,8 @@
     "cancel": "Cancel",
     "send": "Send",
     "validation_pending":"Validation pending",
-    "validated":"Validated"
+    "validated":"Validated",
+    "edit":"Edit"
 
   },
   "input_labels": {
@@ -74,10 +75,11 @@
     "username": "Username",
     "password": "Password",
     "legal_name": "Legal Name",
-    "nationality": "Nationality",
-    "age": "Age",
+    "country": "Country",
+    "dob": "Date of Birth",
     "gender": "Gender",
-    "personal_profile": "Personal Profile"
+    "personal_profile": "Personal Profile",
+    "phone_number":"Phone Number"
   },
   "filters": {
     "title": "Filter by",

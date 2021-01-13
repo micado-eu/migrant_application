@@ -38,19 +38,17 @@
     <div class=" q-pa-xsm center" >
       <h5 class="q-pa-md header">{{$t('profile.personal_profile')}}</h5>
       <div class="input-top">
-        <q-input  dense :label="$t('profile.username')"  bg-color="grey-1"   standout outlined v-model="the_user.username" >
+        <q-input :readonly="!editing"  dense :label="$t('profile.username')"  bg-color="grey-1"   standout outlined v-model="the_user.username" >
         <q-icon class="icon" name="img:statics/icons/Edit.png" size="md"/>
         </q-input>
       </div>
     </div>
     <div class=" q-pa-xsm " >
      <div class="col-8 input" >
-        <q-input  dense  :type="isPwd ? 'password' : 'text'"  bg-color="grey-1" standout outlined :label="$t('profile.password')" v-model="the_user.password"  >
+        <q-input  dense :readonly="!editing" bg-color="grey-1" standout outlined :label="$t('profile.phone_number')" v-model="the_user.phoneNumber"  >
           <template v-slot:append>
           <q-icon
-            :name="isPwd ? 'visibility_off' : 'visibility'"
-            class="cursor-pointer"
-            @click="isPwd = !isPwd"
+             name="img:statics/icons/Edit.png" size="md"
           />
         </template>
         </q-input>
@@ -58,35 +56,46 @@
     </div>
 <div class=" q-pa-xsm " >
       <div class="col-8 input" >
-        <q-input  dense :label="$t('profile.legal_name')"  bg-color="grey-1" standout outlined v-model="the_user.legalname"  >
+        <q-input  dense :readonly="!editing" :label="$t('profile.legal_name')"  bg-color="grey-1" standout outlined v-model="the_user.legalname"  >
          <q-icon name="img:statics/icons/Edit.png" size="md"  />
         </q-input>
       </div>
     </div>
 <div class=" q-pa-xsm " >
     <div class="col-8 input" >
-        <q-input  dense  bg-color="grey-1" :label="$t('profile.nationality')" standout outlined v-model="the_user.nationality"  >
+        <q-input  dense :readonly="!editing"  bg-color="grey-1" :label="$t('profile.country')" standout outlined v-model="the_user.nationality"  >
          <q-icon name="img:statics/icons/Edit.png" size="md"  />
         </q-input>
       </div>
     </div>
     <div class=" q-pa-xsm " >
       <div class="col-8 input" >
-        <q-input  dense  bg-color="grey-1" :label="$t('profile.age')" standout outlined v-model="the_user.date_of_birth"  >
+        <q-input  dense :readonly="!editing" bg-color="grey-1" :label="$t('profile.dob')" standout outlined v-model="the_user.date_of_birth"  >
          <q-icon name="img:statics/icons/Edit.png" size="md"  />
         </q-input>
       </div>
     </div>
     <div class=" q-pa-xsm " >
       <div class="col-8 input" >
-        <q-input  dense  bg-color="grey-1" :label="$t('profile.gender')" standout outlined v-model="the_user.gender"  >
+        <q-input  dense :readonly="!editing" bg-color="grey-1" :label="$t('profile.gender')" standout outlined v-model="the_user.gender"  >
          <q-icon name="img:statics/icons/Edit.png" size="md"  />
         </q-input>
       </div>
     </div>
+    <div class=" q-pa-xsm " >
+      <div v-if="!editing" class="col-8 input" >
+        <q-btn class="button" color="info" unelevated no-caps rounded text-color="white" :label="$t('button.edit')" @click="editing=true" />
+      </div>
+      <div v-else class="col-8 input" >
+        <q-btn class="button" color="accent" unelevated no-caps rounded text-color="white" :label="$t('button.save')" @click="editUser()" />
+        <q-btn class="button" color="red" unelevated no-caps rounded text-color="white" :label="$t('button.cancel')" @click="cancelUser()" />
+      </div>
+    </div>
   </div>
   </div>
+
     <div  >
+      
      <div class="div-4">
     <h5>{{$t('desc_labels.privacy_settings')}}</h5>
     <q-card class="my-card">
@@ -124,7 +133,8 @@ export default {
       }, actions: {
         fetchSpecificUser: 'user/fetchSpecificUser',
         saveUserPic:'user/saveUserPic',
-        editUserPic:'user/editUserPic'
+        editUserPic:'user/editUserPic',
+        editUserData:'user/editUserData'
       }
     })
 
@@ -132,7 +142,7 @@ export default {
   data () {
     return {
       loading:true,
-      editing:null,
+      editing:false,
       picture_select:false, 
       isPwd:true,
       locale: this.$q.lang.isoName, 
@@ -160,9 +170,25 @@ export default {
         },
       ], 
       the_user:{
+        userid:null,
         username:"MaryHassan",
-        password:"",
+        phoneNumber:"",
         legalname:"Mariam Hassan",
+        givenName:"",
+        familyName:"",
+        date_of_birth:null,
+        nationality:"Egyptian",
+        gender:"Female", 
+        picture:null, 
+        picture_id: null
+      },
+      the_user_orig:{
+        userid:null,
+        username:"MaryHassan",
+        phoneNumber:"",
+        legalname:"Mariam Hassan",
+        givenName:"",
+        familyName:"",
         date_of_birth:null,
         nationality:"Egyptian",
         gender:"Female", 
@@ -179,6 +205,34 @@ export default {
     }
   },
   methods: {
+    findAttribute(umAttribute,userAttribute){
+      console.log(umAttribute)
+      var arr = this.user.attributes.filter((attr)=>{
+        return attr.umAttrName == String(umAttribute)
+      })
+      if(arr.length>0){
+        console.log("inside if")
+        this.the_user[userAttribute] = arr[0].umAttrValue 
+      }
+    },
+    editUser(){
+      var idx = this.the_user.legalname .indexOf(" "); 
+      this.the_user.givenName = this.the_user.legalname.substr(0, idx)
+      this.the_user.familyName = this.the_user.legalname.substr(idx +1)
+      console.log(this.the_user)
+      this.the_user_orig=JSON.parse(JSON.stringify( this.the_user ))
+      var working_user = JSON.parse(JSON.stringify(this.the_user, [ 'userid', 'username', 'phoneNumber', 'givenName', 'familyName', 'date_of_birth', 'nationality', 'gender']));
+      console.log(working_user)
+      this.editUserData(working_user)
+      this.editing = false
+    },
+    cancelUser(){
+      console.log("in cancel")
+      console.log(this.the_user_orig)
+      console.log(this.the_user)
+      this.the_user=JSON.parse(JSON.stringify(this.the_user_orig))
+      this.editing = false
+    },
     modifyPic(){
       if(this.user_pic_orig != this.the_user.picture){
            this.$q.notify({
@@ -257,60 +311,35 @@ export default {
     console.log(userId)
     this.fetchSpecificUser(userId).then((user)=>{
       console.log(user)
-      this.the_user.username = user.attributes.filter((attr)=>{
+      console.log("this is the user in store")
+      console.log(this.user)
+      this.the_user.username = this.user.attributes.filter((attr)=>{
         return attr.umAttrName == "uid"
       })[0].umAttrValue
+      this.the_user.userid = this.user.attributes.filter((attr)=>{
+        return attr.umAttrName == "scimId"
+      })[0].umAttrValue
+      this.findAttribute('mobile', 'phoneNumber')
+      this.findAttribute('uid', 'username')
+      this.findAttribute('scimId', 'userid')
+      this.findAttribute('givenName', 'givenName')
+      this.findAttribute('sn', 'familyName')
+      this.the_user.legalname = this.the_user.givenName + " " + this.the_user.familyName
+      this.findAttribute('dateOfBirth', 'date_of_birth')
+      this.findAttribute('gender', 'gender')
+      this.findAttribute('country', 'nationality')
       if(user.userPicture){
-        this.the_user.picture= user.userPicture.picture
-        this.the_user.picture_id= user.userPicture.id
-        this.user_pic_orig =  user.userPicture.picture
+        this.the_user.picture= this.user.userPicture.picture
+        this.the_user.picture_id= this.user.userPicture.id
+        this.user_pic_orig =  this.user.userPicture.picture
       }
       else{
         this.the_user.picture= null
       }
-      console.log("after username")
-      var name = ""
-      var surname = ""
-      var name_arr = user.attributes.filter((attr)=>{
-        return attr.umAttrName == "givenName"
-      })
-      if(name_arr.length>0){
-        name = name_arr[0].umAttrValue 
-      }
-      var surname_arr = user.attributes.filter((attr)=>{
-        return attr.umAttrName == "sn"
-      })
-      if(name_arr.length>0){
-        surname = surname_arr[0].umAttrValue 
-      }
-      var fullname = name + " " + surname
-      this.the_user.legalname =  fullname
-      var dob=""
-      var dob_arr =  user.attributes.filter((attr)=>{
-        return attr.umAttrName == "dateOfBirth"
-      })
-      if(dob_arr.length>0){
-        dob = dob_arr[0].umAttrValue 
-      }
-      this.the_user.date_of_birth= dob
-      var country = ""
-      var country_arr = user.attributes.filter((attr)=>{
-        return attr.umAttrName == "country"
-      })
-      if(country_arr.length>0){
-        country = country_arr[0].umAttrValue 
-      }
-      this.the_user.nationality= country
-      var gender =""
-      var gender_arr =  user.attributes.filter((attr)=>{
-        return attr.umAttrName == "gender"
-      })
-      if(gender_arr.length>0){
-        gender = gender_arr[0].umAttrValue 
-      }
-      this.the_user.gender =  gender
+      this.the_user_orig=JSON.parse(JSON.stringify( this.the_user ))
       this.loading=false
       console.log("after loading")
+      console.log(this.the_user)
     })
   }
 }
