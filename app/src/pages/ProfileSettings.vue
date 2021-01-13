@@ -83,6 +83,13 @@
       </div>
     </div>
     <div class=" q-pa-xsm " >
+      <div class="col-8 input" >
+        <q-input  dense :readonly="!editing" bg-color="grey-1" :label="$t('profile.mail')" standout outlined v-model="the_user.email"  >
+         <q-icon name="img:statics/icons/Edit.png" size="md"  />
+        </q-input>
+      </div>
+    </div>
+    <div class=" q-pa-xsm " >
       <div v-if="!editing" class="col-8 input" >
         <q-btn class="button" color="info" unelevated no-caps rounded text-color="white" :label="$t('button.edit')" @click="editing=true" />
       </div>
@@ -179,6 +186,7 @@ export default {
         date_of_birth:null,
         nationality:"Egyptian",
         gender:"Female", 
+        email:"",
         picture:null, 
         picture_id: null
       },
@@ -192,6 +200,7 @@ export default {
         date_of_birth:null,
         nationality:"Egyptian",
         gender:"Female", 
+        email:"",
         picture:null, 
         picture_id: null
       },
@@ -221,7 +230,7 @@ export default {
       this.the_user.familyName = this.the_user.legalname.substr(idx +1)
       console.log(this.the_user)
       this.the_user_orig=JSON.parse(JSON.stringify( this.the_user ))
-      var working_user = JSON.parse(JSON.stringify(this.the_user, [ 'userid', 'username', 'phoneNumber', 'givenName', 'familyName', 'date_of_birth', 'nationality', 'gender']));
+      var working_user = JSON.parse(JSON.stringify(this.the_user, [ 'userid', 'username', 'phoneNumber', 'givenName', 'familyName', 'date_of_birth', 'nationality', 'gender', 'email']));
       console.log(working_user)
       this.editUserData(working_user)
       this.editing = false
@@ -328,6 +337,7 @@ export default {
       this.findAttribute('dateOfBirth', 'date_of_birth')
       this.findAttribute('gender', 'gender')
       this.findAttribute('country', 'nationality')
+      this.findAttribute('mail', 'email')
       if(user.userPicture){
         this.the_user.picture= this.user.userPicture.picture
         this.the_user.picture_id= this.user.userPicture.id

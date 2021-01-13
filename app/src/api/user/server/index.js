@@ -30,7 +30,7 @@ export default {
   },
   editUserData(user){
     return axiosInstance
-      .patch('/backend/1.0.0/updateUser?userid=' + user.userid+ '&username=' +user.username + '&givenName=' + user.givenName + '&familyName=' + user.familyName + '&phoneNumber='+ user.phoneNumber+ '&tenant=carbon.super')
+      .patch('/backend/1.0.0/updateUser?userid=' + user.userid+ '&username=' +user.username + '&givenName=' + user.givenName + '&familyName=' + user.familyName + '&phoneNumber='+ user.phoneNumber+ '&country=' + user.nationality + '&gender=' + user.gender + '&dob=' + user.date_of_birth + '&email=' + user.email +  '&tenant=carbon.super')
       .then(response => { return response.data })
       .catch(error_handler);
   }
