@@ -232,7 +232,9 @@ export default {
       this.the_user_orig=JSON.parse(JSON.stringify( this.the_user ))
       var working_user = JSON.parse(JSON.stringify(this.the_user, [ 'userid', 'username', 'phoneNumber', 'givenName', 'familyName', 'date_of_birth', 'nationality', 'gender', 'email']));
       console.log(working_user)
-      this.editUserData(working_user)
+      var working_token = "testtoken"
+      console.log(working_token)
+      this.editUserData({user:JSON.stringify(working_user), token:working_token})
       this.editing = false
     },
     cancelUser(){
