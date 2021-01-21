@@ -78,6 +78,12 @@ export function editUserData (state, payload) {
   return client
     .editUserData(payload.user, payload.token)
 }
+export function editUserPassword (state, payload) {
+  // we need BEFORE to call the API to do the update and if ok we update wuex state
+  console.log(payload)
+  return client
+    .editUserPassword(payload.admin, payload.adminpwd, payload.payload)
+}
 /* export function deleteDocument({commit}, document_type) {
 
   commit(delete_document_type, document_type.id)
