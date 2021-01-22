@@ -82,8 +82,8 @@ export default {
       let translated = Object.assign({}, itemById.translations[idx]);
       const startDate = new Date(itemById.startDate)
       const finishDate = new Date(itemById.endDate)
-      this.startDate = `${startDate.getUTCFullYear()}-${startDate.getUTCMonth() + 1}-${startDate.getUTCDate()} ${startDate.getUTCHours()}:${startDate.getUTCMinutes()}`
-      this.finishDate = `${finishDate.getUTCFullYear()}-${finishDate.getUTCMonth() + 1}-${finishDate.getUTCDate()} ${finishDate.getUTCHours()}:${finishDate.getUTCMinutes()}`
+      this.startDate = `${startDate.getUTCFullYear()}-${startDate.getUTCMonth() + 1}-${startDate.getUTCDate()} ${startDate.getUTCHours().toLocaleString(undefined, { minimumIntegerDigits: 2 })}:${startDate.getUTCMinutes().toLocaleString(undefined, { minimumIntegerDigits: 2 })}`
+      this.finishDate = `${finishDate.getUTCFullYear()}-${finishDate.getUTCMonth() + 1}-${finishDate.getUTCDate()} ${finishDate.getUTCHours().toLocaleString(undefined, { minimumIntegerDigits: 2 })}:${finishDate.getUTCMinutes().toLocaleString(undefined, { minimumIntegerDigits: 2 })}`
       this.location = itemById.location
       this.fetchEventCategory().then(() => {
         let eventCategoryElems = [...this.eventCategories]
