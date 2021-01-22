@@ -20,6 +20,8 @@
       <q-separator class="q-my-lg" />
       <span style="font-weight: bold;">{{$t("events.finish_date")}}: </span><span>{{finishDate}}</span>
       <q-separator class="q-my-lg" />
+      <span style="font-weight: bold;">{{$t("events.location")}}: </span><span>{{location}}</span>
+      <q-separator class="q-my-lg" />
       <span style="font-weight: bold;">{{$t("events.category")}}: </span><span>{{category.category}}</span>
       <q-separator class="q-my-lg" />
       <div align="center">
@@ -53,6 +55,7 @@ export default {
       lang: "",
       startDate: "",
       finishDate: "",
+      location: ""
     };
   },
   methods: {
@@ -81,6 +84,7 @@ export default {
       const finishDate = new Date(itemById.endDate)
       this.startDate = `${startDate.getUTCFullYear()}-${startDate.getUTCMonth() + 1}-${startDate.getUTCDate()} ${startDate.getUTCHours()}:${startDate.getUTCMinutes()}`
       this.finishDate = `${finishDate.getUTCFullYear()}-${finishDate.getUTCMonth() + 1}-${finishDate.getUTCDate()} ${finishDate.getUTCHours()}:${finishDate.getUTCMinutes()}`
+      this.location = itemById.location
       this.fetchEventCategory().then(() => {
         let eventCategoryElems = [...this.eventCategories]
         let idxCat = itemById.category;
