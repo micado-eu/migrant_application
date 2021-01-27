@@ -29,6 +29,12 @@
               >
                </q-img>
     </div>
+     <div class="title"> {{$t('desc_labels.description')}} </div>
+   <glossary-editor-viewer
+                  :content="the_process_description"
+                  glossary_fetched
+                  :lang="$userLang"
+                />
     <div class="row">
       <div class="col">
         <q-scroll-area
@@ -135,12 +141,7 @@
       </q-list>
       </q-field>
     </q-card>
-    <div class="title"> {{$t('desc_labels.description')}} </div>
-   <glossary-editor-viewer
-                  :content="the_process_description"
-                  glossary_fetched
-                  :lang="$userLang"
-                />
+   
     <CommentList
     :selected_process_comments ="selected_process_comments"
     >
