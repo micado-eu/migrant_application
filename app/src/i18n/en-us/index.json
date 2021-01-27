@@ -107,7 +107,8 @@
     "category": "Category",
     "start_date": "Start date",
     "finish_date": "Finish date",
-    "missing_content": "There are no events"
+    "missing_content": "There are no events",
+    "location": "Location"
   },
   "glossary": {
     "missing_content": "There are no common words"
