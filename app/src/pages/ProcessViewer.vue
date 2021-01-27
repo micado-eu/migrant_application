@@ -223,7 +223,8 @@ export default {
       full_process:null,
       pic_options:[],
       slide:null,
-      hotspot_data:[]
+      hotspot_data:[],
+      focused_step:null
     }
   },
   computed: {
@@ -236,6 +237,11 @@ export default {
      }
   },
   methods: {
+    stripHtml(html){
+   let tmp = document.createElement("DIV");
+   tmp.innerHTML = html;
+   return tmp.textContent || tmp.innerText || "";
+    },
     clean(){
       console.log("in clean")
        this.pic_options =[]
@@ -363,7 +369,15 @@ export default {
       }
       })
       console.log(arr1[0].data);
-      this.$store.commit("flows/setNodePanelVisible", "");
+      if(this.focused_step == nodeId){
+        this.$store.commit("flows/setNodePanelVisible", "hidden");
+        this.focused_step = null
+      }
+      else{
+        this.$store.commit("flows/setNodePanelVisible", "");
+        this.focused_step = nodeId
+      }
+      
       this.$store.commit("flows/setDocuments", arr1[0].data.documents);
       this.$store.commit("flows/setFlowData", arr1[0].data);
       this.$store.commit("flows/setShellData", arr1[0]);

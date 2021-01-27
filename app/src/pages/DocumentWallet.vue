@@ -19,7 +19,7 @@
     <hr style="border: 1px solid #FF7C44;" />
     <q-list style="width:100%; margin:0 auto">
       <DocumentWalletItem
-        v-for="document in documents"
+        v-for="document in user_docs"
         :Title="setTitle(document)"
         :Image="document.pictures[0].picture"
         :theDocument="document"
@@ -55,6 +55,14 @@ export default {
   },
   components: {
     DocumentWalletItem
+  },
+  computed:{
+    user_docs(){
+      var user = this.$store.state.auth.user.umid
+      return this.documents.filter((doc)=>{
+        return doc.userId == user
+      })
+    }
   },
   created() {
     this.loading = true;

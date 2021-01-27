@@ -68,7 +68,7 @@ export default {
       doc_shell:{
          id: -1, 
          pictures: [], 
-         userId: null, 
+         userId: this.$store.state.auth.user.umid, 
          userTenant:null, 
          askValidateByTenant:null, 
          validated:false, 
@@ -86,7 +86,7 @@ export default {
     }
   }, methods: {
      createShell () {
-      this.doc_shell = { id: -1, pictures: [], userId: null, userTenant:null, askValidateByTenant:null, validated:false, validationDate:null, validatedByTenant:null, validatedByUser:null, uploadedByMe:true, expirationDate:null, documentTypeId: ""  }
+      this.doc_shell = { id: -1, pictures: [], userId: this.$store.state.auth.user.umid, userTenant:null, askValidateByTenant:null, validated:false, validationDate:null, validatedByTenant:null, validatedByUser:null, uploadedByMe:true, expirationDate:null, documentTypeId: ""  }
       /*this.languages.forEach(l => {
         this.edit_process.translations.push({ id: -1, lang: l.lang, process: '', description: '', translationDate: null })
       });*/

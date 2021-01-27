@@ -147,7 +147,7 @@
   </div>
   </div>
 
-    <div  >
+   <!-- <div  >
       
      <div class="div-4">
     <h5>{{$t('desc_labels.privacy_settings')}}</h5>
@@ -164,11 +164,11 @@
               />
           </div>
          </q-item>
-         <!-- <q-btn color="accent"  label="Save" />-->
+          <q-btn color="accent"  label="Save" />
       </q-card-section>
     </q-card>
   </div>
-  </div>
+  </div>-->
   </div>
   </q-page>
 </template>
