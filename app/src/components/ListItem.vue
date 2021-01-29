@@ -38,7 +38,7 @@
               <div class="col-3">
                 <q-img
                   class="image"
-                  v-for="tag in Topics"
+                  v-for="tag in sortedTopics"
                   :src="topics.filter(topic => topic.id == tag)[0].icon"
                   :key="tag"
                 >
@@ -50,7 +50,7 @@
               <div class="col-3">
                 <q-img
                   class="image"
-                  v-for="tag in Users"
+                  v-for="tag in sortedUsers"
                   :src="users.filter(user => user.id == tag)[0].icon"
                   :key="tag"
                 >
@@ -93,7 +93,10 @@ export default {
     })
   ],
   data () {
-    return {};
+    return {
+      user_list:[],
+      topic_list:[]
+    };
   },
   components: {
     TalkingLabel
@@ -101,6 +104,14 @@ export default {
   computed: {
     parsedRating () {
       return parseFloat(this.Rating)
+    },
+    sortedUsers(){
+      this.user_list = JSON.parse(JSON.stringify(this.Users))
+      return this.user_list.sort()
+    },
+        sortedTopics(){
+      this.topic_list = JSON.parse(JSON.stringify(this.Topics))
+      return this.topic_list.sort()
     }
   },
   methods: {

@@ -16,14 +16,14 @@
     <div class="row pad" >
               <q-img
                 class="image"
-                v-for="tag in full_process.topics"
+                v-for="tag in sortedTopics"
                 :src="topics.filter(topic => topic.id == tag)[0].icon"
                 :key="'topic'.concat(tag)"
               >
               </q-img>
                <q-img
                 class="image"
-                v-for="tag in full_process.users"
+                v-for="tag in sortedUsers"
                 :src="users.filter(user => user.id == tag)[0].icon"
                 :key="tag"
               >
@@ -225,7 +225,9 @@ export default {
       pic_options:[],
       slide:null,
       hotspot_data:[],
-      focused_step:null
+      focused_step:null,
+      user_list:[],
+      topic_list:[]
     }
   },
   computed: {
@@ -235,7 +237,15 @@ export default {
        console.log("inside computed")
        console.log(this.process_comments)
        return this.process_comments
-     }
+     },
+     sortedUsers(){
+      this.user_list = JSON.parse(JSON.stringify(this.full_process.users))
+      return this.user_list.sort()
+    },
+        sortedTopics(){
+      this.topic_list = JSON.parse(JSON.stringify(this.full_process.topics))
+      return this.topic_list.sort()
+    }
   },
   methods: {
     stripHtml(html){
