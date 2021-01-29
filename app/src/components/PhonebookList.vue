@@ -10,6 +10,7 @@
           ref="scrollArea"
           style="height: 555px; max-width: 100%;"
           v-touch-pan.horizontal.prevent.mouse="handlePan"
+          v-touch-pan.horizontal.prevent.touch="handlePan"
         >
           <ListItem
             v-for="process in filteredItems"
