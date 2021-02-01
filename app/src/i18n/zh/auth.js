@@ -30,7 +30,7 @@ export default {
       repeat_password: '重复密码'
     },
     login: {
-      login: '登录'',
+      login: '登录',
       password_forgot: 'Forgot your password?',
       verification_required:
         'Please check your email and verify your account first.',
