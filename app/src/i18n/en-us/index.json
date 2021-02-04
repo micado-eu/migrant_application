@@ -108,7 +108,8 @@
     "start_date": "Start date",
     "finish_date": "Finish date",
     "missing_content": "There are no events",
-    "location": "Location"
+    "location": "Location",
+    "organizer": "Organizer"
   },
   "glossary": {
     "missing_content": "There are no common words"

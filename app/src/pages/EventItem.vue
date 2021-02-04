@@ -1,7 +1,10 @@
 <template>
   <div>
     <span v-if="loading">Loading...</span>
-    <div v-if="!loading" style="font-style: normal;height:72px;text-align: center; padding-top:15px;font-weight: bold;font-size: 22px;line-height: 41px;color:white; background-color:#FF7C44">
+    <div
+      v-if="!loading"
+      style="font-style: normal;height:72px;text-align: center; padding-top:15px;font-weight: bold;font-size: 22px;line-height: 41px;color:white; background-color:#FF7C44"
+    >
       {{$t('desc_labels.events')}}
       <q-icon name="img:statics/icons/Icon - Events (selected; 30x30).png"></q-icon>
     </div>
@@ -20,7 +23,15 @@
       <q-separator class="q-my-lg" />
       <span style="font-weight: bold;">{{$t("events.finish_date")}}: </span><span>{{finishDate}}</span>
       <q-separator class="q-my-lg" />
-      <span style="font-weight: bold;">{{$t("events.location")}}: </span><span>{{location}}</span>
+      <span
+        style="font-weight: bold;"
+        v-if="location"
+      >{{$t("events.location")}}: </span><span>{{location}}</span>
+      <q-separator
+        class="q-my-lg"
+        v-if="location"
+      />
+      <span style="font-weight: bold;">{{$t("events.organizer")}}: </span><span>{{organizer}}</span>
       <q-separator class="q-my-lg" />
       <span style="font-weight: bold;">{{$t("events.category")}}: </span><span>{{category.category}}</span>
       <q-separator class="q-my-lg" />
@@ -55,7 +66,8 @@ export default {
       lang: "",
       startDate: "",
       finishDate: "",
-      location: ""
+      location: "",
+      organizer: ""
     };
   },
   methods: {
@@ -85,6 +97,7 @@ export default {
       this.startDate = `${startDate.getUTCFullYear()}-${startDate.getUTCMonth() + 1}-${startDate.getUTCDate()} ${startDate.getUTCHours().toLocaleString(undefined, { minimumIntegerDigits: 2 })}:${startDate.getUTCMinutes().toLocaleString(undefined, { minimumIntegerDigits: 2 })}`
       this.finishDate = `${finishDate.getUTCFullYear()}-${finishDate.getUTCMonth() + 1}-${finishDate.getUTCDate()} ${finishDate.getUTCHours().toLocaleString(undefined, { minimumIntegerDigits: 2 })}:${finishDate.getUTCMinutes().toLocaleString(undefined, { minimumIntegerDigits: 2 })}`
       this.location = itemById.location
+      this.organizer = itemById.creator
       this.fetchEventCategory().then(() => {
         let eventCategoryElems = [...this.eventCategories]
         let idxCat = itemById.category;
