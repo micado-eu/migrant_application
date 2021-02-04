@@ -169,11 +169,13 @@
     </q-card>
   </div>
   </div>-->
+  <ChatWidget />
   </div>
   </q-page>
 </template>
 
 <script>
+import ChatWidget from 'components/ChatWidget'
 import editEntityMixin from '../mixin/editEntityMixin'
 import storeMappingMixin from '../mixin/storeMappingMixin'
 export default {
@@ -193,6 +195,9 @@ export default {
     })
 
   ],
+  components:{
+    ChatWidget
+  },
   data () {
     return {
       isPwd0:true,

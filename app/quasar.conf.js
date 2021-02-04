@@ -1,6 +1,8 @@
 // Configuration for your app
 // https://quasar.dev/quasar-cli/quasar-conf-js
 
+//const { default: rocketchat } = require("./src/boot/rocketchat");
+
 module.exports = function (ctx) {
   return {
     // app boot file (/src/boot)
@@ -11,6 +13,7 @@ module.exports = function (ctx) {
       'envvar',
       'auth',
       'countly',
+      'rocketchat',
       'mermaid',
       'axios',
       'featureflag',

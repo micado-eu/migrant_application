@@ -84,6 +84,9 @@ export function editUserPassword (state, payload) {
   return client
     .editUserPassword(payload.admin, payload.adminpwd, payload.payload)
 }
+export function registerRocketChatUser(state, payload){
+  return client.registerRocketChatUser(payload)
+}
 /* export function deleteDocument({commit}, document_type) {
 
   commit(delete_document_type, document_type.id)

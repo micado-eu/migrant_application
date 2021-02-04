@@ -11,6 +11,7 @@
 
 <script>
 import client from 'api-user-client'
+import storeMappingMixin from '../../mixin/storeMappingMixin'
 
 
 export default {
@@ -21,10 +22,27 @@ export default {
       message: ''
     }
   },
+  mixins: [
+    storeMappingMixin({
+      getters: {
+        user: 'auth/user',
+      }, actions: {
+        registerRocketchatUser: 'user/registerRocketChatUser'
+      }
+    })
+
+  ],
   mounted () {
     this.verifyUser()
+    this.register()
   },
   methods: {
+    register(){
+      console.log("I AM IN AFTER VALIDATION AND REGISTERING THE USER")
+      var payload ={email: this.user.email, name: this.user.id, username: this.user.id, password: "kHLAuxDmXz8e"}
+      this.registerRocketchatUser(JSON.stringify(payload))
+
+    },
     verifyUser () {
 
       const hashes = this.$route.hash.slice(this.$route.hash.indexOf('#') + 1).split('&');

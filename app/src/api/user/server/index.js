@@ -39,6 +39,12 @@ export default {
       .patch('/backend/1.0.0/updateUser?payload=' +payload + '&tenant=carbon.super&admin=' + admin + '&adminpwd=' + adminpwd + '&isPswd=1')
       .then(response => { return response.data })
       .catch(error_handler);
+  },
+  registerRocketChatUser(payload){
+    return axiosInstance
+      .post('/backend/1.0.0/create-rocketchat-user?payload=' + payload)
+      .then(response => { return response.data })
+      .catch(error_handler);
   }
 }
 
