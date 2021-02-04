@@ -44,6 +44,11 @@
       @show="showPictures($event)"
     >
       <div>
+        <div style="background-color:white">
+          <div style="text-align:right">
+          <q-btn  flat v-close-popup round dense icon="close" />
+          </div>
+        </div>
         <q-carousel
           v-model="slide"
           transition-prev="slide-right"
@@ -52,6 +57,7 @@
           control-color="primary"
           class="rounded-borders"
         >
+        
           <q-carousel-slide
             class="column no-wrap flex-center"
             v-for="picture in pictures"

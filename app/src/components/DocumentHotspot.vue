@@ -1,6 +1,8 @@
 <template>
   <v-hotspot
     :init-options="hotspotConfig"
+    editable="false"
+    interactivity="click"
     />
 </template>
 
