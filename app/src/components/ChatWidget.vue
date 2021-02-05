@@ -3,27 +3,34 @@
     <q-btn label="Click me" color="primary" @click="register" />
     <q-dialog v-model="layout">
       <q-layout view="Lhh lpR fff" container class="bg-white">
-        <q-page-container>
-          <q-page padding>
-            <div  v-if="messages.length > 0">
+           <q-card class=" q-pa-md column" v-if="messages.length > 0" style="height: 94vh">  
+            <q-scroll-area 
+            :thumb-style="thumbStyle"
+            :bar-style="barStyle" 
+            class="col" 
+            ref="chat"  >
+            
             <q-chat-message
+            class="q-pa-md"
             v-for="message in messages"
+            :id="message.id"
             :key="message.id"
             :name="message.user"
             :text="[message.message]"
             :sent="message.user =='rasa_bot'"
             />
-              </div>
-            <div class="row pos">
-             <div class="col-10">
-            <q-input dense outlined v-on:keyup.enter="sendMessages" v-model="question" label="Outlined" />
+              
+            </q-scroll-area>
+           
+            <q-card-actions class="q-pa-md">
+                <div class="col-10">
+            <q-input autofocus dense outlined v-on:keyup.enter="sendMessages" v-model="question" label="Outlined" />
             </div>
             <div class="col-2">
             <q-btn class="button" size="15px" style="width:100%" color="accent" unelevated no-caps  text-color="white" :label="$t('button.save')" @click="sendMessages()" />
             </div>
-            </div>
-          </q-page>
-        </q-page-container>
+            </q-card-actions>
+           </q-card>
       </q-layout>
     </q-dialog>
   </div>
@@ -53,6 +60,21 @@ export default {
   ],
   data () {
     return {
+            thumbStyle: {
+        right: '4px',
+        borderRadius: '5px',
+        backgroundColor: '#027be3',
+        width: '5px',
+        opacity: 0.75
+      },
+
+      barStyle: {
+        right: '2px',
+        borderRadius: '9px',
+        backgroundColor: '#027be3',
+        width: '9px',
+        opacity: 0.2
+      },
         layout: false,
         webSocketUrl: 'wss://admin2.micadoproject.eu/websocket',
         connectedToApi: true,
@@ -92,22 +114,25 @@ export default {
               console.log("I am putting the room id in place")
               this.roomId = message.result.rid
               this.connectRoom()
+              this.loadHistory()
               }
-
+          }
+         if(message.msg =="result" && message.result){
+              if(message.result.messages && message.result.messages.length >0){
+              console.log("In loading history")
+              message.result.messages.reverse().forEach((message)=>{
+                this.messages.push({message:message.msg, user:message.u.username, id:message._updatedAt.$date})
+              })
+              }
           }
           if(message.msg =="changed" && message.fields ){
-              //console.log("IN message changed")
-              //console.log(message.fields.args[0]._updatedAt)
             if (this.messages.filter(e => e.id === message.fields.args[0]._updatedAt.$date).length > 0) {
   
         }
         else{
-            //console.log("IN PUSH")
-            //console.log(message)
             this.messages.push ({message:message.fields.args[0].msg, user:message.fields.args[0].u.username, id:message.fields.args[0]._updatedAt.$date})
-        }   
+        }  
           }
-        //se ping lo butto, se errore lo metto negli errori, se resto lo formatto come la q-chat vuole e poi lo pusho lì.
       })
       /*api.onClose (() => {
         console.log ('closed')
@@ -133,6 +158,12 @@ export default {
         }, 2000
       ) // vérifie toutes les 1 sec que 30 sec ont passé depuis la dernière synchro
     },
+    updated() {
+        const scrollArea = this.$refs.chat;
+        const scrollTarget = scrollArea.getScrollTarget();
+        const duration = 0; // ms - use 0 to instant scroll
+        scrollArea.setScrollPosition(scrollTarget.scrollHeight, duration);
+        },
     methods: {
       getUserRole(){
         api.sendMessage(
@@ -213,25 +244,31 @@ export default {
         }
       },
       unsub(){
-        /*api.sendMessage ({
-        "msg": "method",
-        "method": "leaveRoom",
-        "id": '' + new Date ().getTime (),
-        "params": [
-            this.roomId
-        ]
-        })*/
-        api.disconnect()
+        api.sendMessage ({
+    "msg": "method",
+    "method": "logout",
+    "id":'' + new Date ().getTime () // changes according to the auth used
+})
         console.log("unsubbed from the stream")
       },
       register(){
-        this.layout = true
         console.log(this.user)
         this.username = this.user.id
         this.password = "kHLAuxDmXz8e"
         this.loginBasic()
         this.createMessage()
-        
+        this.layout = true
+        //this.scrollToLastMessage()
+      },
+      loadHistory(){
+        api.sendMessage(
+          {
+          "msg": "method",
+          "method": "loadHistory",
+          "id": '' + new Date ().getTime (),
+          "params": [ this.roomId, null, 20, { "$date": 1480377601 } ]
+          }
+        )
       },
       createMessage(){
         console.log(api)
@@ -281,6 +318,11 @@ export default {
           window.location.reload ()
         }
       }
+    },
+    beforeDestroy(){
+      console.log("In before destroy")
+      this.unsub()
+      this.connected = false
     }
   }
 
