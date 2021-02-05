@@ -16,7 +16,7 @@
               </div>
             <div class="row pos">
              <div class="col-10">
-            <q-input dense outlined v-model="question" label="Outlined" />
+            <q-input dense outlined v-on:keyup.enter="sendMessages" v-model="question" label="Outlined" />
             </div>
             <div class="col-2">
             <q-btn class="button" size="15px" style="width:100%" color="accent" unelevated no-caps  text-color="white" :label="$t('button.save')" @click="sendMessages()" />
@@ -85,11 +85,11 @@ export default {
           this.connected = false
           })
       api.onMessage (message => {
-          console.log("THESE ARE ALL THE MESAGGES")
+          //console.log("THESE ARE ALL THE MESAGGES")
           console.log(message)
           if(message.msg =="result" && message.result){
               if(message.result.rid && !this.connected){
-                //console.log("I am putting the room id in place")
+              console.log("I am putting the room id in place")
               this.roomId = message.result.rid
               this.connectRoom()
               }
@@ -113,13 +113,14 @@ export default {
         console.log ('closed')
       })*/
       api.connectToServer ()
-        .subscribe (() => {
+      api.keepAlive().subscribe()
+        /*.subscribe (() => {
             api.keepAlive () // Ping Server
           },
           (error) => {
             this.errors.push (error)
           }
-        )
+        )*/
 
       // vérification pour mobile devices
       setInterval (function () {
@@ -208,18 +209,19 @@ export default {
               false
             ]
           })
-          this.connected = false
+          this.connected = true
         }
       },
       unsub(){
-        api.sendMessage ({
+        /*api.sendMessage ({
         "msg": "method",
         "method": "leaveRoom",
         "id": '' + new Date ().getTime (),
         "params": [
             this.roomId
         ]
-        })
+        })*/
+        api.disconnect()
         console.log("unsubbed from the stream")
       },
       register(){
@@ -241,6 +243,7 @@ export default {
           })
       },
       sendMessages() {
+        console.log("SENDING MESSAGE")
         api.sendMessage ({
           "msg": "method",
           "method": "sendMessage",
