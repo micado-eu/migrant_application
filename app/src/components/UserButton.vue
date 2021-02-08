@@ -5,12 +5,12 @@
       data-cy="userButton"
     >
       <q-icon
-        v-if="!this.$auth.loggedIn()"
+        v-if="!this.$auth.loggedIn() || !this.userpic"
         name="account_circle"
       />
       <img
         v-if="this.$auth.loggedIn()"
-        src="https://cdn.quasar.dev/img/avatar2.jpg"
+        :src="this.userpic"
       />
     </q-avatar>
     <q-menu
@@ -45,10 +45,24 @@
 </template>
 
 <script>
+import storeMappingMixin from '../mixin/storeMappingMixin'
+
 export default {
   name: 'UserButton',
+   mixins: [
+    storeMappingMixin({
+      getters: {
+        user: 'user/users',
+      }, actions: {
+        fetchSpecificUser: 'user/fetchSpecificUser',
+      }
+    })
+
+  ],
   data () {
-    return {}
+    return {
+      userpic:null
+    }
   },
   methods: {
     toLogin () {
@@ -75,6 +89,20 @@ export default {
       console.log("LOGGING OUT")
       this.$auth.logout()
     }
+  },
+   created () {
+    //var userId = this.$store.state.auth.user.umid
+    if(this.$store.state.auth.user != null){
+          this.fetchSpecificUser( this.$store.state.auth.user.umid).then((user)=>{
+      if(user.userPicture){
+        this.userpic= this.user.userPicture.picture
+      }
+      else{
+        this.userpic= null
+      }
+    })
+    }
+
   }
 }
 </script>
