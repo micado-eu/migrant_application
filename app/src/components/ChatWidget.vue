@@ -3,7 +3,7 @@
     <q-btn label="Click me" color="primary" @click="register" />
     <q-dialog v-model="layout">
       <q-layout view="Lhh lpR fff" container class="bg-white">
-           <q-card class=" q-pa-md column" v-if="messages.length > 0" style="height: 94vh">  
+           <q-card class=" q-pa-md column"  style="height: 94vh">  
             <q-scroll-area 
             :thumb-style="thumbStyle"
             :bar-style="barStyle" 
@@ -159,10 +159,13 @@ export default {
       ) // vérifie toutes les 1 sec que 30 sec ont passé depuis la dernière synchro
     },
     updated() {
+      if(this.messages.length>0){
         const scrollArea = this.$refs.chat;
         const scrollTarget = scrollArea.getScrollTarget();
         const duration = 0; // ms - use 0 to instant scroll
         scrollArea.setScrollPosition(scrollTarget.scrollHeight, duration);
+      }
+
         },
     methods: {
       getUserRole(){
