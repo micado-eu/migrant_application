@@ -17,6 +17,7 @@
         <q-toolbar-title>{{ $t( "application_title") }}</q-toolbar-title>
         <LanguageSelector data-cy="language_selector_button"></LanguageSelector>
         <UserButton />
+        <FeedbackButton />
         <!-- <ListenToggle /> -->
 
       </q-toolbar>
@@ -93,6 +94,7 @@
 //import ListenToggle from "components/ListenToggle";
 import LanguageSelector from "components/LanguageSelector";
 import UserButton from "components/UserButton"
+import FeedbackButton from 'components/FeedbackButton'
 
 export default {
   name: "Layout",
@@ -100,7 +102,8 @@ export default {
   components: {
     UserButton,
     //ListenToggle, 
-    LanguageSelector
+    LanguageSelector,
+    FeedbackButton
   },
 
   data () {

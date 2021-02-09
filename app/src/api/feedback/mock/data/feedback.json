@@ -1,0 +1,18 @@
+[
+    {
+        "iso_code": "en-us",
+        "name": "English"
+    },
+    {
+        "iso_code": "de",
+        "name": "Deutsch"
+    },
+    {
+        "iso_code": "ar",
+        "name": "عربي"
+    },
+    {
+        "iso_code": "it",
+        "name": "Italiano"
+    }
+]

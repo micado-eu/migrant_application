@@ -27,6 +27,7 @@ import document_type from './document_type'
 import comments from './comments'
 import picture_hotspots from './picture_hotspots'
 import user from './user'
+import feedback from './feedback'
 
 Vue.use(Vuex)
 
@@ -62,7 +63,8 @@ export default function (/* { ssrContext } */) {
       picture_hotspots,
       event_category,
       event,
-      user
+      user,
+      feedback
     },
 
     // enable strict mode (adds overhead!)
