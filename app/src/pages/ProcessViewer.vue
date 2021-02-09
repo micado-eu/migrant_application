@@ -266,12 +266,12 @@ export default {
          console.log(value)
       this.hotspot_data=[]
       console.log("I TRANSITIONED ON HE OTHER PAGE")
-       this.fetchDocumentTypePicturesById(value.pic_id).then(()=>{
+       this.fetchDocumentTypePicturesById({id:value.pic_id, defaultLang:this.$defaultLang, currentLang:this.$userLang}).then(()=>{
           this.hotspots.forEach((spot)=>{
         this.hotspot_data.push(
           {
-            Message: spot.translations.filter(this.filterTranslationModel(this.activeLanguage))[0].message,
-            Title:spot.translations.filter(this.filterTranslationModel(this.activeLanguage))[0].title,
+            Message: spot.message,
+            Title:spot.title,
             x:spot.x,
             y:spot.y
 
@@ -298,12 +298,14 @@ export default {
       })[0]
       console.log(pics)
       console.log(pics.pictures[0].id)
-      this.fetchDocumentTypePicturesById(pics.pictures[0].id).then(()=>{
+      console.log(this.$defaultLang)
+      console.log(this.$activeLanguage)
+      this.fetchDocumentTypePicturesById({id:pics.pictures[0].id, defaultLang:this.$defaultLang, currentLang:this.$userLang}).then(()=>{
           this.hotspots.forEach((spot)=>{
         this.hotspot_data.push(
           {
-            Message: spot.translations.filter(this.filterTranslationModel(this.activeLanguage))[0].message,
-            Title:spot.translations.filter(this.filterTranslationModel(this.activeLanguage))[0].title,
+            Message: spot.message,
+            Title:spot.title,
             x:spot.x,
             y:spot.y
 

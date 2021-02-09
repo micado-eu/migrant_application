@@ -21,9 +21,9 @@ export default {
       .then(response => response.data)
       .catch(error_handler);
   },
-  fetchDocumentTypePicturesById(id) {
+  fetchDocumentTypePicturesById(id, defaultlang, currentLang) {
     return axiosInstance
-      .get('/backend/1.0.0/picture-hotspots?filter[include][0][relation]=translations&filter[where][pictureId]=' + id)
+      .get('/backend/1.0.0/picture-hotspots-migrant?defaultlang='+ defaultlang + '&currentlang=' + currentLang + '&pictureId=' + id)
       .then(response => response.data)
       .catch(error_handler);
   }

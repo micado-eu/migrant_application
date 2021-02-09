@@ -9,9 +9,9 @@ export function fetchHotspots(state, data) {
     .fetchComments()
     .then(picture_hotspots => state.commit('setHotspots', picture_hotspots))
 }
-export function fetchHotspotsById(state, tenant_id) {
+export function fetchHotspotsById(state, payload) {
   return client
-    .fetchDocumentTypePicturesById(tenant_id)
+    .fetchDocumentTypePicturesById(payload.id, payload.defaultLang, payload.currentLang)
     .then(picture_hotspots => state.commit('setHotspots', picture_hotspots))
 }
 
