@@ -158,19 +158,10 @@ export default {
     this.loading = true
     let query = this.$route.query
     let showGlossaryTerm = this.showGlossaryTerm
-    this.lang = this.$userLang
-    this.fetchGlossary()
+    const langs = { defaultLang: this.$defaultLang, userLang: this.$userLang }
+    this.fetchGlossary(langs)
       .then(() => {
-        for (let e of this.glossary) {
-          let al = this.$userLang;
-          let idx = e.translations.findIndex(t => t.lang === al);
-          if (idx !== -1) {
-            let translation = e.translations[idx]
-            if (translation.title) {
-              this.translatedGlossary.push(translation)
-            }
-          }
-        }
+        this.translatedGlossary = this.glossary.map(e => { return { ...e } })
         this.translatedGlossary.sort(this.compare)
         for (let elem of this.translatedGlossary) {
           let firstChar = elem.title.charAt(0).toUpperCase()

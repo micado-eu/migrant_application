@@ -15,15 +15,9 @@ export default {
     markdownToHTML(markdown) {
       return this.converter.makeHtml(markdown)
     },
-    async markGlossaryReferencesAux(html, lang) {
-      let glossaryTermsByLang = []
-      for (let glossaryElement of this.glossary) {
-        if (glossaryElement.translations) {
-          glossaryTermsByLang.push(glossaryElement.translations.filter(t => t.lang === lang)[0])
-        }
-      }
+    async markGlossaryReferencesAux(html) {
       let result = html
-      for (const glossaryTerm of glossaryTermsByLang) {
+      for (const glossaryTerm of this.glossary) {
         if (glossaryTerm.title) {
           // Look for the term's titles that are not already marked
           let regexp = new RegExp(`(${glossaryTerm.title})`, "gi")
@@ -41,12 +35,12 @@ export default {
       }
       return result
     },
-    async markGlossaryReferences(html, lang, isGlossaryFetched = false) {
+    async markGlossaryReferences(html, defaultLang = 'en', userLang = 'en', isGlossaryFetched = false) {
       if (isGlossaryFetched) {
-        return this.markGlossaryReferencesAux(html, lang)
+        return this.markGlossaryReferencesAux(html)
       }
-      await this.fetchGlossary()
-      return this.markGlossaryReferencesAux(html, lang)
+      await this.fetchGlossary({defaultLang, userLang})
+      return this.markGlossaryReferencesAux(html)
     }
   },
   computed: {

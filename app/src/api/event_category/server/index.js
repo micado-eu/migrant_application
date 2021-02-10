@@ -3,10 +3,15 @@ import { error_handler } from '../../../helper/utility'
 
 
 export default {
-  fetchEventCategory() {
+  fetchEventCategory(defaultLang, userLang) {
     return axiosInstance
-      .get('/backend/1.0.0/event-categories?filter[include][0][relation]=translations')
+      .get(`/backend/1.0.0/temp-event-categories?defaultlang=${defaultLang}&currentlang=${userLang}`)
       .then(response => { return response.data })
-      .catch(error_handler);
+      .catch(error_handler)
+  },
+  fetchSingleEventCategory(defaultLang, userLang, id) {
+    return axiosInstance.get(`/backend/1.0.0/temp-event-category?defaultlang=${defaultLang}&currentlang=${userLang}&id=${id}`)
+    .then(response => { return response.data })
+    .catch(error_handler)
   }
 }
