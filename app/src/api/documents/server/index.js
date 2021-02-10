@@ -74,6 +74,13 @@ export default {
       .then(response => response.data)
       .catch(error_handler);
   },
+  sendDocumentMail (id, email) {
+    
+    return axiosInstance
+      .get('/backend/1.0.0/maildocument?documentId=' + id + '&email=' + email)
+      .then(response => response.data)
+      .catch(error_handler);
+  },
  
 
 }

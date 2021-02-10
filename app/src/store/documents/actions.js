@@ -12,6 +12,10 @@ export function fetchDocuments(state, data) {
       return documents
     })
 }
+export function sendDocumentMail(state, data) {
+  return client
+    .sendDocumentMail(data.id, data.email)
+}
 export function saveDocument (state, document) {
   // we need BEFORE to call the API to do the save and if ok we update wuex state
   console.log("in actions save document:")
