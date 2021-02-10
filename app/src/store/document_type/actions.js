@@ -12,6 +12,14 @@ export function fetchDocumentType (state, data) {
       return document_type
     })
 }
+export function fetchDocumentTypeMigrant (state, data) {
+  return client
+    .fetchDocumentTypeMigrant(data.defaultLang, data.currentLang)
+    .then(document_type => {
+      state.commit('setDocument_typeMig', document_type)
+      return document_type
+    })
+}
 
 
 

@@ -54,12 +54,12 @@ export default {
   storeMappingMixin({
     getters: {
       documents: 'documents/my_documents',
-      document_types: 'document_type/document_types'
+      document_types: 'document_type/document_types_migrant'
     }, actions: {
       editDocument: 'documents/editDocument',
       saveDocument: 'documents/saveDocument',
       fetchDocuments: 'documents/fetchDocuments',
-      fetchDocumentType: 'document_type/fetchDocumentType'
+      fetchDocumentType: 'document_type/fetchDocumentTypeMigrant'
     }
   })],
   data () {
@@ -174,11 +174,11 @@ export default {
         console.log(documents)
         this.loading = false
       })
-    this.fetchDocumentType()
+    this.fetchDocumentType({defaultLang: this.$defaultLang, currentLang:this.$userLang})
     .then(document_types => {
         console.log(document_types)
         document_types.forEach(document_type => {
-          var the_doc = { label: document_type.translations.filter(this.filterTranslationModel(this.activeLanguage))[0].document, value: document_type.id }
+          var the_doc = { label: document_type.document, value: document_type.id }
           this.t_docs.push(the_doc)
         })
 

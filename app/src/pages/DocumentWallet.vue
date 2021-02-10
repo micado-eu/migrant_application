@@ -44,10 +44,11 @@ export default {
   storeMappingMixin({
     getters: {
       documents: 'documents/my_documents',
-      document_types: 'document_type/document_types',
+      document_types: 'document_type/document_types_migrant',
     }, actions: {
       fetchDocuments: 'documents/fetchDocuments',
-      fetchDocumentType: 'document_type/fetchDocumentType',
+      fetchDocumentType: 'document_type/fetchDocumentTypeMigrant',
+      sendDocumentMail:'documents/sendDocumentMail'
     }
   })],
   data() {
@@ -74,7 +75,7 @@ export default {
       console.log("documents in created");
       console.log(documents);
     });
-    this.fetchDocumentType()
+    this.fetchDocumentType({defaultLang: this.$defaultLang, currentLang:this.$userLang})
     //this.$store.dispatch("document_type/fetchDocumentType")
       .then(document_types => {
         console.log("we are the docs");
@@ -90,12 +91,14 @@ export default {
       console.log(sendingDoc)
       console.log(value.email)
       console.log("here goes the call to the backend to send the document")
+      //this.sendDocumentMail({id:value.docid, email:value.email})
     },
     setTitle(document) {
       var the_doc_type = this.document_types.filter(a_doc_type => {
         return a_doc_type.id == document.documentTypeId;
-      });
-      if (the_doc_type.length == 1) {
+      })[0];
+      return the_doc_type.document
+     /* if (the_doc_type.length == 1) {
         var the_transl = the_doc_type[0].translations.filter(transl => {
           return transl.lang == this.activeLanguage || transl.lang === "en";
         });
@@ -103,7 +106,7 @@ export default {
           return the_transl[0].document;
         }
         return "";
-      }
+      }*/
     },
     deleteDocument(value) {
       console.log("in delete document method");

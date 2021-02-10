@@ -21,6 +21,12 @@ export default {
       .then(response => response.data)
       .catch(error_handler);
   },
+  fetchDocumentTypeMigrant(defaultlang,currentLang) {
+    return axiosInstance
+      .get('/backend/1.0.0/document-types-migrant?defaultlang=' + defaultlang + '&currentlang=' + currentLang)
+      .then(response => response.data)
+      .catch(error_handler);
+  },
   saveDocumentType(doc) {
     // create fake id here
     return axiosInstance

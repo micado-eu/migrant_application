@@ -6,7 +6,9 @@ export function someMutation (state) {
 export function setDocument_type (state, document_type) {
       state.document_type = document_type
     }
-
+    export function setDocument_typeMig (state, document_type) {
+      state.document_type_migrant = document_type
+    }
 
     export function editDocumentType(state, document_type) {
       console.log("update the state")
