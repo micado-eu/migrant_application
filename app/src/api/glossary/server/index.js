@@ -2,9 +2,9 @@ import { axiosInstance } from 'boot/axios'
 import { error_handler } from '../../../helper/utility'
 
 export default {
-  fetchGlossary() {
+  fetchGlossary(defaultLang, userLang) {
     return axiosInstance
-      .get('/backend/1.0.0/glossaries?filter[include][0][relation]=translations', {
+      .get(`/backend/1.0.0/temp-glossary?defaultlang=${defaultLang}&currentlang=${userLang}`, {
       })
       .then((response) => {
         return response.data

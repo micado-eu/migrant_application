@@ -89,12 +89,17 @@
   "filters": {
     "title": "Filter by",
     "categories": "Categories",
+    "topics": "Topics",
+    "user_types": "User types",
+    "date": "Date",
     "clear_all": "Clear all",
     "apply": "Apply"
   },
   "information_centre": {
     "category": "Category",
-    "missing_content": "There is no information"
+    "missing_content": "There is no information",
+    "topics": "Topics",
+    "user_types":"User types"
   },
   "tasks": {
     "ask_validation": "Ask for validation",
@@ -109,11 +114,15 @@
     "finish_date": "Finish date",
     "missing_content": "There are no events",
     "location": "Location",
-    "organizer": "Organizer"
+    "organizer": "Organizer",
+    "topics": "Topics",
+    "user_types":"User types"
   },
   "glossary": {
     "missing_content": "There are no common words"
   },
+  "date_selector": {
+    "close": "Close",
   "feedback":{
     "mail":"Your feedback will be sent to",
     "url":"Your feedback will be about the page found at",

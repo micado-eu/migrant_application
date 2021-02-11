@@ -10,8 +10,7 @@ export default class GlossaryMention extends Mark {
     return {
       showTooltip: false,
       glossaryElemByIdFunc: (id) => null,
-      setTooltipDescription: (elem, eventTarget) => null,
-      lang: "en"
+      setTooltipDescription: (elem, eventTarget) => null
     }
   }
 
@@ -51,10 +50,7 @@ export default class GlossaryMention extends Mark {
                     const id = parseInt(idString)
                     event.stopPropagation()
                     const glossaryElem = this.options.glossaryElemByIdFunc(id)
-                    const idx = glossaryElem.translations.findIndex((t) => t.lang === this.options.lang)
-                    if (this.idx !== -1) {
-                      this.options.setTooltipDescription(glossaryElem.translations[idx], event.target)
-                    }
+                    this.options.setTooltipDescription(glossaryElem, event.target)
                   }
                 }
               }

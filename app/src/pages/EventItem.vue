@@ -16,25 +16,81 @@
       <glossary-editor-viewer
         :content="item.description"
         class="description"
-        :lang="lang"
       />
       <q-separator class="q-my-lg" />
-      <span style="font-weight: bold;">{{$t("events.start_date")}}: </span><span>{{startDate}}</span>
+      <span style="font-weight: bold;">{{$t("events.start_date")}}: </span><span>{{item.start_date}}</span>
       <q-separator class="q-my-lg" />
-      <span style="font-weight: bold;">{{$t("events.finish_date")}}: </span><span>{{finishDate}}</span>
+      <span style="font-weight: bold;">{{$t("events.finish_date")}}: </span><span>{{item.end_date}}</span>
       <q-separator class="q-my-lg" />
       <span
         style="font-weight: bold;"
-        v-if="location"
-      >{{$t("events.location")}}: </span><span>{{location}}</span>
+        v-if="item.location"
+      >{{$t("events.location")}}: </span><span>{{item.location}}</span>
       <q-separator
         class="q-my-lg"
-        v-if="location"
+        v-if="item.location"
       />
-      <span style="font-weight: bold;">{{$t("events.organizer")}}: </span><span>{{organizer}}</span>
-      <q-separator class="q-my-lg" />
-      <span style="font-weight: bold;">{{$t("events.category")}}: </span><span>{{category.category}}</span>
-      <q-separator class="q-my-lg" />
+      <span
+        style="font-weight: bold;"
+        v-if="item.organizer"
+      >{{$t("events.organizer")}}: </span><span>{{item.organizer}}</span>
+      <q-separator
+        class="q-my-lg"
+        v-if="item.organizer"
+      />
+      <span
+        style="font-weight: bold;"
+        v-if="item.category"
+      >
+        {{$t("information_centre.category")}}:
+        <span>{{item.category.category}}</span>
+      </span>
+      <q-separator
+        class="q-my-lg"
+        v-if="item.category"
+      />
+      <span
+        style="font-weight: bold;"
+        v-if="item.topics"
+      >{{$t("information_centre.topics")}}:
+        <q-img
+          v-for="topic in item.topics"
+          :key="'topic' + topic.id"
+          :src="topic.icon"
+          spinner-color="white"
+          id="image"
+          :alt="topic.topic"
+          class="filter-icon q-ml-sm"
+          :img-style="{'max-width': '24px', 'max-height': '24px'}"
+        >
+          <q-tooltip :key="'userType_tooltip'.concat(topic.id)">
+            {{topic.topic}}
+          </q-tooltip>
+        </q-img>
+      </span>
+      <q-separator
+        class="q-my-lg"
+        v-if="item.topics"
+      />
+      <span
+        style="font-weight: bold;"
+        v-if="item.users"
+      >{{$t("information_centre.user_types")}}:
+        <q-img
+          v-for="userType in item.users"
+          :key="'userType' + userType.id"
+          :src="userType.icon"
+          spinner-color="white"
+          id="image"
+          :alt="userType.user_type"
+          class="filter-icon q-ml-sm"
+          :img-style="{'max-width': '24px', 'max-height': '24px'}"
+        >
+          <q-tooltip :key="'userType_tooltip'.concat(userType.id)">
+            {{userType.user_type}}
+          </q-tooltip>
+        </q-img>
+      </span>
       <div align="center">
         <q-btn
           @click="goBack()"
@@ -51,28 +107,26 @@
 </template>
 
 <script>
-import GlossaryEditorViewer from "../components/GlossaryEditorViewer";
-import { mapGetters, mapActions } from "vuex";
+import GlossaryEditorViewer from "../components/GlossaryEditorViewer"
+import { mapGetters, mapActions } from "vuex"
+import idJoinMixin from "../mixin/idJoinMixin.js"
 export default {
   components: {
     "glossary-editor-viewer": GlossaryEditorViewer
   },
+  mixins: [idJoinMixin],
   data() {
     return {
       loading: true,
       id: -1,
-      item: {},
-      category: "",
-      lang: "",
-      startDate: "",
-      finishDate: "",
-      location: "",
-      organizer: ""
+      item: {}
     };
   },
   methods: {
     ...mapActions("event", ["fetchEvents"]),
     ...mapActions("event_category", ["fetchEventCategory"]),
+    ...mapActions("topic", ["fetchTopic"]),
+    ...mapActions("user_type", ["fetchUserType"]),
     goBack() {
       this.$router.go(-1);
     }
@@ -84,35 +138,42 @@ export default {
     ...mapGetters('user_type', ['users'])
   },
   created() {
-    this.loading = true;
-    this.lang = this.$userLang;
-    this.id = this.$route.params.id;
-    this.fetchEvents().then(() => {
-      let itemById = this.eventElemById(this.id);
-      let al = this.$userLang;
-      let idx = itemById.translations.findIndex(t => t.lang === al);
-      let translated = Object.assign({}, itemById.translations[idx]);
-      const startDate = new Date(itemById.startDate)
-      const finishDate = new Date(itemById.endDate)
-      this.startDate = `${startDate.getUTCFullYear()}-${startDate.getUTCMonth() + 1}-${startDate.getUTCDate()} ${startDate.getUTCHours().toLocaleString(undefined, { minimumIntegerDigits: 2 })}:${startDate.getUTCMinutes().toLocaleString(undefined, { minimumIntegerDigits: 2 })}`
-      this.finishDate = `${finishDate.getUTCFullYear()}-${finishDate.getUTCMonth() + 1}-${finishDate.getUTCDate()} ${finishDate.getUTCHours().toLocaleString(undefined, { minimumIntegerDigits: 2 })}:${finishDate.getUTCMinutes().toLocaleString(undefined, { minimumIntegerDigits: 2 })}`
-      this.location = itemById.location
-      this.organizer = itemById.creator
-      this.fetchEventCategory().then(() => {
-        let eventCategoryElems = [...this.eventCategories]
-        let idxCat = itemById.category;
-        let idxCategoryObject = eventCategoryElems.findIndex(
-          ic => ic.id === idxCat
-        );
-        idxCat = eventCategoryElems[
-          idxCategoryObject
-        ].translations.findIndex(t => t.lang === this.$userLang);
-        this.category =
-          eventCategoryElems[idxCategoryObject].translations[idxCat];
-        this.item = translated;
-        this.loading = false;
+    const langs = { defaultLang: this.$defaultLang, userLang: this.$userLang }
+    this.loading = true
+    this.id = this.$route.params.id
+    this.fetchEvents(langs)
+      .then(() => this.fetchEventCategory(langs))
+      .then(() => this.fetchTopic(langs))
+      .then(() => this.fetchUserType(langs))
+      .then(() => {
+        this.item = Object.assign({}, this.eventElemById(this.id))
+        const idx = this.eventCategories.findIndex((c) => c.id === this.item.category)
+        if (idx !== -1) {
+          this.item.category = this.eventCategories[idx]
+        } else {
+          this.item.category = undefined
+        }
+        if (this.item.topics) {
+          this.item.topics = this.idJoin(this.item.topics, this.topics)
+        }
+        if (this.item.users) {
+          this.item.users = this.idJoin(this.item.users, this.users)
+        }
+        const startDate = new Date(this.item.start_date)
+        this.item.start_date = `${startDate.getUTCFullYear()}-` +
+          `${startDate.getUTCMonth() + 1}-` +
+          `${startDate.getUTCDate()} ` +
+          `${startDate.getUTCHours().toLocaleString(undefined, { minimumIntegerDigits: 2 })}:` +
+          `${startDate.getUTCMinutes().toLocaleString(undefined, { minimumIntegerDigits: 2 })}`
+        const finishDate = new Date(this.item.end_date)
+        this.item.end_date = `${finishDate.getUTCFullYear()}-` +
+          `${finishDate.getUTCMonth() + 1}-` +
+          `${finishDate.getUTCDate()} ` +
+          `${finishDate.getUTCHours().toLocaleString(undefined, { minimumIntegerDigits: 2 })}:` +
+          `${finishDate.getUTCMinutes().toLocaleString(undefined, { minimumIntegerDigits: 2 })}`
+        this.loading = false
+        console.log(this.item)
       })
-    })
   }
 };
 </script>
@@ -127,5 +188,9 @@ $tag: #0b91ce;
 .tag_btn {
   background-color: $tag;
   color: white;
+}
+.filter-icon {
+  max-height: 24px;
+  max-width: 24px;
 }
 </style>

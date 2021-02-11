@@ -2,9 +2,9 @@ import { axiosInstance } from 'boot/axios'
 import { error_handler } from '../../../helper/utility'
 
 export default {
-  fetchInformation() {
+  fetchInformation(defaultLang, userLang) {
     return axiosInstance
-      .get('/backend/1.0.0/information?filter[include][0][relation]=translations', {
+      .get(`/backend/1.0.0/temp-information?defaultlang=${defaultLang}&currentlang=${userLang}`, {
       })
       .then((response) => {
         return response.data

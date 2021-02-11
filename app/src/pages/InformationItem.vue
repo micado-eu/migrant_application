@@ -16,10 +16,61 @@
       <glossary-editor-viewer
         :content="item.description"
         class="description"
-        :lang="lang"
       />
       <q-separator class="q-my-lg" />
-      <span style="font-weight: bold;">{{$t("information_centre.category")}}: </span><span>{{category.category}}</span>
+      <span
+        style="font-weight: bold;"
+        v-if="item.category"
+      >
+        {{$t("information_centre.category")}}:
+        <span>{{item.category.category}}</span>
+      </span>
+      <q-separator
+        class="q-my-lg"
+        v-if="item.category"
+      />
+      <span
+        style="font-weight: bold;"
+        v-if="item.topics"
+      >{{$t("information_centre.topics")}}:
+        <q-img
+          v-for="topic in item.topics"
+          :key="'topic' + topic.id"
+          :src="topic.icon"
+          spinner-color="white"
+          id="image"
+          :alt="topic.topic"
+          class="filter-icon q-ml-sm"
+          :img-style="{'max-width': '24px', 'max-height': '24px'}"
+        >
+          <q-tooltip :key="'userType_tooltip'.concat(topic.id)">
+            {{topic.topic}}
+          </q-tooltip>
+        </q-img>
+      </span>
+      <q-separator
+        class="q-my-lg"
+        v-if="item.topics"
+      />
+      <span
+        style="font-weight: bold;"
+        v-if="item.users"
+      >{{$t("information_centre.user_types")}}:
+        <q-img
+          v-for="userType in item.users"
+          :key="'userType' + userType.id"
+          :src="userType.icon"
+          spinner-color="white"
+          id="image"
+          :alt="userType.user_type"
+          class="filter-icon q-ml-sm"
+          :img-style="{'max-width': '24px', 'max-height': '24px'}"
+        >
+          <q-tooltip :key="'userType_tooltip'.concat(userType.id)">
+            {{userType.user_type}}
+          </q-tooltip>
+        </q-img>
+      </span>
       <q-separator class="q-my-lg" />
       <div align="center">
         <q-btn
@@ -37,24 +88,26 @@
 </template>
 
 <script>
-import GlossaryEditorViewer from "../components/GlossaryEditorViewer";
-import { mapGetters, mapActions } from "vuex";
+import GlossaryEditorViewer from "../components/GlossaryEditorViewer"
+import { mapGetters, mapActions } from "vuex"
+import idJoinMixin from "../mixin/idJoinMixin.js"
 export default {
   components: {
     "glossary-editor-viewer": GlossaryEditorViewer
   },
+  mixins: [idJoinMixin],
   data() {
     return {
       loading: true,
       id: -1,
-      item: {},
-      category: "",
-      lang: ""
+      item: {}
     };
   },
   methods: {
     ...mapActions("information", ["fetchInformation"]),
     ...mapActions("information_category", ["fetchInformationCategory"]),
+    ...mapActions("topic", ["fetchTopic"]),
+    ...mapActions("user_type", ["fetchUserType"]),
     goBack() {
       this.$router.go(-1);
     }
@@ -66,29 +119,29 @@ export default {
     ...mapGetters('user_type', ['users'])
   },
   created() {
-    this.loading = true;
-    this.lang = this.$userLang;
-    this.id = this.$route.params.id;
-    this.fetchInformation().then(() => {
-      let itemById = this.informationElemById(this.id);
-      let al = this.$userLang;
-      let idx = itemById.translations.findIndex(t => t.lang === al);
-      let translated = Object.assign({}, itemById.translations[idx]);
-      this.fetchInformationCategory().then(() => {
-        let informationCategoryElems = [...this.informationCategories]
-        let idxCat = itemById.category;
-        let idxCategoryObject = informationCategoryElems.findIndex(
-          ic => ic.id === idxCat
-        );
-        idxCat = informationCategoryElems[
-          idxCategoryObject
-        ].translations.findIndex(t => t.lang === this.$userLang);
-        this.category =
-          informationCategoryElems[idxCategoryObject].translations[idxCat];
-        this.item = translated;
-        this.loading = false;
+    const langs = { defaultLang: this.$defaultLang, userLang: this.$userLang }
+    this.loading = true
+    this.id = this.$route.params.id
+    this.fetchInformation(langs)
+      .then(() => this.fetchInformationCategory(langs))
+      .then(() => this.fetchTopic(langs))
+      .then(() => this.fetchUserType(langs))
+      .then(() => {
+        this.item = Object.assign({}, this.informationElemById(this.id))
+        const idx = this.informationCategories.findIndex((c) => c.id === this.item.category)
+        if (idx !== -1) {
+          this.item.category = this.informationCategories[idx]
+        } else {
+          this.item.category = undefined
+        }
+        if (this.item.topics) {
+          this.item.topics = this.idJoin(this.item.topics, this.topics)
+        }
+        if (this.item.users) {
+          this.item.users = this.idJoin(this.item.users, this.users)
+        }
+        this.loading = false
       })
-    })
   }
 }
 </script>
@@ -103,5 +156,9 @@ $tag: #0b91ce;
 .tag_btn {
   background-color: $tag;
   color: white;
+}
+.filter-icon {
+  max-height: 24px;
+  max-width: 24px;
 }
 </style>

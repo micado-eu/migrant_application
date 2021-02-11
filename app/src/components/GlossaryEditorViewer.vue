@@ -87,10 +87,6 @@ export default {
       type: Boolean,
       default: false
     },
-    lang: {
-      type: String,
-      default: 'en'
-    },
     isContentHTML: {
       type: Boolean,
       default: false
@@ -137,8 +133,7 @@ export default {
           new GlossaryMention({
             showTooltip: true,
             glossaryElemByIdFunc: this.glossaryElemById,
-            setTooltipDescription: this.setCurrentDescription,
-            lang: this.lang
+            setTooltipDescription: this.setCurrentDescription
           })
         ],
         content: ''
@@ -150,7 +145,7 @@ export default {
       if (!isHTML) {
         currentContent = this.markdownToHTML(content)
       }
-      this.markGlossaryReferences(currentContent, this.lang, this.glossary_fetched).then((markedContent) => {
+      this.markGlossaryReferences(currentContent, this.$defaultLang, this.$userLang, true).then((markedContent) => {
         let newContent = markedContent
         this.allHTMLContent = markedContent
         if (this.readMore) {
@@ -197,8 +192,7 @@ export default {
           new GlossaryMention({
             showTooltip: true,
             glossaryElemByIdFunc: this.glossaryElemById,
-            setTooltipDescription: this.setCurrentDescription,
-            lang: this.lang
+            setTooltipDescription: this.setCurrentDescription
           })
         ],
         content: currentContent
@@ -212,7 +206,8 @@ export default {
   },
   created() {
     if (!this.glossary_fetched) {
-      this.fetchGlossary().then(() => {
+      const langs = { defaultLang: this.$defaultLang, userLang: this.$userLang }
+      this.fetchGlossary(langs).then(() => {
         this.initialize()
       })
     } else {
