@@ -2,7 +2,7 @@
   <div class="q-pa-sm q-gutter-sm">
     <q-btn
       round
-      icon="img:statics/icons/MICADO Language Icon - Update (600x600) transparent.png"
+      icon="img:statics/icons/Icon (Header) - language selection.svg"
       color="white"
       size="15px"
       @click="layout = true"

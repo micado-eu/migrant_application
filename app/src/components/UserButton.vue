@@ -1,12 +1,12 @@
 <template>
-  <q-btn round>
+  <q-btn color="white" round>
     <q-avatar
       size="42px"
       data-cy="userButton"
     >
       <q-icon
         v-if="!this.$auth.loggedIn() || !this.userpic"
-        name="account_circle"
+        name="img:statics/icons/Icon (Header) - Profile Avatar.svg"
       />
       <img
         v-if="this.$auth.loggedIn()"
