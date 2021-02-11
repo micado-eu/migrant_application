@@ -122,7 +122,8 @@
     "missing_content": "There are no common words"
   },
   "date_selector": {
-    "close": "Close",
+    "close": "Close"
+  },
   "feedback":{
     "mail":"Your feedback will be sent to",
     "url":"Your feedback will be about the page found at",
