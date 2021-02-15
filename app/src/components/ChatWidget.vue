@@ -3,7 +3,11 @@
     <q-btn label="Click me" color="primary" @click="register" />
     <q-dialog v-model="layout">
       <q-layout view="Lhh lpR fff" container class="bg-white">
-           <q-card class=" q-pa-md column"  style="height: 94vh">  
+        <q-bar class="bg-primary text-white q-pr-none">
+          <q-toolbar-title>Micado Chat</q-toolbar-title>
+          <q-btn flat icon="cancel" @click="layout = false" ></q-btn>
+        </q-bar>
+           <q-card class=" q-pa-md column"  style="height: 90vh">  
             <q-scroll-area 
             :thumb-style="thumbStyle"
             :bar-style="barStyle" 

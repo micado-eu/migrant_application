@@ -2,8 +2,8 @@
   <div class="q-pa-sm q-gutter-sm">
     <q-btn
       round
-      icon="star"
-      color="grey"
+      icon="img:statics/icons/Icon (Header) - Chatbot & feedback.svg"
+      color="white"
       size="15px"
       @click="layout = true"
     />
@@ -34,11 +34,11 @@
             v-else
             padding
           >
-          <h5> Your feedback will be sent to </h5>
+          <h5 class="text"> {{$t('feedback.mail')}} </h5>
           <div> {{paMail}}</div>
-          <h5> Your feedback will be about the page found at  </h5>
+          <h5 class="text"> {{$t('feedback.url')}} </h5>
           <div> {{link}}</div>    
-          <h5> Write your feedback here  </h5> 
+          <h5 class="text"> {{$t('feedback.feedback')}}  </h5> 
           <q-input
             outlined
             type="textarea"
@@ -47,12 +47,16 @@
             counter
             v-model="feedback"
           />
+          <div style="text-align:center">
           <q-btn
-            label="Send"
-            color="black"
+            :label="$t('feedback.send')"
+            color="info"
+            rounded
+            no-caps
             size="15px"
             @click="sendFeedback()"
-          />      
+          />
+          </div>      
           </q-page>
         </q-page-container>
       </q-layout>
@@ -116,5 +120,14 @@ export default {
   .language_modal {
     flex-direction: column;
     flex-wrap: nowrap;
+  }
+  .text{
+    font-family: Nunito;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: left;
   }
 </style>

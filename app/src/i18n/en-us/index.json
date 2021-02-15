@@ -123,5 +123,11 @@
   },
   "date_selector": {
     "close": "Close"
+  },
+  "feedback":{
+    "mail":"Your feedback will be sent to",
+    "url":"Your feedback will be about the page found at",
+    "feedback":"Write your feedback in the textbox below",
+    "send":"Send feedback"
   }
 }
