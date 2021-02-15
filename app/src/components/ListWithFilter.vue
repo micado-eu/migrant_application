@@ -405,9 +405,13 @@ export default {
         return this.searchText
       },
       set(newSearch) {
+        let keys = ['title', 'description']
+        if (this.is_event) {
+          keys.push('location')
+        }
         if (newSearch) {
           const fuse = new Fuse(this.translatedElements, {
-            keys: ["title"]
+            keys
           })
           this.filteredElementsBySearch = fuse
             .search(newSearch)
