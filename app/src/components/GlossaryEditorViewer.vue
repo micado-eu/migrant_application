@@ -68,7 +68,7 @@ import {
   Italic
 } from 'tiptap-extensions'
 import Image from 'components/editor_plugins/Image'
-import GlossaryMention from 'components/editor_plugins/GlossaryMention'
+import InternalMention from 'components/editor_plugins/InternalMention'
 import markdownConverterMixin from '../mixin/markdownConverterMixin'
 import TalkingLabel from 'components/TalkingLabel'
 
@@ -83,7 +83,7 @@ export default {
       type: String,
       default: ''
     },
-    glossary_fetched: {
+    all_fetched: {
       type: Boolean,
       default: false
     },
@@ -108,7 +108,10 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('glossary', ['glossary', 'glossaryElemById']),
+    ...mapGetters('glossary', ['glossaryElemById']),
+    ...mapGetters('information', ['informationElemById']),
+    ...mapGetters('flows', ['processById']),
+    ...mapGetters('event', ['eventElemById']),
     currentDescription() {
       return this.currentDescriptionContent
     },
@@ -122,6 +125,9 @@ export default {
   },
   methods: {
     ...mapActions('glossary', ['fetchGlossary']),
+    ...mapActions('information', ['fetchInformation']),
+    ...mapActions('flows', ['fetchFlows']),
+    ...mapActions('event', ['fetchEvent']),
     initialize() {
       this.editor = new Editor({
         editable: false,
@@ -130,9 +136,14 @@ export default {
           new Italic(),
           new Link(),
           new Image(),
-          new GlossaryMention({
+          new InternalMention({
             showTooltip: true,
-            glossaryElemByIdFunc: this.glossaryElemById,
+            elemByIdFunctions: {
+              "glossary": this.glossaryElemById,
+              "information": this.informationElemById,
+              "event": this.eventElemById,
+              "process": this.processById
+            },
             setTooltipDescription: this.setCurrentDescription
           })
         ],
@@ -145,7 +156,7 @@ export default {
       if (!isHTML) {
         currentContent = this.markdownToHTML(content)
       }
-      this.markGlossaryReferences(currentContent, this.$defaultLang, this.$userLang, true).then((markedContent) => {
+      this.markReferences(currentContent, this.$defaultLang, this.$userLang, true).then((markedContent) => {
         let newContent = markedContent
         this.allHTMLContent = markedContent
         if (this.readMore) {
@@ -175,8 +186,8 @@ export default {
       this.showingFullContent = false
       this.$emit("readLessPressed")
     },
-    setCurrentDescription(glossaryElem, element) {
-      let currentContent = glossaryElem.description
+    setCurrentDescription(elem, element) {
+      let currentContent = elem.description
       if (!this.isContentHTML) {
         currentContent = this.markdownToHTML(currentContent)
       }
@@ -189,9 +200,14 @@ export default {
           new Italic(),
           new Link(),
           new Image(),
-          new GlossaryMention({
+          new InternalMention({
             showTooltip: true,
-            glossaryElemByIdFunc: this.glossaryElemById,
+            elemByIdFunctions: {
+              "glossary": this.glossaryElemById,
+              "information": this.informationElemById,
+              "event": this.eventElemById,
+              "process": this.processById
+            },
             setTooltipDescription: this.setCurrentDescription
           })
         ],
@@ -205,9 +221,14 @@ export default {
     }
   },
   created() {
-    if (!this.glossary_fetched) {
+    if (!this.all_fetched) {
       const langs = { defaultLang: this.$defaultLang, userLang: this.$userLang }
-      this.fetchGlossary(langs).then(() => {
+      Promise.all([
+        this.fetchGlossary(langs),
+        this.fetchInformation(langs),
+        this.fetchFlows(langs),
+        this.fetchEvents(langs)
+      ]).then(() => {
         this.initialize()
       })
     } else {

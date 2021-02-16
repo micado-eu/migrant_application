@@ -32,7 +32,6 @@
      <div class="title"> {{$t('desc_labels.description')}} </div>
    <glossary-editor-viewer
                   :content="the_process_description"
-                  glossary_fetched
                   :lang="$userLang"
                 />
     <div class="row">

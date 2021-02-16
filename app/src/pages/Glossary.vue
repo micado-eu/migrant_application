@@ -48,7 +48,7 @@
               <q-card-section>
                 <glossary-editor-viewer
                   :content="glossaryItem.description"
-                  glossary_fetched
+                  all_fetched
                   class="glossary-desc"
                   :lang="lang"
                   :data-cy="'glossaryDesc' + glossaryItem.id"
@@ -129,6 +129,9 @@ export default {
   },
   methods: {
     ...mapActions("glossary", ["fetchGlossary"]),
+    ...mapActions('information', ['fetchInformation']),
+    ...mapActions('flows', ['fetchFlows']),
+    ...mapActions('event', ['fetchEvents']),
     showGlossaryTerm(id) {
       let ref = this.$refs[id.toString()]
       if (ref) {
@@ -160,23 +163,27 @@ export default {
     let query = this.$route.query
     let showGlossaryTerm = this.showGlossaryTerm
     const langs = { defaultLang: this.$defaultLang, userLang: this.$userLang }
-    this.fetchGlossary(langs)
-      .then(() => {
-        this.translatedGlossary = this.glossary.map(e => { return { ...e } })
-        this.translatedGlossary.sort(this.compare)
-        for (let elem of this.translatedGlossary) {
-          let firstChar = elem.title.charAt(0).toUpperCase()
-          if (!this.alphabet.includes(firstChar)) {
-            this.alphabet.push(firstChar)
-            this.alphabetIds.push(elem.id)
-          }
+    Promise.all([
+      this.fetchGlossary(langs),
+      this.fetchInformation(langs),
+      this.fetchFlows(langs),
+      this.fetchEvents(langs)
+    ]).then(() => {
+      this.translatedGlossary = this.glossary.map(e => { return { ...e } })
+      this.translatedGlossary.sort(this.compare)
+      for (let elem of this.translatedGlossary) {
+        let firstChar = elem.title.charAt(0).toUpperCase()
+        if (!this.alphabet.includes(firstChar)) {
+          this.alphabet.push(firstChar)
+          this.alphabetIds.push(elem.id)
         }
-        if (query.id !== undefined) {
-          showGlossaryTerm(query.id)
-        }
-        this.filteredElementsBySearch = this.translatedGlossary;
-        this.loading = false
-      })
+      }
+      if (query.id !== undefined) {
+        showGlossaryTerm(query.id)
+      }
+      this.filteredElementsBySearch = this.translatedGlossary;
+      this.loading = false
+    })
   }
 }
 
