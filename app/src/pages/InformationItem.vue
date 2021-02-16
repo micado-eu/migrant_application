@@ -71,7 +71,7 @@
           </q-tooltip>
         </q-img>
       </span>
-      <q-separator class="q-my-lg" />
+      <q-separator class="q-my-lg" v-if="item.users"/>
       <div align="center">
         <q-btn
           @click="goBack()"

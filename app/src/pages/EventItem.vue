@@ -19,9 +19,15 @@
       />
       <q-separator class="q-my-lg" />
       <span style="font-weight: bold;">{{$t("events.start_date")}}: </span><span>{{item.start_date}}</span>
-      <q-separator class="q-my-lg" />
+      <q-separator
+        class="q-my-lg"
+        v-if="item.start_date"
+      />
       <span style="font-weight: bold;">{{$t("events.finish_date")}}: </span><span>{{item.end_date}}</span>
-      <q-separator class="q-my-lg" />
+      <q-separator
+        class="q-my-lg"
+        v-if="item.end_date"
+      />
       <span
         style="font-weight: bold;"
         v-if="item.location"
@@ -91,6 +97,10 @@
           </q-tooltip>
         </q-img>
       </span>
+      <q-separator
+        class="q-my-lg"
+        v-if="item.users"
+      />
       <div align="center">
         <q-btn
           @click="goBack()"
