@@ -168,8 +168,8 @@
       </q-card-section>
     </q-card>
   </div>
-  </div>-->
-  <ChatWidget />
+  </div>
+  <ChatWidget />-->
   </div>
   </q-page>
 </template>

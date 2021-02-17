@@ -27,10 +27,17 @@
           </template>
         </q-input>
           </div>
+      <div class="q-gutter-sm" style="text-align:center">
+      <q-img @click="bread(topic.topic)"  v-for="topic in topics" :key="topic.id" :src="topic.icon" style="max-width:75px;max-heigth:75px">
+        <div class="absolute-bottom text-subtitle2 text-center" style="padding-top:0px;padding-bottom:0px">
+        {{topic.topic}}
+      </div>
+      </q-img>
+    </div>
   <div>
   <q-expansion-item
         expand-separator
-        icon="mail"
+        icon="img:statics/icons/Icon - Integration step-bystep (selected).svg"
         label="Processes"
       >
       <ListItem v-for="process in processes"
@@ -47,7 +54,7 @@
   </q-expansion-item>
     <q-expansion-item
         expand-separator
-        icon="mail"
+        icon="img:statics/icons/Icon - Information Centre (selected).svg"
         label="Information"
       >
            <ListItem v-for="element in elements"
@@ -65,7 +72,7 @@
   </q-expansion-item>
     <q-expansion-item
         expand-separator
-        icon="mail"
+        icon="img:statics/icons/Icon - Events (selected).svg"
         label="Events"
       >
       <ListItem v-for="element in elements2"
@@ -82,13 +89,7 @@
       
   </q-expansion-item>
     </div>
-    <div class="q-gutter-sm" style="text-align:center">
-      <q-img @click="bread(topic.topic)"  v-for="topic in topics" :key="topic.id" :src="topic.icon" style="max-width:100px;max-heigth:100px">
-        <div class="absolute-bottom text-subtitle2 text-center" style="padding-top:0px;padding-bottom:0px">
-        {{topic.topic}}
-      </div>
-      </q-img>
-    </div>
+  
   </div>
 </div>
 </template>
