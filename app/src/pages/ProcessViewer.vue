@@ -61,6 +61,11 @@
       class="header"
     >{{this.shell_data.text}}</h5>
     <hr>-->
+    <div v-if="flowData.url !=null"  style="text-align:center; padding-top:10px">
+    <a :href="flowData.url" target="_blank" style="text-decoration:none;">
+    <q-btn class="negative-button" no-caps rounded color="info" :label="$t('button.procedure')" />
+    </a>
+    </div>
     <q-field
         class="header-title"
         color="purple-12"

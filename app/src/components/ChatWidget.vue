@@ -1,13 +1,13 @@
 <template>
 <div class="q-pa-md q-gutter-sm">
-    <q-btn icon="mail" color="red" @click="register" />
+    <q-btn icon="mail" style="width:40px; heigth:40px" color="red" @click="register" />
     <q-dialog v-model="layout">
       <q-layout view="Lhh lpR fff" container class="bg-white">
-        <q-bar class="bg-primary text-white q-pr-none">
+        <q-bar class="bg-secondary text-white q-pr-none">
           <q-toolbar-title>Micado Chat</q-toolbar-title>
           <q-btn flat icon="cancel" @click="layout = false" ></q-btn>
         </q-bar>
-           <q-card class=" q-pa-md column"  style="height: 90vh">  
+           <q-card class=" q-pa-md column"  style="height: 75vh">  
             <q-scroll-area 
             :thumb-style="thumbStyle"
             :bar-style="barStyle" 

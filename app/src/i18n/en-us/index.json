@@ -38,7 +38,8 @@
     "send": "Send",
     "validation_pending":"Validation pending",
     "validated":"Validated",
-    "edit":"Edit"
+    "edit":"Edit",
+    "procedure":"Go to procedure"
 
   },
   "input_labels": {

@@ -83,7 +83,7 @@
       </q-list>
     </q-drawer>
     <q-page-container>
-      <q-page-sticky class="z-top">
+      <q-page-sticky v-if="this.$auth.loggedIn()" class="z-top">
       <ChatWidget />
       </q-page-sticky>
       <router-view />

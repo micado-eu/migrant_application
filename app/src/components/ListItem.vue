@@ -107,11 +107,16 @@ export default {
     },
     sortedUsers(){
       this.user_list = JSON.parse(JSON.stringify(this.Users))
-      return this.user_list.sort()
+      if(this.user_list!=null){
+              return this.user_list.sort()
+      }
     },
         sortedTopics(){
       this.topic_list = JSON.parse(JSON.stringify(this.Topics))
-      return this.topic_list.sort()
+      if(this.topic_list!= null){
+       return this.topic_list.sort()
+      }
+      
     }
   },
   methods: {
