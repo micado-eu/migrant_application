@@ -46,7 +46,7 @@
       </q-btn>
     </div>
     <q-tooltip
-      class="desc_tooltip"
+      ref="tooltip"
       v-model="showTooltip"
       :target="targetElement"
       anchor="top middle"
@@ -54,7 +54,11 @@
       :offset="[10, 10]"
       v-if="currentDescription"
     >
-      {{currentDescription}}
+      <template v-slot:default>
+        <div class="desc_tooltip">
+          {{currentDescriptionContent}}
+        </div>
+      </template>
     </q-tooltip>
   </div>
 </template>
@@ -104,7 +108,8 @@ export default {
       targetElement: false,
       showTooltip: false, // Don't show by default
       fullHTMLContent: '',
-      showingFullContent: true
+      showingFullContent: true,
+      elemByIdFunctions: undefined
     }
   },
   computed: {
@@ -129,6 +134,12 @@ export default {
     ...mapActions('flows', ['fetchFlows']),
     ...mapActions('event', ['fetchEvent']),
     initialize() {
+      this.elemByIdFunctions = {
+        "glossary": this.glossaryElemById,
+        "information": this.informationElemById,
+        "event": this.eventElemById,
+        "process": this.processById
+      }
       this.editor = new Editor({
         editable: false,
         extensions: [
@@ -136,16 +147,7 @@ export default {
           new Italic(),
           new Link(),
           new Image(),
-          new InternalMention({
-            showTooltip: true,
-            elemByIdFunctions: {
-              "glossary": this.glossaryElemById,
-              "information": this.informationElemById,
-              "event": this.eventElemById,
-              "process": this.processById
-            },
-            setTooltipDescription: this.setCurrentDescription
-          })
+          new InternalMention()
         ],
         content: ''
       })
@@ -168,8 +170,11 @@ export default {
           }
         }
         this.editor.setContent(newContent)
+        const mentions = this.$refs.editor.$el.querySelectorAll("[data-mention-id]")
+        for (let mention of mentions) {
+          mention.addEventListener("mouseover", this.setCurrentDescription)
+        }
       }).catch((err) => {
-        console.error(err)
         this.$q.notify({
           type: 'negative',
           message: `Error while fetching glossary description: ${err}`
@@ -186,38 +191,28 @@ export default {
       this.showingFullContent = false
       this.$emit("readLessPressed")
     },
-    setCurrentDescription(elem, element) {
-      let currentContent = elem.description
-      if (!this.isContentHTML) {
-        currentContent = this.markdownToHTML(currentContent)
+    setCurrentDescription(event) {
+      if (event.target instanceof HTMLSpanElement) {
+        const idString = event.target.getAttribute("data-mention-id")
+        const mentionType = event.target.getAttribute("mention-type")
+        if (idString > -1 && mentionType in this.elemByIdFunctions) {
+          const id = parseInt(idString)
+          event.stopPropagation()
+          const elem = this.elemByIdFunctions[mentionType](id)
+          if (elem !== undefined) {
+            let tooltip = this.$refs.tooltip
+            if (tooltip) {
+              tooltip.hide()
+            }
+            let currentContent = this.markdownToHTML(elem.description)
+            // Gets description and transforms it to plain text
+            const doc = new DOMParser().parseFromString(currentContent, 'text/html')
+            const plainDescription = doc.body.textContent || ''
+            this.targetElement = event.target
+            this.currentDescriptionContent = plainDescription
+          }
+        }
       }
-      // Gets description and transforms it to plain text
-      // Create an invisible editor to transform the JSON into HTML for parsing
-      const editorInterpreter = new Editor({
-        editable: false,
-        extensions: [
-          new Bold(),
-          new Italic(),
-          new Link(),
-          new Image(),
-          new InternalMention({
-            showTooltip: true,
-            elemByIdFunctions: {
-              "glossary": this.glossaryElemById,
-              "information": this.informationElemById,
-              "event": this.eventElemById,
-              "process": this.processById
-            },
-            setTooltipDescription: this.setCurrentDescription
-          })
-        ],
-        content: currentContent
-      })
-      const doc = new DOMParser().parseFromString(editorInterpreter.getHTML(), 'text/html')
-      const plainDescription = doc.body.textContent || ''
-      this.targetElement = element
-      this.currentDescriptionContent = plainDescription
-      editorInterpreter.destroy()
     }
   },
   created() {
@@ -264,5 +259,9 @@ img {
 
 .ProseMirror:focus {
   outline: none;
+}
+
+.desc_tooltip {
+  max-width: 300px;
 }
 </style>
