@@ -1,6 +1,6 @@
 <template>
 <div class="q-pa-md q-gutter-sm">
-    <q-btn label="Click me" color="primary" @click="register" />
+    <q-btn icon="mail" color="red" @click="register" />
     <q-dialog v-model="layout">
       <q-layout view="Lhh lpR fff" container class="bg-white">
         <q-bar class="bg-primary text-white q-pr-none">
@@ -37,7 +37,7 @@
            </q-card>
       </q-layout>
     </q-dialog>
-  </div>
+</div>
 </template>
 
 <script>

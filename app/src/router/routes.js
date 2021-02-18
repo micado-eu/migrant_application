@@ -55,6 +55,7 @@ const routes = [
       { path: '/information/:id', component: () => import('pages/InformationItem.vue')},
       { path: '/events', component: () => import('pages/Events.vue')},
       { path: '/events/:id', component: () => import('pages/EventItem.vue')},
+      { path: '/test', component: () => import('pages/TopicChoices.vue')},
     ]
   }
   /*,
