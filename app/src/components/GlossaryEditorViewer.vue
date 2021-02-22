@@ -145,6 +145,14 @@ export default {
       await this.setContent(this.content)
       await Vue.nextTick()
       this.generateTooltips()
+      if (this.readMore) {
+        let el = this.$refs.editor.$el
+        let height = parseFloat(getComputedStyle(el, null).height.replace("px", ""))
+        if (height >= 41) {
+          el.classList.add('max-lines')
+          this.showingFullContent = false
+        }
+      }
     },
     async setContent(content, isHTML = false) {
       let currentContent = content
@@ -155,14 +163,6 @@ export default {
         let markedContent = await this.markReferences(currentContent, this.$defaultLang, this.$userLang, true)
         let newContent = markedContent
         this.allHTMLContent = markedContent
-        if (this.readMore) {
-          let el = this.$refs.editor.$el
-          let height = parseFloat(getComputedStyle(el, null).height.replace("px", ""))
-          if (height >= 41) {
-            el.classList.add('max-lines')
-            this.showingFullContent = false
-          }
-        }
         this.editor.setContent(newContent)
         this.loading = false
         return newContent
