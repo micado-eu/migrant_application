@@ -52,7 +52,6 @@
       v-for="(mention, index) in mentions"
       :key="index"
       :target="mention"
-      :hide-delay="650"
     >
       {{
         getTooltip(mention)
