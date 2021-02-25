@@ -100,7 +100,8 @@
     "category": "Category",
     "missing_content": "There is no information",
     "topics": "Topics",
-    "user_types":"User types"
+    "user_types":"User types",
+    "organizer": "Organizer/Created by"
   },
   "tasks": {
     "ask_validation": "Ask for validation",

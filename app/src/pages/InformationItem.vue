@@ -72,6 +72,16 @@
         </q-img>
       </span>
       <q-separator class="q-my-lg" v-if="item.users"/>
+      <span
+        style="font-weight: bold;"
+        v-if="item.creator"
+      >
+        {{$t("information_centre.organizer")}}: {{item.creator}}
+      </span>
+      <q-separator
+        class="q-my-lg"
+        v-if="item.creator"
+      />
       <div align="center">
         <q-btn
           @click="goBack()"
