@@ -105,7 +105,7 @@
         style="font-weight: bold;"
         v-if="item.creator"
       >
-        {{$t("events.organizer")}}: {{item.creator}}
+        {{$t("events.organizer")}}: {{getCreatorAttribute(item.creator, "givenName")}} {{getCreatorAttribute(item.creator, "sn")}}
       </span>
       <q-separator
         class="q-my-lg"
@@ -149,6 +149,16 @@ export default {
     ...mapActions("user_type", ["fetchUserType"]),
     goBack() {
       this.$router.go(-1);
+    },
+    getCreatorAttribute(creator, attrString) {
+      var retAttr = ""
+      var retAttr_arr = creator.attributes.filter((attr) => {
+        return attr.umAttrName === attrString
+      })
+      if (retAttr_arr.length > 0) {
+        retAttr = retAttr_arr[0].umAttrValue
+      }
+      return retAttr
     }
   },
   computed: {
@@ -165,7 +175,7 @@ export default {
       .then(() => this.fetchEventCategory(langs))
       .then(() => this.fetchTopic(langs))
       .then(() => this.fetchUserType(langs))
-      .then(() => {
+      .then(async () => {
         this.item = Object.assign({}, this.eventElemById(this.id))
         const idx = this.eventCategories.findIndex((c) => c.id === this.item.category)
         if (idx !== -1) {
@@ -191,9 +201,12 @@ export default {
           `${finishDate.getUTCDate()} ` +
           `${finishDate.getUTCHours().toLocaleString(undefined, { minimumIntegerDigits: 2 })}:` +
           `${finishDate.getUTCMinutes().toLocaleString(undefined, { minimumIntegerDigits: 2 })}`
-        this.loading = false
-        console.log(this.item)
-      })
+        if (this.item.creator) {
+          this.item.creator = await this.fetchSpecificUser({userid: this.item.creator, tenantid: this.$pa_tenant})
+          console.log(this.item.creator)
+          console.log(this.getCreatorAttribute(this.item.creator, "givenName"))
+        }
+      }).then(() => this.loading = false)
   }
 };
 </script>
