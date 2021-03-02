@@ -5,14 +5,14 @@
       class="bg-accent"
     >
       <q-toolbar>
-        <q-btn
+       <!-- <q-btn
           flat
           dense
           round
           @click="leftDrawerOpen = !leftDrawerOpen"
           icon="menu"
           aria-label="Menu"
-        />
+        />-->
 
         <q-toolbar-title>{{ $t( "application_title") }}</q-toolbar-title>
         <LanguageSelector data-cy="language_selector_button"></LanguageSelector>
@@ -36,20 +36,18 @@
       </q-tabs>
     </q-footer>-->
 
-    <q-drawer
+  <!--  <q-drawer
       v-model="leftDrawerOpen"
       show-if-above
       :breakpoint="767"
       bordered
       content-class="bg-accent text-white"
     >
-      <!-- 
+       
       <auth-menu />
-      -->
+      
       <q-list dark>
-        <!--
         <q-item-label header>{{ $t('menu.title') }}</q-item-label>
-        -->
         <q-item
           clickable
           exact
@@ -81,7 +79,7 @@
           />
         </div>
       </q-list>
-    </q-drawer>
+    </q-drawer>-->
     <q-page-container>
       <q-page-sticky v-if="this.$auth.loggedIn()" class="z-top">
       <ChatWidget />

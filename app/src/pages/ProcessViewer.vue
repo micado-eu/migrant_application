@@ -159,7 +159,7 @@
         rounded
         color="accent"
         :label="$t('button.go_back')"
-        to="/processes"
+        @click="back()"
       />
     </div>
   </div>
@@ -211,7 +211,7 @@ export default {
     }
   })
   ],
-  props:['processid'],
+  props:['processid', 'url'],
   components: {
     DocumentItem, LabelMap, CommentList,TalkingLabel,GlossaryEditorViewer
   },
@@ -252,6 +252,25 @@ export default {
     }
   },
   methods: {
+    back(){
+      console.log(this.url)
+      var back_url = JSON.parse(this.url)
+      if(this.url.length == 1){
+        this.$router.push({
+         name: 'home',
+
+      })
+      }
+      else{
+        this.$router.push({
+         name: 'crumbs',
+        params: {
+        topicFilter: this.url
+        }
+      })
+      }
+      
+    },
     stripHtml(html){
    let tmp = document.createElement("DIV");
    tmp.innerHTML = html;

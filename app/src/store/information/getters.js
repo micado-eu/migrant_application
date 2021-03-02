@@ -8,3 +8,20 @@ export function informationElemById(state) {
   }
   return getterFunc
 }
+export const show_info = (state) => (index) => {
+  // it's an example
+  if(index != null){
+    return state.information.filter((info)=>{
+      if(info.topics){
+        return info.topics.includes(index)
+      }
+      
+    })
+  }
+  else{
+    return state.information.filter((info)=>{
+        return info.topics == null
+    })
+  }
+
+}

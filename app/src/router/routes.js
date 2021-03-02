@@ -23,13 +23,14 @@ import InformationItem from 'pages/InformationItem'
 import Reserved from 'pages/Reserved'
 import Events from 'pages/Events'
 import EventItem from 'pages/EventItem'
+import { information } from '../store/information/getters'
 
 const routes = [
   {
     path: '/',
     component: () => import('layouts/Layout.vue'),
     children: [
-      { path: '', component: () => import('pages/Index.vue') },
+      //{ path: '', component: () => import('pages/Index.vue') },
       { path: '/documents', component: () => import('pages/DocumentWallet.vue') , meta: { auth: true } },
       { path: '/documents/add', component: () => import('components/AddDocument.vue'), meta: { auth: true } },
       { path: '/documents/:thedocid', name: 'viewdocument', component: () => import('components/DocumentViewerComponent.vue'), props: (route) => ({ ...route.params }), meta: { auth: true } },
@@ -52,10 +53,11 @@ const routes = [
       { path: '/documents/edit/:thedocid', component: () => import('components/AddDocument.vue'), props: (route) => ({ ...route.params }), name: 'editdocument', meta: { auth: true } },
       { path: '/decision',  component: () => import('pages/DecisionTreePage.vue')},
       { path: '/information', component: () => import('pages/InformationCentre.vue')},
-      { path: '/information/:id', component: () => import('pages/InformationItem.vue')},
+      { path: '/information/:id', name:'info', component: () => import('pages/InformationItem.vue'),props: (route) => ({ ...route.params })},
       { path: '/events', component: () => import('pages/Events.vue')},
-      { path: '/events/:id', component: () => import('pages/EventItem.vue')},
-      { path: '/test', component: () => import('pages/TopicChoices.vue')},
+      { path: '/events/:id', name:'events', component: () => import('pages/EventItem.vue'), props: (route) => ({ ...route.params })},
+      { path: '', name:'home', component: () => import('pages/TopicChoices.vue')},
+      { path: '/:topicFilter', name:'crumbs', component: () => import('pages/TopicChoices.vue'), props: (route) => ({ ...route.params })}
     ]
   }
   /*,

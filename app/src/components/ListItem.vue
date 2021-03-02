@@ -30,45 +30,15 @@
                 <TalkingLabel
                   :Title="this.Title"
                   :text="this.Title"
+                  :row="'row'"
+                  :title_col="'col-7'"
+                  :icon_col="'col-2'"
+                  :icon_style="'text-align:right'"
                 >
                 </TalkingLabel>
               </div>
             </div>
-            <div class="row pad">
-              <div class="col-3">
-                <q-img
-                  class="image"
-                  v-for="tag in sortedTopics"
-                  :src="topics.filter(topic => topic.id == tag)[0].icon"
-                  :key="tag"
-                >
-                  <q-tooltip>
-                    {{topics.filter(topic => topic.id == tag)[0].topic}}
-                  </q-tooltip>
-                </q-img>
-              </div>
-              <div class="col-3">
-                <q-img
-                  class="image"
-                  v-for="tag in sortedUsers"
-                  :src="users.filter(user => user.id == tag)[0].icon"
-                  :key="tag"
-                >
-                  <q-tooltip>
-                    {{users.filter(user => user.id == tag)[0].user_type}}
-                  </q-tooltip>
-                </q-img>
-              </div>
-              <q-rating
-                v-model="parsedRating"
-                size="1em"
-                color="orange"
-                icon="star_border"
-                icon-selected="star"
-                icon-half="star_half"
-                readonly
-              />
-            </div>
+           
             <hr class="hr">
           </div>
         </q-item>
@@ -83,7 +53,7 @@ import storeMappingMixin from '../mixin/storeMappingMixin'
 
 export default {
   name: 'Process',
-  props: ["Title", "Topics", "Users", "Link", "Path", "item", "Rating"],
+  props: ["Title", "Topics", "Users", "Link", "Path", "item", "Rating", 'type'],
   mixins: [
     storeMappingMixin({
       getters: {
@@ -102,7 +72,7 @@ export default {
     TalkingLabel
   },
   computed: {
-    parsedRating () {
+    /*parsedRating () {
       return parseFloat(this.Rating)
     },
     sortedUsers(){
@@ -117,7 +87,7 @@ export default {
        return this.topic_list.sort()
       }
       
-    }
+    }*/
   },
   methods: {
     showProcess (event) {
@@ -126,7 +96,20 @@ export default {
       this.$emit('showing', this.Link)
     },
     processDetails () {
-      this.$router.push({ name: 'document', params: { processid: this.Link } })
+      if(this.type =='flow'){
+        console.log("emitting flow")
+        this.$emit('flow',{processid: this.Link, type:this.type})
+      }
+      else if(this.type == 'info'){
+        console.log("emitting info")
+        this.$emit('info',{processid: this.Link, type:this.type})
+      }
+      else if(this.type =='event'){
+      console.log("emitting event")
+        this.$emit('event',{processid: this.Link, type:this.type})
+      }
+      //this.$router.push({ name: 'document', params: { processid: this.Link } })
+      
     }
   }
 }
@@ -134,6 +117,7 @@ export default {
 <style scoped>
 .container {
   width: 100%;
+  padding-right:10px
 }
 .item {
   text-align: left;
@@ -176,6 +160,6 @@ export default {
 }
 .hr {
   margin: 0px;
-  width: 105%;
+  width: 100%;
 }
 </style>

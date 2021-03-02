@@ -3,9 +3,9 @@
 <span v-if="loading">Loading...</span>
   <div v-else>
     <div class="q-pa-md q-gutter-sm">
-    <q-breadcrumbs>
-      <q-breadcrumbs-el label="Home" to="/" />
-      <q-breadcrumbs-el v-for="crumb in crumbs" :key="crumb.label" :label="crumb.name" :to="crumb.url" />
+    <q-breadcrumbs active-color="secondary">
+      <!--<q-breadcrumbs-el label="Home"  @click="index = null" />-->
+      <q-breadcrumbs-el  v-for="crumb in crumbs" :key="crumb.label" :label="crumb.name" @click="navigation(crumb.id)"  />
 
     </q-breadcrumbs>
   </div>
@@ -28,66 +28,50 @@
         </q-input>
           </div>
       <div class="q-gutter-sm" style="text-align:center">
-      <q-img @click="bread(topic.topic)"  v-for="topic in topics" :key="topic.id" :src="topic.icon" style="max-width:75px;max-heigth:75px">
-        <div class="absolute-bottom text-subtitle2 text-center" style="padding-top:0px;padding-bottom:0px">
+      <q-img @click="bread(topic)"  v-for="topic in to_show" :key="topic.id" :src="topic.icon" style="max-width:100px;max-heigth:100px">
+        <div class="absolute-bottom text-subtitle2 text-center" style="padding-top:0px;padding-bottom:0px; font-size:12px">
         {{topic.topic}}
       </div>
       </q-img>
     </div>
   <div>
-  <q-expansion-item
-        expand-separator
-        icon="img:statics/icons/Icon - Integration step-bystep (selected).svg"
-        label="Processes"
-      >
-      <ListItem v-for="process in processes"
+
+      <ListItem v-for="process in to_show_flows"
             style="display:inline-block"
             :key="process.id"
             :Title="process.process"
-            :Topics="process.topics"
-            :Users="process.users"
             :Link="process.id"
             :id="process.id"
             :item="process"
-            :Rating="process.rating"
+            @flow="enitityDetails($event)"
+            :type="'flow'"
             />
-  </q-expansion-item>
-    <q-expansion-item
-        expand-separator
-        icon="img:statics/icons/Icon - Information Centre (selected).svg"
-        label="Information"
-      >
-           <ListItem v-for="element in elements"
+    
+           <ListItem v-for="element in to_show_info"
             style="display:inline-block"
             :key="element.id"
             :Title="element.title"
-            :Topics="element.topics"
-            :Users="element.users"
             :Link="element.id"
             :id="element.id"
             :item="element"
-            :Rating="element.rating"
+            :type="'info'"
+            @info="enitityDetails($event)"
             />
      
-  </q-expansion-item>
-    <q-expansion-item
-        expand-separator
-        icon="img:statics/icons/Icon - Events (selected).svg"
-        label="Events"
-      >
-      <ListItem v-for="element in elements2"
+  
+    
+      <ListItem v-for="element in to_show_events"
             style="display:inline-block"
             :key="element.id"
             :Title="element.title"
-            :Topics="element.topics"
-            :Users="element.users"
             :Link="element.id"
             :id="element.id"
             :item="element"
-            :Rating="element.rating"
+            :type="'event'"
+            @event="enitityDetails($event)"
             />
       
-  </q-expansion-item>
+  
     </div>
   
   </div>
@@ -126,19 +110,79 @@ export default {
   })
   
   ],
+  props:['topicFilter'],
   data () {
     return {
       search:'',
       loading:true,
       elements: [],
       elements2: [],
-      crumbs:[]
+      crumbs:[{id:null,name:"Home"}],
+      index:null
     }
   },
+  computed:{
+    to_show(){
+      return this.$store.getters['topic/show_topics'](this.index)
+    },
+    to_show_flows(){
+      return this.$store.getters['flows/show_flows'](this.index)
+    },
+    to_show_events(){
+      return this.$store.getters['event/show_events'](this.index)
+    },
+    to_show_info(){
+      return this.$store.getters['information/show_info'](this.index)
+    }
+  },
+
   methods:{
-    bread(name){
+    enitityDetails(value){
+      console.log(value)
+      if(value.type == 'flow'){
+        this.$router.push({ name: 'document', params: { processid: value.processid, url:JSON.stringify(this.crumbs) } })
+      }
+      else if (value.type =='info'){
+      this.$router.push({ name: 'info', params: { id: value.processid, url:JSON.stringify(this.crumbs) } })
+      }
+      else if(value.type =='event'){
+        console.log(value)
+      this.$router.push({ name: 'events', params: { id: value.processid, url:JSON.stringify(this.crumbs) } })
+      }
+    },
+    navigation(id){
+      console.log(this.$route)
+      this.index = id
+      var idx = this.crumbs.findIndex((item)=> item.id == id)
+      console.log(idx)
+      this.crumbs.length = idx + 1
+      if(this.crumbs.length == 1){
+        this.$router.push({
+         name: 'home',
+
+      })
+      }
+      else{
+        this.$router.push({
+         name: 'crumbs',
+        params: {
+        topicFilter: this.crumbs.join(',')
+        }
+      })
+      }
+      
+    },
+    bread(topic){
       var link = window.location.href 
-      this.crumbs.push({name:name, url:name})
+      this.crumbs.push({id:topic.id,name:topic.topic})
+      this.index = topic.id
+      this.$router.push({
+        name: 'crumbs',
+      params: {
+        topicFilter: JSON.stringify(this.crumbs) 
+    }
+});
+this.$forceUpdate();
     }
   },
   components: {
@@ -178,6 +222,7 @@ export default {
       .then(() => this.fetchTopic(langs))
       .then(() => this.fetchUserType(langs))
       .then(() => {
+        console.log(this.events)
         this.elements2 = JSON.parse(JSON.stringify(this.events)) // Create copy of array
         for (let i = 0; i < this.events.length; i++) {
           const event = this.events[i]
@@ -209,9 +254,20 @@ export default {
       console.log("in user type")
       console.log(user_types)
     })
-
-
+       console.log("I M TOPICFILTER")
+  var parsed_var=[]
+  if(this.topicFilter){
+    var parsed_var = JSON.parse(this.topicFilter)
   }
+  
+  if(parsed_var.length == 0){
+    parsed_var = [{id:null,name:"Home"}]
+  }
+  this.crumbs = parsed_var
+  this.index = parsed_var[(parsed_var.length - 1)].id
+  console.log(this.index)
+    }
+
 }
 </script>
 <style lang="scss" scoped>

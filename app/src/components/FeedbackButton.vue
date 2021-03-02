@@ -34,8 +34,12 @@
             v-else
             padding
           >
-          <h5 class="text"> {{$t('feedback.mail')}} </h5>
-          <div> {{paMail}}</div>
+          <!--<h5 class="text"> {{$t('feedback.mail')}} </h5>-->
+          <div style="text-align:center"> 
+            <q-icon style="padding-right:10px" size="30px" :name="'img:statics/icons/negative.png'"/>
+            <q-icon style="padding-right:10px" size="30px" :name="'img:statics/icons/neutral.png'"/>
+            <q-icon style="padding-right:10px" size="30px" :name="'img:statics/icons/positive.png'"/>
+          </div>
           <h5 class="text"> {{$t('feedback.url')}} </h5>
           <div> {{link}}</div>    
           <h5 class="text"> {{$t('feedback.feedback')}}  </h5> 

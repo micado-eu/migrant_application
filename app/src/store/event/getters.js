@@ -8,3 +8,21 @@ export function eventElemById(state) {
   }
   return getterFunc
 }
+
+export const show_events = (state) => (index) => {
+  // it's an example
+  if(index != null){
+    return state.events.filter((ev)=>{
+      if(ev.topics){
+        return ev.topics.includes(index)
+      }
+      
+    })
+  }
+  else{
+    return state.events.filter((ev)=>{
+        return ev.topics == null
+    })
+  }
+
+}
