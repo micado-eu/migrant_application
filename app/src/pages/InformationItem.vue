@@ -76,7 +76,7 @@
         style="font-weight: bold;"
         v-if="item.creator"
       >
-        {{$t("information_centre.organizer")}}: {{item.creator}}
+        {{$t("information_centre.organizer")}}: {{getCreatorAttribute(item.creator, "givenName")}} {{getCreatorAttribute(item.creator, "sn")}}
       </span>
       <q-separator
         class="q-my-lg"
@@ -118,8 +118,19 @@ export default {
     ...mapActions("information_category", ["fetchInformationCategory"]),
     ...mapActions("topic", ["fetchTopic"]),
     ...mapActions("user_type", ["fetchUserType"]),
+    ...mapActions("user", ["fetchSpecificUser"]),
     goBack() {
       this.$router.go(-1);
+    },
+    getCreatorAttribute(creator, attrString) {
+      var retAttr = ""
+      var retAttr_arr = creator.attributes.filter((attr) => {
+        return attr.umAttrName === attrString
+      })
+      if (retAttr_arr.length > 0) {
+        retAttr = retAttr_arr[0].umAttrValue
+      }
+      return retAttr
     }
   },
   computed: {
@@ -136,7 +147,7 @@ export default {
       .then(() => this.fetchInformationCategory(langs))
       .then(() => this.fetchTopic(langs))
       .then(() => this.fetchUserType(langs))
-      .then(() => {
+      .then(async () => {
         this.item = Object.assign({}, this.informationElemById(this.id))
         const idx = this.informationCategories.findIndex((c) => c.id === this.item.category)
         if (idx !== -1) {
@@ -150,8 +161,10 @@ export default {
         if (this.item.users) {
           this.item.users = this.idJoin(this.item.users, this.users)
         }
-        this.loading = false
-      })
+        if (this.item.creator) {
+          this.item.creator = await this.fetchSpecificUser(this.item.creator, this.$pa_tenant)
+        }
+      }).then(() => this.loading = false)
   }
 }
 </script>
