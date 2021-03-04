@@ -21,6 +21,8 @@
           bg-color="grey-2"
           v-model="search"
           :label="$t('desc_labels.search')"
+          debounce="500"
+          :loading="searchLoading"
         >
           <template v-slot:append>
             <q-icon name="search" />
@@ -97,7 +99,8 @@ export default {
       information:'information/information',
       informationCategories:'information_category/informationCategories',
       events:'event/events',
-      eventCategories:'event_category/eventCategories'
+      eventCategories:'event_category/eventCategories',
+      searchResults: 'search/results'
     }, actions: {
       fetchFlows: 'flows/fetchFlows',
       fetchTopic: 'topic/fetchTopic',
@@ -105,7 +108,9 @@ export default {
       fetchInformation:'information/fetchInformation',
       fetchInformationCategory:'information_category/fetchInformationCategory',
       fetchEvents:'event/fetchEvents',
-      fetchEventCategory:'event_category/fetchEventCategory'
+      fetchEventCategory:'event_category/fetchEventCategory',
+      fullTextSearch: 'search/search',
+      emptySearchResults: 'search/emptyResults'
     }
   })
   
@@ -114,6 +119,7 @@ export default {
   data () {
     return {
       search:'',
+      searchLoading: false,
       loading:true,
       elements: [],
       elements2: [],
@@ -126,13 +132,13 @@ export default {
       return this.$store.getters['topic/show_topics'](this.index)
     },
     to_show_flows(){
-      return this.$store.getters['flows/show_flows'](this.index)
+      return this.$store.getters['flows/show_flows'](this.index).filter((e) => this.filterBySearch(e, "processes"))
     },
     to_show_events(){
-      return this.$store.getters['event/show_events'](this.index)
+      return this.$store.getters['event/show_events'](this.index).filter((e) => this.filterBySearch(e, "events"))
     },
     to_show_info(){
-      return this.$store.getters['information/show_info'](this.index)
+      return this.$store.getters['information/show_info'](this.index).filter((e) => this.filterBySearch(e, "information"))
     }
   },
 
@@ -183,10 +189,28 @@ export default {
     }
 });
 this.$forceUpdate();
+    },
+    filterBySearch(element, key) {
+      return this.searchResults ? this.searchResults[key].filter((result) => result.id === element.id).length > 0 : true
     }
   },
   components: {
     ListItem
+  },
+  watch: {
+    search(val) {
+      this.searchLoading = true
+      if (!val) {
+        this.emptySearchResults().then(() => {
+          this.searchLoading = false
+        })
+      } else {
+        this.fullTextSearch({lang: this.$userLang, words: val}).then(() => {
+          this.searchLoading = false
+        })
+      }
+      
+    }
   },
     created () {
           const langs = { defaultLang: this.$defaultLang, userLang: this.$userLang }
