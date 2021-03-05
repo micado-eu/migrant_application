@@ -9,5 +9,6 @@
     "identitySPclientId": "$IDENTITY_SP_MIGRANTS_CLIENT_ID",
     "chatServer": "$ROCKETCHAT_HOSTNAME",
     "appBuildDate": "$APP_BUILD_DATE",
-    "migrantsUrl": "$MIGRANTS_HOSTNAME"
+    "migrantsUrl": "$MIGRANTS_HOSTNAME",
+    "chatbot":"$CHATBOT"
 }

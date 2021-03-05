@@ -9,5 +9,6 @@
     "identitySPclientId": "sfxTSKbY0BRjuEC5c5U3WvBYQVAa",
     "chatServer": "admin2.micadoproject.eu",
     "appBuildDate": "$APP_BUILD_DATE",
-    "migrantsUrl": "migrants.micadoproject.eu"
+    "migrantsUrl": "migrants.micadoproject.eu",
+    "chatbot":"rasa_bot"
 }
