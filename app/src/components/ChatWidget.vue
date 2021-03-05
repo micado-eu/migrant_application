@@ -296,7 +296,7 @@ export default {
             {
               "_id": '' + new Date ().getTime (),
               "rid": this.roomId,
-              "msg": {lang: this.$userLang, message:this.question}
+              "msg": JSON.stringify({lang: this.$userLang, message:this.question})
             }
           ]
         })
