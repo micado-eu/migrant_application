@@ -118,7 +118,7 @@ module.exports = function (ctx) {
         chain.resolve.alias.set('api-picture_hotspots-client', 'src/api/picture_hotspots/server');
         chain.resolve.alias.set('api-document_type-client', 'src/api/document_type/server');
         chain.resolve.alias.set('api-feedback-client', 'src/api/feedback/server');
-
+        chain.resolve.alias.set('api-search-client', 'src/api/search/server');
       }
     },
 
