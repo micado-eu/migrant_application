@@ -57,7 +57,7 @@ const routes = [
       { path: '/events', component: () => import('pages/Events.vue')},
       { path: '/events/:id', name:'events', component: () => import('pages/EventItem.vue'), props: (route) => ({ ...route.params })},
       { path: '', name:'home', component: () => import('pages/TopicChoices.vue')},
-      { path: '/:topicFilter', name:'crumbs', component: () => import('pages/TopicChoices.vue'), props: (route) => ({ ...route.params })}
+      { path: 'topic/:topicFilter', name:'crumbs', component: () => import('pages/TopicChoices.vue'), props: (route) => ({ ...route.params })}
     ]
   }
   /*,
