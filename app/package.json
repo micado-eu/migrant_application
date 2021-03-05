@@ -35,7 +35,7 @@
     "jsonapi-vuex": "^3.1.1",
     "klaro": "^0.7.15",
     "leaflet": "^1.6.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "quasar": "^1.14.0",
     "rocket.chat.realtime.api.rxjs": "^2.1.1",
     "showdown": "^1.9.1",
