@@ -10,5 +10,5 @@
     "chatServer": "$ROCKETCHAT_HOSTNAME",
     "appBuildDate": "$APP_BUILD_DATE",
     "migrantsUrl": "$MIGRANTS_HOSTNAME",
-    "chatbot":"$CHATBOT"
+    "bot_name":"$BOT_NAME"
 }

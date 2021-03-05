@@ -21,7 +21,7 @@
             :key="message.id"
             :name="message.user"
             :text="[message.message]"
-            :sent="message.user == $envconfig.chatbot"
+            :sent="message.user == $envconfig.bot_name"
             />
               
             </q-scroll-area>
@@ -104,7 +104,7 @@ export default {
       //api = rcApi.connectToRocketChat (this.webSocketUrl)
         console.log(this.$rcClient)
         console.log("I AM CHATBOT NAME")
-        console.log(this.$envconfig.chatbot)
+        console.log(this.$envconfig.bot_name)
       api=this.$rcClient
       api.onError (error => this.errors.push (error))
       api.onCompletion (() => {
@@ -127,7 +127,7 @@ export default {
               if(message.result.messages && message.result.messages.length >0){
               console.log("In loading history")
               message.result.messages.reverse().forEach((message)=>{
-                if(message.u.username != this.$envconfig.chatbot){
+                if(message.u.username != this.$envconfig.bot_name){
                   console.log("inside user msg")
                   console.log(message.u.username)
                   console.log(message.msg)
@@ -155,7 +155,7 @@ export default {
   
         }
         else{
-          if(message.fields.args[0].u.username != this.$envconfig.chatbot){
+          if(message.fields.args[0].u.username != this.$envconfig.bot_name){
           console.log("inside user msg")
             var true_msg = JSON.parse(message.fields.args[0].msg)
             this.messages.push ({message:true_msg.message, user:message.fields.args[0].u.username, id:message.fields.args[0]._updatedAt.$date})
@@ -312,7 +312,7 @@ export default {
           "msg": "method",
           "method": "createDirectMessage",
           "id": '' + new Date ().getTime (),
-          "params": [this.$envconfig.chatbot]
+          "params": [this.$envconfig.bot_name]
           })
       },
       sendMessages() {

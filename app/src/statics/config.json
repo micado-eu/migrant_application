@@ -10,5 +10,5 @@
     "chatServer": "admin2.micadoproject.eu",
     "appBuildDate": "$APP_BUILD_DATE",
     "migrantsUrl": "migrants.micadoproject.eu",
-    "chatbot":"rasa_bot"
+    "bot_name":"rasa_bot"
 }
