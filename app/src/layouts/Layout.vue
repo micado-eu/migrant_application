@@ -25,7 +25,7 @@
       data-cy="userButton"
     >
       <q-icon
-        name="history_edu"
+        color="black" name="history_edu"
       />
     </q-avatar>
 </q-btn>
