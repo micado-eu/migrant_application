@@ -131,5 +131,10 @@
     "url":"Your feedback will be about the page found at",
     "feedback":"Write your feedback in the textbox below",
     "send":"Send feedback"
+  },
+  "internal_reference": {
+    "more_info_1": "More information for",
+    "more_info_2": "can be found at:",
+    "go_to_reference": "Go to reference"
   }
 }
