@@ -34,18 +34,17 @@
       </q-toolbar>
     </q-header>
 
-    <!-- <q-footer>
+     <q-footer class="bg-info text-white">
       <q-tabs>
         <q-route-tab
           v-for="(nav) in navs"
           :to="nav.to"
           :key="nav.label"
-          :label="$t( nav.label )"
           :icon="nav.icon"
           v-feature-flipping="nav.feature"
         />
       </q-tabs>
-    </q-footer>-->
+    </q-footer>
 
   <!--  <q-drawer
       v-model="leftDrawerOpen"
@@ -452,14 +451,7 @@ export default {
     ],
 },
       navs: [
-        {
-          label: "menu.home",
-          icon: "img:statics/icons/Home (600x600) white.png",
-          to: "/",
-          description: "menu.home_desc",
-          feature: "FEAT_DEFAULT",
-          visible: false
-        },
+       /* 
         {
           label: "menu.processes",
           icon: "img:statics/icons/Guided Processes (600x600) white.png",
@@ -483,7 +475,7 @@ export default {
           description: "menu.events_desc",
           feature: "FEAT_EVENTS",
           visible: true
-        },
+        },*/
         /*        {
                   label: "menu.chatbot",
                   icon: "img:statics/icons/Chatbot (600x600) white.png",
@@ -516,6 +508,14 @@ export default {
         //   description: "messages from PA",
         //   feature: "FEAT_MESSENGER"
         // },
+        {
+          label: "menu.home",
+          icon: "img:statics/icons/Home (600x600) white.png",
+          to: "/",
+          description: "menu.home_desc",
+          feature: "FEAT_DEFAULT",
+          visible: false
+        },
         {
           label: "menu.glossary",
           icon: "img:statics/icons/Migrant APP Icon - Glossary (45x45).png",

@@ -28,11 +28,12 @@
                 :data-cy="'process'.concat(Link)"
               >
                 <TalkingLabel
+                style="width:100%"
                   :Title="this.Title"
                   :text="this.Title"
                   :row="'row'"
-                  :title_col="'col-7'"
-                  :icon_col="'col-2'"
+                  :title_col="'col-11'"
+                  :icon_col="'col-1'"
                   :icon_style="'text-align:right'"
                 >
                 </TalkingLabel>
@@ -148,7 +149,7 @@ export default {
   text-align: left;
   font-size: 13px;
   font-weight: 700;
-  width: 135%;
+  width: 100%;
 }
 .pad {
   padding-bottom: 5px;

@@ -87,6 +87,15 @@ export function editUserPassword (state, payload) {
 export function registerRocketChatUser(state, payload){
   return client.registerRocketChatUser(payload)
 }
+export function editUserPreferences (state, payload) {
+  console.log(payload)
+  // we need BEFORE to call the API to do the update and if ok we update wuex state
+   client.deletePreferences(payload.user_id).then(()=>{
+     payload.preferences.forEach((pref) => {
+       client.savePreferences(payload.user_id, pref) 
+     });
+   })
+}
 /* export function deleteDocument({commit}, document_type) {
 
   commit(delete_document_type, document_type.id)

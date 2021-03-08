@@ -144,6 +144,26 @@
         <q-btn class="button" color="red" unelevated no-caps rounded text-color="white" :label="$t('button.cancel')" @click="cancelPass()" />
       </div>
     </div>
+  <div v-if="users.length >0">
+<h5 class="q-pa-md header">{{$t('profile.user_pref')}}</h5>    <div class="row" v-for="user_top in users" :key="user_top.id">
+    <div style="padding-top:8px;" class="col-2">
+      <q-img style="width:24px; height:24px"  :src="user_top.icon"  />
+    </div>
+    <div class="col-8" style="text-align:left;padding-top:8px">
+      {{user_top.user_type}}
+    </div>
+    <div class="col-2" style="text-align:right">
+    <q-checkbox :disable="!edit_preferences" color="accent" v-model="preferences.filter((pref)=>{return pref.id == user_top.id})[0].active" />
+    </div>
+    </div>
+    <div v-if="!edit_preferences" class="col-8 input" >
+        <q-btn class="button" color="info" unelevated no-caps rounded text-color="white" :label="$t('button.edit')" @click="edit_preferences=!edit_preferences" />
+      </div>
+      <div v-else class="col-8 input" >
+        <q-btn class="button" color="accent" unelevated no-caps rounded text-color="white" :label="$t('button.save')" @click="editPref()" />
+        <q-btn class="button" color="red" unelevated no-caps rounded text-color="white" :label="$t('button.cancel')" @click="cancelPref()" />
+      </div>
+  </div>
   </div>
   </div>
 
@@ -185,18 +205,26 @@ export default {
     storeMappingMixin({
       getters: {
         user: 'user/users',
+        users: 'user_type/users',
       }, actions: {
         fetchSpecificUser: 'user/fetchSpecificUser',
         saveUserPic:'user/saveUserPic',
         editUserPic:'user/editUserPic',
         editUserData:'user/editUserData',
-        editUserPassword:'user/editUserPassword'
+        editUserPassword:'user/editUserPassword',
+        fetchUserType: 'user_type/fetchUserType',
+        editUserPreferences:'user/editUserPreferences'
       }
     })
 
   ],
   components:{
     ChatWidget
+  },
+  computed:{
+    check(value){
+      this.preferences.includes(value)
+    }
   },
   data () {
     return {
@@ -249,7 +277,8 @@ export default {
         gender:"Female", 
         email:"",
         picture:null, 
-        picture_id: null
+        picture_id: null,
+        user_pref:[]
       },
       the_user_orig:{
         userid:null,
@@ -263,7 +292,8 @@ export default {
         gender:"Female", 
         email:"",
         picture:null, 
-        picture_id: null
+        picture_id: null,
+        user_pref:[]
       },
       user_picture:{
         id:-1,
@@ -271,10 +301,32 @@ export default {
         tenantId:null,
         userId:null
       },
-      user_pic_orig:null
+      user_pic_orig:null, 
+      preferences: [],
+      preferences_orig: [],
+      edit_preferences:false
     }
   },
   methods: {
+    editPref(){
+      console.log("saving preferences")
+      var saving_pref = []
+      this.edit_preferences = false
+      console.log(this.preferences)
+      var temp_pref = this.preferences.filter((pref)=>{
+        return pref.active == true
+      })
+      temp_pref.forEach((tmp)=>{
+        saving_pref.push({idUserType:tmp.id})
+      })
+      this.editUserPreferences({user_id:this.$store.state.auth.user.umid, preferences:saving_pref})
+      this.preferences_orig = JSON.parse(JSON.stringify(this.preferences))
+    },
+    cancelPref(){
+      console.log("reverting preferences")
+      this.preferences = JSON.parse(JSON.stringify(this.preferences_orig))
+      this.edit_preferences = false
+    },
     cancelPass(){
       this.change_pass = false
       this.password.old_password=null
@@ -435,9 +487,28 @@ export default {
         this.the_user.picture= null
       }
       this.the_user_orig=JSON.parse(JSON.stringify( this.the_user ))
-      this.loading=false
       console.log("after loading")
+      if(user.userPreferences){
+        this.the_user.user_pref = user.userPreferences
+      }
       console.log(this.the_user)
+      
+      this.fetchUserType({ defaultLang: this.$defaultLang, userLang: this.$userLang }).then((types)=>{
+        types.forEach((typ)=>{
+          this.preferences.push({id:typ.id, active:false})
+        })
+        if(this.the_user.user_pref.length>0){
+                  this.the_user.user_pref.forEach((pref)=>{
+          this.preferences.forEach((userprf)=>{
+            if(userprf.id == pref.idUserType){
+              userprf.active = true
+            }
+          })
+      })
+        }
+      this.preferences_orig = JSON.parse(JSON.stringify(this.preferences))
+      this.loading=false
+      })
     })
   }
 }

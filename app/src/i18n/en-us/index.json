@@ -85,7 +85,8 @@
     "mail":"Email",
     "old_pass":"Old Password",
     "new_pass":"New Password",
-    "confirm_pass":"Confirm password"
+    "confirm_pass":"Confirm password",
+    "user_pref":"User Preferences"
   },
   "filters": {
     "title": "Filter by",

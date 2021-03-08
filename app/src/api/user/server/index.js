@@ -11,7 +11,7 @@ export default {
   },
   fetchSpecificUser (id) {
     return axiosInstance
-      .get(`/backend/1.0.0/users/${id}?filter[include][0][relation]=attributes&filter[include][1][relation]=interventionPlans&filter[include][2][relation]=tenant&filter[include][3][relation]=userPicture`)
+      .get(`/backend/1.0.0/users/${id}?filter[include][0][relation]=attributes&filter[include][1][relation]=interventionPlans&filter[include][2][relation]=tenant&filter[include][3][relation]=userPicture&filter[include][4][relation]=userPreferences`)
       .then((response) => response.data)
       .catch(error_handler)
   },
@@ -45,6 +45,18 @@ export default {
       .post('/backend/1.0.0/create-rocketchat-user?payload=' + payload)
       .then(response => { return response.data })
       .catch(error_handler);
-  }
+  },
+  deletePreferences(user_id) {
+    return axiosInstance
+      .delete('/backend/1.0.0/users/' + user_id + '/user-preferences')
+      .then(response => response.data)
+      .catch(error_handler);
+  },
+  savePreferences(user_id, payload) {
+    return axiosInstance
+      .post('/backend/1.0.0/users/' + user_id + '/user-preferences', payload)
+      .then(response => response.data)
+      .catch(error_handler);
+  },
 }
 
