@@ -103,6 +103,7 @@ export default {
                 console.error(error)
               })
               */
+            this.$router.push({name: 'home'})
     }
   }
 }

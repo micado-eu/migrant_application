@@ -21,7 +21,7 @@
             :key="message.id"
             :name="message.user"
             :text="[message.message]"
-            :sent="message.user =='rasa_bot'"
+            :sent="message.user == $envconfig.bot_name"
             />
               
             </q-scroll-area>
@@ -103,6 +103,8 @@ export default {
      mounted() {
       //api = rcApi.connectToRocketChat (this.webSocketUrl)
         console.log(this.$rcClient)
+        console.log("I AM CHATBOT NAME")
+        console.log(this.$envconfig.bot_name)
       api=this.$rcClient
       api.onError (error => this.errors.push (error))
       api.onCompletion (() => {
@@ -125,7 +127,26 @@ export default {
               if(message.result.messages && message.result.messages.length >0){
               console.log("In loading history")
               message.result.messages.reverse().forEach((message)=>{
-                this.messages.push({message:message.msg, user:message.u.username, id:message._updatedAt.$date})
+                if(message.u.username != this.$envconfig.bot_name){
+                  console.log("inside user msg")
+                  console.log(message.u.username)
+                  console.log(message.msg)
+                  try {
+                  console.log("IN TRY")
+                  var true_msg = JSON.parse(message.msg)
+                  console.log(true_msg)
+                  this.messages.push({message:true_msg.message, user:message.u.username, id:message._updatedAt.$date})
+                  console.log("AFT PUSH IN TRY")                  
+                  }
+                  catch(err) {
+                    console.log("IN CATCH")
+                    this.messages.push({message:message.msg, user:message.u.username, id:message._updatedAt.$date})                  
+                    }
+
+                }
+                else{
+                  this.messages.push({message:message.msg, user:message.u.username, id:message._updatedAt.$date})
+                }
               })
               }
           }
@@ -134,7 +155,15 @@ export default {
   
         }
         else{
-            this.messages.push ({message:message.fields.args[0].msg, user:message.fields.args[0].u.username, id:message.fields.args[0]._updatedAt.$date})
+          if(message.fields.args[0].u.username != this.$envconfig.bot_name){
+          console.log("inside user msg")
+            var true_msg = JSON.parse(message.fields.args[0].msg)
+            this.messages.push ({message:true_msg.message, user:message.fields.args[0].u.username, id:message.fields.args[0]._updatedAt.$date})
+          }
+          else{
+          console.log("inside chatbot msg")
+          this.messages.push ({message:message.fields.args[0].msg, user:message.fields.args[0].u.username, id:message.fields.args[0]._updatedAt.$date})
+          }
         }  
           }
       })
@@ -283,7 +312,7 @@ export default {
           "msg": "method",
           "method": "createDirectMessage",
           "id": '' + new Date ().getTime (),
-          "params": ["rasa_bot"]
+          "params": [this.$envconfig.bot_name]
           })
       },
       sendMessages() {
@@ -296,7 +325,7 @@ export default {
             {
               "_id": '' + new Date ().getTime (),
               "rid": this.roomId,
-              "msg": {lang: this.$userLang, message:this.question}
+              "msg": JSON.stringify({lang: this.$userLang, message:this.question})
             }
           ]
         })
