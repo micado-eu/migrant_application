@@ -9,19 +9,19 @@ export function eventElemById(state) {
   return getterFunc
 }
 
-export const show_events = (state) => (index) => {
+export const show_events = (state) => (index, idsToFilter) => {
   // it's an example
   if(index != null){
     return state.events.filter((ev)=>{
       if(ev.topics){
-        return ev.topics.includes(index)
+        return ev.topics.includes(index) && (idsToFilter.length === 0 || idsToFilter.includes(ev.id))
       }
       
     })
   }
   else{
     return state.events.filter((ev)=>{
-        return ev.topics == null
+        return ev.topics == null && (idsToFilter.length === 0 || idsToFilter.includes(ev.id))
     })
   }
 

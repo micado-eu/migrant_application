@@ -24,12 +24,12 @@ export function processes(state) {
   export function nodePanelVisible(state) {
     return state.nodePanelVisible
   }
-  export const show_flows = (state) => (index) => {
+  export const show_flows = (state) => (index, idsToFilter) => {
     // it's an example
     if(index != null){
       return state.flows.filter((flow)=>{
         if(flow.topics){
-          return flow.topics.includes(index)
+          return flow.topics.includes(index) && (idsToFilter.length === 0 || idsToFilter.includes(flow.id))
         }
         
       })
@@ -38,7 +38,7 @@ export function processes(state) {
       console.log("IN FLOWS GETETER NEWWFHJW")
 
       return state.flows.filter((flow)=>{
-          return flow.topics == null
+          return flow.topics == null && (idsToFilter.length === 0 || idsToFilter.includes(flow.id))
       })
     }
 

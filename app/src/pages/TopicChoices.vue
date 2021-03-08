@@ -132,13 +132,29 @@ export default {
       return this.$store.getters['topic/show_topics'](this.index)
     },
     to_show_flows(){
-      return this.$store.getters['flows/show_flows'](this.index).filter((e) => this.filterBySearch(e, "processes"))
+      return this.$store.getters['flows/show_flows'](this.index, this.getSearchIds["processes"])
     },
     to_show_events(){
-      return this.$store.getters['event/show_events'](this.index).filter((e) => this.filterBySearch(e, "events"))
+      return this.$store.getters['event/show_events'](this.index, this.getSearchIds["events"])
     },
     to_show_info(){
-      return this.$store.getters['information/show_info'](this.index).filter((e) => this.filterBySearch(e, "information"))
+      return this.$store.getters['information/show_info'](this.index, this.getSearchIds["information"])
+    },
+    getSearchIds() {
+      if (this.searchResults) {
+        // Return arrays of the ids of the elements found in the search for each entity
+        return {
+          "processes": this.searchResults["processes"].map((result) => result.id),
+          "events": this.searchResults["events"].map((result) => result.id),
+          "information": this.searchResults["information"].map((result) => result.id)
+        }
+      } else {
+        return {
+          "processes": [],
+          "events": [],
+          "information": []
+        }
+      }
     }
   },
 
@@ -159,6 +175,7 @@ export default {
     navigation(id){
       console.log(this.$route)
       this.index = id
+      this.search = ""
       var idx = this.crumbs.findIndex((item)=> item.id == id)
       console.log(idx)
       this.crumbs.length = idx + 1
@@ -182,6 +199,7 @@ export default {
       var link = window.location.href 
       this.crumbs.push({id:topic.id,name:topic.topic})
       this.index = topic.id
+      this.search = ""
       this.$router.push({
         name: 'crumbs',
       params: {
@@ -189,9 +207,6 @@ export default {
     }
 });
 this.$forceUpdate();
-    },
-    filterBySearch(element, key) {
-      return this.searchResults ? this.searchResults[key].filter((result) => result.id === element.id).length > 0 : true
     }
   },
   components: {

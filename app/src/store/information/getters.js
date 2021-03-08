@@ -8,19 +8,19 @@ export function informationElemById(state) {
   }
   return getterFunc
 }
-export const show_info = (state) => (index) => {
+export const show_info = (state) => (index, idsToFilter) => {
   // it's an example
   if(index != null){
     return state.information.filter((info)=>{
       if(info.topics){
-        return info.topics.includes(index)
+        return info.topics.includes(index) && (idsToFilter.length === 0 || idsToFilter.includes(info.id))
       }
       
     })
   }
   else{
     return state.information.filter((info)=>{
-        return info.topics == null
+        return info.topics == null && (idsToFilter.length === 0 || idsToFilter.includes(info.id))
     })
   }
 
