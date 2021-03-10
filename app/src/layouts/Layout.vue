@@ -375,6 +375,7 @@ export default {
                 console.log(
                     'User consent for service ' + service.name + ': consent=' + consent
                 );
+                console.log(this)
                 // To be used in conjunction with Matomo 'requireCookieConsent' Feature, Matomo 3.14.0 or newer
                 // For further Information see https://matomo.org/faq/new-to-piwik/how-can-i-still-track-a-visitor-without-cookies-even-if-they-decline-the-cookie-consent/
                 /*
@@ -449,6 +450,11 @@ export default {
             required: true,
         },
     ],
+    callback: function(consent, service) {
+        console.log(
+            'User consent at GLOBAL for service ' + service.name + ': consent=' + consent
+        );
+    },
 },
       navs: [
        /* 
@@ -540,7 +546,19 @@ export default {
     console.log(this)
     console.log("KLARO!!!!!!!!!!!!!!!!!!!!!!!!!")
     console.log(klaro)
-    klaro.show()
+    this.manager = klaro.getManager(this.klaro_config)
+    this.manager.watch({
+  update: function(manager, eventType, data){
+     console.log("THE WATHC")
+     console.log(manager)
+     console.log(eventType)
+     console.log(data)
+     if (eventType === 'saveConsents'){
+       console.log("HERE WE SAVE THE CONSENTS IN THE DB")
+     }
+  }
+})
+ //
     /*let externalScript = document.createElement('script')
     let scriptContent = "(function (w, d, s, u) { w.RocketChat = function (c) { w.RocketChat._.push(c) }; w.RocketChat._ = []; w.RocketChat.url = u;      var h = d.getElementsByTagName(s)[0], j = d.createElement(s);      j.async = true; j.src = 'https://"+this.$envconfig.chatServer+"/livechat/rocketchat-livechat.min.js?_=201903270000';      h.parentNode.insertBefore(j, h);      w.RocketChat(function () {        this.initialize({          department: 'micado',          agent: 'rasa_bot'        })      })    })(window, document, 'script', 'https://"+this.$envconfig.chatServer+"/livechat');"
  //   externalScript.setAttribute('type', 'text/javascript')
