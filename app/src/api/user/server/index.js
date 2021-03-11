@@ -58,5 +58,15 @@ export default {
       .then(response => response.data)
       .catch(error_handler);
   },
+  saveConsent(user_id, payload) {
+    console.log("saveconsent API")
+    console.log(user_id)
+    console.log(payload)
+    let body = {consent:payload}
+    return axiosInstance
+      .post('/backend/1.0.0/users/' + user_id + '/user-consent', body)
+      .then(response => response.data)
+      .catch(error_handler);
+  },
 }
 
