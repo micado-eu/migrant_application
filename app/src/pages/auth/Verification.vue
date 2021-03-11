@@ -34,6 +34,7 @@ export default {
   ],
   mounted () {
     this.verifyUser()
+    console.log(window.location.href )
     this.register()
   },
   methods: {

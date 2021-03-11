@@ -37,19 +37,8 @@
       </q-img>
     </div>
   <div>
-
-      <ListItem v-for="process in to_show_flows"
-            style="display:inline-block"
-            :key="process.id"
-            :Title="process.process"
-            :Link="process.id"
-            :id="process.id"
-            :item="process"
-            @flow="enitityDetails($event)"
-            :type="'flow'"
-            />
-    
-           <ListItem v-for="element in to_show_info"
+<div v-if="to_show_flows_personal.length>0 || to_show_info_personal.length>0">Based on user preferences</div>
+      <ListItem v-for="element in to_show_info_personal"
             style="display:inline-block"
             :key="element.id"
             :Title="element.title"
@@ -58,11 +47,52 @@
             :item="element"
             :type="'info'"
             @info="enitityDetails($event)"
+            :icon="'img:statics/icons/Icon - Information Centre (selected).svg'"
             />
+
+      <ListItem v-for="process in to_show_flows_personal"
+            style="display:inline-block"
+            :key="process.id"
+            :Title="process.process"
+            :Link="process.id"
+            :id="process.id"
+            :item="process"
+            @flow="enitityDetails($event)"
+            :type="'flow'"
+            :icon="'img:statics/icons/Icon - Integration step-bystep (selected).svg'"
+            />
+    
+ 
      
   
     
-      <ListItem v-for="element in to_show_events"
+     
+<div v-if="to_show_flows_general.length>0 || to_show_info_general.length>0">General</div>
+          <ListItem v-for="element in to_show_info_general"
+            style="display:inline-block"
+            :key="element.id"
+            :Title="element.title"
+            :Link="element.id"
+            :id="element.id"
+            :item="element"
+            :type="'info'"
+            @info="enitityDetails($event)"
+            :icon="'img:statics/icons/Icon - Information Centre (selected).svg'"
+            />
+
+          <ListItem v-for="process in to_show_flows_general"
+            style="display:inline-block"
+            :key="process.id"
+            :Title="process.process"
+            :Link="process.id"
+            :id="process.id"
+            :item="process"
+            @flow="enitityDetails($event)"
+            :type="'flow'"
+            :icon="'img:statics/icons/Icon - Integration step-bystep (selected).svg'"
+            />
+
+            <ListItem v-for="element in to_show_events"
             style="display:inline-block"
             :key="element.id"
             :Title="element.title"
@@ -71,6 +101,7 @@
             :item="element"
             :type="'event'"
             @event="enitityDetails($event)"
+            :icon="'img:statics/icons/Icon - Events (selected).svg'"
             />
       
   
@@ -96,6 +127,7 @@ export default {
       processes: 'flows/processes',
       topics: 'topic/topics',
       users: 'user_type/users',
+      logged_user:'user/users',
       information:'information/information',
       informationCategories:'information_category/informationCategories',
       events:'event/events',
@@ -131,14 +163,20 @@ export default {
     to_show(){
       return this.$store.getters['topic/show_topics'](this.index)
     },
-    to_show_flows(){
-      return this.$store.getters['flows/show_flows'](this.index, this.getSearchIds["processes"])
+    to_show_flows_personal(){
+      return this.$store.getters['flows/show_flows_personal'](this.index, this.getSearchIds["processes"], this.logged_user.userPreferences)
+    },
+    to_show_flows_general(){
+      return this.$store.getters['flows/show_flows_general'](this.index, this.getSearchIds["processes"], this.logged_user.userPreferences)
     },
     to_show_events(){
       return this.$store.getters['event/show_events'](this.index, this.getSearchIds["events"])
     },
-    to_show_info(){
-      return this.$store.getters['information/show_info'](this.index, this.getSearchIds["information"])
+    to_show_info_personal(){
+      return this.$store.getters['information/show_info_personal'](this.index, this.getSearchIds["information"],this.logged_user.userPreferences)
+    },
+       to_show_info_general(){
+      return this.$store.getters['information/show_info_general'](this.index, this.getSearchIds["information"],this.logged_user.userPreferences)
     },
     getSearchIds() {
       if (this.searchResults) {
@@ -155,7 +193,9 @@ export default {
           "information": []
         }
       }
-    }
+    },
+
+
   },
 
   methods:{
@@ -235,6 +275,7 @@ this.$forceUpdate();
       .then(() => this.fetchTopic(langs))
       .then(() => this.fetchUserType(langs))
       .then(() => {
+        console.log("INFOOO")
         console.log(this.information)
         this.elements = JSON.parse(JSON.stringify(this.information)) // Create copy of array
         for (let i = 0; i < this.information.length; i++) {
@@ -305,7 +346,10 @@ this.$forceUpdate();
   this.crumbs = parsed_var
   this.index = parsed_var[(parsed_var.length - 1)].id
   console.log(this.index)
-    }
+  
+  
+  }
+  
 
 }
 </script>

@@ -1,8 +1,11 @@
 <template>
 <div :class="row">
   <div :class="title_col">
-       {{ this.Title }} 
+    <q-icon size="sm" v-if="this.icon" :name="this.icon" />
+     {{ this.Title }} 
   </div>
+      
+  
   <div :class="icon_col" :style="icon_style" >
     <q-icon @click.stop="readClick(text)" :id="this.text" name="img:statics/icons/Icon-Auto_Read_(selected).svg" size="xsm"  />
   </div>
@@ -16,7 +19,7 @@ export default {
     return {
     }
   },
-  props: ["Title", "text", 'row', 'title_col', 'icon_col', 'icon_style'],
+  props: ["Title", "text", 'row', 'title_col', 'icon_col', 'icon_style', 'icon_class', 'icon'],
   methods: {
    readClick(value) {
      var voice= ""

@@ -15,6 +15,7 @@
       class="row"
       v-else
     >
+
       <div class="col-12">
         <q-item
           class="item-2"
@@ -29,6 +30,7 @@
               >
                 <TalkingLabel
                 style="width:100%"
+                  :icon="this.icon"
                   :Title="this.Title"
                   :text="this.Title"
                   :row="'row'"
@@ -54,7 +56,7 @@ import storeMappingMixin from '../mixin/storeMappingMixin'
 
 export default {
   name: 'Process',
-  props: ["Title", "Topics", "Users", "Link", "Path", "item", "Rating", 'type'],
+  props: ["Title", "Topics", "Users", "Link", "Path", "item", "Rating", 'type','icon'],
   mixins: [
     storeMappingMixin({
       getters: {

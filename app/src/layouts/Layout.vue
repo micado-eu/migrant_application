@@ -278,16 +278,14 @@ export default {
 </script>
 
 <style>
-@media screen and (min-width: 768px) {
-  .q-footer {
-    display: none;
-  }
+/*@media screen and (min-width: 768px) {
+
 
   .my-menu-link {
     color: white;
     background: #0b91ce;
   }
-}
+}*/
 .cookie-notice{
   z-index: 2000 !important;
 }
