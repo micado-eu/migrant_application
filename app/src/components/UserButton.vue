@@ -36,6 +36,15 @@
       </q-item>
       <q-item
         v-if="this.$auth.loggedIn()"
+        clickable
+        data-cy="personal_area"
+      >
+        <q-item-section>{{$t('desc_labels.personal')}}</q-item-section>
+      </q-item>
+      <q-item
+        v-if="this.$auth.loggedIn()"
+        @click="toSettings()"
+        clickable
         data-cy="settings"
       >
         <q-item-section>{{$t('desc_labels.settings')}}</q-item-section>
@@ -88,6 +97,10 @@ export default {
     toLogout () {
       console.log("LOGGING OUT")
       this.$auth.logout()
+    },
+    toSettings () {
+      //console.log("LOGGING OUT")
+      this.$router.push({ name: 'settings' })
     }
   },
    created () {

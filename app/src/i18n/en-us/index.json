@@ -70,7 +70,8 @@
     "send_doc": "Please choose an email adress",
     "guided_processes":"Integration step-by-step",
     "plan_progress":"Plan Progress",
-    "integration_plan":"My Integration Plan"
+    "integration_plan":"My Integration Plan",
+    "personal":"Personal area"
   },
   "profile": {
     "change_pic": "Change picture",
