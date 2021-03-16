@@ -151,6 +151,15 @@ export default {
   data () {
     var surveyJSON = {"pages":[{"name":"page1","elements":[{"type":"checkbox","name":"question1","title":"How did you know about MICADO","choices":[{"value":"item1","text":"told by a friend"},{"value":"item2","text":"proposed by PA"},{"value":"item3","text":"found in internet"}]},{"type":"rating","name":"question2","title":"How do you rate the MICADO application"},{"type":"matrix","name":"question3","title":"Please state your opinion","columns":["Agree","Not know","Disagree"],"rows":["I understood better the things to do to get my documents","I found useful information"]}],"title":"Micado questionnaire"}]}
         var model = new SurveyVue.Model(surveyJSON)
+        console.log("SURVEY")
+        console.log(model)
+        model
+    .onComplete
+    .add(function (result) {
+      console.log("result of SURVEY")
+        console.log(result)
+        console.log(result.data)
+    });
     return {
       leftDrawerOpen: false,
       klaro_config: klaroconfig,
