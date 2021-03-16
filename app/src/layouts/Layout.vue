@@ -18,6 +18,7 @@
         <LanguageSelector data-cy="language_selector_button"></LanguageSelector>
         <UserButton />
         <FeedbackButton />
+            <q-btn label="Alert" color="primary" @click="alert = true" />
         <q-btn color="white" round     @click="consent()"
 >
     <q-avatar
@@ -90,6 +91,20 @@
         </div>
       </q-list>
     </q-drawer>-->
+    <q-dialog v-model="alert">
+      <q-card>
+        <q-card-section>
+          <div class="text-h6">Alert</div>
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+<div id="surveyContainer"><survey :survey="survey"></survey></div>        </q-card-section>
+
+        <q-card-actions align="right">
+          <q-btn flat label="OK" color="primary" v-close-popup />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
     <q-page-container>
       <q-page-sticky v-if="this.$auth.loggedIn()" class="z-top">
       <ChatWidget />
@@ -110,6 +125,7 @@ import * as klaro from 'klaro'
 import client from 'api-user-client'
 import storeMappingMixin from '../mixin/storeMappingMixin'
 import klaroconfig from '../configs/klaro.json'
+import * as SurveyVue from 'survey-vue'
 
 export default {
   name: "Layout",
@@ -119,6 +135,7 @@ export default {
     //ListenToggle, 
     LanguageSelector,
     FeedbackButton,
+    SurveyVue,
     ChatWidget
   },
   mixins: [
@@ -132,10 +149,14 @@ export default {
 
   ],
   data () {
+    var surveyJSON = {"pages":[{"name":"page1","elements":[{"type":"checkbox","name":"question1","title":"How did you know about MICADO","choices":[{"value":"item1","text":"told by a friend"},{"value":"item2","text":"proposed by PA"},{"value":"item3","text":"found in internet"}]},{"type":"rating","name":"question2","title":"How do you rate the MICADO application"},{"type":"matrix","name":"question3","title":"Please state your opinion","columns":["Agree","Not know","Disagree"],"rows":["I understood better the things to do to get my documents","I found useful information"]}],"title":"Micado questionnaire"}]}
+        var model = new SurveyVue.Model(surveyJSON)
     return {
       leftDrawerOpen: false,
       klaro_config: klaroconfig,
       manager: null,
+            alert: false,
+                    survey: model,
       navs: [
        /* 
         {
