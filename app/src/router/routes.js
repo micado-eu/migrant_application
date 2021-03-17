@@ -49,6 +49,7 @@ const routes = [
       { path: '/settings', name:'settings', component: () => import('pages/ProfileSettings.vue'), meta: { auth: true } },
       { path: '/certificates', component: () => import('pages/Certificates.vue'), props: true, name: 'certificates' },
       { path: '/map', component: () => import('components/Map.vue')},
+      { path: '/privacy', component: () => import('pages/Privacy.vue')},
       { path: '/glossary/:id?', component: () => import('pages/Glossary.vue')  },
       { path: '/documents/edit/:thedocid', component: () => import('components/AddDocument.vue'), props: (route) => ({ ...route.params }), name: 'editdocument', meta: { auth: true } },
       { path: '/decision',  component: () => import('pages/DecisionTreePage.vue')},

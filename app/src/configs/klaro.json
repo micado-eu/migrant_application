@@ -24,7 +24,7 @@
    "lang":"en",
    "translations":{
       "zz":{
-         "privacyPolicyUrl":"/#privacy"
+         "privacyPolicyUrl":"/privacy"
       },
       "de":{
          "privacyPolicyUrl":"/#datenschutz",
