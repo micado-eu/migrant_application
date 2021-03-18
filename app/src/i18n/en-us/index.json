@@ -1,6 +1,17 @@
 {
   "application_title": "MICADO app",
   "privacy": "Privacy policy",
+  "consent": {
+    "title": "MICADO Consent management",
+    "consentModal_description": "Here you can see and customize the information that we collect about you. Entries marked as \"Example\" are just for demonstration purposes and are not really used on this website.",
+    "usageTracker": "Collection of statistical usage",
+    "usageTracker_title": "MICADO statistics",
+    "chat": "Chat widget",
+    "chat_title": "MICADO bot",
+    "analytics": "Analytics",
+    "livechat": "Livechat",
+    "CSOs": "CSO's partecipating to MICADO ecosystem"
+  },
   "menu": {
     "title": "My Tools",
     "home": "Home",
@@ -26,7 +37,7 @@
     "events_desc": "Integration events"
   },
   "button": {
-    "change_pass":"Change Password",
+    "change_pass": "Change Password",
     "add_document": "Add Document",
     "save": "Save",
     "remove": "Remove",
@@ -37,11 +48,10 @@
     "view_model": "View model",
     "cancel": "Cancel",
     "send": "Send",
-    "validation_pending":"Validation pending",
-    "validated":"Validated",
-    "edit":"Edit",
-    "procedure":"Go to procedure"
-
+    "validation_pending": "Validation pending",
+    "validated": "Validated",
+    "edit": "Edit",
+    "procedure": "Go to procedure"
   },
   "input_labels": {
     "doc_type": "Document Type",
@@ -69,10 +79,10 @@
     "privacy_settings": "Privacy Settings",
     "comments": "Comments",
     "send_doc": "Please choose an email adress",
-    "guided_processes":"Integration step-by-step",
-    "plan_progress":"Plan Progress",
-    "integration_plan":"My Integration Plan",
-    "personal":"Personal area"
+    "guided_processes": "Integration step-by-step",
+    "plan_progress": "Plan Progress",
+    "integration_plan": "My Integration Plan",
+    "personal": "Personal area"
   },
   "profile": {
     "change_pic": "Change picture",
@@ -83,12 +93,12 @@
     "dob": "Date of Birth",
     "gender": "Gender",
     "personal_profile": "Personal Profile",
-    "phone_number":"Phone Number",
-    "mail":"Email",
-    "old_pass":"Old Password",
-    "new_pass":"New Password",
-    "confirm_pass":"Confirm password",
-    "user_pref":"User Preferences"
+    "phone_number": "Phone Number",
+    "mail": "Email",
+    "old_pass": "Old Password",
+    "new_pass": "New Password",
+    "confirm_pass": "Confirm password",
+    "user_pref": "User Preferences"
   },
   "filters": {
     "title": "Filter by",
@@ -103,7 +113,7 @@
     "category": "Category",
     "missing_content": "There is no information",
     "topics": "Topics",
-    "user_types":"User types",
+    "user_types": "User types",
     "organizer": "Organizer/Created by"
   },
   "tasks": {
@@ -121,7 +131,7 @@
     "location": "Location",
     "organizer": "Organizer",
     "topics": "Topics",
-    "user_types":"User types"
+    "user_types": "User types"
   },
   "glossary": {
     "missing_content": "There are no common words"
@@ -129,11 +139,11 @@
   "date_selector": {
     "close": "Close"
   },
-  "feedback":{
-    "mail":"Your feedback will be sent to",
-    "url":"Your feedback will be about the page found at",
-    "feedback":"Write your feedback in the textbox below",
-    "send":"Send feedback"
+  "feedback": {
+    "mail": "Your feedback will be sent to",
+    "url": "Your feedback will be about the page found at",
+    "feedback": "Write your feedback in the textbox below",
+    "send": "Send feedback"
   },
   "internal_reference": {
     "more_info_1": "More information for",

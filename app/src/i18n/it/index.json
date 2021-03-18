@@ -1,5 +1,10 @@
 {
   "application_title": "MICADO app",
+  "privacy": "Privacy policy",
+  "consent": {
+    "title": "MICADO gestione del consenso",
+    "other": ""
+  },
   "menu": {
     "title": "I miei strumenti",
     "home": "Homepage",
@@ -35,9 +40,8 @@
     "view_model": "Mostra modello",
     "cancel": "Cancella",
     "send": "Invia",
-    "validation_pending":"Validazione in corso",
-    "validated":"Validato"
-
+    "validation_pending": "Validazione in corso",
+    "validated": "Validato"
   },
   "input_labels": {
     "doc_type": "Tipo di documento",
@@ -65,9 +69,9 @@
     "privacy_settings": "Impostazioni Privacy",
     "comments": "Commenti",
     "send_doc": "Si prega di scegliere un indirizzo email",
-    "guided_processes":"Integrazione passo passo",
-    "plan_progress":"Progresso del piani",
-    "integration_plan":"I miei piani d'integrazione"
+    "guided_processes": "Integrazione passo passo",
+    "plan_progress": "Progresso del piani",
+    "integration_plan": "I miei piani d'integrazione"
   },
   "profile": {
     "change_pic": "Cambia immagine",

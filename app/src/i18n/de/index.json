@@ -1,4 +1,9 @@
 {
+  "privacy": "Privacy policy",
+  "consent": {
+    "title": "MICADO Zustimmungsmanagement",
+    "other": ""
+  },
   "menu": {
     "title": "I miei strumenti",
     "services": "Verfügbare Dienste",
@@ -9,6 +14,6 @@
     "search": "Suche",
     "speech": "Sprechen",
     "settings": "Einstellungen",
-    "language":"de-DE"
+    "language": "de-DE"
   }
 }

@@ -5,7 +5,7 @@
       class="bg-accent"
     >
       <q-toolbar>
-       <!-- <q-btn
+        <!-- <q-btn
           flat
           dense
           round
@@ -18,24 +18,32 @@
         <LanguageSelector data-cy="language_selector_button"></LanguageSelector>
         <UserButton />
         <FeedbackButton />
-            <q-btn label="Alert" color="primary" @click="alert = true" />
-        <q-btn color="white" round     @click="consent()"
->
-    <q-avatar
-      size="42px"
-      data-cy="userButton"
-    >
-      <q-icon
-        color="black" name="history_edu"
-      />
-    </q-avatar>
-</q-btn>
+        <q-btn
+          label="Alert"
+          color="primary"
+          @click="alert = true"
+        />
+        <q-btn
+          color="white"
+          round
+          @click="consent()"
+        >
+          <q-avatar
+            size="42px"
+            data-cy="userButton"
+          >
+            <q-icon
+              color="black"
+              name="history_edu"
+            />
+          </q-avatar>
+        </q-btn>
         <!-- <ListenToggle /> -->
 
       </q-toolbar>
     </q-header>
 
-     <q-footer class="bg-info text-white">
+    <q-footer class="bg-info text-white">
       <q-tabs>
         <q-route-tab
           v-for="(nav) in navs"
@@ -47,7 +55,7 @@
       </q-tabs>
     </q-footer>
 
-  <!--  <q-drawer
+    <!--  <q-drawer
       v-model="leftDrawerOpen"
       show-if-above
       :breakpoint="767"
@@ -98,16 +106,27 @@
         </q-card-section>
 
         <q-card-section class="q-pt-none">
-<div id="surveyContainer"><survey :survey="survey"></survey></div>        </q-card-section>
+          <div id="surveyContainer">
+            <survey :survey="survey"></survey>
+          </div>
+        </q-card-section>
 
         <q-card-actions align="right">
-          <q-btn flat label="OK" color="primary" v-close-popup />
+          <q-btn
+            flat
+            label="OK"
+            color="primary"
+            v-close-popup
+          />
         </q-card-actions>
       </q-card>
     </q-dialog>
     <q-page-container>
-      <q-page-sticky v-if="this.$auth.loggedIn()" class="z-top">
-      <ChatWidget />
+      <q-page-sticky
+        v-if="this.$auth.loggedIn()"
+        class="z-top"
+      >
+        <ChatWidget />
       </q-page-sticky>
       <router-view />
     </q-page-container>
@@ -142,6 +161,7 @@ export default {
     storeMappingMixin({
       getters: {
         user: 'auth/user',
+        languages: 'language/activeLanguages'
       }, actions: {
         registerRocketchatUser: 'user/registerRocketChatUser'
       }
@@ -149,49 +169,49 @@ export default {
 
   ],
   data () {
-    var surveyJSON = {"pages":[{"name":"page1","elements":[{"type":"checkbox","name":"question1","title":"How did you know about MICADO","choices":[{"value":"item1","text":"told by a friend"},{"value":"item2","text":"proposed by PA"},{"value":"item3","text":"found in internet"}]},{"type":"rating","name":"question2","title":"How do you rate the MICADO application"},{"type":"matrix","name":"question3","title":"Please state your opinion","columns":["Agree","Not know","Disagree"],"rows":["I understood better the things to do to get my documents","I found useful information"]}],"title":"Micado questionnaire"}]}
-        var model = new SurveyVue.Model(surveyJSON)
-        console.log("SURVEY")
-        console.log(model)
-        model
-    .onComplete
-    .add(function (result) {
-      console.log("result of SURVEY")
+    var surveyJSON = { "pages": [{ "name": "page1", "elements": [{ "type": "checkbox", "name": "question1", "title": "How did you know about MICADO", "choices": [{ "value": "item1", "text": "told by a friend" }, { "value": "item2", "text": "proposed by PA" }, { "value": "item3", "text": "found in internet" }] }, { "type": "rating", "name": "question2", "title": "How do you rate the MICADO application" }, { "type": "matrix", "name": "question3", "title": "Please state your opinion", "columns": ["Agree", "Not know", "Disagree"], "rows": ["I understood better the things to do to get my documents", "I found useful information"] }], "title": "Micado questionnaire" }] }
+    var model = new SurveyVue.Model(surveyJSON)
+    console.log("SURVEY")
+    console.log(model)
+    model
+      .onComplete
+      .add(function (result) {
+        console.log("result of SURVEY")
         console.log(result)
         console.log(result.data)
-    });
+      });
     return {
       leftDrawerOpen: false,
       klaro_config: klaroconfig,
       manager: null,
-            alert: false,
-                    survey: model,
+      alert: false,
+      survey: model,
       navs: [
-       /* 
-        {
-          label: "menu.processes",
-          icon: "img:statics/icons/Guided Processes (600x600) white.png",
-          to: "/processes",
-          description: "menu.processes_desc",
-          feature: "FEAT_PROCESSES",
-          visible: true
-        },
-        {
-          label: "menu.information",
-          icon: "img:statics/icons/Genreal Information (600x600) white.png",
-          to: "/information",
-          description: "menu.information_desc",
-          feature: "FEAT_INFO",
-          visible: true
-        },
-        {
-          label: "menu.events",
-          icon: "img:statics/icons/Icon - Events (45x45).png",
-          to: "/events",
-          description: "menu.events_desc",
-          feature: "FEAT_EVENTS",
-          visible: true
-        },*/
+        /* 
+         {
+           label: "menu.processes",
+           icon: "img:statics/icons/Guided Processes (600x600) white.png",
+           to: "/processes",
+           description: "menu.processes_desc",
+           feature: "FEAT_PROCESSES",
+           visible: true
+         },
+         {
+           label: "menu.information",
+           icon: "img:statics/icons/Genreal Information (600x600) white.png",
+           to: "/information",
+           description: "menu.information_desc",
+           feature: "FEAT_INFO",
+           visible: true
+         },
+         {
+           label: "menu.events",
+           icon: "img:statics/icons/Icon - Events (45x45).png",
+           to: "/events",
+           description: "menu.events_desc",
+           feature: "FEAT_EVENTS",
+           visible: true
+         },*/
         /*        {
                   label: "menu.chatbot",
                   icon: "img:statics/icons/Chatbot (600x600) white.png",
@@ -252,44 +272,71 @@ export default {
     };
   },
   watch: {
-    manager: function(manager, eventType, data){
+    manager: function (manager, eventType, data) {
       console.log("THE WATHC from vue")
       console.log(manager)
       console.log(eventType)
       console.log(data)
-      if (eventType === 'saveConsents'){
+      if (eventType === 'saveConsents') {
         console.log("HERE WE SAVE THE CONSENTS IN THE DB")
-        client.saveConsent(this.user.umid,data.consents)
+        client.saveConsent(this.user.umid, data.consents)
       }
     }
   },
-  mounted() {
+  mounted () {
     console.log("mounting layout")
     console.log(this)
     console.log("KLARO!!!!!!!!!!!!!!!!!!!!!!!!!")
     console.log(klaro)
+    console.log(this)
+    console.log(this.$t('consent.title', "de"))
+    this.languages.forEach(lang => {
+      console.log(lang.lang)
+      console.log(this.$t('consent.title', lang.lang))
+      let translation = {
+        "consentModal": {
+          "title": "<u>" + this.$t('consent.title', lang.lang) + "</u>",
+          "description": this.$t('consent.consentModal_description', lang.lang)
+        },
+        "usageTracker": {
+          "title": this.$t('consent.usageTracker_title', lang.lang),
+          "description": this.$t('consent.usageTracker', lang.lang)
+        },
+        "chat": {
+          "title": this.$t('consent.chat_title', lang.lang),
+          "description": this.$t('consent.chat', lang.lang)
+        },
+        "purposes": {
+          "analytics": this.$t('consent.analytics', lang.lang),
+          "livechat": this.$t('consent.livechat', lang.lang),
+          "CSOs": this.$t('consent.CSOs', lang.lang)
+        }
+      }
+      this.klaro_config.translations[lang.lang] = translation
+    });
+    console.log(this.klaro_config)
     this.manager = klaro.getManager(this.klaro_config)
 
     console.log(this.manager)
     console.log("KLARO!!!!!!!!!!!!!!!")
-    
+
     let uid = this.user.umid
     this.manager.watch({
-      update: function(manager, eventType, data){
+      update: function (manager, eventType, data) {
         console.log("THE WATHC")
         console.log(manager)
         console.log(eventType)
         console.log(data)
-        console.log("user ID: "+uid)
-        if (eventType === 'saveConsents'){
+        console.log("user ID: " + uid)
+        if (eventType === 'saveConsents') {
           console.log("HERE WE SAVE THE CONSENTS IN THE DB")
-          client.saveConsent(uid,JSON.stringify(data.consents))
+          client.saveConsent(uid, JSON.stringify(data.consents))
         }
       }
-      
+
     })
 
- //
+    //
     /*let externalScript = document.createElement('script')
     let scriptContent = "(function (w, d, s, u) { w.RocketChat = function (c) { w.RocketChat._.push(c) }; w.RocketChat._ = []; w.RocketChat.url = u;      var h = d.getElementsByTagName(s)[0], j = d.createElement(s);      j.async = true; j.src = 'https://"+this.$envconfig.chatServer+"/livechat/rocketchat-livechat.min.js?_=201903270000';      h.parentNode.insertBefore(j, h);      w.RocketChat(function () {        this.initialize({          department: 'micado',          agent: 'rasa_bot'        })      })    })(window, document, 'script', 'https://"+this.$envconfig.chatServer+"/livechat');"
  //   externalScript.setAttribute('type', 'text/javascript')
@@ -298,12 +345,12 @@ export default {
  //   externalScript.setAttribute('text', scriptContent)
     document.body.appendChild(externalScript)*/
   },
-    methods: {
-      consent(){
-            klaro.show(this.klaro_config)
+  methods: {
+    consent () {
+      klaro.show(this.klaro_config)
 
-      }
     }
+  }
 };
 </script>
 
@@ -316,7 +363,7 @@ export default {
     background: #0b91ce;
   }
 }*/
-.cookie-notice{
+.cookie-notice {
   z-index: 2000 !important;
 }
 body {
