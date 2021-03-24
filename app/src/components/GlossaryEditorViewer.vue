@@ -48,19 +48,21 @@
         </q-btn>
       </div>
     </div>
-    <internal-reference-dialog
-      v-if="showDialog"
-      v-model="showDialog"
-      :title="titleDialog"
-      :link="linkDialog"
-      @close="showDialog = false"
-    >
-      <glossary-editor-viewer
-        :content="descriptionDialog"
-        class="description"
-        all_fetched
-      />
-    </internal-reference-dialog>
+    <q-dialog v-model="showDialog">
+      <internal-reference-dialog
+        v-if="showDialog"
+        v-model="showDialog"
+        :title="titleDialog"
+        :link="linkDialog"
+        @close="showDialog = false"
+      >
+        <glossary-editor-viewer
+          :content="descriptionDialog"
+          class="description"
+          all_fetched
+        />
+      </internal-reference-dialog>
+    </q-dialog>
   </div>
 </template>
 
@@ -153,7 +155,7 @@ export default {
         content: ''
       })
       await this.setContent(this.content)
-      await Vue.nextTick()
+      await this.$nextTick()
       this.cacheDialog()
       if (this.readMore) {
         let el = this.$refs.editor.$el
