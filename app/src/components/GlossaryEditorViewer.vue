@@ -51,7 +51,6 @@
     <q-dialog v-model="showDialog">
       <internal-reference-dialog
         v-if="showDialog"
-        v-model="showDialog"
         :title="titleDialog"
         :link="linkDialog"
         @close="showDialog = false"
@@ -77,7 +76,6 @@ import {
 import Image from 'components/editor_plugins/Image.js'
 import InternalMention from 'components/editor_plugins/InternalMention.js'
 import markdownConverterMixin from '../mixin/markdownConverterMixin.js'
-import Vue from 'vue'
 import TalkingLabel from 'components/TalkingLabel.vue'
 import InternalReferenceDialog from './InternalReferenceDialog.vue'
 
@@ -170,11 +168,12 @@ export default {
       let currentContent = content
       if (!isHTML) {
         currentContent = this.markdownToHTML(content)
+      } else {
+        currentContent = await this.markReferences(currentContent, this.$defaultLang, this.$userLang, true)
       }
       try {
-        let markedContent = await this.markReferences(currentContent, this.$defaultLang, this.$userLang, true)
-        let newContent = markedContent
-        this.allHTMLContent = markedContent
+        let newContent = currentContent
+        this.allHTMLContent = currentContent
         this.editor.setContent(newContent)
         this.loading = false
         return newContent
