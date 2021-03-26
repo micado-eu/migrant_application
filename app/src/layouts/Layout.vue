@@ -330,7 +330,18 @@ export default {
         console.log("user ID: " + uid)
         if (eventType === 'saveConsents') {
           console.log("HERE WE SAVE THE CONSENTS IN THE DB")
-          client.saveConsent(uid, JSON.stringify(data.consents))
+          client.consentPresent(uid).then((response)=>{
+            console.log("I am counr")
+            console.log(response)
+          if( response.count == 0){
+           console.log("I'm in saving")
+            client.saveConsent(uid,JSON.stringify(data.consents))
+         }
+         else{
+            console.log("I'm in patching")
+           client.updateConsent(uid,JSON.stringify(data.consents))
+         }
+          })
         }
       }
 

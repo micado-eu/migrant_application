@@ -68,5 +68,24 @@ export default {
       .then(response => response.data)
       .catch(error_handler);
   },
+  updateConsent(user_id, payload) {
+    console.log("updateconsent API")
+    console.log(user_id)
+    console.log(payload)
+    let body = {consent:payload}
+    return axiosInstance
+      .patch('/backend/1.0.0/users/' + user_id + '/user-consent', body)
+      .then(response => response.data)
+      .catch(error_handler);
+  },
+  consentPresent(user_id){
+    const whereClause = {
+      idUser: { eq: user_id }
+    }
+    return axiosInstance
+      .get('/backend/1.0.0/user-consents/count?where=' + JSON.stringify(whereClause))
+      .then(response => response.data)
+      .catch(error_handler);
+  }
 }
 
