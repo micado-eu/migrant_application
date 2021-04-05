@@ -131,7 +131,9 @@
     "location": "Location",
     "organizer": "Organizer",
     "topics": "Topics",
-    "user_types": "User types"
+    "user_types": "User types",
+    "cost": "Cost",
+    "cost_free": "Free"
   },
   "glossary": {
     "missing_content": "There are no common words"

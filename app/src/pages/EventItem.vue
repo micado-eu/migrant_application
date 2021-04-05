@@ -28,6 +28,10 @@
         class="q-my-lg"
         v-if="item.end_date"
       />
+      <span style="font-weight: bold;">{{$t("events.cost")}}: </span><span>{{item.cost ? item.cost : $t("events.cost_free")}}</span>
+      <q-separator
+        class="q-my-lg"
+      />
       <span
         style="font-weight: bold;"
         v-if="item.location"
