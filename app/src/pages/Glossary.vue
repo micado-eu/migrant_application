@@ -69,6 +69,7 @@
                 <q-card-section>
                   <glossary-editor-viewer
                     :content="glossaryItem.description"
+                    :id="'gDesc' + glossaryItem.id"
                     all_fetched
                     class="glossary-desc"
                     :lang="lang"
@@ -161,6 +162,7 @@ export default {
       if (ref) {
         let glossaryExpansionItem = ref[0]
         glossaryExpansionItem.show()
+        document.getElementById("gDesc" + id).scrollIntoView({ block: "center", inline: "nearest" })
       }
     },
     changeQuery(id) {
@@ -203,7 +205,9 @@ export default {
         }
       }
       if (query.id !== undefined) {
-        showGlossaryTerm(query.id)
+        this.$nextTick().then(() => {
+          showGlossaryTerm(query.id)
+        })
       }
       this.filteredElementsBySearch = this.translatedGlossary;
       this.loading = false

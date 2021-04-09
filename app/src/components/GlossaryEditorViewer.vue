@@ -218,7 +218,7 @@ export default {
     },
     getMentionData(id, mentionType, elemByIdFunctions) {
       const mentionBaseURL = {
-        "g": "glossary",
+        "g": "glossary?id={id}",
         "i": "information/{id}",
         "e": "events/{id}",
         "p": "processes/{id}"
