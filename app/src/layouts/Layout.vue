@@ -15,8 +15,8 @@
         />-->
 
         <q-toolbar-title>{{ $t( "application_title") }}</q-toolbar-title>
-        <LanguageSelector data-cy="language_selector_button"></LanguageSelector>
-        <UserButton />
+        <LanguageSelector data-cy="language_selector_button" ref="language"></LanguageSelector>
+        <UserButton ref="user" />
         <FeedbackButton />
         <q-btn
           label="Alert"
@@ -29,12 +29,12 @@
           @click="consent()"
         >
           <q-avatar
-            size="42px"
+            size="30px"
             data-cy="userButton"
           >
             <q-icon
               color="black"
-              name="history_edu"
+              name="img:statics/icons/Icon - Consent Manager.svg"
             />
           </q-avatar>
         </q-btn>
@@ -45,9 +45,9 @@
 
     <q-footer class="bg-info text-white">
       <q-tabs>
-        <q-route-tab
-          v-for="(nav) in navs"
-          :to="nav.to"
+        <q-tab
+          v-for="(nav) in nav_options"
+          @click="action(nav.label)"
           :key="nav.label"
           :icon="nav.icon"
           v-feature-flipping="nav.feature"
@@ -126,7 +126,7 @@
         v-if="this.$auth.loggedIn()"
         class="z-top"
       >
-        <ChatWidget />
+        <ChatWidget ref="chatbot" />
       </q-page-sticky>
       <router-view />
     </q-page-container>
@@ -223,20 +223,30 @@ export default {
                 */
         {
           label: "menu.documents",
-          icon: "img:statics/icons/Document Wallet (600x600) white.png",
-          to: "/documents",
+          icon: "img:statics/icons/Icon - language selection.svg",
+          to: "/language",
           description: "menu.documents_desc",
           feature: "FEAT_DOCUMENTS",
+          needs_login:false,
           visible: true
         },
         {
+          label: "menu.glossary",
+          icon: "img:statics/icons/Icon - Glossary selected.svg",
+          to: "/glossary",
+          description: "menu.glossary_desc",
+          feature: "FEAT_GLOSSARY",
+          needs_login:false,
+          visible: true
+        },
+        /*{
           label: "menu.tasks",
           icon: "img:statics/icons/Task Monitor (600x600) white.png",
           to: "/tasks",
           description: "menu.tasks_desc",
           feature: "FEAT_TASKS",
           visible: true
-        },
+        },*/
         // {
         //   label: "menu.messenger",
         //   icon: "img:statics/icons/Messenger (600x600) white.png",
@@ -246,30 +256,46 @@ export default {
         // },
         {
           label: "menu.home",
-          icon: "img:statics/icons/Home (600x600) white.png",
+          icon: "img:statics/icons/Icon - Home (selected).svg",
           to: "/",
           description: "menu.home_desc",
           feature: "FEAT_DEFAULT",
+          needs_login:false,
           visible: false
         },
         {
-          label: "menu.glossary",
-          icon: "img:statics/icons/Migrant APP Icon - Glossary (45x45).png",
-          to: "/glossary",
-          description: "menu.glossary_desc",
-          feature: "FEAT_GLOSSARY",
-          visible: true
+          label: "menu.chatbot",
+          icon: "img:statics/icons/Icon - Chatbot (selcted).svg",
+          to: "/",
+          description: "menu.home_desc",
+          feature: "FEAT_DEFAULT",
+          needs_login:true,
+          visible: false
         },
+
         {
           label: "menu.settings",
-          icon: "img:statics/icons/Settings (600x600) white.png",
+          icon: "img:statics/icons/Icon - Personal page.svg",
           to: "/settings",
           description: "menu.settings_desc",
           feature: "FEAT_DEFAULT",
+          needs_login:false,
           visible: true
         }
       ]
     };
+  },
+  computed:{
+    nav_options(){
+      if(this.$auth.loggedIn()){
+        return this.navs
+      }
+      else{
+        return this.navs.filter((nav)=>{
+          return nav.needs_login == false
+        })
+      }
+    }
   },
   watch: {
     manager: function (manager, eventType, data) {
@@ -359,6 +385,39 @@ export default {
   methods: {
     consent () {
       klaro.show(this.klaro_config)
+
+    },
+    action(lab){
+      switch(lab) {
+        case "menu.documents":
+          console.log(this.$refs.language)
+          this.$refs.language.open()
+          break;
+        case "menu.glossary":
+          this.$router.push({ name: 'glossary' })
+          break;
+        case "menu.home":
+          if(window.location.pathname == "/"){
+            console.log("nothing to do ")
+          }
+          else{
+            console.log(window.location.pathname)
+            this.$router.push({ path: '/' })
+          }
+          break;
+        case "menu.chatbot":
+          this.$refs.chatbot.register()
+          break;
+        case "menu.settings":
+          if(!this.$auth.loggedIn()){
+            this.$refs.user.toLogin()
+          }
+          else{
+            this.$router.push({ name: 'settings' })
+          }
+        default:
+    // code block
+}
 
     }
   }

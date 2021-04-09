@@ -2,7 +2,7 @@
   <div class="q-pa-sm q-gutter-sm">
     <q-btn
       round
-      icon="img:statics/icons/Icon (Header) - Chatbot & feedback.svg"
+      icon="img:statics/icons/Icon - Feedback button.svg"
       color="white"
       size="15px"
       @click="layout = true"

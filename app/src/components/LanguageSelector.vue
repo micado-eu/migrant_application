@@ -1,12 +1,12 @@
 <template>
-  <div class="q-pa-sm q-gutter-sm">
+  <!--<div class="q-pa-sm q-gutter-sm">
     <q-btn
       round
       icon="img:statics/icons/Icon (Header) - language selection.svg"
       color="white"
       size="15px"
       @click="layout = true"
-    />
+    />-->
 
     <q-dialog v-model="layout">
       <q-layout
@@ -68,6 +68,9 @@ export default {
     ...mapGetters('language', ['activeLanguages']),
   },
   methods: {
+    open(){
+      this.layout = true
+    },
     getValue(language) {
       this._selectedLanguage = language.lang
       setLocale(language)

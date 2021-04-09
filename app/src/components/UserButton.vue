@@ -1,5 +1,5 @@
 <template>
-  <q-btn color="white" round>
+  <q-btn v-if="false" color="white" round>
     <q-avatar
       size="42px"
       data-cy="userButton"
