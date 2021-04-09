@@ -28,7 +28,7 @@
           </template>
         </q-input>
         <talking-label
-          :text="$t('desc_labels.search')"
+          :text="search ? search : $t('desc_labels.search')"
           class="col-shrink"
         ></talking-label>
       </div>
