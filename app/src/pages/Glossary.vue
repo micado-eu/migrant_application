@@ -12,20 +12,27 @@
       v-if="!loading"
       class="row q-pa-md"
     >
-      <q-input
-        color="accent"
-        v-model="search"
-        debounce="500"
-        filled
-        outlined
-        :label='$t("desc_labels.search")'
-        class="q-mb-md col-12"
-      >
-        <template v-slot:append>
-          <q-icon name="search" />
-        </template>
-      </q-input>
-      <q-separator class="list_separator" />
+      <div class="col-12 row flex-center q-mb-md">
+        <q-input
+          class="col-10 q-mr-md"
+          color="accent"
+          v-model="search"
+          debounce="500"
+          filled
+          outlined
+          dense
+          :label='$t("desc_labels.search")'
+        >
+          <template v-slot:append>
+            <q-icon name="search" />
+          </template>
+        </q-input>
+        <talking-label
+          :text="$t('desc_labels.search')"
+          class="col-shrink"
+        ></talking-label>
+      </div>
+      <q-separator class="list-separator" />
       <q-list
         v-show="!loading && filteredElements"
         class="col-11"
@@ -35,28 +42,43 @@
           v-bind:key="glossaryItem.id"
           :id="glossaryItem.id"
         >
+          <div
+            class="start-alphabet"
+            v-if="alphabetIds.includes(glossaryItem.id)"
+          >
+            <span class="relocated-letter">{{alphabet[alphabetIds.indexOf(glossaryItem.id)]}}</span>
+          </div>
           <q-expansion-item
             group="glossary"
-            :label="glossaryItem.title"
-            :header-style="{fontFamily: 'Nunito', fontWeight: 'bold', fontSize: '13px'}"
             :ref="glossaryItem.id"
             @show="changeQuery(glossaryItem.id)"
             expand-icon-class="text-orange"
             :data-cy="'glossaryItem' + glossaryItem.id"
           >
-            <q-card>
-              <q-card-section>
-                <glossary-editor-viewer
-                  :content="glossaryItem.description"
-                  all_fetched
-                  class="glossary-desc"
-                  :lang="lang"
-                  :data-cy="'glossaryDesc' + glossaryItem.id"
-                />
-              </q-card-section>
-            </q-card>
+            <template v-slot:header>
+              <div class="remove-padding row flex-center">
+                <talking-label
+                  :text="glossaryItem.title"
+                  class="col-shrink"
+                ></talking-label>
+                <span class="q-ml-sm expansion-header col">{{glossaryItem.title}}</span>
+              </div>
+            </template>
+            <template v-slot:default>
+              <q-card class="remove-padding">
+                <q-card-section>
+                  <glossary-editor-viewer
+                    :content="glossaryItem.description"
+                    all_fetched
+                    class="glossary-desc"
+                    :lang="lang"
+                    :data-cy="'glossaryDesc' + glossaryItem.id"
+                  />
+                </q-card-section>
+              </q-card>
+            </template>
           </q-expansion-item>
-          <q-separator class="list_separator" />
+          <q-separator class="q-mb-md" />
         </div>
       </q-list>
       <span
@@ -81,14 +103,16 @@
 </template>
 
 <script>
-import GlossaryEditorViewer from "../components/GlossaryEditorViewer"
+import GlossaryEditorViewer from "components/GlossaryEditorViewer"
+import TalkingLabel from 'components/TalkingLabel'
 import Fuse from "fuse.js";
 import { mapGetters, mapActions } from "vuex"
 
 export default {
   name: 'glossary',
   components: {
-    "glossary-editor-viewer": GlossaryEditorViewer
+    TalkingLabel,
+    GlossaryEditorViewer
   },
   data() {
     return {
@@ -196,10 +220,37 @@ $accent_list: #ff7c44;
 }
 .alphabet {
   color: $primary;
-  font-family: "Nunito";
+  font-family: Nunito;
   font-weight: bold;
 }
 .glossary-desc {
   font-size: 12px;
+}
+.start-alphabet {
+  background-color: #ededed;
+  margin-left: -15px;
+  width: 100vw;
+}
+.relocated-letter {
+  margin-left: 15px;
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 18px;
+}
+.expansion-header {
+  font-family: Nunito;
+  font-weight: bold;
+  font-size: 13px;
+}
+.remove-padding {
+  margin-left: -16px;
+}
+.list-separator {
+  width: 100vw;
+  background-color: #ff7c44;
+  margin-left: -16px;
+  margin-right: -16px;
 }
 </style>>
