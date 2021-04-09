@@ -2,7 +2,11 @@
   <q-page padding>
     <div v-if="this.loading">Loading...</div>
     <div v-else>
+      <div style="text-align:center">
+        <q-btn class="button" color="accent" unelevated no-caps rounded text-color="white" :label="$t('desc_labels.logout')" @click="logout()" />
+      </div>
     <div class="div-1">
+  <UserButton ref="user" />
   <div class="div-2" >
      <div class="div-3" >
         <img 
@@ -198,6 +202,8 @@
 import ChatWidget from 'components/ChatWidget'
 import editEntityMixin from '../mixin/editEntityMixin'
 import storeMappingMixin from '../mixin/storeMappingMixin'
+import UserButton from "components/UserButton"
+
 export default {
   // name: 'PageName',
     mixins: [
@@ -219,7 +225,7 @@ export default {
 
   ],
   components:{
-    ChatWidget
+    ChatWidget, UserButton
   },
   computed:{
     check(value){
@@ -308,6 +314,9 @@ export default {
     }
   },
   methods: {
+    logout(){
+      this.$refs.user.toLogout()
+    },
     editPref(){
       console.log("saving preferences")
       var saving_pref = []
