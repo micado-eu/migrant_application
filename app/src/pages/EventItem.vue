@@ -194,21 +194,11 @@ export default {
           this.item.users = this.idJoin(this.item.users, this.users)
         }
         const startDate = new Date(this.item.start_date)
-        this.item.start_date = `${startDate.getUTCFullYear()}-` +
-          `${startDate.getUTCMonth() + 1}-` +
-          `${startDate.getUTCDate()} ` +
-          `${startDate.getUTCHours().toLocaleString(undefined, { minimumIntegerDigits: 2 })}:` +
-          `${startDate.getUTCMinutes().toLocaleString(undefined, { minimumIntegerDigits: 2 })}`
+        this.item.start_date = startDate.toLocaleString(this.$userLang)
         const finishDate = new Date(this.item.end_date)
-        this.item.end_date = `${finishDate.getUTCFullYear()}-` +
-          `${finishDate.getUTCMonth() + 1}-` +
-          `${finishDate.getUTCDate()} ` +
-          `${finishDate.getUTCHours().toLocaleString(undefined, { minimumIntegerDigits: 2 })}:` +
-          `${finishDate.getUTCMinutes().toLocaleString(undefined, { minimumIntegerDigits: 2 })}`
+        this.item.end_date = finishDate.toLocaleString(this.$userLang)
         if (this.item.creator) {
           this.item.creator = await this.fetchSpecificUser({userid: this.item.creator, tenantid: this.$pa_tenant})
-          console.log(this.item.creator)
-          console.log(this.getCreatorAttribute(this.item.creator, "givenName"))
         }
       }).then(() => this.loading = false)
   }
