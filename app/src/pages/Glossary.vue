@@ -1,12 +1,5 @@
 <template>
   <div>
-    <div style="font-style: normal;height:72px;text-align: center; padding-top:15px;font-weight: bold;font-size: 22px;line-height: 41px;color:white; background-color:#FF7C44">
-      {{$t('menu.glossary')}}
-      <q-icon
-        name="img:statics/icons/MICADO PA APP Icon - Glossary Page (white).png"
-        style="font-size: 30px"
-      ></q-icon>
-    </div>
     <span v-if="loading">Loading...</span>
     <div
       v-if="!loading"
