@@ -29,22 +29,32 @@
           {{fullLink}}
         </router-link>
       </div>
-      <div>
+      <talking-label :text="$t('internal_reference.more_info_1') + ' ' + title + ' ' + $t('internal_reference.more_info_2') + ' ' + fullLink"></talking-label>
+      <div class="row flex-center">
         <q-btn
-          class="q-mt-xl reference-btn"
+          class="q-mt-xl q-mb-lg q-mr-md reference-btn col-shrink"
           no-caps
           unelevated
           :to="link"
         >
           {{$t("internal_reference.go_to_reference")}}
         </q-btn>
+        <talking-label
+          :text="$t('internal_reference.go_to_reference')"
+          class="q-mt-xl q-mb-lg col-shrink"
+        ></talking-label>
       </div>
     </q-card-section>
   </q-card>
 </template>
 
 <script>
+import TalkingLabel from 'components/TalkingLabel'
+
 export default {
+  components: {
+    TalkingLabel
+  },
   props: {
     title: {
       type: String,
@@ -71,11 +81,9 @@ export default {
 .more-info-title {
   color: #ff7c44;
 }
-
 .center-text {
   text-align: center;
 }
-
 .reference-btn {
   border-radius: 50px;
   border: 1px solid #ff7c44;

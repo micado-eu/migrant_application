@@ -30,7 +30,40 @@ export default {
     ...mapActions("event", ["fetchEvents"]),
     ...mapActions("event_category", ["fetchEventCategory"]),
     ...mapActions("topic", ["fetchTopic"]),
-    ...mapActions("user_type", ["fetchUserType"])
+    ...mapActions("user_type", ["fetchUserType"]),
+    initialize() {
+      const langs = { defaultLang: this.$defaultLang, userLang: this.$userLang }
+      this.loading = true
+      const id = this.$route.params.id
+      Promise.all([
+        this.fetchEvents(langs),
+        this.fetchEventCategory(langs),
+        this.fetchTopic(langs),
+        this.fetchUserType(langs)
+      ])
+        .then(async () => {
+          let item = this.eventElemById(id)
+          this.title = item.title
+          this.description = item.description
+          const idx = this.eventCategories.findIndex((c) => c.id === item.category)
+          if (idx !== -1) {
+            this.attributes.category = this.eventCategories[idx]
+          }
+          if (item.topics) {
+            this.attributes.topics = this.idJoin(item.topics, this.topics)
+          }
+          if (item.users) {
+            this.attributes.users = this.idJoin(item.users, this.users)
+          }
+          const startDate = new Date(item.start_date)
+          this.attributes.start_date = startDate.toLocaleString(this.$userLang)
+          const finishDate = new Date(item.end_date)
+          this.attributes.end_date = finishDate.toLocaleString(this.$userLang)
+          if (item.creator) {
+            this.attributes.creator = await this.fetchSpecificUser({ userid: this.attributes.creator, tenantid: this.$pa_tenant })
+          }
+        }).then(() => this.loading = false)
+    }
   },
   computed: {
     ...mapGetters("event", ["eventElemById"]),
@@ -39,38 +72,13 @@ export default {
     ...mapGetters('user_type', ['users'])
   },
   created() {
-    const langs = { defaultLang: this.$defaultLang, userLang: this.$userLang }
-    this.loading = true
-    const id = this.$route.params.id
-    Promise.all([
-      this.fetchEvents(langs),
-      this.fetchEventCategory(langs),
-      this.fetchTopic(langs),
-      this.fetchUserType(langs)
-    ])
-      .then(async () => {
-        let item = this.eventElemById(id)
-        this.title = item.title
-        this.description = item.description
-        const idx = this.eventCategories.findIndex((c) => c.id === item.category)
-        if (idx !== -1) {
-          this.attributes.category = this.eventCategories[idx]
-        }
-        if (item.topics) {
-          this.attributes.topics = this.idJoin(item.topics, this.topics)
-        }
-        if (item.users) {
-          this.attributes.users = this.idJoin(item.users, this.users)
-        }
-        const startDate = new Date(item.start_date)
-        this.attributes.start_date = startDate.toLocaleString(this.$userLang)
-        const finishDate = new Date(item.end_date)
-        this.attributes.end_date = finishDate.toLocaleString(this.$userLang)
-        if (item.creator) {
-          this.attributes.creator = await this.fetchSpecificUser({ userid: this.attributes.creator, tenantid: this.$pa_tenant })
-        }
-      }).then(() => this.loading = false)
-  }
+    this.initialize()
+  },
+  watch: {
+    '$route.params.id': function (id) {
+      this.initialize()
+    }
+  },
 };
 </script>
 

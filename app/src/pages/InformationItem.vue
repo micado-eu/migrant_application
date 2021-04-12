@@ -32,6 +32,37 @@ export default {
     ...mapActions("topic", ["fetchTopic"]),
     ...mapActions("user_type", ["fetchUserType"]),
     ...mapActions("user", ["fetchSpecificUser"]),
+    initialize() {
+      const langs = { defaultLang: this.$defaultLang, userLang: this.$userLang }
+      this.loading = true
+      const id = this.$route.params.id
+      Promise.all([
+        this.fetchInformation(langs),
+        this.fetchInformationCategory(langs),
+        this.fetchTopic(langs),
+        this.fetchUserType(langs)
+      ])
+        .then(async () => {
+          let item = this.informationElemById(id)
+          this.title = item.title
+          this.description = item.description
+          const idx = this.informationCategories.findIndex((c) => c.id === item.category)
+          if (idx !== -1) {
+            this.attributes.category = this.informationCategories[idx]
+          } else {
+            this.attributes.category = undefined
+          }
+          if (item.topics) {
+            this.attributes.topics = this.idJoin(item.topics, this.topics)
+          }
+          if (item.users) {
+            this.attributes.users = this.idJoin(item.users, this.users)
+          }
+          if (item.creator) {
+            this.attributes.creator = await this.fetchSpecificUser(item.creator, this.$pa_tenant)
+          }
+        }).then(() => this.loading = false)
+    }
   },
   computed: {
     ...mapGetters("information", ["informationElemById"]),
@@ -40,36 +71,13 @@ export default {
     ...mapGetters('user_type', ['users'])
   },
   created() {
-    const langs = { defaultLang: this.$defaultLang, userLang: this.$userLang }
-    this.loading = true
-    const id = this.$route.params.id
-    Promise.all([
-      this.fetchInformation(langs),
-      this.fetchInformationCategory(langs),
-      this.fetchTopic(langs),
-      this.fetchUserType(langs)
-    ])
-      .then(async () => {
-        let item = this.informationElemById(id)
-        this.title = item.title
-        this.description = item.description
-        const idx = this.informationCategories.findIndex((c) => c.id === item.category)
-        if (idx !== -1) {
-          this.attributes.category = this.informationCategories[idx]
-        } else {
-          this.attributes.category = undefined
-        }
-        if (item.topics) {
-          this.attributes.topics = this.idJoin(item.topics, this.topics)
-        }
-        if (item.users) {
-          this.attributes.users = this.idJoin(item.users, this.users)
-        }
-        if (item.creator) {
-          this.attributes.creator = await this.fetchSpecificUser(item.creator, this.$pa_tenant)
-        }
-      }).then(() => this.loading = false)
-  }
+    this.initialize()
+  },
+  watch: {
+    '$route.params.id': function (id) {
+      this.initialize()
+    }
+  },
 }
 </script>
 
