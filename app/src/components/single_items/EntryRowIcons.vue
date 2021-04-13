@@ -4,20 +4,13 @@
   >
     <div class="col-9">
       <span class="entry-title">{{labelTranslated}}: </span>
-      <q-img
+      <icon-overlay
         v-for="elem in value"
         :key="type + elem.id"
-        :src="elem.icon"
-        spinner-color="white"
-        id="image"
-        :alt="elem[type]"
-        class="filter-icon q-ml-sm"
-        :img-style="{'max-width': '24px', 'max-height': '24px'}"
+        :type=type
+        :elem=elem
       >
-        <q-tooltip :key="'userType_tooltip'.concat(elem.id)">
-          {{elem[type]}}
-        </q-tooltip>
-      </q-img>
+      </icon-overlay>
     </div>
     <talking-label
       :text="labelTranslated + ': ' + talkingLabelValues"
@@ -32,10 +25,12 @@
 
 <script>
 import TalkingLabel from '../TalkingLabel.vue';
+import IconOverlay from './IconOverlay.vue'
 
 export default {
   components: {
-    TalkingLabel
+    TalkingLabel,
+    IconOverlay
   },
   props: ["label", "value", "type"],
   computed: {
@@ -53,9 +48,5 @@ export default {
 <style>
 .entry-title {
   font-weight: bold;
-}
-.filter-icon {
-  max-height: 24px;
-  max-width: 24px;
 }
 </style>

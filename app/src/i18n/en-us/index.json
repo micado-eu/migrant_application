@@ -151,5 +151,9 @@
     "more_info_1": "More information for",
     "more_info_2": "can be found at:",
     "go_to_reference": "Go to reference"
+  },
+  "icon_overlay": {
+    "topic": "Topic",
+    "user_type": "User type"
   }
 }
