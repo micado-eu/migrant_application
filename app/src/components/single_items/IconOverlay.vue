@@ -9,9 +9,6 @@
       :img-style="{'max-width': '24px', 'max-height': '24px'}"
       @click="dialog = true"
     >
-      <q-tooltip :key="type + '_tooltip'.concat(elem.id)">
-        {{elem[type]}}
-      </q-tooltip>
     </q-img>
     <q-dialog v-model="dialog">
       <q-card>
@@ -38,6 +35,7 @@
           </div>
           <div>
             <span class="dialog-text">{{dialogTitle}}: {{elem[type]}}</span>
+            <talking-label :text="dialogTitle + ': ' + elem[type]"></talking-label>
           </div>
         </q-card-section>
       </q-card>
