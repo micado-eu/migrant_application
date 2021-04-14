@@ -82,7 +82,8 @@
     "guided_processes": "Integration step-by-step",
     "plan_progress": "Plan Progress",
     "integration_plan": "My Integration Plan",
-    "personal": "Personal area"
+    "personal": "Personal area",
+    "survey":"Survey!"
   },
   "profile": {
     "change_pic": "Change picture",

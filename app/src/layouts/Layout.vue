@@ -17,12 +17,13 @@
         <q-toolbar-title>{{ $t( "application_title") }}</q-toolbar-title>
         <LanguageSelector data-cy="language_selector_button" ref="language"></LanguageSelector>
         <UserButton ref="user" />
-        <FeedbackButton />
         <q-btn
-          label="Alert"
-          color="primary"
+          no-caps
+          style="background-color:white; color:#0B91CE"
+          :label="$t('desc_labels.survey')"
           @click="alert = true"
         />
+        <FeedbackButton />
         <q-btn
           color="white"
           round
@@ -102,7 +103,7 @@
     <q-dialog v-model="alert">
       <q-card>
         <q-card-section>
-          <div class="text-h6">Alert</div>
+          <div class="text-h6">Survey</div>
         </q-card-section>
 
         <q-card-section class="q-pt-none">
@@ -126,7 +127,7 @@
         v-if="this.$auth.loggedIn()"
         class="z-top"
       >
-        <ChatWidget ref="chatbot" />
+        <ChatWidget />
       </q-page-sticky>
       <router-view />
     </q-page-container>
@@ -264,16 +265,6 @@ export default {
           visible: false
         },
         {
-          label: "menu.chatbot",
-          icon: "img:statics/icons/Icon - Chatbot (selcted).svg",
-          to: "/",
-          description: "menu.home_desc",
-          feature: "FEAT_DEFAULT",
-          needs_login:true,
-          visible: false
-        },
-
-        {
           label: "menu.settings",
           icon: "img:statics/icons/Icon - Personal page.svg",
           to: "/settings",
@@ -281,7 +272,17 @@ export default {
           feature: "FEAT_DEFAULT",
           needs_login:false,
           visible: true
-        }
+        },
+        {
+          label: "menu.privacy",
+          icon: "img:statics/icons/more.svg",
+          to: "/",
+          description: "menu.home_desc",
+          feature: "FEAT_DEFAULT",
+          needs_login:false,
+          visible: false
+        },
+
       ]
     };
   },
@@ -405,8 +406,8 @@ export default {
             this.$router.push({ path: '/' })
           }
           break;
-        case "menu.chatbot":
-          this.$refs.chatbot.register()
+        case "menu.privacy":
+          this.$router.push({ name: 'privacy' })
           break;
         case "menu.settings":
           if(!this.$auth.loggedIn()){

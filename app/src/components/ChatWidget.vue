@@ -1,6 +1,12 @@
 <template>
 <div class="q-pa-md q-gutter-sm">
-    <!--<q-btn icon="mail" style="width:40px; heigth:40px" color="red" @click="register" />-->
+    <q-btn round size="xs" flat  @click="register" >
+      <q-avatar >
+      <img
+            src="~assets/Chatbot button (when activated).svg"
+          />
+      </q-avatar>
+    </q-btn>
     <q-dialog v-model="layout">
       <q-layout view="Lhh lpR fff" container class="bg-white">
         <q-bar class="bg-secondary text-white q-pr-none">
