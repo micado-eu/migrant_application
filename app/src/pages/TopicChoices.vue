@@ -4,12 +4,14 @@
   <div v-else>
     <div class="q-pa-md q-gutter-sm">
     <q-breadcrumbs active-color="secondary">
-      <!--<q-breadcrumbs-el label="Home"  @click="index = null" />-->
-      <q-breadcrumbs-el  v-for="crumb in crumbs" :key="crumb.label" :label="crumb.name" @click="navigation(crumb.id)"  />
+      <q-breadcrumbs-el class="crumb" label="Home" icon='img:statics/icons/Icon - Home (crumb).svg' @click="home()" />
+      <q-breadcrumbs-el class="crumb"   v-for="crumbo in crumbs" :id="crumbo.id" :key="crumbo.label" :label="crumbo.name" :icon="bread_icon(crumbo.id)" @click="navigation(crumbo.id)"  />
 
     </q-breadcrumbs>
   </div>
-
+  <div style="background-color:#FAFAFA">
+    &nbsp;
+  </div>
     <div
     class="top-banner row"
       >
@@ -17,6 +19,7 @@
           class="col-12"
           outlined
           filled
+          style="border-radius: 5px;"
           label-color="grey-8"
           bg-color="grey-2"
           v-model="search"
@@ -29,13 +32,25 @@
           </template>
         </q-input>
           </div>
-      <div class="q-gutter-sm" style="text-align:center">
-      <q-img @click="bread(topic)"  v-for="topic in to_show" :key="topic.id" :src="topic.icon" style="max-width:100px;max-heigth:100px">
-        <div class="absolute-bottom text-subtitle2 text-center" style="padding-top:0px;padding-bottom:0px; font-size:12px">
+  <div style="background-color:#FAFAFA; margin-bottom:10px">
+    &nbsp;
+  </div>
+      <div class="row topic_layout">    
+      <div class="q-gutter-sm col" @click="bread(topic)" v-for="topic in to_show" :key="topic.id" style="text-align:center; background-color:#FAFAFA; max-width:100px; min-width:100px;height:100px; margin-left:10px; margin-right:10px; margin-top:10px">
+        <TalkingLabel
+                style="margin-left:0px; margin-top:0px; margin-right:10px"
+                  :text="topic.topic"
+                  :row="'row'"
+                  :title_col="' ellipsis col-11'"
+                  :icon_col="'col-1'"
+                  :icon_style="'text-align:right'"
+                />
+      <q-img  :src="topic.icon" style="margin-left:0px;max-width:40px;max-heigth:40px" />
+      <div class="topic_names" >
         {{topic.topic}}
       </div>
-      </q-img>
     </div>
+      </div>
   <div>
 <div v-if="to_show_flows_personal.length>0 || to_show_info_personal.length>0">Based on user preferences</div>
       <ListItem v-for="element in to_show_info_personal"
@@ -47,7 +62,7 @@
             :item="element"
             :type="'info'"
             @info="enitityDetails($event)"
-            :icon="'img:statics/icons/Icon - Information Centre (selected).svg'"
+            :icon="'img:statics/icons/Icon - Information Centre.svg'"
             />
 
       <ListItem v-for="process in to_show_flows_personal"
@@ -59,7 +74,7 @@
             :item="process"
             @flow="enitityDetails($event)"
             :type="'flow'"
-            :icon="'img:statics/icons/Icon - Integration step-bystep (selected).svg'"
+            :icon="'img:statics/icons/Icon - Integration step-bystep.svg'"
             />
     
  
@@ -77,7 +92,7 @@
             :item="element"
             :type="'info'"
             @info="enitityDetails($event)"
-            :icon="'img:statics/icons/Icon - Information Centre (selected).svg'"
+            :icon="'img:statics/icons/Icon - Information Centre.svg'"
             />
 
           <ListItem v-for="process in to_show_flows_general"
@@ -89,7 +104,7 @@
             :item="process"
             @flow="enitityDetails($event)"
             :type="'flow'"
-            :icon="'img:statics/icons/Icon - Integration step-bystep (selected).svg'"
+            :icon="'img:statics/icons/Icon - Integration step-bystep.svg'"
             />
 
             <ListItem v-for="element in to_show_events"
@@ -101,7 +116,7 @@
             :item="element"
             :type="'event'"
             @event="enitityDetails($event)"
-            :icon="'img:statics/icons/Icon - Events (selected).svg'"
+            :icon="'img:statics/icons/Icon - Events.svg'"
             />
       
   
@@ -115,6 +130,7 @@
 import editEntityMixin from '../mixin/editEntityMixin'
 import storeMappingMixin from '../mixin/storeMappingMixin'
 const ListItem = () => import('components/ListItem')
+const TalkingLabel = () => import('components/TalkingLabel')
 import idJoinMixin from "../mixin/idJoinMixin.js"
 
 
@@ -155,11 +171,12 @@ export default {
       loading:true,
       elements: [],
       elements2: [],
-      crumbs:[{id:null,name:"Home"}],
+      crumbs:[],
       index:null
     }
   },
   computed:{
+    
     to_show(){
       return this.$store.getters['topic/show_topics'](this.index)
     },
@@ -199,6 +216,14 @@ export default {
   },
 
   methods:{
+    bread_icon(id){
+      console.log(id)
+      console.log("Inside bread icon")
+      var topico= this.topics.filter((top)=>{
+        return top.id == id
+      })[0].icon
+      return 'img:'+topico
+    },
     enitityDetails(value){
       console.log(value)
       if(value.type == 'flow'){
@@ -212,6 +237,11 @@ export default {
       this.$router.push({ name: 'events', params: { id: value.processid, url:JSON.stringify(this.crumbs) } })
       }
     },
+    home(){
+      this.index = null
+      this.crumbs = []
+      this.$router.push({path:'/'})
+    },
     navigation(id){
       console.log(this.$route)
       this.index = id
@@ -219,7 +249,7 @@ export default {
       var idx = this.crumbs.findIndex((item)=> item.id == id)
       console.log(idx)
       this.crumbs.length = idx + 1
-      if(this.crumbs.length == 1){
+     /*if(this.crumbs.length == 1){
         this.$router.push({
          name: 'home',
 
@@ -232,8 +262,14 @@ export default {
         topicFilter: this.crumbs.join(',')
         }
       })
-      }
-      
+      }*/
+      console.log("before going to new topic")
+      this.$router.push({
+         name: 'crumbs',
+        params: {
+        topicFilter: this.crumbs.join(',')
+        }
+      })
     },
     bread(topic){
       var link = window.location.href 
@@ -250,7 +286,7 @@ this.$forceUpdate();
     }
   },
   components: {
-    ListItem
+    ListItem,TalkingLabel
   },
   watch: {
     search(val) {
@@ -340,11 +376,17 @@ this.$forceUpdate();
     var parsed_var = JSON.parse(this.topicFilter)
   }
   
-  if(parsed_var.length == 0){
-    parsed_var = [{id:null,name:"Home"}]
-  }
+  /*if(parsed_var.length == 0){
+    parsed_var = [{id:null,name:"Home", icon:'img:statics/icons/Icon - Home (crumb).svg'}]
+  }*/
   this.crumbs = parsed_var
-  this.index = parsed_var[(parsed_var.length - 1)].id
+  if(parsed_var.length == 0){
+    this.index = null
+  }
+  else{
+    this.index = parsed_var[(parsed_var.length - 1)].id
+  }
+  //this.index = parsed_var[(parsed_var.length - 1)].id
   console.log(this.index)
   
   
@@ -379,8 +421,8 @@ $secondary_list: #0f3a5d;
 .top-banner{
   max-width:750px;
   margin:0 auto;
-  padding-top:38px;
-  padding-bottom:10px;
+  padding-top:20px;
+  padding-bottom:20px;
   padding-left: 16px;
   padding-right: 16px;
 }
@@ -417,5 +459,25 @@ $secondary_list: #0f3a5d;
 .chip_image{
   max-width: 18px;
   max-height: 18px;
+}
+.topic_names{
+  color: #5C81A2;
+  margin-left:0px;
+  padding-top:0px;
+  padding-bottom:0px;
+  font-size:12px
+}
+.topic_layout{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow:row wrap;
+}
+.crumb{
+  border-radius:5px;
+  border-style:solid;
+  border-width: thin;
+  padding-left:5px;
+  padding-right:5px
 }
 </style>

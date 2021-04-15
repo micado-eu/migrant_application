@@ -7,7 +7,7 @@
       
   
   <div :class="icon_col" :style="icon_style" >
-    <q-icon @click.stop="readClick(text)" :id="this.text" name="img:statics/icons/Icon-Auto_Read_(selected).svg" size="xsm"  />
+    <q-icon @click.stop="readClick(text)" :id="this.text" name="img:statics/icons/Icon - Auto Read  (selected).svg" size="xsm"  />
   </div>
 </div>
 </template>

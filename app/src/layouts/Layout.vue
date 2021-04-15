@@ -35,7 +35,7 @@
           >
             <q-icon
               color="black"
-              name="img:statics/icons/Icon - Consent Manager.svg"
+              name="img:statics/icons/Icon - consent toggle.svg"
             />
           </q-avatar>
         </q-btn>

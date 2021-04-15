@@ -164,5 +164,6 @@ export default {
 .hr {
   margin: 0px;
   width: 100%;
+  color:#000000
 }
 </style>
