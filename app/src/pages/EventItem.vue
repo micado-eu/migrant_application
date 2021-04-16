@@ -31,6 +31,7 @@ export default {
     ...mapActions("event_category", ["fetchEventCategory"]),
     ...mapActions("topic", ["fetchTopic"]),
     ...mapActions("user_type", ["fetchUserType"]),
+    ...mapActions("user", ["fetchSpecificUser"]),
     initialize() {
       const langs = { defaultLang: this.$defaultLang, userLang: this.$userLang }
       this.loading = true
