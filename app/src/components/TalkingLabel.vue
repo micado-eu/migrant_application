@@ -1,7 +1,7 @@
 <template>
 <div :class="row">
   <div :class="title_col">
-    <q-icon :size="icon_size" v-if="this.icon" :name="this.icon" />
+    <q-icon style="margin-bottom:5px" :size="icon_size" v-if="this.icon" :name="this.icon" />
      {{ this.Title }} 
   </div>
       

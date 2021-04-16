@@ -30,7 +30,7 @@
    <TalkingLabel
    class="q-pa-md option"
     style="width:100%"
-    :icon="'img:statics/icons/Icon - Integration step-bystep.svg'"
+    :icon="'img:statics/icons/Icon - My documents.svg'"
     :icon_size="'30px'"
     :Title="$t('menu.documents')"
     :text="$t('menu.documents')"
@@ -47,7 +47,7 @@
    <TalkingLabel
    class="q-pa-md option"
     style="width:100%"
-    :icon="'img:statics/icons/Icon - Integration step-bystep.svg'"
+    :icon="'img:statics/icons/Icon - My Integration Plan.svg'"
     :icon_size="'30px'"
     :Title="$t('menu.tasks')"
     :text="$t('menu.tasks')"
@@ -64,7 +64,7 @@
    <TalkingLabel
    class="q-pa-md option"
     style="width:100%"
-    :icon="'img:statics/icons/Icon - Integration step-bystep.svg'"
+    :icon="'img:statics/icons/Icon - Settings.svg'"
     :icon_size="'30px'"
     :Title="$t('menu.settings')"
     :text="$t('menu.settings')"
