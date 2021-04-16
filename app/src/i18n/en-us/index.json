@@ -146,7 +146,8 @@
     "mail": "Your feedback will be sent to",
     "url": "Your feedback will be about the page found at",
     "feedback": "Write your feedback in the textbox below",
-    "send": "Send feedback"
+    "send": "Send feedback",
+    "feedback_question":"Send us feedback! How do you like the page you are currently viewing?"
   },
   "internal_reference": {
     "more_info_1": "More information for",

@@ -1,7 +1,7 @@
 <template>
   <q-page class="flows container-fluid" style="">
     <div
-      class="q-pa-md"
+      class=""
       style="text-align:center; padding-top:30px; padding-bottom:20px; "
     >
       <q-btn
@@ -9,15 +9,17 @@
         id="button"
         unelevated
         rounded
-        color="info"
+        color="secondary"
         no-caps
-        style="width:320px;margin-right:25px"
+        style="width:300px;"
         to="/documents/add"
         :label="$t('button.add_document')"
       />
     </div>
-    <hr style="border: 1px solid #FF7C44;" />
-    <q-list style="width:100%; margin:0 auto">
+  <div style="background-color:#EFEFEF; margin-bottom:10px">
+    &nbsp;
+  </div>
+  <q-list style=" margin:0 auto">
       <DocumentWalletItem
         v-for="document in user_docs"
         :Title="setTitle(document)"

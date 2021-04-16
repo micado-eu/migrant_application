@@ -12,10 +12,17 @@
           :src="this.Image"
         >
       </q-item-section>
-      <div class="col-10 div-1">
-        <div class="row div-2">
-          <q-item-section class="col section-2">
-            {{ this.Title }}
+      <div class="col div-1">
+        <div class="div-2">
+          <q-item-section class=" section-2" style="">
+              <TalkingLabel
+                  :Title="this.Title"
+                  :text="this.Title"
+                  :row="'row'"
+                  :title_col="'col-11'"
+                  :icon_col="'col-1'"
+                  :icon_style="'text-align:right'"
+                />
           </q-item-section>
         </div>
         <div>
@@ -90,6 +97,7 @@
 
 <script>
 import storeMappingMixin from '../mixin/storeMappingMixin'
+const TalkingLabel = () => import('./TalkingLabel')
 
 export default {
   // name: 'ComponentName',
@@ -100,6 +108,9 @@ export default {
       emailTenant: "",
       email: ""
     }
+  },
+  components:{
+    TalkingLabel
   },
   computed: {
     canSend () {
@@ -190,6 +201,8 @@ export default {
 }
 .div-1 {
   height: 64px;
+  padding-right:20px;
+  padding-top:10px
 }
 .div-2 {
   height: 32px;

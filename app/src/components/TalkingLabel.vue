@@ -1,6 +1,6 @@
 <template>
 <div :class="row">
-  <div :class="title_col">
+  <div :class="title_col" style= "white-space: nowrap; overflow: hidden;text-overflow: ellipsis;">
     <q-icon style="margin-bottom:5px" :size="icon_size" v-if="this.icon" :name="this.icon" />
      {{ this.Title }} 
   </div>
@@ -35,6 +35,9 @@ export default {
     break;
   case 'de':
     voice= "Deutsch Female"
+    break;
+  case 'zh':
+    voice = "Chinese Female"
     break;
   default:
     voice= "UK English Female"

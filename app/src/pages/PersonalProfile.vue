@@ -23,7 +23,7 @@
       </div>
   </div>
     </div>
-  <div style="background-color:#FAFAFA">
+  <div style="background-color:#EFEFEF">
     &nbsp;
   </div>
   <q-item clicakble @click.native="documents">
@@ -40,7 +40,7 @@
     :icon_style="'text-align:right'"
     />
   </q-item>
-  <div style="background-color:#FAFAFA">
+  <div style="background-color:#EFEFEF">
     &nbsp;
   </div>
     <q-item clicakble @click.native="tasks">
@@ -57,7 +57,7 @@
     :icon_style="'text-align:right'"
     />
   </q-item>
-  <div style="background-color:#FAFAFA">
+  <div style="background-color:#EFEFEF">
     &nbsp;
   </div>
     <q-item clicakble @click.native="settings">
@@ -74,7 +74,7 @@
     :icon_style="'text-align:right'"
     />
   </q-item>
-  <div style="background-color:#FAFAFA">
+  <div style="background-color:#EFEFEF">
     &nbsp;
   </div>
     <div style="text-align:center; padding-top:20px">
