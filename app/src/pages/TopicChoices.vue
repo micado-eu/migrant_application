@@ -63,6 +63,7 @@
             :type="'info'"
             @info="enitityDetails($event)"
             :icon="'img:statics/icons/Icon - Information Centre.svg'"
+            :size="'sm'"
             />
 
       <ListItem v-for="process in to_show_flows_personal"
@@ -75,6 +76,7 @@
             @flow="enitityDetails($event)"
             :type="'flow'"
             :icon="'img:statics/icons/Icon - Integration step-bystep.svg'"
+            :size="'sm'"
             />
     
  
@@ -93,6 +95,7 @@
             :type="'info'"
             @info="enitityDetails($event)"
             :icon="'img:statics/icons/Icon - Information Centre.svg'"
+            :size="'sm'"
             />
 
           <ListItem v-for="process in to_show_flows_general"
@@ -105,6 +108,7 @@
             @flow="enitityDetails($event)"
             :type="'flow'"
             :icon="'img:statics/icons/Icon - Integration step-bystep.svg'"
+            :size="'sm'"
             />
 
             <ListItem v-for="element in to_show_events"
@@ -117,6 +121,7 @@
             :type="'event'"
             @event="enitityDetails($event)"
             :icon="'img:statics/icons/Icon - Events.svg'"
+            :size="'sm'"
             />
       
   

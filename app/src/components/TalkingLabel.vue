@@ -1,7 +1,7 @@
 <template>
 <div :class="row">
   <div :class="title_col">
-    <q-icon size="sm" v-if="this.icon" :name="this.icon" />
+    <q-icon :size="icon_size" v-if="this.icon" :name="this.icon" />
      {{ this.Title }} 
   </div>
       
@@ -19,7 +19,7 @@ export default {
     return {
     }
   },
-  props: ["Title", "text", 'row', 'title_col', 'icon_col', 'icon_style', 'icon_class', 'icon'],
+  props: ["Title", "text", 'row', 'title_col', 'icon_col', 'icon_style', 'icon_class', 'icon', 'icon_size'],
   methods: {
    readClick(value) {
      var voice= ""

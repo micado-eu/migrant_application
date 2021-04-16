@@ -414,7 +414,7 @@ export default {
             this.$refs.user.toLogin()
           }
           else{
-            this.$router.push({ name: 'settings' })
+            this.$router.push({ name: 'profile' })
           }
         default:
     // code block

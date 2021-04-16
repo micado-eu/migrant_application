@@ -2,9 +2,6 @@
   <q-page padding>
     <div v-if="this.loading">Loading...</div>
     <div v-else>
-      <div style="text-align:center">
-        <q-btn class="button" color="accent" unelevated no-caps rounded text-color="white" :label="$t('desc_labels.logout')" @click="logout()" />
-      </div>
     <div class="div-1">
   <UserButton ref="user" />
   <div class="div-2" >
@@ -546,7 +543,8 @@ width:300px
 }
 .image{
   width:150px; 
-  height:150px
+  height:150px;
+  border-radius:50%
 }
 .button{
   width:150px

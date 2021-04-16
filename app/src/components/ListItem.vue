@@ -37,6 +37,7 @@
                   :title_col="'col-11'"
                   :icon_col="'col-1'"
                   :icon_style="'text-align:right'"
+                  :icon_size="this.size"
                 >
                 </TalkingLabel>
               </div>
@@ -56,7 +57,7 @@ import storeMappingMixin from '../mixin/storeMappingMixin'
 
 export default {
   name: 'Process',
-  props: ["Title", "Topics", "Users", "Link", "Path", "item", "Rating", 'type','icon'],
+  props: ["Title", "Topics", "Users", "Link", "Path", "item", "Rating", 'type','icon', 'size'],
   mixins: [
     storeMappingMixin({
       getters: {
