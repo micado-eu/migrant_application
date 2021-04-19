@@ -30,7 +30,6 @@ export default {
     ...mapActions("information", ["fetchInformation"]),
     ...mapActions("information_category", ["fetchInformationCategory"]),
     ...mapActions("topic", ["fetchTopic"]),
-    ...mapActions("user_type", ["fetchUserType"]),
     ...mapActions("user", ["fetchSpecificUser"]),
     initialize() {
       const langs = { defaultLang: this.$defaultLang, userLang: this.$userLang }
@@ -39,8 +38,7 @@ export default {
       Promise.all([
         this.fetchInformation(langs),
         this.fetchInformationCategory(langs),
-        this.fetchTopic(langs),
-        this.fetchUserType(langs)
+        this.fetchTopic(langs)
       ])
         .then(async () => {
           let item = this.informationElemById(id)
@@ -55,9 +53,6 @@ export default {
           if (item.topics) {
             this.attributes.topics = this.idJoin(item.topics, this.topics)
           }
-          if (item.users) {
-            this.attributes.users = this.idJoin(item.users, this.users)
-          }
           if (item.creator) {
             this.attributes.creator = await this.fetchSpecificUser(item.creator, this.$pa_tenant)
           }
@@ -67,8 +62,7 @@ export default {
   computed: {
     ...mapGetters("information", ["informationElemById"]),
     ...mapGetters("information_category", ["informationCategories"]),
-    ...mapGetters('topic', ['topics']),
-    ...mapGetters('user_type', ['users'])
+    ...mapGetters('topic', ['topics'])
   },
   created() {
     this.initialize()

@@ -30,7 +30,6 @@ export default {
     ...mapActions("event", ["fetchEvents"]),
     ...mapActions("event_category", ["fetchEventCategory"]),
     ...mapActions("topic", ["fetchTopic"]),
-    ...mapActions("user_type", ["fetchUserType"]),
     ...mapActions("user", ["fetchSpecificUser"]),
     initialize() {
       const langs = { defaultLang: this.$defaultLang, userLang: this.$userLang }
@@ -39,8 +38,7 @@ export default {
       Promise.all([
         this.fetchEvents(langs),
         this.fetchEventCategory(langs),
-        this.fetchTopic(langs),
-        this.fetchUserType(langs)
+        this.fetchTopic(langs)
       ])
         .then(async () => {
           let item = this.eventElemById(id)
@@ -52,9 +50,6 @@ export default {
           }
           if (item.topics) {
             this.attributes.topics = this.idJoin(item.topics, this.topics)
-          }
-          if (item.users) {
-            this.attributes.users = this.idJoin(item.users, this.users)
           }
           const startDate = new Date(item.start_date)
           this.attributes.start_date = startDate.toLocaleString(this.$userLang)
@@ -69,8 +64,7 @@ export default {
   computed: {
     ...mapGetters("event", ["eventElemById"]),
     ...mapGetters("event_category", ["eventCategories"]),
-    ...mapGetters('topic', ['topics']),
-    ...mapGetters('user_type', ['users'])
+    ...mapGetters('topic', ['topics'])
   },
   created() {
     this.initialize()
