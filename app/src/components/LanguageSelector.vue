@@ -47,10 +47,15 @@
           >
             <div class="row">
               <talking-label
+                :title="language.name"
+                :row="'row'"
+                :title_col="'col-11'"
+                :icon_col="'col-1'"
+                :icon_style="'text-align:left'"
                 :text="language.name"
                 class="col-shrink q-mr-sm"
               ></talking-label>
-              <span class="col-auto">{{language.name}}</span>
+              <!--<span class="col-auto">{{language.name}}</span>-->
             </div>
           </q-toggle>
         </q-page>

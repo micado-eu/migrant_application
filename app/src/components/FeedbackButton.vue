@@ -34,15 +34,45 @@
             v-else
             padding
           >
+          <TalkingLabel
+          class="option"
+                style="width:100%"
+                  :Title="$t('feedback.feedback_question')"
+                  :text="$t('feedback.feedback_question')"
+                  :row="'row'"
+                  :title_col="'col-11'"
+                  :icon_col="'col-1'"
+                  :icon_style="'text-align:right'"
+                />
           <!--<h5 class="text"> {{$t('feedback.mail')}} </h5>-->
           <div style="text-align:center"> 
-            <q-icon style="padding-right:10px" size="30px" :name="'img:statics/icons/negative.png'"/>
-            <q-icon style="padding-right:10px" size="30px" :name="'img:statics/icons/neutral.png'"/>
-            <q-icon style="padding-right:10px" size="30px" :name="'img:statics/icons/positive.png'"/>
+            <q-icon style="padding-right:10px" size="30px" :name="'img:statics/icons/Icon - Not satisafied.svg'"/>
+            <q-icon style="padding-right:10px" size="30px" :name="'img:statics/icons/Icon - Neutral.svg'"/>
+            <q-icon style="padding-right:10px" size="30px" :name="'img:statics/icons/Icon - very satisfied.svg'"/>
           </div>
-          <h5 class="text"> {{$t('feedback.url')}} </h5>
-          <div> {{link}}</div>    
-          <h5 class="text"> {{$t('feedback.feedback')}}  </h5> 
+          <!--<h5 class="text"> {{$t('feedback.url')}} </h5>-->
+          <TalkingLabel
+                  class="option_2"
+                  style="width:100%"
+                  :Title="$t('feedback.url') + ' ' + this.link"
+                  :text="$t('feedback.url') + this.link"
+                  :row="'row'"
+                  :title_col="'col-11'"
+                  :icon_col="'col-1'"
+                  :icon_style="'text-align:right'"
+                />
+          <!--<div> {{link}}</div>-->  
+          <TalkingLabel
+                  class="option_2"
+                  style="width:100%"
+                  :Title="$t('feedback.feedback')"
+                  :text="$t('feedback.feedback')"
+                  :row="'row'"
+                  :title_col="'col-11'"
+                  :icon_col="'col-1'"
+                  :icon_style="'text-align:right'"
+                />
+          <!--<h5 class="text"> {{$t('feedback.feedback')}}  </h5>--> 
           <q-input
             outlined
             type="textarea"
@@ -71,6 +101,8 @@
 <script>
 
 import storeMappingMixin from '../mixin/storeMappingMixin'
+const TalkingLabel = () => import('./TalkingLabel')
+
 
 export default {
   mixins:[
@@ -90,6 +122,9 @@ export default {
       link:null,
       feedback:""
     }
+  },
+  components:{
+    TalkingLabel
   },
   computed: {
     paMail(){
@@ -133,5 +168,21 @@ export default {
     line-height: 20px;
     letter-spacing: 0em;
     text-align: left;
+  }
+  .option{
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 19px;
+    color: #0F3A5D;
+  }
+  .option_2{
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 14px;
+    color: #000000
   }
 </style>

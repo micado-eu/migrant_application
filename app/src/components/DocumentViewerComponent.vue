@@ -4,24 +4,63 @@
    <!-- <p id="filename" style="width:320px; margin: 0 auto;padding-top:30px;padding-left:10px;padding-bottom:10px">{{the_document.title}}</p>-->
   <div>
     <div class="container">
-     
+      <TalkingLabel
+        class="title"
+        :text="findType()"
+        :Title="findType()"
+        :row="'row'"
+        :title_col="'col'"
+        :icon_col="'col'"
+        :icon_style="'text-align:left'"
+        />
       <img width="320px" class="image"  alt="Powered by Micado" :src="the_document.pictures[0].picture" />
      
     </div>
-    <div class="icon-container">
-  <q-icon class="icon" name="img:statics/icons/Edit.png" size="md" @click="editing" />
+    <div class="icon-container row">
+    <div class="col ico">
+    <q-icon class="icon" name="img:statics/icons/Edit.png" size="md" @click="editing" />
+    </div>
+    <div class="col ico">
     <q-icon  name="img:statics/icons/Send.png" size="md" />
+    </div>
+    <div class="col ico">
+    <q-icon class="icon" name="img:statics/icons/Icon - Download.svg" size="md" @click="editing" />
+    </div>
+    <div class="col ico">
+    <q-icon  name="img:statics/icons/Icon - Delete.svg" size="md" />
+    </div>
    </div>
   </div>
-
+  
     <div class="fields-container" >
      <div class="field"> 
-    <p class="textup">{{$t('desc_labels.document_type')}}:</p>
+         <hr style="margin-bottom:27px;width: 100%;">
+        <TalkingLabel
+        class="textup"
+        :text="$t('desc_labels.document_type') + findType()"
+        :Title="$t('desc_labels.document_type')"
+        :row="'row'"
+        :title_col="'col-11'"
+        :icon_col="'col-1'"
+        :icon_style="'text-align:left'"
+        />
+    <!--<p class="textup">{{$t('desc_labels.document_type')}}:</p>-->
     <p class="textdown">{{findType()}}</p>
+      <hr>
     </div>
     <div  class="field"> 
-    <p class="textup" >{{$t('desc_labels.document_issuer')}}:</p>
-    <p class="textdown">{{the_document.emitter}}</p>
+        <TalkingLabel
+        class="textup"
+        :text="$t('desc_labels.document_issuer') + findIssuer()"
+        :Title="$t('desc_labels.document_issuer')"
+        :row="'row'"
+        :title_col="'col-11'"
+        :icon_col="'col-1'"
+        :icon_style="'text-align:left'"
+        />
+    <!--<p class="textup" >{{$t('desc_labels.document_issuer')}}:</p>-->
+    <p class="textdown">{{findIssuer()}}</p>
+      <hr>
     </div>
     <!--<div class="last-field"> 
     <p class="textup" >{{$t('desc_labels.review_date')}}:</p>
@@ -41,6 +80,8 @@
 <script>
 import editEntityMixin from '../mixin/editEntityMixin'
 import storeMappingMixin from '../mixin/storeMappingMixin'
+const TalkingLabel = () => import('./TalkingLabel')
+
 
 export default {
   // name: 'ComponentName',
@@ -64,6 +105,9 @@ export default {
 
     }
   },
+  components:{
+    TalkingLabel
+  },
   methods:{
     editing(){
        if(this.the_document.uploadedByMe){
@@ -81,6 +125,11 @@ export default {
     findType(){
      var doc_type = this.document_types.filter((type)=>{return type.id == this.the_document.documentTypeId})[0]
       return doc_type.translations.filter(this.filterTranslationModel(this.activeLanguage))[0].document
+    },
+    findIssuer(){
+      var doc_type = this.document_types.filter((type)=>{return type.id == this.the_document.documentTypeId})[0]
+      console.log(doc_type.issuer)
+      return doc_type.issuer
     }
   },
    computed:{
@@ -155,7 +204,7 @@ export default {
 .icon-container{
   width:320px; 
   margin: 0 auto;
-  padding-left:10px; 
+  padding-left:0px; 
   padding-top:10px; 
   padding-bottom:20px
 }
@@ -166,7 +215,8 @@ export default {
 .fields-container{
   width:320px; 
   margin: 0 auto;
-  padding-left:10px
+  padding-left:10px; 
+  padding-right: 10px;
 }
 .field{
   padding-bottom:20px
@@ -183,5 +233,17 @@ export default {
   width:100px;
   margin-right:10px;
   margin-top:20px
+}
+.ico{
+  text-align:center;
+}
+.title{
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 25px;
+  color: #0F3A5D;
+
 }
 </style>

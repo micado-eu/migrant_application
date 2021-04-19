@@ -9,7 +9,7 @@
 
     </q-breadcrumbs>
   </div>
-  <div style="background-color:#FAFAFA">
+  <div style="background-color:#EFEFEF">
     &nbsp;
   </div>
     <div
@@ -32,7 +32,7 @@
           </template>
         </q-input>
           </div>
-  <div style="background-color:#FAFAFA; margin-bottom:10px">
+  <div style="background-color:#EFEFEF; margin-bottom:10px">
     &nbsp;
   </div>
       <div class="row topic_layout">    
