@@ -38,7 +38,7 @@ const routes = [
       { path: '/services', component: () => import('pages/Services.vue')},
       { path: '/flows', component: () => import('pages/Flows.vue') },
       { path: '/processes', component: () => import('pages/Processes.vue')},
-      { path: '/processes/:processid', name: 'document', component: () => import('pages/ProcessViewer.vue'), props: (route) => ({ ...route.params }), },
+      { path: '/processes/:processid', name: 'process', component: () => import('pages/ProcessViewer.vue'), props: (route) => ({ ...route.params }), },
       { path: '/notifications', component: () => import('components/Notifications.vue')},
       { path: '/speech', component: () => import('pages/Speech.vue')},
       { path: '/reserved', component: () => import('pages/Reserved.vue')},

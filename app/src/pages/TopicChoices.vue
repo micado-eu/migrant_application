@@ -232,7 +232,7 @@ export default {
     enitityDetails(value){
       console.log(value)
       if(value.type == 'flow'){
-        this.$router.push({ name: 'document', params: { processid: value.processid, url:JSON.stringify(this.crumbs) } })
+        this.$router.push({ name: 'process', params: { processid: value.processid, url:JSON.stringify(this.crumbs) } })
       }
       else if (value.type =='info'){
       this.$router.push({ name: 'info', params: { id: value.processid, url:JSON.stringify(this.crumbs) } })
