@@ -38,6 +38,7 @@
                   :icon_col="'col-1'"
                   :icon_style="'text-align:right'"
                   :icon_size="this.size"
+                  :showing="'white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'"
                 >
                 </TalkingLabel>
               </div>

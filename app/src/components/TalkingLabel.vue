@@ -1,6 +1,6 @@
 <template>
 <div :class="row">
-  <div :class="title_col" style= "white-space: nowrap; overflow: hidden;text-overflow: ellipsis;">
+  <div :class="title_col" :style="this.showing">
     <q-icon style="margin-bottom:5px" :size="icon_size" v-if="this.icon" :name="this.icon" />
      {{ this.Title }} 
   </div>
@@ -19,7 +19,7 @@ export default {
     return {
     }
   },
-  props: ["Title", "text", 'row', 'title_col', 'icon_col', 'icon_style', 'icon_class', 'icon', 'icon_size'],
+  props: ["Title", "text", 'row', 'title_col', 'icon_col', 'icon_style', 'icon_class', 'icon', 'icon_size', 'showing'],
   methods: {
    readClick(value) {
      var voice= ""

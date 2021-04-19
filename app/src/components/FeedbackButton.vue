@@ -46,20 +46,21 @@
                 />
           <!--<h5 class="text"> {{$t('feedback.mail')}} </h5>-->
           <div style="text-align:center"> 
-            <q-icon style="padding-right:10px" size="30px" :name="'img:statics/icons/Icon - Not satisafied.svg'"/>
-            <q-icon style="padding-right:10px" size="30px" :name="'img:statics/icons/Icon - Neutral.svg'"/>
-            <q-icon style="padding-right:10px" size="30px" :name="'img:statics/icons/Icon - very satisfied.svg'"/>
+            <q-icon style="padding-right:35px;padding-top:20px" size="30px" :name="'img:statics/icons/Icon - Not satisafied.svg'"/>
+            <q-icon style="padding-right:35px;padding-top:20px" size="30px" :name="'img:statics/icons/Icon - Neutral.svg'"/>
+            <q-icon style="padding-top:20px" size="30px" :name="'img:statics/icons/Icon - very satisfied.svg'"/>
           </div>
           <!--<h5 class="text"> {{$t('feedback.url')}} </h5>-->
           <TalkingLabel
                   class="option_2"
-                  style="width:100%"
+                  style="width:100%;"
                   :Title="$t('feedback.url') + ' ' + this.link"
                   :text="$t('feedback.url') + this.link"
                   :row="'row'"
                   :title_col="'col-11'"
                   :icon_col="'col-1'"
                   :icon_style="'text-align:right'"
+                  :showing="'white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'"
                 />
           <!--<div> {{link}}</div>-->  
           <TalkingLabel
@@ -84,13 +85,54 @@
           <div style="text-align:center">
           <q-btn
             :label="$t('feedback.send')"
+            :icon-right="'img:statics/icons/Icon - Round checkmark.svg'"
             color="info"
             rounded
             no-caps
             size="15px"
             @click="sendFeedback()"
           />
-          </div>      
+          </div>
+                
+          </q-page>
+        </q-page-container>
+      </q-layout>
+    </q-dialog>
+    <q-dialog v-model="confirm">
+       <q-layout
+        view="Lhh lpR fff"
+        container
+        class="bg-white"
+      >
+
+
+        <q-page-container class="q-ma-sm">
+          
+          <q-page
+            padding
+          >
+          <div style="padding-top:50px; text-align:center">
+          <q-icon  size="150px" :name="'img:statics/icons/Icon - Round checkmark orange.svg'"/>
+          <p class="thanks">{{$t('feedback.thanks')}}</p>
+          <TalkingLabel
+                  class="option_3"
+                  style="width:100%"
+                  :Title="$t('feedback.feedback_sent')"
+                  :text="$t('feedback.feedback_sent')"
+                />
+          </div>
+          <div style="text-align:center; padding-top:30px">
+          <q-btn
+            class="go_back"
+            :label="$t('button.go_back')"
+            :icon="'img:statics/icons/Icon - go back.svg'"
+            rounded
+            no-caps
+            size="15px"
+            @click="confirm = false"
+          />
+          </div>
+                
           </q-page>
         </q-page-container>
       </q-layout>
@@ -119,6 +161,7 @@ export default {
     return {
       loading: true,
       layout: false,
+      confirm:false,
       link:null,
       feedback:""
     }
@@ -143,6 +186,7 @@ export default {
       this.saveFeedback({url:this.link, feedback:this.feedback, feedbackDate:new Date().toISOString() })
       this.layout = false
       this.feedback = ""
+      this.confirm = true
     }
     
   },
@@ -183,6 +227,32 @@ export default {
     font-weight: normal;
     font-size: 15px;
     line-height: 14px;
-    color: #000000
+    color: #000000;
+    padding-top:40px;
+    padding-bottom:10px;
+    
   }
+  .go_back {
+  background-color: white;
+  color:#0F3A5D;
+  border: 1px solid #0F3A5D;
+  border-radius: 50px;
+}
+.thanks{
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 25px;
+  line-height: 34px;
+  color: #0F3A5D;
+}
+.option_3{
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 20px;
+  text-align: center;
+  color: #000000;
+}
 </style>

@@ -147,7 +147,9 @@
     "url": "Your feedback will be about the page found at",
     "feedback": "Write your feedback in the textbox below",
     "send": "Send feedback",
-    "feedback_question":"Send us feedback! How do you like the page you are currently viewing?"
+    "feedback_question":"Send us feedback! How do you like the page you are currently viewing?",
+    "feedback_sent":"Your feedback was successfully sent to the Public Authorities",
+    "thanks":"Thank you"
   },
   "internal_reference": {
     "more_info_1": "More information for",

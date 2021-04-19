@@ -253,7 +253,7 @@ export default {
   },
   methods: {
     back(){
-      console.log(this.url)
+      /*console.log(this.url)
       var back_url = JSON.parse(this.url)
       if(this.url.length == 1){
         this.$router.push({
@@ -268,8 +268,8 @@ export default {
         topicFilter: this.url
         }
       })
-      }
-      
+      }*/
+      this.$router.go(-1);
     },
     stripHtml(html){
    let tmp = document.createElement("DIV");
