@@ -15,7 +15,10 @@
         />-->
 
         <q-toolbar-title>{{ $t( "application_title") }}</q-toolbar-title>
-        <LanguageSelector data-cy="language_selector_button" ref="language"></LanguageSelector>
+        <LanguageSelector
+          data-cy="language_selector_button"
+          ref="language"
+        ></LanguageSelector>
         <UserButton ref="user" />
         <q-btn
           no-caps
@@ -227,8 +230,8 @@ export default {
           icon: "img:statics/icons/Icon - language selection.svg",
           to: "/language",
           description: "menu.documents_desc",
-          feature: "FEAT_DOCUMENTS",
-          needs_login:false,
+          feature: "FEAT_DEFAULT",
+          needs_login: false,
           visible: true
         },
         {
@@ -237,7 +240,7 @@ export default {
           to: "/glossary",
           description: "menu.glossary_desc",
           feature: "FEAT_GLOSSARY",
-          needs_login:false,
+          needs_login: false,
           visible: true
         },
         /*{
@@ -261,7 +264,7 @@ export default {
           to: "/",
           description: "menu.home_desc",
           feature: "FEAT_DEFAULT",
-          needs_login:false,
+          needs_login: false,
           visible: false
         },
         {
@@ -269,8 +272,8 @@ export default {
           icon: "img:statics/icons/Icon - Personal page.svg",
           to: "/settings",
           description: "menu.settings_desc",
-          feature: "FEAT_DEFAULT",
-          needs_login:false,
+          feature: "FEAT_MIGRANT_LOGIN",
+          needs_login: false,
           visible: true
         },
         {
@@ -279,20 +282,20 @@ export default {
           to: "/",
           description: "menu.home_desc",
           feature: "FEAT_DEFAULT",
-          needs_login:false,
+          needs_login: false,
           visible: false
         },
 
       ]
     };
   },
-  computed:{
-    nav_options(){
-      if(this.$auth.loggedIn()){
+  computed: {
+    nav_options () {
+      if (this.$auth.loggedIn()) {
         return this.navs
       }
-      else{
-        return this.navs.filter((nav)=>{
+      else {
+        return this.navs.filter((nav) => {
           return nav.needs_login == false
         })
       }
@@ -357,17 +360,17 @@ export default {
         console.log("user ID: " + uid)
         if (eventType === 'saveConsents') {
           console.log("HERE WE SAVE THE CONSENTS IN THE DB")
-          client.consentPresent(uid).then((response)=>{
+          client.consentPresent(uid).then((response) => {
             console.log("I am counr")
             console.log(response)
-          if( response.count == 0){
-           console.log("I'm in saving")
-            client.saveConsent(uid,JSON.stringify(data.consents))
-         }
-         else{
-            console.log("I'm in patching")
-           client.updateConsent(uid,JSON.stringify(data.consents))
-         }
+            if (response.count == 0) {
+              console.log("I'm in saving")
+              client.saveConsent(uid, JSON.stringify(data.consents))
+            }
+            else {
+              console.log("I'm in patching")
+              client.updateConsent(uid, JSON.stringify(data.consents))
+            }
           })
         }
       }
@@ -388,8 +391,8 @@ export default {
       klaro.show(this.klaro_config)
 
     },
-    action(lab){
-      switch(lab) {
+    action (lab) {
+      switch (lab) {
         case "menu.documents":
           console.log(this.$refs.language)
           this.$refs.language.open()
@@ -398,10 +401,10 @@ export default {
           this.$router.push({ name: 'glossary' })
           break;
         case "menu.home":
-          if(window.location.pathname == "/"){
+          if (window.location.pathname == "/") {
             console.log("nothing to do ")
           }
-          else{
+          else {
             console.log(window.location.pathname)
             this.$router.push({ path: '/' })
           }
@@ -410,15 +413,15 @@ export default {
           this.$router.push({ name: 'privacy' })
           break;
         case "menu.settings":
-          if(!this.$auth.loggedIn()){
+          if (!this.$auth.loggedIn()) {
             this.$refs.user.toLogin()
           }
-          else{
+          else {
             this.$router.push({ name: 'profile' })
           }
         default:
-    // code block
-}
+        // code block
+      }
 
     }
   }
