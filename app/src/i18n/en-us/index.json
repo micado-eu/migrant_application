@@ -83,7 +83,8 @@
     "plan_progress": "Plan Progress",
     "integration_plan": "My Integration Plan",
     "personal": "Personal area",
-    "survey":"Survey!"
+    "survey":"Survey!",
+    "document_sent":"Your document was successfully sent to"
   },
   "profile": {
     "change_pic": "Change picture",

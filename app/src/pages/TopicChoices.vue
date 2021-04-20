@@ -9,7 +9,7 @@
 
     </q-breadcrumbs>
   </div>
-  <div style="background-color:#EFEFEF">
+  <div style="background-color:#EFEFEF; height:5px">
     &nbsp;
   </div>
     <div
@@ -19,6 +19,7 @@
           class="col-12"
           outlined
           filled
+          dense
           style="border-radius: 5px;"
           label-color="grey-8"
           bg-color="grey-2"
@@ -32,7 +33,7 @@
           </template>
         </q-input>
           </div>
-  <div style="background-color:#EFEFEF; margin-bottom:10px">
+  <div style="background-color:#EFEFEF; margin-bottom:10px; height:5px">
     &nbsp;
   </div>
       <div class="row topic_layout">    

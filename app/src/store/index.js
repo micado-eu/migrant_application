@@ -29,6 +29,7 @@ import picture_hotspots from './picture_hotspots'
 import user from './user'
 import feedback from './feedback'
 import search from './search'
+import survey from './survey'
 
 Vue.use(Vuex)
 
@@ -66,7 +67,8 @@ export default function (/* { ssrContext } */) {
       event,
       user,
       feedback,
-      search
+      search,
+      survey
     },
 
     // enable strict mode (adds overhead!)

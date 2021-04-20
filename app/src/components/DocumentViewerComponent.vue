@@ -244,6 +244,5 @@ export default {
   font-size: 18px;
   line-height: 25px;
   color: #0F3A5D;
-
 }
 </style>

@@ -53,11 +53,34 @@
         @hide="clean()"
         v-model="show"
       >
-        <q-card class="q-pa-md">
-          <h5 class="header">{{$t('desc_labels.send_doc')}} </h5>
-          <div class="row">
+      
+        <q-card class="q-pa-md" style="padding-top:0px">
+          <q-toolbar style="padding-right:0px" class="bg-white">
+            <q-toolbar-title style="color:black"></q-toolbar-title>
+            <q-btn
+              color="red"
+              flat
+              v-close-popup
+              round
+              dense
+              icon="close"
+            />
+          </q-toolbar>
+          <div style="text-align:center">
+           <TalkingLabel
+                  :Title="$t('desc_labels.send_doc')"
+                  :text="$t('desc_labels.send_doc')"
+                  :row="'row'"
+                  :title_col="'col-11'"
+                  :icon_col="'col-1'"
+                  :icon_style="'text-align:right'"
+            />
+          </div>
+          <!--<h5 class="header">{{$t('desc_labels.send_doc')}} </h5>-->
+          <div >
             <q-select
               filled
+              dense
               v-model="emailTenant"
               :options="tenants"
               option-value="email"
@@ -66,10 +89,9 @@
               map-options
               @input="assign"
             />
-          </div>
-          <div class="row">
             <q-input
               dense
+              style="padding-top:10px"
               standout
               outlined
               type="email"
@@ -77,18 +99,59 @@
               v-model="email"
             />
           </div>
+          <div style="text-align:center">
           <q-btn
-            size="12px"
             no-caps
             class="button"
             rounded
-            color="info"
+            :icon-right="'img:statics/icons/Icon - send white.svg'"
+            color="accent"
             :disable="!canSend"
             :label="$t('button.send')"
             @click="sendDoc()"
           />
+          </div>
         </q-card>
       </q-dialog>
+      <q-dialog v-model="confirm">
+       <q-layout
+        view="Lhh lpR fff"
+        container
+        class="bg-white"
+      >
+
+
+        <q-page-container class="q-ma-sm">
+          
+          <q-page
+            padding
+          >
+          <div style="padding-top:50px; text-align:center">
+          <q-icon  size="150px" :name="'img:statics/icons/Icon - Round checkmark orange.svg'"/>
+          <!--<p class="thanks">{{$t('feedback.thanks')}}</p>-->
+          <TalkingLabel
+                  class="option_3"
+                  style="width:100%"
+                  :Title="$t('desc_labels.document_sent') + this.email"
+                  :text="$t('desc_labels.document_sent') + this.email"
+                />
+          </div>
+          <div style="text-align:center; padding-top:30px">
+          <q-btn
+            class="go_back"
+            :label="$t('button.go_back')"
+            :icon="'img:statics/icons/Icon - go back.svg'"
+            rounded
+            no-caps
+            size="15px"
+            @click="confirm = false"
+          />
+          </div>
+                
+          </q-page>
+        </q-page-container>
+      </q-layout>
+    </q-dialog>
     </q-item>
     <hr class="hr">
 
@@ -105,6 +168,7 @@ export default {
   data () {
     return {
       show: false,
+      confirm:false,
       emailTenant: "",
       email: ""
     }
@@ -165,6 +229,7 @@ export default {
 
       this.$emit('sendDoc', { docid: this.Link, email: this.email })
       this.show = false
+      this.confirm = true
     },
     assign (value) {
       console.log(value)

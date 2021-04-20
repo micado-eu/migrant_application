@@ -21,10 +21,11 @@
         ></LanguageSelector>
         <UserButton ref="user" />
         <q-btn
+          v-if="this.$auth.loggedIn()"
           no-caps
           style="background-color:white; color:#0B91CE"
           :label="$t('desc_labels.survey')"
-          @click="alert = true"
+          @click="generateSurvey"
         />
         <FeedbackButton />
         <q-btn
@@ -165,16 +166,19 @@ export default {
     storeMappingMixin({
       getters: {
         user: 'auth/user',
-        languages: 'language/activeLanguages'
+        languages: 'language/activeLanguages',
+        surveys: 'survey/surveys'
       }, actions: {
-        registerRocketchatUser: 'user/registerRocketChatUser'
+        registerRocketchatUser: 'user/registerRocketChatUser',
+        fetchMigrantSurvey:'survey/fetchMigrantSurvey',
+        saveSurveyAnswer:'survey/saveSurveyAnswer'
       }
     })
 
   ],
   data () {
-    var surveyJSON = { "pages": [{ "name": "page1", "elements": [{ "type": "checkbox", "name": "question1", "title": "How did you know about MICADO", "choices": [{ "value": "item1", "text": "told by a friend" }, { "value": "item2", "text": "proposed by PA" }, { "value": "item3", "text": "found in internet" }] }, { "type": "rating", "name": "question2", "title": "How do you rate the MICADO application" }, { "type": "matrix", "name": "question3", "title": "Please state your opinion", "columns": ["Agree", "Not know", "Disagree"], "rows": ["I understood better the things to do to get my documents", "I found useful information"] }], "title": "Micado questionnaire" }] }
-    var model = new SurveyVue.Model(surveyJSON)
+    //var surveyJSON = { "pages": [{ "name": "page1", "elements": [{ "type": "checkbox", "name": "question1", "title": "How did you know about MICADO", "choices": [{ "value": "item1", "text": "told by a friend" }, { "value": "item2", "text": "proposed by PA" }, { "value": "item3", "text": "found in internet" }] }, { "type": "rating", "name": "question2", "title": "How do you rate the MICADO application" }, { "type": "matrix", "name": "question3", "title": "Please state your opinion", "columns": ["Agree", "Not know", "Disagree"], "rows": ["I understood better the things to do to get my documents", "I found useful information"] }], "title": "Micado questionnaire" }] }
+    /*var model = new SurveyVue.Model(this.surveyJSON)
     console.log("SURVEY")
     console.log(model)
     model
@@ -183,13 +187,14 @@ export default {
         console.log("result of SURVEY")
         console.log(result)
         console.log(result.data)
-      });
+      });*/
     return {
+      surveyJSON:null,
       leftDrawerOpen: false,
       klaro_config: klaroconfig,
       manager: null,
       alert: false,
-      survey: model,
+      survey: null,
       navs: [
         /* 
          {
@@ -299,7 +304,7 @@ export default {
           return nav.needs_login == false
         })
       }
-    }
+    },
   },
   watch: {
     manager: function (manager, eventType, data) {
@@ -385,14 +390,44 @@ export default {
  externalScript.innerHTML = scriptContent
  //   externalScript.setAttribute('text', scriptContent)
     document.body.appendChild(externalScript)*/
+          
   },
   methods: {
     consent () {
       klaro.show(this.klaro_config)
 
     },
-    action (lab) {
-      switch (lab) {
+    generateSurvey(){
+      console.log("computed surveyrender")
+      console.log(this.surveyJSON)
+      if (this.surveyJSON!=null) {
+        this.survey= new SurveyVue.Model(this.surveyJSON)
+        console.log("after survey initialization")
+         this.survey.onComplete.add( (result)=> {
+        console.log("result of SURVEY")
+        console.log(result.data)
+        this.saveResults(result.data)
+      })
+      this.alert = true
+      return this.survey
+      } else {
+        return null
+      }
+    },
+    saveResults(answer){
+      console.log(this.surveys)
+      var formatted_results={
+        idSurvey:this.surveys.id,
+        idUser:this.user.umid,
+        answer:JSON.stringify(answer) ,
+        answerDate: new Date().toISOString()
+      }
+      console.log(formatted_results)
+      this.saveSurveyAnswer(formatted_results)
+      console.log("I am saving the results of the survey!!!!!")
+    },
+    action(lab){
+      switch(lab) {
         case "menu.documents":
           console.log(this.$refs.language)
           this.$refs.language.open()
@@ -424,6 +459,16 @@ export default {
       }
 
     }
+  },
+  created(){
+    this.fetchMigrantSurvey(this.user.umid).then((sr)=>{
+      console.log("I AM THE SUrVEY")
+      console.log(sr)
+      this.surveyJSON = JSON.parse(sr.survey)
+            console.log("I AM THE SUrVEY json")
+
+      console.log(this.surveyJSON)
+    })
   }
 };
 </script>
