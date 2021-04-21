@@ -86,7 +86,7 @@ export default {
     }
   }, methods: {
      createShell () {
-      this.doc_shell = { id: -1, pictures: [], userId: this.$store.state.auth.user.umid, userTenant:null, askValidateByTenant:null, validated:false, validationDate:null, validatedByTenant:null, validatedByUser:null, uploadedByMe:true, expirationDate:null, documentTypeId: ""  }
+      this.doc_shell = { id: -1, pictures: [], userId: this.$store.state.auth.user.umid, userTenant:null, askValidateByTenant:null, validated:false, validationDate:null, validatedByTenant:null, validatedByUser:null, uploadedByMe:true, expirationDate:null, documentTypeId: "", shareable:false  }
       /*this.languages.forEach(l => {
         this.edit_process.translations.push({ id: -1, lang: l.lang, process: '', description: '', translationDate: null })
       });*/
@@ -106,6 +106,7 @@ export default {
       this.doc_shell.expirationDate = document.expirationDate
       this.doc_shell.documentTypeId = document.documentTypeId
       this.doc_shell.pictures = document.pictures
+      this.doc_shell.shareable = document.shareable
 
     },
     savingDocument(document){

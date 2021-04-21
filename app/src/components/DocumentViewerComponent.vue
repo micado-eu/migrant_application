@@ -8,10 +8,7 @@
         class="title"
         :text="findType()"
         :Title="findType()"
-        :row="'row'"
-        :title_col="'col'"
-        :icon_col="'col'"
-        :icon_style="'text-align:left'"
+
         />
       <img width="320px" class="image"  alt="Powered by Micado" :src="the_document.pictures[0].picture" />
      
@@ -24,7 +21,7 @@
     <q-icon  name="img:statics/icons/Send.png" size="md" />
     </div>
     <div class="col ico">
-    <q-icon class="icon" name="img:statics/icons/Icon - Download.svg" size="md" @click="editing" />
+    <q-icon class="icon" name="img:statics/icons/Icon - Download.svg" size="md" @click="downloading = true" />
     </div>
     <div class="col ico">
     <q-icon  name="img:statics/icons/Icon - Delete.svg" size="md" />
@@ -42,7 +39,7 @@
         :row="'row'"
         :title_col="'col-11'"
         :icon_col="'col-1'"
-        :icon_style="'text-align:left'"
+        :icon_style="'text-align:right'"
         />
     <!--<p class="textup">{{$t('desc_labels.document_type')}}:</p>-->
     <p class="textdown">{{findType()}}</p>
@@ -56,7 +53,7 @@
         :row="'row'"
         :title_col="'col-11'"
         :icon_col="'col-1'"
-        :icon_style="'text-align:left'"
+        :icon_style="'text-align:right'"
         />
     <!--<p class="textup" >{{$t('desc_labels.document_issuer')}}:</p>-->
     <p class="textdown">{{findIssuer()}}</p>
@@ -66,13 +63,54 @@
     <p class="textup" >{{$t('desc_labels.review_date')}}:</p>
     <p class="textdown">{{the_document.expirationDate}}</p>
     </div>-->
-  
+  <div style="text-align:center">
     <q-btn class="button-1" size="12px" rounded no-caps filled color="info" to="/documents" :label="$t('button.back')" />
-    <q-btn class="button-2" size="12px" rounded no-caps color="accent" :label="$t('button.download')" />
-    
+    <!--<q-btn class="button-2" size="12px" rounded no-caps color="accent" :label="$t('button.download')" />-->
+  </div>  
    
     
   </div>
+      <q-dialog v-model="downloading">
+       <q-layout
+        view="Lhh lpR fff"
+        container
+        class="bg-white"
+      >
+
+
+        <q-page-container class="q-ma-sm">
+          
+          <q-page
+            padding
+          >
+          <div style="padding-top:50px; text-align:center">
+          <q-icon  size="150px" :name="'img:statics/icons/Icon - Round checkmark orange.svg'"/>
+          <p class="thanks">{{$t('feedback.thanks')}}</p>
+          <TalkingLabel
+                  class="option_3"
+                  style="width:100%"
+                  :Title="$t('feedback.feedback_sent')"
+                  :text="$t('feedback.feedback_sent')"
+                />
+          </div>
+          <div style="text-align:center; padding-top:30px">
+           <!-- <a :href="the_document.pictures[0].picture" download="doc.jpeg">-->
+          <q-btn
+            class="go_back"
+            :label="$t('button.go_back')"
+            :icon="'img:statics/icons/Icon - go back.svg'"
+            rounded
+            no-caps
+            size="15px"
+            @click="downloadDoc"
+          />
+            </a>
+          </div>
+                
+          </q-page>
+        </q-page-container>
+      </q-layout>
+    </q-dialog>
   </div>
   
 </template>
@@ -102,6 +140,8 @@ export default {
   data () {
     return {
       id:this.thedocid,
+      downloading:false,
+      deleting:false
 
     }
   },
@@ -109,6 +149,16 @@ export default {
     TalkingLabel
   },
   methods:{
+    downloadDoc(){
+      this.downloading = false
+      console.log(this.the_document.pictures[0].picture)
+      this.the_document.pictures.forEach((pic)=>{
+        var a = document.createElement("a"); //Create <a>
+      a.href = pic.picture //Image Base64 Goes here
+      a.download = "Image.jpeg"; //File name Here
+      a.click()
+      })
+    },
     editing(){
        if(this.the_document.uploadedByMe){
         console.log("prima di mandare i process")
@@ -191,18 +241,18 @@ export default {
   margin-bottom: 0px;
 }
 .container{
-  width:320px;
+
   margin:0 auto;
   border-radius: 10px; 
   background-color:white; 
   text-align:center;
+  padding-top:20px
 }
 .image{
   margin: 0 auto; 
   margin-top:10px
 }
 .icon-container{
-  width:320px; 
   margin: 0 auto;
   padding-left:0px; 
   padding-top:10px; 
@@ -213,7 +263,6 @@ export default {
   margin-left:5px
 }
 .fields-container{
-  width:320px; 
   margin: 0 auto;
   padding-left:10px; 
   padding-right: 10px;
