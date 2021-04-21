@@ -24,7 +24,7 @@
     <q-icon class="icon" name="img:statics/icons/Icon - Download.svg" size="md" @click="downloading = true" />
     </div>
     <div class="col ico">
-    <q-icon  name="img:statics/icons/Icon - Delete.svg" size="md" />
+    <q-icon  name="img:statics/icons/Icon - Delete.svg" @click="deleting = true" size="md" />
     </div>
    </div>
   </div>
@@ -70,47 +70,76 @@
    
     
   </div>
+  <q-item>
       <q-dialog v-model="downloading">
-       <q-layout
-        view="Lhh lpR fff"
-        container
-        class="bg-white"
-      >
-
-
-        <q-page-container class="q-ma-sm">
-          
-          <q-page
-            padding
-          >
-          <div style="padding-top:50px; text-align:center">
-          <q-icon  size="150px" :name="'img:statics/icons/Icon - Round checkmark orange.svg'"/>
-          <p class="thanks">{{$t('feedback.thanks')}}</p>
+        <q-card class="q-pa-md" style="padding-top:0px">
+          <div style="padding-top:30px; text-align:center">
           <TalkingLabel
                   class="option_3"
                   style="width:100%"
-                  :Title="$t('feedback.feedback_sent')"
-                  :text="$t('feedback.feedback_sent')"
+                  :Title="$t('desc_labels.document_download')"
+                  :text="$t('desc_labels.document_download')"
                 />
           </div>
-          <div style="text-align:center; padding-top:30px">
-           <!-- <a :href="the_document.pictures[0].picture" download="doc.jpeg">-->
+          <div style="text-align:center; padding-top:40px">
+            <q-icon  size="80px" :name="'img:statics/icons/Icon - Download.svg'"/>
+          </div>
+          <div style="text-align:center;">
           <q-btn
-            class="go_back"
-            :label="$t('button.go_back')"
-            :icon="'img:statics/icons/Icon - go back.svg'"
+            :label="$t('button.download')"
+            color="secondary"
+            style="width:150px"
             rounded
+            unelevated
             no-caps
             size="15px"
             @click="downloadDoc"
           />
-            </a>
+          </div>
+        </q-card>
+    </q-dialog>
+     <q-dialog v-model="deleting">
+       
+
+        <q-card class="q-pa-md" style="padding-top:0px">
+          <div style="padding-top:30px; text-align:center">
+
+          <TalkingLabel
+                  class="option_3"
+                  style="width:100%"
+                  :Title="$t('desc_labels.document_delete')"
+                  :text="$t('desc_labels.document_delete')"
+                />
+          </div>
+          <div style="text-align:center; padding-top:40px">
+            <q-icon  size="80px" :name="'img:statics/icons/Icon - Delete2.svg'"/>
+          </div>
+          <div style="text-align:center;">
+          <q-btn
+            class="go_back"
+            :label="$t('button.cancel')"
+            rounded
+            unelevated
+            no-caps
+            size="15px"
+            @click="deleting = false"
+            style="margin-right:10px"
+          />
+            <q-btn
+            :label="$t('button.delete')"
+            rounded
+            unelevated
+            color="accent"
+            no-caps
+            size="15px"
+            @click="deleteDocument"
+          />
+          
           </div>
                 
-          </q-page>
-        </q-page-container>
-      </q-layout>
+        </q-card>
     </q-dialog>
+  </q-item>
   </div>
   
 </template>
@@ -149,6 +178,21 @@ export default {
     TalkingLabel
   },
   methods:{
+    deleteDocument () {
+      if(this.the_document.uploadedByMe){
+      console.log("in delete document event")
+      this.$store.dispatch("documents/deleteDocument", this.the_document.id).then(()=>{
+        this.$router.push({ name: 'document' })
+      })
+      }
+       else{
+        this.$q.notify({
+        message: 'You can\'t delete documents not uploaded by you',
+        color: 'purple'
+      })
+      this.deleting = false
+      }
+    },
     downloadDoc(){
       this.downloading = false
       console.log(this.the_document.pictures[0].picture)
@@ -287,6 +331,20 @@ export default {
   text-align:center;
 }
 .title{
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 25px;
+  color: #0F3A5D;
+}
+  .go_back {
+  background-color: white;
+  color:#0F3A5D;
+  border: 1px solid #0F3A5D;
+  border-radius: 50px;
+}
+.option_3{
   font-family: Nunito;
   font-style: normal;
   font-weight: bold;

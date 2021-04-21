@@ -1,8 +1,35 @@
 <template>
 <div class="container">
+  <div style="text-align:center">
+        <TalkingLabel
+        v-if="thedocid != null"
+        class="title"
+        :text="$t('desc_labels.edit_doc')"
+        :Title="$t('desc_labels.edit_doc')"
+
+        />
+        <TalkingLabel
+        v-else
+        class="title"
+        :text="$t('desc_labels.add_doc')"
+        :Title="$t('desc_labels.add_doc')"
+
+        />
+        <hr>
+  </div>
     <div class="select" >
+        <TalkingLabel
+        class="field"
+        :text="$t('desc_labels.add_doc')"
+        :Title="$t('desc_labels.add_doc')"
+        :row="'row'"
+        :title_col="'col-11'"
+        :icon_col="'col-1'"
+        :icon_style="'text-align:right'"
+        />
         <q-select
             filled
+            style="padding-bottom:20px"
             dense
             clearable
             emit-value
@@ -11,8 +38,18 @@
             :options="this.t_docs"
             :label="$t('input_labels.doc_type')" 
           />
+          <hr >
     </div>
     <div class="col-8 input" >
+      <TalkingLabel
+        class="field"
+        :text="$t('desc_labels.image')"
+        :Title="$t('desc_labels.image')"
+        :row="'row'"
+        :title_col="'col-11'"
+        :icon_col="'col-1'"
+        :icon_style="'text-align:right'"
+        />
         <q-file
         :label="$t('input_labels.upload_doc')"
               @input="getFiles($event)"
@@ -36,8 +73,9 @@
             </span>        
           </div>        
   <div class="button-container" >
-    <q-btn class="button"  no-caps rounded filled color="accent" @click="savingDocument(doc_shell)"  :label="$t('button.save')" />
-    <q-btn class="negative-button" no-caps rounded color="info" to="/documents" @click="back()" :label="$t('button.back')" />
+    <q-btn class="go_back" :icon="'img:statics/icons/Icon - X (cancel).svg'" no-caps rounded to="/documents" @click="back()" :label="$t('button.cancel')" />
+    <q-btn  :icon="'img:statics/icons/Icon - Checkmark.svg'" no-caps rounded  color="accent" @click="savingDocument(doc_shell)"  :label="$t('button.save')" />
+    
   </div>
   </div>
 </template>
@@ -45,6 +83,8 @@
 <script>
 import editEntityMixin from '../mixin/editEntityMixin'
 import storeMappingMixin from '../mixin/storeMappingMixin'
+const TalkingLabel = () => import('./TalkingLabel')
+
 
 
 export default {
@@ -62,6 +102,9 @@ export default {
       fetchDocumentType: 'document_type/fetchDocumentTypeMigrant'
     }
   })],
+  components:{
+    TalkingLabel
+  },
   data () {
     return {
       id: this.$route.params.id,
@@ -173,18 +216,8 @@ export default {
     this.fetchDocuments()
       .then(documents => {
         console.log(documents)
-        this.loading = false
-      })
-    this.fetchDocumentType({defaultLang: this.$defaultLang, currentLang:this.$userLang})
-    .then(document_types => {
-        console.log(document_types)
-        document_types.forEach(document_type => {
-          var the_doc = { label: document_type.document, value: document_type.id }
-          this.t_docs.push(the_doc)
-        })
-
-      })
-    console.log("i am document types")
+            console.log("i am document types")
+    console.log(this.thedocid)
     console.log(this.document_types)
       if (this.thedocid != null) {
       console.log("Editing document")
@@ -201,6 +234,18 @@ export default {
       console.log(this.uploaded_images)
       console.log(this.doc_shell)
     }
+        this.loading = false
+      })
+    this.fetchDocumentType({defaultLang: this.$defaultLang, currentLang:this.$userLang})
+    .then(document_types => {
+        console.log(document_types)
+        document_types.forEach(document_type => {
+          var the_doc = { label: document_type.document, value: document_type.id }
+          this.t_docs.push(the_doc)
+        })
+
+      })
+
   },
 }
 </script>
@@ -222,7 +267,7 @@ export default {
   margin: auto;
   display: block;
   margin-bottom:0px; 
-  padding-top:10px; 
+  padding-top:20px; 
   padding-bottom:10px
 }
 .input{
@@ -241,5 +286,29 @@ export default {
 .button-container{
   text-align:center; 
   padding-top:20px
+}
+.title{
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 25px;
+  color: #0F3A5D;
+}
+.field{
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 19px;
+  color: #000000;
+  padding-bottom:10px
+}
+  .go_back {
+  background-color: white;
+  color:#0F3A5D;
+  border: 1px solid #0F3A5D;
+  border-radius: 50px;
+  margin-right:10px
 }
 </style>

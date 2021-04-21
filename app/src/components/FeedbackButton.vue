@@ -99,13 +99,7 @@
       </q-layout>
     </q-dialog>
     <q-dialog v-model="confirm">
-       <q-layout
-        view="Lhh lpR fff"
-        container
-        class="bg-white"
-      >
-
-
+<q-card class="q-pa-md" style="padding-top:0px">
         <q-page-container class="q-ma-sm">
           
           <q-page
@@ -135,7 +129,7 @@
                 
           </q-page>
         </q-page-container>
-      </q-layout>
+</q-card>
     </q-dialog>
   </div>
 </template>

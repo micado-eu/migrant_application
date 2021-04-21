@@ -26,13 +26,13 @@
           </q-item-section>
         </div>
         <div>
-          <q-icon
+         <!-- <q-icon
             class="icon"
             :data-cy="'editdocument'.concat(Link)"
             name="img:statics/icons/Edit.png"
             size="md"
             @click.stop="editing"
-          />
+          />-->
           <q-icon
             class="icon"
             :data-cy="'senddocument'.concat(Link)"
@@ -40,13 +40,13 @@
             size="md"
             @click.stop="show = true"
           />
-          <q-icon
+          <!--<q-icon
             :id="this.Link"
             :data-cy="'deletedocument'.concat(Link)"
             name="img:statics/icons/Icon - Delete.svg"
             @click.stop="deleteDocument($event)"
             size="md"
-          />
+          />-->
         </div>
       </div>
       <q-dialog

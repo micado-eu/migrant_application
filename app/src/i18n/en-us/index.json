@@ -51,7 +51,8 @@
     "validation_pending": "Validation pending",
     "validated": "Validated",
     "edit": "Edit",
-    "procedure": "Go to procedure"
+    "procedure": "Go to procedure",
+    "delete":"Delete"
   },
   "input_labels": {
     "doc_type": "Document Type",
@@ -84,7 +85,12 @@
     "integration_plan": "My Integration Plan",
     "personal": "Personal area",
     "survey":"Survey!",
-    "document_sent":"Your document was successfully sent to"
+    "document_sent":"Your document was successfully sent to",
+    "document_delete":"Do you want to delete this document?",
+    "document_download":"Download this document",
+    "edit_doc":"Edit your document",
+    "add_doc":"Add new document",
+    "image":"Image" 
   },
   "profile": {
     "change_pic": "Change picture",
