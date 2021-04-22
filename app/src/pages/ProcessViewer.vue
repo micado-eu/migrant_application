@@ -16,14 +16,14 @@
     <div class="row pad" >
               <q-img
                 class="image"
-                v-for="tag in sortedTopics"
+                v-for="tag in full_process.topics"
                 :src="topics.filter(topic => topic.id == tag)[0].icon"
                 :key="'topic'.concat(tag)"
               >
               </q-img>
                <q-img
                 class="image"
-                v-for="tag in sortedUsers"
+                v-for="tag in full_process.users"
                 :src="users.filter(user => user.id == tag)[0].icon"
                 :key="tag"
               >
