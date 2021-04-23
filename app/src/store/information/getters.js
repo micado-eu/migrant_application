@@ -2,6 +2,17 @@ export function information(state) {
   return state.information
 }
 
+export function informationTemp(state) {
+  return state.informationTemp
+}
+
+export function informationTempElemById(state) {
+  let getterFunc = function (id) {
+    return state.informationTemp.filter(g => g.id == id)[0]
+  }
+  return getterFunc
+} 
+
 export function informationElemById(state) {
   let getterFunc = function (id) {
     return state.information.filter(n => n.id == id)[0]

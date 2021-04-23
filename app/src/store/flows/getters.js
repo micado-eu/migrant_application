@@ -2,6 +2,17 @@ export function processes(state) {
     return state.flows
   }
 
+  export function processesTemp(state) {
+    return state.flowsTemp
+  }
+  
+  export function processTempById(state) {
+    let getterFunc = function (id) {
+      return state.flowsTemp.filter(n => n.id == id)[0]
+    }
+    return getterFunc
+  }
+
   export function processById(state) {
     let getterFunc = function (id) {
       return state.flows.filter(n => n.id == id)[0]

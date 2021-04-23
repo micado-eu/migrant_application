@@ -7,6 +7,10 @@ export function setFlows (state, flows) {
   
 }
 
+export function setFlowsTemp (state, flows) {
+  state.flowsTemp = flows
+}
+
 export function setNodePanelVisible (state, visible) {
   state.nodePanelVisible = visible
 }

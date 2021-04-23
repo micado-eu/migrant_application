@@ -13,6 +13,15 @@ export function fetchFlows (state, payload) {
     })
 }
 
+export function fetchFlowsTemp (state, data) {
+  return client
+    .fetchFlowsTemp(data.defaultLang, data.userLang)
+    .then(flows => {
+      state.commit('setFlowsTemp', flows)
+      return flows
+    })
+}
+
 export function fetchDocuments (state, payload) {
   return client
     .fetchDocuments(payload.defaultLang, payload.userLang)

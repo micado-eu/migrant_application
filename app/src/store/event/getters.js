@@ -2,9 +2,20 @@ export function events(state) {
   return state.events
 }
 
+export function eventTemp(state) {
+  return state.eventTemp
+}
+
 export function eventElemById(state) {
   let getterFunc = function (id) {
     return state.events.filter(n => n.id == id)[0]
+  }
+  return getterFunc
+}
+
+export function eventTempElemById(state) {
+  const getterFunc = function (id) {
+    return state.eventTemp.filter((g) => g.id == id)[0]
   }
   return getterFunc
 }

@@ -15,8 +15,19 @@
         @click="$emit('close', true)"
       />
     </q-toolbar>
-
-    <q-card-section class="center-text">
+    <q-card-section v-if="notFound">
+      <div class="q-mt-xl text-center">
+        <img
+          src="~assets/sad.svg"
+          style="width:30vw;max-width:150px;"
+        >
+        <p class="text-faded">{{$t("error404")}}<strong>(404)</strong></p>
+      </div>
+    </q-card-section>
+    <q-card-section
+      v-else
+      class="center-text"
+    >
       <slot></slot>
       <div class="q-mt-xl">
         {{$t("internal_reference.more_info_1")}} "<span class="more-info-title">{{title}}</span>" {{$t("internal_reference.more_info_2")}}
@@ -62,6 +73,10 @@ export default {
     },
     link: {
       type: String
+    },
+    notFound: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
