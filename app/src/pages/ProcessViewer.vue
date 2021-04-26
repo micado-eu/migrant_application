@@ -1,5 +1,8 @@
   <template>
-  <div class="container">
+  <div>
+    <span v-if="loading">Loading...</span>
+  <div v-else class="container">
+     
       <div class="banner">
         {{$t('desc_labels.guided_processes')}}
         <q-icon
@@ -32,7 +35,7 @@
      <div class="title"> {{$t('desc_labels.description')}} </div>
    <glossary-editor-viewer
                   :content="the_process_description"
-                  :lang="$userLang"
+                  :key="the_process_description"
                 />
     <div class="row">
       <div class="col">
@@ -163,6 +166,7 @@
       />
     </div>
   </div>
+  </div>
 </template>
 
 
@@ -217,6 +221,7 @@ export default {
   },
   data () {
     return {
+      loading:true,
       details: false,
       id: this.$route.params.id,
       merconf: { theme: "default", startOnLoad: false, securityLevel: 'loose', useMaxWidth: false, flowchart: { padding: 5 } },
@@ -431,11 +436,9 @@ export default {
         console.log(this.step)
       }
     },
-  },
-
-
-  created () {
-   var prom1 = []
+    initialize(){
+      this.loading = true
+      var prom1 = []
    var prom2 =[]
    var prom3 =[]
    var prom4=[]
@@ -451,7 +454,11 @@ export default {
      console.log("I am full process")
      console.log(this.full_process)
      this.the_process = this.full_process.process  
+     console.log("I am full process description")
+     console.log(this.full_process.description)
     this.the_process_description = this.full_process.description
+    console.log("I AM THE_PROCESS DESC")
+    console.log(this.the_process_description)
    }
    else{
      console.log("inside else")
@@ -515,10 +522,17 @@ export default {
       console.log("i am full process")
       console.log(this.full_process)
       console.log(this.process_comments)
-      
+      console.log(this.loading)
+      console.log("loading the page")
+
               })
             })
           })
+        }
+        else{
+          console.log("loading the page")
+          this.loading = false
+
         }
       }
       
@@ -529,8 +543,8 @@ export default {
         })
       })
      
-   
-    this.loading = true
+                     this.loading = false
+
     console.log(this);
     console.log(this.$Countly);
     this.$Countly.q.push(['add_event', {
@@ -556,6 +570,17 @@ export default {
    
     
     console.log(this.$auth.loggedIn())
+    }
+  },
+
+
+  created () {
+   this.initialize()
+  },
+    watch: {
+    '$route.params.processid': function (processid) {
+      this.initialize()
+    }
   }
 
 }
