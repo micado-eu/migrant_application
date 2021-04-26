@@ -9,14 +9,30 @@
       </div>
      <q-list class="q-pa-md">
   <IntegrationPlan  
-  
+  :completed="progress(intervention_plan) == 100"
   v-for="intervention_plan in intervention_plans"
    :key="intervention_plan.id"
    :plan="intervention_plan.title"
    :completion="progress(intervention_plan)"
    :planid="intervention_plan.id"
-   />
+   >
+                <TalkingLabel
+                  style="margin:auto"
+                  :text="intervention_plan.title"
+                />
+  </IntegrationPlan>
      </q-list>
+  <div style="text-align:center; padding-bottom:10px">
+     <q-btn
+            class="go_back"
+            :label="$t('button.go_back')"
+            :icon="'img:statics/icons/Icon - go back.svg'"
+            rounded
+            no-caps
+            size="15px"
+            @click="$router.go(-1)"
+          />
+  </div>
   </div>
 </template>
 
@@ -24,10 +40,11 @@
 import editEntityMixin from '../mixin/editEntityMixin'
 import storeMappingMixin from '../mixin/storeMappingMixin'
 import IntegrationPlan from 'components/IntegrationPlan'
+const TalkingLabel = () => import('components/TalkingLabel')
 export default {
   name: 'PlanList',
   components:{
-    IntegrationPlan
+    IntegrationPlan, TalkingLabel
   },
     mixins: [
     editEntityMixin,
@@ -77,5 +94,27 @@ export default {
   line-height: 41px;
   color:white; 
   background-color:#FF7C44
+}
+.not_completed{
+  background-color: white;
+  color:#0F3A5D;
+  border: 1px solid #0F3A5D;
+  border-radius: 5px;
+  margin-bottom:10px;
+
+}
+.completed{
+  background-color: #0F3A5D;
+  color:white;
+  border: 1px solid #0F3A5D;
+  border-radius: 5px;
+  margin-bottom:10px;
+
+}
+  .go_back {
+  background-color: white;
+  color:#0F3A5D;
+  border: 1px solid #0F3A5D;
+  border-radius: 50px;
 }
 </style>
