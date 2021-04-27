@@ -1,5 +1,7 @@
 <template>
-  <q-page class="flows container-fluid">
+  <q-page class="flows container-fluid" style="margin: 0 auto;">
+    <div v-if="loading">Loading...</div>
+    <div  v-else>
     <div class="banner">
         {{$t('desc_labels.integration_plan')}}
         <q-icon
@@ -17,22 +19,38 @@
           header-nav
           animated
         >
-          <h5 class="header">{{the_plan.title}}</h5>
+          <h5 class="header">
+                 <TalkingLabel
+                  class="title"
+                  :Title="the_plan.title"
+                  :text="the_plan.title"
+                    />
+            </h5>
+            <hr>
           <div class="row">
-            <div class="col pad-left">
-              Plan Progress:
+            <h5 style="width:50%" class="pad-left">
+                <talking-label
+                :title="$t('desc_labels.plan_progress')"
+                :row="'row'"
+                :showing="'padding-right:10px;padding-top:10px'"
+                :icon_style="'text-align:left;padding-top:10px'"
+                :text="$t('desc_labels.plan_progress')"
+              ></talking-label>
+            </h5>
+            <div style="width:50%; text-align:right">
               <q-circular-progress
                 show-value
                 class="text-black q-ma-md"
-                :value="progress(the_plan)"
                 size="50px"
+                :value="this.progress(the_plan)"
                 track-color="grey-3"
                 color="orange"
-              />
+              >
+              {{this.progress(the_plan)}} %
+              </q-circular-progress>
             </div>
-             <q-separator style="margin-left:20px; margin-right:20px;" color="grey"/>
-          </div>
-         
+            </div>
+         <hr>
           <q-step
             v-for="intervention in the_plan.interventions"
             :data-cy="'intervention'.concat(intervention.id)"
@@ -145,6 +163,7 @@
         </q-card-actions>
       </q-card>
     </q-dialog>
+    </div>
   </q-page>
 </template>
 
@@ -152,6 +171,7 @@
 
 import editEntityMixin from '../mixin/editEntityMixin'
 import storeMappingMixin from '../mixin/storeMappingMixin'
+const TalkingLabel = () => import('components/TalkingLabel')
 
 export default {
   name: 'PageIndex',
@@ -167,8 +187,12 @@ export default {
       selectedIntervention: null,
       selectedPlanId: null,
       need_validators: false,
-      ask_validation: false
+      ask_validation: false,
+      loading:true
     }
+  },
+  components:{
+    TalkingLabel
   },
   mixins: [
     editEntityMixin,
@@ -254,24 +278,35 @@ export default {
         this.the_plan = intervention_plans.filter((plan)=>{
           return plan.id == this.theplanid
         })[0]
+                this.loading=false
       })
     this.fetchTenants()
       .then((tenants) => {
-
 
       })
   }
 }
 </script>
 <style scoped>
+
 .header {
-  padding-left: 25px;
-  margin-top: 5px;
-  font-size: 20px;
-  font-weight: bold;
+font-family: Nunito;
+font-style: normal;
+font-weight: bold;
+font-size: 18px;
+line-height: 25px;
+text-align: center;
+color: #0F3A5D;
+margin: auto;
+
 }
 .pad-left {
   padding-left: 25px;
+  font-family: Nunito;
+font-style: normal;
+font-weight: bold;
+font-size: 15px;
+line-height: 18px;
 }
 .button {
   margin-top: 10px;
@@ -303,4 +338,6 @@ export default {
   margin-top: 10px;
   margin-left: 0px;
 }
+.pad{
+background-color: blue;}
 </style>
