@@ -19,13 +19,13 @@ export function informationElemById(state) {
   }
   return getterFunc
 }
-export const show_info_personal = (state) => (index, idsToFilter,preferences) => {
+export const show_info_personal = (state) => (index,preferences) => {
   // it's an example
   if(index != null){
     var showing_info=[]
     var first_filter =  state.information.filter((info)=>{
       if(info.topics){
-        return info.topics.includes(index) && (idsToFilter.length === 0 || idsToFilter.includes(info.id))
+        return info.topics.includes(index)
       }
 
     })
@@ -61,7 +61,7 @@ export const show_info_personal = (state) => (index, idsToFilter,preferences) =>
     var showing_info=[]
 
     var first_filter = state.information.filter((info)=>{
-        return info.topics == null && (idsToFilter.length === 0 || idsToFilter.includes(info.id))
+        return info.topics == null
     })
     console.log(first_filter)
 
@@ -99,13 +99,13 @@ export const show_info_personal = (state) => (index, idsToFilter,preferences) =>
   }
 
 }
-export const show_info_general = (state) => (index, idsToFilter, preferences) => {
+export const show_info_general = (state) => (index, preferences) => {
   // it's an example
   if(index != null){
     var showing_info=[]
     var first_filter =  state.information.filter((info)=>{
       if(info.topics){
-        return info.topics.includes(index) && (idsToFilter.length === 0 || idsToFilter.includes(info.id))
+        return info.topics.includes(index)
       }
       
     })
@@ -158,7 +158,7 @@ export const show_info_general = (state) => (index, idsToFilter, preferences) =>
     console.log("IN FLOWS GETETER NEWWFHJW")
     var showing_info=[]
     var first_filter =  state.information.filter((info)=>{
-        return info.topics == null && (idsToFilter.length === 0 || idsToFilter.includes(info.id))
+        return info.topics == null
     })
     if(preferences){
       console.log("INSIDE PREFRENCES")
