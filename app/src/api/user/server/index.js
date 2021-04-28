@@ -15,6 +15,12 @@ export default {
       .then((response) => response.data)
       .catch(error_handler)
   },
+  fetchSpecificUserByTenant (id, tenant) {
+    return axiosInstance
+      .get(`/backend/1.0.0/users/${id}?filter[include][0][relation]=attributes&filter[include][1][relation]=interventionPlans&filter[include][2][relation]=tenant&filter[include][3][relation]=userPicture&filter[include][4][relation]=userPreferences&filter[where][and][5][umTenantId]=` + tenant)
+      .then((response) => response.data)
+      .catch(error_handler)
+  },
   saveUserPicture(picture){
     const workingPic= JSON.parse(JSON.stringify(picture, ['picture', 'userId', 'tenantId']))
     return axiosInstance
