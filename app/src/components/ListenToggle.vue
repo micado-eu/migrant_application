@@ -36,23 +36,32 @@ export default {
     SpeechComp
   },
   methods: {
+    stopRecognition(){
+       if(this.isAssistantActive){
+        console.log("speechcomp is active")
+        this.$refs.spc.abort()
+        this.isAssistantActive = false
+      }
+    },
     parseText(value){
       console.log("I AM UTTERET TEXT")
       console.log(value)
       this.$emit('speak', value)
     },
     toggleAssistant(){
-      this.isAssistantActive = !this.isAssistantActive
-      if(this.isAssistantActive){
+      
+      if(!this.isAssistantActive){
         console.log("speechcomp is active")
         console.log(this)
         this.color = "red"
         this.$refs.spc.start()
+        this.isAssistantActive = true
       }else{
         console.log("speechcomp is paused")
         console.log(this)
         this.color = "white"
         this.$refs.spc.pause()
+        this.isAssistantActive = false
 
       }
     }

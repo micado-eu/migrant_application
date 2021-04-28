@@ -135,6 +135,9 @@ navigate() {
     },
     resume: function(){
       this.annyang.resume()
+    },
+    abort:function(){
+      this.annyang.abort()
     }
   },
   events: {

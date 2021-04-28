@@ -1,6 +1,9 @@
 {
   "application_title": "MICADO app",
-  "privacy": "Privacy policy",
+  "privacy":{
+    "privacy":"Privacy policy",
+    "grant":"This project has received funding from the European Union’s H2020 Innovation Action under Grant Agreement No 822717"
+  },
   "error404": "Sorry, nothing here...",
   "consent": {
     "title": "MICADO Consent management",
@@ -107,7 +110,9 @@
     "old_pass": "Old Password",
     "new_pass": "New Password",
     "confirm_pass": "Confirm password",
-    "user_pref": "User Preferences"
+    "user_pref": "User Preferences",
+    "password_change":"Change your password",
+    "password_changed":"You successfully changed your password"
   },
   "filters": {
     "title": "Filter by",

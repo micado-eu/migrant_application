@@ -216,7 +216,7 @@ export default {
         },
     methods: {
       closing(){
-        this.$refs.speaking.toggleAssistant()
+        this.$refs.speaking.stopRecognition()
         this.layout = false
       },
       composeMessage(value){

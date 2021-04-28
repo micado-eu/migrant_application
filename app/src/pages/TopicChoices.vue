@@ -53,7 +53,7 @@
     </div>
       </div>
   <div>
-<div v-if="to_show_flows_personal.length>0 || to_show_info_personal.length>0">Based on user preferences</div>
+<div v-if="to_show_flows_personal.length>0 || to_show_info_personal.length>0" style="text-align:center; padding-top:10px">Based on user preferences</div>
       <ListItem v-for="element in to_show_info_personal"
             style="display:inline-block"
             :key="element.id"
@@ -97,7 +97,7 @@
   
     
      
-<div v-if="to_show_flows_general.length>0 || to_show_info_general.length>0">General</div>
+<div v-if="to_show_flows_general.length>0 || to_show_info_general.length>0"  style="text-align:center; padding-top:10px">General</div>
           <ListItem v-for="element in to_show_info_general"
             style="display:inline-block"
             :key="element.id"
