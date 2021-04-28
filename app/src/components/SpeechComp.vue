@@ -1,7 +1,5 @@
 <template>
-  <div class="speech">
-   <span >You said: {{ userSaid }}</span>
-  </div>
+
 </template>
 
 <script>
@@ -54,6 +52,8 @@ export default {
 
 this.annyang.addCallback('result', function(phrases) {
   console.log("I think the user said: ", phrases[0]);
+        self.$emit('spoken', phrases[0])
+
   console.log("But then again, it could be any of the following: ", phrases);
   self.userSaid = phrases[0];
 })

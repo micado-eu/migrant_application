@@ -6,7 +6,7 @@
     size="15px"
   >
     <q-avatar size="30px" style="color:#4D4D4D">
-      <img src="~assets/bb-micado.png">
+      <q-icon name="mic"/>
       <q-tooltip
           transition-show="flip-right"
           transition-hide="flip-left"
@@ -14,7 +14,7 @@
 
         </q-tooltip>
     </q-avatar>
-    <SpeechComp ref="spc"/>
+    <SpeechComp @spoken="parseText" ref="spc"/>
 
   </q-btn>
 </div>
@@ -36,6 +36,11 @@ export default {
     SpeechComp
   },
   methods: {
+    parseText(value){
+      console.log("I AM UTTERET TEXT")
+      console.log(value)
+      this.$emit('speak', value)
+    },
     toggleAssistant(){
       this.isAssistantActive = !this.isAssistantActive
       if(this.isAssistantActive){

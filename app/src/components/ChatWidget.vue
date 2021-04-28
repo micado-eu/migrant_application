@@ -11,7 +11,7 @@
       <q-layout view="Lhh lpR fff" container class="bg-white">
         <q-bar class="bg-secondary text-white q-pr-none">
           <q-toolbar-title>Micado Chat</q-toolbar-title>
-          <q-btn flat icon="cancel" @click="layout = false" ></q-btn>
+          <q-btn flat icon="cancel" @click="closing()" ></q-btn>
         </q-bar>
            <q-card class=" q-pa-md column"  style="height: 75vh">  
             <q-scroll-area 
@@ -33,11 +33,14 @@
             </q-scroll-area>
            
             <q-card-actions class="q-pa-md">
-                <div class="col-10">
+                <div class="col-8">
             <q-input autofocus dense outlined v-on:keyup.enter="sendMessages" v-model="question" label="Outlined" />
             </div>
             <div class="col-2">
             <q-btn class="button" size="15px" style="width:100%" color="accent" unelevated no-caps  text-color="white" :label="$t('button.save')" @click="sendMessages()" />
+            </div>
+            <div class="col-2">
+                <ListenToggle @speak="composeMessage" ref="speaking"/>
             </div>
             </q-card-actions>
            </q-card>
@@ -49,11 +52,15 @@
 <script>
 import storeMappingMixin from '../mixin/storeMappingMixin'
 import axios from 'axios'
+import ListenToggle from 'components/ListenToggle'
 
 let api = null
 export default {
    name: 'ChatWidget',
   props: ['picture', 'data'],
+  components:{
+    ListenToggle
+  },
   mixins: [
     storeMappingMixin({
       getters: {
@@ -107,6 +114,7 @@ export default {
       }
     },
      mounted() {
+
       //api = rcApi.connectToRocketChat (this.webSocketUrl)
         console.log(this.$rcClient)
         console.log("I AM CHATBOT NAME")
@@ -207,6 +215,13 @@ export default {
 
         },
     methods: {
+      closing(){
+        this.$refs.speaking.toggleAssistant()
+        this.layout = false
+      },
+      composeMessage(value){
+          this.question +=value
+      },
       getUserRole(){
         api.sendMessage(
           {
@@ -295,6 +310,8 @@ export default {
       },
       register(){
         console.log(this.user)
+               console.log("QUESTE SONO LE REFS")
+       console.log(this.$root)
         this.username = this.user.id
         this.password = "kHLAuxDmXz8e"
         this.loginBasic()
