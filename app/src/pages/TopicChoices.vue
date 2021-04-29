@@ -53,7 +53,17 @@
     </div>
       </div>
   <div>
-<div v-if="to_show_flows_personal.length>0 || to_show_info_personal.length>0" style="text-align:center; padding-top:10px">Based on user preferences</div>
+<div v-if="to_show_flows_personal.length>0 || to_show_info_personal.length>0 || to_show_events_personal.length>0" style="text-align:center; padding-top:10px">
+  <TalkingLabel
+      class= "preference"
+      :Title=" 'Based on user preferences'"
+      :text=" 'Based on user preferences'"
+      :showing="'text-align:center'"
+      :icon="'img:statics/icons/Edit.png'"
+      :icon_size="'sm'"
+        />
+ 
+  </div>
       <ListItem v-for="element in to_show_info_personal"
             style="display:inline-block"
             :key="element.id"
@@ -97,7 +107,7 @@
   
     
      
-<div v-if="to_show_flows_general.length>0 || to_show_info_general.length>0"  style="text-align:center; padding-top:10px">General</div>
+<div v-if="to_show_flows_personal.length>0 || to_show_info_personal.length>0 || to_show_events_personal.length>0" style="background-color:#EFEFEF; height:15px" >&nbsp;</div>
           <ListItem v-for="element in to_show_info_general"
             style="display:inline-block"
             :key="element.id"
@@ -588,5 +598,13 @@ $secondary_list: #0f3a5d;
   border-width: thin;
   padding-left:5px;
   padding-right:5px
+}
+.preference{
+  font-family: Nunito;
+font-style: normal;
+font-weight: bold;
+font-size: 16px;
+line-height: 21px;
+color: #0F3A5D;
 }
 </style>

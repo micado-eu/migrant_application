@@ -1,5 +1,5 @@
 <template>
-<div class="q-pa-md q-gutter-sm">
+<div class="q-pa-md " style="padding-top:0px">
     <q-btn v-if="!layout" round size="xs" flat  @click="register" >
       <q-avatar >
       <img
