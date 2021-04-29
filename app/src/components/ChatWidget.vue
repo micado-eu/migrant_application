@@ -1,6 +1,6 @@
 <template>
 <div class="q-pa-md q-gutter-sm">
-    <q-btn round size="xs" flat  @click="register" >
+    <q-btn v-if="!layout" round size="xs" flat  @click="register" >
       <q-avatar >
       <img
             src="~assets/Chatbot button (when activated).svg"
@@ -9,17 +9,35 @@
     </q-btn>
     <q-dialog v-model="layout">
       <q-layout view="Lhh lpR fff" container class="bg-white">
-        <q-bar class="bg-secondary text-white q-pr-none">
+   <!-- <q-banner class="bg-secondary text-white" >
+     Micado Chat
+    </q-banner>-->
+     <q-header  elevated class="bg-secondary">
+        <q-toolbar>
+           <q-avatar>
+            <q-icon :name="'img:statics/icons/Icon - Chatbot (selcted) white.svg'"/>
+          </q-avatar>
+          <q-toolbar-title> Micado Chat</q-toolbar-title>
+          <q-btn
+	  	        	round
+	  	        	dense
+	  	        	flat
+                @click="closing()"
+	  	        	color="white"
+	  	        	icon="cancel" />
+        </q-toolbar>
+      </q-header>
+        <!--<q-bar class="bg-secondary text-white q-pr-none">
           <q-toolbar-title>Micado Chat</q-toolbar-title>
           <q-btn flat icon="cancel" @click="closing()" ></q-btn>
         </q-bar>
-           <q-card class=" q-pa-md column"  style="height: 75vh">  
             <q-scroll-area 
             :thumb-style="thumbStyle"
             :bar-style="barStyle" 
             class="col" 
-            ref="chat"  >
-            
+            ref="chat"  >-->
+            <q-page-container id="message_area">
+        <q-page  class="q-pa-md">
             <q-chat-message
             class="q-pa-md"
             v-for="message in messages"
@@ -29,20 +47,52 @@
             :text="[message.message]"
             :sent="message.user == $envconfig.bot_name"
             />
-              
-            </q-scroll-area>
+            
+        </q-page>
+            </q-page-container>              
+            <!--</q-scroll-area>-->
            
-            <q-card-actions class="q-pa-md">
+           <!-- <q-card-actions class=" row q-pa-md">
+              <div class="col-2 q-pa-md">
+                <ListenToggle @speak="composeMessage" ref="speaking"/>
+            </div>
                 <div class="col-8">
             <q-input autofocus dense outlined v-on:keyup.enter="sendMessages" v-model="question" label="Outlined" />
             </div>
             <div class="col-2">
             <q-btn class="button" size="15px" style="width:100%" color="accent" unelevated no-caps  text-color="white" :label="$t('button.save')" @click="sendMessages()" />
             </div>
-            <div class="col-2">
-                <ListenToggle @speak="composeMessage" ref="speaking"/>
-            </div>
-            </q-card-actions>
+            
+            </q-card-actions>-->
+              	<q-footer  elevated>
+  	  <q-toolbar >
+  	  	<q-form 
+  	  		class="full-width"
+          >
+
+	  	    <q-input
+	  	    	v-model="question"
+	  	    	bg-color="white"
+	  	    	outlined
+	  	    	rounded
+	  	    	label="Message"
+	  	    	dense>
+
+	  	      <template v-slot:after>
+	  	        <q-btn
+	  	        	round
+	  	        	dense
+	  	        	flat
+                @click="sendMessages()"
+	  	        	type="submit"
+	  	        	:icon="'img:statics/icons/Icon - send.svg'" />
+              <ListenToggle @speak="composeMessage" ref="speaking"/>
+	  	      </template>
+            
+	  	    </q-input>
+  	  	</q-form>
+  	  </q-toolbar>
+  	</q-footer>
            </q-card>
       </q-layout>
     </q-dialog>
@@ -53,6 +103,8 @@
 import storeMappingMixin from '../mixin/storeMappingMixin'
 import axios from 'axios'
 import ListenToggle from 'components/ListenToggle'
+import { scroll } from 'quasar'
+const { getScrollTarget, setScrollPosition } = scroll
 
 let api = null
 export default {
@@ -114,7 +166,6 @@ export default {
       }
     },
      mounted() {
-
       //api = rcApi.connectToRocketChat (this.webSocketUrl)
         console.log(this.$rcClient)
         console.log("I AM CHATBOT NAME")
@@ -193,11 +244,11 @@ export default {
             this.errors.push (error)
           }
         )*/
-
+      this.scroll()
       // vérification pour mobile devices
       setInterval (function () {
           let now = new Date ().getTime ()
-          console.log ('verify sync')
+          //console.log ('verify sync')
           if ((now - this.lastSync) > this.syncInterval) {
             console.log ('out of sync')
             this.syncPage ()
@@ -207,14 +258,27 @@ export default {
     },
     updated() {
       if(this.messages.length>0){
-        const scrollArea = this.$refs.chat;
+        /*const scrollArea = this.$refs.message_area;
+        console.log(scrollArea)
         const scrollTarget = scrollArea.getScrollTarget();
         const duration = 0; // ms - use 0 to instant scroll
         scrollArea.setScrollPosition(scrollTarget.scrollHeight, duration);
+        //window.scrollTo(0,document.body.scrollHeight);*/
+               this.scroll()
+
+
+
       }
 
         },
     methods: {
+      scroll(){
+       const el = document.getElementById("message_area");
+        const target = getScrollTarget(el)
+       const offset = el.scrollHeight 
+       const duration = 0 
+       setScrollPosition(target, offset, duration)
+      },
       closing(){
         this.$refs.speaking.stopRecognition()
         this.layout = false

@@ -33,7 +33,7 @@ export default {
     if (this.annyang) {
 //      var annyang = window.annyang
       
-     
+     console.log("SETTING UP ANNYANG")
 
       // Tell KITT to use annyang
 //      SpeechKITT.annyang()
