@@ -53,7 +53,17 @@
     </div>
       </div>
   <div>
-<div v-if="to_show_flows_personal.length>0 || to_show_info_personal.length>0">Based on user preferences</div>
+<div v-if="to_show_flows_personal.length>0 || to_show_info_personal.length>0 || to_show_events_personal.length>0" style="text-align:center; padding-top:10px">
+  <TalkingLabel
+      class= "preference"
+      :Title=" 'Based on user preferences'"
+      :text=" 'Based on user preferences'"
+      :showing="'text-align:center'"
+      :icon="'img:statics/icons/Edit.png'"
+      :icon_size="'sm'"
+        />
+ 
+  </div>
       <ListItem v-for="element in to_show_info_personal"
             style="display:inline-block"
             :key="element.id"
@@ -79,13 +89,25 @@
             :icon="'img:statics/icons/Icon - Integration step-bystep.svg'"
             :size="'sm'"
             />
+        <ListItem v-for="element in to_show_events_personal"
+            style="display:inline-block"
+            :key="element.id"
+            :Title="element.title"
+            :Link="element.id"
+            :id="element.id"
+            :item="element"
+            :type="'event'"
+            @event="enitityDetails($event)"
+            :icon="'img:statics/icons/Icon - Events.svg'"
+            :size="'sm'"
+            />
     
  
      
   
     
      
-<div v-if="to_show_flows_general.length>0 || to_show_info_general.length>0">General</div>
+<div v-if="to_show_flows_personal.length>0 || to_show_info_personal.length>0 || to_show_events_personal.length>0" style="background-color:#EFEFEF; height:15px" >&nbsp;</div>
           <ListItem v-for="element in to_show_info_general"
             style="display:inline-block"
             :key="element.id"
@@ -112,7 +134,7 @@
             :size="'sm'"
             />
 
-            <ListItem v-for="element in to_show_events"
+            <ListItem v-for="element in to_show_events_general"
             style="display:inline-block"
             :key="element.id"
             :Title="element.title"
@@ -154,7 +176,8 @@ export default {
       informationCategories:'information_category/informationCategories',
       events:'event/events',
       eventCategories:'event_category/eventCategories',
-      searchResults: 'search/results'
+      searchResults: 'search/results',
+      
     }, actions: {
       fetchFlows: 'flows/fetchFlows',
       fetchTopic: 'topic/fetchTopic',
@@ -163,7 +186,7 @@ export default {
       fetchInformationCategory:'information_category/fetchInformationCategory',
       fetchEvents:'event/fetchEvents',
       fetchEventCategory:'event_category/fetchEventCategory',
-      fullTextSearch: 'search/search',
+      fullTextSearch: 'search/searchFull',
       emptySearchResults: 'search/emptyResults'
     }
   })
@@ -187,19 +210,109 @@ export default {
       return this.$store.getters['topic/show_topics'](this.index)
     },
     to_show_flows_personal(){
-      return this.$store.getters['flows/show_flows_personal'](this.index, this.getSearchIds["processes"], this.logged_user.userPreferences)
+      if(this.searchResults){
+        if(this.searchResults.processes){
+          console.log("search results")
+          return this.$store.getters['search/show_flows_search_personal'](this.index, this.logged_user.userPreferences)
+        }
+        else{
+          console.log("no process results")
+          return []
+        }
+      }
+      else{
+        console.log("normale results")
+        return this.$store.getters['flows/show_flows_personal'](this.index, this.logged_user.userPreferences)
+      }
     },
     to_show_flows_general(){
-      return this.$store.getters['flows/show_flows_general'](this.index, this.getSearchIds["processes"], this.logged_user.userPreferences)
+      if(this.searchResults){
+        if(this.searchResults.processes){
+          console.log("search results")
+           return this.$store.getters['search/show_flows_search_general'](this.index, this.logged_user.userPreferences)
+        }
+        else{
+          console.log("no process results")
+          return []
+        }
+        
+      }
+      else{
+        console.log("normale results")
+         return this.$store.getters['flows/show_flows_general'](this.index, this.logged_user.userPreferences)
+      }
+     
     },
-    to_show_events(){
-      return this.$store.getters['event/show_events'](this.index, this.getSearchIds["events"])
+    to_show_events_personal(){
+      if(this.searchResults){
+        if(this.searchResults.events){
+          console.log("search results")
+           return this.$store.getters['search/show_event_search_personal'](this.index, this.logged_user.userPreferences)
+        }
+        else{
+          console.log("no event results")
+          return []
+        }
+        
+      }
+      else{
+        console.log("normale results")
+         return this.$store.getters['event/show_event_personal'](this.index, this.logged_user.userPreferences)
+      }
+      
+    },
+        to_show_events_general(){
+      if(this.searchResults){
+        if(this.searchResults.events){
+          console.log("search results")
+           return this.$store.getters['search/show_event_search_general'](this.index, this.logged_user.userPreferences)
+        }
+        else{
+          console.log("no event results")
+          return []
+        }
+        
+      }
+      else{
+        console.log("normale results")
+         return this.$store.getters['event/show_event_general'](this.index, this.logged_user.userPreferences)
+      }
+      
     },
     to_show_info_personal(){
-      return this.$store.getters['information/show_info_personal'](this.index, this.getSearchIds["information"],this.logged_user.userPreferences)
+      if(this.searchResults){
+        if(this.searchResults.processes){
+          console.log("search results")
+           return this.$store.getters['search/show_info_search_personal'](this.index,this.logged_user.userPreferences)
+        }
+        else{
+          console.log("no info results")
+          return []
+        }
+        
+      }
+      else{
+        console.log("normale results")
+         return this.$store.getters['information/show_info_personal'](this.index,this.logged_user.userPreferences)
+      }
+      
     },
        to_show_info_general(){
-      return this.$store.getters['information/show_info_general'](this.index, this.getSearchIds["information"],this.logged_user.userPreferences)
+      if(this.searchResults){
+        if(this.searchResults.processes){
+          console.log("search results")
+           return this.$store.getters['search/show_info_search_general'](this.index,this.logged_user.userPreferences)
+        }
+        else{
+          console.log("no info results")
+          return []
+        }
+        
+      }
+      else{
+        console.log("normale results")
+         return this.$store.getters['information/show_info_general'](this.index,this.logged_user.userPreferences)
+      }
     },
     getSearchIds() {
       if (this.searchResults) {
@@ -302,7 +415,7 @@ this.$forceUpdate();
           this.searchLoading = false
         })
       } else {
-        this.fullTextSearch({lang: this.$userLang, words: val}).then(() => {
+        this.fullTextSearch({lang: this.$userLang, words: val, topicid:this.index}).then(() => {
           this.searchLoading = false
         })
       }
@@ -395,7 +508,7 @@ this.$forceUpdate();
   //this.index = parsed_var[(parsed_var.length - 1)].id
   console.log(this.index)
   
-  
+  this.$store.commit('search/emptyResults')
   }
   
 
@@ -485,5 +598,13 @@ $secondary_list: #0f3a5d;
   border-width: thin;
   padding-left:5px;
   padding-right:5px
+}
+.preference{
+  font-family: Nunito;
+font-style: normal;
+font-weight: bold;
+font-size: 16px;
+line-height: 21px;
+color: #0F3A5D;
 }
 </style>

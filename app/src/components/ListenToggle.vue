@@ -2,19 +2,16 @@
 <div  class="q-pa-sm q-gutter-sm">
   <q-btn
     @click="toggleAssistant()"
-    :color="color"
+    :style="color"
+    dense
+    round
+    flat
     size="15px"
   >
-    <q-avatar size="30px" style="color:#4D4D4D">
-      <img src="~assets/bb-micado.png">
-      <q-tooltip
-          transition-show="flip-right"
-          transition-hide="flip-left"
-        >
-
-        </q-tooltip>
+    <q-avatar size="30px" >
+      <q-icon :name="'img:statics/icons/Icon - Microphone.svg'"/>
     </q-avatar>
-    <SpeechComp ref="spc"/>
+    <SpeechComp @spoken="parseText" ref="spc"/>
 
   </q-btn>
 </div>
@@ -36,18 +33,32 @@ export default {
     SpeechComp
   },
   methods: {
+    stopRecognition(){
+       if(this.isAssistantActive){
+        console.log("speechcomp is active")
+        this.$refs.spc.abort()
+        this.isAssistantActive = false
+      }
+    },
+    parseText(value){
+      console.log("I AM UTTERET TEXT")
+      console.log(value)
+      this.$emit('speak', value)
+    },
     toggleAssistant(){
-      this.isAssistantActive = !this.isAssistantActive
-      if(this.isAssistantActive){
+      
+      if(!this.isAssistantActive){
         console.log("speechcomp is active")
         console.log(this)
-        this.color = "red"
+        this.color = "background-color:red"
         this.$refs.spc.start()
+        this.isAssistantActive = true
       }else{
         console.log("speechcomp is paused")
         console.log(this)
-        this.color = "white"
+        this.color = "background-color:white"
         this.$refs.spc.pause()
+        this.isAssistantActive = false
 
       }
     }

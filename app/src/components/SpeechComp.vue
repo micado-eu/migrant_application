@@ -1,7 +1,5 @@
 <template>
-  <div class="speech">
-   <span >You said: {{ userSaid }}</span>
-  </div>
+
 </template>
 
 <script>
@@ -35,7 +33,7 @@ export default {
     if (this.annyang) {
 //      var annyang = window.annyang
       
-     
+     console.log("SETTING UP ANNYANG")
 
       // Tell KITT to use annyang
 //      SpeechKITT.annyang()
@@ -54,6 +52,8 @@ export default {
 
 this.annyang.addCallback('result', function(phrases) {
   console.log("I think the user said: ", phrases[0]);
+        self.$emit('spoken', phrases[0])
+
   console.log("But then again, it could be any of the following: ", phrases);
   self.userSaid = phrases[0];
 })
@@ -135,6 +135,9 @@ navigate() {
     },
     resume: function(){
       this.annyang.resume()
+    },
+    abort:function(){
+      this.annyang.abort()
     }
   },
   events: {
