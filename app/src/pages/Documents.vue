@@ -22,6 +22,7 @@ import Dashboard from '@uppy/dashboard'
 import XHRUpload from '@uppy/xhr-upload'
 import Tus from '@uppy/tus'
 import DocumentItem from 'components/DocumentItem'
+require('@uppy/core/dist/style.css')
 
 //const Uppy = require('@uppy/core');
 //const Dashboard = require('@uppy/dashboard');
@@ -133,4 +134,4 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style src="uppy/dist/uppy.css"></style>
+<style></style>
