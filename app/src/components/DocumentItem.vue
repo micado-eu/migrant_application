@@ -1,7 +1,13 @@
 <template>
 <div>
-  <q-item style="max-width:320px" :key="this.theDoc.id">
-    <q-item-section class="col-4" style="padding-right:0px" avatar>
+  <q-item class="row" style="padding-left:0px;width:100%" :key="this.theDoc.id">
+        <q-item-section class="col-8">
+      <q-item-label class="doc-name">{{this.theDoc.text}}</q-item-label>
+      <q-item-label class="doc-fields" style="padding-top:10px" caption>Emitted by:{{this.theDoc.emitter}}</q-item-label>
+      <q-item-label style="padding-top:6px" caption>cost: {{this.theDoc.price}}</q-item-label>
+
+    </q-item-section>
+    <q-item-section class="col-4" style="padding-right:0px; text-align:right" avatar>
       <q-btn
         size="10px"
         dense
@@ -15,18 +21,10 @@
           <img :src="this.theDoc.image">
         </q-avatar>
       </q-btn>
-    </q-item-section>
-    <q-item-section class="col-8">
-      <q-item-label>{{this.theDoc.text}}</q-item-label>
-      <q-item-label caption>Emitted by:{{this.theDoc.emitter}}</q-item-label>
-      <q-item-label caption>cost: {{this.theDoc.price}}</q-item-label>
-
-    </q-item-section>
-   
-  </q-item>
-   <div style="text-align:center; padding-bottom:5px">
+    <div style="text-align:center; padding-bottom:5px; padding-top:5px">
       <q-btn
-        size="12px"
+      v-if="theDoc.model != null"
+        size="10px"
         no-caps
         dense
         class="button"
@@ -38,6 +36,12 @@
         @click="show = true"
       />
     </div>
+      
+    </q-item-section>
+
+   
+  </q-item>
+   
     <q-dialog
       v-model="show"
       @hide="clean()"
@@ -133,9 +137,22 @@ export default {
 
 </script>
 <style scoped>
-.button{
-  width:125px
-  }
+.doc-name{
+  font-family: Nunito Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 16px;
+  color: #000000;
+}
+.doc-fields{
+  font-family: Nunito Sans;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 10px;
+  line-height: 14px;
+  color: #000000;
+}
 .image {
   max-width: 80%;
   max-height: 80%;

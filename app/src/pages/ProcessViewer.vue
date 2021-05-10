@@ -2,21 +2,14 @@
   <div>
     <span v-if="loading">Loading...</span>
   <div v-else class="container">
-     
-      <div class="banner">
-        {{$t('desc_labels.guided_processes')}}
-        <q-icon
-          name="img:statics/icons/Icon - Guided Processes (selected).png"
-          style="padding-bottom:3px"
-        />
-      </div>
      <TalkingLabel
      class="title"
      :Title="this.the_process"
      :text="this.the_process"
+     :container_style="'text-align:center'"  
       >
     </TalkingLabel>
-    <div class="row pad" >
+    <!--<div class="row pad" >
               <q-img
                 class="image"
                 v-for="tag in full_process.topics"
@@ -31,12 +24,14 @@
                 :key="tag"
               >
                </q-img>
-    </div>
-     <div class="title"> {{$t('desc_labels.description')}} </div>
+    </div>-->
+  <hr style="border: 1px solid #FF7C44;">
+     <div class="q-pa-lg" style="text-align: justify;text-justify: inter-word">
    <glossary-editor-viewer
                   :content="the_process_description"
                   :key="the_process_description"
                 />
+     </div>
     <div class="row">
       <div class="col">
         <q-scroll-area
@@ -55,7 +50,7 @@
       </div>
     </div>
     
-    <q-card
+    <div
       :class="nodePanelVisible"
       header="Details of the step1"
     >
@@ -65,11 +60,11 @@
     >{{this.shell_data.text}}</h5>
     <hr>-->
     <div v-if="flowData.url !=null"  style="text-align:center; padding-top:10px">
-    <a :href="flowData.url" target="_blank" style="text-decoration:none;">
+    <a :href="'//' + flowData.url" target="_blank" style="text-decoration:none;">
     <q-btn class="negative-button" no-caps rounded color="info" :label="$t('button.procedure')" />
     </a>
     </div>
-    <q-field
+    <!--<q-field
         class="header-title"
         color="purple-12"
         
@@ -81,54 +76,78 @@
             tabindex="0"
           >{{shell_data.text}}</div>
         </template>
-    </q-field>
-      <q-field
-      class="header"
-        color="purple-12"
-        label-color="black"
-        :label="$t('desc_labels.description')"
-        stack-label
-      >
-      
-        <template v-slot:prepend>
-          <q-icon class="icon" name="img:statics/icons/info.svg" />
-        </template>
-        <template v-slot:control>
-          <div
-            class="self-center full-width no-outline"
-            tabindex="0"
-          >{{shell_data.description}}</div>
-        </template>
-      </q-field>
-      <LabelMap :label="flowData.location" />
-      <q-field
-        class="header"
-        color="purple-12"
-        label-color="black"
-        :label="$t('desc_labels.cost')"
-        stack-label
-      >
-        <template v-slot:prepend>
-          <q-icon class="icon" name="img:statics/icons/cost.svg" />
-        </template>
-        <template v-slot:control>
-          <div
-            class="self-center full-width no-outline"
-            tabindex="0"
-          >{{flowData.cost}}</div>
-        </template>
-      </q-field>
-      <q-field
-        class="header"
-        color="purple-12"
-        label-color="black"
-        :label="$t('desc_labels.required_documents')"
-        stack-label
-      >
-       <template v-slot:prepend>
-          <q-icon class="icon" name="img:statics/icons/docs.svg" />
-        </template>
-      <q-list style="max-width:320px">
+    </q-field>-->
+    <div class="q-pa-md fields-container" >
+     <div class="field" > 
+         <TalkingLabel
+            class="title"
+            :showing="'text-align:left'"
+            :Title="shell_data.text"
+            :text="shell_data.text"
+            :row="'row'"
+            :title_col="'col-11'"
+            :icon_col="'col-1'"
+            :icon_style="'text-align:right'"
+      />
+    <!--<p class="textup">{{$t('desc_labels.document_type')}}:</p>-->
+      <hr>
+    </div>
+
+
+    <div class="q-pa-md field custom-pad" > 
+       <TalkingLabel
+       class="textup"
+        :icon="'img:statics/icons/info.svg'"
+        :row="'row'"
+        :title_col="'col-11'"
+        :icon_col="'col-1'"
+        :icon_style="'text-align:right'"
+        :Title="$t('desc_labels.description')"
+        :text="$t('desc_labels.description') + this.shell_data.description"
+      />
+      <p class="textdown">{{this.shell_data.description}}</p>
+       <hr>
+    </div>
+       <div class="q-pa-md field custom-pad"> 
+       <TalkingLabel
+       class="textup"
+        :icon="'img:statics/icons/info.svg'"
+        :row="'row'"
+        :title_col="'col-11'"
+        :icon_col="'col-1'"
+        :icon_style="'text-align:right'"
+        :Title="$t('desc_labels.cost')"
+        :text="$t('desc_labels.cost') + flowData.cost"
+      />
+      <p class="textdown">{{this.flowData.cost}}</p>
+       <hr>
+    </div>
+    <div class="q-pa-md field custom-pad"> 
+       <TalkingLabel
+       class="textup"
+        :icon="'img:statics/icons/info.svg'"
+        :row="'row'"
+        :title_col="'col-11'"
+        :icon_col="'col-1'"
+        :icon_style="'text-align:right'"
+        :Title="$t('desc_labels.location')"
+        :text="$t('desc_labels.location') + flowData.location"
+      />
+      <p class="textdown" tabindex="0"><a :href="gmap_location"> {{flowData.location}} </a></p>
+       <hr>
+    </div>
+        <div class="q-pa-md field custom-pad"> 
+       <TalkingLabel
+       class="textup"
+        :icon="'img:statics/icons/info.svg'"
+        :row="'row'"
+        :title_col="'col-11'"
+        :icon_col="'col-1'"
+        :icon_style="'text-align:right'"
+        :Title="$t('desc_labels.required_documents')"
+        :text="$t('desc_labels.required_documents') "
+      />
+      <q-list style="width:100%; padding-left:15px">
         <!--<q-item-label header>{{$t('desc_labels.required_documents')}}</q-item-label>-->
         <DocumentItem
           v-for="doc in documents"
@@ -146,21 +165,63 @@
            >
         </DocumentItem>
       </q-list>
-      </q-field>
-    </q-card>
-   
-    <CommentList
+       <hr>
+    </div>
+    </div>
+    </div>
+     <div class="q-pa-md fields-container" >
+    <div class="q-pa-md field custom-pad"> 
+       <TalkingLabel
+        :icon="'img:statics/icons/Icon - Decsription icon.svg'"
+        :icon_size="'20px'"
+        :row="'row'"
+        :title_col="'col-11 '"
+        :showing="'font-family: Nunito;font-style: normal;font-weight: normal;font-size: 12px;line-height: 16px;color: #000000;padding-top:3px'"
+        :icon_col="'col-1'"
+        :icon_style="'text-align:right;padding-top:3px'"
+        :Title="$t('desc_labels.click_step')"
+        :text="$t('desc_labels.click_step')"
+      />
+       <hr>
+    </div>
+     <div class=" q-pa-md  row field  custom-pad"> 
+       <div class="col-11 topic">
+         {{$t('filters.topics')}}:
+            <q-img
+                class="image"
+                v-for="tag in full_process.topics"
+                :src="topics.filter(topic => topic.id == tag)[0].icon"
+                :key="'topic'.concat(tag)"
+              >
+              </q-img>
+       </div>
+      <div class="col-1"> 
+         <TalkingLabel
+            :text="$t('filters.topics')"
+            :icon_col="'col-1'"
+            :icon_style="'text-align:right'"
+      />
+      </div>         
+    </div>
+            <div class="q-pa-md field custom-pad"> 
+              <hr>
+        <CommentList
     :selected_process_comments ="selected_process_comments"
-    >
-    </CommentList>
+    />
+       <hr>
+    </div>
+
+     </div>
+   
+
     <div class="q-pa-md q-gutter-sm  col button-div">
       <q-btn
         size="12px"
+        :icon="'img:statics/icons/Icon - go back.svg'"
         :data-cy="'back_from_processviewer'.concat(processid)"
         no-caps
-        class="button"
+        class="go_back"
         rounded
-        color="accent"
         :label="$t('button.go_back')"
         @click="back()"
       />
@@ -254,6 +315,9 @@ export default {
         sortedTopics(){
       this.topic_list = JSON.parse(JSON.stringify(this.full_process.topics))
       return this.topic_list.sort()
+    },
+     gmap_location() {
+      return "https://www.google.com/maps/search/?api=1&query=" + this.flowData.location
     }
   },
   methods: {
@@ -626,9 +690,11 @@ g.label {
   text-align: center;
 }
 .image{
+  
   max-height: 25px; 
   max-width: 25px;
-  margin-right:5px
+  margin-right:5px;
+  margin-left:5px
 }
 .title{
   margin-bottom:5px;
@@ -663,6 +729,49 @@ g.label {
   height: 15px;
   margin-top: -22px;
 }
-
+.textup {
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 16px;
+  color: #000000;
+}
+.textdown{
+  font-family: Nunito Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px;
+  color: #000000;
+  padding-left:15px;
+  padding-top:10px
+}
+.custom-pad{
+  padding-top:0px;
+  padding-bottom: 0px;
+}
+.click-step{
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px;
+  color: #000000;
+}
+.topic{
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 16px;
+  color: #000000;
+}
+  .go_back {
+  background-color: white;
+  color:#0F3A5D;
+  border: 1px solid #0F3A5D;
+  border-radius: 50px;
+}
 
 </style>

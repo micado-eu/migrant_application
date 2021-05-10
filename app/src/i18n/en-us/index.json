@@ -76,7 +76,8 @@
     "document_download":"Download this document",
     "edit_doc":"Edit your document",
     "add_doc":"Add new document",
-    "image":"Image"
+    "image":"Image", 
+    "click_step":"Click on a step above for details"
   },
   "profile": {
     "change_pic": "Change picture",
