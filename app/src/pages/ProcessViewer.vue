@@ -147,7 +147,7 @@
         :Title="$t('desc_labels.required_documents')"
         :text="$t('desc_labels.required_documents') "
       />
-      <q-list style="width:100%; padding-left:15px">
+      <q-list style=" padding-left:15px">
         <!--<q-item-label header>{{$t('desc_labels.required_documents')}}</q-item-label>-->
         <DocumentItem
           v-for="doc in documents"

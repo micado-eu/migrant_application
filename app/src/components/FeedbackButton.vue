@@ -54,15 +54,15 @@
           <TalkingLabel
                   class="option_2"
                   style="width:100%;"
-                  :Title="$t('feedback.url') + ' ' + this.link"
+                  :Title="$t('feedback.url')"
                   :text="$t('feedback.url') + this.link"
                   :row="'row'"
                   :title_col="'col-11'"
                   :icon_col="'col-1'"
                   :icon_style="'text-align:right'"
-                  :showing="'white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'"
+                  
                 />
-          <!--<div> {{link}}</div>-->  
+          <div> {{link}}</div>  
           <TalkingLabel
                   class="option_2"
                   style="width:100%"

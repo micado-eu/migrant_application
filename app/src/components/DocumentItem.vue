@@ -1,29 +1,67 @@
 <template>
 <div>
-  <q-item class="row" style="padding-left:0px;width:100%" :key="this.theDoc.id">
-        <q-item-section class="col-8">
+  <q-item style="padding-left:0px;width:100%" :key="this.theDoc.id">
+        <q-item-section class="">
       <q-item-label class="doc-name">{{this.theDoc.text}}</q-item-label>
-      <q-item-label class="doc-fields" style="padding-top:10px" caption>Emitted by:{{this.theDoc.emitter}}</q-item-label>
-      <q-item-label style="padding-top:6px" caption>cost: {{this.theDoc.price}}</q-item-label>
+      <q-item-label class="doc-fields" style="padding-top:10px" caption>{{$t('desc_labels.emitter')}}:{{this.theDoc.emitter}}</q-item-label>
+      <q-item-label class="doc-fields" style="padding-top:6px" caption>{{$t('events.cost')}}: {{this.theDoc.price}}</q-item-label>
 
     </q-item-section>
-    <q-item-section class="col-4" style="padding-right:0px; text-align:right" avatar>
+    </q-item>
+<q-item style="padding-left:0px">
+   <div class="row" style="width:100%">
+    <div class="col-4" style="padding-right:0px; text-align:left" avatar>
       <q-btn
-        size="10px"
+      
         dense
+        unelevated
         @click.native="showDoc()"
         :key="theDoc.id"
         :id="theDoc.id"
         :disabled="!this.isInWallet"
         :class="[{in_wallet: this.isInWallet},{not_in_wallet: !this.isInWallet}]"
       >
-        <q-avatar rounded>
-          <img :src="this.theDoc.image">
+        <q-avatar   rounded>
+          <img  :src="this.theDoc.image">
         </q-avatar>
       </q-btn>
-    <div style="text-align:center; padding-bottom:5px; padding-top:5px">
-      <q-btn
-      v-if="theDoc.model != null"
+    </div>
+    <div v-if="theDoc.model != ' '" class="col-4 models-container" >
+        <a
+          class="models"
+          clickable
+          @click="showModel()"
+          href="javascript:void(0)"
+        >
+        {{$t('button.view_model')}}
+        </a>
+    <!--  <q-btn
+      
+        size="10px"
+        no-caps
+        unelevated
+        dense
+        class="button"
+        rounded
+        :id="theDoc.id"
+        :data-cy="'viewmodel'.concat(theDoc.id)"
+        color="info"
+        :label="$t('button.view_model')"
+        @click="show = true"
+      />-->
+    </div>
+<div v-if="pictures"  class="col-4 models-container" >
+          <a
+          class="models"
+          clickable
+          @click="show = true"
+          href="javascript:void(0)"
+        >
+        {{$t('button.view_pics')}}
+        </a>                
+  
+  <!--<q-btn
+     v-if="theDoc.model != ' '"
         size="10px"
         no-caps
         dense
@@ -33,11 +71,13 @@
         :data-cy="'viewmodel'.concat(theDoc.id)"
         color="info"
         :label="$t('button.view_model')"
-        @click="show = true"
-      />
-    </div>
+        @click="showModel()"
+      />-->
+</div>
+
+    
       
-    </q-item-section>
+    </div>
 
    
   </q-item>
@@ -113,6 +153,13 @@ export default {
   computed: {
   },
   methods: {
+    showModel(){
+      let pdfWindow = window.open("")
+    pdfWindow.document.write(
+    "<iframe width='100%' height='100%' src='" +
+    this.theDoc.model + "'></iframe>"
+)
+    },
     transitioning (event) {
       console.log(event)
       this.$emit('transition', { pic_id: event, doc_id: this.theDoc.id })
@@ -163,5 +210,18 @@ export default {
 }
 .not_in_wallet {
   pointer-events: none;
+}
+.models{
+  font-family: Nunito Sans;
+font-style: normal;
+font-weight: 300;
+font-size: 10px;
+line-height: 14px;
+}
+.models-container{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
 }
 </style>
