@@ -1,0 +1,108 @@
+{
+  "application_title": "MICADO app",
+  "menu": {
+    "title": "我的工具箱",
+    "home": "主页",
+    "home_desc": "MICADO主页",
+    "processes": "移民融入过程向导",
+    "processes_desc": "指导您完成多项融入任务",
+    "info": "信息中心",
+    "chatbot": "MICADO Bot",
+    "chatbot_desc": "Micado smart assistant",
+    "tasks": "My integration plan",
+    "tasks_desc": "Your personal integration plan",
+    "documents": "My documents",
+    "documents_desc": "My integration document collection",
+    "messenger": "My Messages",
+    "settings": "Settings",
+    "settings_desc": "Manage your account",
+    "language": "en-US",
+    "glossary": "Common words",
+    "glossary_desc": "Commonly used words",
+    "information": "Information centre",
+    "information_desc": "Integration information and services",
+    "events": "Events",
+    "events_desc": "Integration events"
+  },
+  "button": {
+    "add_document": "Add Document",
+    "save": "Save",
+    "remove": "Remove",
+    "back": "Back",
+    "go_back": "Go Back",
+    "ask_validation": "Ask for validation",
+    "download": "Download",
+    "view_model": "View model",
+    "cancel": "Cancel",
+    "send": "Send",
+    "validation_pending":"Validation pending",
+    "validated":"Validated"
+
+  },
+  "input_labels": {
+    "doc_type": "Document Type",
+    "exp_date": "Expiration Date",
+    "upload_doc": "Upload Document",
+    "read": "Read Along",
+    "email": "Email"
+  },
+  "desc_labels": {
+    "cost": "Cost for the step",
+    "location": "Location",
+    "description": "Description",
+    "search": "Search",
+    "document_type": "Document type",
+    "document_issuer": "Document issuer",
+    "reviewed_by": "Reviewed by",
+    "expiration_date": "Expiration date",
+    "review_date": "Review date",
+    "login_register": "Login/Register",
+    "settings": "Settings",
+    "logout": "Logout",
+    "information_centre": "Information Centre",
+    "events": "Events",
+    "required_documents": "Required documents",
+    "privacy_settings": "Privacy Settings",
+    "comments": "Comments",
+    "send_doc": "Please choose an email adress",
+    "guided_processes":"Integration step-by-step",
+    "plan_progress":"Plan Progress",
+    "integration_plan":"My Integration Plan"
+  },
+  "profile": {
+    "change_pic": "Change picture",
+    "username": "Username",
+    "password": "Password",
+    "legal_name": "Legal Name",
+    "nationality": "Nationality",
+    "age": "Age",
+    "gender": "Gender",
+    "personal_profile": "Personal Profile"
+  },
+  "filters": {
+    "title": "Filter by",
+    "categories": "Categories",
+    "clear_all": "Clear all",
+    "apply": "Apply"
+  },
+  "information_centre": {
+    "category": "Category",
+    "missing_content": "There is no information"
+  },
+  "tasks": {
+    "ask_validation": "Ask for validation",
+    "you_validate": "Validate task",
+    "dialog_title_org": "Choose the validator's organization",
+    "dialog_title_self": "Validate the task",
+    "integration_type_validators": "validator's organization"
+  },
+  "events": {
+    "category": "Category",
+    "start_date": "Start date",
+    "finish_date": "Finish date",
+    "missing_content": "There are no events"
+  },
+  "glossary": {
+    "missing_content": "There are no common words"
+  }
+}
