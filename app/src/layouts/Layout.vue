@@ -170,8 +170,8 @@ export default {
         surveys: 'survey/surveys'
       }, actions: {
         registerRocketchatUser: 'user/registerRocketChatUser',
-        fetchMigrantSurvey:'survey/fetchMigrantSurvey',
-        saveSurveyAnswer:'survey/saveSurveyAnswer'
+        fetchMigrantSurvey: 'survey/fetchMigrantSurvey',
+        saveSurveyAnswer: 'survey/saveSurveyAnswer'
       }
     })
 
@@ -189,7 +189,7 @@ export default {
         console.log(result.data)
       });*/
     return {
-      surveyJSON:null,
+      surveyJSON: null,
       leftDrawerOpen: false,
       klaro_config: klaroconfig,
       manager: null,
@@ -390,44 +390,52 @@ export default {
  externalScript.innerHTML = scriptContent
  //   externalScript.setAttribute('text', scriptContent)
     document.body.appendChild(externalScript)*/
-          
+
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.innerHTML = "window._mfq = window._mfq || [];(function () {var mf = document.createElement(\"script\"); mf.type = \"text/javascript\"; mf.defer = true;      mf.src = \"//cdn.mouseflow.com/projects/" + this.$envconfig.migrantMouseflow + ".js\";      document.getElementsByTagName(\"head\")[0].appendChild(mf);    })();";
+    document.getElementsByTagName('head')[0].appendChild(script);
+
+
+    // 
+
   },
   methods: {
     consent () {
       klaro.show(this.klaro_config)
 
     },
-    generateSurvey(){
+    generateSurvey () {
       console.log("computed surveyrender")
       console.log(this.surveyJSON)
-      if (this.surveyJSON!=null) {
-        this.survey= new SurveyVue.Model(this.surveyJSON)
+      if (this.surveyJSON != null) {
+        this.survey = new SurveyVue.Model(this.surveyJSON)
         console.log("after survey initialization")
-         this.survey.onComplete.add( (result)=> {
-        console.log("result of SURVEY")
-        console.log(result.data)
-        this.saveResults(result.data)
-      })
-      this.alert = true
-      return this.survey
+        this.survey.onComplete.add((result) => {
+          console.log("result of SURVEY")
+          console.log(result.data)
+          this.saveResults(result.data)
+        })
+        this.alert = true
+        return this.survey
       } else {
         return null
       }
     },
-    saveResults(answer){
+    saveResults (answer) {
       console.log(this.surveys)
-      var formatted_results={
-        idSurvey:this.surveys.id,
-        idUser:this.user.umid,
-        answer:JSON.stringify(answer) ,
+      var formatted_results = {
+        idSurvey: this.surveys.id,
+        idUser: this.user.umid,
+        answer: JSON.stringify(answer),
         answerDate: new Date().toISOString()
       }
       console.log(formatted_results)
       this.saveSurveyAnswer(formatted_results)
       console.log("I am saving the results of the survey!!!!!")
     },
-    action(lab){
-      switch(lab) {
+    action (lab) {
+      switch (lab) {
         case "menu.documents":
           console.log(this.$refs.language)
           this.$refs.language.open()
@@ -460,12 +468,12 @@ export default {
 
     }
   },
-  created(){
-    this.fetchMigrantSurvey(this.user.umid).then((sr)=>{
+  created () {
+    this.fetchMigrantSurvey(this.user.umid).then((sr) => {
       console.log("I AM THE SUrVEY")
       console.log(sr)
       this.surveyJSON = JSON.parse(sr.survey)
-            console.log("I AM THE SUrVEY json")
+      console.log("I AM THE SUrVEY json")
 
       console.log(this.surveyJSON)
     })

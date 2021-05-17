@@ -10,5 +10,6 @@
     "chatServer": "$ROCKETCHAT_HOSTNAME",
     "appBuildDate": "$APP_BUILD_DATE",
     "migrantsUrl": "$MIGRANTS_HOSTNAME",
-    "bot_name":"$BOT_NAME"
+    "migrantMouseflow": "$MIGRANTS_MOUSEFLOW",
+    "bot_name": "$BOT_NAME"
 }
