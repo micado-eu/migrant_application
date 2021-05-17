@@ -1,6 +1,10 @@
 {
   "application_title": "MICADO app",
-  "privacy": "Privacy policy",
+  "privacy":{
+    "privacy":"Privacy policy",
+    "grant":"This project has received funding from the European Union’s H2020 Innovation Action under Grant Agreement No 822717"
+  },
+  "error404": "Sorry, nothing here...",
   "consent": {
     "title": "MICADO Consent management",
     "consentModal_description": "Here you can see and customize the information that we collect about you. Entries marked as \"Example\" are just for demonstration purposes and are not really used on this website.",
@@ -10,31 +14,16 @@
     "chat_title": "MICADO bot",
     "analytics": "Analytics",
     "livechat": "Livechat",
-    "CSOs": "CSO's partecipating to MICADO ecosystem"
+    "CSOs": "CSOs participating in the MICADO ecosystem"
   },
   "menu": {
     "title": "My Tools",
-    "home": "Home",
-    "home_desc": "MICADO home page",
-    "processes": "Integration step-by-step",
-    "processes_desc": "Guided integration processes",
-    "info": "Information centre",
     "chatbot": "MICADO Bot",
-    "chatbot_desc": "Micado smart assistant",
-    "tasks": "My integration plan",
-    "tasks_desc": "Your personal integration plan",
+    "tasks": "My personal plan",
     "documents": "My documents",
-    "documents_desc": "My integration document collection",
     "messenger": "My Messages",
     "settings": "Settings",
-    "settings_desc": "Manage your account",
-    "language": "en-US",
-    "glossary": "Common words",
-    "glossary_desc": "Commonly used words",
-    "information": "Information centre",
-    "information_desc": "Integration information and services",
-    "events": "Events",
-    "events_desc": "Integration events"
+    "language": "en-US"
   },
   "button": {
     "change_pass": "Change Password",
@@ -46,6 +35,7 @@
     "ask_validation": "Ask for validation",
     "download": "Download",
     "view_model": "View model",
+    "view_pics": "View details",
     "cancel": "Cancel",
     "send": "Send",
     "validation_pending": "Validation pending",
@@ -74,15 +64,12 @@
     "login_register": "Login/Register",
     "settings": "Settings",
     "logout": "Logout",
-    "information_centre": "Information Centre",
-    "events": "Events",
     "required_documents": "Required documents",
     "privacy_settings": "Privacy Settings",
     "comments": "Comments",
     "send_doc": "Please choose an email adress",
-    "guided_processes": "Integration step-by-step",
     "plan_progress": "Plan Progress",
-    "integration_plan": "My Integration Plan",
+    "integration_plan": "My personal Plan",
     "personal": "Personal area",
     "survey":"Survey!",
     "document_sent":"Your document was successfully sent to",
@@ -90,7 +77,9 @@
     "document_download":"Download this document",
     "edit_doc":"Edit your document",
     "add_doc":"Add new document",
-    "image":"Image" 
+    "image":"Image", 
+    "click_step":"Click on a step above for details",
+    "emitter":"Emitted by"
   },
   "profile": {
     "change_pic": "Change picture",
@@ -106,7 +95,9 @@
     "old_pass": "Old Password",
     "new_pass": "New Password",
     "confirm_pass": "Confirm password",
-    "user_pref": "User Preferences"
+    "user_pref": "User Preferences",
+    "password_change":"Change your password",
+    "password_changed":"You successfully changed your password"
   },
   "filters": {
     "title": "Filter by",

@@ -1,5 +1,5 @@
 <template>
-<div :class="row">
+<div :class="row" :style="this.container_style">
   <div :class="title_col" :style="this.showing">
     <q-icon style="margin-bottom:5px" :size="icon_size" v-if="this.icon" :name="this.icon" />
      {{ this.Title }} 
@@ -19,7 +19,7 @@ export default {
     return {
     }
   },
-  props: ["Title", "text", 'row', 'title_col', 'icon_col', 'icon_style', 'icon_class', 'icon', 'icon_size', 'showing'],
+  props: ["Title", "text", 'row', 'title_col', 'icon_col', 'icon_style', 'icon_class', 'icon', 'icon_size', 'showing', 'container_style'],
   methods: {
    readClick(value) {
      var voice= ""

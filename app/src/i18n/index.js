@@ -3,6 +3,7 @@ import it from './it'
 import ar from './ar'
 import de from './de'
 import es from './es'
+import zh from './zh'
 import zh_Hans from './zh_Hans'
 
 export default {
@@ -11,6 +12,6 @@ export default {
   ar: ar,
   de: de,
   es: es,
+  zh,
   zh_Hans
-
 }

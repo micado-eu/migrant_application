@@ -100,7 +100,62 @@
         <q-btn class="button" color="red" unelevated no-caps rounded text-color="white" :label="$t('button.cancel')" @click="cancelUser()" />
       </div>
     </div>
-    <div v-if="change_pass">
+    <q-dialog v-model="change_pass">
+<q-card class="q-pa-md" style="padding-top:0px">
+      <div class="q-pa-md" style="text-align:center; padding_bottom:30px">
+        <TalkingLabel
+                  class="option"
+                  style="width:100%"
+                  :Title="$t('profile.password_change')"
+                  :text="$t('profile.password_change')"
+                />
+      </div>
+    <div class=" q-pa-sm " >
+      <div class="col-8 input" >
+      <q-input dense   outlined bg-color="grey-1" v-model="password.old_password" filled :type="isPwd0 ? 'password' : 'text'" :label="$t('profile.old_pass')">
+        <template v-slot:append>
+          <q-icon
+            :name="isPwd0? 'visibility_off' : 'visibility'"
+            class="cursor-pointer"
+            @click="isPwd0 = !isPwd0"
+          />
+        </template>
+      </q-input>
+      </div>
+    </div>
+    <div class=" q-pa-sm " >
+      <div class="col-8 input" >
+      <q-input dense   outlined bg-color="grey-1" v-model="password.new_password" filled :type="isPwd1 ? 'password' : 'text'" :label="$t('profile.new_pass')">
+        <template v-slot:append>
+          <q-icon
+            :name="isPwd1? 'visibility_off' : 'visibility'"
+            class="cursor-pointer"
+            @click="isPwd1 = !isPwd1"
+          />
+        </template>
+      </q-input>
+      </div>
+    </div>
+    <div class=" q-pa-sm " >
+      <div class="col-8 input" >
+      <q-input dense   outlined bg-color="grey-1" v-model="password.confirm_password" filled :type="isPwd2? 'password' : 'text'" :label="$t('profile.confirm_pass')">
+        <template v-slot:append>
+          <q-icon
+            :name="isPwd2 ? 'visibility_off' : 'visibility'"
+            class="cursor-pointer"
+            @click="isPwd2 = !isPwd2"
+          />
+        </template>
+      </q-input>
+      </div>
+    </div>
+    <div class="col-8 input" >
+        <q-btn class="go_back"  no-caps rounded :icon="'img:statics/icons/Icon - X (cancel).svg'"  :label="$t('button.cancel')" @click="cancelPass()" />
+        <q-btn class="button" color="accent" unelevated no-caps rounded text-color="white" :label="$t('button.change_pass')" @click="editPass()" />
+      </div>
+</q-card>
+    </q-dialog>
+    <!--<div v-if="change_pass">
     <div class=" q-pa-xsm " >
       <div class="col-8 input" >
       <q-input dense  standout outlined bg-color="grey-1" v-model="password.old_password" filled :type="isPwd0 ? 'password' : 'text'" :label="$t('profile.old_pass')">
@@ -143,8 +198,31 @@
     <div class="col-8 input" >
         <q-btn class="button" color="accent" unelevated no-caps rounded text-color="white" :label="$t('button.save')" @click="editPass()" />
         <q-btn class="button" color="red" unelevated no-caps rounded text-color="white" :label="$t('button.cancel')" @click="cancelPass()" />
-      </div>
-    </div>
+      </div>-->
+    <q-dialog v-model="pass_changed">
+        <q-card class="q-pa-md" style="padding-top:0px">
+          <div style="padding-top:50px; text-align:center">
+          <q-icon  size="150px" :name="'img:statics/icons/Icon - Round checkmark blue.svg'"/>
+          <TalkingLabel
+                  class="option_2"
+                  style="width:100%"
+                  :Title="$t('profile.password_changed')"
+                  :text="$t('profile.password_changed')"
+                />
+          </div>
+          <div style="text-align:center; padding-top:30px">
+          <q-btn
+            class="go_back"
+            :label="$t('button.go_back')"
+            :icon="'img:statics/icons/Icon - go back.svg'"
+            rounded
+            no-caps
+            size="15px"
+            @click="pass_changed = false"
+          />
+          </div>
+</q-card>
+    </q-dialog>
   <div v-if="users.length >0">
 <h5 class="q-pa-md header">{{$t('profile.user_pref')}}</h5>    <div class="row" v-for="user_top in users" :key="user_top.id">
     <div style="padding-top:8px;" class="col-2">
@@ -165,6 +243,15 @@
         <q-btn class="button" color="red" unelevated no-caps rounded text-color="white" :label="$t('button.cancel')" @click="cancelPref()" />
       </div>
   </div>
+  <q-btn
+            class="go_back"
+            :label="$t('button.go_back')"
+            :icon="'img:statics/icons/Icon - go back.svg'"
+            rounded
+            no-caps
+            size="15px"
+            to="/profile"
+          />
   </div>
   </div>
 
@@ -200,6 +287,7 @@ import ChatWidget from 'components/ChatWidget'
 import editEntityMixin from '../mixin/editEntityMixin'
 import storeMappingMixin from '../mixin/storeMappingMixin'
 import UserButton from "components/UserButton"
+const TalkingLabel = () => import('components/TalkingLabel')
 
 export default {
   // name: 'PageName',
@@ -222,7 +310,7 @@ export default {
 
   ],
   components:{
-    ChatWidget, UserButton
+    ChatWidget, UserButton,TalkingLabel
   },
   computed:{
     check(value){
@@ -235,6 +323,7 @@ export default {
       isPwd1:true,
       isPwd2:true,
       change_pass:false,
+      pass_changed:false,
       password:{
         old_password:null,
         new_password:null,
@@ -350,6 +439,7 @@ export default {
         console.log("saving new password")
         this.editUserPassword({admin:user_admin, adminpwd:user_pass, payload:pass_payload})
         this.cancelPass()
+        this.pass_changed = true
       }
       else{
         this.$q.notify({
@@ -585,5 +675,28 @@ display:inline-block
 }
 .pad-top{
   padding-top:10px
+}
+  .go_back {
+  background-color: white;
+  color:#0F3A5D;
+  border: 1px solid #0F3A5D;
+  border-radius: 50px;
+  margin-right:10px
+}
+.option{
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  color: #000000;
+}
+.option-2{
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 20px;
+  color: #000000;
 }
 </style>

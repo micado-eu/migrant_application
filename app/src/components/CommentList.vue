@@ -1,6 +1,9 @@
 <template>
-<q-card class="comments">
-     <h5 class="header"> {{ $t('desc_labels.comments') }} </h5>
+<div class=" row">
+  <div class="col-4 comment-title">
+    {{$t('desc_labels.comments')}}:
+  </div>
+  <div class="col-8">
       <div
       v-for="comment in selected_process_comments"
       :key="comment.id"
@@ -8,12 +11,13 @@
       {{comment.translations.filter(filterTranslationModel(activeLanguage))[0].comment}}<br>
       <TalkingLabel
                   :Title="comment.tenant.name"
-                  :text="comment.translations.filter(filterTranslationModel(activeLanguage))[0].comment"
+                  :text="comment.translations.filter(filterTranslationModel(activeLanguage))[0].comment + ' by' + comment.tenant.name"
                 >
       </TalkingLabel>
       
       </div>
-    </q-card>
+  </div>
+    </div>
 </template>
 
 <script>
@@ -43,5 +47,13 @@ export default {
 }
 .header{
   margin-bottom:10px;
+}
+.comment-title{
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 16px;
+  color: #000000;
 }
 </style>

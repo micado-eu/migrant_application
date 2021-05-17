@@ -36,6 +36,18 @@ export function fetchSpecificUser (state, id) {
       return user
     })
 }
+export function fetchSpecificUserByTenant (state, payload) {
+  //console.log(id)
+  // probably we could use the store and do a get but for now will do
+  return client
+    .fetchSpecificUserByTenant(payload.userid, payload.tenantid)
+    .then((user) => {
+      console.log('fetchSpecificUserByTenant - action')
+      console.log(user)
+      //state.commit('setUser', user)
+      return user
+    })
+}
 
 export function editUser (state, user) {
   // we need BEFORE to call the API to do the update and if ok we update wuex state

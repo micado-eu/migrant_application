@@ -64,7 +64,7 @@
     <p class="textdown">{{the_document.expirationDate}}</p>
     </div>-->
   <div style="text-align:center">
-    <q-btn class="button-1" size="12px" rounded no-caps filled color="info" to="/documents" :label="$t('button.back')" />
+    <q-btn :icon="'img:statics/icons/Icon - go back.svg'"   class="go_back" size="12px" rounded no-caps filled  to="/documents" :label="$t('button.go_back')" />
     <!--<q-btn class="button-2" size="12px" rounded no-caps color="accent" :label="$t('button.download')" />-->
   </div>  
    

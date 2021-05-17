@@ -2,6 +2,17 @@ export function processes(state) {
     return state.flows
   }
 
+  export function processesTemp(state) {
+    return state.flowsTemp
+  }
+  
+  export function processTempById(state) {
+    let getterFunc = function (id) {
+      return state.flowsTemp.filter(n => n.id == id)[0]
+    }
+    return getterFunc
+  }
+
   export function processById(state) {
     let getterFunc = function (id) {
       return state.flows.filter(n => n.id == id)[0]
@@ -24,13 +35,13 @@ export function processes(state) {
   export function nodePanelVisible(state) {
     return state.nodePanelVisible
   }
-  export const show_flows_personal = (state) => (index, idsToFilter, preferences) => {
+  export const show_flows_personal = (state) => (index, preferences) => {
     // it's an example
     if(index != null){
       var showing_flows=[]
       var first_filter =  state.flows.filter((flow)=>{
         if(flow.topics){
-          return flow.topics.includes(index) && (idsToFilter.length === 0 || idsToFilter.includes(flow.id))
+          return flow.topics.includes(index) 
         }
         
       })
@@ -69,7 +80,7 @@ export function processes(state) {
       console.log("IN FLOWS GETETER NEWWFHJW")
       var showing_flows=[]
       var first_filter =  state.flows.filter((flow)=>{
-          return flow.topics == null && (idsToFilter.length === 0 || idsToFilter.includes(flow.id))
+          return flow.topics == null 
       })
       if(preferences){
         console.log("INSIDE PREFRENCES")
@@ -104,13 +115,13 @@ export function processes(state) {
 
 }
 
-export const show_flows_general = (state) => (index, idsToFilter, preferences) => {
+export const show_flows_general = (state) => (index, preferences) => {
   // it's an example
   if(index != null){
     var showing_flows=[]
     var first_filter =  state.flows.filter((flow)=>{
       if(flow.topics){
-        return flow.topics.includes(index) && (idsToFilter.length === 0 || idsToFilter.includes(flow.id))
+        return flow.topics.includes(index) 
       }
       
     })
@@ -163,7 +174,7 @@ export const show_flows_general = (state) => (index, idsToFilter, preferences) =
     console.log("IN FLOWS GETETER NEWWFHJW")
     var showing_flows=[]
     var first_filter =  state.flows.filter((flow)=>{
-        return flow.topics == null && (idsToFilter.length === 0 || idsToFilter.includes(flow.id))
+        return flow.topics == null 
     })
     if(preferences){
       var preferencesid=[]

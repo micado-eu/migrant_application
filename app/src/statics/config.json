@@ -10,5 +10,6 @@
     "chatServer": "admin2.micadoproject.eu",
     "appBuildDate": "$APP_BUILD_DATE",
     "migrantsUrl": "migrants.micadoproject.eu",
-    "bot_name":"rasa_bot"
+    "migrantMouseflow": "6bf43914-3827-41e6-ad32-c51635e9e8b0",
+    "bot_name": "rasa_bot"
 }

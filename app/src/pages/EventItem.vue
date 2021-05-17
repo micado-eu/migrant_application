@@ -30,7 +30,7 @@ export default {
     ...mapActions("event", ["fetchEvents"]),
     ...mapActions("event_category", ["fetchEventCategory"]),
     ...mapActions("topic", ["fetchTopic"]),
-    ...mapActions("user", ["fetchSpecificUser"]),
+    ...mapActions("user", ["fetchSpecificUserByTenant"]),
     initialize() {
       const langs = { defaultLang: this.$defaultLang, userLang: this.$userLang }
       this.loading = true
@@ -55,8 +55,10 @@ export default {
           this.attributes.start_date = startDate.toLocaleString(this.$userLang)
           const finishDate = new Date(item.end_date)
           this.attributes.end_date = finishDate.toLocaleString(this.$userLang)
+          console.log("I AM ITEM CREATOR")
+          console.log(item.creator)
           if (item.creator) {
-            this.attributes.creator = await this.fetchSpecificUser({ userid: this.attributes.creator, tenantid: this.$pa_tenant })
+            this.attributes.creator = await this.fetchSpecificUserByTenant({ userid: item.creator, tenantid: this.$pa_tenant })
           }
         }).then(() => this.loading = false)
     }

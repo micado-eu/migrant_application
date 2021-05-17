@@ -53,6 +53,7 @@
         v-if="showDialog"
         :title="titleDialog"
         :link="linkDialog"
+        :notFound="notFound"
         @close="showDialog = false"
       >
         <glossary-editor-viewer
@@ -114,7 +115,8 @@ export default {
       referenceData: {},
       titleDialog: undefined,
       descriptionDialog: undefined,
-      linkDialog: undefined
+      linkDialog: undefined,
+      notFound: false
     }
   },
   computed: {
@@ -134,10 +136,10 @@ export default {
     }
   },
   methods: {
-    ...mapActions('glossary', ['fetchGlossary']),
-    ...mapActions('information', ['fetchInformation']),
-    ...mapActions('flows', ['fetchFlows']),
-    ...mapActions('event', ['fetchEvent']),
+    ...mapActions('glossary', ['fetchGlossary', 'fetchGlossaryTemp']),
+    ...mapActions('information', ['fetchInformation', 'fetchInformationTemp']),
+    ...mapActions('flows', ['fetchFlows', 'fetchFlowsTemp']),
+    ...mapActions('event', ['fetchEvents', 'fetchEventTemp']),
     async initialize() {
       this.editor = new Editor({
         editable: false,
@@ -237,9 +239,15 @@ export default {
     },
     showInternalReference(mentionType, id) {
       // Click event handler is managed by the InternalMention ProseMirror plugin
-      this.titleDialog = this.referenceData[mentionType][id].title
-      this.descriptionDialog = this.referenceData[mentionType][id].description
-      this.linkDialog = this.referenceData[mentionType][id].link
+      const element = this.referenceData[mentionType][id]
+      if (element !== undefined) {
+        this.notFound = false
+        this.titleDialog = this.referenceData[mentionType][id].title
+        this.descriptionDialog = this.referenceData[mentionType][id].description
+        this.linkDialog = this.referenceData[mentionType][id].link
+      } else {
+        this.notFound = true
+      }
       this.showDialog = true
     }
   },
@@ -248,6 +256,10 @@ export default {
     if (!this.all_fetched) {
       const langs = { defaultLang: this.$defaultLang, userLang: this.$userLang }
       Promise.all([
+        this.fetchGlossaryTemp(langs),
+        this.fetchInformationTemp(langs),
+        this.fetchFlowsTemp(langs),
+        this.fetchEventTemp(langs),
         this.fetchGlossary(langs),
         this.fetchInformation(langs),
         this.fetchFlows(langs),
