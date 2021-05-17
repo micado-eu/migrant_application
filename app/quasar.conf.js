@@ -153,7 +153,7 @@ module.exports = function (ctx) {
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#00a69',
-        scope: "https://migrants.micadoproject.eu",
+        scope: "https://$MIGRANTS_HOSTNAME",
         theme_color: '#00a69',//c027be3
         icons: [
           {

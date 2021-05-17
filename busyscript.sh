@@ -15,6 +15,7 @@ echo "showing the new content"
 ls -lat /var/www/html/
 echo "creating the file with the env content"
 envsubst < /var/www/html/statics/config.tmpl.json > /var/www/html/statics/config.json
+envsubst < /var/www/html/manifest.json > /var/www/html/manifest.json
 cat /var/www/html/statics/config.json
 
 exit
