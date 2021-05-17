@@ -21,7 +21,7 @@
         ></LanguageSelector>
         <UserButton ref="user" />
         <q-btn
-          v-if="this.$auth.loggedIn()"
+          v-if="this.$auth.loggedIn() && this.surveyJSON != null"
           no-caps
           style="background-color:white; color:#0B91CE"
           :label="$t('desc_labels.survey')"
@@ -107,7 +107,7 @@
     <q-dialog v-model="alert">
       <q-card>
         <q-card-section>
-          <div class="text-h6">Survey</div>
+          <div class="text-h6">{{$t('desc_labels.survey')}}</div>
         </q-card-section>
 
         <q-card-section class="q-pt-none">
@@ -472,7 +472,9 @@ export default {
     this.fetchMigrantSurvey(this.user.umid).then((sr) => {
       console.log("I AM THE SUrVEY")
       console.log(sr)
-      this.surveyJSON = JSON.parse(sr.survey)
+      if(sr != null){
+        this.surveyJSON = JSON.parse(sr.survey)
+      }
       console.log("I AM THE SUrVEY json")
 
       console.log(this.surveyJSON)
