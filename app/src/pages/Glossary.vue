@@ -47,6 +47,7 @@
             @show="changeQuery(glossaryItem.id)"
             expand-icon-class="text-orange"
             :data-cy="'glossaryItem' + glossaryItem.id"
+            :id="'gTitle' + glossaryItem.id"
           >
             <template v-slot:header>
               <div class="remove-padding row flex-center">
@@ -117,6 +118,7 @@ export default {
       alphabetIds: [],
       filteredElementsBySearch: [],
       searchText: "",
+      scrollToElem: true
     }
   },
   computed: {
@@ -155,11 +157,17 @@ export default {
       if (ref) {
         let glossaryExpansionItem = ref[0]
         glossaryExpansionItem.show()
-        document.getElementById("gDesc" + id).scrollIntoView({ block: "center", inline: "nearest" })
+        this.$nextTick().then(() => {
+          let divElem = document.getElementById("gTitle" + id)
+          let offsetTop = divElem.offsetTop
+          // Substract the header size (height 61) from the offset to avoid being hidden by the header
+          window.scrollTo({ top: offsetTop - 61 })
+        })
       }
     },
     changeQuery(id) {
       if (this.$route.query.id !== id.toString()) {
+        this.scrollToElem = false
         this.$router.replace({ path: '/glossary', query: { id: id } })
       }
     },
@@ -167,13 +175,14 @@ export default {
       return a.title.localeCompare(b.title, this.$userLang, { sensitivity: "base" })
     },
     scrollIntoGlossary(index) {
-      document.getElementById(this.alphabetIds[index]).scrollIntoView({ block: "center", inline: "nearest" })
+      document.getElementById(this.alphabetIds[index]).scrollIntoView(false)
     }
   },
   watch: {
     $route(to, from) {
-      if (to.query.id !== undefined) {
+      if (this.scrollToElem && (to.query.id !== undefined)) {
         this.showGlossaryTerm(to.query.id)
+        this.scrollToElem = true
       }
     }
   },
