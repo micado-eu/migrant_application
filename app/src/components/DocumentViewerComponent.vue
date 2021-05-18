@@ -18,7 +18,7 @@
     <q-icon class="icon" name="img:statics/icons/Edit.png" size="md" @click="editing" />
     </div>
     <div class="col ico">
-    <q-icon  name="img:statics/icons/Send.png" size="md" />
+    <q-icon  name="img:statics/icons/Send.png" size="md" @click="senddoc = true" />
     </div>
     <div class="col ico">
     <q-icon class="icon" name="img:statics/icons/Icon - Download.svg" size="md" @click="downloading = true" />
@@ -139,6 +139,97 @@
                 
         </q-card>
     </q-dialog>
+          <q-dialog
+        @before-show="clean()"
+        v-model="senddoc"
+      >
+      
+        <q-card class="q-pa-md" style="padding-top:0px">
+          <q-toolbar style="padding-right:0px" class="bg-white">
+            <q-toolbar-title style="color:black"></q-toolbar-title>
+            <q-btn
+              color="red"
+              flat
+              v-close-popup
+              round
+              dense
+              icon="close"
+            />
+          </q-toolbar>
+          <div style="text-align:center">
+           <TalkingLabel
+                  :Title="$t('desc_labels.send_doc')"
+                  :text="$t('desc_labels.send_doc')"
+                  :row="'row'"
+                  :title_col="'col-11'"
+                  :icon_col="'col-1'"
+                  :icon_style="'text-align:right'"
+            />
+          </div>
+          <!--<h5 class="header">{{$t('desc_labels.send_doc')}} </h5>-->
+          <div >
+            <q-select
+              filled
+              dense
+              v-model="emailTenant"
+              :options="tenants"
+              option-value="email"
+              option-label="name"
+              emit-value
+              map-options
+              @input="assign"
+            />
+            <q-input
+              dense
+              style="padding-top:10px"
+              standout
+              outlined
+              type="email"
+              :label="$t('input_labels.email')"
+              v-model="email"
+            />
+          </div>
+          <div style="text-align:center">
+          <q-btn
+            no-caps
+            class="button"
+            rounded
+            :icon-right="'img:statics/icons/Icon - send white.svg'"
+            color="accent"
+            :label="$t('button.send')"
+            :disable="!sendable"
+            @click="sendDoc()"
+          />
+          </div>
+        </q-card>
+      </q-dialog>
+      <q-dialog v-model="confirm">
+<q-card class="q-pa-md" style="padding-top:0px">
+          <div style="padding-top:50px; text-align:center">
+          <q-icon  size="150px" :name="'img:statics/icons/Icon - Round checkmark orange.svg'"/>
+          <!--<p class="thanks">{{$t('feedback.thanks')}}</p>-->
+          <TalkingLabel
+                  class="option_3"
+                  style="width:100%"
+                  :Title="$t('desc_labels.document_sent') +' '+ this.email"
+                  :text="$t('desc_labels.document_sent') +' '+ this.email"
+                />
+          </div>
+          <div style="text-align:center; padding-top:30px">
+          <q-btn
+            class="go_back"
+            :label="$t('button.go_back')"
+            :icon="'img:statics/icons/Icon - go back.svg'"
+            rounded
+            no-caps
+            size="15px"
+            @click="confirm = false"
+          />
+          </div>
+                
+          </q-card>
+
+    </q-dialog>
   </q-item>
   </div>
   
@@ -157,7 +248,8 @@ export default {
   storeMappingMixin({
     getters: {
       documents: 'documents/my_documents',
-      document_types: 'document_type/document_types'
+      document_types: 'document_type/document_types',
+      tenants: 'tenant/tenants'
     }, actions: {
       editDocument: 'documents/editDocument',
       saveDocument: 'documents/saveDocument',
@@ -170,14 +262,44 @@ export default {
     return {
       id:this.thedocid,
       downloading:false,
-      deleting:false
-
+      deleting:false,
+      senddoc:false,
+      emailTenant: "",
+      email: "",
+      sendable:false,
+      confirm:false
     }
+  },
+  watch: {
+    email: function () {
+      var re = /\S+@\S+\.\S+/;
+      this.sendable= re.test(this.email);
+    },
   },
   components:{
     TalkingLabel
   },
   methods:{
+    clean () {
+      this.email = ""
+      this.emailTenant = ""
+    },
+    assign (value) {
+      console.log("I AM TENANT ASSIGNED MAIL")
+      console.log(value)
+      this.email = value
+    },
+    sendDoc(){
+      var sendingDoc = this.documents.filter((doc)=>{
+        return doc.id == this.thedocid
+      })[0]
+      console.log(sendingDoc)
+      console.log(this.email)
+      console.log("here goes the call to the backend to send the document")
+      this.senddoc = false
+      this.confirm = true
+      //this.sendDocumentMail({id:value.docid, email:value.email})
+    },
     deleteDocument () {
       if(this.the_document.uploadedByMe){
       console.log("in delete document event")
