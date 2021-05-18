@@ -50,7 +50,7 @@
         </div>
       </div>
       <q-dialog
-        @hide="clean()"
+        @before-show ="clean()"
         v-model="show"
       >
       
@@ -114,26 +114,15 @@
         </q-card>
       </q-dialog>
       <q-dialog v-model="confirm">
-       <q-layout
-        view="Lhh lpR fff"
-        container
-        class="bg-white"
-      >
-
-
-        <q-page-container class="q-ma-sm">
-          
-          <q-page
-            padding
-          >
+<q-card class="q-pa-md" style="padding-top:0px">
           <div style="padding-top:50px; text-align:center">
           <q-icon  size="150px" :name="'img:statics/icons/Icon - Round checkmark orange.svg'"/>
           <!--<p class="thanks">{{$t('feedback.thanks')}}</p>-->
           <TalkingLabel
                   class="option_3"
                   style="width:100%"
-                  :Title="$t('desc_labels.document_sent') + this.email"
-                  :text="$t('desc_labels.document_sent') + this.email"
+                  :Title="$t('desc_labels.document_sent') +' '+ this.email"
+                  :text="$t('desc_labels.document_sent') +' '+ this.email"
                 />
           </div>
           <div style="text-align:center; padding-top:30px">
@@ -148,9 +137,8 @@
           />
           </div>
                 
-          </q-page>
-        </q-page-container>
-      </q-layout>
+          </q-card>
+
     </q-dialog>
     </q-item>
     <hr class="hr">
@@ -222,6 +210,7 @@ export default {
     },
     clean () {
       this.email = ""
+      this.emailTenant = ""
     },
     sendDoc () {
       console.log(this.emailOption)
