@@ -10,5 +10,13 @@ export default {
                 return response.data
             })
             .catch(error_handler);
+    },
+    saveRatings(payload){
+        return axiosInstance
+        .post('/backend/1.0.0/ratings', payload)
+        .then((response) => {
+            return response.data
+        })
+        .catch(error_handler);
     }
 }

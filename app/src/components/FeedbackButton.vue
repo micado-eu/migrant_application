@@ -46,9 +46,9 @@
                 />
           <!--<h5 class="text"> {{$t('feedback.mail')}} </h5>-->
           <div style="text-align:center"> 
-            <q-icon style="padding-right:35px;padding-top:20px" size="30px" :name="'img:statics/icons/Icon - Not satisafied.svg'"/>
-            <q-icon style="padding-right:35px;padding-top:20px" size="30px" :name="'img:statics/icons/Icon - Neutral.svg'"/>
-            <q-icon style="padding-top:20px" size="30px" :name="'img:statics/icons/Icon - very satisfied.svg'"/>
+            <q-icon style="padding-right:35px;padding-top:20px" @click="rating.value = -1" size="30px" :name="'img:statics/icons/Icon - Not satisafied.svg'"/>
+            <q-icon style="padding-right:35px;padding-top:20px" @click="rating.value = 0" size="30px" :name="'img:statics/icons/Icon - Neutral.svg'"/>
+            <q-icon style="padding-top:20px" size="30px" @click="rating.value = 1" :name="'img:statics/icons/Icon - very satisfied.svg'"/>
           </div>
           <!--<h5 class="text"> {{$t('feedback.url')}} </h5>-->
           <TalkingLabel
@@ -100,11 +100,7 @@
     </q-dialog>
     <q-dialog v-model="confirm">
 <q-card class="q-pa-md" style="padding-top:0px">
-        <q-page-container class="q-ma-sm">
-          
-          <q-page
-            padding
-          >
+
           <div style="padding-top:50px; text-align:center">
           <q-icon  size="150px" :name="'img:statics/icons/Icon - Round checkmark orange.svg'"/>
           <p class="thanks">{{$t('feedback.thanks')}}</p>
@@ -127,8 +123,6 @@
           />
           </div>
                 
-          </q-page>
-        </q-page-container>
 </q-card>
     </q-dialog>
   </div>
@@ -144,10 +138,12 @@ export default {
   mixins:[
     storeMappingMixin({
     getters: {
+      user: 'auth/user',
       settings:'settings/settings'
     }, actions: {
      fetchSettings: 'settings/fetchSettings',
-     saveFeedback:'feedback/saveFeedback'
+     saveFeedback:'feedback/saveFeedback',
+     saveRatings:'feedback/saveRatings'
     }
   })
   ],
@@ -157,7 +153,15 @@ export default {
       layout: false,
       confirm:false,
       link:null,
-      feedback:""
+      feedback:"",
+      rating:{
+        userId: 0,
+        userTenant:this.$migrant_tenant,
+        contentId:null,
+        contentType:null,
+        value:0,
+        date:null
+      }
     }
   },
   components:{
@@ -175,9 +179,55 @@ export default {
     this.link = window.location.href 
   },
   methods: {
+    checkContentType(type){
+
+        if(type.includes('processes')){
+          this.rating.contentType = 1
+        }
+        else if(type.includes('information')){
+          this.rating.contentType = 2
+        }
+        else if(type.includes('glossary')){
+          var param = window.location.search
+          this.rating.contentId= Number(param.match(/(\d+)/)[0]);
+          this.rating.contentType = 3
+        }
+        else if(type.includes('tasks')){
+          this.rating.contentType = 4
+        }
+        else if(type.includes('documents')){
+          this.rating.contentType = 5
+        }
+        else if(type.includes('events')){
+          this.rating.contentType = 6
+        }
+        else if(type.includes('topic')){
+          this.rating.contentType = 0
+          this.rating.contentId = 0
+        }
+        else{
+          this.rating.contentType = 0
+        }
+    },
     sendFeedback(){
       console.log("I am sending feedback")
       this.saveFeedback({url:this.link, feedback:this.feedback, feedbackDate:new Date().toISOString() })
+      var path = window.location.pathname
+      console.log( path)
+      if(/\d/.test(path)){
+        this.rating.contentId= Number(path.match(/(\d+)/)[0]);
+      }
+      else{
+        this.rating.contentId = 0
+      }
+      if(this.$auth.loggedIn()){
+        console.log("LOgged user")
+        this.rating.userId = this.user.umid
+      }
+      this.checkContentType(path)
+      this.rating.date = new Date().toISOString()
+      this.saveRatings(this.rating)
+      console.log(this.rating)
       this.layout = false
       this.feedback = ""
       this.confirm = true
