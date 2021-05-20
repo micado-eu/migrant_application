@@ -62,7 +62,7 @@
                   :icon_style="'text-align:right'"
                   
                 />
-          <div> {{link}}</div>  
+          <div style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'"> {{link}}</div>  
           <TalkingLabel
                   class="option_2"
                   style="width:100%"

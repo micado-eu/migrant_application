@@ -81,6 +81,7 @@
             <q-select
               filled
               dense
+              :label="$t('desc_labels.send_doc_pa')"
               v-model="emailTenant"
               :options="tenants"
               option-value="email"
@@ -95,7 +96,7 @@
               standout
               outlined
               type="email"
-              :label="$t('input_labels.email')"
+              :label="$t('desc_labels.send_doc_me')"
               v-model="email"
             />
           </div>
@@ -274,5 +275,11 @@ export default {
 }
 .button {
   margin-top: 10px;
+}
+  .go_back {
+  background-color: white;
+  color:#0F3A5D;
+  border: 1px solid #0F3A5D;
+  border-radius: 50px;
 }
 </style>

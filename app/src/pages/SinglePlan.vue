@@ -164,6 +164,17 @@
       </q-card>
     </q-dialog>
     </div>
+     <div style="text-align:center; padding-bottom:10px">
+     <q-btn
+            class="go_back"
+            :label="$t('button.go_back')"
+            :icon="'img:statics/icons/Icon - go back.svg'"
+            rounded
+            no-caps
+            size="15px"
+            @click="$router.go(-1)"
+          />
+  </div>
   </q-page>
 </template>
 
@@ -340,4 +351,10 @@ line-height: 18px;
 }
 .pad{
 background-color: blue;}
+  .go_back {
+  background-color: white;
+  color:#0F3A5D;
+  border: 1px solid #0F3A5D;
+  border-radius: 50px;
+}
 </style>

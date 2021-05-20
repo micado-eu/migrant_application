@@ -402,28 +402,9 @@ export default {
     }
 });
 this.$forceUpdate();
-    }
-  },
-  components: {
-    ListItem,TalkingLabel
-  },
-  watch: {
-    search(val) {
-      this.searchLoading = true
-      if (!val) {
-        this.emptySearchResults().then(() => {
-          this.searchLoading = false
-        })
-      } else {
-        this.fullTextSearch({lang: this.$userLang, words: val, topicid:this.index}).then(() => {
-          this.searchLoading = false
-        })
-      }
-      
-    }
-  },
-    created () {
-          const langs = { defaultLang: this.$defaultLang, userLang: this.$userLang }
+    },
+    initialize(){
+       const langs = { defaultLang: this.$defaultLang, userLang: this.$userLang }
     this.loading = true
     this.fetchInformation(langs)
       .then((info) => this.fetchInformationCategory(langs))
@@ -509,6 +490,39 @@ this.$forceUpdate();
   console.log(this.index)
   
   this.$store.commit('search/emptyResults')
+    }
+  },
+  components: {
+    ListItem,TalkingLabel
+  },
+  watch: {
+    search(val) {
+      this.searchLoading = true
+      if (!val) {
+        this.emptySearchResults().then(() => {
+          this.searchLoading = false
+        })
+      } else {
+        this.fullTextSearch({lang: this.$userLang, words: val, topicid:this.index}).then(() => {
+          this.searchLoading = false
+        })
+      }
+      
+    },
+    '$route.params.topicFilter': function (topicFilter) {
+      console.log("I'm the parameter topicfilter")
+      console.log(topicFilter)
+      if(topicFilter == undefined){
+        this.initialize()
+      }
+      else{
+        console.log("Again, nothing to do")
+      }
+    }
+  },
+    created () {
+      console.log("iniztializing")
+         this.initialize()
   }
   
 

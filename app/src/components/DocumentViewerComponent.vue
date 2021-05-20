@@ -170,6 +170,7 @@
           <div >
             <q-select
               filled
+              :label="$t('desc_labels.send_doc_pa')"
               dense
               v-model="emailTenant"
               :options="tenants"
@@ -185,7 +186,7 @@
               standout
               outlined
               type="email"
-              :label="$t('input_labels.email')"
+              :label="$t('desc_labels.send_doc_me')"
               v-model="email"
             />
           </div>
