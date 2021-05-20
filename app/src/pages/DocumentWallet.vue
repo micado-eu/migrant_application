@@ -39,6 +39,7 @@
 const DocumentWalletItem = () => import("components/DocumentWalletItem")
 import editEntityMixin from "../mixin/editEntityMixin"
 import storeMappingMixin from '../mixin/storeMappingMixin'
+require('@uppy/core/dist/style.css')
 
 export default {
   name: "Documents",
@@ -120,4 +121,4 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped src="uppy/dist/uppy.css"></style>
+<style scoped></style>

@@ -8,10 +8,10 @@ import zh_Hans from './zh_Hans'
 
 export default {
   'en-us': enUS,
-  it,
-  ar,
-  de,
-  es,
+  it: it,
+  ar: ar,
+  de: de,
+  es: es,
   zh,
   zh_Hans
 }
