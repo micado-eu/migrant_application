@@ -51,6 +51,7 @@
     <q-footer class="bg-info text-white">
       <q-tabs>
         <q-tab
+        style="padding-right:0px; padding-left:0px"
           v-for="(nav) in nav_options"
           @click="action(nav.label)"
           :key="nav.label"
@@ -499,7 +500,7 @@ body {
   font-family: "Nunito", sans-serif;
 }
 .klaro .cookie-modal{
-z-index: 999999;
+z-index: 999999 !important;
 }
 
 </style>
