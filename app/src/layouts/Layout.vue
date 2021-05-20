@@ -498,4 +498,8 @@ export default {
 body {
   font-family: "Nunito", sans-serif;
 }
+.klaro .cookie-modal{
+z-index: 999999;
+}
+
 </style>
