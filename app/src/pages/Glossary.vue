@@ -44,7 +44,7 @@
           <q-expansion-item
             group="glossary"
             :ref="glossaryItem.id"
-            @show="changeQuery(glossaryItem.id)"
+            @after-show="changeQuery(glossaryItem.id)"
             expand-icon-class="text-orange"
             :data-cy="'glossaryItem' + glossaryItem.id"
             :id="'gTitle' + glossaryItem.id"
@@ -118,7 +118,7 @@ export default {
       alphabetIds: [],
       filteredElementsBySearch: [],
       searchText: "",
-      scrollToElem: true
+      autoScroll: true
     }
   },
   computed: {
@@ -157,18 +157,17 @@ export default {
       if (ref) {
         let glossaryExpansionItem = ref[0]
         glossaryExpansionItem.show()
-        this.$nextTick().then(() => {
-          let divElem = document.getElementById("gTitle" + id)
-          let offsetTop = divElem.offsetTop
-          // Substract the header size (height 61) from the offset to avoid being hidden by the header
-          window.scrollTo({ top: offsetTop - 61 })
-        })
       }
     },
     changeQuery(id) {
       if (this.$route.query.id !== id.toString()) {
-        this.scrollToElem = false
         this.$router.replace({ path: '/glossary', query: { id: id } })
+      }
+      if (this.autoScroll) {
+        let divElem = document.getElementById("gTitle" + id)
+        let offsetTop = divElem.offsetTop
+        // Substract the header size (height 61) from the offset to avoid being hidden by the header
+        window.scrollTo({ top: offsetTop - 61 })
       }
     },
     compare(a, b) {
@@ -180,9 +179,8 @@ export default {
   },
   watch: {
     $route(to, from) {
-      if (this.scrollToElem && (to.query.id !== undefined)) {
+      if (to.query.id !== undefined) {
         this.showGlossaryTerm(to.query.id)
-        this.scrollToElem = true
       }
     }
   },
@@ -209,6 +207,7 @@ export default {
       if (query.id !== undefined) {
         this.$nextTick().then(() => {
           showGlossaryTerm(query.id)
+          this.autoScroll = false
         })
       }
       this.filteredElementsBySearch = this.translatedGlossary;
