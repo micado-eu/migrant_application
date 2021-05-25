@@ -160,6 +160,7 @@ export default {
       }
     },
     changeQuery(id) {
+      console.log("changeQuery called: " + this.autoScroll)
       if (this.$route.query.id !== id.toString()) {
         this.$router.replace({ path: '/glossary', query: { id: id } })
       }
@@ -168,6 +169,7 @@ export default {
         let offsetTop = divElem.offsetTop
         // Substract the header size (height 61) from the offset to avoid being hidden by the header
         window.scrollTo({ top: offsetTop - 61 })
+        this.autoScroll = false
       }
     },
     compare(a, b) {
@@ -207,7 +209,6 @@ export default {
       if (query.id !== undefined) {
         this.$nextTick().then(() => {
           showGlossaryTerm(query.id)
-          this.autoScroll = false
         })
       }
       this.filteredElementsBySearch = this.translatedGlossary;
