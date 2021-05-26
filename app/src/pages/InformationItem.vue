@@ -1,21 +1,21 @@
 <template>
   <span v-if="loading">Loading...</span>
-  <single-item
+  <single-item-information
     :title=title
     :description=description
     :attributes=attributes
     v-else
-  ></single-item>
+  ></single-item-information>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex"
 import idJoinMixin from "../mixin/idJoinMixin.js"
-import SingleItem from '../components/single_items/SingleItem.vue'
+import SingleItemInformation from '../components/single_items/SingleItemInformation.vue'
 
 export default {
   components: {
-    SingleItem
+    SingleItemInformation
   },
   mixins: [idJoinMixin],
   data() {
