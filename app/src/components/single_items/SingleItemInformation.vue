@@ -15,7 +15,7 @@
       />
       <q-separator class="q-my-lg" />
       <entry-row
-        v-if="attributes.category.category"
+        v-if="attributes.category && attributes.category.category"
         label="information_centre.category"
         v-model="attributes.category.category"
       ></entry-row>

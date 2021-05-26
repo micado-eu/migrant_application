@@ -39,7 +39,7 @@
         v-model="attributes.organizer"
       ></entry-row>
       <entry-row
-        v-if="attributes.category.category"
+        v-if="attributes.category && attributes.category.category"
         label="events.category"
         v-model="attributes.category.category"
       ></entry-row>
