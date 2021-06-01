@@ -1,6 +1,6 @@
 {
-    "application_title": "MICADO app",
-    "menu": {
+  "application_title": "MICADO app",
+  "menu": {
       "title": "Mis herramientas",
       "home": "Inicio",
       "home_desc": "Página de inicio de MICADO",
@@ -23,8 +23,8 @@
       "information_desc": "Servicios e información de integración",
       "events": "Eventos",
       "events_desc": "Eventos de integración"
-    },
-    "button": {
+  },
+  "button": {
       "add_document": "Añadir Documento",
       "save": "Guardar",
       "remove": "Eliminar",
@@ -35,18 +35,22 @@
       "view_model": "Ver modelo",
       "cancel": "Cancelar",
       "send": "Enviar",
-      "validation_pending":"Validación pendiente",
-      "validated":"Validado"
-  
-    },
-    "input_labels": {
+      "validation_pending": "Validación pendiente",
+      "validated": "Validado",
+      "delete": "Eliminar",
+      "procedure": "Ir al procedimiento",
+      "edit": "Editar",
+      "view_pics": "Ver detalles",
+      "change_pass": "Cambiar contraseña"
+  },
+  "input_labels": {
       "doc_type": "Tipo de Documento",
       "exp_date": "Fecha de Expiración",
       "upload_doc": "Subir Documento",
       "read": "Leer",
       "email": "Email"
-    },
-    "desc_labels": {
+  },
+  "desc_labels": {
       "cost": "Coste por paso",
       "location": "Localización",
       "description": "Descripción",
@@ -65,11 +69,23 @@
       "privacy_settings": "Configuración de Privacidad",
       "comments": "Comentarios",
       "send_doc": "Por favor elija una dirección de email",
-      "guided_processes":"Integración paso por paso",
-      "plan_progress":"Progreso del Plan",
-      "integration_plan":"Mi Plan de Integración"
-    },
-    "profile": {
+      "guided_processes": "Integración paso por paso",
+      "plan_progress": "Progreso del Plan",
+      "integration_plan": "Mi Plan de Integración",
+      "emitter": "Emitido por",
+      "click_step": "Clic en un paso para ver detalles",
+      "image": "Imagen",
+      "add_doc": "Añadir nuevo documento",
+      "edit_doc": "Editar su documento",
+      "document_download": "Descargar este documento",
+      "document_delete": "¿Quiere eliminar este documento?",
+      "document_sent": "Su documento ha sido enviado con éxito a",
+      "survey": "¡Encuesta!",
+      "personal": "Area personal",
+      "send_doc_me": "Enviar a otro correo",
+      "send_doc_pa": "Seleccione una autoridad pública"
+  },
+  "profile": {
       "change_pic": "Cambiar foto",
       "username": "Usuario",
       "password": "Contraseña",
@@ -77,32 +93,91 @@
       "nationality": "Nacionalidad",
       "age": "Edad",
       "gender": "Género",
-      "personal_profile": "Perfil Personal"
-    },
-    "filters": {
+      "personal_profile": "Perfil Personal",
+      "password_changed": "Ha cambiado su contraseña con éxito",
+      "password_change": "Cambiar contraseña",
+      "user_pref": "Preferencias de usuario",
+      "confirm_pass": "Confirmar contraseña",
+      "new_pass": "Contraseña nueva",
+      "old_pass": "Contraseña antigua",
+      "mail": "Email",
+      "phone_number": "Número de teléfono",
+      "dob": "Fecha de nacimiento",
+      "country": "País"
+  },
+  "filters": {
       "title": "Filtrar por",
       "categories": "Categorias",
       "clear_all": "Limpiar todo",
-      "apply": "Aplicar"
-    },
-    "information_centre": {
+      "apply": "Aplicar",
+      "date": "Fecha",
+      "user_types": "Tipos de usuario",
+      "topics": "Temas"
+  },
+  "information_centre": {
       "category": "Categoría",
-      "missing_content": "No hay información disponible"
-    },
-    "tasks": {
+      "missing_content": "No hay información disponible",
+      "organizer": "Organizado/Creado por",
+      "user_types": "Tipos de usuario",
+      "topics": "Temas"
+  },
+  "tasks": {
       "ask_validation": "Pedir validación",
       "you_validate": "Validar tarea",
       "dialog_title_org": "Elija la organización del validador",
       "dialog_title_self": "Validar tarea",
       "integration_type_validators": "organización del validador"
-    },
-    "events": {
+  },
+  "events": {
       "category": "Categoría",
       "start_date": "Fecha de inicio",
       "finish_date": "Fecha de fin",
-      "missing_content": "No hay eventos disponibles"
-    },
-    "glossary": {
+      "missing_content": "No hay eventos disponibles",
+      "cost_free": "Gratis",
+      "cost": "Precio",
+      "user_types": "Tipos de usuario",
+      "topics": "Temas",
+      "organizer": "Organizador",
+      "location": "Localización"
+  },
+  "glossary": {
       "missing_content": "No hay palabras comunes disponibles"
-    }
+  },
+  "icon_overlay": {
+      "user_type": "Tipo de usuario",
+      "topic": "Tema"
+  },
+  "internal_reference": {
+      "go_to_reference": "Ir a referencia",
+      "more_info_2": "se puede encontrar en:",
+      "more_info_1": "Más información sobre"
+  },
+  "feedback": {
+      "thanks": "Gracias",
+      "feedback_sent": "Sus comentarios han sido enviados con éxito a las Autoridades Públicas",
+      "feedback_question": "¡Envíanos comentarios! ¿Le gusta la página que está viendo actualmente?",
+      "send": "Enviar comentarios",
+      "feedback": "Escriba sus comentarios en la caja de texto inferior",
+      "url": "Sus comentarios serán sobre la página",
+      "mail": "Sus comentarios serán enviados a"
+  },
+  "date_selector": {
+      "close": "Cerrar"
+  },
+  "consent": {
+      "CSOs": "OSCs participando en el ecosistema MICADO",
+      "livechat": "Chat en vivo",
+      "analytics": "Analíticas",
+      "chat_title": "MICADO bot",
+      "chat": "Chat widget",
+      "usageTracker_title": "Estadísticas MICADO",
+      "usageTracker": "Recolección de uso estadístico",
+      "consentModal_description": "Puedes ver y personalizar aquí la información que recogemos sobre tí. Las entradas marcadas como \"Ejemplo\" son solo una demostración y no son reealmente usadas en este sitio web.",
+      "title": "Acuerdo de consentimiento MICADO"
+  },
+  "error404": "Lo sentimos, no hay nada aquí...",
+  "privacy": {
+      "grant": "Este proyecto ha recibido fondos de la Acción de Innovación H2020 de la Unión Europeea bajo el Acuerdo de Subvención Nº 822717",
+      "privacy": "Políticas de privacidad"
   }
+}
