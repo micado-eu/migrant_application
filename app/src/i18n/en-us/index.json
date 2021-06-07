@@ -49,7 +49,8 @@
     "exp_date": "Expiration Date",
     "upload_doc": "Upload Document",
     "read": "Read Along",
-    "email": "Email"
+    "email": "Email",
+    "shareable":"Shareable"
   },
   "desc_labels": {
     "cost": "Cost for the step",

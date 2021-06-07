@@ -30,7 +30,6 @@ export default {
 
   saveDocument (document) {
     console.log("call to save to DB")
-    console.log(process)
     // create fake id here
     const savingDocument= JSON.parse(JSON.stringify(document, [ 'documentTypeId', 'userId', 'validated', 'expirationDate', 'uploadedByMe', 'shareable']))
 
@@ -41,7 +40,6 @@ export default {
   },
   saveDocumentPictures (pictures, doc_id) {
     console.log("call to save to DB")
-    console.log(process)
     // create fake id here
     const savingPicture= JSON.parse(JSON.stringify(pictures, [ 'docId', 'picture', 'order']))
 
