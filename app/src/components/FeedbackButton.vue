@@ -16,7 +16,7 @@
       >
         <q-header>
           <q-toolbar class="bg-white">
-            <q-toolbar-title style="color:black">Send Feedback to PA</q-toolbar-title>
+            <q-toolbar-title style="color:black">{{$t('feedback.send_pa')}}</q-toolbar-title>
             <q-btn
               color="red"
               flat
@@ -29,7 +29,7 @@
         </q-header>
 
         <q-page-container class="q-ma-sm">
-          <span v-if="loading">Loading...</span>
+          <span v-if="loading">{{$t('desc_labels.loading')}}</span>
           <q-page
             v-else
             padding

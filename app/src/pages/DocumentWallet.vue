@@ -1,6 +1,6 @@
 <template>
 <div>
-<div v-if="loading"> Loading...</div>
+<div v-if="loading"> {{$t('desc_labels.loading')}}</div>
   <q-page v-else class="flows container-fluid" style="">
     <div
       class=""

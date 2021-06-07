@@ -1,6 +1,6 @@
 <template>
 <div>
-<span v-if="loading">Loading...</span>
+<span v-if="loading">{{$t('desc_labels.loading')}}</span>
   <div v-else>
     <div class="q-pa-md q-gutter-sm">
     <q-breadcrumbs active-color="secondary">

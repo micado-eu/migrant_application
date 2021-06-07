@@ -1,6 +1,6 @@
 <template>
   <div  style="padding-top:10px">
-    <div v-if="this.loading">Loading...</div>
+    <div v-if="this.loading">{{$t('desc_labels.loading')}}</div>
     <div v-else>
 
     <div class="div-1">

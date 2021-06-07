@@ -1,5 +1,5 @@
 <template>
-  <span v-if="loading">Loading...</span>
+  <span v-if="loading">{{$t('desc_labels.loading')}}</span>
   <single-item-information
     :title=title
     :description=description

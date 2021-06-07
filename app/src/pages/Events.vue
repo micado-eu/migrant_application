@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span v-if="loading">Loading...</span>
+    <span v-if="loading">{{$t('desc_labels.loading')}}</span>
     <list-with-filter
       v-if="!loading"
       title="desc_labels.events"

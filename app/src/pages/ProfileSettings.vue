@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    <div v-if="this.loading">Loading...</div>
+    <div v-if="this.loading">{{$t('desc_labels.loading')}}</div>
     <div v-else>
     <div class="div-1">
   <UserButton ref="user" />
@@ -40,7 +40,6 @@
       <h5 class="q-pa-md header">{{$t('profile.personal_profile')}}</h5>
       <div class="input-top">
         <q-input :readonly="!editing"  dense :label="$t('profile.username')"  bg-color="grey-1"   standout outlined v-model="the_user.username" >
-        <q-icon class="icon" name="img:statics/icons/Edit.png" size="md"/>
         </q-input>
       </div>
     </div>
@@ -49,7 +48,6 @@
         <q-input  dense :readonly="!editing" bg-color="grey-1" standout outlined :label="$t('profile.phone_number')" v-model="the_user.phoneNumber"  >
           <template v-slot:append>
           <q-icon
-             name="img:statics/icons/Edit.png" size="md"
           />
         </template>
         </q-input>
@@ -58,35 +56,30 @@
 <div class=" q-pa-xsm " >
       <div class="col-8 input" >
         <q-input  dense :readonly="!editing" :label="$t('profile.legal_name')"  bg-color="grey-1" standout outlined v-model="the_user.legalname"  >
-         <q-icon name="img:statics/icons/Edit.png" size="md"  />
         </q-input>
       </div>
     </div>
 <div class=" q-pa-xsm " >
     <div class="col-8 input" >
         <q-input  dense :readonly="!editing"  bg-color="grey-1" :label="$t('profile.country')" standout outlined v-model="the_user.nationality"  >
-         <q-icon name="img:statics/icons/Edit.png" size="md"  />
         </q-input>
       </div>
     </div>
     <div class=" q-pa-xsm " >
       <div class="col-8 input" >
         <q-input  dense :readonly="!editing" bg-color="grey-1" :label="$t('profile.dob')" standout outlined v-model="the_user.date_of_birth"  >
-         <q-icon name="img:statics/icons/Edit.png" size="md"  />
         </q-input>
       </div>
     </div>
     <div class=" q-pa-xsm " >
       <div class="col-8 input" >
         <q-input  dense :readonly="!editing" bg-color="grey-1" :label="$t('profile.gender')" standout outlined v-model="the_user.gender"  >
-         <q-icon name="img:statics/icons/Edit.png" size="md"  />
         </q-input>
       </div>
     </div>
     <div class=" q-pa-xsm " >
       <div class="col-8 input" >
         <q-input  dense :readonly="!editing" bg-color="grey-1" :label="$t('profile.mail')" standout outlined v-model="the_user.email"  >
-         <q-icon name="img:statics/icons/Edit.png" size="md"  />
         </q-input>
       </div>
     </div>
