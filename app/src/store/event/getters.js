@@ -8,7 +8,9 @@ export function eventTemp(state) {
 
 export function eventElemById(state) {
   let getterFunc = function (id) {
-    return state.events.filter(n => n.id == id)[0]
+    let filtered = state.events.filter(n => n.id == id)
+    if (filtered.length < 1) throw 'Not found'
+    return filtered[0]
   }
   return getterFunc
 }

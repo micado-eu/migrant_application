@@ -222,7 +222,13 @@ export default {
         "p": "processes/{id}"
       }
       if (id > -1 && mentionType in elemByIdFunctions) {
-        const elem = elemByIdFunctions[mentionType](id)
+        let elem = undefined
+        try{
+          elem = elemByIdFunctions[mentionType](id)
+        }
+        catch(err) {
+          if (err !== "Not found") throw err
+        }
         if (elem !== undefined) {
           const url = "/" + mentionBaseURL[mentionType].replace("{id}", id)
           return {

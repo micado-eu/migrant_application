@@ -15,7 +15,9 @@ export function processes(state) {
 
   export function processById(state) {
     let getterFunc = function (id) {
-      return state.flows.filter(n => n.id == id)[0]
+      let filtered = state.flows.filter(n => n.id == id)
+      if (filtered.length < 1) throw 'Not found'
+      return filtered[0]
     }
     return getterFunc
   }

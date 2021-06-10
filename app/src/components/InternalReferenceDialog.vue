@@ -88,7 +88,7 @@ export default {
       return this.getUrl.protocol + "//" + this.getUrl.host + this.link
     },
     internalTitle() {
-      return title ? title : this.$t("internal_references.default_title")
+      return this.title ? this.title : this.$t("internal_reference.default_title")
     }
   }
 }

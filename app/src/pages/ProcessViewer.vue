@@ -272,6 +272,7 @@ export default {
     storeMappingMixin({
       getters: {
         processes: 'flows/processes',
+        processById: 'flows/processById',
         flowData: 'flows/flowData',
         shell_data: 'flows/shell_data',
         documents: 'flows/documents',
@@ -534,9 +535,14 @@ export default {
       var prom8 = []
       if (this.flows.length > 0) {
         console.log("inside if")
-        this.full_process = this.flows.filter((the_process) => {
-          return the_process.id == this.processid
-        })[0]
+        try {
+          this.full_process = this.processById(this.processid)
+        } catch (err) {
+          if (err === "Not found") {
+              // Route doesn't exist in router so it will redirect to 404
+              this.$router.push('/404')
+            } else throw err
+        }
         console.log("I am full process")
         console.log(this.full_process)
         this.the_process = this.full_process.process
@@ -552,9 +558,14 @@ export default {
         Promise.all(prom1).then((process) => {
           console.log("I a flows")
           console.log(this.flows)
-          this.full_process = this.flows.filter((the_process) => {
-            return the_process.id == this.processid
-          })[0]
+          try {
+            this.full_process = this.processById(this.processid)
+          } catch (err) {
+            if (err === "Not found") {
+                // Route doesn't exist in router so it will redirect to 404
+                this.$router.push('/404')
+              } else throw err
+          }
           console.log("I am full process")
           console.log(this.full_process)
           this.the_process = this.full_process.process

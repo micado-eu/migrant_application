@@ -15,7 +15,9 @@ export function informationTempElemById(state) {
 
 export function informationElemById(state) {
   let getterFunc = function (id) {
-    return state.information.filter(n => n.id == id)[0]
+    let filtered = state.information.filter(n => n.id == id)
+    if (filtered.length < 1) throw 'Not found'
+    return filtered[0]
   }
   return getterFunc
 }

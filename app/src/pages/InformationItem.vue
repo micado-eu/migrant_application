@@ -41,20 +41,28 @@ export default {
         this.fetchTopic(langs)
       ])
         .then(async () => {
-          let item = this.informationElemById(id)
-          this.title = item.title
-          this.description = item.description
-          const idx = this.informationCategories.findIndex((c) => c.id === item.category)
-          if (idx !== -1) {
-            this.attributes.category = this.informationCategories[idx]
-          } else {
-            this.attributes.category = undefined
+          try {
+            let item = this.informationElemById(id)
+            this.title = item.title
+            this.description = item.description
+            const idx = this.informationCategories.findIndex((c) => c.id === item.category)
+            if (idx !== -1) {
+              this.attributes.category = this.informationCategories[idx]
+            } else {
+              this.attributes.category = undefined
+            }
+            if (item.topics) {
+              this.attributes.topics = this.idJoin(item.topics, this.topics)
+            }
+            if (item.creator) {
+              this.attributes.creator = await this.fetchSpecificUser(item.creator, this.$pa_tenant)
+            }
           }
-          if (item.topics) {
-            this.attributes.topics = this.idJoin(item.topics, this.topics)
-          }
-          if (item.creator) {
-            this.attributes.creator = await this.fetchSpecificUser(item.creator, this.$pa_tenant)
+          catch (err) {
+            if (err === "Not found") {
+              // Route doesn't exist in router so it will redirect to 404
+              this.$router.push('/404')
+            } else throw err
           }
         }).then(() => this.loading = false)
     }
