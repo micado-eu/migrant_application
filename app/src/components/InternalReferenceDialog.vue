@@ -5,7 +5,7 @@
         <img src="statics/icons/Icon - Internal Reference.svg">
       </q-avatar>
 
-      <q-toolbar-title>{{title}}</q-toolbar-title>
+      <q-toolbar-title>{{internalTitle}}</q-toolbar-title>
 
       <q-btn
         flat
@@ -30,7 +30,7 @@
     >
       <slot></slot>
       <div class="q-mt-xl">
-        {{$t("internal_reference.more_info_1")}} "<span class="more-info-title">{{title}}</span>" {{$t("internal_reference.more_info_2")}}
+        {{$t("internal_reference.more_info_1")}} "<span class="more-info-title">{{internalTitle}}</span>" {{$t("internal_reference.more_info_2")}}
       </div>
       <div>
         <router-link
@@ -40,7 +40,7 @@
           {{fullLink}}
         </router-link>
       </div>
-      <talking-label :text="$t('internal_reference.more_info_1') + ' ' + title + ' ' + $t('internal_reference.more_info_2') + ' ' + fullLink"></talking-label>
+      <talking-label :text="$t('internal_reference.more_info_1') + ' ' + internalTitle + ' ' + $t('internal_reference.more_info_2') + ' ' + fullLink"></talking-label>
       <div class="row flex-center">
         <q-btn
           class="q-mt-xl q-mb-lg q-mr-md reference-btn col-shrink"
@@ -68,8 +68,7 @@ export default {
   },
   props: {
     title: {
-      type: String,
-      default: this.$t("internal_references.default_title")
+      type: String
     },
     link: {
       type: String
@@ -87,6 +86,9 @@ export default {
   computed: {
     fullLink() {
       return this.getUrl.protocol + "//" + this.getUrl.host + this.link
+    },
+    internalTitle() {
+      return title ? title : this.$t("internal_references.default_title")
     }
   }
 }
