@@ -1,6 +1,6 @@
 <template>
   <div class="services">
-    <span v-if="loading">Loading…</span>
+    <span v-if="loading">{{$t('desc_labels.loading')}}</span>
     <div v-else class="container">
       <div class="row" >
         <ServiceItem v-for="service in services" :key="service.id" :theService="service">

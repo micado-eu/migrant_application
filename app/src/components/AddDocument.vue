@@ -40,6 +40,23 @@
           />
           <hr >
     </div>
+        <div class="row" style="padding-bottom:10px" >
+        <div class="col-6">
+          <q-checkbox v-model="doc_shell.shareable" :label="$t('input_labels.shareable')" color="accent" />
+        </div>
+        <div class="col-6">
+        <TalkingLabel
+        class="field"
+        :text="$t('desc_labels.add_doc')"
+        :title_col="'col-11'"
+        :icon_col="'col-1'"
+        :icon_style="'text-align:right; padding-top:8px'"
+        />
+        </div>
+         
+          
+    </div>
+    <hr >
     <div class="col-8 input" >
       <TalkingLabel
         class="field"
@@ -157,13 +174,23 @@ export default {
       console.log(document)
       if(this.is_new){
       this.saveDocument(document)
-      //this.$store.dispatch('documents/saveDocument', document)
-      this.$router.push('/documents')
+      this.$q.loading.show({
+        message: 'Saving'
+      })
+      this.timer = setTimeout(() => {
+          this.$q.loading.hide()
+          this.$router.push('/documents');
+        }, 2000)              
       }
       else{
         this.editDocument(document)
-        //this.$store.dispatch('documents/editDocument', document)
-        this.$router.push('/documents')
+      this.$q.loading.show({
+        message: 'Saving'
+      })
+        this.timer = setTimeout(() => {
+          this.$q.loading.hide()
+          this.$router.push('/documents');
+        }, 2000)
       }
     },
    

@@ -1,5 +1,7 @@
 <template>
-  <q-page class="flows container-fluid" style="">
+<div>
+<div v-if="loading"> {{$t('desc_labels.loading')}}</div>
+  <q-page v-else class="flows container-fluid" style="">
     <div
       class=""
       style="text-align:center; padding-top:30px; padding-bottom:20px; "
@@ -33,6 +35,7 @@
       </DocumentWalletItem>
     </q-list>
   </q-page>
+</div>
 </template>
 
 <script>
@@ -55,7 +58,9 @@ export default {
     }
   })],
   data() {
-    return {};
+    return {
+      loading:true
+    };
   },
   components: {
     DocumentWalletItem
@@ -74,16 +79,17 @@ export default {
     this.fetchDocuments()
     //this.$store.dispatch("documents/fetchDocuments")
     .then(documents => {
-      this.loading = false;
       console.log("documents in created");
       console.log(documents);
-    });
-    this.fetchDocumentType({defaultLang: this.$defaultLang, currentLang:this.$userLang})
+       this.fetchDocumentType({defaultLang: this.$defaultLang, currentLang:this.$userLang})
     //this.$store.dispatch("document_type/fetchDocumentType")
       .then(document_types => {
         console.log("we are the docs");
         console.log(document_types);
+        this.loading = false
       });
+    });
+   
   },
   methods: {
     sendDoc(value){

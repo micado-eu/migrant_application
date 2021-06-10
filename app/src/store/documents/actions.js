@@ -24,7 +24,7 @@ export function saveDocument (state, document) {
 
 
   // we need to save first the topic
-  return client.saveDocument(document)
+   client.saveDocument(document)
     .then(function (doc_return) {
       console.log("returned from saving topic")
       console.log(doc_return)
@@ -35,17 +35,21 @@ export function saveDocument (state, document) {
       console.log("assigned id to document")
       console.log(document.id)
       // in topic_return we have the ID that we need in the following cycle
+      var picture_promise = []
       for(var i = 0; i < document.pictures.length; i++){
         document.pictures[i].order = i
         document.pictures[i].docId = doc_return_id
         console.log("this is the picture i am saving")
         console.log(document.pictures[i])
-        client.saveDocumentPictures(document.pictures[i], doc_return_id)
+        picture_promise.push(client.saveDocumentPictures(document.pictures[i], doc_return_id))
       }
+      Promise.all(picture_promise).then((promiseret)=>{
+        console.log("after foreach save picture")
+        console.log(promiseret)
+        state.commit('saveDocument', document)
+      })
       // here we need only to add the ID to the topic element since there are the tranlsations that in the topic_return are not present
-      console.log("after foreach save picture")
-     
-      state.commit('saveDocument', document)
+
     }
       // here we cycle for all translations to save each one
 
@@ -59,21 +63,19 @@ export function editDocument (state, document) {
  return client.deleteDocumentPictures(document.id).then( function (picture_return){
 console.log("deleted pictures")
    client.updateDocument(document).then(function (update_return) {
+    var picture_promise = []
     for(var i = 0; i < document.pictures.length; i++){
       document.pictures[i].order = i
       document.pictures[i].docId = document.id
       console.log("this is the picture i am saving")
       console.log(document.pictures[i])
-      client.saveDocumentPictures(document.pictures[i], document.id)
+      picture_promise.push(client.saveDocumentPictures(document.pictures[i], document.id))
     }
       // cycle in the translations and update each
       console.log(update_return)
-      /*topic_element.translations.forEach(function (aTranslation) {
-        client.updateTopicTranslation(aTranslation).then(function (update_translation_return) {
-          console.log(update_translation_return)
-        })
-      })*/
-      state.commit('editDocument', document)
+      Promise.all(picture_promise).then((promiseret)=>{
+        state.commit('editDocument', document)
+      })
     })
  })
 }

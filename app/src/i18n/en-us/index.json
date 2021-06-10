@@ -49,7 +49,8 @@
     "exp_date": "Expiration Date",
     "upload_doc": "Upload Document",
     "read": "Read Along",
-    "email": "Email"
+    "email": "Email",
+    "shareable":"Shareable"
   },
   "desc_labels": {
     "cost": "Cost for the step",
@@ -81,7 +82,8 @@
     "click_step":"Click on a step above for details",
     "emitter":"Emitted by",
     "send_doc_pa":"Select a public autorithy",
-    "send_doc_me":"Send to other mail"
+    "send_doc_me":"Send to other mail",
+    "loading":"Loading..."
   },
   "profile": {
     "change_pic": "Change picture",
@@ -147,6 +149,7 @@
     "url": "Your feedback will be about the page found at",
     "feedback": "Write your feedback in the textbox below",
     "send": "Send feedback",
+    "send_pa":"Send Feedback to PA",
     "feedback_question":"Send us feedback! How do you like the page you are currently viewing?",
     "feedback_sent":"Your feedback was successfully sent to the Public Authorities",
     "thanks":"Thank you"
