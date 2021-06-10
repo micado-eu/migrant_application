@@ -155,6 +155,7 @@
     "thanks":"Thank you"
   },
   "internal_reference": {
+    "default_title": "Internal reference",
     "more_info_1": "More information for",
     "more_info_2": "can be found at:",
     "go_to_reference": "Go to reference"

@@ -69,7 +69,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: "Internal Reference"
+      default: this.$t("internal_references.default_title")
     },
     link: {
       type: String
