@@ -100,7 +100,7 @@ export default {
       console.log(sendingDoc)
       console.log(value.email)
       console.log("here goes the call to the backend to send the document")
-      //this.sendDocumentMail({id:value.docid, email:value.email})
+      this.sendDocumentMail({id:value.docid, email:value.email})
     },
     setTitle(document) {
       var the_doc_type = this.document_types.filter(a_doc_type => {

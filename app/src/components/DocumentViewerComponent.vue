@@ -299,7 +299,7 @@ export default {
       console.log("here goes the call to the backend to send the document")
       this.senddoc = false
       this.confirm = true
-      //this.sendDocumentMail({id:value.docid, email:value.email})
+      this.sendDocumentMail({id:value.docid, email:value.email})
     },
     deleteDocument () {
       if(this.the_document.uploadedByMe){
