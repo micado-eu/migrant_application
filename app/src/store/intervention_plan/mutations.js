@@ -25,6 +25,19 @@ export function deleteInterventionPlan(state, index){
   const idx = state.intervention_plan.findIndex(item => item.id === index);
   if (idx !== -1) state.intervention_plan.splice(idx, 1);
 }
+
+export function editIntervention(state, payload) {
+  console.log("update the state")
+  var the_plan = state.intervention_plan.filter((plan)=>{
+    return plan.id == payload.plan_id
+  })[0]
+  var the_intervention = the_plan.interventions.filter((int)=>{
+    return int.id == payload.intervention_id
+  })[0]
+  the_intervention.validationRequestDate = payload.date
+  //const index = state.intervention_plan.findIndex(item => item.id === payload.plan_id);
+  //if (index !== -1) state.intervention_plan.splice(index, 1, intervention_plan);
+}
 /*export function delete_document_type (state, document_typeId) {
   let document_types = state.document_type.filter(d => d.id != document_typeId)
   state.document_type = document_types
