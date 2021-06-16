@@ -350,11 +350,13 @@ export default {
       }
       this.klaro_config.translations[lang.lang] = translation
     });
+    this.klaro_config.lang = this.$userLang
     console.log(this.klaro_config)
     this.manager = klaro.getManager(this.klaro_config)
 
     console.log(this.manager)
     console.log("KLARO!!!!!!!!!!!!!!!")
+    console.log(klaro.language())
 
     let uid = this.user.umid
     this.manager.watch({
