@@ -56,7 +56,7 @@ export function updateIntervention (state, data) {
   return client
     .updateIntervention(data.interventionId, data.tenantId, data.requestDate, data.planId)
     .then((result) => {
-
+      state.commit('editIntervention', {plan_id:data.planId, intervention_id:data.interventionId, date:data.requestDate})
     })
 }
 /*export function deleteDocument({commit}, document_type) {

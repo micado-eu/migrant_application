@@ -1,14 +1,169 @@
 {
-  "menu": {
-    "title": "ادواتي",
-    "services": "الخدمات المتاحة",
-    "documents": "مستنداتي",
-    "assistant": "المساعد",
-    "processes": "العمليات الإدارية",
-    "notifications": "رسائلي",
-    "search": "بحث",
-    "speech": "تكلم",
-    "settings": "الإعدادات",
-    "language":"ar-EG"
-  }
+    "menu": {
+        "title": "أدواتي",
+        "services": "الخدمات المتاحة",
+        "documents": "مستنداتي",
+        "assistant": "المساعد",
+        "processes": "العمليات الإدارية",
+        "notifications": "رسائلي",
+        "search": "بحث",
+        "speech": "تكلم",
+        "settings": "الإعدادات",
+        "language": "ar-EG",
+        "chatbot": "تطبيق ميكادو",
+        "tasks": "خطتي الشخصية",
+        "messenger": "رسائلي"
+    },
+    "privacy": {
+        "privacy": "سياسة الخصوصية",
+        "grant": "هذا المشروع يتلقى تمويلا من الإتحاد الأوربي إتش 2020 قانون الإبتكارات تحت إتفاق ضمني رقم 822717"
+    },
+    "error404": "عفوا، لا يوجد شيئ هنا...",
+    "consent": {
+        "title": "سياسة ميكادو للقبول",
+        "consentModal_description": "هنا يمكنك متابعة وتعديل البيانات التي نجمعها عنك. إن المدخلات المعنونة ب \"مثال\" هي فقط لأغراض التمثيل وهي ليست مستعملة حقيقة في هذا الموقع.",
+        "usageTracker": "تجميع للاستخدام الإحصائي",
+        "usageTracker_title": "إحصائيات ميكادو",
+        "chat": "واجهة المحادثة",
+        "chat_title": "تطبيق ميكادو",
+        "analytics": "التحليلات",
+        "livechat": "محادثة حية",
+        "CSOs": "المنظمات المدنية المشاركة في النظام البيئي الخاص بميكادو"
+    },
+    "application_title": "تطبيق ميكادو.",
+    "button": {
+        "change_pass": "تغير كلمة المرور",
+        "add_document": "اضف وثيقة",
+        "save": "إحفظ",
+        "remove": "احذف",
+        "back": "السابق",
+        "go_back": "عودة للوراء",
+        "ask_validation": "اطلب تصديق",
+        "download": "تنزيل",
+        "view_model": "انظر المثال",
+        "view_pics": "انظر التفاصيل",
+        "cancel": "مسح",
+        "send": "ارسل",
+        "validation_pending": "تصديق معلق",
+        "validated": "تم التصديق",
+        "edit": "عدل",
+        "procedure": "اذهب للإجراءات",
+        "delete": "مسح"
+    },
+    "profile": {
+        "user_pref": "تفضيلات المستخدم",
+        "personal_profile": "الملف الشخصي",
+        "phone_number": "رقم الهاتف",
+        "old_pass": "كلمة المرور القديمة",
+        "new_pass": "كلمة المرور الجديدة",
+        "confirm_pass": "تأكيد كلمة المرور",
+        "password_change": "تغيير كلمة المرور",
+        "password_changed": "لقد غيرت كلمة المرور بنجاح",
+        "gender": "الجنس",
+        "change_pic": "تغيير الصورة",
+        "username": "اسم المستخدم",
+        "password": "كلمة المرور",
+        "legal_name": "الإسم القانوني",
+        "country": "البلد",
+        "dob": "تاريخ الميلاد",
+        "mail": "البريد الإلكتروني"
+    },
+    "information_centre": {
+        "user_types": "أنواع المستخدمين",
+        "category": "فئة",
+        "missing_content": "لا توجد معلومات",
+        "topics": "موضوعات",
+        "organizer": "المنظم/ انشئ من قبل"
+    },
+    "internal_reference": {
+        "more_info_1": "المزيد من المعلومات ل",
+        "more_info_2": "يمكن العثور عليه في:",
+        "go_to_reference": "إذهب إلى المرجع"
+    },
+    "filters": {
+        "topics": "الموضوعات",
+        "title": "مصنف بواسطة",
+        "categories": "الفئات",
+        "date": "التاريخ",
+        "clear_all": "امسح الكل",
+        "apply": "اطلب",
+        "user_types": "أنواع المستخدمين"
+    },
+    "desc_labels": {
+        "send_doc_me": "ارسال إلى بريد إلكتروني آخر",
+        "cost": "تكلفة هذه الخطوة",
+        "location": "موقع",
+        "description": "وصف",
+        "search": "بحث",
+        "document_type": "نوع الوثيقة",
+        "document_issuer": "مصدر الوثيقة",
+        "reviewed_by": "تمت مراجعته بواسطة",
+        "expiration_date": "تاريخ انتهاء الصلاحية",
+        "review_date": "تاريخ المراجعة",
+        "login_register": "دخول/ تسجيل",
+        "settings": "إعدادات",
+        "logout": "خروج",
+        "required_documents": "المستند المطلوب",
+        "privacy_settings": "إعدادات الخصوصية",
+        "comments": "تعليقات",
+        "send_doc": "برجاء اختيار عنوان بريد الكتروني",
+        "plan_progress": "تقدم الخطة",
+        "integration_plan": "خطتي الشخصية",
+        "personal": "منطقتي الشخصية",
+        "survey": "استبيان!",
+        "document_sent": "تم إرسال مستندك بنجاح إلى",
+        "document_delete": "هل تريد إلغاء هذه الوثيقة؟",
+        "document_download": "حمل هذه الوثيقة",
+        "edit_doc": "عدل على مستندك",
+        "add_doc": "اضف مستندا جديدا",
+        "image": "صورة",
+        "click_step": "اضغط على الخطوة أعلاه لمزيد من التفاصيل",
+        "emitter": "صادر عن",
+        "send_doc_pa": "اختيار السلطة العامة"
+    },
+    "tasks": {
+        "ask_validation": "اطلب التصديق",
+        "you_validate": "مهمة التطبيق",
+        "dialog_title_org": "اختر منظمة التصديق",
+        "dialog_title_self": "صدق على المهمة",
+        "integration_type_validators": "منظمة المصدق"
+    },
+    "events": {
+        "category": "فئة",
+        "start_date": "تاريخ البدء",
+        "finish_date": "تاريخ الإنتهاء",
+        "missing_content": "لا توجد أحداث",
+        "location": "الموقع",
+        "organizer": "المنظم",
+        "topics": "الموضوعات",
+        "cost": "التكلفة",
+        "cost_free": "مجانا",
+        "user_types": "أنواع المستخدمين"
+    },
+    "glossary": {
+        "missing_content": "لا توجد كلمات مشتركة"
+    },
+    "date_selector": {
+        "close": "إغلاق"
+    },
+    "feedback": {
+        "url": "تعليقك سيكون عن الصفحات التي عثر عليها في",
+        "feedback": "اكتب تعليقك في الصندوق أسفله",
+        "send": "ارسل تعليق",
+        "feedback_sent": "تم إرسال تعليقك إلى السلطات العامة",
+        "thanks": "شكرا",
+        "mail": "سيتم إرسال تعليقاتك إلى",
+        "feedback_question": "ارسل تعليقا! هل تعجبك الصفحة التي تشاهدها الآن؟"
+    },
+    "icon_overlay": {
+        "topic": "الموضوعات",
+        "user_type": "نوع المستخدم"
+    },
+    "input_labels": {
+        "doc_type": "نوع الوثيقة",
+        "exp_date": "تاريخ انتهاء الصلاحية",
+        "upload_doc": "ارفع الوثيقة",
+        "read": "اقرأ بالكامل",
+        "email": "بريد الكتروني"
+    }
 }
