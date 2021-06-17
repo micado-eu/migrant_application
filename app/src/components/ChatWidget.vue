@@ -59,8 +59,8 @@
               :id="message.id"
               :key="message.id"
               :name="message.user"
-              :text="[message.message]"
               :sent="message.user == $envconfig.bot_name"
+              :text="[markdown(message.message)]"
             />
 
           </q-page>
@@ -124,6 +124,7 @@ import ListenToggle from 'components/ListenToggle'
 import { scroll } from 'quasar'
 const { getScrollTarget, setScrollPosition } = scroll
 
+ 
 let api = null
 export default {
   name: 'ChatWidget',
@@ -290,6 +291,10 @@ export default {
 
   },
   methods: {
+    markdown(message){
+      const marked = require("marked");
+      return marked.parseInline(message)
+    },
     scroll () {
       const el = document.getElementById("message_area");
       const target = getScrollTarget(el)
