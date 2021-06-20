@@ -1,0 +1,163 @@
+{
+    "filters": {
+        "categories": "Categoriën",
+        "apply": "Toepassen",
+        "clear_all": "Maak alles leeg",
+        "date": "Datum",
+        "user_types": "Gebruikerstypes",
+        "topics": "Thema's",
+        "title": "Filter"
+    },
+    "privacy": {
+        "privacy": "Privacy policy",
+        "grant": "Dit project wordt ondersteund door de EU H2020 innovatie act net overeenkomst nr 822717"
+    },
+    "internal_reference": {
+        "go_to_reference": "Ga naar de pagina",
+        "more_info_2": "kan je vinden op:",
+        "more_info_1": "Meer informatie over"
+    },
+    "feedback": {
+        "send": "Verstuur het bericht",
+        "feedback": "Schrijf je feedback in het tekstveld",
+        "url": "Je feedback gaat over deze pagina",
+        "mail": "Je feedback zal verstuurd worden naar",
+        "feedback_sent": "Het is gelukt. Jouw bericht is verstuurd naar de administratie",
+        "thanks": "Bedankt",
+        "feedback_question": "Laat ons weten wat je denkt! Wat vind je van de pagina die je nu bekijkt?"
+    },
+    "date_selector": {
+        "close": "Sluiten"
+    },
+    "glossary": {
+        "missing_content": "Er zijn geen woorden in de woordenlijst"
+    },
+    "events": {
+        "user_types": "Gebruikerstypes",
+        "topics": "Thema's",
+        "organizer": "Organisator",
+        "location": "Locatie",
+        "missing_content": "Er zijn geen evenementen",
+        "finish_date": "Einddatum",
+        "start_date": "Startdatum",
+        "category": "Categorie",
+        "cost_free": "Gratis",
+        "cost": "Prijs"
+    },
+    "tasks": {
+        "integration_type_validators": "organisatie van de goedkeurder",
+        "dialog_title_self": "Keur de taak goed",
+        "dialog_title_org": "Kies de organisatie van de goedkeurder",
+        "you_validate": "Keur de taak goed",
+        "ask_validation": "Vraag om goedkeuring"
+    },
+    "information_centre": {
+        "organizer": "Organisator/Aangemaakt door",
+        "user_types": "Gebruikerstypes",
+        "topics": "Thema's",
+        "missing_content": "Er is geen informatie",
+        "category": "Categorie"
+    },
+    "profile": {
+        "user_pref": "Gebruikersinstellingen",
+        "confirm_pass": "Wachtwoord controle",
+        "new_pass": "Nieuw wachtwoord",
+        "old_pass": "Oud wachtwoord",
+        "mail": "Email",
+        "phone_number": "Telefoonnummer",
+        "personal_profile": "Persoonlijk profiel",
+        "gender": "Geslacht",
+        "dob": "Geboortedatum",
+        "country": "Land",
+        "legal_name": "Wettelijke naam",
+        "password": "Wachtwoord",
+        "username": "Gebruikersnaam",
+        "change_pic": "Wijzig de afbeelding",
+        "password_changed": "Het is gelukt, je paswoord is gewijzigd.",
+        "password_change": "Wijzig je paswoord"
+    },
+    "desc_labels": {
+        "personal": "Persoonlijke pagina",
+        "integration_plan": "Mijn persoonlijk plan",
+        "plan_progress": "Voortgang van het plan",
+        "send_doc": "Kies een email adres",
+        "comments": "Opmerkingen",
+        "privacy_settings": "Privacy instellingen",
+        "required_documents": "Welke documenten zijn nodig?",
+        "logout": "Uitloggen",
+        "settings": "Instellingen",
+        "login_register": "Login/Registreer",
+        "review_date": "Beoordelingsdatum",
+        "expiration_date": "Vervaldatum",
+        "reviewed_by": "Beoordeeld door",
+        "document_issuer": "Uitgever van het document",
+        "document_type": "Documenttype",
+        "search": "Zoeken",
+        "description": "Beschrijving",
+        "location": "Locatie",
+        "cost": "Prijs van de stap",
+        "edit_doc": "Wijzig het document",
+        "document_sent": "Het is gelukt. Je document is verstuurd naar",
+        "click_step": "Klik op een van de stappen voor details",
+        "image": "Foto",
+        "add_doc": "Voeg een nieuw document toe",
+        "document_download": "Download dit document",
+        "document_delete": "Wil je dit document verwijderen?",
+        "survey": "Vragenlijst!",
+        "emitter": "Uitgegeven door",
+        "send_doc_me": "Stuur naar een ander E-mailadres",
+        "send_doc_pa": "Selecteer een organisatie"
+    },
+    "input_labels": {
+        "email": "Email",
+        "read": "Lees mee",
+        "upload_doc": "Laad een document op",
+        "exp_date": "Vervaldatum",
+        "doc_type": "Documenttype"
+    },
+    "button": {
+        "procedure": "Ga naar procedure",
+        "edit": "Wijzigen",
+        "validated": "Goedgekeurd",
+        "validation_pending": "Wachten op goedkeuring",
+        "send": "Verzenden",
+        "cancel": "Annuleren",
+        "view_model": "Bekijk voorbeeld",
+        "download": "Download",
+        "ask_validation": "Vraag om goedkeuring",
+        "go_back": "Ga terug",
+        "back": "Ga terug",
+        "remove": "Verwijderen",
+        "save": "Opslaan",
+        "add_document": "Voeg een document toe",
+        "change_pass": "Wijzig je wachtwoord",
+        "delete": "Verwijderen",
+        "view_pics": "Bekijk in detail"
+    },
+    "menu": {
+        "language": "nl-NL",
+        "settings": "Instellingen",
+        "messenger": "Mijn berichten",
+        "documents": "Mijn documenten",
+        "tasks": "Mijn persoonlijk plan",
+        "chatbot": "Virtuele assistent",
+        "title": "Mijn tools"
+    },
+    "application_title": "MICADO app",
+    "consent": {
+        "title": "Micado toestemmingsbeheer",
+        "CSOs": "Welke organisaties nemen deel aan Micado",
+        "livechat": "Chat nu",
+        "analytics": "Analyse",
+        "chat_title": "Micado chat",
+        "chat": "Chat",
+        "usageTracker_title": "Micado gebruiksstatistieken",
+        "usageTracker": "Verzameling van statistische gebruikersgegevens",
+        "consentModal_description": "Hier kan je de gegevens die we verzamelen zien en bewerken. Waar \"voorbeeld\" staat, zie je enkel informatie die als voorbeeld is bedoeld en niet gebruikt wordt op deze website."
+    },
+    "icon_overlay": {
+        "user_type": "Type gebruiker",
+        "topic": "Thema"
+    },
+    "error404": "Sorry, hier is niets te vinden ..."
+}
