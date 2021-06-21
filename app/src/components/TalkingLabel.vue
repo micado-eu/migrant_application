@@ -21,7 +21,7 @@ export default {
   },
   props: ["Title", "text", 'row', 'title_col', 'icon_col', 'icon_style', 'icon_class', 'icon', 'icon_size', 'showing', 'container_style'],
   methods: {
-   readClick(value) {
+  /* readClick(value) {
      var voice= ""
      switch(this.$userLang) {
   case 'nl':
@@ -49,7 +49,27 @@ export default {
       console.log("speaking")
         responsiveVoice.speak(value, voice)
      }
-  },
+  },*/
+  readClick(value){
+    console.log("IN NEW TEXT TO SPEECH API")
+    var synth = window.speechSynthesis;
+    var amISpeaking = synth.speaking;
+    if(amISpeaking){
+      console.log("already speaking")
+      synth.cancel();
+    }
+    else{
+      //speechSynthesis.speak(new SpeechSynthesisUtterance(value));
+      console.log(synth.getVoices())
+      var u = new SpeechSynthesisUtterance();
+      u.text = value;
+      u.lang = this.$userLang;
+      u.rate = 1.0;
+      speechSynthesis.speak(u);
+    }
+
+
+  }
   }
 }
 </script>
