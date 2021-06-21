@@ -5,6 +5,7 @@ import de from './de'
 import es from './es'
 import zh from './zh'
 import zh_Hans from './zh_Hans'
+import nl from './nl'
 
 export default {
   'en-us': enUS,
@@ -13,5 +14,6 @@ export default {
   de: de,
   es: es,
   zh,
-  zh_Hans
+  zh_Hans,
+  nl
 }
