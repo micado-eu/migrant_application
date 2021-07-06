@@ -177,7 +177,7 @@ export default {
       if (lang === "zh_Hans") {
         lang = "zh-Hans-CN"
       }
-      return a.title.localeCompare(b.title, [this.$userLang, undefined], { sensitivity: "base" })
+      return a.title.localeCompare(b.title, [lang, undefined], { sensitivity: "base" })
     },
     scrollIntoGlossary(index) {
       document.getElementById(this.alphabetIds[index]).scrollIntoView(false)
