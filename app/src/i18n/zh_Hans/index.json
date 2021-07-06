@@ -1,108 +1,182 @@
 {
-  "application_title": "MICADO app",
-  "menu": {
-    "title": "我的工具箱",
-    "home": "主页",
-    "home_desc": "MICADO主页",
-    "processes": "移民融入过程向导",
-    "processes_desc": "指导您完成多项融入任务",
-    "info": "信息中心",
-    "chatbot": "MICADO Bot",
-    "chatbot_desc": "Micado smart assistant",
-    "tasks": "My integration plan",
-    "tasks_desc": "Your personal integration plan",
-    "documents": "My documents",
-    "documents_desc": "My integration document collection",
-    "messenger": "My Messages",
-    "settings": "Settings",
-    "settings_desc": "Manage your account",
-    "language": "en-US",
-    "glossary": "Common words",
-    "glossary_desc": "Commonly used words",
-    "information": "Information centre",
-    "information_desc": "Integration information and services",
-    "events": "Events",
-    "events_desc": "Integration events"
-  },
-  "button": {
-    "add_document": "Add Document",
-    "save": "Save",
-    "remove": "Remove",
-    "back": "Back",
-    "go_back": "Go Back",
-    "ask_validation": "Ask for validation",
-    "download": "Download",
-    "view_model": "View model",
-    "cancel": "Cancel",
-    "send": "Send",
-    "validation_pending":"Validation pending",
-    "validated":"Validated"
-
-  },
-  "input_labels": {
-    "doc_type": "Document Type",
-    "exp_date": "Expiration Date",
-    "upload_doc": "Upload Document",
-    "read": "Read Along",
-    "email": "Email"
-  },
-  "desc_labels": {
-    "cost": "Cost for the step",
-    "location": "Location",
-    "description": "Description",
-    "search": "Search",
-    "document_type": "Document type",
-    "document_issuer": "Document issuer",
-    "reviewed_by": "Reviewed by",
-    "expiration_date": "Expiration date",
-    "review_date": "Review date",
-    "login_register": "Login/Register",
-    "settings": "Settings",
-    "logout": "Logout",
-    "information_centre": "Information Centre",
-    "events": "Events",
-    "required_documents": "Required documents",
-    "privacy_settings": "Privacy Settings",
-    "comments": "Comments",
-    "send_doc": "Please choose an email adress",
-    "guided_processes":"Integration step-by-step",
-    "plan_progress":"Plan Progress",
-    "integration_plan":"My Integration Plan"
-  },
-  "profile": {
-    "change_pic": "Change picture",
-    "username": "Username",
-    "password": "Password",
-    "legal_name": "Legal Name",
-    "nationality": "Nationality",
-    "age": "Age",
-    "gender": "Gender",
-    "personal_profile": "Personal Profile"
-  },
-  "filters": {
-    "title": "Filter by",
-    "categories": "Categories",
-    "clear_all": "Clear all",
-    "apply": "Apply"
-  },
-  "information_centre": {
-    "category": "Category",
-    "missing_content": "There is no information"
-  },
-  "tasks": {
-    "ask_validation": "Ask for validation",
-    "you_validate": "Validate task",
-    "dialog_title_org": "Choose the validator's organization",
-    "dialog_title_self": "Validate the task",
-    "integration_type_validators": "validator's organization"
-  },
-  "events": {
-    "category": "Category",
-    "start_date": "Start date",
-    "finish_date": "Finish date",
-    "missing_content": "There are no events"
-  },
-  "glossary": {
-    "missing_content": "There are no common words"
-  }
+    "application_title": "MICADO应用程序",
+    "menu": {
+        "title": "我的工具",
+        "home": "主页",
+        "home_desc": "MICADO主页",
+        "processes": "移民融入过程向导",
+        "processes_desc": "指导您完成多项融入任务",
+        "info": "信息中心",
+        "chatbot": "MICADO机器人",
+        "chatbot_desc": "Micado smart assistant",
+        "tasks": "我的融入计划",
+        "tasks_desc": "Your personal integration plan",
+        "documents": "我的文件",
+        "documents_desc": "My integration document collection",
+        "messenger": "我的信息",
+        "settings": "配置",
+        "settings_desc": "Manage your account",
+        "language": "是",
+        "glossary": "Common words",
+        "glossary_desc": "Commonly used words",
+        "information": "Information centre",
+        "information_desc": "Integration information and services",
+        "events": "Events",
+        "events_desc": "Integration events"
+    },
+    "button": {
+        "add_document": "添加文件",
+        "save": "保存",
+        "remove": "删除",
+        "back": "后退",
+        "go_back": "后退",
+        "ask_validation": "请求验证",
+        "download": "下载",
+        "view_model": "查看模版",
+        "cancel": "取消",
+        "send": "发送",
+        "validation_pending": "待验证",
+        "validated": "已验证",
+        "view_pics": "查看详情",
+        "delete": "删除",
+        "procedure": "进入程序",
+        "edit": "编辑",
+        "change_pass": "更改密码"
+    },
+    "input_labels": {
+        "doc_type": "文件类型",
+        "exp_date": "过期日期",
+        "upload_doc": "上传文件",
+        "read": "阅读",
+        "email": "电子邮件"
+    },
+    "desc_labels": {
+        "cost": "每步的成本",
+        "location": "位置",
+        "description": "描述",
+        "search": "查找",
+        "document_type": "文件类型",
+        "document_issuer": "文件发行人",
+        "reviewed_by": "审核人：",
+        "expiration_date": "过期日期",
+        "review_date": "审核日期",
+        "login_register": "登录/注册",
+        "settings": "配置",
+        "logout": "关闭会话",
+        "information_centre": "Information Centre",
+        "events": "Events",
+        "required_documents": "需要的文件",
+        "privacy_settings": "隐私配置",
+        "comments": "评论",
+        "send_doc": "请选择一个电子邮件地址",
+        "guided_processes": "Integration step-by-step",
+        "plan_progress": "计划进度",
+        "integration_plan": "我的融入计划",
+        "send_doc_me": "发送至其它邮箱",
+        "send_doc_pa": "请选择一个公共部门",
+        "emitter": "发行人：",
+        "click_step": "点击一个步骤以查看详情",
+        "image": "图像",
+        "add_doc": "添加新文件",
+        "edit_doc": "编辑您的文件",
+        "document_download": "下载该文件",
+        "document_delete": "您想要删除该文件吗？",
+        "document_sent": "您的文件已成功发送至",
+        "survey": "问卷！",
+        "personal": "个人区域"
+    },
+    "profile": {
+        "change_pic": "更换照片",
+        "username": "用户",
+        "password": "密码",
+        "legal_name": "合法名称",
+        "nationality": "Nationality",
+        "age": "Age",
+        "gender": "性别",
+        "personal_profile": "个人主页",
+        "password_changed": "您已成功更改密码",
+        "password_change": "更改密码",
+        "user_pref": "用户偏好设置",
+        "confirm_pass": "确认密码",
+        "new_pass": "新密码",
+        "old_pass": "旧密码",
+        "mail": "电子邮件",
+        "phone_number": "电话号码",
+        "dob": "出生日期",
+        "country": "国家"
+    },
+    "filters": {
+        "title": "筛选条件",
+        "categories": "类别",
+        "clear_all": "删除所有",
+        "apply": "运用",
+        "date": "日期",
+        "user_types": "用户类别",
+        "topics": "主题"
+    },
+    "information_centre": {
+        "category": "类别",
+        "missing_content": "没有可用信息",
+        "organizer": "组织/创建者：",
+        "user_types": "用户类别",
+        "topics": "主题"
+    },
+    "tasks": {
+        "ask_validation": "请求验证",
+        "you_validate": "验证任务",
+        "dialog_title_org": "请选择验证者组织",
+        "dialog_title_self": "验证任务",
+        "integration_type_validators": "验证者组织"
+    },
+    "events": {
+        "category": "类别",
+        "start_date": "开始日期",
+        "finish_date": "结束日期",
+        "missing_content": "没有可用活动",
+        "cost_free": "免费",
+        "cost": "价格",
+        "user_types": "用户类别",
+        "topics": "主题",
+        "organizer": "组织者",
+        "location": "位置"
+    },
+    "glossary": {
+        "missing_content": "没有可用常用词"
+    },
+    "icon_overlay": {
+        "user_type": "用户类别",
+        "topic": "主题"
+    },
+    "internal_reference": {
+        "go_to_reference": "转到参考",
+        "more_info_2": "可以在此找到：",
+        "more_info_1": "关于XXX的更多信息"
+    },
+    "feedback": {
+        "thanks": "谢谢",
+        "feedback_sent": "您的评论已成功发送至公共部门",
+        "feedback_question": "给我们发送评论！您喜欢正在浏览的页面吗？",
+        "send": "发送评论",
+        "feedback": "请在下方文本框中写下您的评论",
+        "url": "您的评论将在页面上",
+        "mail": "您的评论将被发送至"
+    },
+    "date_selector": {
+        "close": "关闭"
+    },
+    "consent": {
+        "CSOs": "参与MICADO生态系统的民间社会组织",
+        "livechat": "在线聊天",
+        "analytics": "分析",
+        "chat_title": "MICADO机器人",
+        "chat": "聊天组成部分",
+        "usageTracker_title": "MICADO统计",
+        "usageTracker": "统计用途收集",
+        "consentModal_description": "你可以在此查看我们收集的有关你的信息，并对其进行个性化。标记为“例如”的项目仅为示范，并不会真正在该网站使用。",
+        "title": "MICADO同意协议"
+    },
+    "error404": "非常抱歉，这里空空如也...",
+    "privacy": {
+        "privacy": "隐私权政策"
+    }
 }
