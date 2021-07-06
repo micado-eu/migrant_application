@@ -173,7 +173,11 @@ export default {
       }
     },
     compare(a, b) {
-      return a.title.localeCompare(b.title, this.$userLang, { sensitivity: "base" })
+      let lang = this.$userLang
+      if (lang === "zh_Hans") {
+        lang = "zh-Hans-CN"
+      }
+      return a.title.localeCompare(b.title, [this.$userLang, undefined], { sensitivity: "base" })
     },
     scrollIntoGlossary(index) {
       document.getElementById(this.alphabetIds[index]).scrollIntoView(false)
