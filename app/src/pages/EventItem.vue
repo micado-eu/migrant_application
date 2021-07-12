@@ -52,10 +52,14 @@ export default {
             if (item.topics) {
               this.attributes.topics = this.idJoin(item.topics, this.topics)
             }
+            let lang = this.$userLang
+            if (lang === "zh_Hans") {
+              lang = "zh-Hans-CN"
+            }
             const startDate = new Date(item.start_date)
-            this.attributes.start_date = startDate.toLocaleString(this.$userLang)
+            this.attributes.start_date = startDate.toLocaleString(lang)
             const finishDate = new Date(item.end_date)
-            this.attributes.end_date = finishDate.toLocaleString(this.$userLang)
+            this.attributes.end_date = finishDate.toLocaleString(lang)
             console.log("I AM ITEM CREATOR")
             console.log(item.creator)
             if (item.creator) {
