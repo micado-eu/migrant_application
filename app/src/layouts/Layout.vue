@@ -348,9 +348,17 @@ export default {
           "CSOs": this.$t('consent.CSOs', lang.lang)
         }
       }
+      let klaroLang = lang.lang
+      if (klaroLang === "zh_Hans") {
+        klaroLang = "zh"
+      }
       this.klaro_config.translations[lang.lang] = translation
     });
-    this.klaro_config.lang = this.$userLang
+    let klaroLang = this.$userLang
+    if (klaroLang === "zh_Hans") {
+      klaroLang = "zh"
+    }
+    this.klaro_config.lang = klaroLang
     console.log(this.klaro_config)
     this.manager = klaro.getManager(this.klaro_config)
 
