@@ -12,7 +12,7 @@
    "htmlTexts": true,
    "embedded": false,
    "groupByPurpose": true,
-   "storageMethod": "cookie",
+   "storageMethod": "localStorage",
    "cookieName": "klaro",
    "cookieExpiresAfterDays": 365,
    "default": false,
