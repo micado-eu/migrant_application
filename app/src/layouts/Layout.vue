@@ -146,7 +146,7 @@ import LanguageSelector from "components/LanguageSelector";
 import UserButton from "components/UserButton"
 import FeedbackButton from 'components/FeedbackButton'
 import ChatWidget from 'components/ChatWidget'
-import * as klaro from 'klaro'
+import * as klaro from 'klaro-micado'
 import client from 'api-user-client'
 import storeMappingMixin from '../mixin/storeMappingMixin'
 import klaroconfig from '../configs/klaro.json'
