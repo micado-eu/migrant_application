@@ -129,7 +129,7 @@
     </q-dialog>
     <q-page-container>
       <q-page-sticky
-        v-if="this.$auth.loggedIn()"
+        v-if="this.$auth.loggedIn() && this.chat"
         class="z-top"
       >
         <ChatWidget />
@@ -196,6 +196,7 @@ export default {
       manager: null,
       alert: false,
       survey: null,
+      chat:true,
       navs: [
         /* 
          {
@@ -310,6 +311,7 @@ export default {
   watch: {
     manager: function (manager, eventType, data) {
       console.log("THE WATHC from vue")
+      console.log("watch function in the watch and not on mounted")
       console.log(manager)
       console.log(eventType)
       console.log(data)
@@ -365,16 +367,26 @@ export default {
     console.log(this.manager)
     console.log("KLARO!!!!!!!!!!!!!!!")
     console.log(klaro.language())
-
-    let uid = this.user.umid
+    if(!localStorage.klaro){
+      klaro.show(this.klaro_config)
+    }
+    else{
+      this.chat = JSON.parse(decodeURIComponent(localStorage.klaro)).chat
+    }
+    console.log("i'm klaro in local storage")
+    console.log(JSON.parse(decodeURIComponent(localStorage.klaro)))
+    let uid = null
+    if(this.user != null){
+           uid = this.user.umid
+    }
     this.manager.watch({
-      update: function (manager, eventType, data) {
+      update:  (manager, eventType, data) => {
         console.log("THE WATHC")
         console.log(manager)
         console.log(eventType)
-        console.log(data)
-        console.log("user ID: " + uid)
+       // console.log("user ID: " + uid)
         if (eventType === 'saveConsents') {
+          if(uid != null){
           console.log("HERE WE SAVE THE CONSENTS IN THE DB")
           client.consentPresent(uid).then((response) => {
             console.log("I am counr")
@@ -387,8 +399,12 @@ export default {
               console.log("I'm in patching")
               client.updateConsent(uid, JSON.stringify(data.consents))
             }
+
           })
-        }
+          }
+            console.log(data)
+            this.applyConsent(data.consents)
+       }
       }
 
     })
@@ -412,6 +428,23 @@ export default {
 
   },
   methods: {
+    applyConsent(consent){
+      if(consent.usageTracker){
+        console.log("starting countly")
+        this.$Countly.q.push(['opt_in'])
+      }
+      else{
+        console.log("removing countly")
+        this.$Countly.q.push(['opt_out'])
+        console.log(this.$Countly)
+      }
+      if(consent.chat){
+        this.chat = true
+      }
+      else{
+        this.chat = false
+      }
+    },
     consent () {
       klaro.show(this.klaro_config)
 
@@ -489,9 +522,10 @@ export default {
       console.log("I AM THE SUrVEY json")
 
       console.log(this.surveyJSON)
+
     })
   }
-};
+}
 </script>
 
 <style>
