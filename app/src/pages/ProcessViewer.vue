@@ -55,7 +55,16 @@
           </q-scroll-area>
         </div>
       </div>
-
+ <q-dialog v-model="show_step">
+      <q-layout view="Lhh lpR fff" container class="bg-white">
+        <q-header class="bg-secondary">
+          <q-toolbar>
+            <q-toolbar-title></q-toolbar-title>
+            <q-btn flat v-close-popup @click="popup" round dense icon="close" />
+          </q-toolbar>
+        </q-header>
+        <q-page-container>
+          <q-page padding>
       <div
         :class="nodePanelVisible"
         header="Details of the step1"
@@ -194,6 +203,11 @@
           </div>
         </div>
       </div>
+          </q-page>
+        </q-page-container>
+              </q-layout>
+
+ </q-dialog>
       <div class="q-pa-md fields-container">
         <div class="q-pa-md field custom-pad">
           <TalkingLabel
@@ -320,7 +334,8 @@ export default {
       hotspot_data: [],
       focused_step: null,
       user_list: [],
-      topic_list: []
+      topic_list: [],
+      show_step:false
     }
   },
   computed: {
@@ -475,7 +490,11 @@ export default {
         return false
       }
     },
-
+    popup(){
+        this.$store.commit("flows/setNodePanelVisible", "hidden");
+        this.focused_step = null
+        this.show_step = false
+    },
     editNodeMer (nodeId) {
       console.log(nodeId);
       const arr1 = this.mermaid.filter(d => d.id == nodeId);
@@ -500,10 +519,12 @@ export default {
       if (this.focused_step == nodeId) {
         this.$store.commit("flows/setNodePanelVisible", "hidden");
         this.focused_step = null
+        this.show_step = false
       }
       else {
         this.$store.commit("flows/setNodePanelVisible", "");
         this.focused_step = nodeId
+        this.show_step = true
       }
 
       this.$store.commit("flows/setDocuments", arr1[0].data.documents);
