@@ -62,7 +62,6 @@
       :icon="'img:statics/icons/Edit.png'"
       :icon_size="'sm'"
         />
- 
   </div>
       <ListItem v-for="element in to_show_info_personal"
             style="display:inline-block"
