@@ -11,9 +11,10 @@ export function search(state, payload) {
 export function searchFull(state, payload) {
   let words = payload.words
   words = words.replace(" ", ",")
-  if(payload.topicid == null){
+  payload.topicid = 0
+  /*if(payload.topicid == null){
     payload.topicid = 0
-  }
+  }*/
   return client
     .searchFull(payload.lang, words, payload.topicid)
     .then(results => state.commit('setSearchResults', results))

@@ -21,7 +21,7 @@ export default async ({ store, Vue }) => {
                 paLogo = settings.filter((setting) => { return setting.key == 'pa_logo' })[0]
                 var migrant_tenant = settings.filter((setting) => { return setting.key == 'migrant_tenant' })[0]
                 var pa_tenant = settings.filter((setting) => { return setting.key == 'pa_tenant' })[0]
-
+                var duration_of_new = settings.filter((setting) => { return setting.key == 'duration_of_new' })[0]
                 defaultLangString = defaultLang.name
                 Vue.prototype.$defaultLangString = defaultLangString
                 Vue.prototype.$paLogo = paLogo.value
@@ -34,11 +34,20 @@ export default async ({ store, Vue }) => {
                 Vue.prototype.$userLang = localStorage.lang
                 Vue.prototype.$migrant_tenant = parseInt(migrant_tenant.value)
                 Vue.prototype.$pa_tenant = parseInt(pa_tenant.value)
+                console.log(duration_of_new)
+                if(duration_of_new){
+                    Vue.prototype.$durationOfNew = duration_of_new.value
+                }
+                else{
+                    Vue.prototype.$durationOfNew = 30
+                }
+
 
                 userLang = store.state.language.languages.filter(function (l) { return l.lang == localStorage.lang })[0]
                 setLocale(userLang)
 
             })
+        //Vue.prototype.$durationOfNew = 30
         console.log("READ LANGUAGES SO CAN SET PROPERLY STUFF")
         console.log(curlang.value)
         console.log(defaultLangString)

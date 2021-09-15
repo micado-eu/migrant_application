@@ -87,6 +87,7 @@
             :type="'flow'"
             :icon="'img:statics/icons/Icon - Integration step-bystep.svg'"
             :size="'sm'"
+            :published_date="process.published_date"
             />
         <ListItem v-for="element in to_show_events_personal"
             style="display:inline-block"
@@ -131,6 +132,7 @@
             :type="'flow'"
             :icon="'img:statics/icons/Icon - Integration step-bystep.svg'"
             :size="'sm'"
+            :published_date="process.published_date"
             />
 
             <ListItem v-for="element in to_show_events_general"

@@ -43,10 +43,11 @@
                 </TalkingLabel>
               </div>
             </div>
-           
+           <q-icon v-if="compare_date < $durationOfNew" name="img:statics/icons/new_icon.png" size="md"/>
             <hr class="hr">
           </div>
         </q-item>
+        
       </div>
     </div>
   </div>
@@ -58,7 +59,7 @@ import storeMappingMixin from '../mixin/storeMappingMixin'
 
 export default {
   name: 'Process',
-  props: ["Title", "Topics", "Users", "Link", "Path", "item", "Rating", 'type','icon', 'size'],
+  props: ["Title", "Topics", "Users", "Link", "Path", "item", "Rating", 'type','icon', 'size', 'published_date'],
   mixins: [
     storeMappingMixin({
       getters: {
@@ -93,6 +94,19 @@ export default {
       }
       
     }*/
+    compare_date(){
+      var date1 = new Date()
+      var date2 = new Date(this.published_date)
+      //console.log(this.published_date)
+      //console.log(date1)
+      console.log(date2)
+      //console.log(date1.getTime()-date2.getTime())
+      var difference = date1.getTime()-date2.getTime()
+      console.log(difference)
+      var days = difference/(1000 * 3600 * 24)
+      console.log(days)
+      return days
+    }
   },
   methods: {
     showProcess (event) {
