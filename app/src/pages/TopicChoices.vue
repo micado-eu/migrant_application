@@ -598,11 +598,11 @@ export default {
     "$route.params.topicFilter": function (topicFilter) {
       console.log("I'm the parameter topicfilter");
       console.log(topicFilter);
-      if (topicFilter == undefined) {
+     // if (topicFilter == undefined) {
         this.initialize();
-      } else {
-        console.log("Again, nothing to do");
-      }
+      //} else {
+        //console.log("Again, nothing to do");
+      //}
     },
   },
   created() {
