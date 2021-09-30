@@ -41,7 +41,7 @@
       <TopicBox
       @click.native="dialog_events = true"
       :contentName="$t('menu.events')"
-      :contentIcon="'img:statics/icons/Icon - Events.svg'"
+      :contentIcon="'img:statics/icons/Icon - Events (4th Iteration)_.svg'"
       />
     </div>
     <hr/>
@@ -137,7 +137,6 @@
                   :title_col="'col-11'"
                   :icon_col="'col-1'"
                   :icon_style="'text-align:right'"
-                  :showing="'white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'"
                 />
     </div>
     <div class="row topic_layout">

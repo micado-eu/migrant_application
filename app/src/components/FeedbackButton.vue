@@ -1,12 +1,12 @@
 <template>
   <div class="q-pa-sm q-gutter-sm">
-    <q-btn
+    <!--<q-btn
       round
       icon="img:statics/icons/Icon - Feedback_NEW.svg"
       color="white"
       size="15px"
       @click="layout = true"
-    />
+    />-->
 
     <q-dialog v-model="layout">
       <q-layout view="Lhh lpR fff" container class="bg-white">
@@ -39,21 +39,21 @@
                 :class="{ active: rating.value == 1 }"
                 size="30px"
                 @click="rating.value = 1"
-                :name="'img:statics/icons/Icon - very satisfied.svg'"
+                :name="'img:statics/icons/Icon - Thumbs up.svg'"
               />
               <q-icon
                 style="margin-right: 35px; margin-top: 20px"
                 :class="{ active: rating.value == 0 }"
                 @click="rating.value = 0"
                 size="30px"
-                :name="'img:statics/icons/Icon - Neutral.svg'"
+                :name="'img:statics/icons/Icon - Thumbs neutral.svg'"
               />
               <q-icon
-                style="margin-right: 35px; margin-top: 20px"
+                style=" margin-top: 20px"
                 :class="{ active: rating.value == -1 }"
                 @click="rating.value = -1"
                 size="30px"
-                :name="'img:statics/icons/Icon - Not satisafied.svg'"
+                :name="'img:statics/icons/Icon - Thumbs down.svg'"
               />
             </div>
             <!--<h5 class="text"> {{$t('feedback.url')}} </h5>-->

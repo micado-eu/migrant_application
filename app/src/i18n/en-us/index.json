@@ -27,7 +27,10 @@
     "guides":"Step by step guides",
     "info":"Basic Information",
     "events":"Events and courses",
-    "integration_plan":"Integration plans"
+    "integration_plan":"Integration plans",
+    "policy":"Privacy policy",
+    "welcome":"Welcome to the APP",
+    "consent":"Consent manager"
   },
   "button": {
     "change_pass": "Change Password",
@@ -46,7 +49,8 @@
     "validated": "Validated",
     "edit": "Edit",
     "procedure": "Go to procedure",
-    "delete":"Delete"
+    "delete":"Delete",
+    "home":"Home"
   },
   "input_labels": {
     "doc_type": "Document Type",
@@ -175,6 +179,8 @@
     "topic_content":"You are able to find content by topic",
     "login_content":"If you create an account, public organisations are able to help you with your integration processes through the Document Wallet & Integration Plans:",
     "no_landing_page":"Check this box if you don't want to see the welcome page again",
-    "start":"Let's get started"
+    "start":"Let's get started",
+    "create_account":"Create an account",
+    "need_login_chat":"You need to login or create an account to use the chatbot feature"
   }
 }

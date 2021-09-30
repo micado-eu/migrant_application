@@ -5,16 +5,15 @@
       class="bg-accent"
     >
       <q-toolbar>
-        <!-- <q-btn
+         <q-btn
           flat
           dense
           round
-          @click="leftDrawerOpen = !leftDrawerOpen"
-          icon="menu"
-          aria-label="Menu"
-        />-->
+          @click="$router.push({name:'home'})"
+          :icon="'img:statics/icons/Icon - Home (selected)new.svg'"
+        />
 
-        <q-toolbar-title>{{ $t( "application_title") }}</q-toolbar-title>
+        <q-toolbar-title>{{ $t( "button.home") }}</q-toolbar-title>
         <LanguageSelector
           data-cy="language_selector_button"
           ref="language"
@@ -27,8 +26,8 @@
           :label="$t('desc_labels.survey')"
           @click="generateSurvey"
         />
-        <FeedbackButton />
-        <q-btn
+        <FeedbackButton ref="feedback" />
+      <!--  <q-btn
           color="white"
           round
           @click="consent()"
@@ -42,7 +41,7 @@
               name="img:statics/icons/Icon - consent toggle.svg"
             />
           </q-avatar>
-        </q-btn>
+        </q-btn>-->
         <!-- <ListenToggle /> -->
 
       </q-toolbar>
@@ -132,7 +131,12 @@
         v-if="this.$auth.loggedIn() && this.chat"
         class="z-top"
       >
-        <ChatWidget />
+        <ChatWidget ref="chatbot" />
+      </q-page-sticky>
+      <q-page-sticky
+      v-else
+      class="z-top">
+      <ChatbotNotAvailable @registering="registration" ref="not_chatbot"/>
       </q-page-sticky>
       <router-view />
     </q-page-container>
@@ -151,6 +155,7 @@ import client from 'api-user-client'
 import storeMappingMixin from '../mixin/storeMappingMixin'
 import klaroconfig from '../configs/klaro.json'
 import * as SurveyVue from 'survey-vue'
+import ChatbotNotAvailable from 'components/ChatbotNotAvailable'
 
 export default {
   name: "Layout",
@@ -161,7 +166,8 @@ export default {
     LanguageSelector,
     FeedbackButton,
     SurveyVue,
-    ChatWidget
+    ChatWidget,
+    ChatbotNotAvailable
   },
   mixins: [
     storeMappingMixin({
@@ -197,6 +203,7 @@ export default {
       alert: false,
       survey: null,
       chat:true,
+      chatting:false,
       navs: [
         /* 
          {
@@ -243,7 +250,7 @@ export default {
         },
         {
           label: "menu.glossary",
-          icon: "img:statics/icons/Icon - Glossary selected.svg",
+          icon: "img:statics/icons/Icon - Glossary selected1.svg",
           to: "/glossary",
           description: "menu.glossary_desc",
           feature: "FEAT_GLOSSARY",
@@ -265,7 +272,7 @@ export default {
         //   description: "messages from PA",
         //   feature: "FEAT_MESSENGER"
         // },
-        {
+        /*{
           label: "menu.home",
           icon: "img:statics/icons/Icon - Home (selected).svg",
           to: "/",
@@ -273,10 +280,10 @@ export default {
           feature: "FEAT_DEFAULT",
           needs_login: false,
           visible: false
-        },
+        },*/
         {
-          label: "menu.settings",
-          icon: "img:statics/icons/Icon - Personal page.svg",
+          label: "menu.feedback",
+          icon: "img:statics/icons/icon - Feedback (4th iteration).svg",
           to: "/settings",
           description: "menu.settings_desc",
           feature: "FEAT_MIGRANT_LOGIN",
@@ -284,8 +291,8 @@ export default {
           visible: true
         },
         {
-          label: "menu.privacy",
-          icon: "img:statics/icons/more.svg",
+          label: "menu.chatbot",
+          icon: "img:statics/icons/Icon Chatbot (4th Iteration).svg",
           to: "/",
           description: "menu.home_desc",
           feature: "FEAT_DEFAULT",
@@ -487,30 +494,25 @@ export default {
         case "menu.glossary":
           this.$router.push({ name: 'glossary' })
           break;
-        case "menu.home":
-          if (window.location.pathname == "/") {
-            console.log("nothing to do ")
+        case "menu.feedback":
+          this.$refs.feedback.layout = true
+          break;
+        case "menu.chatbot":
+          if (this.$auth.loggedIn()) {
+            this.$refs.chatbot.register()
           }
           else {
-            console.log(window.location.pathname)
-            this.$router.push({ path: '/' })
-          }
-          break;
-        case "menu.privacy":
-          this.$router.push({ name: 'privacy' })
-          break;
-        case "menu.settings":
-          if (!this.$auth.loggedIn()) {
-            this.$refs.user.toLogin()
-          }
-          else {
-            this.$router.push({ name: 'profile' })
+            console.log(this.$refs.not_chatbot)
+            this.$refs.not_chatbot.chatting = true
           }
         default:
         // code block
       }
 
-    }
+    },
+          registration() {
+        this.$refs.user.toLogin()
+      }
   },
   created () {
     this.fetchMigrantSurvey(this.user.umid).then((sr) => {
