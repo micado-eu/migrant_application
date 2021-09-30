@@ -58,12 +58,30 @@ const routes = [
       { path: '/information/:id', name:'info', component: () => import('pages/InformationItem.vue'),props: (route) => ({ ...route.params })},
       { path: '/events', component: () => import('pages/Events.vue')},
       { path: '/events/:id', name:'events', component: () => import('pages/EventItem.vue'), props: (route) => ({ ...route.params })},
-      { path: '', name:'home', component: () => import('pages/TopicChoices.vue')},
+      { path: '', name:'home', component: () => {
+        if(localStorage.getItem("landingPage") == 'true' || localStorage.getItem("landingPage") == null){
+          return import('pages/LandingPage.vue')
+        }
+        else{
+          return import('pages/TopicChoices.vue')
+        }
+      }
+    },
+      { path: 'topic', name:'topic', component: () => import('pages/TopicChoices.vue'), props: (route) => ({ ...route.params })},
       { path: 'topic/:topicFilter', name:'crumbs', component: () => import('pages/TopicChoices.vue'), props: (route) => ({ ...route.params })}
     ]
   }
   /*,
-  {
+  {{
+  path: '/',
+  component: () => { 
+    if (store.state.domain) {
+      return import(/ webpackChunkName: "app-home" / '../views/AppHome.vue');
+    } else {
+      return import(/ webpackChunkName: "home" / '../views/Home.vue');
+    }
+  }
+}
     path: '/documents',
 //    meta: { auth: true },
     component: () => import('layouts/MyLayout.vue'),
