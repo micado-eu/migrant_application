@@ -157,6 +157,7 @@ import klaroconfig from '../configs/klaro.json'
 import * as SurveyVue from 'survey-vue'
 import ChatbotNotAvailable from 'components/ChatbotNotAvailable'
 
+
 export default {
   name: "Layout",
 
@@ -515,20 +516,16 @@ export default {
       }
   },
   created () {
+    this.$root.$refs.layout_ref = this;
+    console.log(this.$root.$refs)
+
     this.fetchMigrantSurvey(this.user.umid).then((sr) => {
       console.log("I AM THE SUrVEY")
       console.log(sr)
       if(sr != null){
         this.surveyJSON = JSON.parse(sr.survey)
       }
-      console.log("I AM THE SUrVEY json")
-
-      console.log(this.surveyJSON)
-      
     })
-    this.$root.$refs.layout_ref = this;
-    console.log(this.$root.$refs)
-
   }
 }
 </script>
