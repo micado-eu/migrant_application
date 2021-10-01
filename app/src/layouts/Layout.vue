@@ -239,7 +239,7 @@ export default {
                   visible: true
                 },
                 */
-        {
+       /* {
           label: "menu.documents",
           icon: "img:statics/icons/Icon - language selection.svg",
           to: "/language",
@@ -247,7 +247,7 @@ export default {
           feature: "FEAT_DEFAULT",
           needs_login: false,
           visible: true
-        },
+        },*/
         {
           label: "menu.glossary",
           icon: "img:statics/icons/Icon - Glossary selected1.svg",

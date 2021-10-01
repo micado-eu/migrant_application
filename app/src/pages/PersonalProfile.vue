@@ -263,7 +263,9 @@ export default {
       }
     },
     settings(){
+       if(this.$auth.loggedIn()){
       this.$router.push({name:'settings'})
+            }
     },
     tasks(){
             if(this.$auth.loggedIn()){
