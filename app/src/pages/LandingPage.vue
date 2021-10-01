@@ -81,9 +81,8 @@
                 />
     </div>
     <div class="q-pa-md" style="margin-bottom:25px">
-    <q-scroll-area style="height: 230px; max-width: 100%;">
-      <div class="row no-wrap">
-              <div class="row no-wrap topic_layout">
+    <q-scroll-area style="height: 110px; max-width: 100%;">
+    <div class="row no-wrap topic_layout">
         <div
           class="q-gutter-sm col"
           @click="topic_open = topic.id"
@@ -119,11 +118,10 @@
               :open="topic_open == topic.id"
               :title="topic.topic"
               :content_type="'topic'"
-              :content="'Lorem ipsum'"
+              :content="topic.description"
               :icon="topic.icon"
               @hiding="topic_open = null"/>
         </div>
-      </div>
       </div>
     </q-scroll-area>
   </div>
@@ -168,10 +166,10 @@
     :icon="'img:statics/icons/MICADO APP - Welcome page - Integration PLan-07 1.svg'"
     @hiding="dialog_plan = false"/>
     <div class="row">
-       <div class="q-gutter-sm col-2">
+       <div class="q-gutter-sm col" style="max-width:60px">
       <q-checkbox v-model="val" @input="setPreference($event)" color="accent"/>
     </div>
-    <div class="col-10" style="margin-top:10px">
+    <div class="col" style="margin-top:10px; padding-right:15px">
       <TalkingLabel
                 style="width:100%"
                   :Title="$t('welcome_page.no_landing_page')"

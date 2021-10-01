@@ -1,12 +1,9 @@
 <template>
   <div class="">
-     <div class="banner">
-        {{$t('desc_labels.integration_plan')}}
-        <q-icon
-          name="img:statics/icons/Icon - My Integration Plan (selected).svg"
-          style="padding-bottom:2px"
-        />
-      </div>
+     <div style="text-align:center">
+   <q-icon name="img:statics/icons/MICADO APP - Welcome page - Integration PLan-07 1.svg" class="top-icon"/>
+  </div>
+  <hr style="border: 1px solid #FF7C44;">
      <q-list class="q-pa-md">
   <IntegrationPlan  
   :completed="progress(intervention_plan) == 100"
@@ -84,6 +81,10 @@ export default {
 }
 </script>
 <style scoped>
+.top-icon{
+  width:100%;
+  height:100%
+}
 .banner{
   font-style: normal;
   height:72px;

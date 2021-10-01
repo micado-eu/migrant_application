@@ -2,6 +2,9 @@
 <div>
 <div v-if="loading"> {{$t('desc_labels.loading')}}</div>
   <q-page v-else class="flows container-fluid" style="">
+  <div style="text-align:center">
+   <q-icon name="img:statics/icons/MICADO APP - Welcome page - My documents-06 1.svg" class="top-icon"/>
+  </div>
     <div
       class=""
       style="text-align:center; padding-top:30px; padding-bottom:20px; "
@@ -18,7 +21,7 @@
         :label="$t('button.add_document')"
       />
     </div>
-  <div style="background-color:#EFEFEF; margin-bottom:10px">
+  <div style="background-color:#EFEFEF; margin-bottom:10px; height:5px">
     &nbsp;
   </div>
   <q-list style=" margin:0 auto">
@@ -127,4 +130,9 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+.top-icon{
+  width:100%;
+  height:100%
+}
+</style>

@@ -524,8 +524,11 @@ export default {
       console.log("I AM THE SUrVEY json")
 
       console.log(this.surveyJSON)
-
+      
     })
+    this.$root.$refs.layout_ref = this;
+    console.log(this.$root.$refs)
+
   }
 }
 </script>

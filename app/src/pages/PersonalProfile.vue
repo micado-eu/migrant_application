@@ -273,6 +273,10 @@ export default {
      welcome(){
        this.$router.push({name:'welcome'})      
      },
+     consent(){
+       console.log(this.$root.$refs)
+      this.$root.$refs.layout_ref.consent();
+     },
     logout(){
       //this.$refs.user.toLogout()
       console.log("LOGGING OUT")
