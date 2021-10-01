@@ -80,9 +80,9 @@
                   :showing="'white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'"
                 />
     </div>
-    <div class="q-pa-md" style="margin-bottom:25px">
+      <div class="q-pa-md">
     <q-scroll-area style="height: 110px; max-width: 100%;">
-    <div class="row no-wrap topic_layout">
+      <div class="row no-wrap">
         <div
           class="q-gutter-sm col"
           @click="topic_open = topic.id"
