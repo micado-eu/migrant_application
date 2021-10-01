@@ -3,7 +3,7 @@
     class="q-pa-md "
     style="padding-top:0px"
   >
-    <q-btn
+    <!--<q-btn
       v-if="!layout"
       round
       size="xs"
@@ -13,7 +13,7 @@
       <q-avatar>
         <img src="~assets/Chatbot button (when activated).svg" />
       </q-avatar>
-    </q-btn>
+    </q-btn>-->
     <q-dialog v-model="layout">
       <q-layout
         view="Lhh lpR fff"

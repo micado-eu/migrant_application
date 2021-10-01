@@ -23,7 +23,14 @@
     "documents": "My documents",
     "messenger": "My Messages",
     "settings": "Settings",
-    "language": "en-US"
+    "language": "en-US",
+    "guides":"Step by step guides",
+    "info":"Basic Information",
+    "events":"Events and courses",
+    "integration_plan":"Integration plans",
+    "policy":"Privacy policy",
+    "welcome":"Welcome to the APP",
+    "consent":"Consent manager"
   },
   "button": {
     "change_pass": "Change Password",
@@ -42,7 +49,8 @@
     "validated": "Validated",
     "edit": "Edit",
     "procedure": "Go to procedure",
-    "delete":"Delete"
+    "delete":"Delete",
+    "home":"Home"
   },
   "input_labels": {
     "doc_type": "Document Type",
@@ -163,5 +171,16 @@
   "icon_overlay": {
     "topic": "Topic",
     "user_type": "User type"
+  },
+  "welcome_page":{
+    "welcome_text":"How does this app work?",
+    "welcome_explanation":"Here goes the text to explain how the app works",
+    "category_content":"All content is categorized in 3 main groups",
+    "topic_content":"You are able to find content by topic",
+    "login_content":"If you create an account, public organisations are able to help you with your integration processes through the Document Wallet & Integration Plans:",
+    "no_landing_page":"Check this box if you don't want to see the welcome page again",
+    "start":"Let's get started",
+    "create_account":"Create an account",
+    "need_login_chat":"You need to login or create an account to use the chatbot feature"
   }
 }

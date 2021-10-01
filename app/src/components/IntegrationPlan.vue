@@ -50,8 +50,12 @@ export default {
 }
 .header{
   margin: auto;
-  margin-top:22px;
-    margin-bottom:0px
+  margin-top:25px;
+  margin-bottom:0px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 18px;
+  color: #0F3A5D;
 
 }
 .progress{

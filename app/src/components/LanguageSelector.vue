@@ -1,12 +1,12 @@
 <template>
-  <!--<div class="q-pa-sm q-gutter-sm">
+  <div class="q-pa-sm q-gutter-sm">
     <q-btn
       round
-      icon="img:statics/icons/Icon (Header) - language selection.svg"
+      icon="img:statics/icons/Icon - Langauge selection (4th Iteration B).svg"
       color="white"
       size="15px"
       @click="layout = true"
-    />-->
+    />
 
   <q-dialog v-model="layout">
     <q-layout
@@ -62,7 +62,7 @@
       </q-page-container>
     </q-layout>
   </q-dialog>
-  <!-- </div> -->
+   </div> 
 </template>
 
 <script>

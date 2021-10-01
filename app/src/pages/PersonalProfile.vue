@@ -4,7 +4,6 @@
     <div v-else>
 
     <div class="div-1">
-  <UserButton ref="user" />
   <div class="div-2" >
      <div class="div-3 text-center" >
         <img 
@@ -23,14 +22,14 @@
       </div>
   </div>
     </div>
-  <div style="background-color:#EFEFEF">
+  <div style="background-color:#EFEFEF; height:5px">
     &nbsp;
   </div>
-  <q-item clicakble @click.native="documents">
+  <q-item :disable="!($auth.loggedIn())" clicakble @click.native="documents">
    <TalkingLabel
    class="q-pa-md option"
     style="width:100%"
-    :icon="'img:statics/icons/Icon - My documents.svg'"
+    :icon="'img:statics/icons/Icon - My Documents (selcted).svg'"
     :icon_size="'30px'"
     :Title="$t('menu.documents')"
     :text="$t('menu.documents')"
@@ -40,14 +39,14 @@
     :icon_style="'text-align:right'"
     />
   </q-item>
-  <div style="background-color:#EFEFEF">
+  <div style="background-color:#EFEFEF; height:5px">
     &nbsp;
   </div>
-    <q-item clicakble @click.native="tasks">
+    <q-item :disable="!($auth.loggedIn())" clicakble @click.native="tasks">
    <TalkingLabel
    class="q-pa-md option"
     style="width:100%"
-    :icon="'img:statics/icons/Icon - My Integration Plan.svg'"
+    :icon="'img:statics/icons/Icon - My Integration Plan (selected1).svg'"
     :icon_size="'30px'"
     :Title="$t('menu.tasks')"
     :text="$t('menu.tasks')"
@@ -57,14 +56,14 @@
     :icon_style="'text-align:right'"
     />
   </q-item>
-  <div style="background-color:#EFEFEF">
+  <div style="background-color:#EFEFEF; height:5px">
     &nbsp;
   </div>
-    <q-item clicakble @click.native="settings">
+    <q-item :disable="!($auth.loggedIn())" clicakble @click.native="settings">
    <TalkingLabel
    class="q-pa-md option"
     style="width:100%"
-    :icon="'img:statics/icons/Icon - Settings.svg'"
+    :icon="'img:statics/icons/Icon - Settings (selected).svg'"
     :icon_size="'30px'"
     :Title="$t('menu.settings')"
     :text="$t('menu.settings')"
@@ -74,10 +73,61 @@
     :icon_style="'text-align:right'"
     />
   </q-item>
-  <div style="background-color:#EFEFEF">
+  <div style="background-color:#EFEFEF; height:5px">
     &nbsp;
   </div>
-    <div style="text-align:center; padding-top:20px">
+      <q-item clicakble @click.native="welcome">
+   <TalkingLabel
+   class="q-pa-md option"
+    style="width:100%"
+    :icon="'img:statics/icons/Icon - Welcome page.svg'"
+    :icon_size="'30px'"
+    :Title="$t('menu.welcome')"
+    :text="$t('menu.welcome')"
+    :row="'row'"
+    :title_col="'col-10 option'"
+    :icon_col="'col-2'"
+    :icon_style="'text-align:right'"
+    />
+  </q-item>
+  <div style="background-color:#EFEFEF; height:5px">
+    &nbsp;
+  </div>
+      <q-item  clicakble @click.native="privacy">
+   <TalkingLabel
+   class="q-pa-md option"
+    style="width:100%"
+    :icon="'img:statics/icons/Icon - Round checkmark2.svg'"
+    :icon_size="'30px'"
+    :Title="$t('menu.policy')"
+    :text="$t('menu.policy')"
+    :row="'row'"
+    :title_col="'col-10 option'"
+    :icon_col="'col-2'"
+    :icon_style="'text-align:right'"
+    />
+  </q-item>
+  <div style="background-color:#EFEFEF; height:5px">
+    &nbsp;
+  </div>
+      <q-item  clicakble @click.native="consent">
+   <TalkingLabel
+   class="q-pa-md option"
+    style="width:100%"
+    :icon="'img:statics/icons/Icon - Consent 2.svg'"
+    :icon_size="'30px'"
+    :Title="$t('menu.consent')"
+    :text="$t('menu.consent')"
+    :row="'row'"
+    :title_col="'col-10 option'"
+    :icon_col="'col-2'"
+    :icon_style="'text-align:right'"
+    />
+  </q-item>
+  <div style="background-color:#EFEFEF; height:5px">
+    &nbsp;
+  </div>
+    <div v-if="($auth.loggedIn())" style="text-align:center; padding-top:20px">
         <q-btn  class="logout"  unelevated no-caps :label="$t('desc_labels.logout')" @click="logout()" />
       </div>
   </div>
@@ -201,18 +251,36 @@ export default {
     }
   },
   methods: {
+    privacy(){
+
+      this.$router.push({ name: 'privacy' })
+
+    },
     documents(){
       console.log("going to docs")
+      if(this.$auth.loggedIn()){
       this.$router.push({name:'document'})
+      }
     },
     settings(){
       this.$router.push({name:'settings'})
     },
     tasks(){
-      this.$router.push({name:'tasks'})
-    },
+            if(this.$auth.loggedIn()){
+       this.$router.push({name:'tasks'})
+            }
+      },
+     welcome(){
+       this.$router.push({name:'welcome'})      
+     },
+     consent(){
+       console.log(this.$root.$refs)
+      this.$root.$refs.layout_ref.consent();
+     },
     logout(){
-      this.$refs.user.toLogout()
+      //this.$refs.user.toLogout()
+      console.log("LOGGING OUT")
+      this.$auth.logout()
     },
     findAttribute(umAttribute,userAttribute){
       console.log(umAttribute)
@@ -235,28 +303,10 @@ export default {
   },
 
   created () {
-    var userId = this.$store.state.auth.user.umid
-    console.log(userId)
-    this.fetchSpecificUser(userId).then((user)=>{
-      console.log(user)
-      console.log("this is the user in store")
-      console.log(this.user)
-      this.the_user.username = this.user.attributes.filter((attr)=>{
-        return attr.umAttrName == "uid"
-      })[0].umAttrValue
-      this.the_user.userid = this.user.attributes.filter((attr)=>{
-        return attr.umAttrName == "scimId"
-      })[0].umAttrValue
-      this.findAttribute('mobile', 'phoneNumber')
-      this.findAttribute('uid', 'username')
-      this.findAttribute('scimId', 'userid')
-      this.findAttribute('givenName', 'givenName')
-      this.findAttribute('sn', 'familyName')
-      this.the_user.legalname = this.the_user.givenName + " " + this.the_user.familyName
-      this.findAttribute('dateOfBirth', 'date_of_birth')
-      this.findAttribute('gender', 'gender')
-      this.findAttribute('country', 'nationality')
-      this.findAttribute('mail', 'email')
+    //var userId = this.$store.state.auth.user.umid
+    //console.log(userId)
+    if(this.$store.state.auth.user){
+          this.fetchSpecificUser(this.$store.state.auth.user.umid).then((user)=>{
       if(user.userPicture){
         this.the_user.picture= this.user.userPicture.picture
         this.the_user.picture_id= this.user.userPicture.id
@@ -265,30 +315,15 @@ export default {
       else{
         this.the_user.picture= null
       }
-      this.the_user_orig=JSON.parse(JSON.stringify( this.the_user ))
-      console.log("after loading")
-      if(user.userPreferences){
-        this.the_user.user_pref = user.userPreferences
-      }
-      console.log(this.the_user)
-      
-      this.fetchUserType({ defaultLang: this.$defaultLang, userLang: this.$userLang }).then((types)=>{
-        types.forEach((typ)=>{
-          this.preferences.push({id:typ.id, active:false})
-        })
-        if(this.the_user.user_pref.length>0){
-                  this.the_user.user_pref.forEach((pref)=>{
-          this.preferences.forEach((userprf)=>{
-            if(userprf.id == pref.idUserType){
-              userprf.active = true
-            }
-          })
-      })
-        }
-      this.preferences_orig = JSON.parse(JSON.stringify(this.preferences))
       this.loading=false
       })
-    })
+    }
+    else{
+      this.the_user.picture= null
+            this.loading=false
+
+    }
+
   }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <q-btn v-if="false" color="white" round>
+  <q-btn color="white" round>
     <q-avatar
       size="42px"
       data-cy="userButton"
@@ -35,14 +35,6 @@
         <q-item-section>{{$t('desc_labels.logout')}}</q-item-section>
       </q-item>
       <q-item
-        v-if="this.$auth.loggedIn()"
-        clickable
-        data-cy="personal_area"
-      >
-        <q-item-section>{{$t('desc_labels.personal')}}</q-item-section>
-      </q-item>
-      <q-item
-        v-if="this.$auth.loggedIn()"
         @click="toSettings()"
         clickable
         data-cy="settings"
@@ -100,7 +92,7 @@ export default {
     },
     toSettings () {
       //console.log("LOGGING OUT")
-      this.$router.push({ name: 'settings' })
+      this.$router.push({ name: 'profile' })
     }
   },
    created () {

@@ -47,7 +47,7 @@ const routes = [
       { path: '/tasks/:theplanid', component: () => import('pages/SinglePlan.vue'), props: (route) => ({ ...route.params }), name: 'plan', meta: { auth: true } },
       { path: '/chatbot', component: () => import('pages/Chatbot.vue') },
       { path: '/settings', name:'settings', component: () => import('pages/ProfileSettings.vue'), meta: { auth: true } },
-      { path: '/profile', name:'profile', component: () => import('pages/PersonalProfile.vue'), meta: { auth: true } },
+      { path: '/profile', name:'profile', component: () => import('pages/PersonalProfile.vue') },
       { path: '/certificates', component: () => import('pages/Certificates.vue'), props: true, name: 'certificates' },
       { path: '/map', component: () => import('components/Map.vue')},
       { path: '/privacy', name:'privacy', component: () => import('pages/Privacy.vue')},
@@ -58,12 +58,31 @@ const routes = [
       { path: '/information/:id', name:'info', component: () => import('pages/InformationItem.vue'),props: (route) => ({ ...route.params })},
       { path: '/events', component: () => import('pages/Events.vue')},
       { path: '/events/:id', name:'events', component: () => import('pages/EventItem.vue'), props: (route) => ({ ...route.params })},
-      { path: '', name:'home', component: () => import('pages/TopicChoices.vue')},
+      { path: '', name:'home', component: () => {
+        if(localStorage.getItem("landingPage") == 'true' || localStorage.getItem("landingPage") == null){
+          return import('pages/LandingPage.vue')
+        }
+        else{
+          return import('pages/TopicChoices.vue')
+        }
+      }
+    },
+      { path: 'topic', name:'topic', component: () => import('pages/TopicChoices.vue'), props: (route) => ({ ...route.params })},
+      { path: 'welcome', name:'welcome', component: () => import('pages/LandingPage.vue'), props: (route) => ({ ...route.params })},
       { path: 'topic/:topicFilter', name:'crumbs', component: () => import('pages/TopicChoices.vue'), props: (route) => ({ ...route.params })}
     ]
   }
   /*,
-  {
+  {{
+  path: '/',
+  component: () => { 
+    if (store.state.domain) {
+      return import(/ webpackChunkName: "app-home" / '../views/AppHome.vue');
+    } else {
+      return import(/ webpackChunkName: "home" / '../views/Home.vue');
+    }
+  }
+}
     path: '/documents',
 //    meta: { auth: true },
     component: () => import('layouts/MyLayout.vue'),

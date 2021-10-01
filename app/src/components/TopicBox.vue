@@ -1,0 +1,64 @@
+<template>
+        <div
+          class="q-gutter-sm col box"
+        >
+          <TalkingLabel
+            style="margin-left: 0px; margin-top: 0px; margin-right: 10px"
+            :text="contentName"
+            :row="'row'"
+            :title_col="' ellipsis col-11'"
+            :icon_col="'col-1'"
+            :icon_style="'text-align:right'"
+          />
+          <q-icon
+            :name="contentIcon"
+            style="margin-left: 0px; width: 27px; height: 27px"
+          />
+          <div class="topic_names">
+            {{ contentName }}
+          </div>
+        </div>
+</template>
+
+<script>
+const TalkingLabel = () => import('components/TalkingLabel')
+
+export default {
+
+  // name: 'ComponentName',
+  props: ['contentName', 'contentIcon'],
+  data () {
+    return {}
+  },
+  components:{
+    TalkingLabel
+  }
+}
+</script>
+<style scoped>
+.topic_names {
+  color: #5c81a2;
+  margin-left: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  font-weight: 600;
+font-size: 12px;
+line-height: 16px;
+padding-left: 5px;
+padding-right: 5px;
+}
+.box{
+  text-align: center;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background-color: #fafafa;
+  max-width: 100px;
+  min-width: 100px;
+  height: 100px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  border: 0.5px solid #FF7C44;
+}
+
+</style>
