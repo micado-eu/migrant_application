@@ -3,6 +3,13 @@
    
     <div style="padding-top:20px; padding-bottom:20px; text-align:center">
       <TalkingLabel
+      v-if="mixed_settings.filter(set => set.key == 'policy').length >0"
+                  style="width:100%"
+                  :Title="mixed_settings.filter(set => set.key == 'policy')[0].value"
+                  :text="mixed_settings.filter(set => set.key == 'policy')[0].value"
+                />
+    <TalkingLabel
+      v-else
                   style="width:100%"
                   :Title="$t('privacy.privacy')"
                   :text="$t('privacy.privacy')"
@@ -45,19 +52,30 @@
 
 <script>
 const TalkingLabel = () => import('components/TalkingLabel')
+import storeMappingMixin from "../mixin/storeMappingMixin";
 
 export default {
   name: 'PageIndex',
   components:{
     TalkingLabel
   },
+  mixins: [
+    storeMappingMixin({
+      getters: {
+        mixed_settings:"settings/mixed_settings"
+      },
+      actions: {
+        fetchMixedSettings:"settings/fetchMixedSettings"
+      },
+    })
+  ],
   data () {
     return {
       logged: false
     }
   },
   created () {
-   
+  this.fetchMixedSettings().then(ret=> console.log(ret))
   }
 }
 </script>

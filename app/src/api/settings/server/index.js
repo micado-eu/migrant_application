@@ -10,5 +10,13 @@ export default {
                 return response.data
             })
             .catch(error_handler);
-    }
+    },
+    fetchMixedSettings () {
+        return axiosInstance
+            .get('/backend/1.0.0/t-settings-migrant')
+            .then((response) => {
+                return response.data
+            })
+            .catch(error_handler)
+    },
 }
