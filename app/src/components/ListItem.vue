@@ -30,20 +30,29 @@
               >
                 <TalkingLabel
                 style="width:100%"
-                  :icon="this.icon"
-                  :Title="this.Title"
-                  :text="this.Title"
+                  :icon="icon"
+                  :Title="Title"
+                  :text="Title"
                   :row="'row'"
                   :title_col="'col-11'"
                   :icon_col="'col-1'"
                   :icon_style="'text-align:right'"
-                  :icon_size="this.size"
+                  :icon_size="size"
                   :showing="'white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'"
                 >
                 </TalkingLabel>
               </div>
             </div>
            <q-icon v-if="compare_date < $durationOfNew" name="img:statics/icons/new_icon.png" size="md"/>
+          <glossary-editor-viewer 
+            v-if="Description" 
+            :content="Description"
+            all_fetched
+            ref="descViewer"
+            hideContent
+          >
+            <div v-html="highlightedText"></div>
+          </glossary-editor-viewer>
             <hr class="hr">
           </div>
         </q-item>
@@ -56,10 +65,11 @@
 <script>
 const TalkingLabel = () => import('./TalkingLabel')
 import storeMappingMixin from '../mixin/storeMappingMixin'
+import GlossaryEditorViewer from "./GlossaryEditorViewer"
 
 export default {
   name: 'Process',
-  props: ["Title", "Topics", "Users", "Link", "Path", "item", "Rating", 'type','icon', 'size', 'published_date'],
+  props: ["Title", "Description", "Topics", "Users", "Link", "Path", "item", "Rating", 'type','icon', 'size', 'published_date', 'highlightWords'],
   mixins: [
     storeMappingMixin({
       getters: {
@@ -71,11 +81,13 @@ export default {
   data () {
     return {
       user_list:[],
-      topic_list:[]
+      topic_list:[],
+      highlightedText: "",
     };
   },
   components: {
-    TalkingLabel
+    TalkingLabel,
+    GlossaryEditorViewer
   },
   computed: {
     /*parsedRating () {
@@ -129,6 +141,21 @@ export default {
       }
       //this.$router.push({ name: 'document', params: { processid: this.Link } })
       
+    },
+    plainTextDescription() {
+      console.log(this.Title)
+      if (this.$refs.descViewer && this.highlightWords) {
+        const ht = this.$refs.descViewer.highlightedText(this.highlightWords)
+        console.log(ht)
+        return ht 
+      }
+    }
+  },
+  watch: {
+    highlightWords: function (newHW, oldHW) {
+      this.$nextTick().then(() => {
+        this.highlightedText = this.plainTextDescription()
+      })
     }
   }
 }

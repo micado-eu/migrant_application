@@ -7,7 +7,9 @@
           class='editor_content'
           :editor="editor"
           ref="editor"
+          v-show="!hideContent"
         />
+        <slot v-show="hideContent && initialized"></slot>
         <talking-label
           Title=""
           :text="textToSpeech"
@@ -79,6 +81,7 @@ import InternalMention from 'components/editor_plugins/InternalMention.js'
 import markdownConverterMixin from '../mixin/markdownConverterMixin.js'
 import TalkingLabel from 'components/TalkingLabel.vue'
 import InternalReferenceDialog from './InternalReferenceDialog.vue'
+import _ from "lodash"
 
 export default {
   name: 'GlossaryEditorViewer',
@@ -99,6 +102,10 @@ export default {
     readMore: {
       type: Boolean,
       default: false
+    },
+    hideContent: {
+      type: Boolean,
+      default: false
     }
   },
   mixins: [markdownConverterMixin],
@@ -112,7 +119,9 @@ export default {
       titleDialog: undefined,
       descriptionDialog: undefined,
       linkDialog: undefined,
-      notFound: false
+      notFound: false,
+      initialized: false,
+      highlightedTextCache: "",
     }
   },
   computed: {
@@ -124,9 +133,13 @@ export default {
       return this.currentDescriptionContent
     },
     textToSpeech() {
-      if (this.editor) {
-        const doc = new DOMParser().parseFromString(this.editor.getHTML(), 'text/html')
-        return doc.body.textContent || null
+      if (this.initialized) {
+        if (this.hideContent && this.highlightedTextCache) {
+          return this.highlightedTextCache
+        } else {
+          const doc = new DOMParser().parseFromString(this.editor.getHTML(), 'text/html')
+          return doc.body.textContent || null
+        }
       }
       return null
     }
@@ -151,16 +164,19 @@ export default {
         content: ''
       })
       await this.setContent(this.content)
-      await this.$nextTick()
-      this.cacheDialog()
-      if (this.readMore) {
-        let el = this.$refs.editor.$el
-        let height = parseFloat(getComputedStyle(el, null).height.replace("px", ""))
-        if (height >= 41) {
-          el.classList.add('max-lines')
-          this.showingFullContent = false
+      if (!this.hideContent) {
+        await this.$nextTick()
+        this.cacheDialog()
+        if (this.readMore) {
+          let el = this.$refs.editor.$el
+          let height = parseFloat(getComputedStyle(el, null).height.replace("px", ""))
+          if (height >= 41) {
+            el.classList.add('max-lines')
+            this.showingFullContent = false
+          }
         }
       }
+      this.initialized = true
     },
     async setContent(content, isHTML = false) {
       let currentContent = content
@@ -223,10 +239,10 @@ export default {
       }
       if (id > -1 && mentionType in elemByIdFunctions) {
         let elem = undefined
-        try{
+        try {
           elem = elemByIdFunctions[mentionType](id)
         }
-        catch(err) {
+        catch (err) {
           if (err !== "Not found") throw err
         }
         if (elem !== undefined) {
@@ -251,6 +267,38 @@ export default {
         this.notFound = true
       }
       this.showDialog = true
+    },
+    highlightedText(highlights) {
+      const document = new DOMParser().parseFromString(this.editor.getHTML(), "text/html").documentElement
+      let result = '<span class="max-lines">'
+      let scoreList = []
+      const prefixTag = '<span class="highlighted">'
+      const suffixTag = '</span>'
+      const escapedHighlights = highlights.map(h => _.escapeRegExp(h))
+      const regexp = new RegExp("(" + escapedHighlights.join("|") + ")", "gi")
+      for (const child of document.children[1].children) {
+        const text = child.innerText
+        const splitted = text.split(regexp)
+        // More matches === longer array
+        scoreList.push(splitted.length)
+      }
+      const biggestScoreIndex = scoreList.reduce(
+        (bestIndexSoFar, currentlyTestedValue, currentlyTestedIndex, array) =>
+          currentlyTestedValue > array[bestIndexSoFar] ? currentlyTestedIndex : bestIndexSoFar, 0
+      )
+      const bestMatchSplitted = document.children[1].children[biggestScoreIndex].innerText.split(regexp)
+      const stringComparator = new Intl.Collator(this.$userLang, { sensitivity: 'accent' })
+      // Add the tag to the text
+      for (let i = 0; i < bestMatchSplitted.length; i = i + 1) {
+        const isHighlight = highlights.some(highlightedTerm => !stringComparator.compare(bestMatchSplitted[i], highlightedTerm))
+        if (isHighlight) {
+          bestMatchSplitted[i] = prefixTag + bestMatchSplitted[i] + suffixTag
+        }
+      }
+      let trimmedMatch = bestMatchSplitted.join("").replace(/^(.{100}[^\s]*).*/, "$1")
+      result = result.concat(trimmedMatch).concat("...").concat("</span>")
+      this.highlightedTextCache = trimmedMatch
+      return result
     }
   },
   created() {
@@ -307,5 +355,9 @@ img {
 
 .desc_tooltip {
   max-width: 300px;
+}
+
+.highlighted {
+  font-weight: bold;
 }
 </style>
