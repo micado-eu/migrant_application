@@ -109,6 +109,7 @@
           :type="'info'"
           @info="enitityDetails($event)"
           :icon="'img:statics/icons/Icon - Information Centre.svg'"
+          :icon_new="'img:statics/icons/Icon - Information Centre - NEW Entry.svg'"
           :size="'sm'"
           :published_date="element.published_date"
         />
@@ -126,6 +127,7 @@
           @flow="enitityDetails($event)"
           :type="'flow'"
           :icon="'img:statics/icons/Icon - Integration step-bystep.svg'"
+          :icon_new="'img:statics/icons/Icon - Integration step-bystep - NEW entry.svg'"
           :size="'sm'"
           :published_date="process.published_date"
         />
@@ -141,7 +143,8 @@
           :item="element"
           :type="'event'"
           @event="enitityDetails($event)"
-          :icon="'img:statics/icons/Icon - Events.svg'"
+          :icon="'img:statics/icons/Icon - Events (4th Iteration)_.svg'"
+          :icon_new="'img:statics/icons/Icon - Events (4th Iteration) - NEW Entry.svg'"
           :size="'sm'"
           :published_date="element.published_date"
         />
@@ -169,6 +172,7 @@
           :type="'info'"
           @info="enitityDetails($event)"
           :icon="'img:statics/icons/Icon - Information Centre.svg'"
+          :icon_new="'img:statics/icons/Icon - Information Centre - NEW Entry.svg'"
           :size="'sm'"
           :published_date="element.published_date"
         />
@@ -186,6 +190,7 @@
           @flow="enitityDetails($event)"
           :type="'flow'"
           :icon="'img:statics/icons/Icon - Integration step-bystep.svg'"
+          :icon_new="'img:statics/icons/Icon - Integration step-bystep - NEW entry.svg'"
           :size="'sm'"
           :published_date="process.published_date"
         />
@@ -202,7 +207,8 @@
           :item="element"
           :type="'event'"
           @event="enitityDetails($event)"
-          :icon="'img:statics/icons/Icon - Events.svg'"
+          :icon="'img:statics/icons/Icon - Events (4th Iteration)_.svg'"
+          :icon_new="'img:statics/icons/Icon - Events (4th Iteration) - NEW Entry.svg'"
           :size="'sm'"
           :published_date="element.published_date"
         />
