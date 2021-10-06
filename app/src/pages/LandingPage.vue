@@ -31,20 +31,23 @@
       <TopicBox
       @click.native="dialog_info = true"
       :contentName="$t('menu.info')"
+      :boxstile="'min-width:100px;max-width:100px'"
       :contentIcon="'img:statics/icons/Icon - Information Centre.svg'"
       />
       <TopicBox
       @click.native="dialog_process = true"
       :contentName="$t('menu.guides')"
+      :boxstile="'min-width:100px;max-width:100px'"
       :contentIcon="'img:statics/icons/Icon - Integration step-bystep.svg'"
       />
       <TopicBox
       @click.native="dialog_events = true"
       :contentName="$t('menu.events')"
+      :boxstile="'min-width:100px;max-width:100px'"
       :contentIcon="'img:statics/icons/Icon - Events (4th Iteration)_.svg'"
       />
     </div>
-    <hr/>
+    <hr class="separation"/>
     <HelpDialog 
     :open="dialog_info"
     :title="$t('menu.info')"
@@ -125,7 +128,7 @@
       </div>
     </q-scroll-area>
   </div>
-  <hr/>
+  <hr class="separation"/>
   <div class="category-contents pad">
       <TalkingLabel
                 style="width:100%"
@@ -140,16 +143,18 @@
     <div class="row topic_layout">
       <TopicBox
       @click.native="dialog_doc = true"
+      :boxstile="'min-width:160px;max-width:160px'"
       :contentName="$t('menu.documents')"
       :contentIcon="'img:statics/icons/Icon - My Documents (selcted).svg'"
       />
       <TopicBox
       @click.native="dialog_plan = true"
+      :boxstile="'min-width:160px;max-width:160px'"
       :contentName="$t('menu.integration_plan')"
       :contentIcon="'img:statics/icons/Icon - My Integration Plan (selected1).svg'"
       />
     </div>
-    <hr/>
+    <hr class="separation"/>
     <HelpDialog 
     :open="dialog_doc"
     :title="$t('menu.documents')"
@@ -286,5 +291,8 @@ export default {
 color: white;
 background: #0B91CE;
 border-radius: 50px;
+}
+.separation{
+  color: #BDBDBD;
 }
 </style>
