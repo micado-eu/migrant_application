@@ -30,7 +30,8 @@
     "integration_plan":"Integration plans",
     "policy":"Privacy policy",
     "welcome":"Welcome to the APP",
-    "consent":"Consent manager"
+    "consent":"Consent manager",
+    "funding":"Powered by"
   },
   "button": {
     "change_pass": "Change Password",
@@ -81,6 +82,7 @@
     "integration_plan": "My personal Plan",
     "personal": "Personal area",
     "survey":"Survey!",
+    "survey_desc":"Take part in our new Survey!",
     "document_sent":"Your document was successfully sent to",
     "document_delete":"Do you want to delete this document?",
     "document_download":"Download this document",

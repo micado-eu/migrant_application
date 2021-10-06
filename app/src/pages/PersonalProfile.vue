@@ -76,58 +76,7 @@
   <div style="background-color:#EFEFEF; height:5px">
     &nbsp;
   </div>
-      <q-item clicakble @click.native="welcome">
-   <TalkingLabel
-   class="q-pa-md option"
-    style="width:100%"
-    :icon="'img:statics/icons/Icon - Welcome page.svg'"
-    :icon_size="'30px'"
-    :Title="$t('menu.welcome')"
-    :text="$t('menu.welcome')"
-    :row="'row'"
-    :title_col="'col-10 option'"
-    :icon_col="'col-2'"
-    :icon_style="'text-align:right'"
-    />
-  </q-item>
-  <div style="background-color:#EFEFEF; height:5px">
-    &nbsp;
-  </div>
-      <q-item  clicakble @click.native="privacy">
-   <TalkingLabel
-   class="q-pa-md option"
-    style="width:100%"
-    :icon="'img:statics/icons/Icon - Round checkmark2.svg'"
-    :icon_size="'30px'"
-    :Title="$t('menu.policy')"
-    :text="$t('menu.policy')"
-    :row="'row'"
-    :title_col="'col-10 option'"
-    :icon_col="'col-2'"
-    :icon_style="'text-align:right'"
-    />
-  </q-item>
-  <div style="background-color:#EFEFEF; height:5px">
-    &nbsp;
-  </div>
-      <q-item  clicakble @click.native="consent">
-   <TalkingLabel
-   class="q-pa-md option"
-    style="width:100%"
-    :icon="'img:statics/icons/Icon - Consent 2.svg'"
-    :icon_size="'30px'"
-    :Title="$t('menu.consent')"
-    :text="$t('menu.consent')"
-    :row="'row'"
-    :title_col="'col-10 option'"
-    :icon_col="'col-2'"
-    :icon_style="'text-align:right'"
-    />
-  </q-item>
-  <div style="background-color:#EFEFEF; height:5px">
-    &nbsp;
-  </div>
-    <div v-if="($auth.loggedIn())" style="text-align:center; padding-top:20px">
+         <div v-if="($auth.loggedIn())" style="text-align:center; padding-top:20px">
         <q-btn  class="logout"  unelevated no-caps :label="$t('desc_labels.logout')" @click="logout()" />
       </div>
   </div>

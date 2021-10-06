@@ -6,12 +6,13 @@
         <q-breadcrumbs active-color="secondary">
           <q-breadcrumbs-el
             class="crumb"
-            label="Home"
             icon="img:statics/icons/Icon - Home (crumb).svg"
+            style="min-height:22px;max-height:22px"
             @click="home()"
           />
           <q-breadcrumbs-el
             class="crumb"
+            style="min-height:22px;max-height:22px"
             v-for="crumbo in crumbs"
             :id="crumbo.id"
             :key="crumbo.label"

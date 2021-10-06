@@ -240,15 +240,15 @@ export default {
                   visible: true
                 },
                 */
-       /* {
+        {
           label: "menu.documents",
-          icon: "img:statics/icons/Icon - language selection.svg",
+          icon: "img:statics/icons/Icon - show more.svg",
           to: "/language",
           description: "menu.documents_desc",
           feature: "FEAT_DEFAULT",
           needs_login: false,
           visible: true
-        },*/
+        },
         {
           label: "menu.glossary",
           icon: "img:statics/icons/Icon - Glossary selected1.svg",
@@ -489,8 +489,7 @@ export default {
     action (lab) {
       switch (lab) {
         case "menu.documents":
-          console.log(this.$refs.language)
-          this.$refs.language.open()
+          this.$router.push({ name: 'about' })
           break;
         case "menu.glossary":
           this.$router.push({ name: 'glossary' })

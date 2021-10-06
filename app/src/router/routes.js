@@ -69,6 +69,8 @@ const routes = [
     },
       { path: 'topic', name:'topic', component: () => import('pages/TopicChoices.vue'), props: (route) => ({ ...route.params })},
       { path: 'welcome', name:'welcome', component: () => import('pages/LandingPage.vue'), props: (route) => ({ ...route.params })},
+      { path: 'about', name:'about', component: () => import('pages/About.vue'), props: (route) => ({ ...route.params })},
+      { path: 'poweredBy', name:'poweredBy', component: () => import('pages/PoweredBy.vue'), props: (route) => ({ ...route.params })},
       { path: 'topic/:topicFilter', name:'crumbs', component: () => import('pages/TopicChoices.vue'), props: (route) => ({ ...route.params })}
     ]
   }
