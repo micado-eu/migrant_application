@@ -24,7 +24,7 @@
           data-cy="language_selector_button"
           ref="language"
         ></LanguageSelector>
-        <UserButton ref="user" />
+        <UserButton v-if="features.filter((feat)=>{return feat == 'FEAT_MIGRANT_LOGIN'}).length >0" ref="user" />
 
         <FeedbackButton ref="feedback" />
       <!--  <q-btn
@@ -55,7 +55,6 @@
           @click="action(nav.label)"
           :key="nav.label"
           :icon="nav.icon"
-          v-feature-flipping="nav.feature"
         />
       </q-tabs>
     </q-footer>
@@ -156,6 +155,7 @@ import storeMappingMixin from '../mixin/storeMappingMixin'
 import klaroconfig from '../configs/klaro.json'
 import * as SurveyVue from 'survey-vue'
 import ChatbotNotAvailable from 'components/ChatbotNotAvailable'
+//import { filter } from 'vue/types/umd';
 
 
 export default {
@@ -175,7 +175,8 @@ export default {
       getters: {
         user: 'auth/user',
         languages: 'language/activeLanguages',
-        surveys: 'survey/surveys'
+        surveys: 'survey/surveys',
+        features:"features/features"
       }, actions: {
         registerRocketchatUser: 'user/registerRocketChatUser',
         fetchMigrantSurvey: 'survey/fetchMigrantSurvey',
@@ -284,7 +285,6 @@ export default {
           label: "menu.feedback",
           icon: "img:statics/icons/icon - Feedback (4th iteration).svg",
           description: "menu.settings_desc",
-          feature: "FEAT_MIGRANT_LOGIN",
           needs_login: false,
           visible: true
         },
@@ -292,15 +292,15 @@ export default {
           label: "menu.chatbot",
           icon: "img:statics/icons/Icon Chatbot (4th Iteration).svg",
           description: "menu.home_desc",
-          feature: "FEAT_DEFAULT",
+          feature: "FEAT_ASSISTANT",
           needs_login: false,
           visible: false
         },
                 {
           label: "menu.settings",
-          icon: "img:statics/icons/Icon - Settings-whitw.svg",
+          icon: "img:statics/icons/Icon - Personal page.svg",
           description: "menu.glossary_desc",
-          feature: "FEAT_GLOSSARY",
+          feature: "FEAT_MIGRANT_LOGIN",
           needs_login: true,
           visible: true
         },
@@ -311,12 +311,30 @@ export default {
   computed: {
     nav_options () {
       if (this.$auth.loggedIn()) {
-        return this.navs
+        var filtered_navs = []
+         this.navs.forEach((nav)=>{
+                        console.log(nav.feature == undefined)
+            console.log(this.features.indexOf(nav.feature) > -1)
+            console.log(this.features.indexOf(nav.feature) > -1 || nav.feature == undefined)
+           if(this.features.indexOf(nav.feature) > -1 || nav.feature == undefined){
+             console.log(nav.feature)
+             filtered_navs.push(nav)
+           }
+         })
+         return filtered_navs
       }
       else {
-        return this.navs.filter((nav) => {
+        console.log("IN NAVS NOT LOGGED IN ##############################")
+        var login_filter =  this.navs.filter((nav) => {
           return nav.needs_login == false
         })
+        var filtered_navs = []
+         login_filter.forEach((nav)=>{
+           if(this.features.indexOf(nav.feature) > -1 || nav.feature == undefined){
+             filtered_navs.push(nav)
+           }
+         })
+         return filtered_navs
       }
     },
   },

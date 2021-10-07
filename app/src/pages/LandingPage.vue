@@ -15,7 +15,66 @@
                   :showing="'white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'"
                 />
     </div>
+    
     <div class="category-contents pad">
+      <TalkingLabel
+                style="width:100%"
+                  :Title="$t('welcome_page.topic_content')"
+                  :text="$t('welcome_page.topic_content')"
+                  :row="'row'"
+                  :title_col="'col-11'"
+                  :icon_col="'col-1'"
+                  :icon_style="'text-align:right'"
+                  :showing="'white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'"
+                />
+    </div>
+      <div class="q-pa-md ">
+    <q-scroll-area style="height: 110px; max-width: 100%;">
+      <div class="row no-wrap">
+        <div
+          class="q-gutter-sm col"
+          @click="topic_open = topic.id"
+          v-for="topic in topics"
+          :key="topic.id"
+          style="
+            text-align: center;
+            background-color: #fafafa;
+            max-width: 100px;
+            min-width: 100px;
+            height: 100px;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-top: 10px;
+          "
+        >
+          <TalkingLabel
+            style="margin-left: 0px; margin-top: 0px; margin-right: 10px"
+            :text="topic.topic"
+            :row="'row'"
+            :title_col="' ellipsis col-11'"
+            :icon_col="'col-1'"
+            :icon_style="'text-align:right'"
+          />
+          <q-img
+            :src="topic.icon"
+            style="margin-left: 0px; max-width: 40px; max-heigth: 40px"
+          />
+          <div class="topic_names">
+            {{ topic.topic }}
+          </div>
+          <HelpDialog 
+              :open="topic_open == topic.id"
+              :title="topic.topic"
+              :content_type="'topic'"
+              :content="topic.description"
+              :icon="topic.icon"
+              @hiding="topic_open = null"/>
+        </div>
+      </div>
+    </q-scroll-area>
+  </div>
+  <hr class="separation"/>
+  <div class="category-contents pad">
       <TalkingLabel
                 style="width:100%"
                   :Title="$t('welcome_page.category_content')"
@@ -71,65 +130,7 @@
     :content="mixed_settings.filter((set) => set.key == 'event')[0].value"
     :icon="'img:statics/icons/MICADO APP - Welcome page - events & courses-05 1.svg'"
     @hiding="dialog_events = false"/>
-    <div class="category-contents pad">
-      <TalkingLabel
-                style="width:100%"
-                  :Title="$t('welcome_page.topic_content')"
-                  :text="$t('welcome_page.topic_content')"
-                  :row="'row'"
-                  :title_col="'col-11'"
-                  :icon_col="'col-1'"
-                  :icon_style="'text-align:right'"
-                  :showing="'white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'"
-                />
-    </div>
-      <div class="q-pa-md">
-    <q-scroll-area style="height: 110px; max-width: 100%;">
-      <div class="row no-wrap">
-        <div
-          class="q-gutter-sm col"
-          @click="topic_open = topic.id"
-          v-for="topic in topics"
-          :key="topic.id"
-          style="
-            text-align: center;
-            background-color: #fafafa;
-            max-width: 100px;
-            min-width: 100px;
-            height: 100px;
-            margin-left: 10px;
-            margin-right: 10px;
-            margin-top: 10px;
-          "
-        >
-          <TalkingLabel
-            style="margin-left: 0px; margin-top: 0px; margin-right: 10px"
-            :text="topic.topic"
-            :row="'row'"
-            :title_col="' ellipsis col-11'"
-            :icon_col="'col-1'"
-            :icon_style="'text-align:right'"
-          />
-          <q-img
-            :src="topic.icon"
-            style="margin-left: 0px; max-width: 40px; max-heigth: 40px"
-          />
-          <div class="topic_names">
-            {{ topic.topic }}
-          </div>
-          <HelpDialog 
-              :open="topic_open == topic.id"
-              :title="topic.topic"
-              :content_type="'topic'"
-              :content="topic.description"
-              :icon="topic.icon"
-              @hiding="topic_open = null"/>
-        </div>
-      </div>
-    </q-scroll-area>
-  </div>
-  <hr class="separation"/>
-  <div class="category-contents pad">
+  <div v-if="tasksAndPlans" class="category-contents pad">
       <TalkingLabel
                 style="width:100%"
                   :Title="$t('welcome_page.login_content')"
@@ -140,21 +141,23 @@
                   :icon_style="'text-align:right'"
                 />
     </div>
-    <div class="row topic_layout">
+    <div v-if="tasksAndPlans" class="row topic_layout">
       <TopicBox
+      v-if="docs"
       @click.native="dialog_doc = true"
       :boxstile="'min-width:160px;max-width:160px'"
       :contentName="$t('menu.documents')"
       :contentIcon="'img:statics/icons/Icon - My Documents (selcted).svg'"
       />
       <TopicBox
+      v-if="tasks"
       @click.native="dialog_plan = true"
       :boxstile="'min-width:160px;max-width:160px'"
       :contentName="$t('menu.integration_plan')"
       :contentIcon="'img:statics/icons/Icon - My Integration Plan (selected1).svg'"
       />
     </div>
-    <hr class="separation"/>
+    <hr v-if="tasksAndPlans" class="separation"/>
     <HelpDialog 
     :open="dialog_doc"
     :title="$t('menu.documents')"
@@ -187,6 +190,7 @@
                 />
     </div>
     </div>
+        <hr class="separation"/>
   <div style="text-align:center; margin-bottom:20px; margin-top:25px">
     <q-btn
           :label="$t('welcome_page.start')"
@@ -212,7 +216,8 @@ export default {
     storeMappingMixin({
       getters: {
         topics: "topic/topics",
-        mixed_settings:"settings/mixed_settings"
+        mixed_settings:"settings/mixed_settings",
+        features:"features/features"
       },
       actions: {
         fetchTopic: "topic/fetchTopic",
@@ -234,6 +239,16 @@ export default {
   computed:{
     show_landing_page_choice(){
       return (localStorage.getItem('landingPage') == 'true' || localStorage.getItem('landingPage') == null)
+    },
+    tasksAndPlans(){
+      console.log(this.features)
+      return (this.features.filter((feat)=> {return feat == "FEAT_DOCUMENTS"}).length >0 || this.features.filter(feat => feat == "FEAT_TASKS").length >0)
+    },
+    tasks(){
+      return this.features.filter((feat)=> {return feat == "FEAT_TASKS"}).length >0
+    },
+    docs(){
+      return this.features.filter((feat)=> {return feat == "FEAT_DOCUMENTS"}).length >0
     }
   },
   methods:{
