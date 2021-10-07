@@ -2,9 +2,15 @@
   <div padding>
     <q-spinner v-if="loading" />
     <div v-else>
-      <div>
+      <div :class="talkingLabelLocation === 'left' ? 'row' : ''">
+        <talking-label
+          Title=""
+          :text="textToSpeech"
+          v-if="(textToSpeech !== null) && ((talkingLabelLocation === 'top') || (talkingLabelLocation === 'left'))"
+          :icon-col="talkingLabelLocation === 'left' ? 'col-1' : ''"
+        ></talking-label>
         <editor-content
-          class='editor_content'
+          :class="talkingLabelLocation === 'left' ? 'col editor_content q-ml-sm' : 'editor_content'"
           :editor="editor"
           ref="editor"
           v-show="!hideContent"
@@ -13,7 +19,7 @@
         <talking-label
           Title=""
           :text="textToSpeech"
-          v-if="textToSpeech !== null"
+          v-if="(textToSpeech !== null) && (talkingLabelLocation === 'bottom')"
           class=""
         ></talking-label>
       </div>
@@ -106,6 +112,11 @@ export default {
     hideContent: {
       type: Boolean,
       default: false
+    },
+    talkingLabelLocation: {
+      type: String,
+      validator: (val) => ['top', 'left', 'bottom'].includes(val),
+      default: 'bottom'
     }
   },
   mixins: [markdownConverterMixin],

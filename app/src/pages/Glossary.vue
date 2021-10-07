@@ -68,6 +68,7 @@
                     class="glossary-desc"
                     :lang="lang"
                     :data-cy="'glossaryDesc' + glossaryItem.id"
+                    talkingLabelLocation="left"
                   />
                 </q-card-section>
               </q-card>
