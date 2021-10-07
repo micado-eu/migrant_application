@@ -7,3 +7,8 @@ export function setSettings (state, settings) {
     state.settings = settings
   }
 }
+export function setMixedSettings (state, settings) {
+  if (settings) {
+    state.mixed_settings = settings
+  }
+}

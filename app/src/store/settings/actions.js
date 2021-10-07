@@ -11,3 +11,12 @@ export function fetchSettings (state, data) {
       return settings
     })
 }
+
+export function fetchMixedSettings (state, data) {
+  return client
+    .fetchMixedSettings()
+    .then(settings => {
+      state.commit('setMixedSettings', settings)
+      return settings
+    })
+}

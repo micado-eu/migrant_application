@@ -2,29 +2,6 @@
   <div  style="padding-top:10px">
     <div v-if="this.loading">{{$t('desc_labels.loading')}}</div>
     <div v-else>
-
-    <div class="div-1">
-  <div class="div-2" >
-     <div class="div-3 text-center" >
-        <img 
-        v-if="this.the_user.picture == null"
-        alt="User Profile"
-        src="~assets/user-placeholder.png" 
-        class="image"
-            />
-        <img
-          v-else
-          width="250px"
-          height="250px"
-          class="col-6 image"
-          :src="this.the_user.picture"
-        />
-      </div>
-  </div>
-    </div>
-  <div style="background-color:#EFEFEF; height:5px">
-    &nbsp;
-  </div>
   <q-item :disable="!($auth.loggedIn())" clicakble @click.native="documents">
    <TalkingLabel
    class="q-pa-md option"
@@ -76,58 +53,7 @@
   <div style="background-color:#EFEFEF; height:5px">
     &nbsp;
   </div>
-      <q-item clicakble @click.native="welcome">
-   <TalkingLabel
-   class="q-pa-md option"
-    style="width:100%"
-    :icon="'img:statics/icons/Icon - Welcome page.svg'"
-    :icon_size="'30px'"
-    :Title="$t('menu.welcome')"
-    :text="$t('menu.welcome')"
-    :row="'row'"
-    :title_col="'col-10 option'"
-    :icon_col="'col-2'"
-    :icon_style="'text-align:right'"
-    />
-  </q-item>
-  <div style="background-color:#EFEFEF; height:5px">
-    &nbsp;
-  </div>
-      <q-item  clicakble @click.native="privacy">
-   <TalkingLabel
-   class="q-pa-md option"
-    style="width:100%"
-    :icon="'img:statics/icons/Icon - Round checkmark2.svg'"
-    :icon_size="'30px'"
-    :Title="$t('menu.policy')"
-    :text="$t('menu.policy')"
-    :row="'row'"
-    :title_col="'col-10 option'"
-    :icon_col="'col-2'"
-    :icon_style="'text-align:right'"
-    />
-  </q-item>
-  <div style="background-color:#EFEFEF; height:5px">
-    &nbsp;
-  </div>
-      <q-item  clicakble @click.native="consent">
-   <TalkingLabel
-   class="q-pa-md option"
-    style="width:100%"
-    :icon="'img:statics/icons/Icon - Consent 2.svg'"
-    :icon_size="'30px'"
-    :Title="$t('menu.consent')"
-    :text="$t('menu.consent')"
-    :row="'row'"
-    :title_col="'col-10 option'"
-    :icon_col="'col-2'"
-    :icon_style="'text-align:right'"
-    />
-  </q-item>
-  <div style="background-color:#EFEFEF; height:5px">
-    &nbsp;
-  </div>
-    <div v-if="($auth.loggedIn())" style="text-align:center; padding-top:20px">
+         <div v-if="($auth.loggedIn())" style="text-align:center; padding-top:20px">
         <q-btn  class="logout"  unelevated no-caps :label="$t('desc_labels.logout')" @click="logout()" />
       </div>
   </div>
@@ -263,7 +189,9 @@ export default {
       }
     },
     settings(){
+       if(this.$auth.loggedIn()){
       this.$router.push({name:'settings'})
+            }
     },
     tasks(){
             if(this.$auth.loggedIn()){

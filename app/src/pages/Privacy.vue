@@ -1,63 +1,74 @@
 <template>
-  <q-page class="flex flex-center column" style="min-height:0px">
-   
-    <div style="padding-top:20px; padding-bottom:20px; text-align:center">
-      <TalkingLabel
-                  style="width:100%"
+<div>   
+    <div class="q-pa-md">
+
+    <TalkingLabel
+                  :showing="'font-weight: bold;font-size: 16px;line-height: 16px;color: #0F3A5D;'"
                   :Title="$t('privacy.privacy')"
                   :text="$t('privacy.privacy')"
+                  :row="'row'"
+                  :title_col="'col-11'"
+                  :icon_col="'col-1'"
+                  :icon_style="'text-align:right'"
                 />
     </div>
-  <div style="background-color:#EFEFEF; height:5px; width:100%">
-    &nbsp;
-  </div>
-    <div class="row justify-center full-height full-width text-center">
-      <img
-        alt="Micado logo"
-        :src="this.$paLogo"
-        style="width:60%;max-width:320px;height:auto;"
-      >
+       <div class="q-pa-md">
 
+    <TalkingLabel
+                  :showing="'font-weight: normal;font-size: 14px;line-height: 16px;color: #000000;'"
+                  :Title="mixed_settings.filter(set => set.key == 'policy')[0].value"
+                  :text="mixed_settings.filter(set => set.key == 'policy')[0].value"
+                  :row="'row'"
+                  :title_col="'col-11'"
+                  :icon_col="'col-1'"
+                  :icon_style="'text-align:right'"
+                />
     </div>
-
-    <div class="row justify-center full-height full-width text-center">
-      <img
-        alt="Powered by Micado"
-        src="~assets/MICADO Logo - powered by.svg"
-      >
+     <div class="q-pa-md q-gutter-sm col" style="text-align:center">
+        <q-btn
+          size="12px"
+          :icon="'img:statics/icons/Icon - go back.svg'"
+          no-caps
+          class="go_back"
+          rounded
+          :label="$t('button.go_back')"
+          @click="back()"
+        />
       </div>
-      <div class="pad" style="text-align:center" text-caption>
-        <TalkingLabel
-                  class="option_3"
-                  style="width:100%"
-                  :Title="$t('privacy.grant')"
-                  :text="$t('privacy.grant')"
-                />
-        </div>
-      <img
-      style="width:80px; height:53px"
-        alt="Funded by EU"
-        src="~assets/Flag_of_Europe.png"
-      >
-    
-  </q-page>
+  </div>
 </template>
 
 <script>
 const TalkingLabel = () => import('components/TalkingLabel')
+import storeMappingMixin from "../mixin/storeMappingMixin";
 
 export default {
   name: 'PageIndex',
   components:{
     TalkingLabel
   },
+  mixins: [
+    storeMappingMixin({
+      getters: {
+        mixed_settings:"settings/mixed_settings"
+      },
+      actions: {
+        fetchMixedSettings:"settings/fetchMixedSettings"
+      },
+    })
+  ],
   data () {
     return {
       logged: false
     }
   },
+  methods:{
+    back(){
+    this.$router.go(-1);
+    },
+  },
   created () {
-   
+  this.fetchMixedSettings().then(ret=> console.log(ret))
   }
 }
 </script>
@@ -65,5 +76,10 @@ export default {
 .pad{
   padding-left:10px;
   padding-right:10px
+}
+.go_back{
+  border: 1px solid #0F3A5D;
+  box-sizing: border-box;
+  border-radius: 50px;
 }
 </style>

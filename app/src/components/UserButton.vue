@@ -1,5 +1,5 @@
 <template>
-  <q-btn color="white" round>
+  <q-btn color="white" @click="routing()" round>
     <q-avatar
       size="42px"
       data-cy="userButton"
@@ -13,7 +13,7 @@
         :src="this.userpic"
       />
     </q-avatar>
-    <q-menu
+   <!-- <q-menu
       anchor="bottom left"
       self="top right"
     >
@@ -41,7 +41,7 @@
       >
         <q-item-section>{{$t('desc_labels.settings')}}</q-item-section>
       </q-item>
-    </q-menu>
+    </q-menu>-->
   </q-btn>
 </template>
 
@@ -66,6 +66,14 @@ export default {
     }
   },
   methods: {
+    routing(){
+      if(!this.$auth.loggedIn()){
+        this.toLogin()
+      }
+      else{
+      this.$router.push({ name: 'profile' })
+      }
+    },
     toLogin () {
       this.$auth.login()
 

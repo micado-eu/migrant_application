@@ -14,18 +14,18 @@
         />
 
         <q-toolbar-title>{{ $t( "button.home") }}</q-toolbar-title>
+       <q-btn
+          no-caps
+          style="background-color:white; color:#0B91CE"
+          :label="$t('desc_labels.survey')"
+          @click="goToLinkedSurvey()"
+        />
         <LanguageSelector
           data-cy="language_selector_button"
           ref="language"
         ></LanguageSelector>
         <UserButton ref="user" />
-        <q-btn
-          v-if="this.$auth.loggedIn() && this.surveyJSON != null"
-          no-caps
-          style="background-color:white; color:#0B91CE"
-          :label="$t('desc_labels.survey')"
-          @click="generateSurvey"
-        />
+
         <FeedbackButton ref="feedback" />
       <!--  <q-btn
           color="white"
@@ -157,6 +157,7 @@ import klaroconfig from '../configs/klaro.json'
 import * as SurveyVue from 'survey-vue'
 import ChatbotNotAvailable from 'components/ChatbotNotAvailable'
 
+
 export default {
   name: "Layout",
 
@@ -241,8 +242,7 @@ export default {
                 */
         {
           label: "menu.documents",
-          icon: "img:statics/icons/Icon - language selection.svg",
-          to: "/language",
+          icon: "img:statics/icons/Icon - show more.svg",
           description: "menu.documents_desc",
           feature: "FEAT_DEFAULT",
           needs_login: false,
@@ -251,7 +251,6 @@ export default {
         {
           label: "menu.glossary",
           icon: "img:statics/icons/Icon - Glossary selected1.svg",
-          to: "/glossary",
           description: "menu.glossary_desc",
           feature: "FEAT_GLOSSARY",
           needs_login: false,
@@ -284,7 +283,6 @@ export default {
         {
           label: "menu.feedback",
           icon: "img:statics/icons/icon - Feedback (4th iteration).svg",
-          to: "/settings",
           description: "menu.settings_desc",
           feature: "FEAT_MIGRANT_LOGIN",
           needs_login: false,
@@ -293,11 +291,18 @@ export default {
         {
           label: "menu.chatbot",
           icon: "img:statics/icons/Icon Chatbot (4th Iteration).svg",
-          to: "/",
           description: "menu.home_desc",
           feature: "FEAT_DEFAULT",
           needs_login: false,
           visible: false
+        },
+                {
+          label: "menu.settings",
+          icon: "img:statics/icons/Icon - Settings-whitw.svg",
+          description: "menu.glossary_desc",
+          feature: "FEAT_GLOSSARY",
+          needs_login: true,
+          visible: true
         },
 
       ]
@@ -435,6 +440,9 @@ export default {
 
   },
   methods: {
+    goToLinkedSurvey(){
+      window.location.replace('https://' +'www.csi.it')
+    },
     applyConsent(consent){
       if(consent.usageTracker){
         console.log("starting countly")
@@ -488,8 +496,7 @@ export default {
     action (lab) {
       switch (lab) {
         case "menu.documents":
-          console.log(this.$refs.language)
-          this.$refs.language.open()
+          this.$router.push({ name: 'about' })
           break;
         case "menu.glossary":
           this.$router.push({ name: 'glossary' })
@@ -505,6 +512,10 @@ export default {
             console.log(this.$refs.not_chatbot)
             this.$refs.not_chatbot.chatting = true
           }
+          break;
+        case "menu.settings":
+          this.$router.push({ name: 'profile' })
+          break;
         default:
         // code block
       }
@@ -515,20 +526,16 @@ export default {
       }
   },
   created () {
+    this.$root.$refs.layout_ref = this;
+    console.log(this.$root.$refs)
+
     this.fetchMigrantSurvey(this.user.umid).then((sr) => {
       console.log("I AM THE SUrVEY")
       console.log(sr)
       if(sr != null){
         this.surveyJSON = JSON.parse(sr.survey)
       }
-      console.log("I AM THE SUrVEY json")
-
-      console.log(this.surveyJSON)
-      
     })
-    this.$root.$refs.layout_ref = this;
-    console.log(this.$root.$refs)
-
   }
 }
 </script>

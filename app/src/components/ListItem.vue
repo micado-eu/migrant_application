@@ -31,6 +31,8 @@
                 <TalkingLabel
                 style="width:100%"
                   :icon="icon"
+                  :icon_new="icon_new"
+                  :is_new="compare_date < $durationOfNew"
                   :Title="Title"
                   :text="Title"
                   :row="'row'"
@@ -43,7 +45,7 @@
                 </TalkingLabel>
               </div>
             </div>
-           <q-icon v-if="compare_date < $durationOfNew" name="img:statics/icons/new_icon.png" size="md"/>
+           <!--<q-icon v-if="compare_date < $durationOfNew" name="img:statics/icons/new_icon.png" size="md"/>-->
           <glossary-editor-viewer 
             v-if="Description" 
             :content="Description"
@@ -69,7 +71,7 @@ import GlossaryEditorViewer from "./GlossaryEditorViewer"
 
 export default {
   name: 'Process',
-  props: ["Title", "Description", "Topics", "Users", "Link", "Path", "item", "Rating", 'type','icon', 'size', 'published_date', 'highlightWords'],
+  props: ["Title", "Description", "Topics", "Users", "Link", "Path", "item", "Rating", 'type','icon', 'icon_new' ,'size', 'published_date', 'highlightWords'],
   mixins: [
     storeMappingMixin({
       getters: {

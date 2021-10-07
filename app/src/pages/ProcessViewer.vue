@@ -10,18 +10,10 @@
       >
       </TalkingLabel>
       <hr style="border: 1px solid #ff7c44" />
-      <div
-        class="q-pa-lg"
-        style="text-align: justify; text-justify: inter-word"
-      >
-        <glossary-editor-viewer
-          :content="the_process_description"
-          :key="the_process_description"
-        />
-      </div>
+
       <div class="q-pa-md field custom-pad">
         <TalkingLabel
-          :icon="'img:statics/icons/Icon - Decsription icon.svg'"
+          :icon="'img:statics/icons/Icon - Decsription icon-orange.svg'"
           :icon_size="'20px'"
           :row="'row'"
           :title_col="'col-11 '"
@@ -31,7 +23,6 @@
           :Title="$t('desc_labels.click_step')"
           :text="$t('desc_labels.click_step')"
         />
-        <hr />
       </div>
       <div class="row">
         <div class="col">
@@ -46,9 +37,18 @@
           </q-scroll-area>
         </div>
       </div>
+            <div
+        class="q-pa-lg"
+        style="text-align: justify; text-justify: inter-word"
+      >
+        <glossary-editor-viewer
+          :content="the_process_description"
+          :key="the_process_description"
+        />
+      </div>
       <q-dialog v-model="show_step">
         <q-layout view="Lhh lpR fff" container class="bg-white">
-          <q-header class="bg-secondary">
+          <q-header class="bg-white">
             <q-toolbar>
               <q-toolbar-title></q-toolbar-title>
               <q-btn
@@ -57,12 +57,13 @@
                 @click="popup"
                 round
                 dense
+                color="red"
                 icon="close"
               />
             </q-toolbar>
           </q-header>
           <q-page-container>
-            <q-page padding>
+            <q-page>
               <div :class="nodePanelVisible" header="Details of the step1">
                 <div
                   v-if="flowData.url != null"
@@ -82,8 +83,8 @@
                     />
                   </a>
                 </div>
-                <div class="q-pa-md fields-container">
-                  <div class="field">
+                <div class=" fields-container">
+                  <div class="field" style="padding-left:15px; padding-right:15px">
                     <TalkingLabel
                       class="title"
                       :showing="'text-align:left'"
@@ -94,16 +95,16 @@
                       :icon_col="'col-1'"
                       :icon_style="'text-align:right'"
                     />
-                    <hr />
                   </div>
+                    <hr />
 
                   <div
-                    v-if="shell_data.description != null > 0"
-                    class="q-pa-md field custom-pad"
+                    v-if="shell_data.description"
+                    class="q-pa-md field-pad field "
                   >
                     <TalkingLabel
                       class="textup"
-                      :icon="'img:statics/icons/info.svg'"
+                      :icon="'img:statics/icons/Icon - Decsription icon.svg'"
                       :row="'row'"
                       :title_col="'col-11'"
                       :icon_col="'col-1'"
@@ -119,12 +120,13 @@
                       :content="shell_data.description"
                       :key="shell_data.description"
                     ></GlossaryEditorViewer>
-                    <hr />
+                    
                   </div>
-                  <div class="q-pa-md field custom-pad">
+                  <hr  v-if="shell_data.description" />
+                  <div class="q-pa-md field-pad field ">
                     <TalkingLabel
                       class="textup"
-                      :icon="'img:statics/icons/info.svg'"
+                      :icon="'img:statics/icons/cost.svg'"
                       :row="'row'"
                       :title_col="'col-11'"
                       :icon_col="'col-1'"
@@ -133,15 +135,15 @@
                       :text="$t('desc_labels.cost') + flowData.cost"
                     />
                     <p class="textdown">{{ this.flowData.cost }}</p>
-                    <hr />
                   </div>
+                  <hr />
                   <div
                     v-if="flowData.location != null"
-                    class="q-pa-md field custom-pad"
+                    class="q-pa-md field-pad field "
                   >
                     <TalkingLabel
                       class="textup"
-                      :icon="'img:statics/icons/info.svg'"
+                      :icon="'img:statics/icons/Icon - Location Pin.svg'"
                       :row="'row'"
                       :title_col="'col-11'"
                       :icon_col="'col-1'"
@@ -152,15 +154,15 @@
                     <p class="textdown" tabindex="0">
                       <a :href="gmap_location"> {{ flowData.location }} </a>
                     </p>
-                    <hr />
                   </div>
+                  <hr  v-if="flowData.location != null" />
                   <div
                     v-if="documents.length > 0"
-                    class="q-pa-md field custom-pad"
+                    class="q-pa-md field-pad field "
                   >
                     <TalkingLabel
                       class="textup"
-                      :icon="'img:statics/icons/info.svg'"
+                      :icon="'img:statics/icons/docs.svg'"
                       :row="'row'"
                       :title_col="'col-11'"
                       :icon_col="'col-1'"
@@ -185,7 +187,18 @@
                       >
                       </DocumentItem>
                     </q-list>
-                    <hr />
+                  </div>
+                  <hr v-if="documents.length > 0" />
+                  <div style="text-align:center">
+                    <q-btn
+                      size="12px"
+                      :icon="'img:statics/icons/Icon - X (cancel)1.svg'"
+                      no-caps
+                      class="go_back"
+                      rounded
+                      :label="$t('button.cancel')"
+                      @click="show_step = false"
+                    />
                   </div>
                 </div>
               </div>
@@ -193,8 +206,8 @@
           </q-page-container>
         </q-layout>
       </q-dialog>
-      <div class="q-pa-md fields-container">
-        <div class="q-pa-md row field custom-pad">
+      <div class="q-pa-lg fields-container">
+        <div class=" row field">
           <div class="col-11 topic">
             {{ $t("filters.topics") }}:
             <q-img
@@ -213,7 +226,7 @@
             />
           </div>
         </div>
-        <div class="q-pa-md field custom-pad">
+        <div class="field ">
           <hr />
           <CommentList :selected_process_comments="selected_process_comments" />
           <hr />
@@ -764,5 +777,12 @@ g.label {
   color: #0f3a5d;
   border: 1px solid #0f3a5d;
   border-radius: 50px;
+}
+.field-pad{
+  padding-top: 0px ;
+  padding-bottom: 0px;
+}
+div.mermaid {
+   font-family: 'Nunito Sans';
 }
 </style>

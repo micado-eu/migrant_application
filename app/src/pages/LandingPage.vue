@@ -31,25 +31,28 @@
       <TopicBox
       @click.native="dialog_info = true"
       :contentName="$t('menu.info')"
+      :boxstile="'min-width:100px;max-width:100px'"
       :contentIcon="'img:statics/icons/Icon - Information Centre.svg'"
       />
       <TopicBox
       @click.native="dialog_process = true"
       :contentName="$t('menu.guides')"
+      :boxstile="'min-width:100px;max-width:100px'"
       :contentIcon="'img:statics/icons/Icon - Integration step-bystep.svg'"
       />
       <TopicBox
       @click.native="dialog_events = true"
       :contentName="$t('menu.events')"
+      :boxstile="'min-width:100px;max-width:100px'"
       :contentIcon="'img:statics/icons/Icon - Events (4th Iteration)_.svg'"
       />
     </div>
-    <hr/>
+    <hr class="separation"/>
     <HelpDialog 
     :open="dialog_info"
     :title="$t('menu.info')"
     :content_type="'menu'"
-    :content="'Lorem ipsum'"
+    :content="mixed_settings.filter((set) => set.key == 'info')[0].value"
     :icon="'img:statics/icons/MICADO APP - Welcome page - Basic information-03 1.svg'"
     @hiding="dialog_info = false"/>
 
@@ -57,7 +60,7 @@
     :open="dialog_process"
     :title="$t('menu.guides')"
     :content_type="'menu'"
-    :content="'Lorem ipsum'"
+    :content="mixed_settings.filter((set) => set.key == 'guides')[0].value"
     :icon="'img:statics/icons/MICADO APP - Welcome page - step by step--04 1.svg'"
     @hiding="dialog_process = false"/>
 
@@ -65,7 +68,7 @@
     :open="dialog_events"
     :title="$t('menu.events')"
     :content_type="'menu'"
-    :content="'Lorem ipsum'"
+    :content="mixed_settings.filter((set) => set.key == 'event')[0].value"
     :icon="'img:statics/icons/MICADO APP - Welcome page - events & courses-05 1.svg'"
     @hiding="dialog_events = false"/>
     <div class="category-contents pad">
@@ -125,7 +128,7 @@
       </div>
     </q-scroll-area>
   </div>
-  <hr/>
+  <hr class="separation"/>
   <div class="category-contents pad">
       <TalkingLabel
                 style="width:100%"
@@ -140,21 +143,23 @@
     <div class="row topic_layout">
       <TopicBox
       @click.native="dialog_doc = true"
+      :boxstile="'min-width:160px;max-width:160px'"
       :contentName="$t('menu.documents')"
       :contentIcon="'img:statics/icons/Icon - My Documents (selcted).svg'"
       />
       <TopicBox
       @click.native="dialog_plan = true"
+      :boxstile="'min-width:160px;max-width:160px'"
       :contentName="$t('menu.integration_plan')"
       :contentIcon="'img:statics/icons/Icon - My Integration Plan (selected1).svg'"
       />
     </div>
-    <hr/>
+    <hr class="separation"/>
     <HelpDialog 
     :open="dialog_doc"
     :title="$t('menu.documents')"
     :content_type="'menu'"
-    :content="'Lorem ipsum'"
+    :content="mixed_settings.filter((set) => set.key == 'doc')[0].value"
     :icon="'img:statics/icons/MICADO APP - Welcome page - My documents-06 1.svg'"
     @hiding="dialog_doc = false"/>
 
@@ -162,10 +167,10 @@
     :open="dialog_plan"
     :title="$t('menu.integration_plan')"
     :content_type="'menu'"
-    :content="'Lorem ipsum'"
+    :content="mixed_settings.filter((set) => set.key == 'plan')[0].value"
     :icon="'img:statics/icons/MICADO APP - Welcome page - Integration PLan-07 1.svg'"
     @hiding="dialog_plan = false"/>
-    <div class="row">
+    <div v-if="show_landing_page_choice" class="row">
        <div class="q-gutter-sm col" style="max-width:60px">
       <q-checkbox v-model="val" @input="setPreference($event)" color="accent"/>
     </div>
@@ -207,9 +212,11 @@ export default {
     storeMappingMixin({
       getters: {
         topics: "topic/topics",
+        mixed_settings:"settings/mixed_settings"
       },
       actions: {
         fetchTopic: "topic/fetchTopic",
+        fetchMixedSettings:"settings/fetchMixedSettings"
       },
     })
   ],
@@ -222,6 +229,11 @@ export default {
       dialog_doc:false,
       dialog_plan:false,
       val:false
+    }
+  },
+  computed:{
+    show_landing_page_choice(){
+      return (localStorage.getItem('landingPage') == 'true' || localStorage.getItem('landingPage') == null)
     }
   },
   methods:{
@@ -239,6 +251,7 @@ export default {
         defaultLang: this.$defaultLang,
         userLang: this.$userLang,
       });
+      this.fetchMixedSettings().then(ret=> console.log(ret))
 }
 }
 </script>
@@ -278,5 +291,8 @@ export default {
 color: white;
 background: #0B91CE;
 border-radius: 50px;
+}
+.separation{
+  color: #BDBDBD;
 }
 </style>

@@ -4,8 +4,14 @@
       <q-icon
         style="margin-bottom: 5px"
         :size="icon_size"
-        v-if="this.icon"
+        v-if="this.icon && !this.is_new"
         :name="this.icon"
+      />      
+      <q-icon
+        style="margin-bottom: 5px"
+        :size="icon_size"
+        v-else-if="this.icon && this.is_new"
+        :name="this.icon_new"
       />
       {{ this.Title }}
     </div>
@@ -49,6 +55,8 @@ export default {
     "icon_size",
     "showing",
     "container_style",
+    "is_new",
+    "icon_new"
   ],
   methods: {
     /* readClick(value) {

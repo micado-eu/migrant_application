@@ -30,7 +30,8 @@
     "integration_plan":"Integration plans",
     "policy":"Privacy policy",
     "welcome":"Welcome to the APP",
-    "consent":"Consent manager"
+    "consent":"Consent manager",
+    "funding":"Powered by"
   },
   "button": {
     "change_pass": "Change Password",
@@ -81,6 +82,7 @@
     "integration_plan": "My personal Plan",
     "personal": "Personal area",
     "survey":"Survey!",
+    "survey_desc":"Take part in our new Survey!",
     "document_sent":"Your document was successfully sent to",
     "document_delete":"Do you want to delete this document?",
     "document_download":"Download this document",
@@ -91,7 +93,8 @@
     "emitter":"Emitted by",
     "send_doc_pa":"Select a public autorithy",
     "send_doc_me":"Send to other mail",
-    "loading":"Loading..."
+    "loading":"Loading...",
+    "validation_request_successfull":"You successfully asked to validate your task"
   },
   "profile": {
     "change_pic": "Change picture",

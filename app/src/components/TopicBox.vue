@@ -1,6 +1,7 @@
 <template>
         <div
           class="q-gutter-sm col box"
+          :style="boxstile"
         >
           <TalkingLabel
             style="margin-left: 0px; margin-top: 0px; margin-right: 10px"
@@ -26,7 +27,7 @@ const TalkingLabel = () => import('components/TalkingLabel')
 export default {
 
   // name: 'ComponentName',
-  props: ['contentName', 'contentIcon'],
+  props: ['contentName', 'contentIcon', 'boxstile'],
   data () {
     return {}
   },
@@ -52,8 +53,6 @@ padding-right: 5px;
   box-sizing: border-box;
   border-radius: 5px;
   background-color: #fafafa;
-  max-width: 100px;
-  min-width: 100px;
   height: 100px;
   margin-left: 10px;
   margin-right: 10px;

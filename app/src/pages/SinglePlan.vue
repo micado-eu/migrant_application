@@ -2,19 +2,13 @@
   <q-page class="flows container-fluid" style="margin: 0 auto;">
     <div v-if="loading">Loading...</div>
     <div  v-else>
-    <div class="banner">
-        {{$t('desc_labels.integration_plan')}}
-        <q-icon
-          name="img:statics/icons/Icon - My Integration Plan (selected).svg"
-          style="padding-bottom:2px"
-        />
-      </div>
     <div class="row">
       <div class="col">
 
         <q-stepper
           v-model="step"
           vertical
+          flat
           color="accent"
           header-nav
           animated
@@ -24,9 +18,13 @@
                   class="title"
                   :Title="the_plan.title"
                   :text="the_plan.title"
+                  :row="'row'"
+                  :title_col="'col-11'"
+                  :icon_col="'col-1'"
+                  :icon_style="'text-align:right'"
                     />
             </h5>
-            <hr>
+            <hr style="border: 1px solid #FF7C44;">
           <div class="row">
             <h5 style="width:50%" class="pad-left">
                 <talking-label
@@ -56,7 +54,7 @@
             :data-cy="'intervention'.concat(intervention.id)"
             :name="intervention.id"
             :title="intervention.title"
-            icon="panorama_fish_eye"
+            icon="img:statics/icons/circle_white_36dp.svg"
             :key="intervention.id"
             color="accent"
             :done="intervention.completed"
@@ -95,6 +93,7 @@
                 unelevated
                 class="button"
                 rounded
+                :icon="'img:statics/icons/Icon - Checkmark.svg'"
                 color="accent"
                 :data-cy="'validateintervention'.concat(intervention.id)"
                 :id="intervention.id"
@@ -105,6 +104,7 @@
               
             </div>
           </q-step>
+         <hr>
 
         </q-stepper>
       </div>
@@ -175,6 +175,34 @@
             @click="$router.go(-1)"
           />
   </div>
+  <q-dialog v-model="validated_success">
+        <q-card class="q-pa-md" style="padding-top: 0px">
+        <div style="padding-top: 50px; text-align: center">
+          <q-icon
+            size="150px"
+            :name="'img:statics/icons/Icon - Round checkmark blue1.svg'"
+          />
+          <p class="thanks">{{ $t("feedback.thanks") }}</p>
+          <TalkingLabel
+            class="option_3"
+            style="width: 100%"
+            :Title="$t('desc_labels.validation_request_successfull')"
+            :text="$t('desc_labels.validation_request_successfull')"
+          />
+        </div>
+        <div style="text-align: center; padding-top: 30px">
+          <q-btn
+            class="go_back"
+            :label="$t('button.go_back')"
+            :icon="'img:statics/icons/Icon - go back.svg'"
+            rounded
+            no-caps
+            size="15px"
+            @click="validated_success = false"
+          />
+        </div>
+      </q-card>
+    </q-dialog>
   </q-page>
 </template>
 
@@ -199,7 +227,8 @@ export default {
       selectedPlanId: null,
       need_validators: false,
       ask_validation: false,
-      loading:true
+      loading:true,
+      validated_success:false
     }
   },
   components:{
@@ -263,6 +292,7 @@ export default {
           this.selectedPlanId = null
           this.fetchInterventionPlan(userId)
         })
+      this.validated_success = true
     },
     saveSelfValidationRequest () {
       // updating the intervention with the tenantid and the current date
@@ -306,13 +336,16 @@ font-style: normal;
 font-weight: bold;
 font-size: 18px;
 line-height: 25px;
-text-align: center;
 color: #0F3A5D;
 margin: auto;
+padding-left: 15px;
+padding-right: 15px;
+padding-bottom: 25px;
+padding-bottom: 20px;
 
 }
 .pad-left {
-  padding-left: 25px;
+  padding-left: 15px;
   font-family: Nunito;
 font-style: normal;
 font-weight: bold;
