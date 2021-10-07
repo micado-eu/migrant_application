@@ -2,29 +2,6 @@
   <div  style="padding-top:10px">
     <div v-if="this.loading">{{$t('desc_labels.loading')}}</div>
     <div v-else>
-
-    <div class="div-1">
-  <div class="div-2" >
-     <div class="div-3 text-center" >
-        <img 
-        v-if="this.the_user.picture == null"
-        alt="User Profile"
-        src="~assets/user-placeholder.png" 
-        class="image"
-            />
-        <img
-          v-else
-          width="250px"
-          height="250px"
-          class="col-6 image"
-          :src="this.the_user.picture"
-        />
-      </div>
-  </div>
-    </div>
-  <div style="background-color:#EFEFEF; height:5px">
-    &nbsp;
-  </div>
   <q-item :disable="!($auth.loggedIn())" clicakble @click.native="documents">
    <TalkingLabel
    class="q-pa-md option"

@@ -3,7 +3,7 @@
     <div v-if="this.loading">{{$t('desc_labels.loading')}}</div>
     <div v-else>
     <div class="div-1">
-  <UserButton ref="user" />
+  <!--<UserButton ref="user" />-->
   <div class="div-2" >
      <div class="div-3" >
         <img 

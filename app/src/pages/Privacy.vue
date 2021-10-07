@@ -24,6 +24,17 @@
                   :icon_style="'text-align:right'"
                 />
     </div>
+     <div class="q-pa-md q-gutter-sm col" style="text-align:center">
+        <q-btn
+          size="12px"
+          :icon="'img:statics/icons/Icon - go back.svg'"
+          no-caps
+          class="go_back"
+          rounded
+          :label="$t('button.go_back')"
+          @click="back()"
+        />
+      </div>
   </div>
 </template>
 
@@ -51,6 +62,11 @@ export default {
       logged: false
     }
   },
+  methods:{
+    back(){
+    this.$router.go(-1);
+    },
+  },
   created () {
   this.fetchMixedSettings().then(ret=> console.log(ret))
   }
@@ -60,5 +76,10 @@ export default {
 .pad{
   padding-left:10px;
   padding-right:10px
+}
+.go_back{
+  border: 1px solid #0F3A5D;
+  box-sizing: border-box;
+  border-radius: 50px;
 }
 </style>

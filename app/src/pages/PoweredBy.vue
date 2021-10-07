@@ -31,7 +31,7 @@
         src="~assets/Flag_of_Europe.png"
       >
               </div>
-        <div class="q-pa-md q-gutter-sm col button-div">
+        <div class="q-pa-md q-gutter-sm col" style="text-align:center">
         <q-btn
           size="12px"
           :icon="'img:statics/icons/Icon - go back.svg'"
@@ -71,8 +71,7 @@ export default {
   },
   methods:{
     back(){
-            this.$router.go(-1);
-
+    this.$router.go(-1);
     },
      welcome(){
        this.$router.push({name:'welcome'})      
@@ -180,6 +179,11 @@ display:inline-block
   color:#9E1F63;
   border: 1px solid #9E1F63;
   width:250px;
+  border-radius: 50px;
+}
+.go_back{
+  border: 1px solid #0F3A5D;
+  box-sizing: border-box;
   border-radius: 50px;
 }
 </style>

@@ -1,10 +1,9 @@
 <template>
-  <div class="q-pa-sm q-gutter-sm">
-    <q-btn
-      round
-      icon="img:statics/icons/Icon - Langauge selection (4th Iteration B).svg"
-      color="white"
-      size="15px"
+  <div class="q-pa-sm q-gutter-sm" style="padding-right:10px;">
+    <q-icon
+      
+      name="img:statics/icons/Icon - Langauge selection (4th Iteration A) (1).svg"
+      size="40px"
       @click="layout = true"
     />
 
