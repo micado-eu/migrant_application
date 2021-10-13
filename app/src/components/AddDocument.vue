@@ -1,6 +1,8 @@
 <template>
-<div class="container">
-  <div style="text-align:center">
+<div>
+  <div v-if="loading">{{$t('desc_labels.loading')}}</div>
+<div v-else class="">
+  <div style="text-align:center;padding-top:25px">
         <TalkingLabel
         v-if="thedocid != null"
         class="title"
@@ -15,9 +17,27 @@
         :Title="$t('desc_labels.add_doc')"
 
         />
-        <hr>
+        
   </div>
-    <div class="select" >
+  <hr style="border: 1px solid #FF7C44;">
+  <div class="row container" style="padding-bottom:10px" >
+        <div class="col-8">
+          <q-checkbox class="field" v-model="doc_shell.shareable" :label="$t('input_labels.shareable')" color="accent" />
+        </div>
+        <div class="col-4">
+        <TalkingLabel
+        class="field"
+        :text="$t('desc_labels.add_doc')"
+        :title_col="'col-11'"
+        :icon_col="'col-1'"
+        :icon_style="'text-align:right; padding-top:8px'"
+        />
+        </div>
+         
+          
+    </div>
+    <hr class="container-hr">
+    <div class="select container" >
         <TalkingLabel
         class="field"
         :text="$t('desc_labels.add_doc')"
@@ -40,24 +60,8 @@
           />
           <hr >
     </div>
-        <div class="row" style="padding-bottom:10px" >
-        <div class="col-6">
-          <q-checkbox v-model="doc_shell.shareable" :label="$t('input_labels.shareable')" color="accent" />
-        </div>
-        <div class="col-6">
-        <TalkingLabel
-        class="field"
-        :text="$t('desc_labels.add_doc')"
-        :title_col="'col-11'"
-        :icon_col="'col-1'"
-        :icon_style="'text-align:right; padding-top:8px'"
-        />
-        </div>
-         
-          
-    </div>
-    <hr >
-    <div class="col-8 input" >
+        
+    <div class="col-8 input container" >
       <TalkingLabel
         class="field"
         :text="$t('desc_labels.image')"
@@ -89,12 +93,13 @@
             <q-btn  no-caps rounded class="negative-button" filled color="accent" @click="removePicture(image)"  :label="$t('button.remove')" />
             </span>        
           </div>        
-  <div class="button-container" >
+  <div class="button-container container" >
     <q-btn class="go_back" :icon="'img:statics/icons/Icon - X (cancel).svg'" no-caps rounded to="/documents" @click="back()" :label="$t('button.cancel')" />
     <q-btn  :icon="'img:statics/icons/Icon - Checkmark.svg'" no-caps rounded  color="accent" @click="savingDocument(doc_shell)"  :label="$t('button.save')" />
     
   </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -124,6 +129,7 @@ export default {
   },
   data () {
     return {
+      loading:true,
       id: this.$route.params.id,
       doc_shell:{
          id: -1, 
@@ -261,7 +267,6 @@ export default {
       console.log(this.uploaded_images)
       console.log(this.doc_shell)
     }
-        this.loading = false
       })
     this.fetchDocumentType({defaultLang: this.$defaultLang, currentLang:this.$userLang})
     .then(document_types => {
@@ -270,6 +275,7 @@ export default {
           var the_doc = { label: document_type.document, value: document_type.id }
           this.t_docs.push(the_doc)
         })
+        this.loading = false
 
       })
 
@@ -287,7 +293,11 @@ export default {
 .container{
    margin: 0 auto;  
    margin-top:25px; 
-   padding-bottom:10px; 
+   padding-bottom:0px; 
+   width:90%
+}
+.container-hr{
+     margin: 0 auto;  
    width:90%
 }
 .select{

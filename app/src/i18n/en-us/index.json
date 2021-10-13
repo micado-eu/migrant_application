@@ -59,7 +59,7 @@
     "upload_doc": "Upload Document",
     "read": "Read Along",
     "email": "Email",
-    "shareable":"Shareable"
+    "shareable":"Document is shareable"
   },
   "desc_labels": {
     "cost": "Cost for the step",
