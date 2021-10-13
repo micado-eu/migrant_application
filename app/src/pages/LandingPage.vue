@@ -242,13 +242,13 @@ export default {
     },
     tasksAndPlans(){
       console.log(this.features)
-      return (this.features.filter((feat)=> {return feat == "FEAT_DOCUMENTS"}).length >0 || this.features.filter(feat => feat == "FEAT_TASKS").length >0)
+      return ((this.features.filter((feat)=> {return feat == "FEAT_MIGRANT_LOGIN"}).length >0) && (this.features.filter((feat)=> {return feat == "FEAT_DOCUMENTS"}).length >0 || this.features.filter(feat => feat == "FEAT_TASKS").length >0))
     },
     tasks(){
-      return this.features.filter((feat)=> {return feat == "FEAT_TASKS"}).length >0
+      return this.features.filter((feat)=> {return feat == "FEAT_MIGRANT_LOGIN"}).length >0 && this.features.filter((feat)=> {return feat == "FEAT_TASKS"}).length >0
     },
     docs(){
-      return this.features.filter((feat)=> {return feat == "FEAT_DOCUMENTS"}).length >0
+      return this.features.filter((feat)=> {return feat == "FEAT_MIGRANT_LOGIN"}).length >0 && this.features.filter((feat)=> {return feat == "FEAT_DOCUMENTS"}).length >0
     }
   },
   methods:{

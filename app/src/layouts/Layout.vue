@@ -324,7 +324,6 @@ export default {
          return filtered_navs
       }
       else {
-        console.log("IN NAVS NOT LOGGED IN ##############################")
         var login_filter =  this.navs.filter((nav) => {
           return nav.needs_login == false
         })
