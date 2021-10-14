@@ -317,7 +317,7 @@ export default {
           label: "menu.chatbot",
           icon: "img:statics/icons/Icon Chatbot (4th Iteration).svg",
           description: "menu.home_desc",
-          feature: ["FEAT_ASSISTANT", "FEAT_MIGRANT_LOGIN"] ,
+          feature: "FEAT_ASSISTANT" ,
           needs_login: false,
           //visible: needs_login ? this.$auth.loggedIn() : true
         },
