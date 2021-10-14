@@ -168,6 +168,8 @@ export default {
       if (this.surveyJSON != null) {
         this.survey = new SurveyVue.Model(this.surveyJSON)
         console.log("after survey initialization")
+        this.survey.locale = this.$userLang
+        console.log(this.survey)
         this.survey.onComplete.add((result) => {
           console.log("result of SURVEY")
           console.log(result.data)

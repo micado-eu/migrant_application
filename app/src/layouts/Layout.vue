@@ -18,7 +18,7 @@
           no-caps
           style="background-color:white; color:#0B91CE"
           :label="$t('desc_labels.survey')"
-          @click="goToLinkedSurvey()"
+          @click="alert = true"
         />
         <LanguageSelector
           data-cy="language_selector_button"
@@ -109,6 +109,28 @@
           <div class="text-h6">{{$t('desc_labels.survey')}}</div>
         </q-card-section>
 
+        <q-separator />
+
+        <q-card-section style="max-height: 50vh" >
+        {{this.$defaultLangString}}<br>
+        <a :href="this.settings.filter((set)=>{return set.key == 'survey_local'})[0].value">
+        {{this.settings.filter((set)=>{return set.key == 'survey_local'})[0].value}}<br>
+        </a>
+        English <br>
+        <a :href="this.settings.filter((set)=>{return set.key == 'survey_en'})[0].value">
+        {{this.settings.filter((set)=>{return set.key == 'survey_en'})[0].value}}<br>
+        </a>
+                </q-card-section>
+
+        
+      </q-card>
+    </q-dialog>
+    <!--<q-dialog v-model="alert">
+      <q-card>
+        <q-card-section>
+          <div class="text-h6">{{$t('desc_labels.survey')}}</div>
+        </q-card-section>
+
         <q-card-section class="q-pt-none">
           <div id="surveyContainer">
             <survey :survey="survey"></survey>
@@ -124,7 +146,7 @@
           />
         </q-card-actions>
       </q-card>
-    </q-dialog>
+    </q-dialog>-->
     <q-page-container>
       <q-page-sticky
         v-if="this.$auth.loggedIn() && this.chat"
@@ -176,7 +198,9 @@ export default {
         user: 'auth/user',
         languages: 'language/activeLanguages',
         surveys: 'survey/surveys',
-        features:"features/features"
+        features:"features/features",
+        settings: "settings/settings",
+        language:'language/activeLanguages'
       }, actions: {
         registerRocketchatUser: 'user/registerRocketChatUser',
         fetchMigrantSurvey: 'survey/fetchMigrantSurvey',
@@ -286,15 +310,16 @@ export default {
           icon: "img:statics/icons/icon - Feedback (4th iteration).svg",
           description: "menu.settings_desc",
           needs_login: false,
+          feature: "FEAT_DEFAULT",
           visible: true
         },
         {
           label: "menu.chatbot",
           icon: "img:statics/icons/Icon Chatbot (4th Iteration).svg",
           description: "menu.home_desc",
-          feature: "FEAT_ASSISTANT",
+          feature: ["FEAT_ASSISTANT", "FEAT_MIGRANT_LOGIN"] ,
           needs_login: false,
-          visible: false
+          //visible: needs_login ? this.$auth.loggedIn() : true
         },
                 {
           label: "menu.settings",

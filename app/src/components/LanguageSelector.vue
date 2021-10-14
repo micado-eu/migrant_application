@@ -89,8 +89,11 @@ export default {
     },
     getValue(language) {
       this._selectedLanguage = language.lang
+      console.log(this._selectedLanguage === language.lang)
       setLocale(language)
-      this.$router.go()
+      this.$forceUpdate()
+      setTimeout(()=>{  this.$router.go() }, 500)
+     
     },
     getToggleValue(language) {
       return this._selectedLanguage === language.lang
