@@ -126,7 +126,9 @@ export default {
     storeMappingMixin({
       getters: {
         mixed_settings:"settings/mixed_settings",
-        surveys: 'survey/surveys'
+        surveys: 'survey/surveys',
+        user: 'auth/user',
+
       },
       actions: {
         fetchMixedSettings:"settings/fetchMixedSettings",
