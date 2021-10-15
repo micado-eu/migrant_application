@@ -27,7 +27,7 @@
         <div class="col-4">
         <TalkingLabel
         class="field"
-        :text="$t('desc_labels.add_doc')"
+        :text="$t('input_labels.shareable')"
         :title_col="'col-11'"
         :icon_col="'col-1'"
         :icon_style="'text-align:right; padding-top:8px'"
@@ -83,15 +83,23 @@
             >
         </q-file>
     </div>
-    <div class="" v-for="image in uploaded_images" :key="image">
+    <div class="row container" v-for="image in uploaded_images" :key="image">
+    <div class="col" style="text-align:center">
         <q-img 
               :src="image"
               spinner-color="white"
               class="image"
             />
-            <span class="span">
-            <q-btn  no-caps rounded class="negative-button" filled color="accent" @click="removePicture(image)"  :label="$t('button.remove')" />
-            </span>        
+    </div>
+    <div class="col">
+            <span class=" row span" style="justify-content:center">
+            <q-btn style="margin-top:25px"  no-caps rounded class="negative-button" filled color="accent" @click="removePicture(image)"  :label="$t('button.remove')" />
+            <TalkingLabel
+                  :text="$t('button.remove')"
+                  :icon_style="'margin-top:31px; margin-left:10px'"                  
+                />
+            </span>    
+    </div>    
           </div>        
   <div class="button-container container" >
     <q-btn class="go_back" :icon="'img:statics/icons/Icon - X (cancel).svg'" no-caps rounded to="/documents" @click="back()" :label="$t('button.cancel')" />

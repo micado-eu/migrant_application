@@ -13,6 +13,7 @@
                   :icon_col="'col-1'"
                   :icon_style="'text-align:right'"
                   :showing="'white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'"
+                  :white="true"
                 />
     </div>
     
@@ -191,13 +192,18 @@
     </div>
     </div>
         <hr class="separation"/>
-  <div style="text-align:center; margin-bottom:20px; margin-top:25px">
+  <div class="row" style="text-align:center; margin-bottom:20px; margin-top:25px;  justify-content: center;
+">
     <q-btn
           :label="$t('welcome_page.start')"
           class="button"
           no-caps
           @click="$router.push({ name: 'topic'})"
         />
+        <TalkingLabel
+                  :text="$t('welcome_page.start')"
+                  :icon_style="'margin-top:7px; margin-left:10px'"                  
+                />
   </div>
   </div>
 </template>

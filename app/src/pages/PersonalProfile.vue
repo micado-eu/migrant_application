@@ -53,8 +53,14 @@
   <div style="background-color:#EFEFEF; height:5px">
     &nbsp;
   </div>
-         <div v-if="($auth.loggedIn())" style="text-align:center; padding-top:20px">
+         <div class="row" v-if="($auth.loggedIn())" style="text-align:center; padding-top:20px;justify-content: center">
         <q-btn  class="logout"  unelevated no-caps :label="$t('desc_labels.logout')" @click="logout()" />
+        <TalkingLabel
+        class="option"
+          :text="$t('desc_labels.logout')"
+          :icon_style="'margin-top:3px; margin-left:10px'"
+          :icon_size="'30px'"                  
+          />
       </div>
   </div>
   </div>

@@ -77,7 +77,8 @@
     "required_documents": "Required documents",
     "privacy_settings": "Privacy Settings",
     "comments": "Comments",
-    "send_doc": "Please choose an email adress",
+    "send_doc": "Select a public authority or enter a new email address",
+    "send_doc_title":"Send document via mail",
     "plan_progress": "Plan Progress",
     "integration_plan": "My personal Plan",
     "personal": "Personal area",
@@ -91,7 +92,7 @@
     "image":"Image", 
     "click_step":"Click on a step below for details",
     "emitter":"Emitted by",
-    "send_doc_pa":"Select a public autorithy",
+    "send_doc_pa":"Select a public authority",
     "send_doc_me":"Send to other mail",
     "loading":"Loading...",
     "validation_request_successfull":"You successfully asked to validate your task"
