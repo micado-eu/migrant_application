@@ -39,7 +39,7 @@
    <TalkingLabel
    class="q-pa-md option"
     style="width:100%"
-    :icon="'img:statics/icons/Icon - Round checkmark2.svg'"
+    :icon="'img:statics/icons/Icon - Privacy 1.svg'"
     :icon_size="'30px'"
     :Title="$t('menu.policy')"
     :text="$t('menu.policy')"

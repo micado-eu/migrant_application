@@ -133,7 +133,7 @@
             @click="sendDoc()"
           />
           <TalkingLabel
-                  :text="$t('welcome_page.start')"
+                  :text="$t('button.send')"
                   :icon_style="'margin-top:17px; margin-left:10px'"                  
                 />
           </div>

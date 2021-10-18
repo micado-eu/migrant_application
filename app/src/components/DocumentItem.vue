@@ -36,6 +36,9 @@
         {{$t('button.view_model')}}
         </a>
     </div>
+    <div v-else  class="col models-container">
+      &nbsp;
+    </div>
 <div v-if="pictures"  class="col models-container" >
           <a
           class="models"
@@ -69,7 +72,7 @@
           transition-prev="slide-right"
           transition-next="slide-left"
           animated
-          control-color="primary"
+          control-color="secondary"
           class="rounded-borders"
         >
         
@@ -93,7 +96,7 @@
         >
           <q-btn-toggle
             glossy
-            color="accent"
+            toggle-color="secondary"
             v-model="slide"
             @input="transitioning($event)"
             :options="options"
