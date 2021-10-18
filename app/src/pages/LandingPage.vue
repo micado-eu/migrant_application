@@ -174,7 +174,22 @@
     :content="mixed_settings.filter((set) => set.key == 'plan')[0].value"
     :icon="'img:statics/icons/MICADO APP - Welcome page - Integration PLan-07 1.svg'"
     @hiding="dialog_plan = false"/>
-    <div v-if="show_landing_page_choice" class="row">
+     <div class="row" style="text-align:center; margin-bottom:20px; margin-top:25px;  justify-content: center;">
+    <q-btn
+          :label="$t('welcome_page.start')"
+          class="button"
+          :icon="'img:statics/icons/Icon - lets start.svg'"
+          no-caps
+          @click="$router.push({ name: 'topic'})"
+        />
+        <TalkingLabel
+                  :text="$t('welcome_page.start')"
+                  :icon_style="'margin-top:7px; margin-left:10px'"                  
+                />
+  </div>
+        <hr class="separation"/>
+ 
+  <div v-if="show_landing_page_choice" class="row">
        <div class="q-gutter-sm col" style="max-width:60px">
       <q-checkbox v-model="val" @input="setPreference($event)" color="accent"/>
     </div>
@@ -191,20 +206,6 @@
                 />
     </div>
     </div>
-        <hr class="separation"/>
-  <div class="row" style="text-align:center; margin-bottom:20px; margin-top:25px;  justify-content: center;
-">
-    <q-btn
-          :label="$t('welcome_page.start')"
-          class="button"
-          no-caps
-          @click="$router.push({ name: 'topic'})"
-        />
-        <TalkingLabel
-                  :text="$t('welcome_page.start')"
-                  :icon_style="'margin-top:7px; margin-left:10px'"                  
-                />
-  </div>
   </div>
 </template>
 

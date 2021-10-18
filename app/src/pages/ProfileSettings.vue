@@ -1,10 +1,10 @@
 <template>
-  <q-page padding>
+  <q-page >
     <div v-if="this.loading">{{$t('desc_labels.loading')}}</div>
     <div v-else>
     <div class="div-1">
   <!--<UserButton ref="user" />-->
-  <div class="div-2" >
+  <div class="" >
      <div class="div-3" >
         <img 
         v-if="this.the_user.picture == null"
@@ -20,7 +20,13 @@
           :src="this.the_user.picture"
         />
       </div>
-      <q-btn class="button" color="info" unelevated no-caps rounded text-color="white" :label="$t('profile.change_pic')" @click="picture_select = !picture_select; modifyPic()" />
+      <div class="row" style="justify-content:center; padding-bottom:20px">
+      <q-btn :icon="'img:statics/icons/Icon - Camera icon.svg'" class="button-picture"  unelevated no-caps rounded  :label="$t('profile.change_pic')" @click="picture_select = !picture_select; modifyPic()" />
+      <TalkingLabel
+                  :text="$t('profile.change_pic')"
+                  :icon_style="'margin-top:7px; margin-left:10px'"                  
+                />
+      </div>
       <div v-if="picture_select" class=" q-pa-xsm center">
      <div class="col-8 pad" >
          <q-file
@@ -36,62 +42,121 @@
       
       </div>
     </div>
-    <div class=" q-pa-xsm center" >
-      <h5 class="q-pa-md header">{{$t('profile.personal_profile')}}</h5>
+      <div  class="separators" >
+    &nbsp;
+  </div>
+  <div class=" row q-pa-md header" >
+   <TalkingLabel
+   :Title="$t('profile.personal_profile')"
+                  :row="'row'"
+                  :title_col="'col-11'"
+                  :icon_col="'col-1'"
+                  :icon_style="'text-align:right'"
+      :text="$t('profile.personal_profile')"
+    />
+    </div>
+    <div class=" q-px-md center" >
       <div class="input-top">
         <q-input :readonly="!editing"  dense :label="$t('profile.username')"  bg-color="grey-1"   standout outlined v-model="the_user.username" >
+          <TalkingLabel
+                  :text="$t('profile.username')"
+                  :icon_style="'margin-top:7px; margin-left:10px'"                  
+                />
         </q-input>
       </div>
     </div>
-    <div class=" q-pa-xsm " >
+    <div class=" q-px-md " >
      <div class="col-8 input" >
         <q-input  dense :readonly="!editing" bg-color="grey-1" standout outlined :label="$t('profile.phone_number')" v-model="the_user.phoneNumber"  >
-          <template v-slot:append>
-          <q-icon
-          />
-        </template>
+          <TalkingLabel
+                  :text="$t('profile.phone_number')"
+                  :icon_style="'margin-top:7px; margin-left:10px'"                  
+                />
         </q-input>
       </div>
     </div>
-<div class=" q-pa-xsm " >
+<div class=" q-px-md " >
       <div class="col-8 input" >
         <q-input  dense :readonly="!editing" :label="$t('profile.legal_name')"  bg-color="grey-1" standout outlined v-model="the_user.legalname"  >
+                    <TalkingLabel
+                  :text="$t('profile.legal_name')"
+                  :icon_style="'margin-top:7px; margin-left:10px'"                  
+                />
         </q-input>
       </div>
     </div>
-<div class=" q-pa-xsm " >
+<div class=" q-px-md " >
     <div class="col-8 input" >
         <q-input  dense :readonly="!editing"  bg-color="grey-1" :label="$t('profile.country')" standout outlined v-model="the_user.nationality"  >
+                    <TalkingLabel
+                  :text="$t('profile.country')"
+                  :icon_style="'margin-top:7px; margin-left:10px'"                  
+                />
         </q-input>
       </div>
     </div>
-    <div class=" q-pa-xsm " >
+    <div class=" q-px-md " >
       <div class="col-8 input" >
         <q-input  dense :readonly="!editing" bg-color="grey-1" :label="$t('profile.dob')" standout outlined v-model="the_user.date_of_birth"  >
+                    <TalkingLabel
+                  :text="$t('profile.dob')"
+                  :icon_style="'margin-top:7px; margin-left:10px'"                  
+                />
+                
         </q-input>
       </div>
     </div>
-    <div class=" q-pa-xsm " >
+    <div class=" q-px-md " >
       <div class="col-8 input" >
         <q-input  dense :readonly="!editing" bg-color="grey-1" :label="$t('profile.gender')" standout outlined v-model="the_user.gender"  >
+                    <TalkingLabel
+                  :text="$t('profile.gender')"
+                  :icon_style="'margin-top:7px; margin-left:10px'"                  
+                />
         </q-input>
       </div>
     </div>
-    <div class=" q-pa-xsm " >
+    <div class=" q-px-md " >
       <div class="col-8 input" >
         <q-input  dense :readonly="!editing" bg-color="grey-1" :label="$t('profile.mail')" standout outlined v-model="the_user.email"  >
+                    <TalkingLabel
+                  :text="$t('profile.mail')"
+                  :icon_style="'margin-top:7px; margin-left:10px'"                  
+                />
         </q-input>
       </div>
     </div>
-    <div class=" q-pa-xsm " >
+    <div class=" q-px-md " >
       <div v-if="!editing" class="col-8 input" >
-        <q-btn class="button" color="info" unelevated no-caps rounded text-color="white" :label="$t('button.edit')" @click="editing=true" />
-        <q-btn class="button" color="accent" unelevated no-caps rounded text-color="white" :label="$t('button.change_pass')" @click="change_pass=true" />
+        <q-btn class="button-edit" :icon="'img:statics/icons/Icon - edit.svg'" unelevated no-caps rounded  :label="$t('button.edit')" @click="editing=true" />
+       
       </div>
       <div v-else class="col-8 input" >
-        <q-btn class="button" color="accent" unelevated no-caps rounded text-color="white" :label="$t('button.save')" @click="editUser()" />
-        <q-btn class="button" color="red" unelevated no-caps rounded text-color="white" :label="$t('button.cancel')" @click="cancelUser()" />
+        <q-btn class="button-cancel" style="margin-right:10px" :icon="'img:statics/icons/Icon - X (cancel).svg'"  unelevated no-caps rounded  :label="$t('button.cancel')" @click="cancelUser()" />
+        <q-btn class="button-save" unelevated no-caps :icon="'img:statics/icons/Icon - Checkmark.svg'" rounded color="accent" :label="$t('button.save')" @click="editUser()" />
       </div>
+    </div>
+          <div class="separators">
+    &nbsp;
+  </div>
+    <div>
+        <div class=" row q-pa-md header" >
+   <TalkingLabel
+   :Title="$t('profile.password')"
+                  :row="'row'"
+                  :title_col="'col-11'"
+                  :icon_col="'col-1'"
+                  :icon_style="'text-align:right'"
+      :text="$t('profile.password')"
+    />
+    </div>
+    </div>
+    <div class="row" style="justify-content:center">
+       <q-btn class="button" color="accent" unelevated no-caps rounded text-color="white" :label="$t('button.change_pass')" @click="change_pass=true" />
+                <TalkingLabel
+      :text="$t('profile.password_change')"
+      :icon_style="' margin-top:7px;margin-left:10px'"                  
+    />
     </div>
     <q-dialog v-model="change_pass">
 <q-card class="q-pa-md" style="padding-top:0px">
@@ -103,9 +168,8 @@
                   :text="$t('profile.password_change')"
                 />
       </div>
-    <div class=" q-pa-sm " >
-      <div class="col-8 input" >
-      <q-input dense   outlined bg-color="grey-1" v-model="password.old_password" filled :type="isPwd0 ? 'password' : 'text'" :label="$t('profile.old_pass')">
+    <div class="row q-pa-sm " >
+      <q-input dense style=""   outlined bg-color="grey-1" v-model="password.old_password" filled :type="isPwd0 ? 'password' : 'text'" :label="$t('profile.old_pass')">
         <template v-slot:append>
           <q-icon
             :name="isPwd0? 'visibility_off' : 'visibility'"
@@ -114,10 +178,13 @@
           />
         </template>
       </q-input>
+            <TalkingLabel
+      :text="$t('profile.old_pass')"
+      :icon_style="' margin-top:7px;margin-left:10px'"                  
+    />
       </div>
-    </div>
-    <div class=" q-pa-sm " >
-      <div class="col-8 input" >
+    
+    <div class=" row q-pa-sm " >
       <q-input dense   outlined bg-color="grey-1" v-model="password.new_password" filled :type="isPwd1 ? 'password' : 'text'" :label="$t('profile.new_pass')">
         <template v-slot:append>
           <q-icon
@@ -127,10 +194,12 @@
           />
         </template>
       </q-input>
-      </div>
+            <TalkingLabel
+      :text="$t('profile.new_pass')"
+      :icon_style="' margin-top:7px;margin-left:10px'"                  
+    />
     </div>
-    <div class=" q-pa-sm " >
-      <div class="col-8 input" >
+    <div class="row q-pa-sm " >
       <q-input dense   outlined bg-color="grey-1" v-model="password.confirm_password" filled :type="isPwd2? 'password' : 'text'" :label="$t('profile.confirm_pass')">
         <template v-slot:append>
           <q-icon
@@ -140,7 +209,11 @@
           />
         </template>
       </q-input>
-      </div>
+            <TalkingLabel
+      :text="$t('profile.confirm_pass')"
+      :icon_style="' margin-top:7px;margin-left:10px'"                  
+    />
+      
     </div>
     <div class="col-8 input" >
         <q-btn class="go_back"  no-caps rounded :icon="'img:statics/icons/Icon - X (cancel).svg'"  :label="$t('button.cancel')" @click="cancelPass()" />
@@ -216,24 +289,43 @@
           </div>
 </q-card>
     </q-dialog>
+      <div class="separators">
+    &nbsp;
+  </div>
   <div v-if="users.length >0">
-<h5 class="q-pa-md header">{{$t('profile.user_pref')}}</h5>    <div class="row" v-for="user_top in users" :key="user_top.id">
-    <div style="padding-top:8px;" class="col-2">
+  <div class=" row q-px-md header" >
+   <TalkingLabel
+   :Title="$t('profile.user_pref')"
+                  :row="'row'"
+                  :title_col="'col-11'"
+                  :icon_col="'col-1'"
+                  :icon_style="'text-align:right'"
+      :text="$t('profile.user_pref')"
+    />
+    </div>
+    <div class="q-px-md" v-for="user_top in users" :key="user_top.id">
+    <div  style="padding-top:8px;float: left" >
       <q-img style="width:24px; height:24px"  :src="user_top.icon"  />
     </div>
-    <div class="col-8" style="text-align:left;padding-top:8px">
+    <div style="text-align:left;padding-top:8px;float: left; white-space: nowrap; overflow: hidden;text-overflow: ellipsis;">
       {{user_top.user_type}}
     </div>
-    <div class="col-2" style="text-align:right">
+    <div  style="text-align:right; float: none;">
+      <div class="row" style="justify-content:right">
     <q-checkbox :disable="!edit_preferences" color="accent" v-model="preferences.filter((pref)=>{return pref.id == user_top.id})[0].active" />
+      <TalkingLabel
+      :text="user_top.user_type"
+      :icon_style="' margin-top:7px;margin-left:10px'"                  
+    />
+      </div>
     </div>
     </div>
     <div v-if="!edit_preferences" class="col-8 input" >
-        <q-btn class="button" color="info" unelevated no-caps rounded text-color="white" :label="$t('button.edit')" @click="edit_preferences=!edit_preferences" />
+        <q-btn class="button-edit" :icon="'img:statics/icons/Icon - edit.svg'" unelevated no-caps rounded  :label="$t('button.edit')" @click="edit_preferences=!edit_preferences" />
       </div>
       <div v-else class="col-8 input" >
-        <q-btn class="button" color="accent" unelevated no-caps rounded text-color="white" :label="$t('button.save')" @click="editPref()" />
-        <q-btn class="button" color="red" unelevated no-caps rounded text-color="white" :label="$t('button.cancel')" @click="cancelPref()" />
+        <q-btn class="button-cancel" style="margin-right:10px" :icon="'img:statics/icons/Icon - X (cancel).svg'" unelevated no-caps rounded  :label="$t('button.cancel')" @click="cancelPref()" />
+        <q-btn class="button-save" unelevated no-caps :icon="'img:statics/icons/Icon - Checkmark.svg'" rounded color="accent" :label="$t('button.save')" @click="editPref()" />
       </div>
   </div>
   <q-btn
@@ -619,10 +711,8 @@ export default {
 .div-2{
 display:inline-block;
 margin-bottom: 1px; 
-width:300px
 }
 .div-3{
-  margin:0 auto
 }
 .image{
   width:150px; 
@@ -631,6 +721,11 @@ width:300px
 }
 .button{
   width:150px
+}
+.button-picture{
+  border: 1px solid #FF7C44;
+  box-sizing: border-box;
+  border-radius: 50px;
 }
 .pad{
   margin-bottom:10px; 
@@ -641,11 +736,9 @@ width:300px
   display:inline-block
 }
 .header{
-  margin:0 auto; 
-  text-align:left; 
-  padding-left:0px;
   font-size:18px;
-  font-weight:600
+  font-weight:600;
+  color: #0F3A5D;
 }
 .input-top{
   margin: auto;
@@ -660,10 +753,8 @@ width:300px
 }
 .div-4{
   margin:0 auto;
-  width:300px 
 }
 .my-card{
-width:300px; 
 display:inline-block
 }
 .pad-top{
@@ -691,5 +782,25 @@ display:inline-block
   font-size: 15px;
   line-height: 20px;
   color: #000000;
+}
+.button-edit{
+  border: 1px solid #FF7C44;
+  box-sizing: border-box;
+  border-radius: 50px;
+}
+.button-save{
+border-radius: 50px;
+
+}
+.button-cancel{
+  border: 1px solid #9E1F63;
+box-sizing: border-box;
+border-radius: 50px;
+}
+.separators{
+  background-color:#EFEFEF;
+   height:5px;
+    margin-top:10px;
+     margin-bottom:10px
 }
 </style>

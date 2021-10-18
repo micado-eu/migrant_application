@@ -6,12 +6,14 @@
         <TalkingLabel
         v-if="thedocid != null"
         class="title"
+        :icon="top_icon"
         :text="$t('desc_labels.edit_doc')"
         :Title="$t('desc_labels.edit_doc')"
 
         />
         <TalkingLabel
         v-else
+        :icon="top_icon"
         class="title"
         :text="$t('desc_labels.add_doc')"
         :Title="$t('desc_labels.add_doc')"
@@ -83,6 +85,15 @@
             >
         </q-file>
     </div>
+        <div class="col">
+            <span class=" row span" style="justify-content:center">
+            <q-btn icon="img:statics/icons/Icon - Delete.svg" style="margin-top:25px"  no-caps rounded class="negative-button" filled  @click="removePicture(image)"  :label="$t('button.remove')" />
+            <TalkingLabel
+                  :text="$t('button.remove')"
+                  :icon_style="'margin-top:31px; margin-left:10px'"                  
+                />
+            </span>    
+    </div>  
     <div class="row container" v-for="image in uploaded_images" :key="image">
     <div class="col" style="text-align:center">
         <q-img 
@@ -91,15 +102,7 @@
               class="image"
             />
     </div>
-    <div class="col">
-            <span class=" row span" style="justify-content:center">
-            <q-btn style="margin-top:25px"  no-caps rounded class="negative-button" filled color="accent" @click="removePicture(image)"  :label="$t('button.remove')" />
-            <TalkingLabel
-                  :text="$t('button.remove')"
-                  :icon_style="'margin-top:31px; margin-left:10px'"                  
-                />
-            </span>    
-    </div>    
+  
           </div>        
   <div class="button-container container" >
     <q-btn class="go_back" :icon="'img:statics/icons/Icon - X (cancel).svg'" no-caps rounded to="/documents" @click="back()" :label="$t('button.cancel')" />
@@ -156,7 +159,8 @@ export default {
       t_docs:[], 
       picture_files:[], 
       uploaded_images:[],
-      is_new : true
+      is_new : true,
+      top_icon:null
     }
   }, methods: {
      createShell () {
@@ -283,16 +287,25 @@ export default {
           var the_doc = { label: document_type.document, value: document_type.id }
           this.t_docs.push(the_doc)
         })
+        if(this.thedocid != null){
+          this.top_icon = 'img:statics/icons/Icon - edit.svg'
+        }
+        else{
+          this.top_icon = 'img:statics/icons/Icon - add doc.svg'
+        }
         this.loading = false
 
       })
+      
 
   },
 }
 </script>
 <style scoped>
 .negative-button{
-  width:100px;
+  border: 1px solid #9E1F63;
+  box-sizing: border-box;
+  border-radius: 50px;
 }
 .button{
   width:100px;

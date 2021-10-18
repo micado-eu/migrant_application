@@ -447,7 +447,7 @@ export default {
     home() {
       this.index = null;
       this.crumbs = [];
-      this.$router.push({ path: "/" });
+      this.$router.push({ path: "/topic" });
     },
     navigation(id) {
       console.log(this.$route);
