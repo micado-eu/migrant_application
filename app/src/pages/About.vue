@@ -1,7 +1,7 @@
 <template>
       <div >
 
-   <q-item clicakble v-if="surveyJSON !=null" @click.native="generateSurvey">
+   <q-item clicakble v-if="surveyJSON !=null && loggedIn" @click.native="generateSurvey">
    <TalkingLabel
    class="q-pa-md option"
     style="width:100%"
@@ -127,7 +127,7 @@ export default {
       getters: {
         mixed_settings:"settings/mixed_settings",
         surveys: 'survey/surveys',
-        user: 'auth/user',
+        loggedIn: 'auth/loggedIn',
 
       },
       actions: {
