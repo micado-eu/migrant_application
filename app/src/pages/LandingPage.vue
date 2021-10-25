@@ -33,20 +33,10 @@
     <q-scroll-area style="height: 110px; max-width: 100%;">
       <div class="row no-wrap">
         <div
-          class="q-gutter-sm col"
+          class="q-gutter-sm col topic_box"
           @click="topic_open = topic.id"
           v-for="topic in topics"
           :key="topic.id"
-          style="
-            text-align: center;
-            background-color: #fafafa;
-            max-width: 100px;
-            min-width: 100px;
-            height: 100px;
-            margin-left: 10px;
-            margin-right: 10px;
-            margin-top: 10px;
-          "
         >
           <TalkingLabel
             style="margin-left: 0px; margin-top: 0px; margin-right: 10px"
@@ -112,7 +102,7 @@
     :open="dialog_info"
     :title="$t('menu.info')"
     :content_type="'menu'"
-    :content="mixed_settings.filter((set) => set.key == 'info')[0].value"
+    :content="information"
     :icon="'img:statics/icons/MICADO APP - Welcome page - Basic information-03 1.svg'"
     @hiding="dialog_info = false"/>
 
@@ -120,7 +110,7 @@
     :open="dialog_process"
     :title="$t('menu.guides')"
     :content_type="'menu'"
-    :content="mixed_settings.filter((set) => set.key == 'guides')[0].value"
+    :content="guides"
     :icon="'img:statics/icons/MICADO APP - Welcome page - step by step--04 1.svg'"
     @hiding="dialog_process = false"/>
 
@@ -128,7 +118,7 @@
     :open="dialog_events"
     :title="$t('menu.events')"
     :content_type="'menu'"
-    :content="mixed_settings.filter((set) => set.key == 'event')[0].value"
+    :content="events"
     :icon="'img:statics/icons/MICADO APP - Welcome page - events & courses-05 1.svg'"
     @hiding="dialog_events = false"/>
   <div v-if="tasksAndPlans" class="category-contents pad">
@@ -163,7 +153,7 @@
     :open="dialog_doc"
     :title="$t('menu.documents')"
     :content_type="'menu'"
-    :content="mixed_settings.filter((set) => set.key == 'doc')[0].value"
+    :content="documents"
     :icon="'img:statics/icons/MICADO APP - Welcome page - My documents-06 1.svg'"
     @hiding="dialog_doc = false"/>
 
@@ -171,7 +161,7 @@
     :open="dialog_plan"
     :title="$t('menu.integration_plan')"
     :content_type="'menu'"
-    :content="mixed_settings.filter((set) => set.key == 'plan')[0].value"
+    :content="plans"
     :icon="'img:statics/icons/MICADO APP - Welcome page - Integration PLan-07 1.svg'"
     @hiding="dialog_plan = false"/>
      <div class="row" style="text-align:center; margin-bottom:20px; margin-top:25px;  justify-content: center;">
@@ -244,6 +234,51 @@ export default {
     }
   },
   computed:{
+    information(){
+      var info = this.mixed_settings.filter((set) => set.key == 'info')
+      if(info.length >0){
+        return info[0].value
+      }
+      else{
+        return 'default text'
+      }
+    },
+    guides(){
+      var info = this.mixed_settings.filter((set) => set.key == 'guides')
+      if(info.length >0){
+        return info[0].value
+      }
+      else{
+        return 'default text'
+      }
+    },
+    events(){
+            var info = this.mixed_settings.filter((set) => set.key == 'events')
+      if(info.length >0){
+        return info[0].value
+      }
+      else{
+        return 'default text'
+      }
+    },
+    plans(){
+      var info = this.mixed_settings.filter((set) => set.key == 'plan')
+      if(info.length >0){
+        return info[0].value
+      }
+      else{
+        return 'default text'
+      }
+    },
+    documents(){
+      var info = this.mixed_settings.filter((set) => set.key == 'doc')
+      if(info.length >0){
+        return info[0].value
+      }
+      else{
+        return 'default text'
+      }
+    },
     show_landing_page_choice(){
       return (localStorage.getItem('landingPage') == 'true' || localStorage.getItem('landingPage') == null)
     },
@@ -316,5 +351,17 @@ border-radius: 50px;
 }
 .separation{
   color: #BDBDBD;
+}
+.topic_box{
+  text-align: center;
+  background-color: #fafafa;
+  max-width: 100px;
+  min-width: 100px;
+  height: 100px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  border: 0.5px solid #5C81A2;
+  border-radius: 5px;
 }
 </style>
