@@ -16,9 +16,10 @@
         <q-toolbar-title>{{ $t( "button.home") }}</q-toolbar-title>
        <q-btn
           no-caps
+          v-if="survey_visible"
           style="background-color:white; color:#0B91CE"
           :label="$t('desc_labels.survey')"
-          @click="alert = true"
+          @click="openSurvey"
         />
         <LanguageSelector
           data-cy="language_selector_button"
@@ -53,6 +54,7 @@
         style="padding-right:0px; padding-left:0px"
           v-for="(nav) in nav_options"
           @click="action(nav.label)"
+          v-feature-flipping="nav.feature"
           :key="nav.label"
           :icon="nav.icon"
         />
@@ -124,6 +126,30 @@
 
         
       </q-card>
+    </q-dialog>
+    <q-dialog v-model="alert_int" full-width>
+       <q-layout
+        view="Lhh lpR fff"
+        container
+        class="bg-white"
+      >
+        <q-page-container>
+          <q-page class="q-pa-sm">
+      <div id="surveyContainer">
+            <survey :survey="survey"></survey>
+          </div>
+
+        <q-card-actions align="right">
+          <q-btn
+            flat
+            label="OK"
+            color="primary"
+            v-close-popup
+          />
+        </q-card-actions>
+          </q-page>
+        </q-page-container>
+      </q-layout>
     </q-dialog>
     <!--<q-dialog v-model="alert">
       <q-card>
@@ -198,13 +224,15 @@ export default {
         user: 'auth/user',
         languages: 'language/activeLanguages',
         surveys: 'survey/surveys',
+        surveyJSON:'survey/surveyJSON',
         features:"features/features",
         settings: "settings/settings",
         language:'language/activeLanguages'
       }, actions: {
         registerRocketchatUser: 'user/registerRocketChatUser',
         fetchMigrantSurvey: 'survey/fetchMigrantSurvey',
-        saveSurveyAnswer: 'survey/saveSurveyAnswer'
+        saveSurveyAnswer: 'survey/saveSurveyAnswer',
+        setSurveyJSON:"survey/setSurveyJSON"
       }
     })
 
@@ -222,11 +250,11 @@ export default {
         console.log(result.data)
       });*/
     return {
-      surveyJSON: null,
       leftDrawerOpen: false,
       klaro_config: klaroconfig,
       manager: null,
       alert: false,
+      alert_int:false,
       survey: null,
       chat:true,
       chatting:false,
@@ -334,6 +362,29 @@ export default {
     };
   },
   computed: {
+    survey_visible(){
+      var surveyType = this.settings.filter((set)=>{
+        return set.key =='internal_survey'
+      })
+      console.log(this.user)
+       if(surveyType.length >0){
+        if(surveyType[0].value =='true'){
+          if(this.$auth.loggedIn() && this.surveyJSON !=null){
+            return true
+          }
+          else{
+            return false
+          }
+          
+        }
+        else{
+          return true
+        }
+      }
+      else{
+        return true
+      }
+    },
     nav_options () {
       if (this.$auth.loggedIn()) {
         var filtered_navs = []
@@ -485,6 +536,24 @@ export default {
     goToLinkedSurvey(){
       window.location.replace('https://' +'www.csi.it')
     },
+    openSurvey(){
+      var surveyType = this.settings.filter((set)=>{
+        return set.key =='internal_survey'
+      })
+      console.log(surveyType)
+      console.log(typeof(surveyType))
+      if(surveyType.length >0){
+        if(surveyType[0].value =='true'){
+          this.generateSurvey()
+        }
+        else{
+          this.alert = true
+        }
+      }
+      else{
+        this.alert = true
+      }
+    },
     applyConsent(consent){
       if(consent.usageTracker){
         console.log("starting countly")
@@ -511,13 +580,15 @@ export default {
       console.log(this.surveyJSON)
       if (this.surveyJSON != null) {
         this.survey = new SurveyVue.Model(this.surveyJSON)
+        
+
         console.log("after survey initialization")
         this.survey.onComplete.add((result) => {
           console.log("result of SURVEY")
           console.log(result.data)
           this.saveResults(result.data)
         })
-        this.alert = true
+        this.alert_int = true
         return this.survey
       } else {
         return null
@@ -534,6 +605,8 @@ export default {
       console.log(formatted_results)
       this.saveSurveyAnswer(formatted_results)
       console.log("I am saving the results of the survey!!!!!")
+            this.setSurveyJSON(null)
+
     },
     action (lab) {
       switch (lab) {
@@ -570,12 +643,13 @@ export default {
   created () {
     this.$root.$refs.layout_ref = this;
     console.log(this.$root.$refs)
-
+    console.log(this.$defaultLangString)
     this.fetchMigrantSurvey(this.user.umid).then((sr) => {
       console.log("I AM THE SUrVEY")
       console.log(sr)
       if(sr != null){
-        this.surveyJSON = JSON.parse(sr.survey)
+        //this.surveyJSON = JSON.parse(sr.survey)
+        this.setSurveyJSON(JSON.parse(sr.survey))
       }
     })
   }

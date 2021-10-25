@@ -9,6 +9,9 @@ export function fetchSurvey (state, data) {
     .fetchSurvey()
     .then(survey => state.commit('setSurvey', survey))
 }
+export function setSurveyJSON (state, data) {
+  state.commit('setSurveyJSON', data)
+}
 export function fetchMigrantSurvey (state, data) {
   return client
     .fetchMigrantSurvey(data)

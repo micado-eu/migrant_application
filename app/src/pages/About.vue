@@ -1,7 +1,7 @@
 <template>
       <div >
 
-   <q-item clicakble v-if="surveyJSON !=null && loggedIn" @click.native="generateSurvey">
+   <q-item clicakble v-if="survey_visible" @click.native="openSurvey">
    <TalkingLabel
    class="q-pa-md option"
     style="width:100%"
@@ -15,7 +15,7 @@
     :icon_style="'text-align:right'"
     />
   </q-item>
-  <div v-if="surveyJSON !=null" style="background-color:#EFEFEF; height:5px">
+  <div v-if="survey_visible" style="background-color:#EFEFEF; height:5px">
     &nbsp;
   </div>
      <q-item clicakble @click.native="welcome">
@@ -86,17 +86,39 @@
       <div style="background-color:#EFEFEF; height:5px">
     &nbsp;
   </div>
-      <q-dialog v-model="alert">
+    <q-dialog v-model="alert">
       <q-card>
         <q-card-section>
           <div class="text-h6">{{$t('desc_labels.survey')}}</div>
         </q-card-section>
 
-        <q-card-section class="q-pt-none">
-          <div id="surveyContainer">
+        <q-separator />
+
+        <q-card-section style="max-height: 50vh" >
+        {{this.$defaultLangString}}<br>
+        <a :href="this.settings.filter((set)=>{return set.key == 'survey_local'})[0].value">
+        {{this.settings.filter((set)=>{return set.key == 'survey_local'})[0].value}}<br>
+        </a>
+        English <br>
+        <a :href="this.settings.filter((set)=>{return set.key == 'survey_en'})[0].value">
+        {{this.settings.filter((set)=>{return set.key == 'survey_en'})[0].value}}<br>
+        </a>
+                </q-card-section>
+
+        
+      </q-card>
+    </q-dialog>
+    <q-dialog v-model="alert_int" full-width>
+       <q-layout
+        view="Lhh lpR fff"
+        container
+        class="bg-white"
+      >
+        <q-page-container>
+          <q-page class="q-pa-sm">
+      <div id="surveyContainer">
             <survey :survey="survey"></survey>
           </div>
-        </q-card-section>
 
         <q-card-actions align="right">
           <q-btn
@@ -106,7 +128,9 @@
             v-close-popup
           />
         </q-card-actions>
-      </q-card>
+          </q-page>
+        </q-page-container>
+      </q-layout>
     </q-dialog>
   </div>
 </template>
@@ -128,12 +152,15 @@ export default {
         mixed_settings:"settings/mixed_settings",
         surveys: 'survey/surveys',
         loggedIn: 'auth/loggedIn',
-
+        settings: "settings/settings",
+        user: 'auth/user',
+        surveyJSON:'survey/surveyJSON',
       },
       actions: {
         fetchMixedSettings:"settings/fetchMixedSettings",
         fetchMigrantSurvey: 'survey/fetchMigrantSurvey',
-        saveSurveyAnswer: 'survey/saveSurveyAnswer'
+        saveSurveyAnswer: 'survey/saveSurveyAnswer',
+        setSurveyJSON:"survey/setSurveyJSON"
       },
     })
   ],
@@ -142,10 +169,53 @@ export default {
       logged: false,
       alert:false,
       survey:null,
-      surveyJSON: null,
+      alert_int:false,
     }
   },
+  computed:{
+        survey_visible(){
+      var surveyType = this.settings.filter((set)=>{
+        return set.key =='internal_survey'
+      })
+      console.log(this.user)
+       if(surveyType.length >0){
+        if(surveyType[0].value =='true'){
+          if(this.loggedIn && this.surveyJSON !=null){
+            return true
+          }
+          else{
+            return false
+          }
+          
+        }
+        else{
+          return true
+        }
+      }
+      else{
+        return true
+      }
+    },
+  },
   methods:{
+    openSurvey(){
+      var surveyType = this.settings.filter((set)=>{
+        return set.key =='internal_survey'
+      })
+      console.log(surveyType)
+      console.log(typeof(surveyType))
+      if(surveyType.length >0){
+        if(surveyType[0].value =='true'){
+          this.generateSurvey()
+        }
+        else{
+          this.alert = true
+        }
+      }
+      else{
+        this.alert = true
+      }
+    },
      welcome(){
        console.log("in welcome")
        this.$router.push({name:'welcome'})      
@@ -177,7 +247,7 @@ export default {
           console.log(result.data)
           this.saveResults(result.data)
         })
-        this.alert = true
+        this.alert_int = true
         return this.survey
       } else {
         return null
@@ -194,15 +264,16 @@ export default {
       console.log(formatted_results)
       this.saveSurveyAnswer(formatted_results)
       console.log("I am saving the results of the survey!!!!!")
+      this.setSurveyJSON(null)
     },
   },
   created () {
   this.fetchMixedSettings().then(ret=> console.log(ret))
-  this.fetchMigrantSurvey(this.$auth.user.umid).then((sr) => {
+  this.fetchMigrantSurvey(this.user.umid).then((sr) => {
       console.log("I AM THE SUrVEY in about")
       console.log(sr)
       if(sr != null){
-        this.surveyJSON = JSON.parse(sr.survey)
+      //  this.surveyJSON = JSON.parse(sr.survey)
       }
     })
   console.log(this.surveyJSON)  
