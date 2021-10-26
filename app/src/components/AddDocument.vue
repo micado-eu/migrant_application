@@ -85,15 +85,7 @@
             >
         </q-file>
     </div>
-        <div class="col">
-            <span class=" row span" style="justify-content:center">
-            <q-btn icon="img:statics/icons/Icon - Delete.svg" style="margin-top:25px"  no-caps rounded class="negative-button" filled  @click="removePicture(image)"  :label="$t('button.remove')" />
-            <TalkingLabel
-                  :text="$t('button.remove')"
-                  :icon_style="'margin-top:31px; margin-left:10px'"                  
-                />
-            </span>    
-    </div>  
+ 
     <div class="row container" v-for="image in uploaded_images" :key="image">
     <div class="col" style="text-align:center">
         <q-img 
@@ -102,6 +94,15 @@
               class="image"
             />
     </div>
+            <div class="col">
+            <span class=" row " style="justify-content:center">
+            <q-btn icon="img:statics/icons/Icon - Delete.svg" style="margin-top:25px"  no-caps rounded class="negative-button" filled  @click="removePicture(image)"  :label="$t('button.remove')" />
+            <TalkingLabel
+                  :text="$t('button.remove')"
+                  :icon_style="'margin-top:31px; margin-left:10px'"                  
+                />
+            </span>    
+    </div> 
   
           </div>        
   <div class="button-container container" >

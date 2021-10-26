@@ -17,7 +17,7 @@
         rounded
         color="secondary"
         no-caps
-        style="width:175px;"
+        style="width:200px;"
         to="/documents/add"
         :label="$t('button.add_document')"
       />

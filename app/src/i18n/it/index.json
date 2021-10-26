@@ -6,7 +6,7 @@
     },
     "consent": {
         "title": "MICADO gestione del consenso",
-        "other": "",
+        "other": "Altro",
         "chat_title": "MICADO bot",
         "chat": "Widget per la chat",
         "usageTracker_title": "Statistiche di MICADO",
@@ -20,7 +20,7 @@
         "title": "I miei strumenti",
         "home": "Homepage",
         "home_desc": "Homepage di MICADO",
-        "processes": "Integrazione passo passo",
+        "processes": "Come fare per",
         "processes_desc": "Processi d'integrazione guidati",
         "info": "Centro informazioni",
         "chatbot": "MICADO Bot",
@@ -38,7 +38,13 @@
         "information": "Centro informazioni",
         "information_desc": "Informazioni e servizi per l'integrazione",
         "events": "Eventi",
-        "events_desc": "Eventi d'integrazione"
+        "consent": "Gestisci consenso",
+        "funding": "Powered by",
+        "guides": "Come fare per",
+        "integration_plan": "Piani d'integrazione",
+        "policy": "Informativa sulla Privacy",
+        "events_desc": "Eventi d'integrazione",
+        "welcome": "Benvenuti nell'APP"
     },
     "button": {
         "add_document": "Aggiungi documento",
@@ -64,6 +70,7 @@
         "exp_date": "Data di scadenza",
         "upload_doc": "Carica documento",
         "read": "Read Along",
+        "shareable": "Il documento è condivisibile",
         "email": "Email"
     },
     "desc_labels": {
@@ -79,6 +86,7 @@
         "login_register": "Login/Registrazione",
         "settings": "Impostazioni",
         "logout": "Logout",
+        "loading": "Caricamento...",
         "information_centre": "Centro informazioni",
         "events": "Eventi",
         "required_documents": "Documenti richiesti",
@@ -98,6 +106,9 @@
         "document_download": "Scarica il documento",
         "document_delete": "Vuoi davvero eliminare questo documento?",
         "document_sent": "Il tuo documento è stato inviato con successo a",
+        "send_doc_title": "Manda il documento via mail",
+        "survey_desc": "Prendi parte al sondaggio!",
+        "validation_request_successfull": "La richiesta di validazione è stata eseguita con successo",
         "survey": "Sondaggio!",
         "personal": "Area personale"
     },
@@ -174,11 +185,23 @@
         "feedback_sent": "Il tuo feedback è stato inviato con successo alla Pubblica Amministrazione",
         "feedback_question": "Mandaci un feedback! Cosa pensi della pagina su cui stai navigando?",
         "send": "Manda feedback",
+        "send_pa": "Manda il tuo feedback alla PA",
         "feedback": "Scrivi il tuo feedback nella casella di testo sottostante",
         "url": "Il tuo feedback sarà sulla pagina che si trova qui",
         "mail": "Il tuo feedback sarà mandato a"
     },
     "date_selector": {
         "close": "Chiudi"
+    },
+    "welcome_page": {
+        "category_content": "I contenuti sono organizzati in 3 gruppi:",
+        "create_account": "Crea un account",
+        "login_content": "Se crei un account, le organizzazioni pubbliche possono aiutarti con i tuoi processi di integrazione attraverso 'I miei documenti' ed 'I miei piani di integrazione':",
+        "need_login_chat": "Devi creare un account o accedere per utilizzare il chatbot",
+        "no_landing_page": "Spunta la casella se non vuoi più vedere questa pagina",
+        "start": "Iniziamo",
+        "topic_content": "Puoi trovare i contenuti divisi per argomento",
+        "welcome_explanation": "Come funziona quest'app?",
+        "welcome_text": "Come funziona quest'app?"
     }
 }
