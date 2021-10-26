@@ -2,7 +2,7 @@
   <div  style="padding-top:10px">
     <div v-if="this.loading">{{$t('desc_labels.loading')}}</div>
     <div v-else>
-  <q-item :disable="!($auth.loggedIn())" clicakble @click.native="documents">
+  <q-item v-if="docs_present" :disable="!($auth.loggedIn())" clicakble @click.native="documents">
    <TalkingLabel
    class="q-pa-md option"
     style="width:100%"
@@ -16,10 +16,10 @@
     :icon_style="'text-align:right'"
     />
   </q-item>
-  <div style="background-color:#EFEFEF; height:5px">
+  <div v-if="docs_present" style="background-color:#EFEFEF; height:5px">
     &nbsp;
   </div>
-    <q-item :disable="!($auth.loggedIn())" clicakble @click.native="tasks">
+    <q-item v-if="tasks_present" :disable="!($auth.loggedIn())" clicakble @click.native="tasks">
    <TalkingLabel
    class="q-pa-md option"
     style="width:100%"
@@ -33,7 +33,7 @@
     :icon_style="'text-align:right'"
     />
   </q-item>
-  <div style="background-color:#EFEFEF; height:5px">
+  <div v-if="tasks_present" style="background-color:#EFEFEF; height:5px">
     &nbsp;
   </div>
     <q-item :disable="!($auth.loggedIn())" clicakble @click.native="settings">
@@ -53,8 +53,14 @@
   <div style="background-color:#EFEFEF; height:5px">
     &nbsp;
   </div>
-         <div v-if="($auth.loggedIn())" style="text-align:center; padding-top:20px">
+         <div class="row" v-if="($auth.loggedIn())" style="text-align:center; padding-top:20px;justify-content: center">
         <q-btn  class="logout"  unelevated no-caps :label="$t('desc_labels.logout')" @click="logout()" />
+        <TalkingLabel
+        class="option"
+          :text="$t('desc_labels.logout')"
+          :icon_style="'margin-top:3px; margin-left:10px'"
+          :icon_size="'30px'"                  
+          />
       </div>
   </div>
   </div>
@@ -75,6 +81,8 @@ export default {
       getters: {
         user: 'user/users',
         users: 'user_type/users',
+        features:"features/features"
+
       }, actions: {
         fetchSpecificUser: 'user/fetchSpecificUser',
         saveUserPic:'user/saveUserPic',
@@ -93,6 +101,12 @@ export default {
   computed:{
     check(value){
       this.preferences.includes(value)
+    },
+    tasks_present(){
+      return this.features.filter((feat)=> {return feat == "FEAT_TASKS"}).length >0
+    },
+    docs_present(){
+      return this.features.filter((feat)=> {return feat == "FEAT_DOCUMENTS"}).length >0
     }
   },
   data () {

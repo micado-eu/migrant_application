@@ -6,6 +6,9 @@ export function someMutation (state) {
 export function setSurvey (state, survey) {
   state.survey = survey
 }
+export function setSurveyJSON (state, surveyJSON) {
+  state.surveyJSON = surveyJSON
+}
 
 export function editSurvey (state, survey) {
   console.log("update the state")

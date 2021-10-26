@@ -6,20 +6,25 @@
    <q-icon name="img:statics/icons/MICADO APP - Welcome page - My documents-06 1.svg" class="top-icon"/>
   </div>
     <div
-      class=""
-      style="text-align:center; padding-top:30px; padding-bottom:20px; "
+      class="row"
+      style="text-align:center; padding-top:30px; padding-bottom:20px; justify-content: center"
     >
       <q-btn
       :data-cy="'adddocument'"
         id="button"
+        icon="img:statics/icons/Icon - add docwhite.svg"
         unelevated
         rounded
         color="secondary"
         no-caps
-        style="width:300px;"
+        style="width:200px;"
         to="/documents/add"
         :label="$t('button.add_document')"
       />
+              <TalkingLabel
+                  :text="$t('button.add_document')"
+                  :icon_style="'margin-top:7px; margin-left:10px'"                  
+                />
     </div>
   <div style="background-color:#EFEFEF; margin-bottom:10px; height:5px">
     &nbsp;
@@ -46,6 +51,8 @@ const DocumentWalletItem = () => import("components/DocumentWalletItem")
 import editEntityMixin from "../mixin/editEntityMixin"
 import storeMappingMixin from '../mixin/storeMappingMixin'
 require('@uppy/core/dist/style.css')
+const TalkingLabel = () => import('components/TalkingLabel')
+
 
 export default {
   name: "Documents",
@@ -66,7 +73,7 @@ export default {
     };
   },
   components: {
-    DocumentWalletItem
+    DocumentWalletItem,TalkingLabel
   },
   computed:{
     user_docs(){

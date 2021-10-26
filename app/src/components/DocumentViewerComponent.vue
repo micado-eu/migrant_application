@@ -129,7 +129,7 @@
             :label="$t('button.delete')"
             rounded
             unelevated
-            color="accent"
+            class="delete-button"
             no-caps
             size="15px"
             @click="deleteDocument"
@@ -144,9 +144,10 @@
         v-model="senddoc"
       >
       
+              
         <q-card class="q-pa-md" style="padding-top:0px">
-          <q-toolbar style="padding-right:0px" class="bg-white">
-            <q-toolbar-title style="color:black"></q-toolbar-title>
+          <q-toolbar style="padding-right:0px;padding-left:0px" class="bg-white">
+            <q-toolbar-title ></q-toolbar-title>
             <q-btn
               color="red"
               flat
@@ -156,7 +157,17 @@
               icon="close"
             />
           </q-toolbar>
-          <div style="text-align:center">
+          <div class="dialog-title" style="padding-bottom:10px;margin-left:5px; margin-right:3px;">
+            <TalkingLabel
+                  :Title="$t('desc_labels.send_doc_title')"
+                  :text="$t('desc_labels.send_doc_title')"
+                  :row="'row'"
+                  :title_col="'col-11'"
+                  :icon_col="'col-1'"
+                  :icon_style="'text-align:right'"
+            />
+          </div>
+          <div style="padding-bottom:10px;margin-left:5px; margin-right:3px;">
            <TalkingLabel
                   :Title="$t('desc_labels.send_doc')"
                   :text="$t('desc_labels.send_doc')"
@@ -167,11 +178,12 @@
             />
           </div>
           <!--<h5 class="header">{{$t('desc_labels.send_doc')}} </h5>-->
-          <div >
+          <div class="row" style="text-align:center;justify-content: center">
             <q-select
               filled
-              :label="$t('desc_labels.send_doc_pa')"
+              style="width:89%"
               dense
+              :label="$t('desc_labels.send_doc_pa')"
               v-model="emailTenant"
               :options="tenants"
               option-value="email"
@@ -180,27 +192,41 @@
               map-options
               @input="assign"
             />
+            <TalkingLabel
+                  :text="$t('desc_labels.send_doc_pa')"
+                  :icon_style="'margin-top:7px; margin-left:10px'"                  
+                />
+          </div>
+          <div class="row" style="text-align:center;justify-content: center">
             <q-input
               dense
-              style="padding-top:10px"
+              style="padding-top:10px;width:89%"
               standout
               outlined
               type="email"
               :label="$t('desc_labels.send_doc_me')"
               v-model="email"
             />
+            <TalkingLabel
+                  :text="$t('desc_labels.send_doc_me')"
+                  :icon_style="'margin-top:17px; margin-left:10px'"                  
+                />
           </div>
-          <div style="text-align:center">
+          <div class="row" style="text-align:center;justify-content: center">
           <q-btn
             no-caps
-            class="button"
+            style="margin-top:10px"
             rounded
             :icon-right="'img:statics/icons/Icon - send white.svg'"
             color="accent"
-            :label="$t('button.send')"
             :disable="!sendable"
+            :label="$t('button.send')"
             @click="sendDoc()"
           />
+          <TalkingLabel
+                  :text="$t('button.send')"
+                  :icon_style="'margin-top:17px; margin-left:10px'"                  
+                />
           </div>
         </q-card>
       </q-dialog>
@@ -255,7 +281,8 @@ export default {
       editDocument: 'documents/editDocument',
       saveDocument: 'documents/saveDocument',
       fetchDocuments: 'documents/fetchDocuments',
-      fetchDocumentType: 'document_type/fetchDocumentType'
+      fetchDocumentType: 'document_type/fetchDocumentType',
+      sendDocumentMail: 'documents/sendDocumentMail'
     }
   })
   ],
@@ -299,7 +326,7 @@ export default {
       console.log("here goes the call to the backend to send the document")
       this.senddoc = false
       this.confirm = true
-      this.sendDocumentMail({id:value.docid, email:value.email})
+      this.sendDocumentMail({id:sendingDoc.docid, email:this.email})
     },
     deleteDocument () {
       if(this.the_document.uploadedByMe){
@@ -462,10 +489,10 @@ export default {
   color: #0F3A5D;
 }
   .go_back {
-  background-color: white;
-  color:#0F3A5D;
-  border: 1px solid #0F3A5D;
-  border-radius: 50px;
+ border: 1px solid #9E1F63;
+box-sizing: border-box;
+border-radius: 50px;
+color: black;
 }
 .option_3{
   font-family: Nunito;
@@ -474,5 +501,10 @@ export default {
   font-size: 18px;
   line-height: 25px;
   color: #0F3A5D;
+}
+.delete-button{
+  background: #9E1F63;
+  color:white;
+  border-radius: 50px;
 }
 </style>

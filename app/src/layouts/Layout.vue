@@ -16,15 +16,16 @@
         <q-toolbar-title>{{ $t( "button.home") }}</q-toolbar-title>
        <q-btn
           no-caps
+          v-if="survey_visible"
           style="background-color:white; color:#0B91CE"
           :label="$t('desc_labels.survey')"
-          @click="goToLinkedSurvey()"
+          @click="openSurvey"
         />
         <LanguageSelector
           data-cy="language_selector_button"
           ref="language"
         ></LanguageSelector>
-        <UserButton ref="user" />
+        <UserButton v-if="features.filter((feat)=>{return feat == 'FEAT_MIGRANT_LOGIN'}).length >0" ref="user" />
 
         <FeedbackButton ref="feedback" />
       <!--  <q-btn
@@ -53,9 +54,9 @@
         style="padding-right:0px; padding-left:0px"
           v-for="(nav) in nav_options"
           @click="action(nav.label)"
+          v-feature-flipping="nav.feature"
           :key="nav.label"
           :icon="nav.icon"
-          v-feature-flipping="nav.feature"
         />
       </q-tabs>
     </q-footer>
@@ -110,6 +111,52 @@
           <div class="text-h6">{{$t('desc_labels.survey')}}</div>
         </q-card-section>
 
+        <q-separator />
+
+        <q-card-section v-if=" settings.filter((set)=>{return set.key == 'survey_local'}).length >0 ||settings.filter((set)=>{return set.key == 'survey_en'}).length >0" style="max-height: 50vh" >
+        <div v-if=" settings.filter((set)=>{return set.key == 'survey_local'}).length >0" >{{this.$defaultLangString}}</div><br>
+        <a v-if=" settings.filter((set)=>{return set.key == 'survey_local'}).length >0" :href="this.settings.filter((set)=>{return set.key == 'survey_local'})[0].value">
+        {{this.settings.filter((set)=>{return set.key == 'survey_local'})[0].value}}<br>
+        </a>
+        <div v-if=" settings.filter((set)=>{return set.key == 'survey_en'}).length >0">English </div> <br>
+        <a v-if=" settings.filter((set)=>{return set.key == 'survey_en'}).length >0" :href="this.settings.filter((set)=>{return set.key == 'survey_en'})[0].value">
+        {{this.settings.filter((set)=>{return set.key == 'survey_en'})[0].value}}<br>
+        </a>
+                </q-card-section>
+
+        
+      </q-card>
+    </q-dialog>
+    <q-dialog v-model="alert_int" full-width>
+       <q-layout
+        view="Lhh lpR fff"
+        container
+        class="bg-white"
+      >
+        <q-page-container>
+          <q-page class="q-pa-sm">
+      <div id="surveyContainer">
+            <survey :survey="survey"></survey>
+          </div>
+
+        <q-card-actions align="right">
+          <q-btn
+            flat
+            label="OK"
+            color="primary"
+            v-close-popup
+          />
+        </q-card-actions>
+          </q-page>
+        </q-page-container>
+      </q-layout>
+    </q-dialog>
+    <!--<q-dialog v-model="alert">
+      <q-card>
+        <q-card-section>
+          <div class="text-h6">{{$t('desc_labels.survey')}}</div>
+        </q-card-section>
+
         <q-card-section class="q-pt-none">
           <div id="surveyContainer">
             <survey :survey="survey"></survey>
@@ -125,7 +172,7 @@
           />
         </q-card-actions>
       </q-card>
-    </q-dialog>
+    </q-dialog>-->
     <q-page-container>
       <q-page-sticky
         v-if="this.$auth.loggedIn() && this.chat"
@@ -156,6 +203,7 @@ import storeMappingMixin from '../mixin/storeMappingMixin'
 import klaroconfig from '../configs/klaro.json'
 import * as SurveyVue from 'survey-vue'
 import ChatbotNotAvailable from 'components/ChatbotNotAvailable'
+//import { filter } from 'vue/types/umd';
 
 
 export default {
@@ -175,11 +223,16 @@ export default {
       getters: {
         user: 'auth/user',
         languages: 'language/activeLanguages',
-        surveys: 'survey/surveys'
+        surveys: 'survey/surveys',
+        surveyJSON:'survey/surveyJSON',
+        features:"features/features",
+        settings: "settings/settings",
+        language:'language/activeLanguages'
       }, actions: {
         registerRocketchatUser: 'user/registerRocketChatUser',
         fetchMigrantSurvey: 'survey/fetchMigrantSurvey',
-        saveSurveyAnswer: 'survey/saveSurveyAnswer'
+        saveSurveyAnswer: 'survey/saveSurveyAnswer',
+        setSurveyJSON:"survey/setSurveyJSON"
       }
     })
 
@@ -197,11 +250,11 @@ export default {
         console.log(result.data)
       });*/
     return {
-      surveyJSON: null,
       leftDrawerOpen: false,
       klaro_config: klaroconfig,
       manager: null,
       alert: false,
+      alert_int:false,
       survey: null,
       chat:true,
       chatting:false,
@@ -284,23 +337,23 @@ export default {
           label: "menu.feedback",
           icon: "img:statics/icons/icon - Feedback (4th iteration).svg",
           description: "menu.settings_desc",
-          feature: "FEAT_MIGRANT_LOGIN",
           needs_login: false,
+          feature: "FEAT_DEFAULT",
           visible: true
         },
         {
           label: "menu.chatbot",
           icon: "img:statics/icons/Icon Chatbot (4th Iteration).svg",
           description: "menu.home_desc",
-          feature: "FEAT_DEFAULT",
+          feature: "FEAT_ASSISTANT" ,
           needs_login: false,
-          visible: false
+          //visible: needs_login ? this.$auth.loggedIn() : true
         },
                 {
           label: "menu.settings",
-          icon: "img:statics/icons/Icon - Settings-whitw.svg",
+          icon: "img:statics/icons/Icon - Personal page.svg",
           description: "menu.glossary_desc",
-          feature: "FEAT_GLOSSARY",
+          feature: "FEAT_MIGRANT_LOGIN",
           needs_login: true,
           visible: true
         },
@@ -309,14 +362,64 @@ export default {
     };
   },
   computed: {
+    survey_visible(){
+      var surveyType = this.settings.filter((set)=>{
+        return set.key =='internal_survey'
+      })
+      console.log(this.user)
+       if(surveyType.length >0){
+        if(surveyType[0].value =='true'){
+          if(this.$auth.loggedIn() && this.surveyJSON !=null){
+            return true
+          }
+          else{
+            return false
+          }
+          
+        }
+        else{
+          if(this.settings.filter((set)=>{return set.key == 'survey_local'}).length >0 || this.settings.filter((set)=>{return set.key == 'survey_en'}).length >0){
+            return true
+          }
+          else{
+            return false
+          }
+        }
+      }
+      else{
+         if(this.settings.filter((set)=>{return set.key == 'survey_local'}).length >0 || this.settings.filter((set)=>{return set.key == 'survey_en'}).length >0){
+            return true
+          }
+          else{
+            return false
+          }
+      }
+    },
     nav_options () {
       if (this.$auth.loggedIn()) {
-        return this.navs
+        var filtered_navs = []
+         this.navs.forEach((nav)=>{
+                        console.log(nav.feature == undefined)
+            console.log(this.features.indexOf(nav.feature) > -1)
+            console.log(this.features.indexOf(nav.feature) > -1 || nav.feature == undefined)
+           if(this.features.indexOf(nav.feature) > -1 || nav.feature == undefined){
+             console.log(nav.feature)
+             filtered_navs.push(nav)
+           }
+         })
+         return filtered_navs
       }
       else {
-        return this.navs.filter((nav) => {
+        var login_filter =  this.navs.filter((nav) => {
           return nav.needs_login == false
         })
+        var filtered_navs = []
+         login_filter.forEach((nav)=>{
+           if(this.features.indexOf(nav.feature) > -1 || nav.feature == undefined){
+             filtered_navs.push(nav)
+           }
+         })
+         return filtered_navs
       }
     },
   },
@@ -443,6 +546,24 @@ export default {
     goToLinkedSurvey(){
       window.location.replace('https://' +'www.csi.it')
     },
+    openSurvey(){
+      var surveyType = this.settings.filter((set)=>{
+        return set.key =='internal_survey'
+      })
+      console.log(surveyType)
+      console.log(typeof(surveyType))
+      if(surveyType.length >0){
+        if(surveyType[0].value =='true'){
+          this.generateSurvey()
+        }
+        else{
+          this.alert = true
+        }
+      }
+      else{
+        this.alert = true
+      }
+    },
     applyConsent(consent){
       if(consent.usageTracker){
         console.log("starting countly")
@@ -469,13 +590,15 @@ export default {
       console.log(this.surveyJSON)
       if (this.surveyJSON != null) {
         this.survey = new SurveyVue.Model(this.surveyJSON)
+        
+
         console.log("after survey initialization")
         this.survey.onComplete.add((result) => {
           console.log("result of SURVEY")
           console.log(result.data)
           this.saveResults(result.data)
         })
-        this.alert = true
+        this.alert_int = true
         return this.survey
       } else {
         return null
@@ -492,6 +615,8 @@ export default {
       console.log(formatted_results)
       this.saveSurveyAnswer(formatted_results)
       console.log("I am saving the results of the survey!!!!!")
+            this.setSurveyJSON(null)
+
     },
     action (lab) {
       switch (lab) {
@@ -528,12 +653,13 @@ export default {
   created () {
     this.$root.$refs.layout_ref = this;
     console.log(this.$root.$refs)
-
+    console.log(this.$defaultLangString)
     this.fetchMigrantSurvey(this.user.umid).then((sr) => {
       console.log("I AM THE SUrVEY")
       console.log(sr)
       if(sr != null){
-        this.surveyJSON = JSON.parse(sr.survey)
+        //this.surveyJSON = JSON.parse(sr.survey)
+        this.setSurveyJSON(JSON.parse(sr.survey))
       }
     })
   }

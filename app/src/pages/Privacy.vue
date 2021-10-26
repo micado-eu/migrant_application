@@ -16,8 +16,8 @@
 
     <TalkingLabel
                   :showing="'font-weight: normal;font-size: 14px;line-height: 16px;color: #000000;'"
-                  :Title="mixed_settings.filter(set => set.key == 'policy')[0].value"
-                  :text="mixed_settings.filter(set => set.key == 'policy')[0].value"
+                  :Title="privacy"
+                  :text="privacy"
                   :row="'row'"
                   :title_col="'col-11'"
                   :icon_col="'col-1'"
@@ -60,6 +60,17 @@ export default {
   data () {
     return {
       logged: false
+    }
+  },
+  computed:{
+    privacy(){
+      var info = this.mixed_settings.filter((set) => set.key == 'policy')
+      if(info.length >0){
+        return info[0].value
+      }
+      else{
+        return 'default text'
+      }
     }
   },
   methods:{

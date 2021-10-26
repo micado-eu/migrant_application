@@ -18,7 +18,14 @@
 
     <div :class="icon_col" :style="icon_style">
       <q-icon
-        v-if="!amISpeaking"
+        v-if="!amISpeaking && white"
+        @click.stop="readClick(text)"
+        :id="this.text"
+        name="img:statics/icons/Icon - Auto Read  (selectedwhite).svg"
+        size="xsm"
+      />
+      <q-icon
+        v-else-if="!amISpeaking && !white"
         @click.stop="readClick(text)"
         :id="this.text"
         name="img:statics/icons/Icon - Auto Read  (selected).svg"
@@ -56,7 +63,8 @@ export default {
     "showing",
     "container_style",
     "is_new",
-    "icon_new"
+    "icon_new",
+    "white"
   ],
   methods: {
     /* readClick(value) {

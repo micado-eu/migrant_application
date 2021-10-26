@@ -47,19 +47,12 @@
       </div>
       <div class="row topic_layout">
         <div
-          class="q-gutter-sm col"
+          class="q-gutter-sm col topic_box"
           @click="bread(topic)"
           v-for="topic in to_show"
           :key="topic.id"
           style="
-            text-align: center;
-            background-color: #fafafa;
-            max-width: 100px;
-            min-width: 100px;
-            height: 100px;
-            margin-left: 10px;
-            margin-right: 10px;
-            margin-top: 10px;
+
           "
         >
           <TalkingLabel
@@ -447,7 +440,7 @@ export default {
     home() {
       this.index = null;
       this.crumbs = [];
-      this.$router.push({ path: "/" });
+      this.$router.push({ path: "/topic" });
     },
     navigation(id) {
       console.log(this.$route);
@@ -721,5 +714,17 @@ $secondary_list: #0f3a5d;
   font-size: 16px;
   line-height: 21px;
   color: #0f3a5d;
+}
+.topic_box{
+  text-align: center;
+  background-color: #fafafa;
+  max-width: 100px;
+  min-width: 100px;
+  height: 100px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  border: 0.5px solid #5C81A2;
+  border-radius: 5px;
 }
 </style>
