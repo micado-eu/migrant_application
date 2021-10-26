@@ -113,13 +113,13 @@
 
         <q-separator />
 
-        <q-card-section style="max-height: 50vh" >
-        {{this.$defaultLangString}}<br>
-        <a :href="this.settings.filter((set)=>{return set.key == 'survey_local'})[0].value">
+        <q-card-section v-if=" settings.filter((set)=>{return set.key == 'survey_local'}).length >0 ||settings.filter((set)=>{return set.key == 'survey_en'}).length >0" style="max-height: 50vh" >
+        <div v-if=" settings.filter((set)=>{return set.key == 'survey_local'}).length >0" >{{this.$defaultLangString}}</div><br>
+        <a v-if=" settings.filter((set)=>{return set.key == 'survey_local'}).length >0" :href="this.settings.filter((set)=>{return set.key == 'survey_local'})[0].value">
         {{this.settings.filter((set)=>{return set.key == 'survey_local'})[0].value}}<br>
         </a>
-        English <br>
-        <a :href="this.settings.filter((set)=>{return set.key == 'survey_en'})[0].value">
+        <div v-if=" settings.filter((set)=>{return set.key == 'survey_en'}).length >0">English </div> <br>
+        <a v-if=" settings.filter((set)=>{return set.key == 'survey_en'}).length >0" :href="this.settings.filter((set)=>{return set.key == 'survey_en'})[0].value">
         {{this.settings.filter((set)=>{return set.key == 'survey_en'})[0].value}}<br>
         </a>
                 </q-card-section>
@@ -378,11 +378,21 @@ export default {
           
         }
         else{
-          return true
+          if(this.settings.filter((set)=>{return set.key == 'survey_local'}).length >0 || this.settings.filter((set)=>{return set.key == 'survey_en'}).length >0){
+            return true
+          }
+          else{
+            return false
+          }
         }
       }
       else{
-        return true
+         if(this.settings.filter((set)=>{return set.key == 'survey_local'}).length >0 || this.settings.filter((set)=>{return set.key == 'survey_en'}).length >0){
+            return true
+          }
+          else{
+            return false
+          }
       }
     },
     nav_options () {
