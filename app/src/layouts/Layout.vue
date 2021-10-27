@@ -399,13 +399,21 @@ export default {
       if (this.$auth.loggedIn()) {
         var filtered_navs = []
          this.navs.forEach((nav)=>{
-                        console.log(nav.feature == undefined)
-            console.log(this.features.indexOf(nav.feature) > -1)
-            console.log(this.features.indexOf(nav.feature) > -1 || nav.feature == undefined)
-           if(this.features.indexOf(nav.feature) > -1 || nav.feature == undefined){
+           if(nav.label =='menu.chatbot'){
+             if(this.features.indexOf("FEAT_MIGRANT_LOGIN") > -1 && this.features.indexOf("FEAT_ASSISTANT") > -1){
+               filtered_navs.push(nav)
+             }
+           }
+           else{
+            if(this.features.indexOf(nav.feature) > -1 || nav.feature == undefined){
              console.log(nav.feature)
              filtered_navs.push(nav)
            }
+           }
+            //console.log(nav.feature == undefined)
+            //console.log(this.features.indexOf(nav.feature) > -1)
+            //console.log(this.features.indexOf(nav.feature) > -1 || nav.feature == undefined)
+
          })
          return filtered_navs
       }
@@ -415,9 +423,17 @@ export default {
         })
         var filtered_navs = []
          login_filter.forEach((nav)=>{
+            if(nav.label =='menu.chatbot'){
+             if(this.features.indexOf("FEAT_MIGRANT_LOGIN") > -1 && this.features.indexOf("FEAT_ASSISTANT") > -1){
+               filtered_navs.push(nav)
+             }
+           }
+           else{
            if(this.features.indexOf(nav.feature) > -1 || nav.feature == undefined){
              filtered_navs.push(nav)
            }
+           }
+
          })
          return filtered_navs
       }
