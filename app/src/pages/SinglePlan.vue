@@ -144,6 +144,7 @@
           <q-btn
             :label="$t('button.cancel')"
             color="accent"
+            @click="resetOptions"
             v-close-popup
           />
           <q-btn
@@ -253,6 +254,10 @@ export default {
 
   },
   methods: {
+    resetOptions(){
+    this.need_validators = false
+    this.validatorsOptions = []
+    },
     progress (intervention_plan) {
       console.log(intervention_plan)
       return Math.floor((intervention_plan.interventions.filter(function (intervention) { return intervention.completed }).length / intervention_plan.interventions.length) * 100)
@@ -293,6 +298,7 @@ export default {
           this.fetchInterventionPlan(userId)
         })
       this.validated_success = true
+      this.resetOptions()
     },
     saveSelfValidationRequest () {
       // updating the intervention with the tenantid and the current date
