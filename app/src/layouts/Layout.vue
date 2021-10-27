@@ -400,7 +400,7 @@ export default {
         var filtered_navs = []
          this.navs.forEach((nav)=>{
            if(nav.label =='menu.chatbot'){
-             if(this.features.indexOf("FEAT_MIGRANT_LOGIN") > -1 && this.features.indexOf("FEAT_ASSISTANT") > -1){
+             if(this.features.indexOf("FEAT_MIGRANT_LOGIN") > -1 && this.features.indexOf("FEAT_ASSISTANT") > -1 && this.chat){
                filtered_navs.push(nav)
              }
            }
@@ -424,7 +424,7 @@ export default {
         var filtered_navs = []
          login_filter.forEach((nav)=>{
             if(nav.label =='menu.chatbot'){
-             if(this.features.indexOf("FEAT_MIGRANT_LOGIN") > -1 && this.features.indexOf("FEAT_ASSISTANT") > -1){
+             if(this.features.indexOf("FEAT_MIGRANT_LOGIN") > -1 && this.features.indexOf("FEAT_ASSISTANT") > -1 && this.chat){
                filtered_navs.push(nav)
              }
            }
@@ -503,6 +503,8 @@ export default {
     }
     else{
       this.chat = JSON.parse(decodeURIComponent(localStorage.klaro)).chat
+      console.log("I AM CHAT")
+      console.log(this.chat)
     }
     console.log("i'm klaro in local storage")
     console.log(JSON.parse(decodeURIComponent(localStorage.klaro)))
