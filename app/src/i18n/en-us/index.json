@@ -186,5 +186,9 @@
     "start":"Let's get started",
     "create_account":"Create an account",
     "need_login_chat":"You need to login or create an account to use the chatbot feature"
+  }, 
+  "warning":{
+    "no_edit":"You can't edit documents not uploaded by you",
+    "no_delete":"You can't delete documents not uploaded by you"
   }
 }

@@ -176,6 +176,7 @@
         "topic": "Argomento"
     },
     "internal_reference": {
+        "default_title": "Riferimento",
         "go_to_reference": "Vai alla referenza",
         "more_info_2": "può essere trovato qui:",
         "more_info_1": "Più informazioni per"
@@ -203,5 +204,9 @@
         "topic_content": "Puoi trovare i contenuti divisi per argomento",
         "welcome_explanation": "Come funziona quest'app?",
         "welcome_text": "Come funziona quest'app?"
-    }
+    },
+    "warning":{
+        "no_edit":"Non puoi modificare documenti non caricati da te",
+        "no_delete":"Non puoi eliminare documenti non caricati da te"
+      }
 }

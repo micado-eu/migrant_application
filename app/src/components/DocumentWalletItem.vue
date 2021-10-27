@@ -213,7 +213,7 @@ export default {
       }
       else{
         this.$q.notify({
-        message: 'You can\'t edit documents not uploaded by you',
+        message: this.$t('warning.no_edit'),
         color: 'purple'
       })
       }
@@ -226,7 +226,7 @@ export default {
       }
        else{
         this.$q.notify({
-        message: 'You can\'t delete documents not uploaded by you',
+        message: this.$t('warning.no_delete'),
         color: 'purple'
       })
       }
