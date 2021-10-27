@@ -2,6 +2,8 @@
 
   <div> 
    <!-- <p id="filename" style="width:320px; margin: 0 auto;padding-top:30px;padding-left:10px;padding-bottom:10px">{{the_document.title}}</p>-->
+   <div v-if="loading"> {{$t('desc_labels.loading')}} </div>
+   <div v-else>
   <div>
     <div class="container">
       <TalkingLabel
@@ -258,6 +260,7 @@
 
     </q-dialog>
   </q-item>
+   </div>
   </div>
   
 </template>
@@ -275,13 +278,13 @@ export default {
   storeMappingMixin({
     getters: {
       documents: 'documents/my_documents',
-      document_types: 'document_type/document_types',
+      document_types_mig: 'document_type/document_types_migrant',
       tenants: 'tenant/tenants'
     }, actions: {
       editDocument: 'documents/editDocument',
       saveDocument: 'documents/saveDocument',
       fetchDocuments: 'documents/fetchDocuments',
-      fetchDocumentType: 'document_type/fetchDocumentType',
+      fetchDocumentType: 'document_type/fetchDocumentTypeMigrant',
       sendDocumentMail: 'documents/sendDocumentMail'
     }
   })
@@ -295,7 +298,8 @@ export default {
       emailTenant: "",
       email: "",
       sendable:false,
-      confirm:false
+      confirm:false,
+      loading:true
     }
   },
   watch: {
@@ -367,11 +371,23 @@ export default {
        }
     }, 
     findType(){
-     var doc_type = this.document_types.filter((type)=>{return type.id == this.the_document.documentTypeId})[0]
-      return doc_type.translations.filter(this.filterTranslationModel(this.activeLanguage))[0].document
+      console.log(this.the_document.documentTypeId)
+      console.log(this.document_types_mig)
+      console.log(this.$store.state.document_type.document_type_migrant)
+    var the_doc_type = this.$store.state.document_type.document_type_migrant.filter((a_doc_type) => {
+      console.log(a_doc_type.id == this.the_document.documentTypeId)
+        return a_doc_type.id == this.the_document.documentTypeId;
+      })[0]
+      console.log(the_doc_type)
+      return the_doc_type.document
+     /*var doc_type = this.document_types.filter((type)=>{return type.id == this.the_document.documentTypeId})[0]
+     console.log("I am the found doc type")
+     console.log(doc_type)
+     console.log(doc_type.translations.filter(this.filterTranslationModel(this.activeLanguage))[0].document)
+      return doc_type.translations.filter(this.filterTranslationModel(this.activeLanguage))[0].document*/
     },
     findIssuer(){
-      var doc_type = this.document_types.filter((type)=>{return type.id == this.the_document.documentTypeId})[0]
+      var doc_type = this.$store.state.document_type.document_type_migrant.filter((type)=>{return type.id == this.the_document.documentTypeId})[0]
       console.log(doc_type.issuer)
       return doc_type.issuer
     }
@@ -402,11 +418,11 @@ export default {
     //this.$store.dispatch('documents/fetchDocuments')
       .then(documents => {
         console.log(documents)
-        this.loading = false
       })
-      this.fetchDocumentType()
+      this.fetchDocumentType({defaultLang: this.$defaultLang, currentLang:this.$userLang})
       //this.$store.dispatch('document_type/fetchDocumentType')
       .then(documents => {
+        console.log("I AM MIGRANT DOCUMENTS FETCHED")
         console.log(documents)
         this.loading = false
       })
