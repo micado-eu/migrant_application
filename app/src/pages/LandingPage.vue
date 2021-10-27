@@ -364,4 +364,11 @@ border-radius: 50px;
   border: 0.5px solid #5C81A2;
   border-radius: 5px;
 }
+.topic_names {
+  color: #5c81a2;
+  margin-left: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  font-size: 12px;
+}
 </style>
