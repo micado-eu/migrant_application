@@ -50,7 +50,7 @@
             :src="topic.icon"
             style="margin-left: 0px; max-width: 40px; max-heigth: 40px"
           />
-          <div class="topic_names">
+          <div class="q-px-xs topic_names" style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;">
             {{ topic.topic }}
           </div>
           <HelpDialog 
