@@ -177,12 +177,12 @@
     "user_type": "User type"
   },
   "welcome_page":{
-    "welcome_text":"How does this app work?",
-    "welcome_explanation":"Here goes the text to explain how the app works",
-    "category_content":"All content is categorized in 3 main groups",
-    "topic_content":"You are able to find content by topic",
-    "login_content":"If you create an account, public organisations are able to help you with your integration processes through the Document Wallet & Integration Plans:",
-    "no_landing_page":"Check this box if you don't want to see the welcome page again",
+    "welcome_text":"How can I use this app?",
+    "welcome_explanation":"How can I use this app?",
+    "category_content":"There are 3 types of information:",
+    "topic_content":"Choose a topic and find information",
+    "login_content":"Create a personal account, so that you can store and share your documents and access your personal plan.",
+    "no_landing_page":"Don’t show this page again",
     "start":"Let's get started",
     "create_account":"Create an account",
     "need_login_chat":"You need to login or create an account to use the chatbot feature"
