@@ -466,18 +466,34 @@ export default {
         if (lang === "zh_Hans") {
           lang = "zh-Hans-CN"
         }
+        if (lang === "fa_IR") {
+          lang = "fa"
+        }
         const startDate = new Date(e.startDate)
-        translation.startDate = `${startDate.getUTCFullYear()}-` +
-          `${startDate.getUTCMonth() + 1}-` +
-          `${startDate.getUTCDate()} ` +
-          `${startDate.getUTCHours().toLocaleString(lang, { minimumIntegerDigits: 2 })}:` +
-          `${startDate.getUTCMinutes().toLocaleString(lang, { minimumIntegerDigits: 2 })}`
         const finishDate = new Date(e.endDate)
-        translation.endDate = `${finishDate.getUTCFullYear()}-` +
-          `${finishDate.getUTCMonth() + 1}-` +
-          `${finishDate.getUTCDate()} ` +
-          `${finishDate.getUTCHours().toLocaleString(lang, { minimumIntegerDigits: 2 })}:` +
-          `${finishDate.getUTCMinutes().toLocaleString(lang, { minimumIntegerDigits: 2 })}`
+        try { 
+          translation.startDate = `${startDate.getUTCFullYear()}-` +
+            `${startDate.getUTCMonth() + 1}-` +
+            `${startDate.getUTCDate()} ` +
+            `${startDate.getUTCHours().toLocaleString(lang, { minimumIntegerDigits: 2 })}:` +
+            `${startDate.getUTCMinutes().toLocaleString(lang, { minimumIntegerDigits: 2 })}`
+          translation.endDate = `${finishDate.getUTCFullYear()}-` +
+            `${finishDate.getUTCMonth() + 1}-` +
+            `${finishDate.getUTCDate()} ` +
+            `${finishDate.getUTCHours().toLocaleString(lang, { minimumIntegerDigits: 2 })}:` +
+            `${finishDate.getUTCMinutes().toLocaleString(lang, { minimumIntegerDigits: 2 })}`
+        } catch (e) {
+          translation.startDate = `${startDate.getUTCFullYear()}-` +
+            `${startDate.getUTCMonth() + 1}-` +
+            `${startDate.getUTCDate()} ` +
+            `${startDate.getUTCHours().toLocaleString("en", { minimumIntegerDigits: 2 })}:` +
+            `${startDate.getUTCMinutes().toLocaleString("en", { minimumIntegerDigits: 2 })}`
+          translation.endDate = `${finishDate.getUTCFullYear()}-` +
+            `${finishDate.getUTCMonth() + 1}-` +
+            `${finishDate.getUTCDate()} ` +
+            `${finishDate.getUTCHours().toLocaleString("en", { minimumIntegerDigits: 2 })}:` +
+            `${finishDate.getUTCMinutes().toLocaleString("en", { minimumIntegerDigits: 2 })}`
+        }
       }
       return translation
     })
