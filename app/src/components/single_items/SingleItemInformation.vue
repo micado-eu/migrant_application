@@ -11,6 +11,7 @@
       <q-separator class="title-separator q-mb-md"></q-separator>
       <glossary-editor-viewer
         :content="description"
+        talkingLabelLocation="right"
         class="description"
       />
       <q-separator class="q-my-lg" />

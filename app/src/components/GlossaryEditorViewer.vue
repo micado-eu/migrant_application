@@ -2,7 +2,7 @@
   <div padding>
     <q-spinner v-if="loading" />
     <div v-else>
-      <div :class="talkingLabelLocation === 'left' ? 'row' : ''">
+      <div :class="(talkingLabelLocation === 'left') || (talkingLabelLocation === 'right') ? 'row' : ''">
         <talking-label
           Title=""
           :text="textToSpeech"
@@ -10,12 +10,18 @@
           :icon-col="talkingLabelLocation === 'left' ? 'col-1' : ''"
         ></talking-label>
         <editor-content
-          :class="talkingLabelLocation === 'left' ? 'col editor_content q-ml-sm' : 'editor_content'"
+          :class="talkingLabelLocation === 'left' ? 'col editor_content q-ml-sm' : (talkingLabelLocation === 'right' ? 'col-9 editor_content' : 'editor_content')"
           :editor="editor"
           ref="editor"
           v-show="!hideContent"
         />
         <slot v-show="hideContent && initialized"></slot>
+        <talking-label
+          Title=""
+          :text="textToSpeech"
+          v-if="(textToSpeech !== null) && (talkingLabelLocation === 'right')"
+          class="col-shrink q-ml-xl"
+        ></talking-label>
         <talking-label
           Title=""
           :text="textToSpeech"
@@ -115,7 +121,7 @@ export default {
     },
     talkingLabelLocation: {
       type: String,
-      validator: (val) => ['top', 'left', 'bottom'].includes(val),
+      validator: (val) => ['top', 'left', 'bottom', 'right'].includes(val),
       default: 'bottom'
     }
   },
@@ -298,7 +304,19 @@ export default {
           currentlyTestedValue > array[bestIndexSoFar] ? currentlyTestedIndex : bestIndexSoFar, 0
       )
       const bestMatchSplitted = document.children[1].children[biggestScoreIndex].innerText.split(regexp)
-      const stringComparator = new Intl.Collator(this.$userLang, { sensitivity: 'accent' })
+      let lang = this.$userLang
+      if (lang === "zh_Hans") {
+        lang = "zh-Hans-CN"
+      }
+      if (lang === "fa_IR") {
+        lang = "fa"
+      }
+      let stringComparator;
+      try {
+        stringComparator = new Intl.Collator(lang, { sensitivity: 'accent' })
+      } catch (e) {
+        stringComparator = new Intl.Collator("en", { sensitivity: 'accent' })
+      }
       // Add the tag to the text
       for (let i = 0; i < bestMatchSplitted.length; i = i + 1) {
         const isHighlight = highlights.some(highlightedTerm => !stringComparator.compare(bestMatchSplitted[i], highlightedTerm))
