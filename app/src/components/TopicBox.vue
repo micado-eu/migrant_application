@@ -4,18 +4,18 @@
           :style="boxstile"
         >
           <TalkingLabel
-            style="margin-left: 0px; margin-top: 0px; margin-right: 10px"
+            style="width:95%;margin-left: 0px; margin-top: 0px; margin-right:0px"
             :text="contentName"
             :row="'row'"
-            :title_col="' ellipsis col-11'"
-            :icon_col="'col-1'"
+            :title_col="' ellipsis col-10'"
+            :icon_col="'col-2'"
             :icon_style="'text-align:right'"
           />
           <q-icon
             :name="contentIcon"
             style="margin-left: 0px; width: 27px; height: 27px"
           />
-          <div class="topic_names">
+          <div class="topic_names" style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;">
             {{ contentName }}
           </div>
         </div>

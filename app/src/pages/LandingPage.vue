@@ -10,9 +10,9 @@
                   :text="$t('welcome_page.welcome_explanation')"
                   :row="'row'"
                   :title_col="'col-11'"
-                  :icon_col="'col-1'"
-                  :icon_style="'text-align:right'"
-                  :showing="'white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'"
+                  :container_style="'display: flex;'"
+                  :icon_style="'flex-shrink:0;text-align:right'"
+                  :showing="'flex-grow:1;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'"
                   :white="true"
                 />
     </div>
@@ -24,9 +24,9 @@
                   :text="$t('welcome_page.topic_content')"
                   :row="'row'"
                   :title_col="'col-11'"
-                  :icon_col="'col-1'"
-                  :icon_style="'text-align:right'"
-                  :showing="'white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'"
+                  :container_style="'display: flex;'"
+                  :icon_style="'flex-shrink:0;text-align:right'"
+                  :showing="'flex-grow:1;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'"
                 />
     </div>
       <div class="q-pa-md ">
@@ -39,11 +39,11 @@
           :key="topic.id"
         >
           <TalkingLabel
-            style="margin-left: 0px; margin-top: 0px; margin-right: 10px"
+            style="width:95%;margin-left: 0px; margin-top: 0px; margin-right:0px"
             :text="topic.topic"
             :row="'row'"
-            :title_col="' ellipsis col-11'"
-            :icon_col="'col-1'"
+            :title_col="' ellipsis col-10'"
+            :icon_col="'col-2'"
             :icon_style="'text-align:right'"
           />
           <q-img
@@ -72,9 +72,9 @@
                   :text="$t('welcome_page.category_content')"
                   :row="'row'"
                   :title_col="'col-11'"
-                  :icon_col="'col-1'"
-                  :icon_style="'text-align:right'"
-                  :showing="'white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'"
+                  :container_style="'display: flex;'"
+                  :icon_style="'flex-shrink:0;text-align:right'"
+                  :showing="'flex-grow:1;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'"
                 />
     </div>
     <div class="row topic_layout">
@@ -128,8 +128,9 @@
                   :text="$t('welcome_page.login_content')"
                   :row="'row'"
                   :title_col="'col-11'"
-                  :icon_col="'col-1'"
-                  :icon_style="'text-align:right'"
+                  :container_style="'display: flex;'"
+                  :icon_style="'flex-shrink:0;text-align:right'"
+                  :showing="'flex-grow:1;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'"
                 />
     </div>
     <div v-if="tasksAndPlans" class="row topic_layout">
@@ -190,8 +191,9 @@
                   :text="$t('welcome_page.no_landing_page')"
                   :row="'row'"
                   :title_col="'col-11'"
-                  :icon_col="'col-1'"
-                  :icon_style="'text-align:right'"
+                  :container_style="'display: flex;'"
+                  :icon_style="'flex-shrink:0;text-align:right'"
+                  :showing="'flex-grow:1;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'"
                   
                 />
     </div>

@@ -56,12 +56,12 @@
           "
         >
           <TalkingLabel
-            style="margin-left: 0px; margin-top: 0px; margin-right: 10px"
+            style="width:95%;margin-left: 0px; margin-top: 0px; margin-right:0px"
             :text="topic.topic"
             :row="'row'"
-            :title_col="' ellipsis col-11'"
-            :icon_col="'col-1'"
-            :icon_style="'text-align:right'"
+            :title_col="' ellipsis col-10'"
+            :icon_col="'col-2'"
+            :icon_style="'text-align:right;'"
           />
           <q-img
             :src="topic.icon"

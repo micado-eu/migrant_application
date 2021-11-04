@@ -1,0 +1,201 @@
+{
+    "privacy": {
+        "grant": "Dieses Projekt erhielt eine Förderung durch das Horizon 2020 Forschungs- und Innovationsprogramm der Europäischen Union unter der Zuwendungsvereinbarung Nr. 822717",
+        "privacy": "Datenschutzerklärung"
+    },
+    "consent": {
+        "title": "MICADO Zustimmungsmanagement",
+        "other": "",
+        "CSOs": "Zivilgesellschaftliche Organisationen, die an der Initiative teilnehmen",
+        "livechat": "Livechat",
+        "analytics": "Analyse",
+        "chat_title": "MICADO Assistent",
+        "chat": "Chat Widget",
+        "usageTracker_title": "MICADO Statistiken",
+        "usageTracker": "Sammlung von Nutzungsstatistiken",
+        "consentModal_description": "Hier werden können die gesammelten Informationen eingesehen und angepasst werden. Einträge, die als \"Beispiel\" gekennzeichnet sind, sind für nur Demonstrationszwecke angelegt und werden auf der Website nicht genutzt."
+    },
+    "menu": {
+        "title": "Meine Werkzeuge",
+        "services": "Verfügbare Dienste",
+        "documents": "Meine Dokumente",
+        "assistant": "der Assistent",
+        "processes": "administrative Prozesse",
+        "notifications": "meine Nachrichten",
+        "search": "Suche",
+        "speech": "Sprechen",
+        "settings": "Einstellungen",
+        "language": "en-US",
+        "messenger": "Meine Nachrichten",
+        "tasks": "Mein persönlicher Plan",
+        "chatbot": "MICADO Assistent",
+        "consent": "Einwilligungserklärungen",
+        "welcome": "Willkommen in der App",
+        "policy": "Datenschutzbestimmungen",
+        "integration_plan": "Integrationspläne",
+        "events": "Kurse und Veranstaltungen",
+        "info": "Basisinformationen",
+        "guides": "Schritt-für-Schritt-Anleitungen",
+        "funding": "Gefördert von"
+    },
+    "application_title": "MICADO App",
+    "button": {
+        "change_pass": "Passwort ändern",
+        "delete": "Entfernen",
+        "procedure": "Zu Prozedur gehen",
+        "edit": "Bearbeiten",
+        "validated": "Validiert",
+        "validation_pending": "Validierung ausstehend",
+        "send": "Senden",
+        "cancel": "Abbrechen",
+        "view_pics": "Details anzeigen",
+        "view_model": "Muster anzeigen",
+        "download": "Herunterladen",
+        "ask_validation": "Validierung anfragen",
+        "go_back": "Zurück",
+        "back": "Zurück",
+        "remove": "Entfernen",
+        "save": "Speichern",
+        "add_document": "Dokument hinzufügen",
+        "home": "Start"
+    },
+    "error404": "Enschuldigung, hier befindet sich kein Inhalt...",
+    "icon_overlay": {
+        "user_type": "Nutzer/-innengruppe",
+        "topic": "Themenfeld"
+    },
+    "internal_reference": {
+        "go_to_reference": "Zu Referenz gehen",
+        "more_info_2": "ist zu finden unter:",
+        "more_info_1": "Mehr Information für",
+        "default_title": "Interne Referenz"
+    },
+    "feedback": {
+        "thanks": "Danke",
+        "feedback_sent": "Das Feedback wurde erfolgreich an die verwaltende Behörde gesendet",
+        "feedback_question": "Feedback an uns senden! Wie gefällt die gerade angezeigte Seite?",
+        "send": "Feedback senden",
+        "feedback": "Feedback im unteren Textfeld angeben",
+        "url": "Das Feedback bezieht sich auf die Seite",
+        "mail": "Das Feedback wird gesendet an",
+        "send_pa": "Feedback an verwaltende Behörde senden"
+    },
+    "date_selector": {
+        "close": "Schließen"
+    },
+    "glossary": {
+        "missing_content": "Keine wichtigen Begriffe vorhanden"
+    },
+    "events": {
+        "cost_free": "Kostenlos",
+        "cost": "Kosten",
+        "user_types": "Nutzer/-innengruppen",
+        "topics": "Themenfelder",
+        "organizer": "Organisiert von",
+        "location": "Ort",
+        "missing_content": "Keine Veranstaltungen vorhanden",
+        "finish_date": "Enddatum",
+        "start_date": "Startdatum",
+        "category": "Kategorie"
+    },
+    "tasks": {
+        "integration_type_validators": "Validierungsorganisation",
+        "dialog_title_self": "To Do validieren",
+        "dialog_title_org": "Organisation zur Validierung auswählen",
+        "you_validate": "To Do validieren",
+        "ask_validation": "Validierung anfragen"
+    },
+    "information_centre": {
+        "organizer": "Organisiert/Erstellt von",
+        "user_types": "Nutzer/-innengruppen",
+        "topics": "Themenfelder",
+        "missing_content": "Keine Information vorhanden",
+        "category": "Kategorie"
+    },
+    "filters": {
+        "apply": "Anwenden",
+        "clear_all": "Alle Filter zurücksetzen",
+        "date": "Datum",
+        "user_types": "Nutzer/-innengruppen",
+        "topics": "Themenfelder",
+        "categories": "Kategorien",
+        "title": "Filtern"
+    },
+    "profile": {
+        "password_changed": "Passwort wurde erfolgreich geändert",
+        "password_change": "Passwort ändern",
+        "user_pref": "Nutzer/-inneneinstellungen",
+        "confirm_pass": "Passwort bestätigen",
+        "new_pass": "Neues Passwort",
+        "old_pass": "Bisheriges Passwort",
+        "mail": "E-Mail",
+        "phone_number": "Telefonnummer",
+        "personal_profile": "Persönliches Profil",
+        "gender": "Geschlecht",
+        "dob": "Geburtsdatum",
+        "country": "Land",
+        "legal_name": "Vollständiger offizieller Name",
+        "password": "Passwort",
+        "username": "Nutzer/-innen-Name",
+        "change_pic": "Bild ändern"
+    },
+    "desc_labels": {
+        "emitter": "Ausgegeben von",
+        "click_step": "Für weitere Details an Schritt klicken",
+        "image": "Bild",
+        "add_doc": "Neues Dokument erstellen",
+        "edit_doc": "Dokument bearbeiten",
+        "document_download": "Dokument herunterladen",
+        "document_delete": "Dieses Dokument löschen?",
+        "document_sent": "Das Dokument wurde erfolgreich gesendet an",
+        "survey": "Umfrage!",
+        "personal": "Persönlicher Bereich",
+        "integration_plan": "Mein persönlicher Plan",
+        "plan_progress": "Fortschritt im Integrationsplan",
+        "send_doc": "Bitte E-Mailadresse wählen",
+        "comments": "Kommentare",
+        "privacy_settings": "Datenschutzeinstellungen",
+        "required_documents": "Erforderliche Dokumente",
+        "logout": "Abmelden",
+        "settings": "Einstellungen",
+        "login_register": "Einloggen/Registrieren",
+        "review_date": "Überprüfungsdatum",
+        "expiration_date": "Ablaufdatum",
+        "reviewed_by": "Überprüft von",
+        "document_issuer": "Herausgeber/-in des Dokuments",
+        "document_type": "Dokumententyp",
+        "search": "Suchen",
+        "description": "Beschreibung",
+        "location": "Ort",
+        "cost": "Kosten für Schritt",
+        "send_doc_me": "An andere E-Mailadresse senden",
+        "send_doc_pa": "Verwaltungsbehörde auswählen",
+        "validation_request_successfull": "Sie haben erfolgreich die Validierung Ihrer Aufgabe angefragt",
+        "loading": "wird geladen...",
+        "survey_desc": "Nehmen Sie teil an unserer neuen Umfrage!",
+        "send_doc_title": "Dokument per E-Mail senden"
+    },
+    "input_labels": {
+        "email": "E-Mail",
+        "read": "Vorlesen",
+        "upload_doc": "Dokument hochladen",
+        "exp_date": "Ablaufdatum",
+        "doc_type": "Dokumententyp",
+        "shareable": "Dokument ist teilbar"
+    },
+    "welcome_page": {
+        "need_login_chat": "Sie müssen sich anmelden oder einen Account erstellen um den Chatbot zu nutzen",
+        "create_account": "Account erstellen",
+        "start": "Los geht's",
+        "no_landing_page": "Markieren Sie dieses Feld um die Willkommensseite nicht mehr zu sehen",
+        "login_content": "Wenn Sie einen Account erstellen, sind Behörden dazu in der Lage Ihnen bei Ihrem Integrationsprozess innerhalb die Funktionen Dokumententasche und Integrationspläne zu unterstützen:",
+        "topic_content": "Sie können Inhalte mithilfe von Themenfeldern finden",
+        "category_content": "Der gesamte Inhalt wird durch drei Hauptgruppen kategorisiert.",
+        "welcome_explanation": "Hier Text einfügen um zu erklären wie die App funktioniert",
+        "welcome_text": "Wie funktioniert diese App?"
+    },
+    "warning": {
+        "no_delete": "Dokumente, die von anderen hochgeladen wurden, können nicht entfernt werden",
+        "no_edit": "Dokumente, die von anderen hochgeladen wurden, können nicht editiert werden"
+    }
+}
