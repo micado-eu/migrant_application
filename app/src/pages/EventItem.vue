@@ -56,10 +56,18 @@ export default {
             if (lang === "zh_Hans") {
               lang = "zh-Hans-CN"
             }
+            if (lang === "fa_IR") {
+              lang = "fa"
+            }
             const startDate = new Date(item.start_date)
-            this.attributes.start_date = startDate.toLocaleString(lang)
             const finishDate = new Date(item.end_date)
-            this.attributes.end_date = finishDate.toLocaleString(lang)
+            try {
+              this.attributes.start_date = startDate.toLocaleString(lang)
+              this.attributes.end_date = finishDate.toLocaleString(lang)
+            } catch (e) {
+              this.attributes.start_date = startDate.toLocaleString("en")
+              this.attributes.end_date = finishDate.toLocaleString("en")
+            }
             console.log("I AM ITEM CREATOR")
             console.log(item.creator)
             if (item.creator) {
