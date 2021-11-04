@@ -29,8 +29,9 @@
               :text="$t('feedback.feedback_question')"
               :row="'row'"
               :title_col="'col-11'"
-              :icon_col="'col-1'"
-              :icon_style="'text-align:right'"
+              :container_style="'display: flex;'"
+                  :icon_style="'flex-shrink:0;text-align:right'"
+                  :showing="'flex-grow:1;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'"
             />
             <!--<h5 class="text"> {{$t('feedback.mail')}} </h5>-->
             <div style="text-align: center">
@@ -49,7 +50,7 @@
                 :name="'img:statics/icons/Icon - Thumbs neutral.svg'"
               />
               <q-icon
-                style=" margin-top: 20px"
+                style=" margin-top: 20px;margin-right: 35px;"
                 :class="{ active: rating.value == -1 }"
                 @click="rating.value = -1"
                 size="30px"
@@ -64,8 +65,9 @@
               :text="$t('feedback.url') + this.link"
               :row="'row'"
               :title_col="'col-11'"
-              :icon_col="'col-1'"
-              :icon_style="'text-align:right'"
+              ::container_style="'display: flex;'"
+                  :icon_style="'flex-shrink:0;text-align:right'"
+                  :showing="'flex-grow:1;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'"
             />
             <div
               style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'"
@@ -79,8 +81,9 @@
               :text="$t('feedback.feedback')"
               :row="'row'"
               :title_col="'col-11'"
-              :icon_col="'col-1'"
-              :icon_style="'text-align:right'"
+             :container_style="'display: flex;'"
+                  :icon_style="'flex-shrink:0;text-align:right'"
+                  :showing="'flex-grow:1;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'"
             />
             <!--<h5 class="text"> {{$t('feedback.feedback')}}  </h5>-->
             <q-input

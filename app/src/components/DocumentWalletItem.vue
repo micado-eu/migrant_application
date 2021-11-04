@@ -20,8 +20,9 @@
                   :text="this.Title"
                   :row="'row'"
                   :title_col="'col-11'"
-                  :icon_col="'col-1'"
-                  :icon_style="'text-align:right'"
+                  :container_style="'display: flex;'"
+                  :icon_style="'flex-shrink:0;text-align:right'"
+                   :showing="'flex-grow:1;'"
                 />
           </q-item-section>
         </div>

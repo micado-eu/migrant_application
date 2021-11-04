@@ -40,8 +40,9 @@
         :Title="$t('desc_labels.document_type')"
         :row="'row'"
         :title_col="'col-11'"
-        :icon_col="'col-1'"
-        :icon_style="'text-align:right'"
+        :container_style="'display: flex;'"
+        :icon_style="'flex-shrink:0;text-align:right'"
+        :showing="'flex-grow:1;'"
         />
     <!--<p class="textup">{{$t('desc_labels.document_type')}}:</p>-->
     <p class="textdown">{{findType()}}</p>
@@ -54,8 +55,9 @@
         :Title="$t('desc_labels.document_issuer')"
         :row="'row'"
         :title_col="'col-11'"
-        :icon_col="'col-1'"
-        :icon_style="'text-align:right'"
+        :container_style="'display: flex;'"
+        :icon_style="'flex-shrink:0;text-align:right'"
+        :showing="'flex-grow:1;'"
         />
     <!--<p class="textup" >{{$t('desc_labels.document_issuer')}}:</p>-->
     <p class="textdown">{{findIssuer()}}</p>
