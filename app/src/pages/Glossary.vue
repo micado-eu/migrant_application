@@ -178,7 +178,16 @@ export default {
       if (lang === "zh_Hans") {
         lang = "zh-Hans-CN"
       }
-      return a.title.localeCompare(b.title, lang, { sensitivity: "base" })
+      if (lang === "fa_IR") {
+        lang = "fa"
+      }
+      let comparison;
+      try {
+        comparison = a.title.localeCompare(b.title, lang, { sensitivity: "base" })
+      } catch (e) {
+        comparison = a.title.localeCompare(b.title, "en", { sensitivity: "base" })
+      }
+      return comparison
     },
     scrollIntoGlossary(index) {
       document.getElementById(this.alphabetIds[index]).scrollIntoView(false)
