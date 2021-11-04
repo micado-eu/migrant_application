@@ -11,8 +11,9 @@
     :text="$t('desc_labels.survey_desc')"
     :row="'row'"
     :title_col="'col-10 option'"
-    :icon_col="'col-2'"
-    :icon_style="'text-align:right'"
+    :container_style="'display: flex;'"
+    :icon_style="'flex-shrink:0;text-align:right'"
+    :showing="'flex-grow:1;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'"
     />
   </q-item>
   <div v-if="survey_visible" style="background-color:#EFEFEF; height:5px">
@@ -28,8 +29,9 @@
     :text="$t('menu.welcome')"
     :row="'row'"
     :title_col="'col-10 option'"
-    :icon_col="'col-2'"
-    :icon_style="'text-align:right'"
+    :container_style="'display: flex;'"
+    :icon_style="'flex-shrink:0;text-align:right'"
+    :showing="'flex-grow:1;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'"
     />
   </q-item>
   <div style="background-color:#EFEFEF; height:5px">
@@ -45,8 +47,9 @@
     :text="$t('menu.policy')"
     :row="'row'"
     :title_col="'col-10 option'"
-    :icon_col="'col-2'"
-    :icon_style="'text-align:right'"
+    :container_style="'display: flex;'"
+    :icon_style="'flex-shrink:0;text-align:right'"
+    :showing="'flex-grow:1;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'"
     />
   </q-item>
   <div style="background-color:#EFEFEF; height:5px">
@@ -62,8 +65,9 @@
     :text="$t('menu.consent')"
     :row="'row'"
     :title_col="'col-10 option'"
-    :icon_col="'col-2'"
-    :icon_style="'text-align:right'"
+    :container_style="'display: flex;'"
+    :icon_style="'flex-shrink:0;text-align:right'"
+    :showing="'flex-grow:1;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'"
     />
   </q-item>
   <div style="background-color:#EFEFEF; height:5px">
@@ -79,8 +83,9 @@
     :text="$t('menu.funding')"
     :row="'row'"
     :title_col="'col-10 option'"
-    :icon_col="'col-2'"
-    :icon_style="'text-align:right'"
+    :container_style="'display: flex;'"
+    :icon_style="'flex-shrink:0;text-align:right'"
+    :showing="'flex-grow:1;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'"
     />
   </q-item>
       <div style="background-color:#EFEFEF; height:5px">

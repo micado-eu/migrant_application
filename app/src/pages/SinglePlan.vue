@@ -20,13 +20,14 @@
                   :text="the_plan.title"
                   :row="'row'"
                   :title_col="'col-11'"
-                  :icon_col="'col-1'"
-                  :icon_style="'text-align:right'"
+                  :container_style="'display: flex;'"
+                  :icon_style="'flex-shrink:0;text-align:right;'"
+                  :showing="'flex-grow:1;'"
                     />
             </h5>
             <hr style="border: 1px solid #FF7C44;">
-          <div class="row">
-            <h5 style="width:50%" class="pad-left">
+          <div class="row" style="display: flex;">
+            <h5 style="flex-grow:1" class="pad-left">
                 <talking-label
                 :title="$t('desc_labels.plan_progress')"
                 :row="'row'"
@@ -35,7 +36,7 @@
                 :text="$t('desc_labels.plan_progress')"
               ></talking-label>
             </h5>
-            <div style="width:50%; text-align:right">
+            <div style="flex-shrink:0; text-align:right">
               <q-circular-progress
                 show-value
                 class="text-black q-ma-md"

@@ -30,9 +30,9 @@
           <TalkingLabel
           :row="'row'"
           :title_col="'col-11 '"
-          :showing="'font-family: Nunito;font-style: normal;font-weight: bold;font-size: 16px;line-height: 16px;color: #0F3A5D;;padding-top:3px'"
-          :icon_col="'col-1'"
-          :icon_style="'text-align:right;padding-top:3px'"
+          :showing="'flex-grow:1;font-family: Nunito;font-style: normal;font-weight: bold;font-size: 16px;line-height: 16px;color: #0F3A5D;;padding-top:3px'"
+         :container_style="'display: flex;'"
+          :icon_style="'flex-shrink:0;text-align:right;padding-top:3px'"
           :Title="title"
           :text="title"
         />
@@ -41,9 +41,9 @@
           <TalkingLabel
           :row="'row'"
           :title_col="'col-11 '"
-          :showing="'font-family: Nunito;font-style: normal;font-weight: normal;font-size: 14px;line-height: 16px;color: #000000;;padding-top:3px'"
-          :icon_col="'col-1'"
-          :icon_style="'text-align:right;padding-top:3px'"
+          :showing="'flex-grow:1;font-family: Nunito;font-style: normal;font-weight: normal;font-size: 14px;line-height: 16px;color: #000000;;padding-top:3px'"
+        :container_style="'display: flex;'"
+          :icon_style="'flex-shrink:0;text-align:right;padding-top:3px'"
           :Title="content"
           :text="content"
         />

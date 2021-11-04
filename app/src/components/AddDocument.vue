@@ -31,8 +31,9 @@
         class="field"
         :text="$t('input_labels.shareable')"
         :title_col="'col-11'"
-        :icon_col="'col-1'"
-        :icon_style="'text-align:right; padding-top:8px'"
+        :container_style="'display: flex;'"
+        :icon_style="'flex-shrink:0;text-align:right;padding-top:8px'"
+        :showing="'flex-grow:1;'"
         />
         </div>
          
@@ -46,8 +47,9 @@
         :Title="$t('desc_labels.add_doc')"
         :row="'row'"
         :title_col="'col-11'"
-        :icon_col="'col-1'"
-        :icon_style="'text-align:right'"
+        :container_style="'display: flex;'"
+                  :icon_style="'flex-shrink:0;text-align:right'"
+                   :showing="'flex-grow:1;'"
         />
         <q-select
             filled
@@ -70,8 +72,9 @@
         :Title="$t('desc_labels.image')"
         :row="'row'"
         :title_col="'col-11'"
-        :icon_col="'col-1'"
-        :icon_style="'text-align:right'"
+        :container_style="'display: flex;'"
+                  :icon_style="'flex-shrink:0;text-align:right'"
+                   :showing="'flex-grow:1;'"
         />
         <q-file
         :label="$t('input_labels.upload_doc')"

@@ -17,9 +17,9 @@
           :icon_size="'20px'"
           :row="'row'"
           :title_col="'col-11 '"
-          :showing="'font-family: Nunito;font-style: normal;font-weight: normal;font-size: 12px;line-height: 16px;color: #000000;padding-top:3px'"
-          :icon_col="'col-1'"
-          :icon_style="'text-align:right;padding-top:3px'"
+          :container_style="'display: flex;'"
+          :icon_style="'flex-shrink:0;text-align:right'"
+          :showing="'flex-grow:1;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;font-family: Nunito;font-style: normal;font-weight: normal;font-size: 12px;line-height: 16px;color: #000000;padding-top:3px'"
           :Title="$t('desc_labels.click_step')"
           :text="$t('desc_labels.click_step')"
         />
@@ -86,14 +86,14 @@
                 <div class=" fields-container">
                   <div class="field" style="padding-left:15px; padding-right:15px">
                     <TalkingLabel
-                      class="title"
-                      :showing="'text-align:left'"
                       :Title="shell_data.text"
                       :text="shell_data.text"
                       :row="'row'"
                       :title_col="'col-11'"
-                      :icon_col="'col-1'"
-                      :icon_style="'text-align:right'"
+                      :container_style="'display: flex;'"
+                      :icon_style="'flex-shrink:0;text-align:right'"
+                      :showing="'font-weight: 700;font-size: 18px;flex-grow:1;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;font-family: Nunito;font-style: normal;color: #000000;padding-top:3px'"
+
                     />
                   </div>
                     <hr />
@@ -107,8 +107,10 @@
                       :icon="'img:statics/icons/Icon - Decsription icon.svg'"
                       :row="'row'"
                       :title_col="'col-11'"
-                      :icon_col="'col-1'"
-                      :icon_style="'text-align:right'"
+                      :container_style="'display: flex;'"
+                      :icon_style="'flex-shrink:0;text-align:right'"
+                      :showing="'flex-grow:1;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;font-family: Nunito;font-style: normal;font-weight: normal;font-size: 12px;line-height: 16px;color: #000000;padding-top:3px'"
+
                       :Title="$t('desc_labels.description')"
                       :text="
                         $t('desc_labels.description') +
@@ -129,8 +131,9 @@
                       :icon="'img:statics/icons/cost.svg'"
                       :row="'row'"
                       :title_col="'col-11'"
-                      :icon_col="'col-1'"
-                      :icon_style="'text-align:right'"
+              :container_style="'display: flex;'"
+              :icon_style="'flex-shrink:0;text-align:right'"
+              :showing="'flex-grow:1;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;font-family: Nunito;font-style: normal;font-weight: normal;font-size: 12px;line-height: 16px;color: #000000;padding-top:3px'"
                       :Title="$t('desc_labels.cost')"
                       :text="$t('desc_labels.cost') + flowData.cost"
                     />
@@ -146,8 +149,10 @@
                       :icon="'img:statics/icons/Icon - Location Pin.svg'"
                       :row="'row'"
                       :title_col="'col-11'"
-                      :icon_col="'col-1'"
-                      :icon_style="'text-align:right'"
+              :container_style="'display: flex;'"
+              :icon_style="'flex-shrink:0;text-align:right'"
+              :showing="'flex-grow:1;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;font-family: Nunito;font-style: normal;font-weight: normal;font-size: 12px;line-height: 16px;color: #000000;padding-top:3px'"
+
                       :Title="$t('desc_labels.location')"
                       :text="$t('desc_labels.location') + flowData.location"
                     />
@@ -165,8 +170,10 @@
                       :icon="'img:statics/icons/docs.svg'"
                       :row="'row'"
                       :title_col="'col-11'"
-                      :icon_col="'col-1'"
-                      :icon_style="'text-align:right'"
+              :container_style="'display: flex;'"
+              :icon_style="'flex-shrink:0;text-align:right'"
+              :showing="'flex-grow:1;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;font-family: Nunito;font-style: normal;font-weight: normal;font-size: 12px;line-height: 16px;color: #000000;padding-top:3px'"
+
                       :Title="$t('desc_labels.required_documents')"
                       :text="$t('desc_labels.required_documents')"
                     />
@@ -222,7 +229,10 @@
             <TalkingLabel
               :text="$t('filters.topics')"
               :icon_col="'col-1'"
-              :icon_style="'text-align:right'"
+              :container_style="'display: flex;'"
+              :icon_style="'flex-shrink:0;text-align:right'"
+              :showing="'flex-grow:1;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;font-family: Nunito;font-style: normal;font-weight: normal;font-size: 12px;line-height: 16px;color: #000000;padding-top:3px'"
+
             />
           </div>
         </div>

@@ -303,14 +303,15 @@
       :text="$t('profile.user_pref')"
     />
     </div>
-    <div class="q-px-md" v-for="user_top in users" :key="user_top.id">
-    <div  style="padding-top:8px;float: left" >
+
+    <div class="q-px-md" style="display: flex;" v-for="user_top in users" :key="user_top.id">
+    <div  style="padding-top:8px;" >
       <q-img style="width:24px; height:24px"  :src="user_top.icon"  />
     </div>
-    <div style="text-align:left;padding-top:8px;float: left; white-space: nowrap; overflow: hidden;text-overflow: ellipsis;">
+    <div style=" text-align:initial;padding-top:8px; white-space: nowrap; overflow: hidden;text-overflow: ellipsis; flex-grow:1">
       {{user_top.user_type}}
     </div>
-    <div  style="text-align:right; float: none;">
+    <div  style="text-align:right; flex-shrink:0;">
       <div class="row" style="justify-content:right">
     <q-checkbox :disable="!edit_preferences" color="accent" v-model="preferences.filter((pref)=>{return pref.id == user_top.id})[0].active" />
       <TalkingLabel

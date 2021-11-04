@@ -12,8 +12,9 @@
     :text="$t('menu.documents')"
     :row="'row'"
     :title_col="'col-10 option'"
-    :icon_col="'col-2'"
-    :icon_style="'text-align:right'"
+        :container_style="'display: flex;'"
+        :icon_style="'flex-shrink:0;text-align:right;'"
+        :showing="'flex-grow:1;'"
     />
   </q-item>
   <div v-if="docs_present" style="background-color:#EFEFEF; height:5px">
@@ -29,8 +30,9 @@
     :text="$t('menu.tasks')"
     :row="'row'"
     :title_col="'col-10 option'"
-    :icon_col="'col-2'"
-    :icon_style="'text-align:right'"
+        :container_style="'display: flex;'"
+        :icon_style="'flex-shrink:0;text-align:right;'"
+        :showing="'flex-grow:1;'"
     />
   </q-item>
   <div v-if="tasks_present" style="background-color:#EFEFEF; height:5px">
@@ -46,8 +48,9 @@
     :text="$t('menu.settings')"
     :row="'row'"
     :title_col="'col-10 option'"
-    :icon_col="'col-2'"
-    :icon_style="'text-align:right'"
+        :container_style="'display: flex;'"
+        :icon_style="'flex-shrink:0;text-align:right;'"
+        :showing="'flex-grow:1;'"
     />
   </q-item>
   <div style="background-color:#EFEFEF; height:5px">
