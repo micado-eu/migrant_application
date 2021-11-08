@@ -15,7 +15,8 @@
     "internal_reference": {
         "go_to_reference": "Ga naar de pagina",
         "more_info_2": "kan je vinden op:",
-        "more_info_1": "Meer informatie over"
+        "more_info_1": "Meer informatie over",
+        "default_title": "Een interne verwijzing"
     },
     "feedback": {
         "send": "Verstuur het bericht",
@@ -24,7 +25,8 @@
         "mail": "Je feedback zal verstuurd worden naar",
         "feedback_sent": "Het is gelukt. Jouw bericht is verstuurd naar de administratie",
         "thanks": "Bedankt",
-        "feedback_question": "Laat ons weten wat je denkt! Wat vind je van de pagina die je nu bekijkt?"
+        "feedback_question": "Laat ons weten wat je denkt! Wat vind je van de pagina die je nu bekijkt?",
+        "send_pa": "Verstuur feedback"
     },
     "date_selector": {
         "close": "Sluiten"
@@ -106,14 +108,19 @@
         "survey": "Vragenlijst!",
         "emitter": "Uitgegeven door",
         "send_doc_me": "Stuur naar een ander E-mailadres",
-        "send_doc_pa": "Selecteer een organisatie"
+        "send_doc_pa": "Selecteer een organisatie",
+        "validation_request_successfull": "Het is gelukt, je hebt gevraagd om je taak goed te keuren",
+        "loading": "Aan het laden...",
+        "survey_desc": "Neem deel aan onze vragenlijst!",
+        "send_doc_title": "Verstuur het document via mail"
     },
     "input_labels": {
         "email": "Email",
         "read": "Lees mee",
         "upload_doc": "Laad een document op",
         "exp_date": "Vervaldatum",
-        "doc_type": "Documenttype"
+        "doc_type": "Documenttype",
+        "shareable": "Document kan worden gedeeld"
     },
     "button": {
         "procedure": "Ga naar procedure",
@@ -122,7 +129,7 @@
         "validation_pending": "Wachten op goedkeuring",
         "send": "Verzenden",
         "cancel": "Annuleren",
-        "view_model": "Bekijk voorbeeld",
+        "view_model": "Bekijk het model",
         "download": "Download",
         "ask_validation": "Vraag om goedkeuring",
         "go_back": "Ga terug",
@@ -132,7 +139,8 @@
         "add_document": "Voeg een document toe",
         "change_pass": "Wijzig je wachtwoord",
         "delete": "Verwijderen",
-        "view_pics": "Bekijk in detail"
+        "view_pics": "Bekijk details",
+        "home": "Home"
     },
     "menu": {
         "language": "nl-NL",
@@ -141,7 +149,15 @@
         "documents": "Mijn documenten",
         "tasks": "Mijn persoonlijk plan",
         "chatbot": "Virtuele assistent",
-        "title": "Mijn tools"
+        "title": "Mijn tools",
+        "funding": "Mogelijk gemaakt door",
+        "consent": "Toestemmingsbeheer",
+        "welcome": "Welkom in de applicatie",
+        "policy": "Privacyverklaring",
+        "integration_plan": "Integratieplannen",
+        "events": "Evenementen",
+        "info": "Informatiefiches",
+        "guides": "Stappenplannen"
     },
     "application_title": "MICADO app",
     "consent": {
@@ -159,5 +175,19 @@
         "user_type": "Type gebruiker",
         "topic": "Thema"
     },
-    "error404": "Sorry, hier is niets te vinden ..."
+    "error404": "Sorry, hier is niets te vinden ...",
+    "warning": {
+        "no_delete": "Je kan geen documenten verwijderen die jij niet hebt toegevoegd",
+        "no_edit": "Je kan geen documenten bewerken die jij niet hebt toegevoegd"
+    },
+    "welcome_page": {
+        "need_login_chat": "Als je de chatbot functie wil gebruiken moet je inloggen of een account maken",
+        "create_account": "Maak een account",
+        "start": "Laten we beginnen",
+        "no_landing_page": "Vink aan als je deze welkomstpagina niet meer wil zien",
+        "login_content": "Maak een account aan. Je kan documenten opslaan en delen. Je krijgt toegang tot je integratieplan.",
+        "topic_content": "Kies een thema en vind informatie",
+        "category_content": "Er zijn 3 soorten informatie",
+        "welcome_text": "Hoe werkt deze app?"
+    }
 }
