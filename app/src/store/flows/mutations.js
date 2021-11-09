@@ -8,7 +8,7 @@ export function setFlows (state, flows) {
 }
 
 export function setFlowsTemp (state, flows) {
-  state.flowsTemp = flows
+  state.flowsTemp = flows.filter(t => !t.translated)
 }
 
 export function setNodePanelVisible (state, visible) {
