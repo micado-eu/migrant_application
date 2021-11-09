@@ -255,7 +255,7 @@ export default {
       }
     },
     events(){
-            var info = this.mixed_settings.filter((set) => set.key == 'events')
+            var info = this.mixed_settings.filter((set) => set.key == 'event')
       if(info.length >0){
         return info[0].value
       }
