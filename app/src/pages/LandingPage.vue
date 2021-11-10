@@ -7,7 +7,7 @@
       <TalkingLabel
                 style="width:100%"
                   :Title="$t('welcome_page.welcome_text')"
-                  :text="$t('welcome_page.welcome_explanation')"
+                  :text="$t('welcome_page.welcome_text')"
                   :row="'row'"
                   :title_col="'col-11'"
                   :container_style="'display: flex;'"
