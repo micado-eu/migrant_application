@@ -14,7 +14,7 @@ export function fetchSettings (state, data) {
 
 export function fetchMixedSettings (state, data) {
   return client
-    .fetchMixedSettings()
+    .fetchMixedSettings(data.defaultLang, data.userLang)
     .then(settings => {
       state.commit('setMixedSettings', settings)
       return settings

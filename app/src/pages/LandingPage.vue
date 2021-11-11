@@ -310,7 +310,10 @@ export default {
         defaultLang: this.$defaultLang,
         userLang: this.$userLang,
       });
-      this.fetchMixedSettings().then(ret=> console.log(ret))
+      this.fetchMixedSettings({
+        defaultLang: this.$defaultLang,
+        userLang: this.$userLang,
+        }).then(ret=> console.log(ret))
 }
 }
 </script>
