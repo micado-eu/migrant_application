@@ -7,7 +7,7 @@
       <TalkingLabel
                 style="width:100%"
                   :Title="$t('welcome_page.welcome_text')"
-                  :text="$t('welcome_page.welcome_explanation')"
+                  :text="$t('welcome_page.welcome_text')"
                   :row="'row'"
                   :title_col="'col-11'"
                   :container_style="'display: flex;'"
@@ -255,7 +255,7 @@ export default {
       }
     },
     events(){
-            var info = this.mixed_settings.filter((set) => set.key == 'events')
+            var info = this.mixed_settings.filter((set) => set.key == 'event')
       if(info.length >0){
         return info[0].value
       }
@@ -310,7 +310,10 @@ export default {
         defaultLang: this.$defaultLang,
         userLang: this.$userLang,
       });
-      this.fetchMixedSettings().then(ret=> console.log(ret))
+      this.fetchMixedSettings({
+        defaultLang: this.$defaultLang,
+        userLang: this.$userLang,
+        }).then(ret=> console.log(ret))
 }
 }
 </script>

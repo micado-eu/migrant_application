@@ -90,6 +90,7 @@
     "edit_doc":"Edit your document",
     "add_doc":"Add new document",
     "image":"Image", 
+    "survey_link": "Link to the external survey",
     "click_step":"Click on a step below for details",
     "emitter":"Emitted by",
     "send_doc_pa":"Select a public authority",

@@ -11,9 +11,9 @@ export default {
             })
             .catch(error_handler);
     },
-    fetchMixedSettings () {
+    fetchMixedSettings (defaultLang, userLang) {
         return axiosInstance
-            .get('/backend/1.0.0/t-settings-migrant')
+            .get('/backend/1.0.0/t-settings-migrant?defaultlang=' + defaultLang + '&currentlang=' + userLang)
             .then((response) => {
                 return response.data
             })
