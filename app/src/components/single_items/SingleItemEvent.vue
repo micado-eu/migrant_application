@@ -93,7 +93,7 @@ export default {
   props: ["title", "description", "attributes"],
   methods: {
     goBack() {
-      this.$router.go(-1);
+      this.$router.push("topic");
     },
     getCreatorAttribute(creator, attrString) {
       var retAttr = ""
