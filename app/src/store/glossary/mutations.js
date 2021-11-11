@@ -1,5 +1,5 @@
 export function setGlossary(state, glossary) {
-  state.glossary = glossary.filter(t => t.translated)
+  state.glossary = glossary
 }
 
 export function setGlossaryTemp(state, glossary) {

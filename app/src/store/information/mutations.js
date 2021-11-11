@@ -3,7 +3,7 @@ export function setInformation(state, information) {
     information[i].title = information[i]['information'];
     delete information[i].information;
   }
-  state.information = information.filter(t => t.translated)
+  state.information = information
 }
 
 export function setInformationTemp(state, information) {

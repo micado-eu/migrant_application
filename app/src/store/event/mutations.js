@@ -3,7 +3,7 @@ export function setEvents(state, events) {
     events[i].title = events[i]['event']
     delete events[i].event
   }
-  state.events = events.filter(t => t.translated)
+  state.events = events
 }
 
 export function setEventTemp(state, events) {
