@@ -577,7 +577,7 @@ export default {
       console.log("I am return from prom1");
 
       prom2.push(
-        this.fetchGraph({ id: this.processid, userLang: this.$userLang })
+        this.fetchGraph({ id: this.processid, userLang: this.$userLang, defaultLang: this.$defaultLang })
       );
       Promise.all(prom2).then((graph) => {
         console.log(graph);

@@ -31,7 +31,7 @@ export function fetchDocuments (state, payload) {
 
 export function fetchGraph (state, payload) {
   return client
-    .fetchGraph(payload.id, payload.userLang)
+    .fetchGraph(payload.id, payload.userLang, payload.defaultLang)
     .then(graph => {
       state.commit('graphs/setGraphs', graph, { root: true })
       return graph

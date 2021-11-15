@@ -26,9 +26,9 @@ export default {
       })
       .catch(error_handler);
   },
-  fetchGraph (id, userLang) {
+  fetchGraph (id, userLang, defaultLang) {
     return axiosInstance
-      .get('backend/1.0.0/mermaid?processid=' + id + '&lang=' + userLang)
+      .get('backend/1.0.0/mermaid?processid=' + id + '&lang=' + userLang + '&defaultlang=' + defaultLang)
       .then((response) => {
         return response.data
       })
