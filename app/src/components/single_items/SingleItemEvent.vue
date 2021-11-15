@@ -62,7 +62,7 @@
       ></entry-row>
       <div align="center">
         <q-btn
-          @click="goBack()"
+          to="/topic"
           icon="navigate_before"
           no-caps
           rounded
@@ -92,9 +92,6 @@ export default {
   },
   props: ["title", "description", "attributes"],
   methods: {
-    goBack() {
-      this.$router.go(-1);
-    },
     getCreatorAttribute(creator, attrString) {
       var retAttr = ""
       var retAttr_arr = creator.attributes.filter((attr) => {
