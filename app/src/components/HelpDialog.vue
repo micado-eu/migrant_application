@@ -37,7 +37,7 @@
           :text="title"
         />
         </q-card-section>
-        <q-card-section>
+        <q-card-section v-if="content != null && content.length >0">
           <TalkingLabel
           :row="'row'"
           :title_col="'col-11 '"
