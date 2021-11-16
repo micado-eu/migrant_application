@@ -26,7 +26,7 @@
                   :title_col="'col-11'"
                   :container_style="'display: flex;'"
                   :icon_style="'flex-shrink:0;text-align:right'"
-                  :showing="'flex-grow:1;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'"
+                  :showing="'flex-grow:1;'"
                 />
     </div>
       <div class="q-pa-md ">
@@ -74,7 +74,7 @@
                   :title_col="'col-11'"
                   :container_style="'display: flex;'"
                   :icon_style="'flex-shrink:0;text-align:right'"
-                  :showing="'flex-grow:1;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'"
+                  :showing="'flex-grow:1;'"
                 />
     </div>
     <div class="row topic_layout">
@@ -130,7 +130,7 @@
                   :title_col="'col-11'"
                   :container_style="'display: flex;'"
                   :icon_style="'flex-shrink:0;text-align:right'"
-                  :showing="'flex-grow:1;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'"
+                  :showing="'flex-grow:1;'"
                 />
     </div>
     <div v-if="tasksAndPlans" class="row topic_layout">
