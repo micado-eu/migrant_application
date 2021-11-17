@@ -13,8 +13,12 @@
                 />
     </div>
        <div class="q-pa-md">
-
-    <TalkingLabel
+         <glossary-editor-viewer
+        :content="privacy"
+        talkingLabelLocation="right"
+        class="description"
+      />
+    <!--<TalkingLabel
                   :Title="privacy"
                   :text="privacy"
                   :row="'row'"
@@ -22,7 +26,7 @@
                   :container_style="'display: flex;'"
                   :icon_style="'flex-shrink:0;text-align:right'"
                   :showing="'flex-grow:1;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;font-weight: normal;font-size: 14px;line-height: 16px;color: #000000;'"
-                />
+                />-->
     </div>
      <div class="q-pa-md q-gutter-sm col" style="text-align:center">
         <q-btn
@@ -41,11 +45,13 @@
 <script>
 const TalkingLabel = () => import('components/TalkingLabel')
 import storeMappingMixin from "../mixin/storeMappingMixin";
+import GlossaryEditorViewer from "components/GlossaryEditorViewer"
+
 
 export default {
   name: 'PageIndex',
   components:{
-    TalkingLabel
+    TalkingLabel,GlossaryEditorViewer
   },
   mixins: [
     storeMappingMixin({
