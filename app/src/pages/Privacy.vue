@@ -72,6 +72,7 @@ export default {
     privacy(){
       var info = this.mixed_settings.filter((set) => set.key == 'policy')
       if(info.length >0){
+        console.log(info)
         return info[0].value
       }
       else{
@@ -85,8 +86,10 @@ export default {
     },
   },
   created () {
-  this.fetchMixedSettings().then(ret=> console.log(ret))
-  }
+      this.fetchMixedSettings({
+        defaultLang: this.$defaultLang,
+        userLang: this.$userLang,
+        }).then(ret=> console.log(ret))  }
 }
 </script>
 <style scoped>
