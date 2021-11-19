@@ -34,7 +34,7 @@
       ></entry-row-icons>
       <div align="center">
         <q-btn
-          to="/topic"
+          @click="$router.back()"
           icon="navigate_before"
           no-caps
           rounded
