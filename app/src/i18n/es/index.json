@@ -92,7 +92,8 @@
         "validation_request_successfull": "Tu consulta para validar una tarea se ha realizado con éxito",
         "personal": "Area personal",
         "send_doc_me": "Enviar a otro correo",
-        "send_doc_pa": "Seleccione una autoridad pública"
+        "send_doc_pa": "Seleccione una autoridad pública",
+        "survey_link": "Enlace a la encuesta externa"
     },
     "profile": {
         "change_pic": "Cambiar foto",
@@ -200,5 +201,9 @@
         "topic_content": "Puedes encontrar contenido por tema",
         "welcome_explanation": "Aquí está el texto que explica cómo funciona la app",
         "welcome_text": "¿Cómo funciona esta app?"
+    }, 
+    "warning":{
+      "no_edit":"No puedes editar documentos que no has subido tú",
+      "no_delete":"No puedes eliminar documentos que no has subido tú"
     }
 }
