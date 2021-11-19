@@ -38,7 +38,12 @@
         />
         </q-card-section>
         <q-card-section v-if="content != null && content.length >0">
-          <TalkingLabel
+      <glossary-editor-viewer
+        :content="content"
+        talkingLabelLocation="right"
+        class="description"
+      />
+        <!--  <TalkingLabel
           :row="'row'"
           :title_col="'col-11 '"
           :showing="'flex-grow:1;font-family: Nunito;font-style: normal;font-weight: normal;font-size: 14px;line-height: 16px;color: #000000;;padding-top:3px'"
@@ -46,7 +51,7 @@
           :icon_style="'flex-shrink:0;text-align:right;padding-top:3px'"
           :Title="content"
           :text="content"
-        />
+        />-->
         </q-card-section>
           </q-page>
           </q-page-container>
@@ -56,6 +61,7 @@
 
 <script>
 const TalkingLabel = () => import('components/TalkingLabel')
+import GlossaryEditorViewer from "components/GlossaryEditorViewer"
 
 export default {
   // name: 'ComponentName',
@@ -64,7 +70,7 @@ export default {
     return {}
   },
     components:{
-    TalkingLabel
+    TalkingLabel,GlossaryEditorViewer
   },
   methods:{
     reset(){
