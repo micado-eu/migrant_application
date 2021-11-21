@@ -9,7 +9,7 @@
         "title": "Filter"
     },
     "privacy": {
-        "privacy": "Privacy policy",
+        "privacy": "Privacyverklaring",
         "grant": "Dit project wordt ondersteund door de EU H2020 innovatie act net overeenkomst nr 822717"
     },
     "internal_reference": {
@@ -112,7 +112,8 @@
         "validation_request_successfull": "Het is gelukt, je hebt gevraagd om je taak goed te keuren",
         "loading": "Aan het laden...",
         "survey_desc": "Neem deel aan onze vragenlijst!",
-        "send_doc_title": "Verstuur het document via mail"
+        "send_doc_title": "Verstuur het document via mail",
+        "survey_link": "de externe vragenlijst"
     },
     "input_labels": {
         "email": "Email",
@@ -135,7 +136,7 @@
         "go_back": "Ga terug",
         "back": "Ga terug",
         "remove": "Verwijderen",
-        "save": "Opslaan",
+        "save": "Bewaar",
         "add_document": "Voeg een document toe",
         "change_pass": "Wijzig je wachtwoord",
         "delete": "Verwijderen",
@@ -184,10 +185,11 @@
         "need_login_chat": "Als je de chatbot functie wil gebruiken moet je inloggen of een account maken",
         "create_account": "Maak een account",
         "start": "Laten we beginnen",
-        "no_landing_page": "Vink aan als je deze welkomstpagina niet meer wil zien",
+        "no_landing_page": "Toon mij deze pagina niet meer",
         "login_content": "Maak een account aan. Je kan documenten opslaan en delen. Je krijgt toegang tot je integratieplan.",
         "topic_content": "Kies een thema en vind informatie",
-        "category_content": "Er zijn 3 soorten informatie",
-        "welcome_text": "Hoe werkt deze app?"
+        "category_content": "Er zijn 3 soorten informatie:",
+        "welcome_text": "Hoe kan ik deze app gebruiken?",
+        "welcome_explanation": "Hoe kan ik deze app gebruiken?"
     }
 }
