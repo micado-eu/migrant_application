@@ -1,12 +1,13 @@
 {
     "application_title": "MICADO应用程序",
     "menu": {
+        "consent": "同意管理器",
+        "info": "基本信息",
         "title": "我的工具",
         "home": "主页",
         "home_desc": "MICADO主页",
         "processes": "移民融入过程向导",
         "processes_desc": "指导您完成多项融入任务",
-        "info": "信息中心",
         "chatbot": "MICADO机器人",
         "chatbot_desc": "Micado smart assistant",
         "tasks": "我的融入计划",
@@ -21,10 +22,16 @@
         "glossary_desc": "Commonly used words",
         "information": "Information centre",
         "information_desc": "Integration information and services",
-        "events": "Events",
-        "events_desc": "Integration events"
+        "events": "活动和课程",
+        "events_desc": "Integration events",
+        "funding": "它的工作原理归功于",
+        "guides": "分步指南",
+        "integration_plan": "整合计划书",
+        "policy": "隐私政策",
+        "welcome": "欢迎来到APP"
     },
     "button": {
+        "home": "开始",
         "add_document": "添加文件",
         "save": "保存",
         "remove": "删除",
@@ -83,6 +90,8 @@
         "document_delete": "您想要删除该文件吗？",
         "document_sent": "您的文件已成功发送至",
         "survey": "问卷！",
+        "survey_desc": "参加调查！",
+        "validation_request_successfull": "您的验证成功",
         "personal": "个人区域"
     },
     "profile": {
@@ -159,7 +168,8 @@
         "send": "发送评论",
         "feedback": "请在下方文本框中写下您的评论",
         "url": "您的评论将在页面上",
-        "mail": "您的评论将被发送至"
+        "mail": "您的评论将被发送至",
+        "send_pa":"向官方行政部门发送意见"
     },
     "date_selector": {
         "close": "关闭"
@@ -175,6 +185,17 @@
         "consentModal_description": "你可以在此查看我们收集的有关你的信息，并对其进行个性化。标记为“例如”的项目仅为示范，并不会真正在该网站使用。",
         "title": "MICADO同意协议"
     },
+    "welcome_page": {
+        "category_content": "有3种类型的信息",
+        "create_account": "创建一个帐户",
+        "login_content": "创建个人帐户，才可以访问其他功能",
+        "need_login_chat": "您必须登录或创建一个帐户才能使用聊天系统",
+        "no_landing_page": "不要再看到这个页面",
+        "start": "我们开始吧！",
+        "topic_content": "您可以按主题查找内容",
+        "welcome_explanation": "这是APP的使用说明书",
+        "welcome_text": " 如何操作APP"
+    }, 
     "error404": "非常抱歉，这里空空如也...",
     "privacy": {
         "privacy": "隐私权政策"
