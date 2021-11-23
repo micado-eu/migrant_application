@@ -25,7 +25,7 @@
         "events": "Eventos y cursos",
         "funding": "Funciona gracias a",
         "guides": "Guías paso a paso",
-        "integration_plan": "Integration plans",
+        "integration_plan": "Planes de integración",
         "policy": "Política de privacidad",
         "welcome": "Bienvenido a la APP",
         "events_desc": "Eventos de integración"
@@ -194,7 +194,7 @@
     "welcome_page": {
         "category_content": "Todo el contenido está categorizado en 3 grupos principales",
         "create_account": "Crea una cuenta",
-        "login_content": "Si creas una cuenta, las organizaciones públicas son capaces de ayudarte con tus procesos de integración a través de la Cartera de Documentos y los Planes de Integración:",
+        "login_content": "Crea una cuenta personal para tener acceso a funcionalidades adicionales",
         "need_login_chat": "Tienes que iniciar sesión o crear una cuenta para usar el chatbot",
         "no_landing_page": "Marca esta caja si no quieres volver a ver esta página de bienvenida",
         "start": "Vamos a empezar",
