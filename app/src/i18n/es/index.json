@@ -22,7 +22,7 @@
         "glossary_desc": "Palabras de uso común",
         "information": "Centro de información",
         "information_desc": "Servicios e información de integración",
-        "events": "Eventos y cursos",
+        "events": "Cursos y eventos",
         "funding": "Funciona gracias a",
         "guides": "Guías paso a paso",
         "integration_plan": "Planes de integración",
@@ -192,12 +192,12 @@
         "privacy": "Políticas de privacidad"
     },
     "welcome_page": {
-        "category_content": "Todo el contenido está categorizado en 3 grupos principales",
+        "category_content": "Hay 3 tipos de información",
         "create_account": "Crea una cuenta",
         "login_content": "Crea una cuenta personal para tener acceso a funcionalidades adicionales",
         "need_login_chat": "Tienes que iniciar sesión o crear una cuenta para usar el chatbot",
-        "no_landing_page": "Marca esta caja si no quieres volver a ver esta página de bienvenida",
-        "start": "Vamos a empezar",
+        "no_landing_page": "No volver a ver esta página",
+        "start": "Pulsa AQUÍ para empezar",
         "topic_content": "Puedes encontrar contenido por tema",
         "welcome_explanation": "Aquí está el texto que explica cómo funciona la app",
         "welcome_text": "¿Cómo funciona esta app?"
