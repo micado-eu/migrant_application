@@ -3,6 +3,19 @@
     <div style="text-align:center">
    <q-icon name="img:statics/icons/MICADO APP - Welcome page Graphics-02 1.svg" class="top-icon"/>
     </div>
+         <div class="row" style="text-align:center; margin-bottom:20px; margin-top:25px;  justify-content: center;">
+    <q-btn
+          :label="$t('welcome_page.start')"
+          class="button"
+          :icon="'img:statics/icons/Icon - lets start.svg'"
+          no-caps
+          @click="$router.push({ name: 'topic'})"
+        />
+        <TalkingLabel
+                  :text="$t('welcome_page.start')"
+                  :icon_style="'margin-top:7px; margin-left:10px'"                  
+                />
+  </div>
     <div class="help-text pad">
       <TalkingLabel
                 style="width:100%"
@@ -165,20 +178,7 @@
     :content="plans"
     :icon="'img:statics/icons/MICADO APP - Welcome page - Integration PLan-07 1.svg'"
     @hiding="dialog_plan = false"/>
-     <div class="row" style="text-align:center; margin-bottom:20px; margin-top:25px;  justify-content: center;">
-    <q-btn
-          :label="$t('welcome_page.start')"
-          class="button"
-          :icon="'img:statics/icons/Icon - lets start.svg'"
-          no-caps
-          @click="$router.push({ name: 'topic'})"
-        />
-        <TalkingLabel
-                  :text="$t('welcome_page.start')"
-                  :icon_style="'margin-top:7px; margin-left:10px'"                  
-                />
-  </div>
-        <hr class="separation"/>
+
  
   <div v-if="show_landing_page_choice" class="row">
        <div class="q-gutter-sm col" style="max-width:60px">
@@ -214,7 +214,7 @@ export default {
     mixins: [
     storeMappingMixin({
       getters: {
-        topics: "topic/topics",
+        topics: "topic/sortedByFater",
         mixed_settings:"settings/mixed_settings",
         features:"features/features"
       },
