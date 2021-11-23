@@ -272,10 +272,10 @@ export default {
         answer: JSON.stringify(answer),
         answerDate: new Date().toISOString()
       }
-      console.log(formatted_results)
+      //console.log(formatted_results)
       this.saveSurveyAnswer(formatted_results)
       console.log("I am saving the results of the survey!!!!!")
-      this.setSurveyJSON(null)
+      this.setSurveyJSON(null) 
     },
   },
   created () {
