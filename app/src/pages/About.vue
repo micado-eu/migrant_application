@@ -279,7 +279,10 @@ export default {
     },
   },
   created () {
-  this.fetchMixedSettings().then(ret=> console.log(ret))
+  this.fetchMixedSettings({
+        defaultLang: this.$defaultLang,
+        userLang: this.$userLang,
+        }).then(ret=> console.log(ret))
   this.fetchMigrantSurvey(this.user.umid).then((sr) => {
       console.log("I AM THE SUrVEY in about")
       console.log(sr)
