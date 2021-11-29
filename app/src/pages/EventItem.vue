@@ -52,6 +52,9 @@ export default {
             if (item.topics) {
               this.attributes.topics = this.idJoin(item.topics, this.topics)
             }
+            if (item.location) {
+              this.attributes.location = item.location
+            }
             let lang = this.$userLang
             if (lang === "zh_Hans") {
               lang = "zh-Hans-CN"
