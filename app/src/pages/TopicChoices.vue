@@ -464,6 +464,7 @@ export default {
       })
       }*/
       console.log("before going to new topic");
+      console.log(this.crumbs)
       this.$router.push({
         name: "crumbs",
         params: {
@@ -567,6 +568,8 @@ export default {
       });
       console.log("I M TOPICFILTER");
       var parsed_var = [];
+      console.log(this.topicFilter)
+      console.log(JSON.parse(this.topicFilter))
       if (this.topicFilter) {
         var parsed_var = JSON.parse(this.topicFilter);
       }

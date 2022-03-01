@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@braintree/sanitize-url": "^4.0.0",
-    "@quasar/extras": "^1.9.5",
+    "@quasar/extras": "^1.12.3",
     "@uppy/core": "^1.18.0",
     "@uppy/dashboard": "^1.19.0",
     "@uppy/tus": "^1.8.7",
@@ -38,7 +38,7 @@
     "leaflet": "^1.6.0",
     "lodash": "^4.17.21",
     "marked": "^2.1.1",
-    "quasar": "^1.14.0",
+    "quasar": "^1.17.1",
     "rocket.chat.realtime.api.rxjs": "^2.1.1",
     "showdown": "^1.9.1",
     "survey-vue": "^1.8.73",

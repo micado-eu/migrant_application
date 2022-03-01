@@ -67,12 +67,15 @@
             {{ topic.topic }}
           </div>
           <HelpDialog 
+              :id="topic.id"
               :open="topic_open == topic.id"
               :title="topic.topic"
               :content_type="'topic'"
               :content="topic.description"
               :icon="topic.icon"
-              @hiding="topic_open = null"/>
+              @hiding="topic_open = null"
+              @navigation="navigation"
+              />
         </div>
       </div>
     </q-scroll-area>
@@ -232,7 +235,8 @@ export default {
       topic_open:null,
       dialog_doc:false,
       dialog_plan:false,
-      val:false
+      val:false,
+      crumbs:[]
     }
   },
   computed:{
@@ -296,6 +300,27 @@ export default {
     }
   },
   methods:{
+      navigation(id) {
+      console.log(this.$route);
+      var the_topic = this.topics.filter((top)=>{
+        return top.id == id
+      })[0]
+      //this.search = "";
+      this.crumbs.push({ id: the_topic.id, name: the_topic.topic });
+      //var idx = this.crumbs.findIndex((item) => item.id == id);
+      //console.log(idx);
+      //this.crumbs.length = idx + 1;
+      console.log("before going to new topic");
+      console.log(this.crumbs)
+      var crumbos = JSON.stringify(this.crumbs)
+      console.log(this.crumbs.join(","))
+      this.$router.push({
+        name: "crumbs",
+        params: {
+          topicFilter:crumbos
+        },
+      });
+    },
     setPreference(value){
       console.log(value)
       localStorage.setItem('landingPage', 'false');

@@ -53,6 +53,7 @@
           :text="content"
         />-->
         </q-card-section>
+        <q-btn @click="navigate">Continue</q-btn>
           </q-page>
           </q-page-container>
         </q-layout>    
@@ -65,7 +66,7 @@ import GlossaryEditorViewer from "components/GlossaryEditorViewer"
 
 export default {
   // name: 'ComponentName',
-  props: ['open', 'title', 'content', 'icon', 'content_type'],
+  props: ['id','open', 'title', 'content', 'icon', 'content_type'],
   data () {
     return {}
   },
@@ -75,6 +76,9 @@ export default {
   methods:{
     reset(){
       this.$emit("hiding")
+    },
+    navigate(){
+      this.$emit("navigation", this.id)
     }
   }
 }

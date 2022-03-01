@@ -14,15 +14,15 @@ export function sortedByFater(state) {
 var fathers = state.topic.filter((top)=>{
   return top.father == null
 })
-var sons = state.topic.filter((top)=>{
+/*var sons = state.topic.filter((top)=>{
   return top.father != null
-})
+})*/
 var sorted_topics = []
 fathers.forEach((fat)=>{
   sorted_topics.push(fat)
 })
-sons.forEach((fat)=>{
+/*sons.forEach((fat)=>{
   sorted_topics.push(fat)
-})
+})*/
 return sorted_topics
 }
