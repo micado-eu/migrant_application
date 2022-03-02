@@ -50,7 +50,6 @@
 const DocumentWalletItem = () => import("components/DocumentWalletItem")
 import editEntityMixin from "../mixin/editEntityMixin"
 import storeMappingMixin from '../mixin/storeMappingMixin'
-require('@uppy/core/dist/style.css')
 const TalkingLabel = () => import('components/TalkingLabel')
 
 

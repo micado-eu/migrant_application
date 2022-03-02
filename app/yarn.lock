@@ -1754,10 +1754,10 @@
     babel-plugin-dynamic-import-node "^2.3.0"
     babel-plugin-module-resolver "^4.0.0"
 
-"@quasar/extras@^1.12.3":
-  version "1.12.3"
-  resolved "https://registry.yarnpkg.com/@quasar/extras/-/extras-1.12.3.tgz#a8727c9e97ebe44fb4c9ed437cab1446ee6a8c30"
-  integrity sha512-BIWpysRnHqbroPnCtWQPNUdhLo97p45RC7J+SVgJH3hdsCHkwJTBMAwaw1522SJn+nEkrPKq1YLm0MgAYmPvvw==
+"@quasar/extras@^1.12.5":
+  version "1.12.5"
+  resolved "https://registry.yarnpkg.com/@quasar/extras/-/extras-1.12.5.tgz#dfd59f5fa96dac75959ff8266d1485abcc270048"
+  integrity sha512-I2bj/qPVxFdd1SZmIao+moh2bSlgbqNHJAIAopzwxQL0fTMKWGaOQsOvSKrv4hmAhC1cL/SBHd4OWAUWa4dA/w==
 
 "@quasar/fastclick@1.1.4":
   version "1.1.4"
@@ -11264,10 +11264,10 @@ quasar-app-extension-auth-token-based@^0.3.1:
   dependencies:
     glob "^7.1.4"
 
-quasar@^1.17.1:
-  version "1.17.1"
-  resolved "https://registry.yarnpkg.com/quasar/-/quasar-1.17.1.tgz#2e74b76b29ab39a70bd7c75c5c0c79178684a983"
-  integrity sha512-7kzaQ2ZqCXM5aCJE8PanXacXd3TIC8tDlvFyUruHzddFP3txhQPOhWAH6nv3zc0mdAH01V2ECmE3m3dAI393QQ==
+quasar@^1.18.5:
+  version "1.18.5"
+  resolved "https://registry.yarnpkg.com/quasar/-/quasar-1.18.5.tgz#296f28c9f45823004345ae5dcdac6e9bc9bd5895"
+  integrity sha512-T/PLWrRuM+1KRvfZASjvXwmSxmebOJGDa37sDuAv2Fb7TUe+iG6+6RhUGRWgasQAqWaTS4E5++MEoTyHqJzsNg==
 
 query-string@^4.1.0:
   version "4.3.4"
