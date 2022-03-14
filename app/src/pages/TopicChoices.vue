@@ -3,7 +3,7 @@
     <span v-if="loading">{{ $t("desc_labels.loading") }}</span>
     <div v-else>
       <div class="q-pa-md q-gutter-sm">
-        <q-breadcrumbs active-color="secondary">
+        <q-breadcrumbs class="text-grey" active-color="grey">
           <q-breadcrumbs-el
             class="crumb"
             icon="img:statics/icons/Icon - Home (crumb).svg"
@@ -705,8 +705,10 @@ $secondary_list: #0f3a5d;
 }
 .crumb {
   border-radius: 5px;
-  border-style: solid;
-  border-width: thin;
+  //border-style: solid ;
+  //border-color: grey;
+  //border-width: thin;
+  border: thin solid #949494; 
   padding-left: 5px;
   padding-right: 5px;
 }

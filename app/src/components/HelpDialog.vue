@@ -53,7 +53,19 @@
           :text="content"
         />-->
         </q-card-section>
-        <q-btn @click="navigate">Continue</q-btn>
+                 <div class="row" style="text-align:center; margin-bottom:20px; margin-top:25px;  justify-content: center;">
+         <q-btn
+         @click="navigate"
+          :label="$t('button.continue')"
+          class="continue"
+          :icon="'img:statics/icons/Icon - read more.svg'"
+          no-caps
+        />
+        <TalkingLabel
+                  :text="$t('button.continue')"
+                  :icon_style="'margin-top:7px; margin-left:10px'"                  
+                />
+  </div>
           </q-page>
           </q-page-container>
         </q-layout>    
@@ -87,5 +99,11 @@ export default {
 .top-icon{
   width:100%;
   height:100%
+}
+.continue{
+  width: 250px;
+  color: white;
+  background: #0F3A5D;
+  border-radius: 50px;
 }
 </style>

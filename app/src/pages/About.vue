@@ -1,6 +1,11 @@
 <template>
       <div >
-
+ <div style="text-align:center; padding-bottom:10px">
+   <q-icon name="img:statics/icons/About.svg" class="top-icon"/>
+    </div>
+  <div  style="background-color:#EFEFEF; height:5px">
+    &nbsp;
+  </div>
    <q-item clicakble v-if="survey_visible" @click.native="openSurvey">
    <TalkingLabel
    class="q-pa-md option"
@@ -378,5 +383,9 @@ display:inline-block
   border: 1px solid #9E1F63;
   width:250px;
   border-radius: 50px;
+}
+.top-icon{
+  width:100%;
+  height:100%
 }
 </style>
