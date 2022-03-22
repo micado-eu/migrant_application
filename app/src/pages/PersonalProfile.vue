@@ -2,6 +2,12 @@
   <div  style="padding-top:10px">
     <div v-if="this.loading">{{$t('desc_labels.loading')}}</div>
     <div v-else>
+    <div style="text-align:center; padding-bottom:10px">
+   <q-icon name="img:statics/icons/Personal profile.svg" class="top-icon"/>
+    </div>
+      <div  style="background-color:#EFEFEF; height:5px">
+    &nbsp;
+  </div>
   <q-item v-if="docs_present" :disable="!($auth.loggedIn())" clicakble @click.native="documents">
    <TalkingLabel
    class="q-pa-md option"
@@ -57,7 +63,7 @@
     &nbsp;
   </div>
          <div class="row" v-if="($auth.loggedIn())" style="text-align:center; padding-top:20px;justify-content: center">
-        <q-btn  class="logout"  unelevated no-caps :label="$t('desc_labels.logout')" @click="logout()" />
+        <q-btn  class="logout" :icon="'img:statics/icons/Icon - X (cancel).svg'" unelevated no-caps :label="$t('desc_labels.logout')" @click="logout()" />
         <TalkingLabel
         class="option"
           :text="$t('desc_labels.logout')"
@@ -248,8 +254,9 @@ export default {
   },
 
   created () {
-    //var userId = this.$store.state.auth.user.umid
-    //console.log(userId)
+    var userId = this.$store.state.auth.user.umid
+    console.log("I AM USER ID")
+    console.log(userId)
     if(this.$store.state.auth.user){
           this.fetchSpecificUser(this.$store.state.auth.user.umid).then((user)=>{
       if(user.userPicture){
@@ -352,5 +359,10 @@ display:inline-block
   border: 1px solid #9E1F63;
   width:250px;
   border-radius: 50px;
+  font-weight: 700;
+}
+.top-icon{
+  width:100%;
+  height:100%
 }
 </style>

@@ -53,6 +53,19 @@
           :text="content"
         />-->
         </q-card-section>
+                 <div class="row" style="text-align:center; margin-bottom:20px; margin-top:25px;  justify-content: center;">
+         <q-btn
+         @click="navigate"
+          :label="$t('button.continue')"
+          class="continue"
+          :icon="'img:statics/icons/Icon - read more.svg'"
+          no-caps
+        />
+        <TalkingLabel
+                  :text="$t('button.continue')"
+                  :icon_style="'margin-top:7px; margin-left:10px'"                  
+                />
+  </div>
           </q-page>
           </q-page-container>
         </q-layout>    
@@ -65,7 +78,7 @@ import GlossaryEditorViewer from "components/GlossaryEditorViewer"
 
 export default {
   // name: 'ComponentName',
-  props: ['open', 'title', 'content', 'icon', 'content_type'],
+  props: ['id','open', 'title', 'content', 'icon', 'content_type'],
   data () {
     return {}
   },
@@ -75,6 +88,9 @@ export default {
   methods:{
     reset(){
       this.$emit("hiding")
+    },
+    navigate(){
+      this.$emit("navigation", this.id)
     }
   }
 }
@@ -83,5 +99,11 @@ export default {
 .top-icon{
   width:100%;
   height:100%
+}
+.continue{
+  width: 250px;
+  color: white;
+  background: #0F3A5D;
+  border-radius: 50px;
 }
 </style>

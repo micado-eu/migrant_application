@@ -34,6 +34,7 @@
     "funding":"Powered by"
   },
   "button": {
+    "continue":"Go to content",
     "change_pass": "Change Password",
     "add_document": "Add Document",
     "save": "Save",

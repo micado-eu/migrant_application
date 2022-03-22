@@ -30,7 +30,19 @@
         alt="Funded by EU"
         src="~assets/Flag_of_Europe.png"
       >
-              </div>
+      <hr/>
+      </div>
+      <div v-for="partner in partners" class="pad" :key="partner.url" style="text-align:center" >
+      <a :href="partner.url" target="_blank">
+      <img
+        style="width:200px;height:100px;object-fit:scale-down;"
+        :alt="partner.alt"
+        :src="partner.picture"
+      >
+      </a>
+      <hr style="color:#BDBDBD"/>
+      </div>
+              
         <div class="q-pa-md q-gutter-sm col" style="text-align:center">
         <q-btn
           size="12px"
@@ -66,7 +78,24 @@ export default {
   ],
   data () {
     return {
-      logged: false
+      logged: false,
+      partners:[
+        {url:"https://www.hcu-hamburg.de/research/csl/", picture:"statics/HCU-DCS_Logo_horizontal-blue.svg", alt:"HCU Hamburg"},
+        {url:"https://www.urjc.es/", picture:"statics/05 URJC.svg", alt:"URJC"},
+        {url:"https://www.colpolsoc.org/", picture:"statics/11 Logo nuevo Madrid-1.svg", alt:"Colpolsoc"},
+        {url:"https://www.aspbologna.it/", picture:"statics/asp-bologna.svg", alt:"ASP Bologna"},
+        {url:"https://www.atlas-antwerpen.be/en", picture:"statics/atlas.svg", alt:"Atlas"},
+        {url:"https://www.csipiemonte.it/en", picture:"statics/CSI_2020_RGB_trasparente.svg", alt:"CSI"},
+        {url:"https://www.comunidad.madrid/", picture:"statics/DGSSIS.svg", alt:"DGSSIS"},
+        {url:"https://www.digipolisantwerpen.be/", picture:"statics/digipolis_font.svg", alt:"Digipolis"},
+        {url:"https://www.hamburg.de/", picture:"statics/FHH Hamburg.svg", alt:"FHH Hamburg"},
+        {url:"https://www.antwerpen.be/sociale-hulp-en-zorg", picture:"statics/Stad-antwerpen-logo.svg", alt:"Stad Antwerpen"},
+        {url:"https://www.synyo.com/", picture:"statics/SYNYO-Logo-(1200x655) 1.svg", alt:"SYNYO"},
+        {url:"https://simlab.tuwien.ac.at/", picture:"statics/TU Logo 1.svg", alt:"TU"},
+        {url:"https://www.unibo.it/en", picture:"statics/Universität di bologna Logo-03 1.svg", alt:"Università di Bologna"},
+        {url:"https://www.hwwi.org/home.html", picture:"statics/2000px-HWWI-logo.svg", alt:"HWWI"},
+
+        ]
     }
   },
   methods:{
@@ -92,7 +121,10 @@ export default {
     },
   },
   created () {
-  this.fetchMixedSettings().then(ret=> console.log(ret))
+  this.fetchMixedSettings({
+        defaultLang: this.$defaultLang,
+        userLang: this.$userLang
+        }).then(ret=> console.log(ret))
   }
 }
 </script>

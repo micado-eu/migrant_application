@@ -3,7 +3,7 @@
     <span v-if="loading">{{ $t("desc_labels.loading") }}</span>
     <div v-else>
       <div class="q-pa-md q-gutter-sm">
-        <q-breadcrumbs active-color="secondary">
+        <q-breadcrumbs class="text-grey" active-color="grey">
           <q-breadcrumbs-el
             class="crumb"
             icon="img:statics/icons/Icon - Home (crumb).svg"
@@ -464,6 +464,7 @@ export default {
       })
       }*/
       console.log("before going to new topic");
+      console.log(this.crumbs)
       this.$router.push({
         name: "crumbs",
         params: {
@@ -567,6 +568,8 @@ export default {
       });
       console.log("I M TOPICFILTER");
       var parsed_var = [];
+      console.log(this.topicFilter)
+      console.log(JSON.parse(this.topicFilter))
       if (this.topicFilter) {
         var parsed_var = JSON.parse(this.topicFilter);
       }
@@ -702,8 +705,10 @@ $secondary_list: #0f3a5d;
 }
 .crumb {
   border-radius: 5px;
-  border-style: solid;
-  border-width: thin;
+  //border-style: solid ;
+  //border-color: grey;
+  //border-width: thin;
+  border: thin solid #949494; 
   padding-left: 5px;
   padding-right: 5px;
 }

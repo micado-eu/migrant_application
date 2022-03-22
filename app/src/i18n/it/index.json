@@ -47,6 +47,7 @@
         "welcome": "Benvenuti nell'APP"
     },
     "button": {
+        "continue":"Vai ai contenuti",
         "add_document": "Aggiungi documento",
         "save": "Salva",
         "remove": "Rimuovi",

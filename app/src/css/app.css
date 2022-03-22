@@ -10,3 +10,7 @@
 body {
   font-family: "Nunito", sans-serif;
 }
+.q-icon > svg, .q-icon > img{
+  width:100%;
+  height: 100%;
+}

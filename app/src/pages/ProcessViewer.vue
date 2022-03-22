@@ -157,7 +157,7 @@
                       :text="$t('desc_labels.location') + flowData.location"
                     />
                     <p class="textdown" tabindex="0">
-                      <a :href="gmap_location"> {{ flowData.location }} </a>
+                      <a :href="gmap_location" target="_blank"> {{ flowData.location }} </a>
                     </p>
                   </div>
                   <hr  v-if="flowData.location != null" />

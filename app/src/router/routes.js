@@ -1,5 +1,4 @@
 import Index from 'pages/Index.vue'
-import Documents from 'pages/Documents.vue'
 import Services from 'pages/Services.vue'
 import Flows from 'pages/Flows.vue'
 import Notifications from 'components/Notifications.vue'
@@ -10,7 +9,6 @@ import Tasks from 'pages/Tasks.vue'
 import Chatbot from 'pages/Chatbot.vue'
 import ProfileSettings from 'pages/ProfileSettings.vue'
 import Certificates from 'pages/Certificates.vue'
-import MapView from 'components/Map.vue'
 import Glossary from 'pages/Glossary.vue'
 import DecisionTreePage from 'pages/DecisionTreePage.vue'
 import Processes from 'pages/Processes.vue'
@@ -30,11 +28,9 @@ const routes = [
     path: '/',
     component: () => import('layouts/Layout.vue'),
     children: [
-      //{ path: '', component: () => import('pages/Index.vue') },
       { path: '/documents', name:'document', component: () => import('pages/DocumentWallet.vue') , meta: { auth: true } },
       { path: '/documents/add', component: () => import('components/AddDocument.vue'), meta: { auth: true } },
       { path: '/documents/:thedocid', name: 'viewdocument', component: () => import('components/DocumentViewerComponent.vue'), props: (route) => ({ ...route.params }), meta: { auth: true } },
-      //{ path: '/documents/edit/:id', component: AddDocument, props: true, name: document, meta: { auth: true } },
       { path: '/services', component: () => import('pages/Services.vue')},
       { path: '/flows', component: () => import('pages/Flows.vue') },
       { path: '/processes', component: () => import('pages/Processes.vue')},
@@ -49,7 +45,6 @@ const routes = [
       { path: '/settings', name:'settings', component: () => import('pages/ProfileSettings.vue'), meta: { auth: true } },
       { path: '/profile', name:'profile', component: () => import('pages/PersonalProfile.vue') },
       { path: '/certificates', component: () => import('pages/Certificates.vue'), props: true, name: 'certificates' },
-      { path: '/map', component: () => import('components/Map.vue')},
       { path: '/privacy', name:'privacy', component: () => import('pages/Privacy.vue')},
       { path: '/glossary/:id?', component: () => import('pages/Glossary.vue'), name:'glossary'  },
       { path: '/documents/edit/:thedocid', component: () => import('components/AddDocument.vue'), props: (route) => ({ ...route.params }), name: 'editdocument', meta: { auth: true } },
@@ -74,64 +69,7 @@ const routes = [
       { path: 'topic/:topicFilter', name:'crumbs', component: () => import('pages/TopicChoices.vue'), props: (route) => ({ ...route.params })}
     ]
   }
-  /*,
-  {{
-  path: '/',
-  component: () => { 
-    if (store.state.domain) {
-      return import(/ webpackChunkName: "app-home" / '../views/AppHome.vue');
-    } else {
-      return import(/ webpackChunkName: "home" / '../views/Home.vue');
-    }
-  }
-}
-    path: '/documents',
-//    meta: { auth: true },
-    component: () => import('layouts/MyLayout.vue'),
-    children: [
-      { path: '', component: () => import('pages/Documents.vue') }
-    ]
-  },
-  {
-    path: '/services',
-//    meta: { auth: true },
-    component: () => import('layouts/MyLayout.vue'),
-    children: [
-      { path: '', component: () => import('pages/Services.vue') }
-    ]
-  },
-  {
-    path: '/flows',
-//    meta: { auth: true },
-    component: () => import('layouts/MyLayout.vue'),
-    children: [
-      { path: '', component: () => import('pages/Flows.vue') }
-    ]
-  },
-  {
-    path: '/notifications',
-//    meta: { auth: true },
-    component: () => import('layouts/MyLayout.vue'),
-    children: [
-      { path: '', component: () => import('components/Notifications.vue') }
-    ]
-  },
-  {
-    path: '/map',
-//    meta: { auth: true },
-    component: () => import('layouts/MyLayout.vue'),
-    children: [
-      { path: '', component: () => import('components/Map.vue') }
-    ]
-  },
-  {
-    path: '/chatbot',
-//    meta: { auth: true },
-    component: () => import('layouts/MyLayout.vue'),
-    children: [
-      { path: '', component: () => import('components/Chatbot.vue') }
-    ]
-  }*/
+  
 ]
 
 // Always leave this as last one
