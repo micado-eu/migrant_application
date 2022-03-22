@@ -5,6 +5,10 @@
       v-if="!loading"
       class="row q-pa-md"
     >
+      <q-icon
+        name="img:statics/glossary_header.svg"
+        class="top-icon"
+      />
       <div class="col-12 row flex-center q-mb-md">
         <q-input
           class="col-10 q-mr-md"
@@ -272,5 +276,10 @@ $accent_list: #ff7c44;
   background-color: #ff7c44;
   margin-left: -16px;
   margin-right: -16px;
+}
+.top-icon {
+  width: 157px;
+  height: 107px;
+  margin: 20px auto;
 }
 </style>>
