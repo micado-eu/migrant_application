@@ -53,7 +53,7 @@ const routes = [
       { path: '/information/:id', name:'info', component: () => import('pages/InformationItem.vue'),props: (route) => ({ ...route.params })},
       { path: '/events', component: () => import('pages/Events.vue')},
       { path: '/events/:id', name:'events', component: () => import('pages/EventItem.vue'), props: (route) => ({ ...route.params })},
-      { path: '', name:'home', component: () => {
+     /* { path: '', name:'home', component: () => {
         if(localStorage.getItem("landingPage") == 'true' || localStorage.getItem("landingPage") == null){
           return import('pages/LandingPage.vue')
         }
@@ -61,7 +61,8 @@ const routes = [
           return import('pages/TopicChoices.vue')
         }
       }
-    },
+    },*/
+    { path:'', name:'home', component: () => import('pages/TopicChoices.vue'), props: (route) => ({ ...route.params })},
       { path: 'topic', name:'topic', component: () => import('pages/TopicChoices.vue'), props: (route) => ({ ...route.params })},
       { path: 'welcome', name:'welcome', component: () => import('pages/LandingPage.vue'), props: (route) => ({ ...route.params })},
       { path: 'about', name:'about', component: () => import('pages/About.vue'), props: (route) => ({ ...route.params })},

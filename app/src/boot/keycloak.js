@@ -51,10 +51,10 @@ export default async ({ Vue, router, store, app }) => {
   }
 
   let keyPromise = null
-  const realm = store.getters['example/getRealm']
-  if (realm !== null) {
+  //const realm = store.getters['example/getRealm']
+  //if (realm !== null) {
     console.log('Esiste il realm')
-    console.log(realm)
+   // console.log(realm)
     keyPromise = new Promise(resolve => {
       Vue.use(VueKeyCloak, {
         init: {
@@ -65,15 +65,15 @@ export default async ({ Vue, router, store, app }) => {
           checkLoginIframe: false // otherwise it would reload the window every so seconds
         },
         config: {
-          url: 'http://identity.micadoproject.eu/auth',
-          realm: realm,
+          url: 'https://identity.micadoproject.eu/auth',
+          realm: 'migrant',
           clientId: 'migrant_app'
         },
         onReady: (keycloak) => {
           console.log('onReady passed')
           console.log(keycloak)
           console.log(store)
-          store.commit('example/setRealm', keycloak.realm)
+          //store.commit('example/setRealm', keycloak.realm)
           tokenInterceptor()
           console.log(Vue)
           resolve()
@@ -84,7 +84,7 @@ export default async ({ Vue, router, store, app }) => {
         }
       })
     })
-  }
+  //}
 
   return keyPromise
 }
