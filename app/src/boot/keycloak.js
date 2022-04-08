@@ -65,9 +65,9 @@ export default async ({ Vue, router, store, app }) => {
           checkLoginIframe: false // otherwise it would reload the window every so seconds
         },
         config: {
-          url: 'http://keycloak.micado.csi.it:8100/auth',
+          url: 'http://identity.micadoproject.eu/auth',
           realm: realm,
-          clientId: 'migrant'
+          clientId: 'migrant_app'
         },
         onReady: (keycloak) => {
           console.log('onReady passed')

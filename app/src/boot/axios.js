@@ -15,7 +15,7 @@ const axiosInstance = axios.create({
 
 export default ({ Vue }) => {
   axiosInstance.defaults.baseURL = 'https://' + Vue.prototype.$envconfig.apiUrl
-  axiosInstance.defaults.headers.common['apikey'] = Vue.prototype.$envconfig.apiKey
+//  axiosInstance.defaults.headers.common['apikey'] = Vue.prototype.$envconfig.apiKey
   Vue.prototype.$axios = axiosInstance
 }
 

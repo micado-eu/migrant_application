@@ -4,7 +4,7 @@ import { error_handler } from '../../../helper/utility'
 export default {
   fetchInformation(defaultLang, userLang) {
     return axiosInstance
-      .get(`/backend/1.0.0/production-information?defaultlang=${defaultLang}&currentlang=${userLang}`, {
+      .get(`/production-information?defaultlang=${defaultLang}&currentlang=${userLang}`, {
       })
       .then((response) => {
         return response.data
@@ -13,7 +13,7 @@ export default {
   },
   fetchInformationTemp(defaultLang, userLang) {
     return axiosInstance
-      .get(`/backend/1.0.0/temp-information?defaultlang=${defaultLang}&currentlang=${userLang}`, {
+      .get(`/temp-information?defaultlang=${defaultLang}&currentlang=${userLang}`, {
       })
       .then((response) => {
         return response.data

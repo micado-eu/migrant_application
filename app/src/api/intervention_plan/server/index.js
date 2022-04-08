@@ -7,7 +7,7 @@ export default {
     console.log("CALLING API!!!!FETCH")
 
     return axiosInstance
-      .get('/backend/1.0.0/individual-intervention-plans?filter[include][0][relation]=interventions&filter[where][userId]=' + id)
+      .get('/individual-intervention-plans?filter[include][0][relation]=interventions&filter[where][userId]=' + id)
       .then(response => response.data)
       .catch(error_handler);
   },
@@ -20,7 +20,7 @@ export default {
       editingIntervention = JSON.parse(JSON.stringify(intervention, ['listId', 'interventionType', 'title', 'description', 'completed', 'validationRequestDate']));
 
     return axiosInstance
-      .patch('/backend/1.0.0/individual-intervention-plans/' + id_plan + '/individual-intervention-plan-interventions?where=' + JSON.stringify(whereClause), editingIntervention)
+      .patch('/individual-intervention-plans/' + id_plan + '/individual-intervention-plan-interventions?where=' + JSON.stringify(whereClause), editingIntervention)
       .then(response => response.data)
       .catch(error_handler);
   },
@@ -39,7 +39,7 @@ export default {
       validatingUserTenant: intervention_plan.validating_user_tenant,
       validationRequestDate: intervention_plan.validationrequestdate
     }
-    let url = '/backend/1.0.0/individual-intervention-plans/' + intervention_plan.list_id + '/individual-intervention-plan-interventions?where=' + JSON.stringify(filter)
+    let url = '/individual-intervention-plans/' + intervention_plan.list_id + '/individual-intervention-plan-interventions?where=' + JSON.stringify(filter)
     console.log(url)
     return axiosInstance
       .patch(url, intervention_plan_data)
@@ -70,7 +70,7 @@ export default {
   },
   fetchValidatorsTenants (interventionTypeId) {
     return axiosInstance
-      .get('/backend/1.0.0/intervention-types/' + interventionTypeId + '/intervention-type-validators')
+      .get('/intervention-types/' + interventionTypeId + '/intervention-type-validators')
       .then((response) => response.data)
       .catch(error_handler)
   },
@@ -78,7 +78,7 @@ export default {
     console.log("in updateIntervention")
     let filter = { id: { eq: interventionId } }
 
-    let url = '/backend/1.0.0/individual-intervention-plans/' + planId + '/individual-intervention-plan-interventions?where=' + JSON.stringify(filter)
+    let url = '/individual-intervention-plans/' + planId + '/individual-intervention-plan-interventions?where=' + JSON.stringify(filter)
     console.log(url)
     let intervention_data = { validatingUserTenant: tenantId, validationRequestDate: requestDate }
     return axiosInstance

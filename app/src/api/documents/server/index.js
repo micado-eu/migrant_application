@@ -5,7 +5,7 @@ import { error_handler } from '../../../helper/utility'
 export default {
   fetchDocuments () {
     return axiosInstance
-      .get('/backend/1.0.0/documents?filter[include][0][relation]=pictures&filter[include][1][relation]=documentType')
+      .get('/documents?filter[include][0][relation]=pictures&filter[include][1][relation]=documentType')
       .then(response => { return response.data })
       .catch(error_handler);
   },
@@ -16,14 +16,14 @@ export default {
 
   deleteDocumentPictures (doc_id) {
     return axiosInstance
-      .delete('/backend/1.0.0/documents/' + doc_id + '/document-pictures')
+      .delete('/documents/' + doc_id + '/document-pictures')
       .then(response => response.data)
       .catch(error_handler);
   },
 
   deleteDocument (doc_id) {
     return axiosInstance
-      .delete('/backend/1.0.0/documents/' + doc_id)
+      .delete('/documents/' + doc_id)
       .then(response => response.data)
       .catch(error_handler);
   },
@@ -34,7 +34,7 @@ export default {
     const savingDocument= JSON.parse(JSON.stringify(document, [ 'documentTypeId', 'userId', 'validated', 'expirationDate', 'uploadedByMe', 'shareable']))
 
     return axiosInstance
-      .post('/backend/1.0.0/documents', savingDocument)
+      .post('/documents', savingDocument)
       .then(response => response.data)
       .catch(error_handler);
   },
@@ -44,7 +44,7 @@ export default {
     const savingPicture= JSON.parse(JSON.stringify(pictures, [ 'docId', 'picture', 'order']))
 
     return axiosInstance
-      .post('/backend/1.0.0/documents/'+ doc_id + '/document-pictures', savingPicture)
+      .post('/documents/'+ doc_id + '/document-pictures', savingPicture)
       .then(response => response.data)
       .catch(error_handler);
   },
@@ -56,7 +56,7 @@ export default {
       updatingDocument= JSON.parse(JSON.stringify(document, ['id', 'documentTypeId'])) 
 
     return axiosInstance
-      .patch('/backend/1.0.0/documents?where=' + JSON.stringify(whereClause), updatingDocument)
+      .patch('/documents?where=' + JSON.stringify(whereClause), updatingDocument)
       .then(response => response.data)
       .catch(error_handler);
   },
@@ -68,14 +68,14 @@ export default {
       //updatingPicture = (picture.translationDate == null) ? JSON.parse(JSON.stringify(picture, ['id', 'lang', 'prcess', 'description'])) : picture
 
     return axiosInstance
-      .patch('/backend/1.0.0/documents/' + doc.id + '/document-pictures?where=' + JSON.stringify(whereClause), picture)
+      .patch('/documents/' + doc.id + '/document-pictures?where=' + JSON.stringify(whereClause), picture)
       .then(response => response.data)
       .catch(error_handler);
   },
   sendDocumentMail (id, email) {
     
     return axiosInstance
-      .get('/backend/1.0.0/maildocument?documentId=' + id + '&email=' + email)
+      .get('/maildocument?documentId=' + id + '&email=' + email)
       .then(response => response.data)
       .catch(error_handler);
   },

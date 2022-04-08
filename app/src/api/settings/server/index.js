@@ -13,7 +13,7 @@ export default {
     },
     fetchMixedSettings (defaultLang, userLang) {
         return axiosInstance
-            .get('/backend/1.0.0/t-settings-migrant?defaultlang=' + defaultLang + '&currentlang=' + userLang)
+            .get('/t-settings-migrant?defaultlang=' + defaultLang + '&currentlang=' + userLang)
             .then((response) => {
                 return response.data
             })
