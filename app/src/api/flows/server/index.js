@@ -4,7 +4,7 @@ import { error_handler } from '../../../helper/utility'
 export default {
   fetchFlows (defaultLang, userLang) {
     return axiosInstance
-      .get('backend/1.0.0/processes-migrant?defaultlang=' + defaultLang + '&currentlang=' + userLang)
+      .get('/processes-migrant?defaultlang=' + defaultLang + '&currentlang=' + userLang)
       .then((response) => {
         return response.data
       })
@@ -12,7 +12,7 @@ export default {
   },
   fetchFlowsTemp (defaultLang, userLang) {
     return axiosInstance
-      .get('backend/1.0.0/temp-processes-migrant?defaultlang=' + defaultLang + '&currentlang=' + userLang)
+      .get('/temp-processes-migrant?defaultlang=' + defaultLang + '&currentlang=' + userLang)
       .then((response) => {
         return response.data
       })
@@ -20,13 +20,12 @@ export default {
   },
   fetchDocuments (defaultLang, userLang) {
     return axiosInstance
-      .get('backend/1.0.0/processes-migrant?defaultlang=' + defaultLang + '&currentlang=' + userLang)
+      .get('/processes-migrant?defaultlang=' + defaultLang + '&currentlang=' + userLang)
       .then((response) => {
         return response.data
       })
       .catch(error_handler);
   },
-  fetchGraph (id, userLang, defaultLang) {
     return axiosInstance
       .get('backend/1.0.0/mermaid?processid=' + id + '&lang=' + userLang + '&defaultlang=' + defaultLang)
       .then((response) => {

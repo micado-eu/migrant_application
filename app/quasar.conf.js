@@ -17,7 +17,8 @@ module.exports = function (ctx) {
       'mermaid',
       'axios',
       'featureflag',
-      'loadData'
+      'loadData',
+      'keycloak'
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
