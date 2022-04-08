@@ -53,6 +53,7 @@ const routes = [
       { path: '/information/:id', name:'info', component: () => import('pages/InformationItem.vue'),props: (route) => ({ ...route.params })},
       { path: '/events', component: () => import('pages/Events.vue')},
       { path: '/events/:id', name:'events', component: () => import('pages/EventItem.vue'), props: (route) => ({ ...route.params })},
+//      { path: '/silent-check-sso.html'},
      /* { path: '', name:'home', component: () => {
         if(localStorage.getItem("landingPage") == 'true' || localStorage.getItem("landingPage") == null){
           return import('pages/LandingPage.vue')

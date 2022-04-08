@@ -40,6 +40,8 @@ const initOptions = {
 
 Vue.use(VueKeyCloak, initOptions)
 */
+
+/*
 export default async ({ Vue, router, store, app }) => {
   async function tokenInterceptor () {
     Vue.prototype.$axios.interceptors.request.use(config => {
@@ -88,6 +90,8 @@ export default async ({ Vue, router, store, app }) => {
 
   return keyPromise
 }
+
+*/
 
 /*
 
