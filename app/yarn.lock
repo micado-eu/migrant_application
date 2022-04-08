@@ -1313,6 +1313,13 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
+"@dsb-norge/vue-keycloak-js@^2.1.3-beta":
+  version "2.1.3-beta"
+  resolved "https://registry.yarnpkg.com/@dsb-norge/vue-keycloak-js/-/vue-keycloak-js-2.1.3-beta.tgz#d2c29fe04af174cc089db1bbf002cb88ceb45763"
+  integrity sha512-RXnX/qwuUzNblxgQ8maxIKofhyQndpcIm8+egKonzSiTMAMUhyV8poSBoGEA3RCgcaxwOZhEw6rF0F39fc4BAg==
+  dependencies:
+    keycloak-js "^15.0.2"
+
 "@electron/get@^1.3.1":
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/@electron/get/-/get-1.10.0.tgz#258fdda22bbd5a247e0b663ba9c525dedc1bdfff"
@@ -1754,10 +1761,10 @@
     babel-plugin-dynamic-import-node "^2.3.0"
     babel-plugin-module-resolver "^4.0.0"
 
-"@quasar/extras@^1.12.5":
-  version "1.12.5"
-  resolved "https://registry.yarnpkg.com/@quasar/extras/-/extras-1.12.5.tgz#dfd59f5fa96dac75959ff8266d1485abcc270048"
-  integrity sha512-I2bj/qPVxFdd1SZmIao+moh2bSlgbqNHJAIAopzwxQL0fTMKWGaOQsOvSKrv4hmAhC1cL/SBHd4OWAUWa4dA/w==
+"@quasar/extras@^1.9.5":
+  version "1.13.5"
+  resolved "https://registry.yarnpkg.com/@quasar/extras/-/extras-1.13.5.tgz#5be677a800566192ea1bac8b9a796b5b66acd0f5"
+  integrity sha512-H4X3jwqOJpDrn1Pof1mJIpoHdBrZQSR9ZpnQ7RCkJsJccpTyQzs8Q6ehVXfIZrco2kd3UPitRQqEiW7k45ckLg==
 
 "@quasar/fastclick@1.1.4":
   version "1.1.4"
@@ -3177,10 +3184,15 @@ balanced-match@^1.0.0:
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
   integrity sha1-ibTRmasr7kneFk6gK4nORi1xt2c=
 
-base64-js@^1.0.2, base64-js@^1.2.3:
+base64-js@1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.3.1.tgz#58ece8cb75dd07e71ed08c736abc5fac4dbf8df1"
   integrity sha512-mLQ4i2QO1ytvGWFWmcngKO//JXAQueZvwEKtjgQFM4jIK0kU+ytMfplL8j+n5mspOfjHwoAg+9yhb7BwAHm36g==
+
+base64-js@^1.0.2, base64-js@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.5.1.tgz#1b1b440160a5bf7ad40b650f095963481903930a"
+  integrity sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==
 
 base@^0.11.1:
   version "0.11.2"
@@ -8355,6 +8367,11 @@ js-levenshtein@^1.1.3:
   resolved "https://registry.yarnpkg.com/js-levenshtein/-/js-levenshtein-1.1.6.tgz#c6cee58eb3550372df8deb85fad5ce66ce01d59d"
   integrity sha512-X2BB11YZtrRqY4EnQcLX5Rh373zbK4alC1FW7D7MBhL2gtcC17cTnr6DmfHZeS0s2rTHjUTMMHfG7gO8SSdw+g==
 
+js-sha256@0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/js-sha256/-/js-sha256-0.9.0.tgz#0b89ac166583e91ef9123644bd3c5334ce9d0966"
+  integrity sha512-sga3MHh9sgQN2+pJ9VYZ+1LPwXOxuBJBA5nrR5/ofPfuiJBE2hnjsaN8se8JznOmGLN2p49Pe5U/ttafcs/apA==
+
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
@@ -8549,6 +8566,14 @@ jwt-decode@^3.1.2:
   resolved "https://registry.yarnpkg.com/jwt-decode/-/jwt-decode-3.1.2.tgz#3fb319f3675a2df0c2895c8f5e9fa4b67b04ed59"
   integrity sha512-UfpWE/VZn0iP50d8cz9NrZLM9lSWhcJ+0Gt/nm4by88UL+J1SiKN8/5dkjMmbEzwL2CAe+67GsegCbIKtbp75A==
 
+keycloak-js@^15.0.2:
+  version "15.1.1"
+  resolved "https://registry.yarnpkg.com/keycloak-js/-/keycloak-js-15.1.1.tgz#4f3ef77fde377a506ec21e5e4790c0ba96ec97f6"
+  integrity sha512-PPu70WfSI2CWX7GoF5AQ4HkqYJLTAOV/25wDG//9S5SUOhqIDxKjAv6P54hy8nKt2+rIZF2kqpv7FNEmBN2W4g==
+  dependencies:
+    base64-js "1.3.1"
+    js-sha256 "0.9.0"
+
 keyv@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/keyv/-/keyv-3.1.0.tgz#ecc228486f69991e49e9476485a5be1e8fc5c4d9"
@@ -8589,6 +8614,11 @@ klaro-micado@^0.7.19:
   version "0.7.19"
   resolved "https://registry.yarnpkg.com/klaro-micado/-/klaro-micado-0.7.19.tgz#d893d2f4fa059d5c7c79d166fb62ee58e8907d1e"
   integrity sha512-I/cLUMt8K2Sg3APESdbJe5k0pa6zebuzL28gcG5hdQ6I/pcQUjG/HSl449sxZzXnwRq9CwcPIJdIkGFGP7MduQ==
+
+klaro@^0.7.15:
+  version "0.7.18"
+  resolved "https://registry.yarnpkg.com/klaro/-/klaro-0.7.18.tgz#fef3a05fcd656451b941e11459f37d6c336e84c0"
+  integrity sha512-Q5nehkGeZuFerisW4oeeB1ax6dHDszWckR70EcxKvhFiJQ61CM0WBSo20yLbdvz8N9MFsOFu4RNCO9JsbkCxgQ==
 
 kleur@^3.0.3:
   version "3.0.3"
@@ -10449,13 +10479,12 @@ pkg-up@^3.1.0:
     find-up "^3.0.0"
 
 plist@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/plist/-/plist-3.0.1.tgz#a9b931d17c304e8912ef0ba3bdd6182baf2e1f8c"
-  integrity sha512-GpgvHHocGRyQm74b6FWEZZVRroHKE1I0/BTjAmySaohK+cUn+hZpbqXkc3KWgW3gQYkqcQej35FohcT0FRlkRQ==
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/plist/-/plist-3.0.5.tgz#2cbeb52d10e3cdccccf0c11a63a85d830970a987"
+  integrity sha512-83vX4eYdQp3vP9SxuYgEM/G/pJQqLUz/V/xzPrzruLs7fz7jxGQ1msZ/mg1nwZxUSuOp4sb+/bEIbRrbzZRxDA==
   dependencies:
-    base64-js "^1.2.3"
+    base64-js "^1.5.1"
     xmlbuilder "^9.0.7"
-    xmldom "0.1.x"
 
 popper.js@^1.0.2:
   version "1.16.1"
@@ -11264,10 +11293,10 @@ quasar-app-extension-auth-token-based@^0.3.1:
   dependencies:
     glob "^7.1.4"
 
-quasar@^1.18.5:
-  version "1.18.5"
-  resolved "https://registry.yarnpkg.com/quasar/-/quasar-1.18.5.tgz#296f28c9f45823004345ae5dcdac6e9bc9bd5895"
-  integrity sha512-T/PLWrRuM+1KRvfZASjvXwmSxmebOJGDa37sDuAv2Fb7TUe+iG6+6RhUGRWgasQAqWaTS4E5++MEoTyHqJzsNg==
+quasar@^1.14.0:
+  version "1.18.10"
+  resolved "https://registry.yarnpkg.com/quasar/-/quasar-1.18.10.tgz#193de1aab8e67182465339e9a3fd894d80a89747"
+  integrity sha512-PyqjGEHzW0eKdnAmLli0Q36uS+WgGFCFvR/wQ9HgVy+pICL1wHgkL2bQyT5CQ7HwTfimVlE5dr+JBFYOA+wFpQ==
 
 query-string@^4.1.0:
   version "4.3.4"
@@ -12940,10 +12969,10 @@ supports-hyperlinks@^2.0.0:
     has-flag "^4.0.0"
     supports-color "^7.0.0"
 
-survey-vue@^1.8.73:
-  version "1.9.4"
-  resolved "https://registry.yarnpkg.com/survey-vue/-/survey-vue-1.9.4.tgz#49602e0b6df3e5b17071897b9502518495b407fb"
-  integrity sha512-G6V2IivWLrvV78MO4rhw4JMZR5Qe3TX3QK3o/zPFohUJaQhwXOWuxOPIfLiXF0bfcXmGt7Lfx/llevfOu5JncA==
+survey-vue@^1.8.36:
+  version "1.9.23"
+  resolved "https://registry.yarnpkg.com/survey-vue/-/survey-vue-1.9.23.tgz#d31f3a2faa832b9c3e1ab692cad7b9adc3a4ea3b"
+  integrity sha512-0SwwUhkRZf3nQ//9KhMUyHoCvcFnkhBh9L72MolfE4FDQNpmw9RAxqKsZc844/LkSnDvFht+RZLWHoANkLQr6Q==
   dependencies:
     vue "^2.1.10"
 
@@ -14586,11 +14615,6 @@ xmlchars@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/xmlchars/-/xmlchars-2.2.0.tgz#060fe1bcb7f9c76fe2a17db86a9bc3ab894210cb"
   integrity sha512-JZnDKK8B0RCDw84FNdDAIpZK+JuJw+s7Lz8nksI7SIuU3UXJJslUthsi+uWBUYOwPFwW7W7PRLRfUKpxjtjFCw==
-
-xmldom@0.1.x:
-  version "0.1.31"
-  resolved "https://registry.yarnpkg.com/xmldom/-/xmldom-0.1.31.tgz#b76c9a1bd9f0a9737e5a72dc37231cf38375e2ff"
-  integrity sha512-yS2uJflVQs6n+CyjHoaBmVSqIDevTAWrzMmjG1Gc7h1qQ7uVozNhEPJAwZXWyGQ/Gafo3fCwrcaokezLPupVyQ==
 
 xregexp@^4.2.4:
   version "4.3.0"
