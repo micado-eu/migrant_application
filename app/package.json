@@ -46,7 +46,7 @@
     "survey-vue": "^1.8.36",
     "tiptap": "^1.27.1",
     "tiptap-extensions": "^1.29.1",
-    "validator": "^11.1.0",
+    "validator": "^13.7.0",
     "vue-countly": "^1.0.0",
     "vue-cytoscape": "^1.0.7",
     "vue-formio": "^4.0.7",
