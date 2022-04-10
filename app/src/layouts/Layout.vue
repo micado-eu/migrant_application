@@ -501,9 +501,9 @@ export default {
       this.chat = JSON.parse(decodeURIComponent(localStorage.klaro)).chat
       console.log("I AM CHAT")
       console.log(this.chat)
+      console.log("i'm klaro in local storage")
+      console.log(JSON.parse(decodeURIComponent(localStorage.klaro)))
     }
-    console.log("i'm klaro in local storage")
-    console.log(JSON.parse(decodeURIComponent(localStorage.klaro)))
     let uid = null
     if(this.user != null){
            uid = this.user.umid

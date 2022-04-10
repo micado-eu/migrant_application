@@ -297,7 +297,11 @@ export default {
     },
     scroll () {
       const el = document.getElementById("message_area");
+      const scrollArea = this.$refs.message_area;
+      console.log("SCROLLAREA")
+      console.log(scrollArea)
       const target = getScrollTarget(el)
+      console.log(el)
       const offset = el.scrollHeight
       const duration = 0
       setScrollPosition(target, offset, duration)

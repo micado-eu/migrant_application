@@ -569,8 +569,8 @@ export default {
       console.log("I M TOPICFILTER");
       var parsed_var = [];
       console.log(this.topicFilter)
-      console.log(JSON.parse(this.topicFilter))
       if (this.topicFilter) {
+        console.log(JSON.parse(this.topicFilter))
         var parsed_var = JSON.parse(this.topicFilter);
       }
 
