@@ -668,6 +668,7 @@ export default {
     this.$root.$refs.layout_ref = this;
     console.log(this.$root.$refs)
     console.log(this.$defaultLangString)
+    if(this.user != null){
     this.fetchMigrantSurvey(this.user.umid).then((sr) => {
       console.log("I AM THE SUrVEY")
       console.log(sr)
@@ -676,6 +677,8 @@ export default {
         this.setSurveyJSON(JSON.parse(sr.survey))
       }
     })
+    }
+
   }
 }
 </script>
