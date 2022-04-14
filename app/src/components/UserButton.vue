@@ -75,7 +75,7 @@ export default {
       }
     },
     toLogin () {
-      this.$auth.login()
+      this.$keycloak.login()
 
       /*
       let d = new Date()

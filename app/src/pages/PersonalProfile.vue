@@ -258,7 +258,7 @@ export default {
     console.log("I AM USER ID")
     console.log(userId)
     if(this.$store.state.auth.user){
-          this.fetchSpecificUser(this.$store.state.auth.user.umid).then((user)=>{
+          this.fetchSpecificUser(this.$store.state.auth.user.sub).then((user)=>{
       if(user.userPicture){
         this.the_user.picture= this.user.userPicture.picture
         this.the_user.picture_id= this.user.userPicture.id
