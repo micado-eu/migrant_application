@@ -403,7 +403,7 @@ export default {
       console.log(this.user)
       console.log("QUESTE SONO LE REFS")
       console.log(this.$root)
-      this.username = this.user.id
+      this.username = this.user.sub
       this.password = "kHLAuxDmXz8e"
       this.loginBasic()
       this.createMessage()

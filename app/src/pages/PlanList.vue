@@ -65,7 +65,7 @@ export default {
     },
   },
     created () {
-    var userId = this.$store.state.auth.user.umid
+    var userId = this.$store.state.auth.user.sub
     this.fetchInterventionPlan(userId)
       .then(intervention_plans => {
         console.log("I am intervention plan")

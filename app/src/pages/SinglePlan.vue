@@ -291,7 +291,7 @@ export default {
       this.updateIntervention({ interventionId: this.selectedIntervention, tenantId: this.selectedValidator, requestDate: current_data, planId: this.selectedPlanId })
         .then((result) => {
           console.log(result)
-          var userId = this.$store.state.auth.user.umid
+          var userId = this.$store.state.auth.user.sub
           this.ask_validation = false
           this.selectedValidator = null
           this.selectedIntervention = null
@@ -308,7 +308,7 @@ export default {
       this.updateIntervention({ interventionId: this.selectedIntervention, tenantId: this.$migrant_tenant, requestDate: current_data, planId: this.selectedPlanId })
         .then((result) => {
           console.log(result)
-          var userId = this.$store.state.auth.user.umid
+          var userId = this.$store.state.auth.user.sub
           this.ask_validation = false
           this.selectedValidator = null
           this.selectedIntervention = null
@@ -318,7 +318,7 @@ export default {
     }
   },
   created () {
-    var userId = this.$store.state.auth.user.umid
+    var userId = this.$store.state.auth.user.sub
     this.fetchInterventionPlan(userId)
       .then(intervention_plans => {
         console.log("I am intervention plan")

@@ -76,7 +76,7 @@ export default {
   },
   computed:{
     user_docs(){
-      var user = this.$store.state.auth.user.umid
+      var user = this.$store.state.auth.user.sub
       return this.documents.filter((doc)=>{
         return doc.userId == user
       })

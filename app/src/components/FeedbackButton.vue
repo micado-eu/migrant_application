@@ -227,7 +227,7 @@ export default {
       }
       if (this.$auth.loggedIn()) {
         console.log("LOgged user");
-        this.rating.userId = this.user.umid;
+        this.rating.userId = this.user.sub;
       }
       this.checkContentType(path);
       this.rating.date = new Date().toISOString();

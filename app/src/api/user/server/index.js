@@ -11,7 +11,7 @@ export default {
   },
   fetchSpecificUser (id) {
     return axiosInstance
-      .get(`/users/${id}?filter[include][0][relation]=attributes&filter[include][1][relation]=interventionPlans&filter[include][2][relation]=tenant&filter[include][3][relation]=userPicture&filter[include][4][relation]=userPreferences`)
+      .get(`/users/${id}?filter[include][0][relation]=interventionPlans&filter[include][1][relation]=userPicture&filter[include][2][relation]=userPreferences`)
       .then((response) => response.data)
       .catch(error_handler)
   },

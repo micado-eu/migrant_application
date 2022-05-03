@@ -433,7 +433,7 @@ export default {
       });
     },
     showDocument(docid) {
-      var userId = this.$store.state.auth.user.umid;
+      var userId = this.$store.state.auth.user.sub;
       var user_docs = this.my_documents.filter((my_doc) => {
         return my_doc.userId == userId;
       });
@@ -449,7 +449,7 @@ export default {
     },
     checkWallet(docid) {
       if (this.$auth.loggedIn()) {
-        var userId = this.$store.state.auth.user.umid;
+        var userId = this.$store.state.auth.user.sub;
 
         var user_docs = this.my_documents.filter((my_doc) => {
           return my_doc.userId == userId;

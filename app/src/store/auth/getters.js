@@ -8,7 +8,7 @@ export function token (state) {
   return state.token
 }
 export function userId(state){
-  return state.user.umid
+  return state.user.sub
 }
 
 export function loggedIn (state) {

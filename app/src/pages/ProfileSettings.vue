@@ -500,7 +500,7 @@ export default {
       temp_pref.forEach((tmp)=>{
         saving_pref.push({idUserType:tmp.id})
       })
-      this.editUserPreferences({user_id:this.$store.state.auth.user.umid, preferences:saving_pref})
+      this.editUserPreferences({user_id:this.$store.state.auth.user.sub, preferences:saving_pref})
       this.preferences_orig = JSON.parse(JSON.stringify(this.preferences))
     },
     cancelPref(){
@@ -629,7 +629,7 @@ export default {
         this.user_picture = {
           id: -1,
           picture: fileInfo.base64,
-          userId:this.user.umId,
+          userId:this.user.id,
           tenantId:this.user.umTenantId
         }
         console.log(this.user_picture)
@@ -638,28 +638,15 @@ export default {
     },
   },
   created () {
-    var userId = this.$store.state.auth.user.umid
+    var userId = this.$store.state.auth.user.sub
     console.log(userId)
     this.fetchSpecificUser(userId).then((user)=>{
       console.log(user)
       console.log("this is the user in store")
       console.log(this.user)
-      this.the_user.username = this.user.attributes.filter((attr)=>{
-        return attr.umAttrName == "uid"
-      })[0].umAttrValue
-      this.the_user.userid = this.user.attributes.filter((attr)=>{
-        return attr.umAttrName == "scimId"
-      })[0].umAttrValue
-      this.findAttribute('mobile', 'phoneNumber')
-      this.findAttribute('uid', 'username')
-      this.findAttribute('scimId', 'userid')
-      this.findAttribute('givenName', 'givenName')
-      this.findAttribute('sn', 'familyName')
-      this.the_user.legalname = this.the_user.givenName + " " + this.the_user.familyName
-      this.findAttribute('dateOfBirth', 'date_of_birth')
-      this.findAttribute('gender', 'gender')
-      this.findAttribute('country', 'nationality')
-      this.findAttribute('mail', 'email')
+      this.the_user.username = this.$store.state.auth.user.preferred_username
+      this.the_user.legalname = this.$store.state.auth.user.name
+      this.the_user.email = this.$store.state.auth.user.email
       if(user.userPicture){
         this.the_user.picture= this.user.userPicture.picture
         this.the_user.picture_id= this.user.userPicture.id

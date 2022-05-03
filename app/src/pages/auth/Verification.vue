@@ -33,9 +33,10 @@ export default {
 
   ],
   mounted () {
-    this.verifyUser()
+    //this.verifyUser()
     console.log(window.location.href )
-    this.register()
+    this.$router.push({name: 'home'})
+    //this.register()
   },
   methods: {
     register(){
@@ -46,7 +47,7 @@ export default {
     },
     verifyUser () {
 
-      const hashes = this.$route.hash.slice(this.$route.hash.indexOf('#') + 1).split('&');
+      /*const hashes = this.$route.hash.slice(this.$route.hash.indexOf('#') + 1).split('&');
 
       let identity_response = hashes.reduce((acc, hash) => {
         // eslint-disable-next-line
@@ -86,7 +87,7 @@ export default {
       this.$store.dispatch('auth/setToken', {
         token: identity_response,
         rememberMe: false
-      })
+      })*/
 
 
       /*
@@ -104,7 +105,7 @@ export default {
                 console.error(error)
               })
               */
-            this.$router.push({name: 'home'})
+            
     }
   }
 }

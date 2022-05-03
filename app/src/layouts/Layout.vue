@@ -444,7 +444,7 @@ export default {
       console.log(data)
       if (eventType === 'saveConsents') {
         console.log("HERE WE SAVE THE CONSENTS IN THE DB")
-        client.saveConsent(this.user.umid, data.consents)
+        client.saveConsent(this.user.sub, data.consents)
       }
     }
   },
@@ -506,7 +506,7 @@ export default {
     }
     let uid = null
     if(this.user != null){
-           uid = this.user.umid
+           uid = this.user.sub
     }
     this.manager.watch({
       update:  (manager, eventType, data) => {
@@ -622,7 +622,7 @@ export default {
       console.log(this.surveys)
       var formatted_results = {
         idSurvey: this.surveys.id,
-        idUser: this.user.umid,
+        idUser: this.user.sub,
         answer: JSON.stringify(answer),
         answerDate: new Date().toISOString()
       }
@@ -669,7 +669,7 @@ export default {
     console.log(this.$root.$refs)
     console.log(this.$defaultLangString)
     if(this.user != null){
-    this.fetchMigrantSurvey(this.user.umid).then((sr) => {
+    this.fetchMigrantSurvey(this.user.sub).then((sr) => {
       console.log("I AM THE SUrVEY")
       console.log(sr)
       if(sr != null){
