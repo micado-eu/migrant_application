@@ -88,13 +88,13 @@ export function editUserData (state, payload) {
   // we need BEFORE to call the API to do the update and if ok we update wuex state
   console.log(payload.user)
   return client
-    .editUserData(payload.user, payload.token)
+    .editUserData(payload.userid, payload.firstName, payload.lastName, payload.email, payload.date_of_birth, payload.nationality, payload.gender, payload.phoneNumber)
 }
 export function editUserPassword (state, payload) {
   // we need BEFORE to call the API to do the update and if ok we update wuex state
   console.log(payload)
   return client
-    .editUserPassword(payload.admin, payload.adminpwd, payload.payload)
+    .editUserPassword(payload.userid,payload.password)
 }
 export function registerRocketChatUser(state, payload){
   return client.registerRocketChatUser(payload)

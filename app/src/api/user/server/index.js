@@ -34,15 +34,15 @@ export default {
       .then(response => { return response.data })
       .catch(error_handler);
   },
-  editUserData(user, token){
+  editUserData(userid, firstName, lastName, email, birthdate, nationality, gender, phoneNumber){
     return axiosInstance
-      .patch('/updateUser?payload=' +user + '&tenant=carbon.super')
+      .put('/updateUser?userid='+ userid + '&firstName=' + firstName + '&lastName=' + lastName + '&email=' + email + '&birthdate=' +birthdate + '&nationality=' + nationality + '&gender=' + gender + '&phone_number=' + phoneNumber +'&realm=migrant')
       .then(response => { return response.data })
       .catch(error_handler);
   },
-  editUserPassword(admin, adminpwd, payload){
+  editUserPassword(userid, password){
     return axiosInstance
-      .patch('/updateUser?payload=' +payload + '&tenant=carbon.super&admin=' + admin + '&adminpwd=' + adminpwd + '&isPswd=1')
+    .put('/updateUserPassword?userid=' +userid + '&realm=pa&password=' + password)
       .then(response => { return response.data })
       .catch(error_handler);
   },
