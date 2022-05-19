@@ -56,9 +56,9 @@
         type="user_type"
       ></entry-row-icons>
       <entry-row
-        v-if="attributes.creator"
+        v-if="attributes.username"
         label="events.organizer"
-        :value="getCreatorAttribute(attributes.creator, 'givenName') + ' ' + getCreatorAttribute(attributes.creator, 'sn')"
+        :value="attributes.username + ' (' + attributes.realm + ')'"
       ></entry-row>
       <div align="center">
         <q-btn
@@ -90,19 +90,7 @@ export default {
     EntryRow,
     EntryRowIcons
   },
-  props: ["title", "description", "attributes"],
-  methods: {
-    getCreatorAttribute(creator, attrString) {
-      var retAttr = ""
-      var retAttr_arr = creator.attributes.filter((attr) => {
-        return attr.umAttrName === attrString
-      })
-      if (retAttr_arr.length > 0) {
-        retAttr = retAttr_arr[0].umAttrValue
-      }
-      return retAttr
-    }
-  }
+  props: ["title", "description", "attributes"]
 }
 </script>
 

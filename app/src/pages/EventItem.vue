@@ -71,10 +71,12 @@ export default {
               this.attributes.start_date = startDate.toLocaleString("en")
               this.attributes.end_date = finishDate.toLocaleString("en")
             }
-            console.log("I AM ITEM CREATOR")
-            console.log(item.creator)
-            if (item.creator) {
-              this.attributes.creator = await this.fetchSpecificUserByTenant({ userid: item.creator, tenantid: this.$pa_tenant })
+            console.log(item.username)
+            if (item.username) {
+              this.attributes.username = item.username
+            }
+            if (item.realm) {
+              this.attributes.realm = item.realm
             }
           } catch (err) {
             if (err === "Not found") {
