@@ -48,14 +48,16 @@
         "procedure": "Ir al procedimiento",
         "edit": "Editar",
         "view_pics": "Ver detalles",
-        "change_pass": "Cambiar contraseña"
+        "change_pass": "Cambiar contraseña",
+		"continue": "Ir al contenido"
     },
     "input_labels": {
         "doc_type": "Tipo de Documento",
         "exp_date": "Fecha de Expiración",
         "upload_doc": "Subir Documento",
         "read": "Leer",
-        "email": "Email"
+        "email": "Email",
+		"shareable": "El documento es compartible"
     },
     "desc_labels": {
         "cost": "Coste por paso",
@@ -93,7 +95,9 @@
         "personal": "Area personal",
         "send_doc_me": "Enviar a otro correo",
         "send_doc_pa": "Seleccione una autoridad pública",
-        "survey_link": "Enlace a la encuesta externa"
+        "survey_link": "Enlace a la encuesta externa",
+		"loading": "Cargando...",
+		"send_doc_title": "Enviar documento via email"
     },
     "profile": {
         "change_pic": "Cambiar foto",
@@ -158,6 +162,7 @@
         "topic": "Tema"
     },
     "internal_reference": {
+		"default_title": "Referencia interna",
         "go_to_reference": "Ir a referencia",
         "more_info_2": "se puede encontrar en:",
         "more_info_1": "Más información sobre"
