@@ -444,7 +444,7 @@ export default {
       console.log(data)
       if (eventType === 'saveConsents') {
         console.log("HERE WE SAVE THE CONSENTS IN THE DB")
-        client.saveConsent(this.user.umid, data.consents)
+        client.saveConsent(this.user.sub, data.consents)
       }
     }
   },
@@ -501,12 +501,12 @@ export default {
       this.chat = JSON.parse(decodeURIComponent(localStorage.klaro)).chat
       console.log("I AM CHAT")
       console.log(this.chat)
+      console.log("i'm klaro in local storage")
+      console.log(JSON.parse(decodeURIComponent(localStorage.klaro)))
     }
-    console.log("i'm klaro in local storage")
-    console.log(JSON.parse(decodeURIComponent(localStorage.klaro)))
     let uid = null
     if(this.user != null){
-           uid = this.user.umid
+           uid = this.user.sub
     }
     this.manager.watch({
       update:  (manager, eventType, data) => {
@@ -622,7 +622,7 @@ export default {
       console.log(this.surveys)
       var formatted_results = {
         idSurvey: this.surveys.id,
-        idUser: this.user.umid,
+        idUser: this.user.sub,
         answer: JSON.stringify(answer),
         answerDate: new Date().toISOString()
       }
@@ -668,7 +668,8 @@ export default {
     this.$root.$refs.layout_ref = this;
     console.log(this.$root.$refs)
     console.log(this.$defaultLangString)
-    this.fetchMigrantSurvey(this.user.umid).then((sr) => {
+    if(this.user != null){
+    this.fetchMigrantSurvey(this.user.sub).then((sr) => {
       console.log("I AM THE SUrVEY")
       console.log(sr)
       if(sr != null){
@@ -676,6 +677,8 @@ export default {
         this.setSurveyJSON(JSON.parse(sr.survey))
       }
     })
+    }
+
   }
 }
 </script>

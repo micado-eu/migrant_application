@@ -273,7 +273,7 @@ export default {
       console.log(this.surveys)
       var formatted_results = {
         idSurvey: this.surveys.id,
-        idUser: this.user.umid,
+        idUser: this.user.sub,
         answer: JSON.stringify(answer),
         answerDate: new Date().toISOString()
       }
@@ -288,7 +288,7 @@ export default {
         defaultLang: this.$defaultLang,
         userLang: this.$userLang,
         }).then(ret=> console.log(ret))
-  this.fetchMigrantSurvey(this.user.umid).then((sr) => {
+  this.fetchMigrantSurvey(this.user.sub).then((sr) => {
       console.log("I AM THE SUrVEY in about")
       console.log(sr)
       if(sr != null){

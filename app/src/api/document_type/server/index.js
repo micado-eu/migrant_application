@@ -17,20 +17,20 @@ function error_handler(error) {
 export default {
   fetchDocumentType() {
     return axiosInstance
-      .get('/backend/1.0.0/document-types?filter[include][0][relation]=translations&filter[include][1][relation]=pictures')
+      .get('/document-types?filter[include][0][relation]=translations&filter[include][1][relation]=pictures')
       .then(response => response.data)
       .catch(error_handler);
   },
   fetchDocumentTypeMigrant(defaultlang,currentLang) {
     return axiosInstance
-      .get('/backend/1.0.0/document-types-migrant?defaultlang=' + defaultlang + '&currentlang=' + currentLang)
+      .get('/document-types-migrant?defaultlang=' + defaultlang + '&currentlang=' + currentLang)
       .then(response => response.data)
       .catch(error_handler);
   },
   saveDocumentType(doc) {
     // create fake id here
     return axiosInstance
-      .post('/backend/1.0.0/document-types', doc)
+      .post('/document-types', doc)
       .then(response => response.data)
       .catch(error_handler);
   },
@@ -40,7 +40,7 @@ export default {
     
     // create fake id here
     return axiosInstance
-      .post('/backend/1.0.0/document-types/' + id + '/document-type-translations', savingTranslation)
+      .post('/document-types/' + id + '/document-type-translations', savingTranslation)
       .then(response => response.data)
       .catch(error_handler);
   },
@@ -51,26 +51,26 @@ export default {
     
     // create fake id here
     return axiosInstance
-      .post('/backend/1.0.0/document-types/' + id + '/document-type-pictures', savingPicture)
+      .post('/document-types/' + id + '/document-type-pictures', savingPicture)
       .then(response => response.data)
       .catch(error_handler);
   },
   deleteDocumentTypePictures(id) {
     return axiosInstance
-      .delete('/backend/1.0.0/document-types/' + id + '/document-type-pictures')
+      .delete('/document-types/' + id + '/document-type-pictures')
       .then(response => response.data)
       .catch(error_handler);
   },
   deleteDocumentTypeTranslation(id) {
     return axiosInstance
-      .delete('/backend/1.0.0/document-types/' + id + '/document-type-translations')
+      .delete('/document-types/' + id + '/document-type-translations')
       .then(response => response.data)
       .catch(error_handler);
   },
 
   deleteDocumentType(id) {
     return axiosInstance
-      .delete('/backend/1.0.0/document-types/' + id)
+      .delete('/document-types/' + id)
       .then(response => response.data)
       .catch(error_handler);
   },
@@ -81,7 +81,7 @@ export default {
      updatingDocumentType = (doc.publicationDate == null) ? JSON.parse(JSON.stringify(doc, ['id', 'icon', 'published'])) : doc
 
     return axiosInstance
-      .patch('/backend/1.0.0/document-types?where=' + JSON.stringify(whereClause), updatingDocumentType)
+      .patch('/document-types?where=' + JSON.stringify(whereClause), updatingDocumentType)
       .then(response => response.data)
       .catch(error_handler);
   },
@@ -93,7 +93,7 @@ export default {
      updatingTranslation = (translation.translationDate == null) ? JSON.parse(JSON.stringify(translation, ['lang', 'document', 'description'])) : translation
 
     return axiosInstance
-      .patch('/backend/1.0.0/document-types/' + translation.id + '/document-type-translations?where=' + JSON.stringify(whereClause), updatingTranslation)
+      .patch('/document-types/' + translation.id + '/document-type-translations?where=' + JSON.stringify(whereClause), updatingTranslation)
       .then(response => response.data)
       .catch(error_handler);
   },
@@ -104,7 +104,7 @@ export default {
      updatingDocumentTypePictures = JSON.parse(JSON.stringify(picture, ['image']));
 
     return axiosInstance
-      .patch('/backend/1.0.0/document-types/' + picture.id + '/document-type-pictures?where=' + JSON.stringify(whereClause), updatingDocumentTypePictures)
+      .patch('/document-types/' + picture.id + '/document-type-pictures?where=' + JSON.stringify(whereClause), updatingDocumentTypePictures)
       .then(response => response.data)
       .catch(error_handler);
   }

@@ -54,8 +54,10 @@ export default {
     storeMappingMixin({
       getters: {
         user: 'user/users',
+        authuser: 'auth/user'
       }, actions: {
         fetchSpecificUser: 'user/fetchSpecificUser',
+        registerRocketchatUser: 'user/registerRocketChatUser'
       }
     })
 
@@ -75,7 +77,7 @@ export default {
       }
     },
     toLogin () {
-      this.$auth.login()
+      this.$keycloak.login()
 
       /*
       let d = new Date()
@@ -106,7 +108,7 @@ export default {
    created () {
     //var userId = this.$store.state.auth.user.umid
     if(this.$store.state.auth.user != null){
-          this.fetchSpecificUser( this.$store.state.auth.user.umid).then((user)=>{
+          this.fetchSpecificUser( this.$store.state.auth.user.sub).then((user)=>{
       if(user.userPicture){
         this.userpic= this.user.userPicture.picture
       }
@@ -114,8 +116,13 @@ export default {
         this.userpic= null
       }
     })
-    }
+        console.log("I AM IN AFTER VALIDATION AND REGISTERING THE USER")
+      var payload ={email: this.authuser.email, name: this.authuser.preferred_username, username: this.authuser.preferred_username, password: "kHLAuxDmXz8e"}
+      this.registerRocketchatUser(JSON.stringify(payload))
 
+
+    }
+   
   }
 }
 </script>

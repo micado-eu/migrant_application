@@ -232,6 +232,7 @@ export default {
       //this.$refs.user.toLogout()
       console.log("LOGGING OUT")
       this.$auth.logout()
+      this.$keycloak.logoutFn() 
     },
     findAttribute(umAttribute,userAttribute){
       console.log(umAttribute)
@@ -254,11 +255,11 @@ export default {
   },
 
   created () {
-    var userId = this.$store.state.auth.user.umid
+    var userId = this.$store.state.auth.user.sub
     console.log("I AM USER ID")
     console.log(userId)
     if(this.$store.state.auth.user){
-          this.fetchSpecificUser(this.$store.state.auth.user.umid).then((user)=>{
+          this.fetchSpecificUser(this.$store.state.auth.user.sub).then((user)=>{
       if(user.userPicture){
         this.the_user.picture= this.user.userPicture.picture
         this.the_user.picture_id= this.user.userPicture.id

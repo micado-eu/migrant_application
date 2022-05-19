@@ -43,7 +43,7 @@ const routes = [
       { path: '/tasks/:theplanid', component: () => import('pages/SinglePlan.vue'), props: (route) => ({ ...route.params }), name: 'plan', meta: { auth: true } },
       { path: '/chatbot', component: () => import('pages/Chatbot.vue') },
       { path: '/settings', name:'settings', component: () => import('pages/ProfileSettings.vue'), meta: { auth: true } },
-      { path: '/profile', name:'profile', component: () => import('pages/PersonalProfile.vue') },
+      { path: '/profile', name:'profile', component: () => import('pages/PersonalProfile.vue'), meta: { auth: true } },
       { path: '/certificates', component: () => import('pages/Certificates.vue'), props: true, name: 'certificates' },
       { path: '/privacy', name:'privacy', component: () => import('pages/Privacy.vue')},
       { path: '/glossary/:id?', component: () => import('pages/Glossary.vue'), name:'glossary'  },
@@ -53,6 +53,7 @@ const routes = [
       { path: '/information/:id', name:'info', component: () => import('pages/InformationItem.vue'),props: (route) => ({ ...route.params })},
       { path: '/events', component: () => import('pages/Events.vue')},
       { path: '/events/:id', name:'events', component: () => import('pages/EventItem.vue'), props: (route) => ({ ...route.params })},
+//      { path: '/silent-check-sso.html'},
       { path: '', name:'home', component: () => {
         if(localStorage.getItem("landingPage") == 'true' || localStorage.getItem("landingPage") == null){
           return import('pages/LandingPage.vue')
@@ -62,6 +63,7 @@ const routes = [
         }
       }
     },
+//    { path:'', name:'home', component: () => import('pages/TopicChoices.vue'), props: (route) => ({ ...route.params })},
       { path: 'topic', name:'topic', component: () => import('pages/TopicChoices.vue'), props: (route) => ({ ...route.params })},
       { path: 'welcome', name:'welcome', component: () => import('pages/LandingPage.vue'), props: (route) => ({ ...route.params })},
       { path: 'about', name:'about', component: () => import('pages/About.vue'), props: (route) => ({ ...route.params })},

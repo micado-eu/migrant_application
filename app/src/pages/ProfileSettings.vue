@@ -57,7 +57,7 @@
     </div>
     <div class=" q-px-md center" >
       <div class="input-top">
-        <q-input :readonly="!editing"  dense :label="$t('profile.username')"  bg-color="grey-1"   standout outlined v-model="the_user.username" >
+        <q-input :readonly="true"  dense :label="$t('profile.username')"  bg-color="grey-1"   standout outlined v-model="the_user.username" >
           <TalkingLabel
                   :text="$t('profile.username')"
                   :icon_style="'margin-top:7px; margin-left:10px'"                  
@@ -448,8 +448,8 @@ export default {
         username:"MaryHassan",
         phoneNumber:"",
         legalname:"Mariam Hassan",
-        givenName:"",
-        familyName:"",
+        firstName:"",
+        lastName:"",
         date_of_birth:null,
         nationality:"Egyptian",
         gender:"Female", 
@@ -500,7 +500,7 @@ export default {
       temp_pref.forEach((tmp)=>{
         saving_pref.push({idUserType:tmp.id})
       })
-      this.editUserPreferences({user_id:this.$store.state.auth.user.umid, preferences:saving_pref})
+      this.editUserPreferences({user_id:this.$store.state.auth.user.sub, preferences:saving_pref})
       this.preferences_orig = JSON.parse(JSON.stringify(this.preferences))
     },
     cancelPref(){
@@ -523,7 +523,7 @@ export default {
       console.log(pass_payload)
       if(this.password.new_password == this.password.confirm_password){
         console.log("saving new password")
-        this.editUserPassword({admin:user_admin, adminpwd:user_pass, payload:pass_payload})
+        this.editUserPassword({userid:this.$store.state.auth.user.sub, password: this.password.new_password})
         this.cancelPass()
         this.pass_changed = true
       }
@@ -546,15 +546,15 @@ export default {
     },
     editUser(){
       var idx = this.the_user.legalname .indexOf(" "); 
-      this.the_user.givenName = this.the_user.legalname.substr(0, idx)
-      this.the_user.familyName = this.the_user.legalname.substr(idx +1)
+      this.the_user.firstName = this.the_user.legalname.substr(0, idx)
+      this.the_user.lastName = this.the_user.legalname.substr(idx +1)
       console.log(this.the_user)
       this.the_user_orig=JSON.parse(JSON.stringify( this.the_user ))
-      var working_user = JSON.parse(JSON.stringify(this.the_user, [ 'userid', 'username', 'phoneNumber', 'givenName', 'familyName', 'date_of_birth', 'nationality', 'gender', 'email']));
+      var working_user = JSON.parse(JSON.stringify(this.the_user, [ 'userid', 'firstName', 'lastName', 'email','date_of_birth','nationality','gender', 'phoneNumber']));
       console.log(working_user)
       var working_token = "testtoken"
       console.log(working_token)
-      this.editUserData({user:JSON.stringify(working_user), token:working_token})
+      this.editUserData(working_user)
       this.editing = false
     },
     cancelUser(){
@@ -629,7 +629,7 @@ export default {
         this.user_picture = {
           id: -1,
           picture: fileInfo.base64,
-          userId:this.user.umId,
+          userId:this.user.id,
           tenantId:this.user.umTenantId
         }
         console.log(this.user_picture)
@@ -638,28 +638,23 @@ export default {
     },
   },
   created () {
-    var userId = this.$store.state.auth.user.umid
+    var userId = this.$store.state.auth.user.sub
+    console.log("PHONE NUMBER")
+    console.log(this.$store.state.auth.user["phone number"])
     console.log(userId)
     this.fetchSpecificUser(userId).then((user)=>{
       console.log(user)
       console.log("this is the user in store")
       console.log(this.user)
-      this.the_user.username = this.user.attributes.filter((attr)=>{
-        return attr.umAttrName == "uid"
-      })[0].umAttrValue
-      this.the_user.userid = this.user.attributes.filter((attr)=>{
-        return attr.umAttrName == "scimId"
-      })[0].umAttrValue
-      this.findAttribute('mobile', 'phoneNumber')
-      this.findAttribute('uid', 'username')
-      this.findAttribute('scimId', 'userid')
-      this.findAttribute('givenName', 'givenName')
-      this.findAttribute('sn', 'familyName')
-      this.the_user.legalname = this.the_user.givenName + " " + this.the_user.familyName
-      this.findAttribute('dateOfBirth', 'date_of_birth')
-      this.findAttribute('gender', 'gender')
-      this.findAttribute('country', 'nationality')
-      this.findAttribute('mail', 'email')
+      this.the_user.userid = this.$store.state.auth.user.sub
+      this.the_user.username = this.$store.state.auth.user.preferred_username
+      this.the_user.legalname = this.$store.state.auth.user.name
+      this.the_user.email = this.$store.state.auth.user.email
+      this.the_user.date_of_birth = this.$store.state.auth.user.birthdate
+      this.the_user.nationality = this.$store.state.auth.user.nationality
+      this.the_user.gender = this.$store.state.auth.user.gender
+      this.the_user.phoneNumber = this.$store.state.auth.user["phone number"]
+
       if(user.userPicture){
         this.the_user.picture= this.user.userPicture.picture
         this.the_user.picture_id= this.user.userPicture.id

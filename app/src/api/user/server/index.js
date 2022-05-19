@@ -5,62 +5,62 @@ export default {
   fetchUser (username, tenant) {
     console.log(username, tenant)
     return axiosInstance
-      .get('/backend/1.0.0/users?filter[include][0][relation]=attributes&filter[include][1][relation]=interventionPlans&filter[where][and][0][umUserName][eq]=' + username + '&filter[where][and][1][umTenantId]=' + tenant )
+      .get('/users?filter[include][0][relation]=attributes&filter[include][1][relation]=interventionPlans&filter[where][and][0][umUserName][eq]=' + username + '&filter[where][and][1][umTenantId]=' + tenant )
       .then(response => { return response.data })
       .catch(error_handler);
   },
   fetchSpecificUser (id) {
     return axiosInstance
-      .get(`/backend/1.0.0/users/${id}?filter[include][0][relation]=attributes&filter[include][1][relation]=interventionPlans&filter[include][2][relation]=tenant&filter[include][3][relation]=userPicture&filter[include][4][relation]=userPreferences`)
+      .get(`/users/${id}?filter[include][0][relation]=interventionPlans&filter[include][1][relation]=userPicture&filter[include][2][relation]=userPreferences`)
       .then((response) => response.data)
       .catch(error_handler)
   },
   fetchSpecificUserByTenant (id, tenant) {
     return axiosInstance
-      .get(`/backend/1.0.0/users/${id}?filter[include][0][relation]=attributes&filter[include][1][relation]=interventionPlans&filter[include][2][relation]=tenant&filter[include][3][relation]=userPicture&filter[include][4][relation]=userPreferences&filter[where][and][5][umTenantId]=` + tenant)
+      .get(`/users/${id}?filter[include][0][relation]=attributes&filter[include][1][relation]=interventionPlans&filter[include][2][relation]=tenant&filter[include][3][relation]=userPicture&filter[include][4][relation]=userPreferences&filter[where][and][5][umTenantId]=` + tenant)
       .then((response) => response.data)
       .catch(error_handler)
   },
   saveUserPicture(picture){
     const workingPic= JSON.parse(JSON.stringify(picture, ['picture', 'userId', 'tenantId']))
     return axiosInstance
-      .post('/backend/1.0.0/user-pictures', workingPic)
+      .post('/user-pictures', workingPic)
       .then(response => { return response.data })
       .catch(error_handler);
   },
   editUserPicture(pic, id){
     return axiosInstance
-      .patch('/backend/1.0.0/user-pictures/' + id, {picture:pic})
+      .patch('/user-pictures/' + id, {picture:pic})
       .then(response => { return response.data })
       .catch(error_handler);
   },
-  editUserData(user, token){
+  editUserData(userid, firstName, lastName, email, birthdate, nationality, gender, phoneNumber){
     return axiosInstance
-      .patch('/backend/1.0.0/updateUser?payload=' +user + '&tenant=carbon.super')
+      .put('/updateUser?userid='+ userid + '&firstName=' + firstName + '&lastName=' + lastName + '&email=' + email + '&birthdate=' +birthdate + '&nationality=' + nationality + '&gender=' + gender + '&phone_number=' + phoneNumber +'&realm=migrant')
       .then(response => { return response.data })
       .catch(error_handler);
   },
-  editUserPassword(admin, adminpwd, payload){
+  editUserPassword(userid, password){
     return axiosInstance
-      .patch('/backend/1.0.0/updateUser?payload=' +payload + '&tenant=carbon.super&admin=' + admin + '&adminpwd=' + adminpwd + '&isPswd=1')
+    .put('/updateUserPassword?userid=' +userid + '&realm=pa&password=' + password)
       .then(response => { return response.data })
       .catch(error_handler);
   },
   registerRocketChatUser(payload){
     return axiosInstance
-      .post('/backend/1.0.0/create-rocketchat-user?payload=' + payload)
+      .post('/create-rocketchat-user?payload=' + payload)
       .then(response => { return response.data })
       .catch(error_handler);
   },
   deletePreferences(user_id) {
     return axiosInstance
-      .delete('/backend/1.0.0/users/' + user_id + '/user-preferences')
+      .delete('/users/' + user_id + '/user-preferences')
       .then(response => response.data)
       .catch(error_handler);
   },
   savePreferences(user_id, payload) {
     return axiosInstance
-      .post('/backend/1.0.0/users/' + user_id + '/user-preferences', payload)
+      .post('/users/' + user_id + '/user-preferences', payload)
       .then(response => response.data)
       .catch(error_handler);
   },
@@ -70,7 +70,7 @@ export default {
     console.log(payload)
     let body = {consent:payload}
     return axiosInstance
-      .post('/backend/1.0.0/users/' + user_id + '/user-consent', body)
+      .post('/users/' + user_id + '/user-consent', body)
       .then(response => response.data)
       .catch(error_handler);
   },
@@ -80,7 +80,7 @@ export default {
     console.log(payload)
     let body = {consent:payload}
     return axiosInstance
-      .patch('/backend/1.0.0/users/' + user_id + '/user-consent', body)
+      .patch('/users/' + user_id + '/user-consent', body)
       .then(response => response.data)
       .catch(error_handler);
   },
@@ -89,7 +89,7 @@ export default {
       idUser: { eq: user_id }
     }
     return axiosInstance
-      .get('/backend/1.0.0/user-consents/count?where=' + JSON.stringify(whereClause))
+      .get('/user-consents/count?where=' + JSON.stringify(whereClause))
       .then(response => response.data)
       .catch(error_handler);
   }

@@ -297,7 +297,11 @@ export default {
     },
     scroll () {
       const el = document.getElementById("message_area");
+      const scrollArea = this.$refs.message_area;
+      console.log("SCROLLAREA")
+      console.log(scrollArea)
       const target = getScrollTarget(el)
+      console.log(el)
       const offset = el.scrollHeight
       const duration = 0
       setScrollPosition(target, offset, duration)
@@ -399,7 +403,7 @@ export default {
       console.log(this.user)
       console.log("QUESTE SONO LE REFS")
       console.log(this.$root)
-      this.username = this.user.id
+      this.username = this.user.preferred_username
       this.password = "kHLAuxDmXz8e"
       this.loginBasic()
       this.createMessage()
