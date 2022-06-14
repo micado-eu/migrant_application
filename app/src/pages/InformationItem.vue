@@ -54,8 +54,11 @@ export default {
             if (item.topics) {
               this.attributes.topics = this.idJoin(item.topics, this.topics)
             }
-            if (item.creator) {
-              this.attributes.creator = await this.fetchSpecificUser(item.creator, this.$pa_tenant)
+            if (item.username) {
+              this.attributes.username = item.username
+            }
+            if (item.realm) {
+              this.attributes.realm = item.realm
             }
           }
           catch (err) {

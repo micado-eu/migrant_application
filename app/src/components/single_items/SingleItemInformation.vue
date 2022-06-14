@@ -62,19 +62,7 @@ export default {
     EntryRow,
     EntryRowIcons
   },
-  props: ["title", "description", "attributes"],
-  methods: {
-    getCreatorAttribute(creator, attrString) {
-      var retAttr = ""
-      var retAttr_arr = creator.attributes.filter((attr) => {
-        return attr.umAttrName === attrString
-      })
-      if (retAttr_arr.length > 0) {
-        retAttr = retAttr_arr[0].umAttrValue
-      }
-      return retAttr
-    }
-  }
+  props: ["title", "description", "attributes"]
 }
 </script>
 
