@@ -42,7 +42,7 @@
     "button": {
         "change_pass": "Passwort ändern",
         "delete": "Entfernen",
-        "procedure": "Zu Prozedur gehen",
+        "procedure": "Externe Quelle",
         "edit": "Bearbeiten",
         "validated": "Validiert",
         "validation_pending": "Validierung ausstehend",
