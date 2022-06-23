@@ -53,7 +53,7 @@
           :text="content"
         />-->
         </q-card-section>
-                 <div class="row" style="text-align:center; margin-bottom:20px; margin-top:25px;  justify-content: center;">
+      <div class="row" v-if="content_type == 'topic'" style="text-align:center; margin-bottom:20px; margin-top:25px;  justify-content: center;">
          <q-btn
          @click="navigate"
           :label="$t('button.continue')"
