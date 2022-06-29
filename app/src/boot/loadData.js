@@ -18,7 +18,10 @@ export default async ({ store, Vue }) => {
                 console.log(settings)
                 curlang = settings.filter((setting) => { return setting.key == 'default_language' })[0]
                 defaultLang = store.state.language.languages.filter(function (l) { return l.lang == curlang.value })[0]
-                paLogo = settings.filter((setting) => { return setting.key == 'pa_logo' })[0]
+                let pa = settings.filter((setting) => { return setting.key == 'pa_logo' })
+                if(pa.length > 0){
+                    paLogo = settings.filter((setting) => { return setting.key == 'pa_logo' })[0]
+                }
                 var migrant_tenant = settings.filter((setting) => { return setting.key == 'migrant_tenant' })[0]
                 var pa_tenant = settings.filter((setting) => { return setting.key == 'pa_tenant' })[0]
                 var duration_of_new = settings.filter((setting) => { return setting.key == 'duration_of_new' })[0]
