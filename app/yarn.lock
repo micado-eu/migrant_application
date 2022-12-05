@@ -1313,6 +1313,13 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
+"@dsb-norge/vue-keycloak-js@^2.1.3-beta":
+  version "2.1.3-beta"
+  resolved "https://registry.yarnpkg.com/@dsb-norge/vue-keycloak-js/-/vue-keycloak-js-2.1.3-beta.tgz#d2c29fe04af174cc089db1bbf002cb88ceb45763"
+  integrity sha512-RXnX/qwuUzNblxgQ8maxIKofhyQndpcIm8+egKonzSiTMAMUhyV8poSBoGEA3RCgcaxwOZhEw6rF0F39fc4BAg==
+  dependencies:
+    keycloak-js "^15.0.2"
+
 "@electron/get@^1.3.1":
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/@electron/get/-/get-1.10.0.tgz#258fdda22bbd5a247e0b663ba9c525dedc1bdfff"
@@ -1754,10 +1761,10 @@
     babel-plugin-dynamic-import-node "^2.3.0"
     babel-plugin-module-resolver "^4.0.0"
 
-"@quasar/extras@^1.12.5":
-  version "1.12.5"
-  resolved "https://registry.yarnpkg.com/@quasar/extras/-/extras-1.12.5.tgz#dfd59f5fa96dac75959ff8266d1485abcc270048"
-  integrity sha512-I2bj/qPVxFdd1SZmIao+moh2bSlgbqNHJAIAopzwxQL0fTMKWGaOQsOvSKrv4hmAhC1cL/SBHd4OWAUWa4dA/w==
+"@quasar/extras@^1.9.5":
+  version "1.15.7"
+  resolved "https://registry.yarnpkg.com/@quasar/extras/-/extras-1.15.7.tgz#036a638011eb5af62524dfdab666009d599247c5"
+  integrity sha512-DuW+kVk8U1Cf3X5L/k5YVOMij9R0zTgVd0bjqT0v8QSMmLUhDPjd0LpV3t2eZrmEKyl2ZmxUUi0TuarqsLz+xg==
 
 "@quasar/fastclick@1.1.4":
   version "1.1.4"
@@ -3177,7 +3184,7 @@ balanced-match@^1.0.0:
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
   integrity sha1-ibTRmasr7kneFk6gK4nORi1xt2c=
 
-base64-js@^1.0.2, base64-js@^1.2.3:
+base64-js@1.3.1, base64-js@^1.0.2, base64-js@^1.2.3:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.3.1.tgz#58ece8cb75dd07e71ed08c736abc5fac4dbf8df1"
   integrity sha512-mLQ4i2QO1ytvGWFWmcngKO//JXAQueZvwEKtjgQFM4jIK0kU+ytMfplL8j+n5mspOfjHwoAg+9yhb7BwAHm36g==
@@ -5098,9 +5105,9 @@ decimal.js@^10.2.0:
   integrity sha512-vDPw+rDgn3bZe1+F/pyEwb1oMG2XTlRVgAa6B4KccTEpYgF8w6eQllVbQcfIJnZyvzFtFpxnpGtx8dd7DJp/Rw==
 
 decode-uri-component@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
-  integrity sha1-6zkTMzRYd1y4TNGh+uBiEGu4dUU=
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.2.tgz#e69dbe25d37941171dd540e024c444cd5188e1e9"
+  integrity sha512-FqUYQ+8o158GyGTrMFJms9qh3CqTKvAqgqsTnkLI8sKu0028orqBhxNMFkFen0zGyg6epACD32pjVk58ngIErQ==
 
 decompress-response@^3.3.0:
   version "3.3.0"
@@ -8355,6 +8362,11 @@ js-levenshtein@^1.1.3:
   resolved "https://registry.yarnpkg.com/js-levenshtein/-/js-levenshtein-1.1.6.tgz#c6cee58eb3550372df8deb85fad5ce66ce01d59d"
   integrity sha512-X2BB11YZtrRqY4EnQcLX5Rh373zbK4alC1FW7D7MBhL2gtcC17cTnr6DmfHZeS0s2rTHjUTMMHfG7gO8SSdw+g==
 
+js-sha256@0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/js-sha256/-/js-sha256-0.9.0.tgz#0b89ac166583e91ef9123644bd3c5334ce9d0966"
+  integrity sha512-sga3MHh9sgQN2+pJ9VYZ+1LPwXOxuBJBA5nrR5/ofPfuiJBE2hnjsaN8se8JznOmGLN2p49Pe5U/ttafcs/apA==
+
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
@@ -8549,6 +8561,14 @@ jwt-decode@^3.1.2:
   resolved "https://registry.yarnpkg.com/jwt-decode/-/jwt-decode-3.1.2.tgz#3fb319f3675a2df0c2895c8f5e9fa4b67b04ed59"
   integrity sha512-UfpWE/VZn0iP50d8cz9NrZLM9lSWhcJ+0Gt/nm4by88UL+J1SiKN8/5dkjMmbEzwL2CAe+67GsegCbIKtbp75A==
 
+keycloak-js@^15.0.2:
+  version "15.1.1"
+  resolved "https://registry.yarnpkg.com/keycloak-js/-/keycloak-js-15.1.1.tgz#4f3ef77fde377a506ec21e5e4790c0ba96ec97f6"
+  integrity sha512-PPu70WfSI2CWX7GoF5AQ4HkqYJLTAOV/25wDG//9S5SUOhqIDxKjAv6P54hy8nKt2+rIZF2kqpv7FNEmBN2W4g==
+  dependencies:
+    base64-js "1.3.1"
+    js-sha256 "0.9.0"
+
 keyv@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/keyv/-/keyv-3.1.0.tgz#ecc228486f69991e49e9476485a5be1e8fc5c4d9"
@@ -8589,6 +8609,11 @@ klaro-micado@^0.7.19:
   version "0.7.19"
   resolved "https://registry.yarnpkg.com/klaro-micado/-/klaro-micado-0.7.19.tgz#d893d2f4fa059d5c7c79d166fb62ee58e8907d1e"
   integrity sha512-I/cLUMt8K2Sg3APESdbJe5k0pa6zebuzL28gcG5hdQ6I/pcQUjG/HSl449sxZzXnwRq9CwcPIJdIkGFGP7MduQ==
+
+klaro@^0.7.15:
+  version "0.7.18"
+  resolved "https://registry.yarnpkg.com/klaro/-/klaro-0.7.18.tgz#fef3a05fcd656451b941e11459f37d6c336e84c0"
+  integrity sha512-Q5nehkGeZuFerisW4oeeB1ax6dHDszWckR70EcxKvhFiJQ61CM0WBSo20yLbdvz8N9MFsOFu4RNCO9JsbkCxgQ==
 
 kleur@^3.0.3:
   version "3.0.3"
@@ -11264,10 +11289,10 @@ quasar-app-extension-auth-token-based@^0.3.1:
   dependencies:
     glob "^7.1.4"
 
-quasar@^1.18.5:
-  version "1.18.5"
-  resolved "https://registry.yarnpkg.com/quasar/-/quasar-1.18.5.tgz#296f28c9f45823004345ae5dcdac6e9bc9bd5895"
-  integrity sha512-T/PLWrRuM+1KRvfZASjvXwmSxmebOJGDa37sDuAv2Fb7TUe+iG6+6RhUGRWgasQAqWaTS4E5++MEoTyHqJzsNg==
+quasar@^1.14.0:
+  version "1.22.2"
+  resolved "https://registry.yarnpkg.com/quasar/-/quasar-1.22.2.tgz#fc6c642f11d98423ab87170306e495d1f24b2b6d"
+  integrity sha512-+aERjMnF2GLcgVUDM5BzcfuQV90ofQD8biXmShxEr1Q3W9lsD2x8rxgSFaoic9Dl1ytoyJJHSV4ixeZKpJRuWg==
 
 query-string@^4.1.0:
   version "4.3.4"
@@ -12940,10 +12965,10 @@ supports-hyperlinks@^2.0.0:
     has-flag "^4.0.0"
     supports-color "^7.0.0"
 
-survey-vue@^1.8.73:
-  version "1.9.4"
-  resolved "https://registry.yarnpkg.com/survey-vue/-/survey-vue-1.9.4.tgz#49602e0b6df3e5b17071897b9502518495b407fb"
-  integrity sha512-G6V2IivWLrvV78MO4rhw4JMZR5Qe3TX3QK3o/zPFohUJaQhwXOWuxOPIfLiXF0bfcXmGt7Lfx/llevfOu5JncA==
+survey-vue@^1.8.36:
+  version "1.9.61"
+  resolved "https://registry.yarnpkg.com/survey-vue/-/survey-vue-1.9.61.tgz#315059f6846fa67f18f66aba3c8d070c53b94427"
+  integrity sha512-qzehZ8CjUsOPPkX2y4egINcGPZYr/2AYfAeJjlpOXAlVQey+ZydficwjtpDuKx73wVsWX21LCFIA2Bqv3E1t3w==
   dependencies:
     vue "^2.1.10"
 
