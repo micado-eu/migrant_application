@@ -55,7 +55,7 @@
     "vue-mermaid": "0.0.13",
     "vue2-leaflet": "^2.2.1",
     "vuelidate": "^0.7.7",
-    "vuex-persistedstate": "^3.1.0"
+    "vuex-persistedstate": "^3.2.1"
   },
   "devDependencies": {
     "@quasar/app": "^1.9.6",
