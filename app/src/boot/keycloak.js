@@ -68,7 +68,7 @@ export default async ({ Vue, router, store, app }) => {
           //enableLogging:true
         },
         config: {
-          url: 'https://'+ Vue.prototype.$envconfig.identityUrl +'/auth',
+          url: 'https://'+ Vue.prototype.$envconfig.identityUrl,
           realm: 'migrant',
           clientId: 'migrant_app'
         },
