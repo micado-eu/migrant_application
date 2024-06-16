@@ -638,6 +638,7 @@ export default {
       });
       this.loading = false;
       console.log(this);
+      /*
       console.log(this.$Countly);
       this.$Countly.q.push([
         "add_event",
@@ -653,6 +654,7 @@ export default {
           },
         },
       ]);
+      */
       console.log(this.$auth.loggedIn());
     },
   },

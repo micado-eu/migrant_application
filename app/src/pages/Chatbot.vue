@@ -75,6 +75,7 @@ export default {
   methods: {
     async getWord () {
       console.log("before calling")
+      /*
       this.$Countly.q.push(['add_event', {
         "key": "conversation",
         "count": 1,
@@ -82,6 +83,7 @@ export default {
           "question": this.word
         }
       }]);
+      */
       this.n_messages++
       this.$store.commit('chatbot/addMessage', { "id": this.n_messages, "user": "Luca", "text": this.word, "timestamp": "13:55", "sent": true, "color": "#cccccc", btn: false })
       const response = await ChatService.getWord({ word: this.word })
