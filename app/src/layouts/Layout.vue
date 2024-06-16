@@ -581,12 +581,12 @@ export default {
     applyConsent(consent){
       if(consent.usageTracker){
         console.log("starting countly")
-        this.$Countly.q.push(['opt_in'])
+//        this.$Countly.q.push(['opt_in'])
       }
       else{
         console.log("removing countly")
-        this.$Countly.q.push(['opt_out'])
-        console.log(this.$Countly)
+//        this.$Countly.q.push(['opt_out'])
+//        console.log(this.$Countly)
       }
       if(consent.chat){
         this.chat = true
