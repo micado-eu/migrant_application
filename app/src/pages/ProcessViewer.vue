@@ -638,23 +638,6 @@ export default {
       });
       this.loading = false;
       console.log(this);
-      /*
-      console.log(this.$Countly);
-      this.$Countly.q.push([
-        "add_event",
-        {
-          key: "process",
-          count: 1,
-          sum: 1,
-          dur: 1,
-          segmentation: {
-            idprocess: this.id,
-            nationality: "italian",
-            language: this.$userLang,
-          },
-        },
-      ]);
-      */
       console.log(this.$auth.loggedIn());
     },
   },

@@ -46,12 +46,6 @@ export default {
       .then(response => { return response.data })
       .catch(error_handler);
   },
-  registerRocketChatUser(payload){
-    return axiosInstance
-      .post('/create-rocketchat-user?payload=' + payload)
-      .then(response => { return response.data })
-      .catch(error_handler);
-  },
   deletePreferences(user_id) {
     return axiosInstance
       .delete('/users/' + user_id + '/user-preferences')

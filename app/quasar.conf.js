@@ -1,7 +1,6 @@
 // Configuration for your app
 // https://quasar.dev/quasar-cli/quasar-conf-js
 
-//const { default: rocketchat } = require("./src/boot/rocketchat");
 
 module.exports = function (ctx) {
   return {
@@ -12,7 +11,6 @@ module.exports = function (ctx) {
       'i18n',
       'envvar',
       'auth',
-      'rocketchat',
       'mermaid',
       'axios',
       'featureflag',
@@ -94,7 +92,6 @@ module.exports = function (ctx) {
       extendWebpack (cfg) {
       },
       chainWebpack (chain, { isServer, isClient }) {
-        chain.resolve.alias.set('api-chatbot-client', 'src/api/chatbot/mock');
         chain.resolve.alias.set('api-documents-client', 'src/api/documents/server');
         chain.resolve.alias.set('api-flows-client', 'src/api/flows/server');
         chain.resolve.alias.set('api-glossary-client', 'src/api/glossary/server');

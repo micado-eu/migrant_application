@@ -27,7 +27,6 @@ export default {
       getters: {
         user: 'auth/user',
       }, actions: {
-        registerRocketchatUser: 'user/registerRocketChatUser'
       }
     })
 
@@ -42,7 +41,6 @@ export default {
     register(){
       console.log("I AM IN AFTER VALIDATION AND REGISTERING THE USER")
       var payload ={email: this.user.email, name: this.user.id, username: this.user.id, password: "kHLAuxDmXz8e"}
-      this.registerRocketchatUser(JSON.stringify(payload))
 
     },
     verifyUser () {
