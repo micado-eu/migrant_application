@@ -24,9 +24,9 @@ export const setLocale = locale => {
   axiosInstance.defaults.headers.common['Accept-Language'] = locale.isoCode
   Vue.prototype.$userLang = locale.lang
   localStorage.lang = locale.lang
-  console.log("--------I am locale iscodoe-----------")
+  console.log("--------I am locale iscode-----------")
   console.log(locale.isoCode)
-  let quasarLang = locale.isoCode.replace('_','-').toLowerCase()
+  let quasarLang = locale.isoCode.replace('_', '-').toLowerCase()
   import(`quasar/lang/${quasarLang}`).then(lang => {
     Quasar.lang.set(lang.default)
   })

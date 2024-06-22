@@ -5,7 +5,5 @@
     "identityUrl": "$IDENTITY_HOSTNAME",
     "identitySPclientId": "$IDENTITY_SP_MIGRANTS_CLIENT_ID",
     "appBuildDate": "$APP_BUILD_DATE",
-    "migrantsUrl": "$MIGRANTS_HOSTNAME",
-    "migrantMouseflow": "$MIGRANTS_MOUSEFLOW",
-    "bot_name": "$BOT_NAME"
+    "migrantsUrl": "$MIGRANTS_HOSTNAME"
 }

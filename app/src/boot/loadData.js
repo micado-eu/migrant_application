@@ -9,7 +9,6 @@ export default async ({ store, Vue }) => {
         var userLang = {}
         var paLogo = ''
 
-        //    await store.dispatch('features/fetchFeatures');
         await store.dispatch("language/fetchActiveLanguages")
 
         await store.dispatch('settings/fetchSettings')
@@ -29,7 +28,7 @@ export default async ({ store, Vue }) => {
                 Vue.prototype.$defaultLangString = defaultLangString
                 Vue.prototype.$paLogo = paLogo.value
                 Vue.prototype.$defaultLang = defaultLang.lang
-                // somewhere we need to set the userLang reading it dfrom the user preferences and we will override this value
+                // somewhere we need to set the userLang reading it from the user preferences and we will override this value
                 // TODO: Save this setting in db instead of local storage
                 if (!localStorage.lang) {
                     localStorage.lang = defaultLang.lang
