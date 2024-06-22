@@ -12,19 +12,14 @@ import client from 'api-features-client'
 
 export default async ({ app, router, store, Vue }) => {
   try {
-    //setEnabledFeatures(['FF1', 'FF2', 'FF3'])
-    //setEnabledFeatures(await getFeaturesFromBackend('http://localhost:8081'))
-    //console.log(isEnabled('FF1'))
-    //Vue.directive('feature-flag', featureFlippingDirective)
 
     Vue.directive('feature-flipping', featureFlippingDirective)
     Vue.mixin({ beforeRouteEnter: featureFlippingGuard })
 
-    console.log("siamo in FEATURE flag boot")
+    console.log("in FEATURE flag boot")
     console.log(Vue)
 
     await store.dispatch('features/fetchFeaturesFlags')
-    //   .then()
     console.log("before enabledfeatures")
     setEnabledFeatures(store.state.features.featuresFlag)
   } catch (err) {

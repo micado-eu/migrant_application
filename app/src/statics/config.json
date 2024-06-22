@@ -5,7 +5,5 @@
     "identityUrl": "identity.micado.local",
     "identitySPclientId": "",
     "appBuildDate": "",
-    "migrantsUrl": "migrant.micado.local",
-    "migrantMouseflow": "",
-    "bot_name": "rasa_bot"
+    "migrantsUrl": "migrant.micado.local"
 }

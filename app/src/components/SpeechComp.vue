@@ -100,7 +100,6 @@ navigate() {
      console.log("in jump to")
      console.log(this)
      console.debug('documenti', allSpeech)
-     console.log("gioppo")
      console.log(allSpeech)
       
      console.log(this)
