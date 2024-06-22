@@ -3,7 +3,6 @@ import Vuex from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
 
 // import example from './module-example'
-import chatbot from './chatbot'
 import auth from './auth'
 import documents from './documents'
 import flows from './flows'
@@ -43,7 +42,6 @@ export default function (/* { ssrContext } */) {
     modules: {
       // example
       auth,
-      chatbot,
       flows,
       tenant,
       services,

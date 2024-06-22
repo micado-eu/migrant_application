@@ -96,9 +96,6 @@ export function editUserPassword (state, payload) {
   return client
     .editUserPassword(payload.userid,payload.password)
 }
-export function registerRocketChatUser(state, payload){
-  return client.registerRocketChatUser(payload)
-}
 export function editUserPreferences (state, payload) {
   console.log(payload)
   // we need BEFORE to call the API to do the update and if ok we update wuex state

@@ -6,7 +6,6 @@ import Speech from 'pages/Speech.vue'
 import Gioppo from 'pages/Gioppo.vue'
 import Home from 'pages/Home.vue'
 import Tasks from 'pages/Tasks.vue'
-import Chatbot from 'pages/Chatbot.vue'
 import ProfileSettings from 'pages/ProfileSettings.vue'
 import Certificates from 'pages/Certificates.vue'
 import Glossary from 'pages/Glossary.vue'
@@ -41,7 +40,6 @@ const routes = [
       { path: '/login', component: () => import('pages/Gioppo.vue')},
       { path: '/tasks', name:'tasks', component: () => import('pages/PlanList.vue') , meta: { auth: true } },
       { path: '/tasks/:theplanid', component: () => import('pages/SinglePlan.vue'), props: (route) => ({ ...route.params }), name: 'plan', meta: { auth: true } },
-      { path: '/chatbot', component: () => import('pages/Chatbot.vue') },
       { path: '/settings', name:'settings', component: () => import('pages/ProfileSettings.vue'), meta: { auth: true } },
       { path: '/profile', name:'profile', component: () => import('pages/PersonalProfile.vue'), meta: { auth: true } },
       { path: '/certificates', component: () => import('pages/Certificates.vue'), props: true, name: 'certificates' },

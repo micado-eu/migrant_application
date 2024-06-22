@@ -1,11 +1,9 @@
 {
     "apiKey": "",
     "apiUrl": "api.micado.local",
-    "rocketchatUrl": "admin2.micado.local",
     "monitoringUrl": "monitoring.micado.local",
     "identityUrl": "identity.micado.local",
     "identitySPclientId": "",
-    "chatServer": "admin2.micado.local",
     "appBuildDate": "",
     "migrantsUrl": "migrant.micado.local",
     "migrantMouseflow": "",

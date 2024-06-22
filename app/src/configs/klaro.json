@@ -52,13 +52,6 @@
             "inline-tracker"
          ],
          "optOut": false
-      },
-      {
-         "name": "chat",
-         "default": true,
-         "purposes": [
-            "livechat"
-         ]
       }
    ]
 }
