@@ -57,8 +57,8 @@
   "devDependencies": {
     "@quasar/app": "^1.9.6",
     "@quasar/quasar-app-extension-testing": "^1.0.5",
-    "@quasar/quasar-app-extension-testing-e2e-cypress": "^2.0.4",
-    "@quasar/quasar-app-extension-testing-unit-jest": "^1.1.0-beta.7",
+    "@quasar/quasar-app-extension-testing-e2e-cypress": "^3.1.2",
+    "@quasar/quasar-app-extension-testing-unit-jest": "^2.2.5",
     "eslint-plugin-cypress": "^2.11.1",
     "exports-loader": "^0.7.0",
     "majestic": "^1.2.24",

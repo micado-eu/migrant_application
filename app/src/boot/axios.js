@@ -2,8 +2,11 @@ import axios from 'axios'
 import qs from 'qs'
 
 const axiosInstance = axios.create({
-  paramsSerializer: params => {
-    return qs.stringify(params, { arrayFormat: 'repeat' })
+//  paramsSerializer: params => {
+//    return qs.stringify(params, { arrayFormat: 'repeat' })
+//  },
+  paramsSerializer: {
+    serialize: (params) => qs.stringify(params, {arrayFormat: 'repeat'})
   },
   baseURL: 'https://api.micado.local',
   "headers": {
