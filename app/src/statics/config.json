@@ -1,7 +1,7 @@
 {
     "apiKey": "",
     "apiUrl": "api.micado.local",
-    "monitoringUrl": "monitoring.micado.local",
+    "monitoringUrl": "",
     "identityUrl": "identity.micado.local",
     "identitySPclientId": "",
     "appBuildDate": "",

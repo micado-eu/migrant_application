@@ -56,8 +56,9 @@ export default {
     //var userId = this.$store.state.auth.user.umid
     if (this.$store.state.auth.user != null) {
       this.fetchSpecificUser(this.$store.state.auth.user.sub).then((user) => {
-        if (user.userPicture) {
-          this.userpic = this.user.userPicture.picture;
+        console.log(user);
+        if (user?.userPicture) {
+          this.userpic = user.userPicture.picture;
         } else {
           this.userpic = null;
         }

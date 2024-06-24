@@ -1,6 +1,5 @@
 import { Notify } from 'quasar'
 import { axiosInstance } from './axios'
-import auth from '../store/auth'
 import enUS from '../i18n/en-us/auth'
 /* eslint-disable no-use-before-define */
 
@@ -33,7 +32,6 @@ export default ({ app, router, store, Vue }) => {
   /**
    * Register auth store
    */
-  //store.registerModule('auth', auth)
 
   /**
    * Set route guard
@@ -139,6 +137,7 @@ export default ({ app, router, store, Vue }) => {
     store.dispatch('auth/logout')
   })
 
+  
   var helper = {}
   helper.register = (data) => { return store.dispatch('auth/register', data) }
   helper.loggedIn = () => { return store.getters['auth/loggedIn'] }
@@ -153,5 +152,7 @@ export default ({ app, router, store, Vue }) => {
   helper.user = () => { return store.getters['auth/user'] }
   helper.token = () => { return store.getters['auth/token'] }
   Vue.prototype.$auth = helper
+
+  
 }
 
