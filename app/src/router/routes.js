@@ -1,23 +1,4 @@
-import Index from 'pages/Index.vue'
-import Services from 'pages/Services.vue'
-import Flows from 'pages/Flows.vue'
-import Notifications from 'components/Notifications.vue'
-import Home from 'pages/Home.vue'
-import Tasks from 'pages/Tasks.vue'
-import ProfileSettings from 'pages/ProfileSettings.vue'
-import Glossary from 'pages/Glossary.vue'
-import DecisionTreePage from 'pages/DecisionTreePage.vue'
-import Processes from 'pages/Processes.vue'
-import DocumentWallet from 'pages/DocumentWallet'
-import DocumentViewerComponent from 'components/DocumentViewerComponent'
-import AddDocument from 'components/AddDocument'
-import ProcessViewer from 'pages/ProcessViewer'
-import InformationCentre from 'pages/InformationCentre'
-import InformationItem from 'pages/InformationItem'
-import Reserved from 'pages/Reserved'
-import Events from 'pages/Events'
-import EventItem from 'pages/EventItem'
-import { information } from '../store/information/getters'
+
 
 const routes = [
   {

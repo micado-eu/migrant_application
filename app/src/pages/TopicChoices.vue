@@ -271,7 +271,7 @@ export default {
           console.log("search results");
           return this.$store.getters["search/show_flows_search_personal"](
             this.index,
-            this.logged_user.userPreferences
+            this.logged_user?.userPreferences
           );
         } else {
           console.log("no process results");
@@ -281,7 +281,7 @@ export default {
         console.log("normale results");
         return this.$store.getters["flows/show_flows_personal"](
           this.index,
-          this.logged_user.userPreferences
+          this.logged_user?.userPreferences
         );
       }
     },
@@ -291,7 +291,7 @@ export default {
           console.log("search results");
           return this.$store.getters["search/show_flows_search_general"](
             this.index,
-            this.logged_user.userPreferences
+            this.logged_user?.userPreferences
           );
         } else {
           console.log("no process results");
@@ -301,7 +301,7 @@ export default {
         console.log("normale results");
         return this.$store.getters["flows/show_flows_general"](
           this.index,
-          this.logged_user.userPreferences
+          this.logged_user?.userPreferences
         );
       }
     },
@@ -311,7 +311,7 @@ export default {
           console.log("search results");
           return this.$store.getters["search/show_event_search_personal"](
             this.index,
-            this.logged_user.userPreferences
+            this.logged_user?.userPreferences
           );
         } else {
           console.log("no event results");
@@ -321,7 +321,7 @@ export default {
         console.log("normale results");
         return this.$store.getters["event/show_event_personal"](
           this.index,
-          this.logged_user.userPreferences
+          this.logged_user?.userPreferences
         );
       }
     },
@@ -331,7 +331,7 @@ export default {
           console.log("search results");
           return this.$store.getters["search/show_event_search_general"](
             this.index,
-            this.logged_user.userPreferences
+            this.logged_user?.userPreferences
           );
         } else {
           console.log("no event results");
@@ -341,7 +341,7 @@ export default {
         console.log("normale results");
         return this.$store.getters["event/show_event_general"](
           this.index,
-          this.logged_user.userPreferences
+          this.logged_user?.userPreferences
         );
       }
     },
@@ -351,7 +351,7 @@ export default {
           console.log("search results");
           return this.$store.getters["search/show_info_search_personal"](
             this.index,
-            this.logged_user.userPreferences
+            this.logged_user?.userPreferences
           );
         } else {
           console.log("no info results");
@@ -361,7 +361,7 @@ export default {
         console.log("normale results");
         return this.$store.getters["information/show_info_personal"](
           this.index,
-          this.logged_user.userPreferences
+          this.logged_user?.userPreferences
         );
       }
     },
@@ -371,7 +371,7 @@ export default {
           console.log("search results");
           return this.$store.getters["search/show_info_search_general"](
             this.index,
-            this.logged_user.userPreferences
+            this.logged_user?.userPreferences
           );
         } else {
           console.log("no info results");
@@ -381,7 +381,7 @@ export default {
         console.log("normale results");
         return this.$store.getters["information/show_info_general"](
           this.index,
-          this.logged_user.userPreferences
+          this.logged_user?.userPreferences
         );
       }
     },
