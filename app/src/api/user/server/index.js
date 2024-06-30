@@ -86,6 +86,12 @@ export default {
       .get('/user-consents/count?where=' + JSON.stringify(whereClause))
       .then(response => response.data)
       .catch(error_handler);
+  },
+  createUserDB(user){
+    return axiosInstance
+          .post('/usersone', user  )
+          .then(response => { return response.data })
+          .catch(error_handler)
   }
 }
 

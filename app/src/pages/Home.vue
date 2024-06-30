@@ -30,7 +30,6 @@ export default {
 
     console.log(hashes)
     console.log(identity_response)
-    // https://localhost:9443/oidc/logout?id_token_hint=<id_token>&post_logout_redirect_uri=<redirect URI>&state=<state>
     this.token = JSON.parse(atob(identity_response.id_token.split('.')[1]));
     this.access_token = identity_response.access_token
 
