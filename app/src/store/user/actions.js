@@ -35,6 +35,11 @@ export function fetchSpecificUser (state, id) {
       state.commit('setUser', user)
       return user
     })
+    .catch(error => {
+      console.log('fetchSpecificUser - error')
+      console.log(error)
+      return error
+    })
 }
 export function fetchSpecificUserByTenant (state, payload) {
   //console.log(id)
@@ -61,7 +66,7 @@ export function saveUser (state, user) {
   // we need BEFORE to call the API to do the save and if ok we update wuex state
   console.log(user)
   return client
-    .saveUser(user)
+    .createUserDB(user)
     .then((user_return) => state.commit('saveUser', user_return))
 }
 

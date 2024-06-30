@@ -1,8 +1,5 @@
 <template>
-  <q-page
-    v-cloak
-    padding
-  >
+  <q-page v-cloak padding>
     <p>
       {{ message }}
     </p>
@@ -10,40 +7,68 @@
 </template>
 
 <script>
-import client from 'api-user-client'
-import storeMappingMixin from '../../mixin/storeMappingMixin'
-
+import client from "api-user-client";
+import storeMappingMixin from "../../mixin/storeMappingMixin";
 
 export default {
-  name: 'Verification',
-  data () {
+  name: "Verification",
+  data() {
     return {
-      token: '',
-      message: ''
-    }
+      token: "",
+      message: "",
+    };
   },
   mixins: [
     storeMappingMixin({
       getters: {
-        user: 'auth/user',
-      }, actions: {
-      }
-    })
-
+        user: "auth/user",
+      },
+      actions: {
+        fetchSpecificUser: "user/fetchSpecificUser",
+        saveUser: "user/saveUser",
+      },
+    }),
   ],
-  mounted () {
-    //this.verifyUser()
-    console.log(window.location.href )
-    this.$router.push({name: 'home'})
+  mounted() {
+    this.verifyUser();
+    console.log(window.location.href);
+    // this.$router.push({ name: "home" });
     //this.register()
   },
   methods: {
-    register(){
-      console.log("I AM IN AFTER VALIDATION AND REGISTERING THE USER")
-      var payload ={email: this.user.email, name: this.user.id, username: this.user.id, password: "kHLAuxDmXz8e"}
-
+    register() {
+      console.log("I AM IN AFTER VALIDATION AND REGISTERING THE USER");
+      var payload = {
+        email: this.user.email,
+        name: this.user.id,
+        username: this.user.id,
+        password: "kHLAuxDmXz8e",
+      };
     },
-    verifyUser () {
+    verifyUser() {
+      console.log("verifying the user");
+      console.log(this.$store.state.auth.user);
+      // here we need to check if the user exists in the DB of MICADO or is a newly registered user, in this case we need to create the user in the DB of MICADO
+      if (this.$store.state.auth.user != null) {
+        console.log("user exists in auth now check the DB");
+        this.fetchSpecificUser(this.$store.state.auth.user.sub)
+          .then((user) => {
+            console.log(user);
+            if (user === undefined) {
+              console.log("user does not exist in DB");
+              let registeredUser = {
+                id: this.$store.state.auth.user.sub,
+                realm: "migrant",
+              };
+              this.saveUser(registeredUser);
+            }
+          })
+          .catch((err) => {
+            console.log("verifyUser error");
+            console.log(err);
+          });
+        this.$router.push({ name: "home" });
+      }
 
       /*const hashes = this.$route.hash.slice(this.$route.hash.indexOf('#') + 1).split('&');
 
@@ -87,7 +112,6 @@ export default {
         rememberMe: false
       })*/
 
-
       /*
             this.token = this.$route.query.token
       
@@ -103,10 +127,9 @@ export default {
                 console.error(error)
               })
               */
-            
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style>
